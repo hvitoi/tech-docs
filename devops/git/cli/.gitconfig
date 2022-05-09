@@ -1,0 +1,23 @@
+[user]
+	email = hvitoi@gmail.com
+	name = Henrique Vitoi
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[alias]
+	# prettier git log
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+
+	# list files changed in comparison to master branch
+	files = !git diff --name-only $(git merge-base HEAD master)
+
+	# list files changed in comparison to master branch
+	stat = !git diff --stat $(git merge-base HEAD master)
+[color]
+	ui = true

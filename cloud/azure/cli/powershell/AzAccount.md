@@ -1,0 +1,5 @@
+# AzAccount
+
+```powershell
+Connect-AzAccount
+```

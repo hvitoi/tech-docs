@@ -1,0 +1,5 @@
+# gparted
+
+```shell
+gparted
+```

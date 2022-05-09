@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+      <!-- Load properties file -->
+      <context:property-placeholder location="classpath:sport.properties" />
+
+      <!-- Define beans -->
+      <bean id="myLoggerConfig" class="com.hvitoi.MyLoggerConfig" init-method="initLogger">
+            <!-- Logger bean must be the first -->
+            <property name="rootLoggerLevel" value="FINE" />
+            <property name="printedLoggerLevel" value="FINE" />
+      </bean>
+
+      <bean id="myFortuneService" class="com.hvitoi.fortune.HappyFortuneService"></bean>
+
+      <bean id="myTrackCoach" class="com.hvitoi.coach.TrackCoach">
+            <!-- set up constructor injection -->
+            <constructor-arg ref="myFortuneService" />
+      </bean>
+
+      <bean id="myCricketCoach" class="com.hvitoi.coach.CricketCoach">
+
+            <!-- set up setter injection. -->
+            <!-- setFortuneService is referenced although only fortuneService is mentioned -->
+            <property name="fortuneService" ref="myFortuneService" />
+
+            <!-- set up literal injection -->
+            <!-- <property name="emailAddress2" value="thebestcoach@coach.com" /> -->
+            <!-- <property name="team2" value="Sunrisers Hyderabad" />  -->
+
+            <!-- set up property file injection -->
+            <!-- setEmailAddress -->
+            <property name="emailAddress" value="${foo.email}" />
+            <!-- setTeam -->
+            <property name="team" value="${foo.team}" />
+
+      </bean>
+
+</beans>

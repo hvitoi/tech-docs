@@ -1,0 +1,21 @@
+body{
+  /* background: gray; */
+  background: url(https://www.greeka.com/photos/cyclades/beaches/hero/cyclades-beaches-1280.webp);
+  background-repeat:no-repeat;
+}
+
+div{
+  background: yellow;
+  border: blue;
+  border-width: thick; /* 10px */
+  border-style: dotted;
+
+  }
+
+p{
+  color: green;
+}
+span{
+  background: red;
+  color: black;
+}

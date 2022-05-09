@@ -1,0 +1,5 @@
+# slack-desktop
+
+```shell
+slack
+```

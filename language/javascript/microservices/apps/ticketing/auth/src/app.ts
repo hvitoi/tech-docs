@@ -1,0 +1,42 @@
+import express from 'express';
+import 'express-async-errors'; // Allow throwing new Error() inside of async functions. Async functions do not return anything, instead they return a promise that resolve some value in the future. Async routes rely on the next() function. This package prevents this default behavior next(new Error())
+import cookieSession from 'cookie-session';
+import { errorHandler, NotFoundError } from '@hvtickets/common'; // Middlewares & Errors
+
+// Routes
+import { currentUserRouter } from './routes/currentuser';
+import { signupRouter } from './routes/signup';
+import { signinRouter } from './routes/signin';
+import { signoutRouter } from './routes/signout';
+
+// ---
+
+// API configuration
+const app = express();
+app.set('trust proxy', true); // Trust traffic coming from a proxy (nginx)
+app.use(express.json()); // bodyParser middleware
+app.use(
+  cookieSession({
+    signed: false, // Disable encryption
+    //secure: process.env.NODE_ENV !== 'test' // true if on 'start', false if on 'test'
+    // Cookie only will be used over https if true
+    secure: false
+  })
+);
+
+// Routes
+app.use(currentUserRouter);
+app.use(signupRouter);
+app.use(signinRouter);
+app.use(signoutRouter);
+
+// 'all' checks all possible methods. If all other routes fail, use this route
+app.all('*', () => {
+  throw new NotFoundError();
+});
+
+// Middlewares
+app.use(errorHandler);
+
+// Export app
+export { app };

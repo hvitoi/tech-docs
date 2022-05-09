@@ -1,0 +1,57 @@
+# Database Paradigms
+
+- <https://db-engines.com/en/ranking_trend>
+
+- **Key-Value DB**
+  - Data stored in RAM
+  - No schema
+  - Implementations
+    - Redis
+    - Memcached
+    - Etcd
+- **Wide-Column DB**
+  - Keys store multiple columns (values)
+  - No schema
+  - Good for time-series data, historical records, high-write, low-read
+  - Implementations
+    - Cassandra
+    - HBase
+- **Document Oriented DB**
+  - Each document is a container for key-value pairs
+  - No schema
+  - Documents are grouped together in collections
+  - Implementations
+    - MongoDB
+    - Firestore
+    - DynamoDB
+    - CouchDB
+- **Relational DB**
+  - Has schema
+  - ACID compliant: Atomicity, Consistency, Isolation, Durability
+  - Difficult to scale
+  - Implementations
+    - MySQL
+    - Postgres
+    - SQL Server
+- **Graph DB**
+  - Data is represented as `nodes` (circles)
+  - Relationships are represented as `edges` (arrows)
+  - Edges can also be weighted
+  - Good for n:n relationships!
+  - Good for fraud detection in finance and recomendation systems
+  - Implementations
+    - Neo4j
+    - DGraph
+- **Search DB**
+  - Similar to document-oriented DBs
+  - Search DB analyze all the text in the document and create index of the searchable terms
+  - Good for type-ahead search bars
+  - Implementations
+    - Lucene
+    - Solr
+    - ElasticSearch
+    - Algolia
+    - MeiliSearch
+- **Multi Model DB**
+  - Implementations
+    - Fauna: describe how to access the data with GraphQL

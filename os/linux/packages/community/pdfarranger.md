@@ -1,0 +1,5 @@
+# pdfarranger
+
+```shell
+pdfarranger
+```

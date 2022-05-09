@@ -1,0 +1,5 @@
+# get
+
+```shell
+GET "key"
+```

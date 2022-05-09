@@ -1,0 +1,5 @@
+# mycli
+
+```shell
+mycli
+```

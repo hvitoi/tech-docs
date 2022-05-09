@@ -1,0 +1,47 @@
+apiVersion: skaffold/v1beta2
+kind: Config
+build:
+  # Do not push to DockerHub on every build
+  local:
+    push: false
+
+  # Images that scaffold will manage
+  artifacts:
+
+      # image
+    - image: hvitoi/fibo-web
+      # folder
+      context: web
+      docker:
+        dockerfile: Dockerfile.dev
+      # Check for updated files and push them to inside the container
+      # If file extension is not listed below, scaffold will just rebuild the whole image!
+      sync:
+        '**/*.js': .
+        '**/*.css': .
+        '**/*.html': .
+
+    - image: hvitoi/fibo-api
+      context: api
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        '**/*.js': .
+
+    - image: hvitoi/fibo-worker
+      context: worker
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        '**/*.js': .
+
+deploy:
+  kubectl:
+    # All the config files (.yml) that scaffold will manage
+    # Update the images by changing the config files listed!
+    manifests:
+      - k8s/web-deployment.yml
+      - k8s/api-deployment.yaml
+      - k8s/worker-deployment.yaml
+      - k8s/api-service-clusterip.yml
+      - k8s/web-service-clusterip.yml

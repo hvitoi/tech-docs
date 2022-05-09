@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: postgres-deployment
+
+spec:
+  # Databases cannot simply have replicas added! To do so, additional advanced steps are required
+  replicas: 1
+  selector:
+    matchLabels:
+      component: postgres
+
+  template:
+    metadata:
+      labels:
+        component: postgres
+
+    spec:
+      # Allocate the storage! Request a volume from the database-pvc
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: database-pvc
+
+      # Containers that will have access to the persistent volume
+      containers:
+        - name: postgres
+          image: postgres:12-alpine
+          ports:
+            - containerPort: 5432
+          # Mount the persistent volume into the container!
+          volumeMounts:
+              # name must match the name of the PV created in the pod!
+            - name: postgres-storage
+              # path to be mounted inside of the container
+              mountPath: /var/lib/postgresql/data
+              # Particular to postgres. In the PV the data will be saved in the /postgres/ directory 
+              subPath: postgres
+          env:
+            # This environment varible name if specific to postgres and defines the password name
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PG_PASSWORD

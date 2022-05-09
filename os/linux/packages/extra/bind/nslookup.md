@@ -1,0 +1,66 @@
+# nslookup
+
+- Check an IP of a hostname in a DNS server
+- nslookup does not include entries in `/etc/hosts`
+
+```shell
+# Find the IP from a hostname
+nslookup "hostname"
+nslookup www.google.com
+
+# Find the hostname of a ip
+nslookup "ip"
+nslookup 172.217.28.4
+
+# specify type
+nslookup -type=SOA hvitoi.com # check the name server
+nslookup -type=NS hvitoi.com
+```
+
+- `Server`: is the resolver. The DNS server. Usually the modem or the router
+- `Address`: the ip and port of the DNS server
+- `Non-authoritative answer`: Means that the DNS server (modem) does not have info about the provided hostname (E.g., www.google.com), therefore it went outside on the internet to find that info
+- The DNS server does already have the info about the hostname saved in the local environment. It's NOT shown as non-authoritative answer
+
+## DNS
+
+- Domain Name System (DNS)
+- DNS is a system to translate a `hostname` to `ip address` and vice-versa
+- `8.8.8.8` google DNS server configured to provide DNS resolutions
+
+- Translation types
+
+  - `A Record`: hostname to ip (forward)
+  - `PTR Record`: ip to hostname (reverse)
+  - `CNAME Record`: hostname to hostname
+
+- DNS setup
+
+  - Master DNS
+  - Secondary or slave DNS
+  - Client
+
+- `bind9` is the name of the DNS package
+
+```shell
+sudo apt install bind9
+apt-get install bind9-doc
+```
+
+- `named` is the name of the dns service
+
+```shell
+systemctl status named
+```
+
+- DNS configuration files
+
+  - `/etc/bind/named.conf`
+  - `/etc/bind/named.conf.options`
+  - `/etc/bind/named.conf.local`
+  - `/etc/bind/named.conf.default-zones`
+
+## Name servers
+
+- Name servers identify your domain's location on the internet
+- You can specify the name servers for your domain. E.g., google (`ns-cloud-c1.googledomains.com`), azure (`ns1-05.azure-dns.com`)

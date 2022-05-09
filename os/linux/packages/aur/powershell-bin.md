@@ -1,0 +1,5 @@
+# powershell-bin
+
+```shell
+pwsh
+```

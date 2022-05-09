@@ -1,0 +1,54 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: posts-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: posts
+
+  template:
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: hvitoi/blog-posts
+
+---
+# ClusterIP
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+
+---
+# NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

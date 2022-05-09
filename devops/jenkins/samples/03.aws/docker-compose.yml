@@ -1,0 +1,34 @@
+version: "3"
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - "$HOME/jenkins_home:/var/jenkins_home"
+    networks:
+      - net
+  ubuntu:
+    container_name: ubuntu-mysqlcli-awscli
+    image: ubuntu-mysqlcli-awscli
+    build:
+      context: ubuntu
+      dockerfile: Dockerfile
+    volumes:
+      - "$PWD/script.sh:/tmp/script.sh" # mount script into the pod
+    ports:
+      - "22:22"
+    networks:
+      - net
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123"
+    volumes:
+      - "$HOME/mysql_data:/var/lib/mysql"
+    networks:
+      - net
+networks:
+  net: {}

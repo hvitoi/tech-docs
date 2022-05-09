@@ -1,0 +1,71 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+
+deploy:
+  kubectl:
+    # There is a collection of config files in these folders
+    # Anytime a change is made, it's automatically reapplied
+    # Also delete the objects when skaffold is stopped
+    manifests:
+      - ./infra/k8s/*
+
+build:
+  # Don't automatically push to dockerhub after building an image
+  local:
+    push: false
+
+  # Images to attempt to rebuild after changed
+  artifacts:
+    - image: hvitoi/blog-client
+      context: client # This is the directory
+      docker:
+        dockerfile: Dockerfile # Dockerfile to build
+      sync:
+        manual:
+          - src: 'src/**/*.js' # Take the file and directly throw into the pod
+            dest: . # If any other change is made that is not in .js, the image is rebuilt
+
+    - image: hvitoi/blog-posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+
+    - image: hvitoi/blog-comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+
+    - image: hvitoi/blog-eventbus
+      context: eventbus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+
+    - image: hvitoi/blog-moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+
+    - image: hvitoi/blog-query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .

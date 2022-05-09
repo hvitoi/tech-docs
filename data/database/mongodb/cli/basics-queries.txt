@@ -1,0 +1,9 @@
+# Shows use db
+db
+
+# Switch to another db
+use <db>
+
+# Show all databases
+show dbs
+

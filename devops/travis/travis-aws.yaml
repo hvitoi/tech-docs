@@ -1,0 +1,48 @@
+sudo: required
+services:
+  - docker
+
+# Create builds for test
+before_install:
+  - docker image build -t react-test -f ./client/Dockerfile.dev ./client
+
+# Run tests
+script:
+  - docker container run -e CI=true react-test npm test
+
+# Create builds for production
+after_success:
+  - docker image build -t hvitoi/multi-client ./client
+  - docker image build -t hvitoi/multi-nginx ./nginx
+  - docker image build -t hvitoi/multi-server ./server
+  - docker image build -t hvitoi/multi-worker ./worker
+  # Log into docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # Push images to docker hub
+  - docker push hvitoi/multi-client
+  - docker push hvitoi/multi-nginx
+  - docker push hvitoi/multi-server
+  - docker push hvitoi/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: sa-east-1
+
+  # EBS name
+  app: fibonacci-multidocker
+  env: FibonacciMultidocker-env
+
+  # The S3 bucket is unique for the region
+  # S3 storage name and path to the project directory
+  bucket_name: elasticbeanstalk-sa-east-1-454503787062
+  bucket_path: fibonacci-multidocker
+
+  # Only deploy to AWS S3 when the branch master in github is updated
+  on:
+    branch: master
+
+  # AWS credentials
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+
+  # Travis pushes the WHOLE REPO to AWS S3

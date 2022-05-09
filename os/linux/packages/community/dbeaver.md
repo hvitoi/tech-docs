@@ -1,0 +1,5 @@
+# dbeaver
+
+```shell
+dbeaver
+```

@@ -1,0 +1,23 @@
+<!-- Spring MVC Configs -->
+<web-app>
+
+  <display-name>Spring MVC application</display-name>
+
+  <!-- Configure Spring MVC Dispatcher Servlet -->
+  <servlet>
+    <servlet-name>mvc-dispatcher</servlet-name> <!-- A configuration file for the servlet: xxx-servlet.xml -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- This dependency must be added to maven -->
+    <!-- <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+    </init-param> -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- Set up URL mapping for Spring MVC Dispatcher Servlet -->
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern> <!-- Dispatcher servlet is called whenever this pattern is called -->
+  </servlet-mapping>
+
+</web-app>

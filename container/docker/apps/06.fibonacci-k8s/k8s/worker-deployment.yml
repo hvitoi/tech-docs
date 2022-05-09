@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: worker-deployment
+
+# Worker Pod do not need to be accessible by any other pod, therefore, it doesn't need a clusterIP
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: hvitoi/fibo-worker
+          env:
+            - name: REDIS_HOST
+              # Pass the name of the clusterIP to be reached
+              value: redis-service-clusterip
+            - name: REDIS_PORT
+              value: '6379'

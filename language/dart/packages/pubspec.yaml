@@ -1,0 +1,45 @@
+name: my_app
+# package name defaults to com.example.packages (takes the name of the folder)
+description: Snippet examples
+version: 1.0.0
+environment:
+  sdk: ">=2.16.2 <3.0.0" # dart version
+dependencies:
+  device_info_plus: ^3.2.3
+  firebase_core: any
+  firebase_crashlytics: any
+  firebase_messaging: any
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  http: ^0.13.4 # web requests
+  http_interceptor: ^1.0.2 # web request interceptors
+  intl: ^0.17.0 # format Dates
+  localstorage: ^4.0.0+1
+  nuvigator: ^1.6.1
+  path: any # handle filesystem access on android/ios
+  provider: ^6.0.2
+  shared_preferences: ^2.0.13
+  sqflite: ^2.0.2+1 # access SQLite database
+  uuid: ^3.0.6 # generate uuid
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  mockito: any
+  build_runner: ^2.1.10
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - assets/images/waiting.png
+  # fonts:
+  #   - family: OpenSans
+  #     fonts:
+  #       - asset: assets/fonts/OpenSans-Regular.ttf
+  #       - asset: assets/fonts/OpenSans-Bold.ttf
+  #         weight: 700
+  #   - family: QuickSand
+  #     fonts:
+  #       - asset: assets/fonts/Quicksand-Regular.ttf
+  #       - asset: assets/fonts/Quicksand-Bold.ttf
+  #         weight: 700

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-exchange
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currency-exchange
+  template:
+    metadata:
+      labels:
+        app: currency-exchange
+    spec:
+      containers:
+        - name: ms-currency-exchange-service
+          image: hvitoi/ms-currency-exchange-service:0.0.11-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /actuator/health/readiness
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /actuator/health/liveness
+      restartPolicy: Always

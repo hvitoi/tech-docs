@@ -1,0 +1,24 @@
+# Kustomization
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# resources to deploy
+resources:
+  - ../../base
+  - namespace.yaml # deploy the namespace if it does not exist
+
+# merge with a patch file
+patchesJson6902:
+  - path: ingress-patch.yaml
+    target:
+      group: networking.k8s.io
+      kind: Ingress
+      name: devops-toolkit
+
+# merge with a patch manifest
+patchesStrategicMerge:
+  - deployment-patch.yaml
+namespace: production
+```

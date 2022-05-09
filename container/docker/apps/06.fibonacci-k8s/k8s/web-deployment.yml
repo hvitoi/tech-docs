@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: web-deployment
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web
+      
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: web
+          image: hvitoi/fibo-web
+          ports:
+            - containerPort: 3000

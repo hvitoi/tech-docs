@@ -1,0 +1,5 @@
+# popcorntime-bin
+
+```shell
+popcorntime
+```

@@ -1,0 +1,7 @@
+{
+  "auths": {
+    "http://myprivatedomain:5011/": {
+      "auth": "login:senha(base64)"
+    }
+  }
+}

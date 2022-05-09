@@ -1,0 +1,5 @@
+# kustomize
+
+```shell
+kustomize --version
+```

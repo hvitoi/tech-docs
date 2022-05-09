@@ -1,0 +1,23 @@
+version: "3"
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - "$HOME/jenkins_home:/var/jenkins_home"
+    networks:
+      - net
+  ubuntu:
+    container_name: ubuntu-ssh
+    image: ubuntu-ssh
+    build:
+      context: ubuntu
+      dockerfile: Dockerfile
+    ports:
+      - "22:22"
+    networks:
+      - net
+networks:
+  net: {}

@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+
+metadata:
+  name: ingress-svc
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+
+spec:
+  rules:
+    - host: ticketing.dev # The information about the domain can only be passed by the browser. For communication between services it doesn't work!
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-svc
+              servicePort: 3000
+          - path: /api/tickets/?(.*)
+            backend:
+              serviceName: tickets-svc
+              servicePort: 3000
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-svc
+              servicePort: 3000
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-svc
+              servicePort: 3000
+          - path: /?(.*) # Catch all the remaining paths
+            backend:
+              serviceName: client-svc
+              servicePort: 3000

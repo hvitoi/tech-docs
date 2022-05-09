@@ -1,0 +1,1 @@
+docker secret create psql_user psql_user.txt

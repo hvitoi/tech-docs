@@ -1,0 +1,19 @@
+# Open up access to predefined set of object types
+apiVersion: v1
+
+# This is the kind of object we want to make
+kind: Pod
+
+metadata:
+  # When updating this object, kubectl will look for the same kind and name in the node machine
+  name: client-pod
+  labels:
+    component: web
+
+spec:
+  containers:
+    - name: client
+      image: stephengrider/multi-client
+      ports:
+        - containerPort: 3000
+ 

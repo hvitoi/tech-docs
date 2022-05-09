@@ -1,0 +1,49 @@
+version: "3.8" # If no version is specified then v1 is assumed
+
+services:
+  mysql: # any name to be used as DNS for that service
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306" # local-port:container:port
+    environment: # docker container run -e
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: /run/secrets/mysql_user
+      MYSQL_PASSWORD: /run/secrets/mysql_password
+    volumes: # docker container run -v
+      - mysql-data:/var/lib/mysql # mysql data folder
+      - ./init:/docker-entrypoint-initdb.d # all files in docker-entrypoint-initdb.d are executed at container startup
+    secrets:
+      - mysql_user
+      - mysql_pass
+    networks:
+      - app-network
+    mem_limit: 700m
+
+  nginx:
+    image: nginx:1.13 # first check if this image is present, if not build the image (if no image is defined the image is created with the name of the folder)
+    build: # the image to be run is built first
+      context: . # build in the current directory
+      dockerfile: nginx.Dockerfile # if not specified "Dockerfile" is pick
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - mysql # start nginx service only when mysql service is up
+    networks:
+      - app-network
+
+volumes:
+  - mysql-data:
+
+secrets:
+  mysql_user:
+    file: ./mysql_user.txt # The .txt is simply bind mounted into the container in docker-compose
+  mysql_pass:
+  file: ./mysql_pass.txt
+
+networks:
+  app-network:
+    driver: bridge

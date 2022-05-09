@@ -1,0 +1,33 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  - main # trigger when commiting to main branch
+resources:
+  - repo: self # git repository
+variables:
+  dockerRegistryServiceConnection: "000-0000-0000"
+  containerRegistry: "hvitoi.azurecr.io"
+  imageRepository: "app1/awesomeapp"
+  dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
+  tag: "$(Build.BuildId)"
+  vmImageName: "ubuntu-latest"
+stages:
+  - stage: Build # name of the stage
+    displayName: Build and push stage
+    jobs:
+      - job: Build # name of the job
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName) # agent VM image
+        steps:
+          - task: Docker@2 # name of the task
+            displayName: Build and push an image to container registry
+            inputs:
+              containerRegistry: $(dockerRegistryServiceConnection) # Service Connection (with ACR) created by Azure Pipelines
+              repository: $(imageRepository)
+              command: buildAndPush
+              dockerfile: $(dockerfilePath)
+              tags: |
+                $(tag)

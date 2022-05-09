@@ -1,0 +1,5 @@
+# terraform
+
+```shell
+terraform --version
+```

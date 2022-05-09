@@ -1,0 +1,26 @@
+###
+// Sign Up
+POST http://localhost:3000/auth/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "henrique",
+  "password": "Aa123!hav"
+}
+
+###
+// Sign In
+POST http://localhost:3000/auth/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "henrique",
+  "password": "Aa123!hav"
+}
+
+###
+// Test
+POST http://localhost:3000/auth/test HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlbnJpcXVlIiwiaWF0IjoxNjA2MjU3MDU1LCJleHAiOjE2MDYyNjA2NTV9.vJakBEFBSrVkcViXSjkNy6QZPgNIhWq-mXaLQNeqWqA
+

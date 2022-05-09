@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: circuit-breaker-for-the-entire-default-namespace
+spec:
+  host: '*.default.svc.cluster.local' # This is the name of the k8s service that we're configuring. In that case all of the services in the default namespace
+
+  trafficPolicy:
+    outlierDetection: # Circuit Breakers HAVE TO BE SWITCHED ON
+      maxEjectionPercent: 100 # Number percentage of containers that can be removed from the pod
+      #consecutiveErrors: 2 # How many consecutive errors before the circuit breaker is triggered. Default 5  # The errors considered are only 502, 503 and 504
+      #interval: 5s # if there are 10 consecutive errors in 5 seconds. The circuit breaker will trigger
+      #baseEjectionTime: 30s # how long the container will be ejected from the pod
+
+      # Try Changing the consecutive errors from 2 to 100

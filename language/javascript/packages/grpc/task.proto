@@ -1,0 +1,24 @@
+// both client and server must have the same proto version
+message Task {
+  required int32 id = 1; 
+  optional string description = 2;
+  optional string date = 3;
+  optional bool done = 4;
+}
+
+message TaskList {
+  repeated Task list = 1;
+}
+
+message Empty {}
+
+message TaskID {
+  required int32 id = 1;
+}
+
+
+service APITaskList {
+  rpc ListAll (Empty) returns (TaskList);
+  rpc AddTask (Task) returns (Task);
+  rpc MarkAsDone (TaskID) returns (Task);
+}

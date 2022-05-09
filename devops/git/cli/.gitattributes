@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Handle mp3 files are Large Files
+*.mp3 filter=lfs diff=lfs merge=lfs -text

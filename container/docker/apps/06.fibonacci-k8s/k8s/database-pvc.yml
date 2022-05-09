@@ -1,0 +1,18 @@
+# PVC is not actually an instance of volume! The volume itself will be created later
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: database-pvc
+
+# Required specifications for the volumes to be created!
+spec:
+  accessModes:
+    - ReadWriteOnce
+    # ReadWriteOnce: Can read and write by only one node
+    # ReadOnlyMany: Muliple nodes can only read the volume
+    # ReadWriteMany: Multiple nodes can read and write to the volume
+  resources:
+    requests:
+      # Volume has to have exactly 2Gi of data!
+      storage: 2Gi

@@ -1,0 +1,127 @@
+pipeline {
+  // eligible agents
+  agent any
+
+  // build tools
+  tools {
+    maven 'maven-3.8.1'
+    gradle 'gradle-6.2'
+  }
+
+  // environment variables
+  environment {
+    FIRST_NAME = 'Henrique'
+    LAST_NAME = 'Vitoi'
+    GITHUB_CREDENTIALS = credentials('my-github-credentials') // "credentials binding" plugin
+  }
+
+  // parameters
+  parameters {
+    string(
+      name: 'VERSION',
+      defaultValue: '',
+      description: 'version to be deployed'
+    )
+    choice(
+      name: 'ENVIRONMENT',
+      choices: ['dev', 'qa', 'prod'],
+      description: 'environment to be deployed'
+    )
+    booleanParam(
+      name: 'executeTests',
+      defaultValue: true,
+      description: 'Whether to execute tests'
+    )
+  }
+
+  // execute stages
+  stages {
+    state('Init') {
+      steps {
+        script {
+          def test = 2 + 2 > 3 ? 'cool' : 'not cool'
+          echo test
+          def gv = load 'script.groovy' // load groovy script (restricted to this scope)
+          gv.buildApp() // run groovy script
+        }
+      }
+    }
+    stage('Checkout') {
+      steps {
+        echo "Hello $FIRST_NAME $LAST_NAME!" // to use envs, double quotes must be used
+        echo "Your credentials $GITHUB_CREDENTIALS will be hidden."
+
+        // instead of picking the secret envs from "environment" section (use one or the other)
+        withCredentials([
+          usernamePassword(
+            credentials: 'my-github-credentials',
+            usernameVariable: USER,
+            passwordVariable: PWD)
+        ]) {
+          sh "git clone https://${USER}:${PWD}.github.com/hvitoi/jenkins-pipe.git"
+        }
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'mvn clean package'
+        // nodejs wrapper
+        nodejs('node-10.17') {
+          sh 'npm install'
+        }
+        // gradle wrapper (not recommended for gradle, use the tools section)
+        withGradle() {
+          sh './gradlew -v'
+        }
+      }
+    }
+    stage('Test') {
+      when {
+        expression { // condition to execute the steps
+          env.BRANCH_NAME == 'master' ||
+          env.BRANCH_NAME == 'dev' ||
+          params.executeTests == true
+        }
+      }
+      steps {
+        echo 'Testing...'
+        sh 'echo Fail!; exit 1' // force error
+      }
+      post {
+        success {
+          junit '**/target/surefire-reports/TEST-*.xml'
+          archiveArtifacts 'target/*.jar'
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying...'
+        timeout(time: 3, unit: 'SECONDS') {
+          sh 'sleep 5' // abort execution if timed out
+        }
+      }
+    }
+    stage('Cleanup') {
+      steps {
+        retry(3) {
+          sh 'I am trying to cleanup!' // try 3 times on failures
+        }
+      }
+    }
+  }
+  post {
+    always {
+      echo 'I will always get executed'
+    }
+    success {
+      echo 'I will only get executed if this success'
+    }
+    failure {
+      echo 'I will only get executed if this fails'
+    }
+    unstable {
+      echo 'I will only get executed if this is unstable'
+    }
+  }
+}

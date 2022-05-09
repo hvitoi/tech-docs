@@ -1,0 +1,19 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose",
+    "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose --watchAll"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.3.1"
+  }
+}

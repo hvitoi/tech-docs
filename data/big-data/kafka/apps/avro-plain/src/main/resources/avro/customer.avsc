@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "namespace": "com.example",
+  "name": "Customer",
+  "doc": "Avro Schema for our customer",
+  "fields": [
+    { "name": "first_name", "type": "string", "doc": "First name of customer" },
+    { "name": "last_name", "type": "string", "doc": "Last name of customer" },
+    { "name": "age", "type": "int", "doc": "Age at the time of registration" },
+    { "name": "height", "type": "float", "doc": "Height in centimeters" },
+    { "name": "weight", "type": "float", "doc": "Weight in kilograms" },
+    {
+      "name": "automated_email",
+      "type": "boolean",
+      "default": true,
+      "doc": "True if user wants to receive automated emails"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# reboot
+
+```shell
+reboot
+```

@@ -1,0 +1,50 @@
+import { useState } from 'react';
+import Router from 'next/router';
+import useRequest from '../../hooks/use-request';
+
+const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [doRequest, errors] = useRequest({
+    url: '/api/users/signup',
+    method: 'post',
+    body: { email, password },
+    onSuccess: () => Router.push('/')
+  });
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    doRequest();
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <h1>Sign Up</h1>
+      <div className="form-group">
+        <label>Email Address</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+        ></input>
+      </div>
+      <div className="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="form-control"
+        ></input>
+      </div>
+
+      {/* { errors.length > 0 && <div></div>}  displays the <div> only if there is at least an error */}
+      {/* By default (errors = null) so the logic above is not necessary */}
+      {errors}
+
+      <button className="btn btn-primary">Sign Up</button>
+    </form>
+  );
+};
+
+export default SignUp;

@@ -1,0 +1,35 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: staff-virtualservice
+  namespace: default
+
+spec:
+  hosts:
+    - fleetman-staff-service.default.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: fleetman-staff-service.default.svc.cluster.local
+            subset: all-staff-pods
+          # weight: 100  # weight not needed if there's only one destination
+---
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: staff-destinationrule
+  namespace: default
+
+spec:
+  host: fleetman-staff-service.default.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpHeaderName: 'x-any-property' # Use any property in the header to be the ID. x means experimental http header
+        #useSourceIp: true  # use ip as consistenthash
+  subsets:
+    - name: all-staff-pods
+      labels:
+        app: staff-service # select both the safe and risky

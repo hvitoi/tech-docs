@@ -1,0 +1,5 @@
+# qbittorrent
+
+```shell
+qbittorrent
+```

@@ -1,0 +1,178 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <description>This is a sample job</description>
+  <keepDependencies>false</keepDependencies>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+
+  <!-- Parameters -->
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.BooleanParameterDefinition>
+          <name>AM_I_COOL</name>
+          <description>True if i am cool, false if not</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>FIRST_NAME</name>
+          <description>Your name!</description>
+          <defaultValue>Henry</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+
+  <!-- Git Configuration - Source Code Management -->
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@4.8.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/jenkins-docs/simple-java-maven-app.git</url> <!-- public repo -->
+      </hudson.plugins.git.UserRemoteConfig>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/hvitoi/maven-poc.git</url>
+        <credentialsId>09f8a402-cd46-4272-853d-d81901746874</credentialsId> <!-- private repo -->
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="empty-list" />
+    <extensions />
+  </scm>
+
+  <triggers>
+    <!-- Cronjob -->
+    <hudson.triggers.TimerTrigger>
+      <spec>H 1 * * *</spec> <!-- H instead of 0 jenkins decides which job to run first (instead of running all of them at same time) -->
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+
+  <builders>
+    <!-- Build: Shell script on local machine -->
+    <hudson.tasks.Shell>
+      <command>echo &quot;Hello $FIRST_NAME!&quot;
+echo &quot;Your name is $FIRST_NAME.&quot; &gt; /tmp/yourname</command>
+      <configuredLocalRules />
+    </hudson.tasks.Shell>
+    <!-- Build: Shell script on remote machine (via SSH) -->
+    <org.jvnet.hudson.plugins.SSHBuilder plugin="ssh@2.6.1">
+      <siteName>blue@google.com:22</siteName>
+      <command>echo &quot;Hello from remote host&quot;</command>
+      <execEachLine>false</execEachLine>
+      <hideCommand>false</hideCommand>
+    </org.jvnet.hudson.plugins.SSHBuilder>
+    <!-- Build: Ansible playbook -->
+    <org.jenkinsci.plugins.ansible.AnsiblePlaybookBuilder plugin="ansible@1.1">
+      <playbook>/ansible/playbook.yaml</playbook>
+      <inventory class="org.jenkinsci.plugins.ansible.InventoryPath">
+        <path>/ansible/hosts</path>
+      </inventory>
+      <limit></limit>
+      <tags></tags>
+      <skippedTags></skippedTags>
+      <startAtTask></startAtTask>
+      <credentialsId></credentialsId>
+      <vaultCredentialsId></vaultCredentialsId>
+      <become>false</become>
+      <becomeUser></becomeUser>
+      <sudo>false</sudo>
+      <sudoUser></sudoUser>
+      <forks>5</forks>
+      <unbufferedOutput>true</unbufferedOutput>
+      <colorizedOutput>false</colorizedOutput>
+      <disableHostKeyChecking>false</disableHostKeyChecking>
+      <additionalParameters></additionalParameters>
+      <copyCredentialsInWorkspace>false</copyCredentialsInWorkspace>
+    </org.jenkinsci.plugins.ansible.AnsiblePlaybookBuilder>
+    <!-- Build: Maven project package (build from the workspace) -->
+    <hudson.tasks.Maven>
+      <targets>-B -DskipTests clean package</targets>
+      <mavenName>jenkins-maven</mavenName> <!-- Name of the maven instance configured in jenkins -->
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider" />
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider" />
+      <injectBuildVariables>false</injectBuildVariables>
+    </hudson.tasks.Maven>
+    <!-- Build: Maven project test -->
+    <hudson.tasks.Maven>
+      <targets>test</targets>
+      <mavenName>jenkins-maven</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider" />
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider" />
+      <injectBuildVariables>false</injectBuildVariables>
+    </hudson.tasks.Maven>
+    <!-- Deploy .jar -->
+    <hudson.tasks.Shell>
+      <command>echo &quot;Deploying JAR&quot;
+  java -jar $WORKSPACE/target/my-app-1.0-SNAPSHOT.jar</command>
+      <configuredLocalRules />
+    </hudson.tasks.Shell>
+    <!-- Run DSL script to update child jobs -->
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.77">
+      <scriptText>job(&apos;job_dsl_example&apos;) {}</scriptText> <!-- create empty child jobs -->
+      <usingScriptText>true</usingScriptText> <!-- you can set it to false and source the DSL from a git repository -->
+      <sandbox>false</sandbox>
+      <ignoreExisting>false</ignoreExisting>
+      <ignoreMissingFiles>false</ignoreMissingFiles>
+      <failOnMissingPlugin>false</failOnMissingPlugin>
+      <failOnSeedCollision>false</failOnSeedCollision>
+      <unstableOnDeprecation>false</unstableOnDeprecation>
+      <removedJobAction>IGNORE</removedJobAction>
+      <removedViewAction>IGNORE</removedViewAction>
+      <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
+      <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+    </javaposse.jobdsl.plugin.ExecuteDslScripts>
+  </builders>
+
+  <publishers>
+    <!-- Send email notification -->
+    <hudson.tasks.Mailer plugin="mailer@1.34">
+      <recipients>hey@mail.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>true</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <!-- Display test reports -->
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.51">
+      <testResults>target/surefire-reports/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <allowEmptyResults>false</allowEmptyResults>
+      <skipPublishingChecks>false</skipPublishingChecks>
+      <checksName></checksName>
+      <skipMarkingBuildUnstable>false</skipMarkingBuildUnstable>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <!-- Archive artifact -->
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>target/*.jar</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>true</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+      <followSymlinks>false</followSymlinks>
+    </hudson.tasks.ArtifactArchiver>
+  </publishers>
+
+  <buildWrappers>
+    <!-- Extract secret (from credentials) and use it as env-->
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.27">
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.StringBinding>
+          <credentialsId>MYSQL_PASSWORD</credentialsId>
+          <variable>MYSQL_PASSWORD</variable>
+        </org.jenkinsci.plugins.credentialsbinding.impl.StringBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+  </buildWrappers>
+
+</project>

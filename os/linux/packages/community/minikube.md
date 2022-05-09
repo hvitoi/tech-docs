@@ -1,0 +1,5 @@
+# minikube
+
+```shell
+minikube --version
+```

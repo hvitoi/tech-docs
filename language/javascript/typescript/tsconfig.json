@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // target JS compiled code
+    "watch": true, // watch for new changes on save
+    "lib": ["dom", "es2017"] // types for certain environments
+  }
+}

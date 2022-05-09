@@ -1,0 +1,53 @@
+version: "3"
+services:
+  # jenkins + ansible
+  jenkins:
+    container_name: jenkins-ansible
+    image: jenkins-ansible
+    build:
+      context: jenkins
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - "$HOME/jenkins_home:/var/jenkins_home"
+    networks:
+      - net
+
+  # ubuntu + ssh + mysql + awscli
+  ubuntu:
+    container_name: ubuntu-ssh-mysql-awscli
+    image: ubuntu-ssh-mysql-awscli
+    build:
+      context: ubuntu
+      dockerfile: Dockerfile
+    ports:
+      - "22:22"
+    networks:
+      - net
+
+  # mysql
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123"
+    volumes:
+      - "$HOME/mysql_data:/var/lib/mysql"
+    networks:
+      - net
+
+  # web
+  web:
+    container_name: web
+    image: web
+    build:
+      context: web
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - net
+
+networks:
+  net: {}

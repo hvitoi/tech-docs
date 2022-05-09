@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+
+spec:
+  rules:
+    - host: posts.com # Only consider requests to posts.com.'localhost' must be tricked into 'posts.com'
+      http:
+        paths:
+          - path: /posts/create
+            backend:
+              serviceName: posts-clusterip
+              servicePort: 3000
+          - path: /posts
+            backend:
+              serviceName: query-clusterip
+              servicePort: 3000
+          - path: /posts/?(.*)/comments # ?(.*) means anything
+            backend:
+              serviceName: comments-clusterip
+              servicePort: 3000
+          - path: /?(.*) # It has to be at the very end!
+            backend:
+              serviceName: client-clusterip
+              servicePort: 3000

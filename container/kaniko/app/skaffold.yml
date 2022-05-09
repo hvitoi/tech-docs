@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: asb
+build:
+  artifacts:
+    - image: docker.io/image
+      kaniko:
+        cache: {}
+        dockerfile: Dockerfile.dev
+        insecure: true
+        insecurePull: true
+        #noPush: true
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+  cluster:
+    namespace: playground
+    dockerConfig:
+      path: ~/.docker/config.json
+deploy:
+  kubectl:
+    manifests:
+      - asb-deployment.yml

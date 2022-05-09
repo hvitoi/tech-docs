@@ -1,0 +1,69 @@
+version: '2.2'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.10.1
+    container_name: logstash
+    # volumes:
+    #   # txt
+    #     - ./Logstash/pipeline/txt.conf:/usr/share/logstash/pipeline/txt.conf
+    #     - ./Logstash/data/txt-data.txt:/tmp/txt/txt-data.txt
+
+    #   # MySQL
+    #     - ./Logstash/pipeline/mysql.conf:/usr/share/logstash/pipeline/mysql.conf
+    #     - ./Logstash/data/mysql-connector:/tmp/mysql/mysql-connector # jdbc driver
+
+    #   # csv
+    #     - ./Logstash/pipeline/csv.conf:/usr/share/logstash/pipeline/csv.conf
+    #     - ./Logstash/data/csv-data.csv:/tmp/csv/csv-data.csv
+
+    #   # json
+    #   - ./Logstash/pipeline/json.conf:/usr/share/logstash/pipeline/json.conf
+    #   - ./Logstash/data/json-data.json:/tmp/json/json-data.json
+
+    #   # s3
+    #   - ./Logstash/pipeline/s3.conf:/usr/share/logstash/pipeline/s3.conf
+
+    #   # grok - basic
+    #   - ./Logstash/grok/basic/grok-multipattern.conf:/usr/share/logstash/pipeline/grok-multipattern.conf
+    #   - ./Logstash/grok/basic/log-data-grok:/tmp/log-data-grok
+
+    #   # grok - nginx
+    #   - ./Logstash/grok/nginx/nginx-access.conf:/usr/share/logstash/pipeline/nginx-access.conf
+    #   - ./Logstash/grok/nginx/sample.log:/tmp/sample.log
+
+    #   # grok - iis
+    #   - ./Logstash/grok/iis/iis-access.conf:/usr/share/logstash/pipeline/iis-access.conf
+    #   - ./Logstash/grok/iis/sample.log:/tmp/sample.log
+
+    #   # grok - mongodb
+    #   - ./Logstash/grok/mongodb/mongodb-access.conf:/usr/share/logstash/pipeline/mongodb-access.conf
+    #   - ./Logstash/grok/mongodb/sample.log:/tmp/sample.log
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.1
+    container_name: kibana
+    ports:
+      - 5601:5601
+    # volumes:
+    #   - ./Kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+    ports:
+      - 3306:3306
+
+volumes:
+  elasticsearch-data:
+    driver: local

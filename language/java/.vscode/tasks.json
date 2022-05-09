@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "java",
+      "targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+      "elements": [
+        "${compileOutput:aop-demo}",
+        "${dependencies:aop-demo}",
+        "${compileOutput:api-gateway}",
+        "${dependencies:api-gateway}",
+        "${compileOutput:currency-conversion-service}",
+        "${dependencies:currency-conversion-service}",
+        "${compileOutput:currency-exchange-service}",
+        "${dependencies:currency-exchange-service}",
+        "${compileOutput:demo}",
+        "${dependencies:demo}",
+        "${compileOutput:forum}",
+        "${dependencies:forum}",
+        "${compileOutput:hibernate-tutorial}",
+        "${dependencies:hibernate-tutorial}",
+        "${compileOutput:is-the-site-up}",
+        "${dependencies:is-the-site-up}",
+        "${compileOutput:jackson}",
+        "${dependencies:jackson}",
+        "${compileOutput:limits-service}",
+        "${dependencies:limits-service}",
+        "${compileOutput:naming-server}",
+        "${dependencies:naming-server}",
+        "${compileOutput:spring-cloud-config-server}",
+        "${dependencies:spring-cloud-config-server}",
+        "${compileOutput:spring-mvc-database}",
+        "${dependencies:spring-mvc-database}",
+        "${compileOutput:spring-mvc-demo}",
+        "${dependencies:spring-mvc-demo}",
+        "${compileOutput:spring-rest}",
+        "${dependencies:spring-rest}",
+        "${compileOutput:spring-security}",
+        "${dependencies:spring-security}",
+        "${compileOutput:tdd}",
+        "${dependencies:tdd}",
+        "${compileOutput:testing-web-complete}",
+        "${dependencies:testing-web-complete}"
+      ],
+      "problemMatcher": [],
+      "label": "java: exportjar:java"
+    }
+  ]
+}

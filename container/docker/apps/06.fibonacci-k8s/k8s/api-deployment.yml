@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: api-deployment
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: hvitoi/fibo-api
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-service-clusterip
+            - name: REDIS_PORT
+              # Values must be stored as strings!
+              value: '6379'
+
+            - name: PG_HOST
+              value: postgres-service-clusterip
+            - name: PG_PORT
+              value: '5432'
+            - name: PG_DATABASE
+              value: postgres
+            - name: PG_USER
+              value: postgres
+
+            # Password is passed by a Secret Object
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # Name of the secret
+                  name: pgpassword
+                  # Key inside of the secret
+                  key: PG_PASSWORD

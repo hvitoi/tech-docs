@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.hvitoi</groupId>
+  <artifactId>avro-kafka</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>avro-kafka</name>
+  <description>Avro with schema registry</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <avro.version>1.10.2</avro.version>
+    <kafka.version>2.8.0</kafka.version>
+    <confluent.version>6.2.0</confluent.version>
+  </properties>
+
+  <!--Resolve confluent dependencies -->
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <url>https://packages.confluent.io/maven/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <!-- Avro -->
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
+
+    <!-- Kafka -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+
+    <!-- Confluent -->
+    <dependency>
+      <groupId>io.confluent</groupId>
+      <artifactId>kafka-avro-serializer</artifactId>
+      <version>${confluent.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Maven compiler. Here a specific java version can be specified -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+      </plugin>
+
+      <!--Generate specific records from avro schemas (uses the package name defined in the avreo schema) -->
+      <plugin>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro-maven-plugin</artifactId>
+        <version>${avro.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>            <!-- Generate code from schemas, protocols and idl-protocols -->
+            <goals>
+              <goal>schema</goal>
+              <goal>protocol</goal>
+              <goal>idl-protocol</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>              <!-- Convert all schemas from this dir -->
+              <stringType>String</stringType>
+              <createSetters>false</createSetters>
+              <enableDecimalLogicalType>true</enableDecimalLogicalType>
+              <fieldVisibility>private</fieldVisibility>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--Force discovery of generated classes-->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>target/generated-sources/avro</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+    </plugins>
+  </build>
+</project>

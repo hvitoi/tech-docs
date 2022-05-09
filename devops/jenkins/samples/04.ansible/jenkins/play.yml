@@ -1,0 +1,5 @@
+- hosts: test1 #  host to execute the task
+  tasks:
+    - shell: echo Hello World > /tmp/hello.txt # task as a shell script
+    - debug:
+        msg: '{{ MSG }}' # Log message out

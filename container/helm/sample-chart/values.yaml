@@ -1,0 +1,10 @@
+image:
+  repository: hvitoi/devops-toolkit-series
+  tag: latest
+  pullPolicy: IfNotPresent
+ingress:
+  enabled: true
+  host: development.hvitoi.com
+resources:
+  enabled: false
+  data: {}

@@ -1,0 +1,62 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+
+metadata:
+  name: ingress-gateway-configuration
+  namespace: default
+
+spec:
+  selector:
+    istio: ingressgateway # Which gateway Pod we're configuring in the cluster (istio-ingressgatway default). By default there's a istio: ingressgateway in this pod
+
+  servers:
+    - hosts:
+        - '*' # Domain name of the external website. An '*'' means anything because we don't have a domain name. Could be fleetman.dev
+      port:
+        name: http
+        protocol: HTTP
+        number: 80
+
+---
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: fleetman-webapp
+  namespace: default
+
+spec:
+  hosts: # This is incoming host that are we applying the proxy rules to. The incoming host for the frontend app is the Gateway!
+    - '*' # Traffic coming from the gateway
+    #- fleetman-webapp.default.svc.cluster.local # Traffic coming from the fleetman-webapp POD
+
+  gateways:
+    - ingress-gateway-configuration
+
+  http:
+    - route:
+        - destination:
+            host: fleetman-webapp.default.svc.cluster.local
+            subset: original
+          weight: 90
+        - destination:
+            host: fleetman-webapp.default.svc.cluster.local
+            subset: experimental
+          weight: 10
+---
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: fleetman-webapp
+  namespace: default
+
+spec:
+  host: fleetman-webapp.default.svc.cluster.local
+  subsets:
+    - labels:
+        version: original
+      name: original
+    - labels:
+        version: experimental
+      name: experimental

@@ -1,0 +1,38 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: eventbus-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: eventbus
+
+  template:
+    metadata:
+      labels:
+        app: eventbus
+    spec:
+      containers:
+        - name: eventbus
+          image: hvitoi/blog-eventbus
+
+---
+# ClusterIP
+apiVersion: v1
+kind: Service
+metadata:
+  name: eventbus-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: eventbus
+  ports:
+    - name: eventbus
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

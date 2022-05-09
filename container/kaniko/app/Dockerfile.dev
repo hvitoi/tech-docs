@@ -1,0 +1,6 @@
+FROM node
+WORKDIR /app
+COPY package.json swagger.yml .npmrc ./
+RUN npm install
+COPY . ./
+ENTRYPOINT ["npm", "run", "start:dev"]

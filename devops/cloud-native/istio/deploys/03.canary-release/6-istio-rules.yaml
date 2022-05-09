@@ -1,0 +1,42 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: staff-virtualservice # Can be any arbitrary name
+  namespace: default
+
+spec:
+  hosts:
+    - fleetman-staff-service.default.svc.cluster.local # Target Service
+  http:
+    - route:
+        - destination:
+            host: fleetman-staff-service.default.svc.cluster.local
+            subset: safe-group
+          weight: 50 # If the total weight is different from 100 returns error on apply
+        - destination:
+            host: fleetman-staff-service.default.svc.cluster.local
+            subset: risky-group
+          weight: 50
+---
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+
+metadata:
+  name: staff-destinationrule # Can be any arbitrary name. Just for documentation!
+  namespace: default
+
+spec:
+  host: fleetman-staff-service.default.svc.cluster.local # Target Service
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        useSourceIp: true
+  subsets:
+    - name: safe-group
+      labels: # The selector!
+        version: safe # Subset "safe" will only point to pods with "version:safe" label
+
+    - name: risky-group
+      labels:
+        version: risky # All the pods with label "version:risky" go to "risky" subset

@@ -1,0 +1,64 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+
+metadata:
+  name: ticketing
+
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+      - ./infra/k8s-dev/*
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: hvitoi/ticketing-auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+    - image: hvitoi/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: hvitoi/ticketing-tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+    - image: hvitoi/ticketing-orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+    - image: hvitoi/ticketing-expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+    - image: hvitoi/ticketing-payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .

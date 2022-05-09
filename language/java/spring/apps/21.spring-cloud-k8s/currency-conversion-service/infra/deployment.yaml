@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-conversion
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currency-conversion
+  template:
+    metadata:
+      labels:
+        app: currency-conversion
+    spec:
+      containers:
+        - name: ms-currency-conversion-service
+          image: hvitoi/ms-currency-conversion-service:0.0.11-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: currency-conversion
+          # env:
+          #   - name: CURRENCY_EXCHANGE_URI
+          #     value: http://currency-exchange
+      restartPolicy: Always

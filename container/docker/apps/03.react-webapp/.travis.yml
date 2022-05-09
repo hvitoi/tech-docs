@@ -1,0 +1,32 @@
+# Super user permissions
+sudo: required
+
+# Start docker in the travis server
+services:
+  - docker
+
+# Build the image for testing
+before_install:
+  - docker build -t hvitoi/docker-react -f Dockerfile.dev .
+
+# Run test suite
+# If this returns a status other than 0, travis assumes it failed and do not deploy
+script:
+  - docker run -e CI=true hvitoi/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  language: generic
+  region: "sa-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  # S3 storage in AWS
+  bucket_name: "elasticbeanstalk-sa-east-1-454503787062"
+  # folder in the S3 storage
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  # API key from AWS IAM
+  # AWS_ACCESS_KEY and AWS_SECRET_KEY are environment variables from travis.ci
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

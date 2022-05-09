@@ -1,0 +1,49 @@
+sudo: required
+services:
+  - docker
+
+# Define environment variables
+env:
+  global:
+    # Get current git SHA
+    - SHA=$(git rev-parse HEAD)
+    # Prevent prompts from gcloud
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+
+  # Download and install google cloud sdk
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  # Source the file path.bash.inc
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  # Install and update kubectl inside travis
+  - gcloud components update kubectl
+
+  # Decrypt the service-account.json
+  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+  # Authenticate with google credentials inside of the decrypted service-account.json file (Similar to IAM in AWS)
+  - gcloud auth activate-service-account --key-file service-account.json
+
+  # Choose the project id
+  - gcloud config set project fibo-k8s-278214
+  # Especify compute zone
+  - gcloud config set compute/zone southamerica-east1-a
+  # Especify the name of the cluster
+  - gcloud container clusters get-credentials fibo-cluster
+
+  # Login to Docker Hub. Environment variables must be added to travis CI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  # Build react test image
+  - docker build -t react-test -f ./web/Dockerfile.dev ./web
+
+script:
+  - docker run -e CI=true react-test npm run test
+
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+
+  # Travis CI runs the tests for every single branch, but only deploys on changes on master
+  on:
+    branch: master
