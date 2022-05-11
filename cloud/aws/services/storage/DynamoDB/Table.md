@@ -5,14 +5,8 @@
 - Integration with IAM for authentication & authorization
 
 - DynamoDB is made of `Tables` (Collection)
-- Each table has `Partition Key` and a `Sort Key` (optional). The combination of both is the `Primary Key`
 - Each table can have infinite number of `Items` (Document). With maximum size of 400KB
 - Each item has `Attributes` (Field)
-
-- **Data types**
-  - `Scalar Types`: String, Number, Binary, Boolean, Null
-  - `Document Types`: List, Map
-  - `Set Types`: String Set, Number Set, Binary Set
 
 ```yaml
 Type: AWS::DynamoDB::Table
@@ -32,6 +26,7 @@ Properties:
   ProvisionedThroughput: ProvisionedThroughput
   SSESpecification: SSESpecification
   StreamSpecification: StreamSpecification
+  TableClass: String
   TableName: String
   Tags:
     - Tag
@@ -41,6 +36,37 @@ Properties:
 - **Transactions**
   - Write to two tables at the same time or none=
     ![Transactions](../../../images/dynamodb-transactions.png)
+
+## KeySchema
+
+- Each table has `Partition Key` (hash) and a `Sort Key` (range) (optional)
+- The combination of both is the `Primary Key`
+- Here are defined the partition keys and sort keys
+
+## AttributeDefinitions
+
+- Define all the attributes that are going to be used for query
+- Each attribute defined here must be either in KeySchema or GlobalSecondaryIndexes
+- Attribute created on-the-fly cannot be used for searching
+
+- **Data types**
+  - `Scalar Types`: String, Number, Binary, Boolean, Null
+  - `Document Types`: List, Map
+  - `Set Types`: String Set, Number Set, Binary Set
+
+## GlobalSecondaryIndexes
+
+- GSI is an index with a `partition key` (hash) and a `sort key` (range)
+- Allows search across partitions
+
+- Allows `query on attributes` other than on the Primary Key
+
+![Indexes](../../../images/dynamodb-indexes.png)
+
+## LocalSecondaryIndexes
+
+- LSI is an index with same `partition key` (hash), but different `sort key` (range)
+- Allows search within the same partition
 
 ## BillingMode
 
@@ -55,15 +81,6 @@ Properties:
     - Scales automatically based on the workload
     - More expensive!
     - Useful for very unpredictable workloads
-
-## GlobalSecondaryIndexes
-
-- Two types
-  - `Global Secondary Indexes` (GSI)
-  - `Local Secondary Indexes` (LSI)
-- Allows `query on attributes` other than on the Primary Key
-
-![Indexes](../../../images/dynamodb-indexes.png)
 
 ## StreamSpecification
 

@@ -8,6 +8,7 @@ flutter run
 
 # some parameters
 flutter run \
+  --target "lib/main.dart" \
   --flavor "mycustombuild" \
   --device-id "iPhone 8" \
   --no-pub
