@@ -6,6 +6,8 @@
 - **Mirrors**
   - Mirrorlist stored at `/etc/pacman.d/mirrorlist`
   - Official list is available from the package `pacman-mirrorlist`
+- **Last Modified packages**
+  - `grep -iE 'installed|upgraded|removed' /var/log/pacman.log`
 
 ## Query
 
@@ -51,12 +53,16 @@ pacman -Syu # update & upgrade
 
 # Search package on remote repo
 pacman -Ss "regex-package"
+
+# remove cache
+pacman -Sc # doesn't keep old versions
 ```
 
 ## Remove
 
 ```shell
 # Remove package
+pacman --remove "package"
 pacman -R "package"
 
 # Remove configuration files
@@ -69,46 +75,26 @@ pacman -Rs "package"
 pacman -Rc "package"
 ```
 
-## Modify
+## Upgrade
 
 ```shell
 # Downgrade a kernel
+pacman --upgrade "linux-4.15.8-1-x86_64.pkg.tar.xz"
 pacman -U "linux-4.15.8-1-x86_64.pkg.tar.xz"
 ```
 
-## IgnorePkg
-
-- Skip package from being upgraded
-- Add the packages to the at `/etc/pacman.conf`
-
-```conf
-IgnorePkg=linux
-```
-
-## Last Modified packages
+## Files
 
 ```shell
-grep -iE 'installed|upgraded|removed' /var/log/pacman.log
-```
+# search for a package by file
+pacman --files "file"
+pacman -F "file"
 
-## Cache
-
-- Cache packages are stored at `/var/cache/pacman/pkg`
-- Requires the `pacman-contrib` package in order to clean pacman cache
-
-```shell
-paccache -r
-pacman -Sc # more aggressive (doesn't keep old versions)
-```
-
-## Database
-
-```shell
 # update database
 pacman -Fy
 
-# search package by file
-pacman -F $(which chsh)
+# list all files by a package
+pacman -Fl "package"
 ```
 
 ## makepkg
@@ -117,10 +103,10 @@ pacman -F $(which chsh)
 - Requires package `base-devel`
 
 ```shell
-git clone https://aur.archlinux.org/google-chrome.git
-cd google-chrome/
+git clone "https://aur.archlinux.org/google-chrome.git"
+cd "./google-chrome/"
 makepkg -s # Creates pacman package
-sudo pacman -U pacote.pkg.tar.xz # Install package
+pacman -U" pacote.pkg.tar.xz" # Install package
 
 # Make and install
 makepkg -si
@@ -129,4 +115,13 @@ makepkg -si
 ```shell
 makepkg --syncdeps --rmdeps --clean --install --cleanbuild
 makepkg -srciC
+```
+
+## pacman.conf
+
+- Skip package from being upgraded
+- Add the packages to the at `/etc/pacman.conf`
+
+```conf
+IgnorePkg=linux
 ```

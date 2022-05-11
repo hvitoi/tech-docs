@@ -7,17 +7,17 @@
 sudo apt install "openjdk-8-jdk"
 
 # Download Kafka (2.6.0)
-curl "https://kafka.apache.org/downloads" # Take Scala 2.13
+curl -O "https://dlcdn.apache.org/kafka/3.1.0/kafka_2.13-3.1.0.tgz"
 
 # Extract kafka .tgz to home folder
-tar -xzvf "kafka_2.13-2.6.0.tgz"
+tar -xzvf "kafka_2.13-3.1.0.tgz"
 
 # Test the binary
-cd "kafka_2.13-2.6.0/"
-bin/kafka-topics.sh
+cd "kafka_2.13-3.1.0/"
+./bin/kafka-topics.sh
 
 # Add link
-ln -s "kafka_2.13-2.6.0" "kafka"
+ln -s "kafka_2.13-2.6.0" "~/kafka"
 
 # Add Kafka to path
 echo 'export PATH=$PATH:$HOME/kafka/bin' >> "~/.zshrc"
