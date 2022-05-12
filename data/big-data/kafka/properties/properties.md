@@ -6,12 +6,6 @@
   - `per-broker`: inside server.properties (may be updated dynamically)
   - `cluster-wide`: inside zookeeper, common config for all brokers (may be updated on-the-fly)
 
-## Quota
-
-- `Limit the bandwidth` for producer and consumers per clientid or consumer group
-  - quota.consumer.default
-  - quota.producer.default
-
 ## Broker configs
 
 - Broker configuration is stored at _config/server.properties_
@@ -20,23 +14,12 @@
   - `auto.create.topics.enable`: create topic when producing to it and it doesn't exist
   - `delete.topic.enable`: allow topics to be deleted
   - `replication.factor`: replication factor for automatically created topics
-  - `num.partition`: default number of partitions for topics. 11 is a good value
-  - `offsets.topic.replication.factor`: number of partitions of the \_\_consumer_offsets topic
   - `offset.retention.minutes`: time after which an offset will be deleted
   - `allow.everyone.if.no.acl.found`: .... Good value: ?
 - **Logs**
-  - `log.flush.interval.ms`: The maximum time that a message in any topic is kept in memory before flushed to disk
-  - `log.flush.interval.messages`: The number of messages accumulated on a log partition before messages are flushed to disk
-  - `log.retention.ms`: The maximum lifetime of the log before deleting it
-  - `log.retention.bytes`: The maximum size of each partition before deleting it (defaults to -1)
-  - `log.segment.ms`: The maximum lifetime of a single log file
-  - `log.segment.bytes`: The maximum size of a single log file
-- `message.max.bytes`: topic default. Good value: "512000"
-- `message.bytes.ms`: topic default
-- `advertised.listeners`: The addresses that will be sent from bootstrap as metadata (this address will be used by the producer/consumer to connect to kafka brokers). The advertised listeners are the IP or DNS of each broker. Good value: ?
+  - `message.max.bytes`: topic default. Good value: "512000"
+  - `message.bytes.ms`: topic default
 - **Transactions**
-  - `transaction.state.log.min.isr`. Good value: "2"
-  - `transaction.state.log.replication.factor`. Good value: "3"
   - `transactional.id.expiration.ms`. Good value: "720000"
   - `unclear.leader.election`: process of leader election. If true, any partition can be elected as a leader (even those with low watermark). It's a topic config. Good value: "false"
 
@@ -148,3 +131,7 @@
   - `fetch.max.bytes`: maximum size of the batch to be consumed (covers multiple partitions). Defaults to 50MB
   - `max.poll.records`: Maximum numbers of records to fetch per request. Increase it if the messages are small in size and your RAM is huge. Defaults to 500 messages. It's good practice to monitor how many records are being polled per request
   - `max.partitions.fetch.bytes`: maximum data to receive per partition (broker). If you have 100 partitions, you will need a lot of RAM
+- **Quota**
+  - `Limit the bandwidth` for producer and consumers per clientid or consumer group
+    - quota.consumer.default
+    - quota.producer.default

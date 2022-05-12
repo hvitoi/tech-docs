@@ -7,6 +7,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 
+// It's the output after sending a record
+
 class Main {
   public static void main(String[] args) {
     /**

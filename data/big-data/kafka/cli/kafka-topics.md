@@ -29,7 +29,7 @@ kafka-topics.sh --create \
 # Create topic with custom config
 kafka-topics.sh --create \
   --bootstrap-server "localhost:9092" \
-  --topic "topic-name" \
+  --topic "my-topic" \
   --partitions "partitions-number" \
   --replication-factor "replicas-number" \
   --config "cleanup.policy=compact" \
@@ -42,7 +42,7 @@ kafka-topics.sh --create \
 # Describe a topic
 kafka-topics.sh --describe \
   --bootstrap-server "localhost:9092" \
-  --topic "topic-name"
+  --topic "my-topic"
 
 # Show under replicated replicas
 kafka-topics.sh --describe \
@@ -63,11 +63,11 @@ kafka-topics.sh --describe \
 ## Alter
 
 ```shell
-# Alter topic
+# Change the number of partitions for a topic
 kafka-topics.sh --alter \
   --bootstrap-server "localhost:9092" \
-  --topic "topic-name" \
-  --partitions "partitions-number"
+  --topic "my-topic" \
+  --partitions "3"
 ```
 
 ## Delete
@@ -76,5 +76,5 @@ kafka-topics.sh --alter \
 # Delete a topic
 kafka-topics.sh --delete \
   --bootstrap-server "localhost:9092" \
-  --topic "topic-name"
+  --topic "my-topic"
 ```

@@ -21,7 +21,7 @@ class ProducerRecordNew {
     ProducerRecord<String, String> record1 = new ProducerRecord<>("my-topic", "hello");
 
     // topic & key & value
-    ProducerRecord<String, String> record2 = new ProducerRecord<>("my-topic", "0", "hello");
+    ProducerRecord<String, String> record2 = new ProducerRecord<>("my-topic", "abc", "hello");
 
   }
 

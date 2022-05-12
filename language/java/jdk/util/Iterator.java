@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 class Main {
   public static void main(String[] args) {
-    ListIterator.run();
+    IteratorNew.run();
 
     // Instance methods
     IteratorHasNext.run();
@@ -14,7 +14,7 @@ class Main {
   }
 }
 
-class ListIterator {
+class IteratorNew {
   static Iterator run() {
     Iterable<String> list = Arrays.asList("henry", "john", "albert");
     Iterator<String> it = list.iterator(); // must be reset in order to iterate again

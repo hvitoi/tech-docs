@@ -40,7 +40,7 @@ class KafkaProducerNew {
 
 class KafkaProducerSend {
   static void run() {
-    ProducerRecord<String, String> record = new ProducerRecord<>("my-topic", "hello");
+    ProducerRecord<String, String> record = new ProducerRecord<>("my-topic", "abc", "hello");
     KafkaProducer<String, String> producer = KafkaProducerNew.run();
 
     // send(record)

@@ -27,7 +27,7 @@ echo 'export PATH=$PATH:$HOME/kafka/bin' >> "~/.zshrc"
 
 ```shell
 # Setup config file
-vim "~/kafka/bin/config/zookeeper.properties" # edit dataDir=/home/hvitoi/kafka/data/zookeeper
+vim "~/kafka/bin/config/zookeeper.properties" # edit dataDir=~/kafka/data/zookeeper
 
 # Start zookeeper
 ~/kafka/bin/zookeeper-server-start.sh "~/kafka/config/zookeeper.properties" # Bind to port 2181. A version-2 folder inside of data/zookeeper is created
@@ -40,7 +40,7 @@ vim "~/kafka/bin/config/zookeeper.properties" # edit dataDir=/home/hvitoi/kafka/
 
 ```shell
 # Setup config file
-vim "~/kafka/bin/config/server.properties" # edit log.dirs=/home/hvitoi/kafka/data/kafka
+vim "~/kafka/bin/config/server.properties" # edit log.dirs=~/kafka/data/kafka
 
 # Start kafka
 ~/kafka/bin/kafka-server-start.sh "~/kafka/bin/config/server.properties"
