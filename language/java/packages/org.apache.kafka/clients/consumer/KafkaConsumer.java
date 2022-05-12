@@ -2,7 +2,6 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
-import java.util.regex.Pattern;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -77,7 +76,7 @@ class KafkaConsumerSeek {
     // assign and seek: specify a partition and offset to read from
     TopicPartition partitionToReadFrom = new TopicPartition("my-topic", 0);
     long offsetToReadFrom = 1L;
-    consumer.seek(partitionToReadFrom, offsetToReadFrom);
+    // consumer.seek(partitionToReadFrom, offsetToReadFrom);
 
   }
 }
@@ -106,6 +105,8 @@ class KafkaConsumerPool {
 class KafkaConsumerClose {
   static void run() {
     KafkaConsumer<String, String> consumer = KafkaConsumerNew.run();
-    consumer.close(); // close connection
+
+    // close connection
+    consumer.close(); // implement the interface Closeable to force its implementation
   }
 }

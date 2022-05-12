@@ -6,7 +6,7 @@
   <artifactId>demo</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>org-apache-kafka</name>
+  <name>com-google-code-gson</name>
   <url>http://www.hvitoi.com</url>
 
   <properties>

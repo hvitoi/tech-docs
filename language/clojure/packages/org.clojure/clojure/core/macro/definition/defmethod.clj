@@ -1,5 +1,24 @@
-; function with many implementations
-; to strategy must be defined in order to choose which implementation to pick 
+;; defmulti is a method with various implementation
+;; defmethod defines each implementation
+;; the implementation will be chosen based on the strategy
+
+(defmulti greeting
+  (fn [params] (:language params)) ; this is the strategy
+  )
+
+(defmethod greeting "english"
+  [params]
+  (str "Hello, " (:name params) "!"))
+
+(defmethod greeting "french"
+  [params]
+  (str "Bonjour, " (:name params) "!"))
+
+(greeting {:name "Henry" :language "english"}) ; hello
+(greeting {:name "Fredericco" :language "french"}) ; bonjour
+
+;; ----
+
 (defmulti my-fn class) ; use "class" function as strategy
 
 ; implementations
@@ -13,6 +32,5 @@
   [item]
   (println "Number:" item))
 
-;; invoking methods
 (my-fn 99)
 (my-fn "abc")

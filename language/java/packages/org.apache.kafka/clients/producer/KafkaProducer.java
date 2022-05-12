@@ -80,6 +80,6 @@ class KafkaProducerClose {
     KafkaProducer<String, String> producer = KafkaProducerNew.run();
 
     // flush and close
-    producer.close();
+    producer.close(); // implement the interface Closeable to force its implementation
   }
 }

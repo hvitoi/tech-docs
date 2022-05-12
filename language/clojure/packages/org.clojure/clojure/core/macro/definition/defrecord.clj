@@ -1,3 +1,5 @@
+;; Equivalente to a Class in java
+
 ;;
 ; Define a Record
 (defrecord Person [id name age])

@@ -28,11 +28,23 @@ class Main {
     configs.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
 
     /**
+     * Consumer id
+     * this is an arbitrary name for the consumer
+     * be default it uses consumer-<groupname>-<randomnumber>
+     */
+    configs.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "awesome-consumer");
+
+    /**
      * earliest: very beginning
      * latest: new messages
      * none: none
      */
     configs.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+    /**
+     * Maximum number of records to fetch for each pool
+     */
+    configs.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "10");
 
   }
 }

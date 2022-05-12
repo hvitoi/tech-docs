@@ -1,3 +1,5 @@
+;; Equivalent to an Interdace in Java
+
 ;; Printable Interface
 (defprotocol Printable
   (my-print-function) [this arg2 arg3]) ; first arg is the object instance itself

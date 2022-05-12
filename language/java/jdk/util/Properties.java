@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Properties;
 
 class Main {
@@ -14,6 +15,7 @@ class Main {
      */
     PropertiesSetProperty.run();
     PropertiesGetProperty.run();
+    PropertiesPutAll.run();
 
   }
 }
@@ -37,5 +39,14 @@ class PropertiesGetProperty {
     Properties props = new Properties();
 
     props.getProperty("a");
+  }
+}
+
+class PropertiesPutAll {
+  static void run() {
+    Properties props = new Properties();
+
+    // set all key-value pairs contained inside of a map
+    props.putAll(Map.of("a", 1));
   }
 }
