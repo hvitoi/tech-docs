@@ -6,14 +6,21 @@ import java.util.Map;
 class Main {
   public static void main(String[] args) {
 
+    /**
+     * Implementations
+     */
     // Implementations
     MapImplementations.run();
 
-    // Static methods
+    /**
+     * Static
+     */
     MapNew.run();
     MapOf.run();
 
-    // Instance methods
+    /**
+     * Instance
+     */
     MapPut.run();
     MapGet.run();
     MapEntrySet.run();

@@ -10,7 +10,12 @@
         "/Users/henrique.vitoi/.m2/repository/org/apache/kafka/kafka-clients/3.2.0/*",
         "/Users/henrique.vitoi/.m2/repository/org/slf4j/slf4j-api/1.7.36/*",
         "/Users/henrique.vitoi/.m2/repository/org/slf4j/slf4j-simple/1.7.36/*",
-        "/Users/henrique.vitoi/.m2/repository/com/google/code/gson/gson/2.9.0/*"
+        "/Users/henrique.vitoi/.m2/repository/com/google/code/gson/gson/2.9.0/*",
+        "/Users/henrique.vitoi/.m2/repository/org/xerial/sqlite-jdbc/3.36.0.3/*",
+        "/Users/henrique.vitoi/.m2/repository/org/eclipse/jetty/jetty-util/11.0.9/*",
+        "/Users/henrique.vitoi/.m2/repository/org/eclipse/jetty/jetty-http/11.0.9/*",
+        "/Users/henrique.vitoi/.m2/repository/org/eclipse/jetty/jetty-server/11.0.9/*",
+        "/Users/henrique.vitoi/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.9/*"
       ],
       "mainClass": "${fileBasename}"
       // "preLaunchTask": "export jars"

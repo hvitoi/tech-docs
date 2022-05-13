@@ -23,7 +23,11 @@ class JsonDeserializer<T> implements Deserializer<T> {
     String className = (String) configs.get("my.config.type-to-deserialized");
 
     // get the class from a string
-    this.classToDeserializeTo = Class.forName(typeName);
+    try {
+      this.classToDeserializeTo = (Class<T>) Class.forName(className);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
 
     // Deserializer.super.configure(configs, isKey);
   }
