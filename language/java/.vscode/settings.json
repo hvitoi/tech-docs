@@ -1,4 +1,3 @@
 {
-  // "java.project.sourcePaths": ["~/.m2/repository/**/*.jar"],
   "java.project.referencedLibraries": ["~/.m2/repository/**/*.jar"]
 }
