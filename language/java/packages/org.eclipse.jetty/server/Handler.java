@@ -1,5 +1,4 @@
 import org.eclipse.jetty.server.Handler;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
 class Main {
@@ -14,7 +13,7 @@ class Main {
 
 class HandlerNew {
   static Handler run() {
-    Server server = new Server(8080);
+    // this handler is usually added to the setHandler of the HTTP Server
     Handler handler = new ServletContextHandler();
     return handler;
   }

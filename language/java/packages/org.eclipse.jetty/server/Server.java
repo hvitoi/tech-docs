@@ -1,4 +1,3 @@
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
@@ -49,11 +48,11 @@ class ServerSetHandler {
   static void run() {
     Server server = ServerNew.run();
 
-    // define a HTTP handler
+    // define a HTTP handler (which contains the servlets/endpoints)
     ServletContextHandler handler = new ServletContextHandler();
     handler.setContextPath("/");
 
-    // handle a HTTP request\
+    // handle a HTTP request
     server.setHandler(handler);
   }
 }

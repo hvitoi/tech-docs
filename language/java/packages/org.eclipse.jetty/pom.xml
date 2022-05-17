@@ -24,7 +24,7 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>server</sourceDirectory>
+    <!-- <sourceDirectory>server</sourceDirectory> -->
     <pluginManagement>
       <plugins>
         <plugin>

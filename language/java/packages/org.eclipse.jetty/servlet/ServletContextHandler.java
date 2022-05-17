@@ -1,6 +1,6 @@
-import org.eclipse.jetty.server.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletContextServletContextHandler;
 
 class Main {
   public static void main(String[] args) {
@@ -21,25 +21,26 @@ class Main {
 class ServletContextHandlerNew {
   static ServletContextHandler run() {
     Server server = new Server(8080);
-    ServletContextHandler servletContextHandler = new ServletContextServletContextHandler();
+    ServletContextHandler servletContextHandler = new ServletContextHandler();
     return servletContextHandler;
   }
 }
 
 class ServletContextHandlerSetContextPath {
   static void run() {
-    org.eclipse.jetty.servlet.ServletContextHandler sch = ServletContextHandlerNew.run();
+    ServletContextHandler sch = ServletContextHandlerNew.run();
 
-    // the endpoint to handle
+    // the context path is the root path
     sch.setContextPath("/");
   }
 }
 
 class ServletContextHandlerAddServlet {
   static void run() {
-    org.eclipse.jetty.servlet.ServletContextHandler sch = ServletContextHandlerNew.run();
+    ServletContextHandler sch = ServletContextHandlerNew.run();
+    ServletHolder servletHolder = new ServletHolder();
 
-    // the endpoint to handle
-    sch.addServlet(servlet, pathSpec);
+    // add an endpoint (a servlet), servlet contains the logic the handle a request
+    sch.addServlet(servletHolder, "/new");
   }
 }
