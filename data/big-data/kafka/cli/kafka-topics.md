@@ -24,7 +24,7 @@ kafka-topics.sh --create \
   --bootstrap-server "localhost:9092" \
   --topic "my-topic" \
   --partitions "3" \
-  --replication-factor "3"
+  --replication-factor "3" # must be <= the number of brokers
 
 # Create topic with custom config
 kafka-topics.sh --create \
@@ -39,6 +39,10 @@ kafka-topics.sh --create \
 ## Describe
 
 ```shell
+# Describe all topics
+kafka-topics.sh --describe \
+  --bootstrap-server "localhost:9092"
+
 # Describe a topic
 kafka-topics.sh --describe \
   --bootstrap-server "localhost:9092" \
@@ -62,12 +66,15 @@ kafka-topics.sh --describe \
 
 ## Alter
 
+- The replication factor of the topic cannot be defined here (only at topic creation)
+
 ```shell
 # Change the number of partitions for a topic
 kafka-topics.sh --alter \
   --bootstrap-server "localhost:9092" \
   --topic "my-topic" \
-  --partitions "3"
+  --partitions "3" \
+  --replication-factor "2"
 ```
 
 ## Delete

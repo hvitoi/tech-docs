@@ -73,6 +73,9 @@ class KafkaConsumerSeek {
   static void run() {
     KafkaConsumer<String, String> consumer = KafkaConsumerNew.run();
 
+    // assign and seek is mostly used to replay data or fetch a specific message.
+    // Assign and seek needs no consumer group and does not commit message
+
     // assign and seek: specify a partition and offset to read from
     TopicPartition partitionToReadFrom = new TopicPartition("my-topic", 0);
     long offsetToReadFrom = 1L;

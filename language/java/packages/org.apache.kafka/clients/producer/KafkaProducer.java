@@ -43,6 +43,8 @@ class KafkaProducerSend {
     ProducerRecord<String, String> record = new ProducerRecord<>("my-topic", "abc", "hello");
     KafkaProducer<String, String> producer = KafkaProducerNew.run();
 
+    // the future will only be resolved when the ack is received
+
     // send(record)
     Future<RecordMetadata> sent1 = producer.send(record);
 

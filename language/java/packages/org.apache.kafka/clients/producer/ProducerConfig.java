@@ -32,9 +32,15 @@ class Main {
     configs.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
 
     /**
-     * acks=0: producer won't wait for ack (possible data loss) - dangerous!
-     * acks=1: producer wait for leader ack (limited data loss) - default
-     * acks=all: Leader and all replicas ack (no data loss)
+     * acks=0: won't wait for ack (possible data loss) - dangerous!
+     * fire and forget (the retry config is ignored)
+     * 
+     * acks=1: wait for leader ack (limited data loss) - default
+     * 
+     * acks=all: wait for leader ack + n backup replicas (as defined in
+     * min.insync.replicas). It will only be considered as produced when all the
+     * necessary replicas are in sync
+     * 
      */
     configs.setProperty(ProducerConfig.ACKS_CONFIG, "all");
 
@@ -45,6 +51,11 @@ class Main {
 
     /**
      * Number of producers trying to produce at the same time
+     * 
+     * How many connections can be active
+     * waiting for acknowledgement. More than this, the connection is refused.
+     * Default to 5 in parallel. If set to 1 the producer is guaranteed to send
+     * messages in order!
      */
     configs.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
 
