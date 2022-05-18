@@ -96,14 +96,9 @@
 - Consumer configuration is placed at _config/consumer.properties_
 
 - **General**
+
   - `allow.auto.create.topics`: try to create topic if trying to consuming from a inexistent topic. auto.create.topics.enable must be set true the server
-- **Commit**
-  - `enable.auto.commit`: Automatically commit offset or not
-  - `auto.commit.interval.ms`: Commit interval case enable.auto.commit=true. Defaults to 5s
-  - `auto.offset.reset`
-    - latest: start reading from last committed offset
-    - earliest: start reading from offset 0
-    - none: throws exception if no offset is found
+
 - **Security**
   - `security.protocol`
 - **Pooling**

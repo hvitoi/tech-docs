@@ -1,14 +1,18 @@
 class Main {
   public static void main(String[] args) {
-    // Static methods
-    RunnableNew.run();
-
+    Runnable r1 = () -> System.out.println("Computation finished.");
+    Runnable r2 = new MyRunner();
   }
 }
 
-class RunnableNew {
-  static void run() {
-    // No args
-    Runnable runnable = () -> System.out.println("Computation finished.");
+// Defines a function!
+
+class MyRunner implements Runnable {
+
+  @Override
+  public void run() {
+    // TODO Auto-generated method stub
+
   }
+
 }

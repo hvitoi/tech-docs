@@ -35,9 +35,17 @@ class Main {
     configs.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
     /**
-     * earliest: very beginning
-     * latest: new messages
-     * none: none
+     * What to do when there is no initial offset in Kafka or if the current offset
+     * does not exist any more on the server (e.g. because that data has been
+     * deleted)
+     * 
+     * For example, when a new consumer group is created, it has no committed
+     * offsets yet. Thus is must define where to start consuming
+     * 
+     * "earliest": automatically reset the offset to the earliest offset (offset 0)
+     * "latest": automatically reset the offset to the latest offset
+     * "none": throw exception to the consumer if no previous offset is found for
+     * the consumer's group
      */
     configs.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
@@ -55,6 +63,19 @@ class Main {
      * Defaults to 500 messages.
      */
     configs.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "5");
+
+    /**
+     * Automatically commit offset or not
+     * 
+     * if disabled, the code must manually commit the message
+     */
+    configs.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+
+    /**
+     * Defines the commit interval, if enable.auto.commit=true.
+     * Defaults to 5s
+     */
+    configs.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "5");
 
   }
 }
