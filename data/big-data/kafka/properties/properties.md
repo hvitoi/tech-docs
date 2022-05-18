@@ -63,11 +63,7 @@
 - Producer properties is placed at _config/producer.properties_
 
 - **General**
-  - `client.id`: just used for logging purposes at the server
   - `partitioner.class`: class to decide to which partitioner to send the message. E.g., round robin
-- **Serializer**
-  - `key.serializer`: Serializer class for key that implements the serializer interface. Not used very often because the key is usually a simple string
-  - `value.serializer`: Serializer class for the value
 - **Compression**
   - `compression.type`: way to compress the message. Producer compression is highly recommended
     - none
@@ -76,7 +72,6 @@
     - lz4: good
     - zstd
 - **Retry**
-  - `retries`: Number of times to retry sending the message in case it fails. It will resend only if the clients knows it failed (not always the case). Defaults to many retries (2147483647)
   - `delivery.timeout.ms`: upper bound time to retrying (default 2min)
   - `retry.backoff.ms`: time to wait before attempting to retry a failed request to a given topic. Avoids repeatedly sending requests in a tight loop under failure scenarios
 - **Batches**
@@ -95,22 +90,13 @@
   - Transaction guarantees no duplicity of a batch (all or none)
   - `transactional.id`: guarantee that transactions using the same transactional.id have been completed prior to starting any new transaction. Each instance has its own transactional id!
   - `transaction.timeout.ms`: max time to wait for a transaction status update from the producer before aborting it
-- **Idempotence**
-  - Idempotence guarantees no duplicity of a single message (send many and they can be saved by parts)
-  - `enable.idempotence`: Assure that no packages are sent twice (duplicated). E.g., the acknowledgement has been lost and the producer sent it again. False by default
-  - True idempotence sets automatically retries=max_int,max.in.flight.requests=5,acks=all
-  - Even know inflight requests is 5 it keeps ordered messages!
 
 ## Consumer configs
 
 - Consumer configuration is placed at _config/consumer.properties_
 
 - **General**
-  - `group.id`: consumer group
   - `allow.auto.create.topics`: try to create topic if trying to consuming from a inexistent topic. auto.create.topics.enable must be set true the server
-- **Deserializer**
-  - `key.deserializer`: Deserializer class for the key
-  - `value.deserializer`: Serializer class for the value. Respects the data format defined by the producer
 - **Commit**
   - `enable.auto.commit`: Automatically commit offset or not
   - `auto.commit.interval.ms`: Commit interval case enable.auto.commit=true. Defaults to 5s
@@ -121,10 +107,12 @@
 - **Security**
   - `security.protocol`
 - **Pooling**
+
   - `fetch.min.bytes`: minimum size of the batch to be consumed. Less than that consumer waits. Defaults to 1
   - `fetch.max.bytes`: maximum size of the batch to be consumed (covers multiple partitions). Defaults to 50MB
-  - `max.poll.records`: Maximum numbers of records to fetch per request. Increase it if the messages are small in size and your RAM is huge. Defaults to 500 messages. It's good practice to monitor how many records are being polled per request
+
   - `max.partitions.fetch.bytes`: maximum data to receive per partition (broker). If you have 100 partitions, you will need a lot of RAM
+
 - **Quota**
   - `Limit the bandwidth` for producer and consumers per clientid or consumer group
     - quota.consumer.default

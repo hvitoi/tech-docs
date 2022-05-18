@@ -13,7 +13,14 @@ class Main {
     configs.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
     /**
+     * just used for logging purposes at the server
+     */
+    configs.setProperty(ProducerConfig.CLIENT_ID_CONFIG, "localhost:9092");
+
+    /**
      * Class to serialize the key
+     * Serializer class for key that implements the serializer interface. Not used
+     * very often because the key is usually a simple string
      */
     configs.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -24,10 +31,15 @@ class Main {
 
     /**
      * Idempotent producer
+     * 
+     * Idempotence guarantees no duplicity of a single message (send many and they
+     * can be saved by parts). Assure that no packages are sent twice (duplicated)
+     * E.g., the acknowledgement has been lost and the producer sent it again.
+     * 
      * Automatically sets
-     * - acks=all
-     * - retries=infinity
-     * - max.in.flight.requests: 5 (but guarantees the ordering!)
+     * - "acks"=all
+     * - "retries"=infinity
+     * - "max.in.flight.requests": 5 (but guarantees the ordering!)
      */
     configs.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
 
@@ -46,16 +58,17 @@ class Main {
 
     /**
      * Number of retries on producing
+     * 
+     * Number of times to retry sending the message in case it fails. It will resend
+     * only if the clients knows it failed (not always the case). Defaults to many
+     * retries (2147483647)
      */
     configs.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE));
 
     /**
-     * Number of producers trying to produce at the same time
-     * 
-     * How many connections can be active
-     * waiting for acknowledgement. More than this, the connection is refused.
-     * Default to 5 in parallel. If set to 1 the producer is guaranteed to send
-     * messages in order!
+     * Maximum number of parallel connections active and waiting for
+     * acknowledgement. More than this, the connection is refused. Default to 5 in
+     * parallel. If set to 1 the producer is guaranteed to send messages in order!
      */
     configs.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
 

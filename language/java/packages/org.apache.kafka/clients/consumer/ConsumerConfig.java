@@ -13,6 +13,18 @@ class Main {
     configs.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
     /**
+     * Consumer id
+     * this is an arbitrary name for the consumer used for logging on the server
+     * be default it uses consumer-<groupname>-<randomnumber>
+     */
+    configs.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "awesome-consumer");
+
+    /**
+     * Consumer group
+     */
+    configs.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
+
+    /**
      * Class to serialize the key
      */
     configs.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -23,18 +35,6 @@ class Main {
     configs.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
     /**
-     * Consumer group
-     */
-    configs.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
-
-    /**
-     * Consumer id
-     * this is an arbitrary name for the consumer
-     * be default it uses consumer-<groupname>-<randomnumber>
-     */
-    configs.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "awesome-consumer");
-
-    /**
      * earliest: very beginning
      * latest: new messages
      * none: none
@@ -42,9 +42,19 @@ class Main {
     configs.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
     /**
-     * Maximum number of records to fetch for each pool
+     * Maximum numbers of records to fetch per poll.
+     * When this number is reached, the poll is closed (even there is still time)
+     * 
+     * Increase it if the messages are small in size and your RAM is huge.
+     * It's good practice to monitor how many records are being
+     * polled per request
+     * 
+     * After the poll is complete (by time or by messages), the records are
+     * committed (if auto commit is enabled)
+     * 
+     * Defaults to 500 messages.
      */
-    configs.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "10");
+    configs.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "5");
 
   }
 }

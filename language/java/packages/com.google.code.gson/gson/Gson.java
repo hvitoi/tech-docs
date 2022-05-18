@@ -4,9 +4,29 @@ import com.google.gson.GsonBuilder;
 class Main {
 
   public static void main(String[] args) {
-    final Gson gson = new GsonBuilder().create();
+    /**
+     * Static
+     */
+    GsonNew.run();
 
-    // convert
+    /**
+     * Instance
+     */
+    GsonToJson.run();
+  }
+}
+
+class GsonNew {
+  static Gson run() {
+    Gson gson = new GsonBuilder().create();
+    return gson;
+  }
+}
+
+class GsonToJson {
+  static void run() {
+    Gson gson = GsonNew.run();
+
     User obj = new User("henry", 99);
     String json = gson.toJson(obj);
 
