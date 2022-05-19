@@ -5,6 +5,7 @@
 - **Architecture**
 - **Cloud**
 - **Container**
+- **Crypto**
 - **Data**
 - **DevOps**
 - **Game**
@@ -13,4 +14,3 @@
 - **Language**
 - **OS**
 - **Security**
-- **Web3**
