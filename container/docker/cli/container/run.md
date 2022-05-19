@@ -21,11 +21,13 @@ docker container run \
     -build-arg JAR_FILE=build/libs/\*.jar \ # build args are reached inside the dockerfile ARG JAR_FILE ... {JAR_FILE} to use
     --network "my_net" \ # attach to a network
     --network-alias \ # net alias
-    --entrypoint "echo" \ # modify default entrypoint
+    --entrypoint "echo" \ #  --rm modify default entrypoint
     --user "1001" \ # container user
     --memory "512m" \ # memory limit
     --cpu-quota "5000" \ # cpu limit (5%)
     --cap-add "MAC_ADMIN" \ # linux capabilities that can be added or removed
+    --privileged \ # gives access to your host devices (can cause problems in some cases)
+    --cap-add "SYS_ADMIN" \ # also access to host devices
     -w "/app" \ # set working directory
     -it \ # -t for tty, -i attach terminal to STDIN
     --rm \ # remove image after container is stopped
