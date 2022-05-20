@@ -1,5 +1,7 @@
 # mrjob
 
+- `mrjob` is a python library that allows you to create map-reduce tasks
+
 ## Installation
 
 - It must be installed inside of the worker node

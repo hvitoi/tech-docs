@@ -6,7 +6,7 @@
 - Lastest version: 3.0.1
 
 ```sh
-wget https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
+curl -O "https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz"
 ```
 
 ## Spark client for elasticsearch
@@ -20,7 +20,6 @@ wget https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tg
     <artifactId>elasticsearch-spark-20_2.11</artifactId>
     <version>7.10.1</version>
 </dependency>
-
 ```
 
 ## Spark shell
