@@ -11,8 +11,8 @@
 - Namenode resiliency
   - Option 1: backup the metadata both to local disk and a NFS
   - Option 2: runs a secondary namenode that maintains a merged copy of the edit log
-  - Option 3: HDFS Federation - each namenode manages a specific namespace volume
-  - Option 4: HDFS High Availability - hot standby namenod using a shared edit log. With zookeeper tracking the active namenodes. Must ensure that only one namenode is used at a time!
+  - Option 3: `HDFS Federation` - each namenode manages a specific namespace volume
+  - Option 4: `HDFS High Availability` - hot standby namenod using a shared edit log. With that, zookeeper tracks the active namenodes. Must ensure that only one namenode is used at a time!
 
 ## Data Node
 

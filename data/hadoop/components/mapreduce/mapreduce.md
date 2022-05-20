@@ -5,7 +5,8 @@
   - Data is **shuffled** automatically
   - Data is **reduced** (aggregated) with a `reducer function`
 - Distributes the `processing of data` (mapping, shuffling, reducing) across the hadoop cluster
-- It's resilient to failure
+- MapReduce is natively Java
+- Streaming (stdin/stdout) allows interacing to other languages (ie Python)
 
 ## Map-Shuffle-Reduce Flow
 
@@ -58,8 +59,14 @@
 
 ## Flow
 
-1. Client Node talks to YARN
-1. Application Master manages all the tasks happening on the Nodes
+1. Client Node talks to the `Resource Manager`
+1. `Application Manager/Master` manages all the tasks happening on the `Worker Nodes`
 1. Each Node can have multiple map/reduce tasks
 1. Each Node will talk to the HDFS in order to fetch data to be processed
 1. Each Node will try to fetch the closest possible data to avoid network bottlenecks
+
+## Handling Failure
+
+- It's resilient to failure
+- The `Application Manager/Master` monitors `Worker Tasks` and restarts as needed
+- The `Resource Manger` monitors `Application Master` and restarts as needed
