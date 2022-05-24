@@ -1,4 +1,5 @@
 import org.elasticsearch.spark.sql._
+
 case class Person(ID:Int, name:String, age:Int, numFriends:Int)
 def mapper(line:String): Person = {
   val fields = line.split(',')
@@ -10,5 +11,3 @@ import spark.implicits._
 val lines = spark.sparkContext.textFile("fakefriends.csv")
 val people = lines.map(mapper).toDF()
 people.saveToEs("spark-friends")
-
-:quit
