@@ -8,6 +8,7 @@
 ```shell
 # Search by file name
 find "." -name "notes.txt"
+find "." -iname "notes.txt" # include name
 
 # Search by file type and file name
 file "/" -type f # f for file

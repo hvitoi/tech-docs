@@ -129,6 +129,7 @@
 - `:w!`: save file (force)
 - `:w !sudo tee %`: save file with sudo
 
+- `:e ~/file.txt`: open a file
 - `:q`: quit
 - `:x`: save and quit
 

@@ -1,3 +1,4 @@
-phrase = "Hi, my name is Henry"
+foo = "Hi, my name is Henry"
 
-splited = phrase.split()  # converts to a list
+foo.split()  # converts to a list
+foo.split(" ")  # split by space character
