@@ -6,6 +6,7 @@ class Main {
 
     // Static methods
     LocalDateTimeNow.run();
+    LocalDateTimeParse.run();
 
     // Instance methods
     LocalDateTimeFormat.run();
@@ -19,9 +20,20 @@ class LocalDateTimeNow {
   }
 }
 
+class LocalDateTimeParse {
+  static void run() {
+    String str = "2022-05-24T20:12:36.622533";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    LocalDateTime time = LocalDateTime.parse(str, formatter);
+  }
+}
+
 class LocalDateTimeFormat {
   static void run() {
     LocalDateTime time = LocalDateTime.now();
-    time.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    String str = time.format(formatter);
   }
 }
