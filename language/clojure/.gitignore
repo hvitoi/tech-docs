@@ -13,9 +13,8 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 
-.calva/
-.lsp/.cache/
-.clj-kondo/
-.lsp/
+.calva
+.lsp
+.clj-kondo
 
 Leiningen.gitignore

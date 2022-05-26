@@ -11,7 +11,7 @@ class Main {
 
 class ThreadNew {
   static void run() {
-    Thread thread = new Thread();
+    Thread thread = new Thread(() -> System.out.println("I will run in a new thread"));
   }
 }
 
@@ -26,7 +26,7 @@ class ThreadSleep {
 
 class ThreadStart {
   static void run() {
-    Thread thread = new Thread();
+    Thread thread = new Thread(() -> System.out.println("I will run in a new thread"));
     thread.start();
   }
 }
