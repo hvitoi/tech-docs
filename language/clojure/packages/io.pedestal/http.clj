@@ -2,7 +2,9 @@
  '[io.pedestal.http :as http]
  '[io.pedestal.http.route :as route]
  '[io.pedestal.interceptor :as interceptor]
- '[io.pedestal.test :as test])
+ '[io.pedestal.test :as test]
+ '[org.clojure.edn :as edn]
+ '[clojure.test :refer :all])
 
 ;; STATE
 (def store (atom {}))
@@ -99,3 +101,10 @@
 (test/response-for (::http/service-fn @server) :get "/tasks/90a21a81-304f-4548-8b93-77b04184bf52")
 (test/response-for (::http/service-fn @server) :patch "/tasks/86445a37-4c21-4a86-9264-407f7f388ebe?name=football&status=done")
 (test/response-for (::http/service-fn @server) :delete "/tasks/9717b7e3-a169-4548-afa7-294c13dc5802")
+
+#_(deftest foo-test
+    (testing "test request"
+      (let [path "/tasks"
+            response (test/response-for (::http/service-fn @server) :get path)
+            body (edn/read-string (:body response))]
+        (is (some? body)))))
