@@ -46,7 +46,7 @@
 (defn lead+members
   [lead & members]
   {:lead lead
-   :members members}) ; members is received as a list
+   :members members}) ; members is received as clojure.lang.ArraySeq
 (lead+members "Dave Mustain" ; lead
               "Marty Friedman" ; member
               "Nick Menza" ; member

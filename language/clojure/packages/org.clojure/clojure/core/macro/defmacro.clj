@@ -22,10 +22,7 @@
 (my-macro str "hey" "there")
 ; => evaluate the list generated (str "hey" "there")
 
-
-
-
-
+;; -----
 
 ;; comment macro
 (defmacro comment
@@ -33,9 +30,32 @@
   {:added "1.0"}
   [& body])
 
-;; when macro
+;; -----
+
+;; when macro (if true (do "hello" "hey"))
 (defmacro when
-  "Evaluates test. If logical true, evaluates body in an implicit do"
-  {:added "1.0"}
   [test & body]
-  (list 'if test (cons 'do body)))
+  (list 'if test (cons 'do body))) ; 
+
+(defmacro when ; same effect
+  [test & body]
+  `(if ~test ~(cons 'do body)))
+
+(defmacro when ; same effect
+  [test & body]
+  `(if ~test (do ~@body)))
+
+(defmacro when ; same effect
+  [test & body]
+  (let [my-symbol (gensym)] ; good for avoiding shadowing other symbols inside of a macro
+    `(if ~test
+       (let [~my-symbol "Henry"]
+         (println ~my-symbol) ; step not defined by the user
+         (do ~@body)))))
+
+(defmacro when ; same effect
+  [test & body]
+  `(if ~test
+     (let [random-symbol# "Henry"] ; auto-gensym: generates a random symbol on the fly (can only be used inside of a macro)
+       (println random-symbol#)
+       (do ~@body))))

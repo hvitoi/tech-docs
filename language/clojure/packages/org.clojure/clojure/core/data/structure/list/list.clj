@@ -1,3 +1,2 @@
 ; return a list with elements
-(list "a" "b" "c")
-'("a" "b" "c") ; same
+(list "a" "b" (+ 1 1)) ; => ("a" "b" 2)

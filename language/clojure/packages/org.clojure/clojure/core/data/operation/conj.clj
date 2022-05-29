@@ -1,19 +1,17 @@
-;; Add a new element
+;; conj(oin): add a new element
 ;; The new element is added to the easier place for the given data structure
 ;; Behaves differently for each implementation of a collection
-; O(1)
+;; O(1)
 
-;; vector (ending)
+;; vec (ending)
 (conj [1 2 3] 4)
-(conj [1 2 3] 4 5 6) ; add multiple elements
+(conj [1 2 3] 4 5 6) ; multiple elements
 
-
-;; sequence (beginning)
+;; seq (beginning)
 (conj (seq [1 2 3]) 4)
 
-
-;; linked list (beginning)
+;; list (beginning)
 (conj '(1 2 3) 4)
 
-;; set (ending)
+;; set (no order)
 (conj #{1 2 3} 4)
