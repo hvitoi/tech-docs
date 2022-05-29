@@ -7,3 +7,5 @@
 'a ; simple symbol
 'a/b ; namespaced symbol
 'a???.#! ; most punctuation is allowed
+
+(quote a) ; same

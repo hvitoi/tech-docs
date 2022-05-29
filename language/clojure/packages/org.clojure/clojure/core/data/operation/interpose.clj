@@ -1,0 +1,1 @@
+(interpose "-" ["a" "b" "c"])

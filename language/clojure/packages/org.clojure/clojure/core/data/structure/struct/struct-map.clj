@@ -1,5 +1,5 @@
-; struct
-(defstruct pet :PetType :PetName)
+; define struct
+(defstruct person :name :age :height)
 
-; instance of a struct
-(def myDog (struct-map pet :PetType "dog" :PetName "Pingo"))
+; instantiate struct
+(struct-map person :name "george" :age 22 :height 115)

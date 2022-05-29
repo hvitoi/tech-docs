@@ -1,7 +1,5 @@
-; struct
-(defstruct pet :PetType :PetName)
+; define struct
+(defstruct person :name :age :height)
 
-; instance of a struct
-(def myDog (struct pet "dog" "Pingo"))
-
-(println (:Name myDog)) ; print a value from the struct
+; instantiate struct
+(struct person "george" 22 115)
