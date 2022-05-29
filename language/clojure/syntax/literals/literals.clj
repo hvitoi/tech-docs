@@ -8,3 +8,9 @@
 0x12      ; hex
 022       ; octal
 2r10010   ; base 2
+
+\a        ; character literal
+\b        ; character literal
+\c        ; character literal
+
+(= "1" (str \1))

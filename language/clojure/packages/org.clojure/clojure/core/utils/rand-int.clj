@@ -1,1 +1,1 @@
-(rand-int 6)
+(rand-int 6) ; [0,6)
