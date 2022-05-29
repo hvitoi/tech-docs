@@ -23,15 +23,15 @@
   (stop [this] ()))
 
 
-(defn c1 [] (->Database))
-(defn c2 [] (map->Printer {})) ; component lib will inject here the necessary dependencies
+(defn new-database [] (->Database))
+(defn new-printer [] (map->Printer {})) ; component lib will inject here the necessary dependencies
 
 
 ;; Add Components to the component-system
 (defn component-system []
   (component/system-map
-   :database (c1)
-   :printer (component/using (c2) [:database]) ; :printer depends on :database
+   :database (new-database)
+   :printer (component/using (new-printer) [:database]) ; :printer depends on :database
    ))
 
 

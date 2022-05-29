@@ -1,3 +1,5 @@
+import java.nio.charset.StandardCharsets;
+
 class Main {
   public static void main(String[] args) {
 
@@ -30,6 +32,11 @@ class StringNew {
     // Concatenate string
     // In order to modify a string, a new one is create (strings are immutable)
     str = str + "Append new information";
+
+    // Create string in a specified encoding
+    String englishString = "Develop with pleasure";
+    byte[] englishBytes = englishString.getBytes();
+    String utf8EncondedEnglishString = new String(englishBytes, StandardCharsets.UTF_8);
 
   }
 }
