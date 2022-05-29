@@ -10,8 +10,21 @@
 (def name "Henry")
 (def number 10)
 (my-macro name "blabla" (+ 1 number))
-; print the symbols: 'name "blabla" '(+ 1 number)
-; calculate the symbols ["Henry" "blabla" 11]
+; => print the symbols: 'name "blabla" '(+ 1 number)
+; => calculate the symbols ["Henry" "blabla" 11]
+
+
+;; -----
+
+(defmacro my-macro
+  [arg1 arg2 arg3]
+  (list arg1 arg2 arg3))
+(my-macro str "hey" "there")
+; => evaluate the list generated (str "hey" "there")
+
+
+
+
 
 
 ;; this is the actual definition for the comment macro

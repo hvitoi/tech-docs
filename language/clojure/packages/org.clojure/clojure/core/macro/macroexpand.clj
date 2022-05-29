@@ -1,4 +1,7 @@
-; check the actual content of a macro
+(defmacro my-macro
+  [arg1 arg2 arg3]
+  (list arg1 arg2 arg3))
 
-(macroexpand '(when 'this-is-true
-                'evaluate-this))
+
+; check the symbol that will be returned by the macro (before evaluating it)
+(macroexpand '(my-macro str "hey" "there")) ; => (str "hey" "there")

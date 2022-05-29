@@ -1,5 +1,4 @@
-(def a "a")
+;; receive and return a symbol clojure.lang.Symbol (without evaluating it)
 
-; accesses a variable (not its value)
-#'a
-(var a) ; same
+#'a ; access the symbol (not its value)
+#'"a" ; fail! not a symbol
