@@ -1,5 +1,5 @@
 (try
-  (inc "abc")
+  (/ 0 0)
   (catch ClassCastException e
     (println "Caught ClassCastException:" (.getMessage e)))
   (catch Exception e

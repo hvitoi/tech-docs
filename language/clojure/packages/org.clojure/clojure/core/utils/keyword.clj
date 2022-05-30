@@ -1,2 +1,4 @@
 ; transform into a keyword
-(keyword "abc")
+(keyword "foo")
+
+(identical? (keyword "foo") :foo)

@@ -15,3 +15,7 @@
 
 ;; set (no order)
 (conj #{1 2 3} 4)
+
+;; map (no order)
+(conj {:a 1 :b 2 :c 3} {:d 4})
+(conj {:a 1 :b 2 :c 3} {:c 4}) ; replace

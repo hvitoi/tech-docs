@@ -5,8 +5,17 @@
 
 (defn my-fn
   [function collection]
-  (if (not (nil? (first collection)))
-    (do (function first collection)
-        (recur function (rest collection)))))
+  (when (not (nil? (first collection)))
+    (function first collection)
+    (recur function (rest collection))))
 
 (my-fn println (range 1000))
+
+;; my own reduce (recursive)
+(defn my-reduce
+  ([elements]
+   (my-reduce 0 elements))
+  ([total elements]
+   (if (seq elements)
+     (recur (inc total) (next elements))
+     total)))

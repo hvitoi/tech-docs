@@ -2,7 +2,7 @@
 ;; it is executed in chunks of 32 elements
 
 ;; vector
-(map (fn [x] (+ x 1)) [10 20 30]) ; [11 21 31]
+(map #((+ % 1)) [10 20 30]) ; [11 21 31]
 (map inc [10 20 30]) ; [11 21 31]
 
 ;; map

@@ -1,10 +1,9 @@
 ; get element from a collection (clojure.lang.IPersistentCollection)
 
 ;; map
-(def data {:key0 0 :key1 1 :key2 2})
-(get data :key0)
+(get {:a "alpha" :b "beta"} :a)
 
 ;; vector
-(def data2 [0 1 2])
-(get data2 0) ; out of bound returns nil
-(get data2 99 -1) ; out of bound returns -1
+(get ["a" "b" "c"] 0) ; "a"
+(get ["a" "b" "c"] 99) ; out of bound returns -1
+(get ["a" "b" "c"] 'x) ; invalid returns nil

@@ -16,7 +16,6 @@
      (recur (inc total) (next elements))
      total)))
 
-
 ;; break out of reduce (stop the process before the input sequence is exhausted)
 (reduce (fn [acc n]
           (if (nil? n)
