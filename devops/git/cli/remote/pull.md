@@ -4,9 +4,26 @@
 - To perform git pull, there must be `local tracking branch`
 - Git pull updates only a `single local currently checked out branch`
 
-- `Steps
-  - The first step is fetch (update git repo), which fetches the new commits from remote. After fetching, `FETCH_HEAD` is created containing hashes of last commits in all tracking branches
-  - The second step is merge (update index + working dir), which can be `fast-forward` or `3-way`. The command is `git merge FETCH_HEAD`
+## Step
+
+- Branch types
+  - `main` (local)
+  - `origin/main` (local)
+  - `main` (remote)
+
+1. **git fetch**
+
+   - _main (remote)_ is copied to _origin/main (local)_
+   - _main (local)_ is left untouched
+   - After fetching, `FETCH_HEAD` is created pointing to origin/main containing hashes of last commits in all tracking branches
+
+1. **git merge**
+
+   - _origin/main (local)_ is merged into _main (local)_
+   - The merge (update index + working dir) can be `fast-forward` or `3-way`, alternatively rebase can be specified
+   - The merge command is `git merge FETCH_HEAD` or `git rebase FETCH_HEAD`
+
+## Commands
 
 ```shell
 # Pull changes (fetch and merge) for the current checked out branch (tracked branch)
@@ -15,17 +32,18 @@ git pull
 git pull -v # verbose
 
 # Pull changes from specific remote and branch
-git pull `remote` `branch`
-git pull origin master -v # verbose
+git pull "origin" "main" -v # verbose
 ```
 
 ## Pull strategies
 
 ```shell
-# git config pull.rebase false`: merge (the default strategy)
-git pull --no-rebase
-# git config pull.rebase true` rebase
-git pull --rebase
-# git config pull.ff only`: fast-forward only
+# git config pull.ff only: fast-forward only
 git pull --ff-only
+
+# git config pull.rebase false: merge (the default strategy)
+git pull --no-rebase
+
+# git config pull.rebase true: rebase strategy
+git pull --rebase
 ```

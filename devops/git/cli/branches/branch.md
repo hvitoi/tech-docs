@@ -1,6 +1,9 @@
 # branch
 
-- New branches created are pointed to the same commit as the previous branch
+- Branch types
+  - `main` (local)
+  - `origin/main` (local)
+  - `main` (remote)
 
 ## List
 
@@ -12,7 +15,7 @@ git branch # * is the current branch
 git branch -r
 
 # List all local and remote branches
-git branch -a
+git branch --all
 
 # List branches and corresponding remote branch
 git branch -vv # * main 61d49e6 [origin/main] Create hello.txt (branch local/main synced with origin/main)
@@ -23,6 +26,8 @@ git branch --merged
 ```
 
 ## Create
+
+- New branches created are pointed to the same commit as the previous branch
 
 ```shell
 # Create a new branch

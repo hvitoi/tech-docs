@@ -1,10 +1,14 @@
 # merge
 
+- Merge a secondary branch into the current checked out branch
+- Git will automatically choose the strategy to merge
+  - **fast-forward**
+  - **3-way** (recursive)
+- For 3-way merge, a new merge commit object is created, which incorporate all the changes made in the secondary branch
+
 ```shell
-## Merge secondary branch into current branch
-# Git will automatically choose the strategy to merge: fast-forward or 3-way (recursive)
-# For 3-way merge, a new merge commit object is created, which incorporate all the changes made in the secondary branch
-git merge `secondary-branch`
+# merge the branch "feature" into the currently checked out branch
+git merge "feature"
 
 # Abort a merge (Mostly due to conflict error)
 git merge --abort
@@ -17,6 +21,6 @@ git merge --abort
 git branch --merged
 
 ## Delete branch after merge
-git branch -d `secondary-branch`
-git branch --delete `secondary-branch`
+git branch --delete "feature"
+git branch -d "feature"
 ```
