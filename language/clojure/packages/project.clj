@@ -17,5 +17,6 @@
                  [io.pedestal/pedestal.service "0.5.10"] ; web framework
                 ;;  [io.pedestal/route "0.5.10"] ; web framework
                  [io.pedestal/pedestal.jetty "0.5.10"] ; web server backend
-                 [com.stuartsierra/component "1.1.0"]]
+                 [com.stuartsierra/component "1.1.0"]
+                 [http-kit "2.3.0"]]
   :repl-options {:init-ns user})
