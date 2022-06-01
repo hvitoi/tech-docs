@@ -1,5 +1,4 @@
-; if a parameter exists
-
+; checks if a parameter exists
 (if-let
  [id false]
   (println id)
