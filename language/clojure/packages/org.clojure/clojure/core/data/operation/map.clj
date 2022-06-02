@@ -6,7 +6,7 @@
 (map inc [10 20 30]) ; [11 21 31]
 
 ;; map
-(map println {:k1 1, :k2 2}) ; each element is treated as a vector [key value]
+(map println {:a 1, :b 2}) ; each element is treated as a vector [key value]
 
 ;; sequence
 (map println (range 50))
@@ -21,3 +21,20 @@
      (range)
      ["foo" "bar" "baz"]
      (range 2 -1 -1))
+
+
+(def data {:grant-type "grant-type"
+           :client-id "client-id"
+           :client-secret "client-secret"})
+
+(def a #(interpose "=" %&))
+(str (a 1 2 3))
+
+(interpose "str")
+
+(->> {:grant-type "grant-type"
+      :client-id "client-id"
+      :client-secret "client-secret"}
+     (map (fn [[key val]] (str key "=" val)))
+     (interpose "&")
+     (str/join))
