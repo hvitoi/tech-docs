@@ -36,6 +36,13 @@ systemctl -a
 systemctl --type=service
 ```
 
+## set-environment
+
+```shell
+# set environment variables for a service
+systemctl set-environment MYSQLD_OPTS="--skip-grant-tables --skip-networking"
+```
+
 ## Service files
 
 - `/etc/systemd/system/`
