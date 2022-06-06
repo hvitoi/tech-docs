@@ -4,7 +4,7 @@
 
 - Minimalism
 
-## KDE
+## KDE Plasma
 
 - Personalization
 
