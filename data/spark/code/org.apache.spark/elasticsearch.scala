@@ -1,3 +1,10 @@
+// The spark client for elasticsearch must match the spark server version and the scala version
+// <dependency>
+//     <groupId>org.elasticsearch</groupId>
+//     <artifactId>elasticsearch-spark-20_2.11</artifactId>
+//     <version>7.10.1</version>
+// </dependency>
+
 import org.elasticsearch.spark.sql._
 
 case class Person(ID:Int, name:String, age:Int, numFriends:Int)
