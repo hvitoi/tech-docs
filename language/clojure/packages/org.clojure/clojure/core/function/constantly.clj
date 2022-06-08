@@ -1,0 +1,5 @@
+; returns a function (which always return a value)
+(def foo (constantly 10))
+(foo)
+(foo "a")
+(foo "a" "b")
