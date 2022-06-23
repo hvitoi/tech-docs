@@ -3,7 +3,7 @@ name: my_app
 description: Snippet examples
 version: 1.0.0
 environment:
-  sdk: ">=2.16.2 <3.0.0" # dart version
+  sdk: ">=2.13.1 <3.0.0" # dart version
 dependencies:
   device_info_plus: ^3.2.3
   firebase_core: any
