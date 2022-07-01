@@ -41,6 +41,7 @@ git rebase --abort # abort the whole rebasing process
 ```shell
 git rebase "SHA1" --interactive
 git rebase "62079b5" -i
+git rebase "62079b5^" -i # includes the commit mentioned
 ```
 
 - `pick` (p): use commit
