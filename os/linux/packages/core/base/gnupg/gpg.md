@@ -16,7 +16,12 @@ gpg --list-secret-keys # secret keys
 gpg --list-secret-keys --keyid-format "LONG" # show GPG key id (last hex digits)
 
 # edit key
-gpg --edit-key "0123456789ABCDEF" # gpg> adduid to add new user details
+gpg --edit-key "0123456789ABCDEF"
+  # gpg> help --> show all commands
+  # gpg> list --> list all user IDs
+  # gpg> adduid --> add a user ID
+  # gpg> deluid --> delete selected user IDs (select with "uid 1")
+  # gpg> save --> save and quit
 ```
 
 ## Import/Export

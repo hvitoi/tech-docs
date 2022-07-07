@@ -10,7 +10,7 @@
 
 ## Service Level Indicators (SLI)
 
-- Quantitative measure of some aspect
+- Quantitative measure (metrics!) of some aspect
 - Data is collected over a measurement window and turned into a rate, average, percentile
 - E.g.
   - `request latency`
@@ -20,4 +20,6 @@
 
 ## Service Level Objectives (SLO)
 
--
+- Numeric thresholds to define acceptable levels for the SLIs
+- E.g.,
+  - `p99 latency < 200ms for 5 min`
