@@ -18,9 +18,8 @@
   - `error`: error rate of requests
   - `saturation`: fullness of a service
 
-### State
-
-- PromQL
+- A `threshold` is an objetive that should not be trespassed
+- Ideally the current `state` must not reach the threshold
 
 ```shell
 # Is my service up and/or scrapeable?
@@ -33,8 +32,6 @@ sum(up{kubernetes_name="doccserver"})
 # Do I have the number of LB I expect?
 sum(up{kubernetes_name="loadbalancer"}) < 3
 ```
-
-### Threshold
 
 ```shell
 # Is out LB at 50% capacity in terms of sessions?

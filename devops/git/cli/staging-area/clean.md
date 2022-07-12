@@ -5,4 +5,5 @@
 
 ```shell
 git clean -df
+git clean -dxf
 ```
