@@ -3,7 +3,7 @@
  '[io.pedestal.http.route :as route]
  '[io.pedestal.interceptor :as interceptor]
  '[io.pedestal.test :as test]
- '[org.clojure.edn :as edn]
+ #_'[org.clojure.edn :as edn]
  '[clojure.test :refer :all])
 
 ;; STATE
@@ -57,37 +57,29 @@
 
 ;; INTERCEPTORS
 (def db-interceptor
-  {;; name of the interceptors
-   :name :db-interceptor
-
-  ;; what to do when it enters the interceptor (must return a new context)
-   :enter (fn [context] (update context :request assoc :store store))
-
-  ;; what to do when it enters the interceptor
-   :leave nil})
+  (interceptor/interceptor
+   {:name :db-interceptor ; name of the interceptor
+    :enter (fn [context] (update context :request assoc :store store)) ; what to do when it enters the interceptor (must return a new context)
+    :leave nil})) ; what to do when it leaves the interceptor
 
 ;; ROUTES
 #_(def routes #{["/hello" :get `hello-handler :route-name :hello-word]})
-(def routes (route/expand-routes
-             ; only the last interceptor receives the request, which is the final handler
-             #{#_["/tasks" :get [db-interceptor list-tasks] :route-name :list-tasks] ; not needed anymore now that it's a common interceptor
-               ["/tasks" :get list-tasks :route-name :list-tasks]
-               ["/tasks" :post save-task :route-name :save-task]
-               ["/tasks/:id" :get get-task :route-name :get-task]
-               ["/tasks/:id" :patch update-task :route-name :update-task]
-               ["/tasks/:id" :delete delete-task :route-name :delete-task]}))
+(def routes
+  (route/expand-routes
+   #{["/tasks" :get list-tasks :route-name :list-tasks] ; use [db-interceptor list-tasks] to set an interceptor manually (only the last interceptor receives the request, which is the final handler)
+     ["/tasks" :post save-task :route-name :save-task]
+     ["/tasks/:id" :get get-task :route-name :get-task]
+     ["/tasks/:id" :patch update-task :route-name :update-task]
+     ["/tasks/:id" :delete delete-task :route-name :delete-task]}))
 
 ;; SERVICE MAP
-(def service-map-base
-  {::http/routes routes
-   ::http/port 8080
-   ::http/type :jetty
-   ::http/join? false ; do not block the thread (good for development)
-   })
-(def service-map ;; service-map with custom intercepors added
-  (-> service-map-base
-      (http/default-interceptors) ; the default-interceptors are used automatically with the conventional service-map 
-      (update ::http/interceptors conj (interceptor/interceptor db-interceptor)) ; custom interceptors added here are applied to all routes
+(def service-map
+  (-> {::http/routes routes
+       ::http/port 8080
+       ::http/type :jetty
+       ::http/join? false} ; do not block the thread (good for development)
+      (http/default-interceptors) ; add default interceptors (it's automatically with the conventional service-map) 
+      (update ::http/interceptors conj db-interceptor) ; add custom interceptors (applies to all routes)
       ))
 
 ;; SERVER
