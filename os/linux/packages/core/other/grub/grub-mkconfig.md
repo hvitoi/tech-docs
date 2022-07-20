@@ -1,5 +1,7 @@
 # grub-mkconfig
 
+- Grub config is defined via `/etc/default/grub` saved to `/boot/grub/grub.cfg`
+
 ```shell
 # Generate grub config from /etc/default/grub
 grub-mkconfig -o "/boot/grub/grub.cfg"
