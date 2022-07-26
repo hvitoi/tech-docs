@@ -4,13 +4,8 @@
 ;; define
 (def my-set #{"a" "b" "c"})
 
-;; access
+;; access (sets are functions)
 (my-set "a") ; "a"
-(my-set "d") ; nil
-
-
-; Sets are functions!
-(my-set "a") ; return the element (if found)
 (my-set "d") ; nil
 
 (some my-set ["a" "b" "z"]) ; "a" (the first element)
