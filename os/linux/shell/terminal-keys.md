@@ -1,22 +1,39 @@
 # Terminal Control keys
 
-- `CTRL+C`: Stops/kills command
-- `CTRL+Z`: Suspends a command
-- `CTRL+D`: Exit from interactive program (signals end of data)
-- `CTRL+L`: Clears the screen
+- `C-r`: bck-i-search
+- `C-l`: Clears the screen
+
+## Processes
+
+- `C-z`: Suspends the foreground process (SIGTSTP). Bring it back with fg
+- `C-c`: Interrupt the foreground process (SIGINT)
+- `C-d`: exit terminal
+
+## Output
+
+- `C-s`: pause a command output
+- `C-q`: resume a command output
 
 ## Cut text (kill/yank)
 
-- `CTRL+K`: Cuts the text from the cursor until the end of line
-- `CTRL+U`: Cuts the text from the cursor until the beggining of line
-- `CTRL+W`: Cuts the previous word
+- `C-u`: cut text from the cursor until the beginning of line
+- `C-k`: cut text from the cursor until the end of line
+- `C-w`: cut previous word
+- `C-y`: paste back cut text
 
-- `CTRL+Y`: Paste back cut text
+- `C-d`: remove previous character
+
+## Navigate
+
+- `C-a`: jump to beginning of line
+- `C-e`: jump to end of line
+
+- `C-b`: move cursor back
+- `C-f`: move cursor forward
 
 ## Multiline terminal
 
-- `CTRL+x+e`
-- `wq!` to execute
+- `C-x C-e`: Save the file to execute
 
 ```shell
 for host in $HOSTS
