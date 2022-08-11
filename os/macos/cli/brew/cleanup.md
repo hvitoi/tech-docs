@@ -1,0 +1,5 @@
+# cleanup
+
+```shell
+brew cleanup
+```
