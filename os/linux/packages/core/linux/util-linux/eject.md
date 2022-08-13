@@ -3,5 +3,5 @@
 - Eject drive
 
 ```shell
-eject "/dev/cdrom0"
+eject "/dev/cdrom"
 ```
