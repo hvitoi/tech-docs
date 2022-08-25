@@ -3,6 +3,7 @@
  '[io.pedestal.http.route :as route]
  '[io.pedestal.interceptor :as interceptor]
  '[io.pedestal.test :as test]
+ '[clojure.data.json :as json]
  #_'[org.clojure.edn :as edn]
  '[clojure.test :refer :all])
 
@@ -55,6 +56,13 @@
     {:status 200
      :body {:message "Removed successfully"}}))
 
+(defn token
+  [_]
+  {:status 200
+   :body (-> {:access-token "a"
+              :expires-in "1"}
+             json/write-str)})
+
 ;; INTERCEPTORS
 (def db-interceptor
   (interceptor/interceptor
@@ -70,14 +78,16 @@
      ["/tasks" :post save-task :route-name :save-task]
      ["/tasks/:id" :get get-task :route-name :get-task]
      ["/tasks/:id" :patch update-task :route-name :update-task]
-     ["/tasks/:id" :delete delete-task :route-name :delete-task]}))
+     ["/tasks/:id" :delete delete-task :route-name :delete-task]
+     ["/token" :post token :route-name :token]}))
 
 ;; SERVICE MAP
 (def service-map
   (-> {::http/routes routes
-       ::http/port 8080
+       ::http/port 3000
        ::http/type :jetty
-       ::http/join? false} ; do not block the thread (good for development)
+       ::http/join? false ; do not block the thread (good for development)
+       }
       (http/default-interceptors) ; add default interceptors (it's automatically with the conventional service-map) 
       (update ::http/interceptors conj db-interceptor) ; add custom interceptors (applies to all routes)
       ))

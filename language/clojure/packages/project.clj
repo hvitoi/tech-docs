@@ -8,6 +8,7 @@
   :license {:name "Eclipse Public License"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.11.0"]
+                 [org.clojure/data.json "2.4.0"]
                  [org.clojure/test.check "1.1.1"]
                  [prismatic/schema "1.1.12"]
                  [prismatic/schema-generators "0.1.4"]
