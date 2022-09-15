@@ -36,7 +36,11 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options root=PARTUUID=d340b3e6-85af-4d4b-bf60-242614758599 rw
+options root=PARTUUID=d340b3e6-85af-4d4b-bf60-242614758599 rw # kernel parameters are defined here
 ```
 
 - Get the root PARTUUID with `blkid`
+
+## Other systems
+
+- systemd-boot automatically check for windows boot entry at `/EFI/Microsoft/Boot/Bootmgfw.efi`
