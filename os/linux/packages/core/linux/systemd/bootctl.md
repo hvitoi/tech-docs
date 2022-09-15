@@ -19,6 +19,9 @@ bootctl --esp-path=/a --boot-path /b install # force path
 - ESP partition is recommended be mount ESP to `/efi`
 - If using a extended boot loader partition, it's recommended to be mounted at `boot`
 
+- **Warning**: if you create a `/efi` folder, systemd will automatically mount the esp partition into it
+  - If you want to remove this folder and the auto mount you need to stop the unit `efi.automount` (you can see it with `systemctl list-units --type=automount`)
+
 ## Configuration
 
 ```conf

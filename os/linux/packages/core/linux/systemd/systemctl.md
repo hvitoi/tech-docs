@@ -17,7 +17,9 @@ systemctl status "unit.service" # status of a specific unit
 # Checking the unit status
 systemctl
 systemctl list-units # same output
+systemctl list-units --type=automount # auto mounted partitions
 systemctl --failed # failed units
+
 
 # Starting, restarting, reloading a unit
 systemctl start "unit"

@@ -6,12 +6,13 @@
 # mount
 mount "partition" "folder"
 mount "/dev/sdx1" "/data"
+mount "/dev/sda1" "/mnt/boot" --mkdir # create folder
 
 # show mounts
 mount -a
 
 # mount with options
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ /dev/vda2 /mnt
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ "/dev/vda2" "/mnt"
 ```
 
 ## Permanent mount

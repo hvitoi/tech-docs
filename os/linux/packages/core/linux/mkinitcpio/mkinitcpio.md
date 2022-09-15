@@ -1,6 +1,6 @@
 # mkinitcpio
 
-- It's a bash script used to create an `initial ramdisk environment` (`initramfs` stage)
+- It's a bash script used to create an `initial ramdisk environment` (`initramfs` stage - `initramfs-linux.img`)
 - The initial ramdisk is a very small environment (early userspace) which early loads various kernel modules and sets up necessary things before handing over control to init
 
 ```shell
