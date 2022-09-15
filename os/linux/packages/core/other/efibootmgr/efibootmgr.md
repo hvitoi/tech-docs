@@ -1,4 +1,3 @@
 # efibootmgr
 
-- Linux user-space application to modify the `EFI Boot Manager`
-- Replaces the `systemd boot`
+- Tool to manipulate UEFI Firmware Boot Manager Settings

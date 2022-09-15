@@ -151,6 +151,9 @@
 
 - `:set hls`: set a variable called "hls" (highlight search)
 - `:set ic`: set a variable called "ic" (ignore case)
+- `:set paste`: allow paste from clipboard
+
+- `:r !command`" paste output from a command
 
 - `:help`
 

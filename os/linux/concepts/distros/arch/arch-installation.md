@@ -129,16 +129,25 @@ EDITOR=vim visudo # Uncomment %wheel ALL=(ALL) ALL
 ## Additional packages
 
 ```shell
-pacman -S "grub" "efibootmgr" "os-prober" # Boot
 pacman -S "vim" "zsh" # Utilities
 pacman -S "gnome" "gnome-tweaks" "xdg-desktop-portal-gnome" # for gnome
 pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez" # for sway
 ```
 
-## Grub
+## Boot loader
+
+- systemd-boot (recommended)
+
+```shell
+mount "/dev/sdx1" "/efi"
+bootctl install
+```
+
+- Grub
 
 ```shell
 # Install grub
+pacman -S "grub" "efibootmgr" "os-prober" # Boot
 mount "/dev/sdx1" "/boot"
 grub-install --target="x86_64-efi" --efi-directory="/boot" --bootloader-id="GRUB"
 

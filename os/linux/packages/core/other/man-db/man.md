@@ -1,7 +1,7 @@
 # man
 
 ```shell
-# Shows the manual of a comand
+# Shows the manual of a command
 man "ls"
 
 # Show additional documentation info
