@@ -8,3 +8,6 @@
      vals ; (1 2)
      (map inc) ; (2 3)
      (reduce +)) ; 5
+
+;; -> is usually used for collections
+;; ->> is usually used fpr sequences

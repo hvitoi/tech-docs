@@ -5,3 +5,6 @@
              :k2 {:c 3 :d 4}})
 
 (-> my-map :k1 :a)
+
+;; -> is usually used for collections
+;; ->> is usually used fpr sequences

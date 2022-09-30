@@ -2,3 +2,6 @@
 
 (into (sorted-map) [[:a 1] [:c 3] [:b 2]])
 (into (sorted-map) [{:a 1} {:c 3} {:b 2}])
+
+(into [] {:a 1 :b 2}) ; don't!
+(vec {:a 1 :b 2}) ; use this instead
