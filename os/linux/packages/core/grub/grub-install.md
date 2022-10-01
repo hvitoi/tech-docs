@@ -12,6 +12,7 @@ grub-install \
   --bootloader-id="GRUB"
 
 # Generate config file
+# add "GRUB_DISABLE_OS_PROBER=false" to /etc/default/grub in order to detect other OSs
 grub-mkconfig -o "/boot/grub/grub.cfg"
 ```
 

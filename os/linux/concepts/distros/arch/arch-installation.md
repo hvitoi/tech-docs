@@ -25,17 +25,41 @@ fdisk -l # Optionally use cgdisk
 # Format
 mkfs.vfat "/dev/sdx1" # efi partition (use 300 MB)
 mkfs.ext4 "/dev/sdx2" # root partition
-mkfs.ext4 "/dev/sdx3" # home partition
+```
 
-# Swap
+## Encryption (optional)
+
+```shell
+# Format encrypted partition
+cryptsetup luksFormat "/dev/sdx2" \
+  --verbose \
+  --verify-passphase
+
+# Unlock partition
+cryptsetup open "/dev/sdx2" "sun"
+
+# Format partition
+mkfs.ext4 "/dev/mapper/sun"
+```
+
+## Mounting
+
+```shell
+# Mount root partition
+mount "/dev/sdx2" "/mnt" # if not encrypted
+mount "/dev/mapper/sun" "/mnt" # if encrypted
+
+# Mount efi partition
+mount --mkdir "/dev/sdx1" "/mnt/boot"
+```
+
+## Swap (optional)
+
+```shell
 dd if="/dev/zero" of="/swapfile" bs="1M" count="1024" status="progress" # 1GB swap file (only for UEFI systems)
 chmod 600 "/swapfile"
 mkswap "/swapfile" # optionally use a swap partition /dev/sdx4
 swapon "/swapfile" # or /dev/sdx4
-
-# Mount partitions
-mount "/dev/sdx2" "/mnt" # root
-mount "/dev/sdx1" "/mnt/boot" # root
 ```
 
 ## Install System
@@ -54,25 +78,40 @@ genfstab -U "/mnt" >> "/mnt/etc/fstab"
 arch-chroot "/mnt"
 ```
 
-## Boot loader
+## Initial ramdisk environment
 
-- **systemd-boot** (recommended)
+- Necessary for encrypted drivers only
+- Modify the file `/etc/mkinitcpio.conf` and add the hooks
+  - `keyboard`
+  - `encrypt`
+
+```conf
+HOOKS=(base udev autodetect keyboard modconf block encrypt filesystems fsck)
+```
+
+## Boot loader & Kernel parameters
 
 ```shell
+# Install systemd-boot
 bootctl install
 ```
 
-- **grub** (legacy)
-
-```shell
-# Install grub
-pacman -S "grub" "efibootmgr" "os-prober" # Boot
-grub-install --target="x86_64-efi" --efi-directory="/boot" --bootloader-id="GRUB"
-
-# Generate config
-# add "GRUB_DISABLE_OS_PROBER=false" to /etc/default/grub in order to detect other OSs
-grub-mkconfig -o "/boot/grub/grub.cfg"
+```conf
+# efi/loader/loader.conf
+default arch.conf
+timeout 2
 ```
+
+```conf
+# efi/loader/entries/arch.conf
+title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab rw # for unencrypted devices
+options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapper/sun rw # for encrypted devices
+```
+
+- Get the root PARTUUID with `blkid`
 
 ## Packages
 
