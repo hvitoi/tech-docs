@@ -11,6 +11,8 @@
 
 ## Query
 
+- A package on arch is a tarball
+
 ```shell
 # Query all packages
 pacman --query
@@ -31,9 +33,17 @@ pacman -Qm
 
 # Info about a package
 pacman -Qi "package"
+pacman -Qip "package.pkg.tar.xz" # query a file directly
+
+# List package files
+pacman -Ql "package"
+pacman -Qlp "package.pkg.tar.xz" # query a file directly
 
 # List outdated packages
 pacman -Qu
+
+# Changelog
+pacman -Qc "package"
 ```
 
 ## Sync
@@ -56,6 +66,9 @@ pacman -Ss "regex-package"
 
 # remove cache
 pacman -Sc # doesn't keep old versions
+
+# List packages in a repo
+pacman -Sl "core"
 ```
 
 ## Remove
@@ -97,24 +110,11 @@ pacman -F "file"
 pacman -Fl "package"
 ```
 
-## makepkg
-
-- Build user package in Archlinux
-- Requires package `base-devel`
+## Database
 
 ```shell
-git clone "https://aur.archlinux.org/google-chrome.git"
-cd "./google-chrome/"
-makepkg -s # Creates pacman package
-pacman -U" pacote.pkg.tar.xz" # Install package
-
-# Make and install
-makepkg -si
-```
-
-```shell
-makepkg --syncdeps --rmdeps --clean --install --cleanbuild
-makepkg -srciC
+# test local database
+pacman -Dk
 ```
 
 ## pacman.conf

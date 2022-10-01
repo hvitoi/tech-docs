@@ -1,0 +1,1 @@
+pkgname=("a" "b" "c")

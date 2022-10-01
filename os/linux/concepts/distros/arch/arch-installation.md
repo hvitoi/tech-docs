@@ -2,32 +2,6 @@
 
 - Installation image: <https://archlinux.org/download/>
 
-## Optional configuration
-
-- Font
-
-```shell
-# Change the terminal font to 32 points
-setfont ter-132n
-```
-
-- Keyboard
-
-```shell
-# List all options for keyboard keymaps
-localectl list-keymaps
-
-# Load a specific keyboard keymap
-loadkeys "br-abnt2"
-```
-
-- Date
-
-```shell
-# Update system clock
-timedatectl set-ntp true
-```
-
 ## Connect to Wi-Fi
 
 ```shell
@@ -163,6 +137,32 @@ grub-mkconfig -o "/boot/grub/grub.cfg"
 systemctl enable "gdm.service" # for gnome only
 systemctl enable "NetworkManager.service"
 systemctl enable "bluetooth.service"
+```
+
+## Optional configuration
+
+- Font
+
+```shell
+# Change the terminal font to 32 points
+setfont ter-132n
+```
+
+- Keyboard
+
+```shell
+# List all options for keyboard keymaps
+localectl list-keymaps
+
+# Load a specific keyboard keymap
+loadkeys "br-abnt2"
+```
+
+- Date
+
+```shell
+# Update system clock
+timedatectl set-ntp true
 ```
 
 ## Finish
