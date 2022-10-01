@@ -86,12 +86,12 @@ pacman -U "linux-4.15.8-1-x86_64.pkg.tar.xz"
 ## Files
 
 ```shell
+# refresh package databases from the server
+pacman -Fy
+
 # search for a package by file
 pacman --files "file"
 pacman -F "file"
-
-# update database
-pacman -Fy
 
 # list all files by a package
 pacman -Fl "package"
