@@ -31,9 +31,7 @@ mkfs.ext4 "/dev/sdx2" # root partition
 
 ```shell
 # Format encrypted partition
-cryptsetup luksFormat "/dev/sdx2" \
-  --verbose \
-  --verify-passphase
+cryptsetup luksFormat "/dev/sdx2" -v -y
 
 # Unlock partition
 cryptsetup open "/dev/sdx2" "sun"
@@ -50,7 +48,7 @@ mount "/dev/sdx2" "/mnt" # if not encrypted
 mount "/dev/mapper/sun" "/mnt" # if encrypted
 
 # Mount efi partition
-mount --mkdir "/dev/sdx1" "/mnt/boot"
+mount -m "/dev/sdx1" "/mnt/boot"
 ```
 
 ## Swap (optional)
@@ -116,7 +114,7 @@ options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapp
 ## Packages
 
 ```shell
-pacman -S "gnome" "gnome-tweaks" "networkmanager" # for gnome
+pacman -S "gnome" "gnome-tweaks" "networkmanager" "bluez-utils" # for gnome
 pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez" # for sway
 ```
 
