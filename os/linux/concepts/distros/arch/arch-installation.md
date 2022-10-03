@@ -115,13 +115,13 @@ options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapp
 
 ```shell
 # Gnome DE
-pacman -S "gnome" "gnome-tweaks" "networkmanager" "bluez-utils"
+pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez-utils"
 
 # Sway DE
 pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
 
 # Other utils
-pacman -S "firefox" "solaar" "dkms" "tilix"
+pacman -S "firefox" "solaar" "dkms" "tilix" "pipewire-pulse" "pipewire-alsa" "pavucontrol" "mesa" "mesa-utils" "steam
 ```
 
 ## Services
