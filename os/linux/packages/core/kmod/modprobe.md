@@ -17,6 +17,9 @@ modprobe "module-name"
 modprobe "bonding" # And module for network bonding
 modprobe "v4l2loopback" exclusive_caps=1 max_buffers=2 # virtual video devices
 
+# Remove module
+modprobe -r "module"
+
 # Display configuration of the modules
 modprobe -c
 modprobe -c | grep "module-name"

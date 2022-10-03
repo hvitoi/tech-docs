@@ -114,8 +114,14 @@ options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapp
 ## Packages
 
 ```shell
-pacman -S "gnome" "gnome-tweaks" "networkmanager" "bluez-utils" # for gnome
-pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez" # for sway
+# Gnome DE
+pacman -S "gnome" "gnome-tweaks" "networkmanager" "bluez-utils"
+
+# Sway DE
+pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
+
+# Other utils
+pacman -S "firefox" "solaar" "dkms" "tilix"
 ```
 
 ## Services
@@ -157,9 +163,6 @@ EDITOR=vim visudo # Uncomment %wheel ALL=(ALL) ALL
 ```shell
 # Exit chroot
 exit
-
-# Unmount everything
-umount -a
 
 # Reboot
 reboot

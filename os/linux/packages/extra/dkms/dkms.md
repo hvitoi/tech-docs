@@ -1,6 +1,7 @@
 # dkms
 
 - Install a dkms
+- A `dkms` is installed at `/usr/src`
 
 ## status
 
