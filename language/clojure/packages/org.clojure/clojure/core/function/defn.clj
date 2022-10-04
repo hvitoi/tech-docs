@@ -51,3 +51,14 @@
               "Marty Friedman" ; member
               "Nick Menza" ; member
               "David Ellefson") ; member
+
+;; Assertions
+(defn constrained-sqr [x]
+
+  {:pre  [(pos? x)]
+   :post [(> % 16), (< % 225)]}
+  (try
+    (* x x)
+    (catch Exception e "a")))
+
+(constrained-sqr 4)

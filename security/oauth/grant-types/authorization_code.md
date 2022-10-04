@@ -14,11 +14,11 @@
 - `state`: random string (prevent CSRF attacks)
 
 ```http
-GET https://authorization-server.com/oauth2/authorize?
-    response_type=code&
-    client_id=client-id&
-    scope=email+offline_access&
-    redirect_uri=https://client.com/callback/
+GET https://authorization-server.com/oauth2/authorize
+    ?response_type=code
+    &client_id=client-id
+    &scope=email+offline_access
+    &redirect_uri=https://client.com/callback/
 ```
 
 - The `authorization code` is sent back to the `redirect_url` (which is part of the application). E.g., <https://client.com/callback?code=12345>
