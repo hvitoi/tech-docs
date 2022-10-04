@@ -24,14 +24,28 @@ bootctl --esp-path=/a --boot-path /b install # force path
 
 ## Configuration
 
-```conf
-# esp/loader/loader.conf
-timeout 2
-default arch
-```
+### loader
+
+- `default`: the default boot entry
+- `timeout`: seconds to wait the pick entries screen
 
 ```conf
-# esp/entries/arch.conf
+# esp/loader/loader.conf
+default arch.conf
+timeout 2
+```
+
+### entries
+
+- `title`: name of the system to be boot
+- `version`: version of the system (when multiple entries with the same title exist)
+- `efi`: efi system to start
+- `linux`: convenience for "efi path"
+- `options`: parameters to be passed to the efi program (or kernel parameters)
+- `initrd`: convenience for "options initrd=path"
+
+```conf
+# esp/loader/entries/arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
