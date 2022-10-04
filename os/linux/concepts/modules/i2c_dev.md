@@ -8,8 +8,9 @@ modprobe i2c_dev # Manual one-time load
 ```
 
 ```conf
-# /etc/modules-load.d/i2c-dev.conf
+# /etc/modules-load.d/i2c_dev.conf
 i2c_dev
 ```
 
-- **i2c-tools** package must be installed for a good integration with `i2c-dev` module
+- **ddcutil** packages contains a tools to manage the capabilities
+- **i2c-tools** is necessary for a good integration with the module. Rememver to set the correct permissions

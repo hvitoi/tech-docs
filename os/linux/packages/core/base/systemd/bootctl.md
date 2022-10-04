@@ -31,8 +31,13 @@ bootctl --esp-path=/a --boot-path /b install # force path
 
 ```conf
 # esp/loader/loader.conf
-default arch.conf
-timeout 2
+default arch.conf # name of the system
+timeout 2 # if "0" or "menu-hidden", no menu is shown and a key (e.g., space) needs to be pressed to show the menu. if "menu-force" the menu is always shown without a stopwatch
+console-mode 0 # resolution of the menu
+editor true # enable (default) the modification of kernel parameters on the fly
+auto-entries true # enable (default) the automatically discovered boots (e.g., windows boot)
+auto-firmware true # enable (default) the boot to firmware entry option (firmware may still be reached using "f" key)
+beep false # beeped timeout, disabled by default
 ```
 
 ### entries

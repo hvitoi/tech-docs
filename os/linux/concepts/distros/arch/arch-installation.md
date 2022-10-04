@@ -121,7 +121,7 @@ pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez-ut
 pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
 
 # Other utils
-pacman -S "firefox" "solaar" "dkms" "tilix" "pipewire-pulse" "pipewire-alsa" "pavucontrol" "mesa" "mesa-utils" "steam" "nvtop" "gnu-efi" "glmark2"
+pacman -S "firefox" "solaar" "dkms" "tilix" "pipewire-pulse" "pipewire-alsa" "pavucontrol" "mesa" "mesa-utils" "steam" "nvtop" "gnu-efi" "glmark2" "ddcutil" "neofetch" "man-db"
 ```
 
 ## Services
