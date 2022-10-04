@@ -10,6 +10,12 @@ pcie_ports=compat # limited PCIe capabilities
 pcie_ports=auto # capabilities depending on the bios
 ```
 
+## pci
+
+```conf
+pci=hpbussize=0x33,hpmemsize=4M,hpmmiosize=128M,realloc
+```
+
 ## iommu
 
 ```conf
@@ -27,10 +33,4 @@ iommu.passthrough=1
 
 ```conf
 intel_iommu=on
-```
-
-## pci
-
-```conf
-pci=hpbussize=0x33,hpmemsize=4M,hpmmiosize=128M,realloc
 ```
