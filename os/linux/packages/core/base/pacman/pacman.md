@@ -66,6 +66,7 @@ pacman -Ss "regex-package"
 
 # remove cache
 pacman -Sc # doesn't keep old versions
+pacman -Scc # clear also packages that are installed
 
 # List packages in a repo
 pacman -Sl "core"
