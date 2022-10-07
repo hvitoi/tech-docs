@@ -1,5 +1,5 @@
 # display-manager
 
 ```shell
-systemctl enable "display-manager"
+systemctl restart "display-manager.service"
 ```

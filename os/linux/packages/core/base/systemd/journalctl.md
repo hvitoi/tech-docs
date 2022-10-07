@@ -27,7 +27,7 @@
 
 ```shell
 # Boot messages
-journalctl -b # current boot
+journalctl -b # current boot (or -b 0)
 journalctl -b -1 # last boot
 journalctl --list-boots # list boot numbers
 
@@ -56,4 +56,7 @@ journalctl -x
 
 #
 journalctl -xe -p 1..3
+
+# Grep for a keyword
+journalctl -k --grep=iommu
 ```
