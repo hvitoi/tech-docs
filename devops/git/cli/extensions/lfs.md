@@ -27,3 +27,9 @@ git lfs track "*.mp3"
 ```conf
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 ```
+
+## env
+
+```shell
+git lfs env
+```

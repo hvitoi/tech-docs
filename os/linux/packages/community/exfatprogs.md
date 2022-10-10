@@ -1,5 +1,6 @@
 # exfatprogs
 
+- `exfat` filesystem support
 - It's package is preferred over exfat-utils, which is deprecated
 
 ```shell

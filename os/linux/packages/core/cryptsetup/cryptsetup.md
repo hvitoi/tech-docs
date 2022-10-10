@@ -117,11 +117,8 @@ moon UUID=692e7b5c-5c92-4fd3-8822-97b0355c0941 none luks
   - Edit `/etc/pam.d/system-login`
 
   ```conf
-  ...
   auth       include    system-auth
   auth       optional   pam_exec.so expose_authtok /etc/pam_cryptsetup.sh
-  auth       optional   pam_exec.so expose_authtok /etc/pam_cryptsetup.sh
-  ...
   ```
 
   - Create the script `/etc/pam_cryptsetup.sh` and make it executable `chmod +x script.sh`

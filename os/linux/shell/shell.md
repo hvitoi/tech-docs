@@ -71,9 +71,6 @@ alias
 unalias "alias_name"
 ```
 
-- User alias `~/.bashrc`
-- Global alias `/etc/bashrc`
-
 ## Shell History
 
 ```shell

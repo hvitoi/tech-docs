@@ -1,12 +1,18 @@
 # rclone
 
+## config
+
 - Config file is stored at `~/.config/rclone/rclone.conf`
 
 ```shell
 # Configure remote storage server
 rclone config
 rclone config file # print config file location
+```
 
+## listremotes
+
+```shell
 # Get all remotes
 rclone listremotes
 
@@ -92,6 +98,7 @@ rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 ## Mount
 
 - Mount remote to a mount point
+- Requires `fuse2` package
 
 ```shell
 # mount
