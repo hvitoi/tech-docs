@@ -47,6 +47,7 @@ journalctl -u man-db.service
 journalctl -p err..alert # only error, critical and alert (not emerg (0))
 journalctl -p 1..3 # 3, 2, 1
 journalctl -p 3 # 3, 2, 1 and 0
+journalctl -p 7 # 7 (debug), 6 (info), 5 (notice), 4 (warning), 3 (err), 2 (crit), 1 (alert) and 0 (emerg)
 
 # Jump to the end
 journalctl -e

@@ -2,6 +2,39 @@
 
 - <https://www.kernel.org/doc/html/v4.10/admin-guide/kernel-parameters.html>
 
+## root
+
+- What device to be used as root partition while booting
+
+```conf
+root=/dev/mapper/root
+```
+
+## rootflags
+
+- This parameter sets the mount option string for the root filesystem (same as in fstab)
+
+```conf
+# BTRFS setup
+rootflags=subvol=@
+```
+
+## rw/ro
+
+- Mount the root fs as read-write or read-only
+- `rw` is the default
+
+```conf
+rw
+ro
+```
+
+## BOOT_IMAGE
+
+```conf
+BOOT_IMAGE=/@/boot/vmlinuz-linux
+```
+
 ## pcie_ports
 
 ```conf
@@ -36,17 +69,10 @@ iommu.passthrough=1
 intel_iommu=on
 ```
 
-## other
+## nowatchdog
+
+- Disable watchdog timers. It's not necessary for personal laptops
 
 ```conf
-BOOT_IMAGE=/@/boot/vmlinuz-linux-t2
-rootflags=subvol=@
-fsck.mode=skip nowatchdog
-nmi_watchdog=0
-apparmor=1
-lsm=lockdown,yama,apparmor,bpf
-i915.enable_guc=2
-loglevel=7
-rd.udev.log_priority=3
-intel_pstate=disable
+nowatchdog
 ```

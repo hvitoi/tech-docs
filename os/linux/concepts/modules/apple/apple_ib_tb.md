@@ -14,3 +14,28 @@
 # 4: Only show the escape key
 options apple_ib_tb fnmode=1
 ```
+
+## Issues with suspend
+
+- This module causes trouble when system is suspended
+- Ideally it should be disabled before the system is suspended
+
+```bash
+# rmmod_tb.sh
+
+#!/usr/bin/env bash
+if [ "${1}" = "pre" ]; then
+        modprobe -r apple_ib_tb
+elif [ "${1}" = "post" ]; then
+        modprobe apple_ib_tb
+fi
+```
+
+```shell
+# copy the script into the sleep hooks
+cp "./rmmod_tb.sh" "/lib/systemd/system-sleep/rmmod_tb.sh"
+
+# change permissions
+chmod 755 "/lib/systemd/system-sleep/rmmod_tb.sh"
+chown root:root "/lib/systemd/system-sleep/rmmod_tb.sh"
+```
