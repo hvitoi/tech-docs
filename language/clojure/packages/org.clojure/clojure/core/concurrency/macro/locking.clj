@@ -1,4 +1,6 @@
 (def o (Object.))
+
+
 (future (locking o
           (Thread/sleep 5000)
           (println "done1")))
@@ -16,3 +18,19 @@
 ;; => nil
 
 ;; locking operates like the synchronized keyword in Java.
+
+
+
+; The lock is per value. If 2 different symbols have same value, both are the same lock
+(def lock-a "lala")
+(def lock-b "lala")
+
+(defn function-that-cannot-be-run-simultaneously
+  []
+  (println "----------start")
+  (Thread/sleep 5000)
+  (println "----------end"))
+
+(locking lock-a (function-that-cannot-be-run-simultaneously))
+
+; ---

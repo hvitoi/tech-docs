@@ -17,3 +17,7 @@
       (= :my-error-2 (:type (ex-data e))) "My Error Two"
       :else (throw e) ; rethrow in case it's not the exception you want (bad pattern)
       )))
+
+(try
+  (inc "abc")
+  (catch Exception _))

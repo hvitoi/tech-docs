@@ -20,7 +20,7 @@
 - `/jira/people`: search people
 - `/jira/marketplace`: search jira apps
 
-## /jira/software/c/projects/AAA
+## /jira/software/c/projects/ABC
 
 - `/boards/0000`: kanban board
 - `/boards/0000/roadmap`: roadmap that contains epic issues
@@ -28,6 +28,11 @@
 - `/components`: all components related to a project (sub projects)
 - `/code`: git repos related to a project
 - `/pages`: pages on confluence
+
+## /jira/plans
+
+- All plans
+- `/jira/plans/34`: specific plan
 
 ## /issues
 

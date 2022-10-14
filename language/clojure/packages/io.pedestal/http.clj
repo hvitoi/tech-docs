@@ -59,8 +59,8 @@
 (defn token
   [_]
   {:status 200
-   :body (-> {:access-token "a"
-              :expires-in "1"}
+   :body (-> {:access-token (str (random-uuid))
+              :expires-in "10"}
              json/write-str)})
 
 ;; INTERCEPTORS
@@ -84,7 +84,7 @@
 ;; SERVICE MAP
 (def service-map
   (-> {::http/routes routes
-       ::http/port 3000
+       ::http/port 8080
        ::http/type :jetty
        ::http/join? false ; do not block the thread (good for development)
        }

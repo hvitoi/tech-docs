@@ -3,3 +3,5 @@
 
 ; additional data in the exception map
 (throw (ex-info "some error message" {:additional-data-as-you-want "anything"}))
+
+(throw (Exception.))
