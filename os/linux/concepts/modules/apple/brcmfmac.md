@@ -34,10 +34,23 @@ ioreg -l | grep RequestedFiles
 
 ```shell
 # Copy mac firmware folder
-tar -czvf "./apple-firmware.tar.gz" "/usr/share/firmware"
+(cd "/usr/share" && tar -czvf "./apple-firmware.tar.gz" "firmware")
 ```
 
 ## Linux
+
+```shell
+# get module error logs
+journalctl -k --grep=brcmfmac
+```
+
+```shell
+# copy mac firmware into linux
+cp "bali.trx" "/lib/firmware/brcm/brcmfmac4364-pcie.bin"
+cp "P-bali-X0_M-HRPN_V-u__m-7.7.txt" "/lib/firmware/brcm/brcmfmac4364-pcie.Apple Inc.-MacBookPro16,1.txt"
+cp "bali-X0.clmb" "/lib/firmware/brcm/brcmfmac4364-pcie.clm_blob"
+cp "bali-X0.txcb" "/lib/firmware/brcm/brcmfmac4364-pcie.txcb"
+```
 
 ```txt
 brcmfmac4364b3-pcie.apple,bali.bin
