@@ -1,9 +1,13 @@
-(def my-vector [0 1 2])
+(defn fn1 []
+  (Thread/sleep 2000)
+  (println "fn1")
+  "a")
+(defn fn2 []
+  (Thread/sleep 2000)
+  (println "fn2")
+  "b")
 
-; execute two functions at the same time (not after each other)
-; the evaluation is returned as a vector
-(def run-together (juxt peek pop))
-(run-together my-vector); [2 [0 1]]
-
-(let [[res1 res2] (run-together my-vector)]
-  (println res1 res2))
+; prints "fn1" after 2 s
+; prints "fn2" after 4 s
+; returns ["a" "b"] after 4 s
+(apply (juxt fn1 fn2) [])
