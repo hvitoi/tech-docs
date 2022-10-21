@@ -46,4 +46,7 @@ git pull --no-rebase
 
 # git config pull.rebase true: rebase strategy
 git pull --rebase
+
+# pull submodules
+git pull --recurse-submodules
 ```

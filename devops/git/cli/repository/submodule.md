@@ -6,6 +6,9 @@ git submodule update --init
 
 # Automatically clone submodules as well
 git clone --recursive "repo"
+
+# pull submodules
+git pull --recurse-submodules
 ```
 
 ```sh
