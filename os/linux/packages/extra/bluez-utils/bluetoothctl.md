@@ -54,4 +54,4 @@ bluetoothctl untrust "mac-add"
 - LinkKey is an unique id created at the device pairing
 - Stored at `/var/lib/bluetooth/<controller-id>/<device-id>/info`
 - In order to pair device across OS's in the same machine, you must use the same key for both OS's
-- You can get the LinkKey on windows with `chntpw` and on macos with `key access`
+- You can get the LinkKey on windows with `chntpw` and on macos with `keychain access`
