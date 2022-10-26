@@ -88,6 +88,12 @@ cryptsetup luksChangeKey "/dev/sdx1"
 cryptSetup luksAddKey "/dev/sdx1"
 ```
 
+## resize
+
+```sh
+cryptsetup resize "/dev/mapper/lol"
+```
+
 ## crypttab
 
 - `/etc/crypttab` (encrypted device table) file is similar to the `fstab` file and contains a list of encrypted devices to be unlocked during system boot up. This file can be used for automatically mounting encrypted swap devices or secondary file systems

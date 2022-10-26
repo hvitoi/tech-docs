@@ -7,9 +7,10 @@
 - fsck is run on the `filesystem`, not on the mounted on
 
 ```sh
-fsck /dev/sdx1
-fsck /dev/sdx1 -f # force system check even if it is clean
-fsck /dev/sdx1 -y # fix problems automatically
+fsck "/dev/sdx1"
+fsck "/dev/sdx1" -f # force system check even if it is clean
+fsck "/dev/sdx1" -y # fix problems automatically
+fsck "/dev/mapper/lol" # encrypted device (unlocked and unmounted)
 
 ```
 

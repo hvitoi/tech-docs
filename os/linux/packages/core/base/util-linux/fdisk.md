@@ -12,6 +12,7 @@ fdisk -l
 fdisk "disk"
 fdisk "/dev/sdx"
   - `m`: Menu
+  - `p`: print partitions
   - `n`: Add new partition # p for primary
   - `t`: Change partition system id
   - `w`: write/apply changes
