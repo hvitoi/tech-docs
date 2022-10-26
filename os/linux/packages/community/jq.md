@@ -2,7 +2,7 @@
 
 - JQ is a commandline JSON processor
 
-```shell
+```sh
 # Format the JSON pretty
 echo '{"foo": 0}' | jq .
 

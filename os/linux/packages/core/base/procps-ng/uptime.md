@@ -5,6 +5,6 @@
 1. How many users logged in
 1. Load average
 
-```shell
+```sh
 uptime
 ```

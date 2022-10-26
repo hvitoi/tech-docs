@@ -2,7 +2,7 @@
 
 - Disk partition information
 
-```shell
+```sh
 # Disk information (Disk Free)
 df
 

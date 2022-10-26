@@ -2,6 +2,6 @@
 
 - Handle USB devices with multiple modes
 
-```shell
+```sh
 usb_modeswitch -KW -v 0bda -p 1a2b
 ```

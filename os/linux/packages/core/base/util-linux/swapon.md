@@ -1,6 +1,6 @@
 # swapon
 
-```shell
+```sh
 # Activate swap
 swapon "/dev/sdx4" # or /swapfile
 

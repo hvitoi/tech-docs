@@ -1,6 +1,6 @@
 # alacritty
 
-```shell
+```sh
 alacritty
 ```
 

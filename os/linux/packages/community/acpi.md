@@ -2,6 +2,6 @@
 
 - Battery information
 
-```shell
+```sh
 acpi
 ```

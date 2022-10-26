@@ -1,6 +1,6 @@
 # gpgconf
 
-```shell
+```sh
 # launch agent
 gpgconf --launch gpg-agent
 

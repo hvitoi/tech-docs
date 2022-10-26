@@ -3,7 +3,7 @@
 - Given that `changes.diff` is created with from `file1.txt` to `file2.txt`
 - `Hunk` is a modification
 
-```shell
+```sh
 # Modify file1.txt with the changes
 patch < changes.diff
 

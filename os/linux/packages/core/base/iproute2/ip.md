@@ -10,14 +10,14 @@
 
 ### show
 
-```shell
+```sh
 ip link show # all interface (ip link)
 ip link show "wlp3s0" # specific interface
 ```
 
 ### set
 
-```shell
+```sh
 ip link set "wlp3s0" up # activate
 ip link set "wlp3s0" down # deactivate
 ip link set "wlp3s0" address "00:11:22:33:44:55" # change MAC address (must be down first)
@@ -25,20 +25,20 @@ ip link set "wlp3s0" address "00:11:22:33:44:55" # change MAC address (must be d
 
 ### add
 
-```shell
+```sh
 ip link add "wlp3s0" type "bridge"
 ip link add "veth-red" type "veth" peer name "veth-blue" # veth cable
 ```
 
 ### del
 
-```shell
+```sh
 ip link del "wlp3s0"
 ```
 
 ### Create a virtual Ethernet Pair (veth cable)
 
-```shell
+```sh
 # Create virtual ethernet pair (a "cable" to connect 2 namespaces)
 ip link add "veth-red" type "veth" peer name "veth-blue"
 
@@ -53,7 +53,7 @@ ip link del "veth-blue" -n "blue" # not necessary
 
 ### Create bridge interface
 
-```shell
+```sh
 # Add new interface of type bridge
 ip link add "v-net-0" type "bridge"
 ip link set "v-net-0" up
@@ -62,7 +62,7 @@ ip link add "veth-red" type "veth" peer name "veth-red-br" # connects to the bri
 
 ## address
 
-```shell
+```sh
 # List IP addresses assigned for each interface
 ip address # addr or a
 
@@ -76,7 +76,7 @@ ip address add "192.168.1.10/24" dev "veth-red" -n "red" # interface in a namesp
 - Routing tables are used to force traffic going to another network to pass through a gateway
 - The gateway joins every network. A gateway is assigned an IP for each network it is part of.
 
-```shell
+```sh
 # show routing tables
 ip route
 
@@ -86,7 +86,7 @@ ip route add "192.168.2.0/24" via "192.168.1.1"
 
 ## netns
 
-```shell
+```sh
 # list network namespaces
 ip netns
 

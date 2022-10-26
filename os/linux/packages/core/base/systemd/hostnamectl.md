@@ -1,6 +1,6 @@
 # hostnamectl
 
-```shell
+```sh
 # Changing hostname
 hostnamectl set-hostname "new-hostname"
 ```

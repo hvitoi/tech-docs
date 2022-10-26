@@ -2,6 +2,6 @@
 
 - Additionally install `python-pip` (Extra)
 
-```shell
+```sh
 python --version
 ```

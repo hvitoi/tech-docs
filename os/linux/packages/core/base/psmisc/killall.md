@@ -2,7 +2,7 @@
 
 - Similar to `kill`, but kill by process name
 
-```shell
+```sh
 # Closes completely program
 killall "process-name"
 killall -9 "google-chrome-stable"
@@ -19,7 +19,7 @@ killall -w "process-name"
 
 - Default signal is 15 (SIGTERM)
 
-```shell
+```sh
 #List signals
 killall -l
 ```

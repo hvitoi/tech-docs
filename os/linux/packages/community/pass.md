@@ -6,7 +6,7 @@
   - `passff`: firefox plugin
   - `qtpass`: desktop GUI
 
-```shell
+```sh
 # list all passwords
 pass
 
@@ -17,7 +17,7 @@ gpg -d "~/.password-store/topsecret.gpg" # using gpg directly
 
 ## init
 
-```shell
+```sh
 # create a gpg secret key
 gpg --full-generate-key # gpg: key 0123456789ABCDEF marked as ultimately trusted
 
@@ -37,19 +37,19 @@ pass init "user@mail.com"
 - Each password is a .gpg file. E.g., `facebook.com.pgp`
 - `.gpg-id` is your gpg id of your secret key
 
-```shell
+```sh
 pass insert "facebook.com"
 ```
 
 ## rm
 
-```shell
+```sh
 pass rm "facebook.com"
 ```
 
 ## ls
 
-```shell
+```sh
 # list all passwords
 pass ls
 ```

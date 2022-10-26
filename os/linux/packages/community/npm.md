@@ -1,5 +1,5 @@
 # npm
 
-```shell
+```sh
 npm init
 ```

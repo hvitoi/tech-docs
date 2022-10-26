@@ -1,6 +1,6 @@
 # swapoff
 
-```shell
+```sh
 # Remove swap
 swapoff "/swapfile"
 rm "/swapfile"

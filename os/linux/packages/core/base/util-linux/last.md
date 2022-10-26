@@ -2,7 +2,7 @@
 
 - Log of loggins
 
-```shell
+```sh
 last
 last | head -10 # Last 10 occurrence
 ```

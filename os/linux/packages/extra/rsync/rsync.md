@@ -8,13 +8,13 @@
 - Port `22` (same as SSH)
 - Rsync uses SSH to transfer the files!
 
-```shell
+```sh
 # Install rsync
 sudo apt install rsync
 sudo yum install rsync
 ```
 
-```shell
+```sh
 # Use rsync
 rsync `options` `source` `destination`
 rsync -zvh `/local-file-src` `/local/folder/dest` # Local file sync

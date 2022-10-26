@@ -3,7 +3,7 @@
 - Schedule processes (cronjobs)
 - Processes scheduled by crontab can be hourly, daily, weekly, monthly, etc...
 
-```shell
+```sh
 # Schedule a cronjob
 crontab -e # Edit the list of cronjobs in vi
 
@@ -36,7 +36,7 @@ crontab -l
 
 - Each folder contain **scripts** that will run at a point in time according to the folder name
 
-```shell
+```sh
 # list cron folders
 ls -la /etc | grep cron.
 ls -la /etc/cron.* # List the content of each one

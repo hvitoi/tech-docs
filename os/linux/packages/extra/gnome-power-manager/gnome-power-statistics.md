@@ -2,6 +2,6 @@
 
 - Battery usage info
 
-```shell
+```sh
 gnome-power-statistics
 ```

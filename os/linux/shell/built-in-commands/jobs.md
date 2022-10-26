@@ -1,6 +1,6 @@
 # jobs
 
-```shell
+```sh
 # List the current jobs running
 jobs
 ```

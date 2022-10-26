@@ -1,6 +1,6 @@
 # pw-jack
 
-```shell
+```sh
 # open ardour with jack
 pw-jack /op
 ```

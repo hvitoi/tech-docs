@@ -1,6 +1,6 @@
 # chcon
 
-```shell
+```sh
 # Change file security context
 chcon "filename"
 ```

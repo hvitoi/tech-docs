@@ -2,7 +2,7 @@
 
 - Tools for creating Arch Linux live and install iso images
 
-```shell
+```sh
 # Create iso from the current directory
 mkarchiso -v "livecd.iso" # verbose
 ```

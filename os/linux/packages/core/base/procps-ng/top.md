@@ -2,7 +2,7 @@
 
 - Similar to ps but shows more information and workload
 
-```shell
+```sh
 # List all processes running in the Linux system
 top
 ```

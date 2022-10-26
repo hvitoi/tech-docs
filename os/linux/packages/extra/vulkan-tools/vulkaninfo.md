@@ -1,6 +1,6 @@
 # vulkaninfo
 
-```shell
+```sh
 vulkaninfo
 vulkaninfo | grep '^GPU id'
 ```

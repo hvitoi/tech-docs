@@ -7,14 +7,14 @@
 
 ## Login
 
-```shell
+```sh
 # Login
 ngrok authtoken "token"
 ```
 
 ## HTTP services
 
-```shell
+```sh
 # Expose HTTP service
 ngrok http "3000" # generates a random URL
 
@@ -24,7 +24,7 @@ ngrok http -auth "username:password" "3000"
 
 ## TCP services
 
-```shell
+```sh
 # Expose SSH service
 ngrok tcp "22"
 
@@ -34,7 +34,7 @@ ngrok tcp "5432"
 
 ## Filesystem
 
-```shell
+```sh
 # Expose your filesystem
 ngrok http "file:///home/hvitoi/Downloads"
 ```

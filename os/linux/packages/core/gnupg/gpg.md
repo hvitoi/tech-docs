@@ -6,7 +6,7 @@
 
 ## GPG keys
 
-```shell
+```sh
 # generate gpg key (secret + public)
 gpg --full-generate-key # gpg: key 0123456789ABCDEF marked as ultimately trusted. This is the gpg id of the secret key
 
@@ -26,7 +26,7 @@ gpg --edit-key "0123456789ABCDEF"
 
 ## Import/Export
 
-```shell
+```sh
 # ascii armored output
 gpg --armor --export "0123456789ABCDEF" # print public key
 gpg --armor --export-secret-key "0123456789ABCDEF" # print secret key
@@ -38,7 +38,7 @@ curl -sS "https://download.spotify.com/debian/pubkey_0D811D58.gpg" | gpg --impor
 
 ## Verify signature
 
-```shell
+```sh
 # verify signature
 gpg \
   --verify "archlinux-version-x86_64.iso.sig" \
@@ -50,6 +50,6 @@ gpg \
 - Try to decrypt using your `GPG secret key`
 - A prompt will open to ask for the password
 
-```shell
+```sh
 gpg -d "topsecret.gpg"
 ```

@@ -12,7 +12,7 @@ Shell + Application = `Software`
 
 ## Find your shell
 
-```shell
+```sh
 echo $0 # Current shell
 cat /etc/shells # Available shells
 echo $? # Print the exit code
@@ -32,7 +32,7 @@ echo $? # Print the exit code
 - Change default shell
 - The shell binary must be authorized in `/etc/shells`
 
-```shell
+```sh
 # Change the default shell for the current user
 chsh -s "shell"
 
@@ -56,7 +56,7 @@ echo $SHELL
 
 ## Aliases
 
-```shell
+```sh
 # Create alias
 alias ll = "ls -laF"
 alias pl = "pws; ls"
@@ -73,7 +73,7 @@ unalias "alias_name"
 
 ## Shell History
 
-```shell
+```sh
 # Show the last executed commands
 history # 1000 by default
 

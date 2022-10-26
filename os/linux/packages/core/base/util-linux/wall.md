@@ -5,6 +5,6 @@
 - wall must be sent as SUDO
 - Only works for new tty (not via su - user)
 
-```shell
+```sh
 sudo wall
 ```

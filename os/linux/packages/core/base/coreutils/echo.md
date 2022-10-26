@@ -1,6 +1,6 @@
 # echo
 
-```shell
+```sh
 # Prints a text
 echo "hey"
 

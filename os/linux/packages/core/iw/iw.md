@@ -7,7 +7,7 @@
 - Get device capabilities for all devices
 - Such as band information (2.4 GHz, and 5 GHz), and 802.11n information
 
-```shell
+```sh
 iw list
 ```
 
@@ -15,7 +15,7 @@ iw list
 
 - Listening to events
 
-```shell
+```sh
 iw event
 ```
 
@@ -28,42 +28,42 @@ iw event
   - `mesh` [also mp]
   - `ibss` [also adhoc]
 
-```shell
+```sh
 iw phy "phy0" interface add "mynewinterface" type "monitor"
 iw phy "phy0" interface add "mynewinterface" type "managed" # ...
 ```
 
 ## dev (device)
 
-```shell
+```sh
 # Show all interfaces information
 iw dev
 ```
 
 ### link
 
-```shell
+```sh
 # link status
 iw dev "wlp3s0" link
 ```
 
 ### info
 
-```shell
+```sh
 # Show specific interface information
 iw dev "wlp3s0" info # type "managed" means it only accepts packages directed to this mac address
 ```
 
 ### scan
 
-```shell
+```sh
 # Scan wi-fi in an interface
 iw dev "wlp3s0" scan | less
 ```
 
 ### connect
 
-```shell
+```sh
 # Connect to a network in an interface
 iw dev "wlp3s0" connect "ssid"
 ```
@@ -73,14 +73,14 @@ iw dev "wlp3s0" connect "ssid"
 - Set a property of an interface
 - The interface must be disabled first (`ip link set wlp3s0 down/up`)
 
-```shell
+```sh
 iw dev "wlp3s0" set monitor control # monitor mode
 iw dev "wlp3s0" set type managed # managed mode
 ```
 
 ### del
 
-```shell
+```sh
 # delete interface
 iw dev "interface-name" del
 ```

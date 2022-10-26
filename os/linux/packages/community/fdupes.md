@@ -2,7 +2,7 @@
 
 - Find duplicate files
 
-```shell
+```sh
 # Current folder
 fdupe .
 

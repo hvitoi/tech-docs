@@ -2,7 +2,7 @@
 
 - Desktop Management Interface table related utilities
 
-```shell
+```sh
 # Hardware information
 dmidecode
 

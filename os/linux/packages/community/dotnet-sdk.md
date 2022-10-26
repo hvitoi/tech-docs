@@ -2,6 +2,6 @@
 
 - Additionally install the package manager `nuget` (extra repo)
 
-```shell
+```sh
 dotnet --help
 ```

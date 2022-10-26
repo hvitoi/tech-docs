@@ -1,5 +1,5 @@
 # pdfarranger
 
-```shell
+```sh
 pdfarranger
 ```

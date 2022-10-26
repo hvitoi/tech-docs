@@ -1,5 +1,5 @@
 # google-earth-pro
 
-```shell
+```sh
 google-earth-pro
 ```

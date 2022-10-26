@@ -3,7 +3,7 @@
 - Mount Windows
 - At `/media/hvitoi/Windows/Windows/System32/config`
 
-```shell
+```sh
 # Regedit
 cd "/media/hvitoi/Windows/Windows/System32/config"
 chntpw -e SYSTEM
@@ -18,7 +18,7 @@ chntpw -i SAM # edit
 - Connect device on Linux and afterwards on Windows
 - Boot Linux again
 
-```shell
+```sh
 cd "/media/hvitoi/Windows/Windows/System32/config"
 chntpw -e SYSTEM
 ```
@@ -47,7 +47,7 @@ Device 5C:FB:7C:88:FA:49 JBL TUNE110BT
 HEX F082CC36B73C800C7FBA9D2225BDAFE6
 ```
 
-```shell
+```sh
 sudo -s
 cd "/var/lib/bluetooth/port-mac/device-mac"
 vim info # change to LinkKey to windows key

@@ -5,7 +5,7 @@
 
 ## Configure server
 
-```shell
+```sh
 # Install FTP server
 sudo apt install vsftpd
 ```
@@ -24,7 +24,7 @@ use_localtime=YES
 
 - Start vsftpd service
 
-```shell
+```sh
 systemctl start vsftpd
 systemctl enable vsftpd
 ```
@@ -32,7 +32,7 @@ systemctl enable vsftpd
 - Stop firewall service (only if necessary!)
 - Instead of disabling the firewall, you must add rule to allow port 21 as incoming traffic
 
-```shell
+```sh
 systemctl stop firewalld
 systemctl status firewalld\
 systemctl disable firewalld
@@ -40,14 +40,14 @@ systemctl disable firewalld
 
 ## Configure client
 
-```shell
+```sh
 # Install FTP client
 sudo apt install ftp
 ```
 
 - Start transation
 
-```shell
+```sh
 # Open FTP console
 ftp # 'bye' to exit
 

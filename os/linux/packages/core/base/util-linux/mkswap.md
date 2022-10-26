@@ -5,7 +5,7 @@
 
 ## Create swap file
 
-```shell
+```sh
 # Create swap file
 # Swap file cannot be created via touch command because this way it would be an empty file
 dd \
@@ -25,14 +25,14 @@ mkswap "/swapfile"
 swapon "/swapfile"
 ```
 
-```shell
+```sh
 # Append new swap item to fstab (only if created after the genfstab command)
 echo "/swapfile none swap sw 0 0" | tee -a "/etc/fstab`"
 ```
 
 ## Create swap from a partition
 
-```shell
+```sh
 # Display all partition on the drive
 fdisk -l
 
@@ -46,7 +46,7 @@ mkswap "/dev/sdc"
 swapon "/dev/sdc"
 ```
 
-```shell
+```sh
 # Add the swap partition to the fstab
 vim "/etc/fstab"
 ```

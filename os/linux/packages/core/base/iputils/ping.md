@@ -1,6 +1,6 @@
 # ping
 
-```shell
+```sh
 # Constantly ping
 ping www.google.com
 

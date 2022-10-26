@@ -2,6 +2,6 @@
 
 - Similar to `passwd`
 
-```shell
+```sh
 echo "hvitoi:pass1234" | chpasswd
 ```

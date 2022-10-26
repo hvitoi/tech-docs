@@ -1,6 +1,6 @@
 # unset
 
-```shell
+```sh
 # Unset an environment variable
 unset VARIABLE_NAME
 ```

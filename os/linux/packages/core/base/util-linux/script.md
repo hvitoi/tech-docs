@@ -3,7 +3,7 @@
 - Create a log of the terminal screen
 - It's an activity log
 
-```shell
+```sh
 # Save log in a file named 'typescript' in the current folder
 script # 'exit' to stop
 

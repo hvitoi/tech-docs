@@ -2,7 +2,7 @@
 
 - SUDO - Super User DO
 
-```shell
+```sh
 # Change into super user
 sudo -s # Same as su -
 

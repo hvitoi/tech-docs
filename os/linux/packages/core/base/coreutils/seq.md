@@ -1,5 +1,5 @@
 # seq
 
-```shell
+```sh
 seq 1 5
 ```

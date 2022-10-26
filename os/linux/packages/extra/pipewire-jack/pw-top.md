@@ -1,6 +1,6 @@
 # pw-top
 
-```shell
+```sh
 # processes
 pw-top
 ```

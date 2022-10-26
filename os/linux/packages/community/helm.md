@@ -1,5 +1,5 @@
 # helm
 
-```shell
+```sh
 helm --version
 ```

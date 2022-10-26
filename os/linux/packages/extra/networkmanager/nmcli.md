@@ -3,14 +3,14 @@
 - First the service must be enabled `systemctl enable NetworkManager.service`
 - `nm-connection-editor` to open GUI
 
-```shell
+```sh
 # general connection status
 nmcli
 ```
 
 ## device
 
-```shell
+```sh
 # Show all devices and its status
 nmcli device status # or nmcli device
 
@@ -29,7 +29,7 @@ nmcli device wifi show-password
 
 ## connection
 
-```shell
+```sh
 # Show all connections (wifi, bridge, vpn, ethernet)
 nmcli connection
 nmcli connection show

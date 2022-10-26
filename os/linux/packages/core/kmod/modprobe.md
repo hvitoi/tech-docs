@@ -6,12 +6,12 @@
   - `/lib/modules/$(uname -r)`
   - `/usr/lib/modules/$(uname -r)`
 
-```shell
+```sh
 find "/lib/modules/$(uname -r)" -type "f" -name "*.ko*"
 find "/usr/lib/modules/$(uname -r)" -type "f" -name "*.ko*"
 ```
 
-```shell
+```sh
 # Activate module
 modprobe "module-name"
 modprobe "bonding" # And module for network bonding
@@ -54,6 +54,6 @@ options v4l2loopback exclusive_caps=1
 
 - Udev rules folder
 
-```shell
+```sh
 sudo cp "/usr/share/ddcutil/data/45-ddcutils-i2c.rules" "/etc/udev/rules.d" # Copy the udev rule for the new group to rules.d
 ```

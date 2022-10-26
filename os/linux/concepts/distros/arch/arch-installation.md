@@ -4,7 +4,7 @@
 
 ## Connect to Wi-Fi
 
-```shell
+```sh
 # Connect to Wi-Fi
 iwctl
 [iwd] device list
@@ -15,7 +15,7 @@ ping "archlinux.org" # test connection
 
 ## Partitions
 
-```shell
+```sh
 # List available disks and partitions
 lsblk
 
@@ -29,7 +29,7 @@ mkfs.ext4 "/dev/sdx2" # root partition
 
 ## Encryption (optional)
 
-```shell
+```sh
 # Format encrypted partition
 cryptsetup luksFormat "/dev/sdx2" -v -y
 
@@ -42,7 +42,7 @@ mkfs.ext4 "/dev/mapper/sun"
 
 ## Mounting
 
-```shell
+```sh
 # Mount root partition
 mount "/dev/sdx2" "/mnt" # if not encrypted
 mount "/dev/mapper/sun" "/mnt" # if encrypted
@@ -53,7 +53,7 @@ mount -m "/dev/sdx1" "/mnt/boot"
 
 ## Swap (optional)
 
-```shell
+```sh
 dd if="/dev/zero" of="/swapfile" bs="1M" count="1024" status="progress" # 1GB swap file (only for UEFI systems)
 chmod 600 "/swapfile"
 mkswap "/swapfile" # optionally use a swap partition /dev/sdx4
@@ -62,7 +62,7 @@ swapon "/swapfile" # or /dev/sdx4
 
 ## Install System
 
-```shell
+```sh
 # Update mirrors
 pacman -Syy
 
@@ -89,7 +89,7 @@ HOOKS=(base udev autodetect keyboard modconf block encrypt filesystems fsck)
 
 ## Boot loader & Kernel parameters
 
-```shell
+```sh
 # Install systemd-boot
 bootctl install
 ```
@@ -113,7 +113,7 @@ options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapp
 
 ## Packages
 
-```shell
+```sh
 # Gnome DE
 pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez-utils"
 
@@ -126,7 +126,7 @@ pacman -S "firefox" "solaar" "dkms" "tilix" "pipewire-pulse" "pipewire-alsa" "pa
 
 ## Services
 
-```shell
+```sh
 # Enable services
 systemctl enable "gdm.service" # for gnome only
 systemctl enable "NetworkManager.service"
@@ -135,7 +135,7 @@ systemctl enable "bluetooth.service"
 
 ## Configuration
 
-```shell
+```sh
 # Time zone
 ln -sf "/usr/share/zoneinfo/America/Sao_Paulo" "/etc/localtime"
 hwclock --systohc
@@ -160,7 +160,7 @@ EDITOR=vim visudo # Uncomment %wheel ALL=(ALL) ALL
 
 ## Finish
 
-```shell
+```sh
 # Exit chroot
 exit
 

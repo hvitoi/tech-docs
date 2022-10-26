@@ -1,5 +1,5 @@
 # nodejs
 
-```shell
+```sh
 node "app.js"
 ```

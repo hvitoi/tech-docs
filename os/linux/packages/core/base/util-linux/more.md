@@ -2,7 +2,7 @@
 
 - View the content one page at a time
 
-```shell
+```sh
 # Read one page at time
 more "filename"
 

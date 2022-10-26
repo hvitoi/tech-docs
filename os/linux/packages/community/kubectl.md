@@ -1,5 +1,5 @@
 # kubectl
 
-```shell
+```sh
 kubectl --version
 ```

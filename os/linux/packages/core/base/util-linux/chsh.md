@@ -3,7 +3,7 @@
 - Change default shell
 - The shell binary must be authorized in `/etc/shells`
 
-```shell
+```sh
 # Change the default shell for the current user
 chsh -s "shell"
 

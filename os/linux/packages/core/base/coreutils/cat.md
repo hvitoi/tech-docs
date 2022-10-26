@@ -2,7 +2,7 @@
 
 - Stands for con**cat**enate
 
-```shell
+```sh
 # Print the content of a file
 cat "file"
 cat 0< "file.txt" # cat from stdin
@@ -24,7 +24,7 @@ cat "file*"
 cat "file1" "file2" > "new-file" # Does not modify the original files
 ```
 
-```shell
+```sh
 # cat with line numbers
 cat -n "file.txt"
 

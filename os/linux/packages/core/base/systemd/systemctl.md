@@ -9,7 +9,7 @@
 - `/usr/lib/systemd/system/`: units provided by installed packages
 - `/etc/systemd/system/`: units installed by the system administrator
 
-```shell
+```sh
 # Analyzing the system state
 systemctl status
 systemctl status "unit.service" # status of a specific unit
@@ -40,7 +40,7 @@ systemctl --type=service
 
 ## set-environment
 
-```shell
+```sh
 # set environment variables for a service
 systemctl set-environment MYSQLD_OPTS="--skip-grant-tables --skip-networking"
 ```
@@ -49,7 +49,7 @@ systemctl set-environment MYSQLD_OPTS="--skip-grant-tables --skip-networking"
 
 - `/etc/systemd/system/`
 
-```shell
+```sh
 #Add new service
 sudo vim /etc/systemd/system/tomcat.service
 ```

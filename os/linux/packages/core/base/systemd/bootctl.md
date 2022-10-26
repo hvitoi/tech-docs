@@ -9,7 +9,7 @@
 - `/usr/lib/systemd/boot/efi/systemd-bootx64.efi` will be copied to:
   - `esp/EFI/systemd/systemd-bootx64.efi` and `esp/EFI/BOOT/BOOTX64.EFI`
 
-```shell
+```sh
 bootctl install # Locate esp-path at "/efi", "/boot" or "/boot/efi". Locate boot-path (if any) at "/boot"
 bootctl --esp-path=/a --boot-path /b install # force path
 ```

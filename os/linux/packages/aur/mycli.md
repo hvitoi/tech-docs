@@ -1,5 +1,5 @@
 # mycli
 
-```shell
+```sh
 mycli
 ```

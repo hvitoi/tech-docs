@@ -2,7 +2,7 @@
 
 ## List
 
-```shell
+```sh
 # List controllers
 bluetoothctl list
 
@@ -15,7 +15,7 @@ bluetoothctl info "mac-addr"
 
 ## Pairing
 
-```shell
+```sh
 # Scan devices
 bluetoothctl scan on
 
@@ -31,7 +31,7 @@ bluetoothctl remove "mac-addr"
 
 ## Connection
 
-```shell
+```sh
 # Connect
 bluetoothctl connect "mac-addr"
 
@@ -41,7 +41,7 @@ bluetoothctl disconnect "mac-addr"
 
 ## Trust
 
-```shell
+```sh
 # Trust
 bluetoothctl trust "mac-add"
 
@@ -54,4 +54,4 @@ bluetoothctl untrust "mac-add"
 - LinkKey is an unique id created at the device pairing
 - Stored at `/var/lib/bluetooth/<controller-id>/<device-id>/info`
 - In order to pair device across OS's in the same machine, you must use the same key for both OS's
-- You can get the LinkKey on windows with `chntpw` and on macos with `keychain access`
+- You can get the LinkKey on windows with `chntpw` and on macos with `key access`

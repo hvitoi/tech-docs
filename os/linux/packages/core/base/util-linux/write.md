@@ -4,6 +4,6 @@
 - Ctrl+D to send
 - Must be sent as root if the user has messages disabled
 
-```shell
+```sh
 sudo write "user"
 ```

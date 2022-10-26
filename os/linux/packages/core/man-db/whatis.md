@@ -1,6 +1,6 @@
 # whatis
 
-```shell
+```sh
 # Show information about a command
 whatis "ls"
 ```

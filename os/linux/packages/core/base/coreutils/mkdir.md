@@ -1,6 +1,6 @@
 # mkdir
 
-```shell
+```sh
 # Create a directory
 mkdir "dirname"
 

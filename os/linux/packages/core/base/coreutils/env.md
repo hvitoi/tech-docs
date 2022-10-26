@@ -1,6 +1,6 @@
 # env
 
-```shell
+```sh
 # List an environment variables
 env
 

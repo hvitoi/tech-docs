@@ -2,7 +2,7 @@
 
 - Trace every traffic information (Leaving or Comming)
 
-```shell
+```sh
 # All traffic
 tcpdump
 

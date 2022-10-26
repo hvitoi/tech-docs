@@ -1,5 +1,5 @@
 # docker-compose
 
-```shell
+```sh
 docker-compose --version
 ```

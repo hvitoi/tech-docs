@@ -2,7 +2,7 @@
 
 - Pulse Audio CTL
 
-```shell
+```sh
 # List connections
 pactl list
 pactl list | grep -C2 A2DP
@@ -19,6 +19,6 @@ pactl list modules
 - At `/etc/pulse/daemon.conf`
 - Uncomment `enable-deferred-volume` line and change value to `no`
 
-```shell
+```sh
 pulseaudio -k && pulseaudio --start
 ```

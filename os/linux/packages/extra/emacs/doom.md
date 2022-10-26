@@ -11,7 +11,7 @@
 - Sync the config from doom with emacs
 - After that you can launch doom from emacs directly
 
-```shell
+```sh
 doom sync
 ```
 

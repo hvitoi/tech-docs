@@ -1,6 +1,6 @@
 # init
 
-```shell
+```sh
 # Shutdown
 init 0
 

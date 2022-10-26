@@ -2,7 +2,7 @@
 
 - Change a user
 
-```shell
+```sh
 # Add user to a group
 usermod -G "group" "user" # The user is removed from all the other groups
 

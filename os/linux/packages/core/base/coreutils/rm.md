@@ -1,6 +1,6 @@
 # rm - Remove
 
-```shell
+```sh
 # Remove a file
 rm "file"
 

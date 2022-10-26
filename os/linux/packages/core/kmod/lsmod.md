@@ -2,7 +2,7 @@
 
 - Show the modules that are currently loaded (`/proc/modules`)
 
-```shell
+```sh
 # List all kernel modules
 lsmod
 ```

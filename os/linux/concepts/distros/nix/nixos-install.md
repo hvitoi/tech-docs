@@ -2,6 +2,6 @@
 
 - Install the system given a configuration file
 
-```shell
+```sh
 nixos-install
 ```

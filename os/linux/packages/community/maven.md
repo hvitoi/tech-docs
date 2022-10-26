@@ -1,5 +1,5 @@
 # maven
 
-```shell
+```sh
 mvn --version
 ```

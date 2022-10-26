@@ -10,7 +10,7 @@
 - Show diff between two versions of latex files
 - `git-latexdiff` is a wrapper around latexdiff and diff
 
-```shell
+```sh
 # Diff between the last commit and the workspace
 git latexdiff "HEAD" "--" \
   --main "main.tex" \

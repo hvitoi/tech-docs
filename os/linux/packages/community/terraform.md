@@ -1,5 +1,5 @@
 # terraform
 
-```shell
+```sh
 terraform --version
 ```

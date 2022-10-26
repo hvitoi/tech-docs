@@ -3,6 +3,6 @@
 - Print in reverse order
 - `cat` reversed
 
-```shell
+```sh
 tac "file.txt"
 ```

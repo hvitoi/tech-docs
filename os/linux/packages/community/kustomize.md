@@ -1,5 +1,5 @@
 # kustomize
 
-```shell
+```sh
 kustomize --version
 ```

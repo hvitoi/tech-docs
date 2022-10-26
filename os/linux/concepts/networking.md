@@ -81,7 +81,7 @@ nameserver 8.8.8.8 # another dns server (google)
 1. Bring the interfaces up
 1. Enable NAT - IP Masquerade
 
-```shell
+```sh
 ip netns add "red"
 ip netns add "blue"
 
@@ -107,7 +107,7 @@ ip netns exec "blue" ping "192.168.15.1"
 - It's a `switch` for the namespaces
 - This way, the `veth` connects to the bridge (not to the other pair anymore)
 
-```shell
+```sh
 ip netns add "red"
 ip netns add "blue"
 

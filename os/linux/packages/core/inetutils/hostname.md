@@ -1,6 +1,6 @@
 # Show the host name
 
-```shell
+```sh
 hostname
 ```
 

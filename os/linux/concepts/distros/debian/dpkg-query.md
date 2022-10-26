@@ -2,7 +2,7 @@
 
 - QUery packages installed
 
-```shell
+```sh
 # List all non-free packages
 dpkg-query -W -f='${Section}\t${Package}\n' | grep ^non-free
 

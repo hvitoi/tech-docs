@@ -2,6 +2,6 @@
 
 - Info about a file/directory
 
-```shell
+```sh
 stat "filename/directory"
 ```

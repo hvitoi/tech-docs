@@ -2,11 +2,11 @@
 
 - `ImageMagick` utility to open images in terminal
 
-```shell
+```sh
 # Install package
 sudo apt install imagemagick
 ```
 
-```shell
+```sh
 display `image-file` # Opens the image in the local image viewer
 ```

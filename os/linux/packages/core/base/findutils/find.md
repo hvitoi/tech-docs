@@ -5,7 +5,7 @@
 
 ## Search files and directories
 
-```shell
+```sh
 # Search by file name
 find "." -name "notes.txt"
 find "." -iname "notes.txt" # include name

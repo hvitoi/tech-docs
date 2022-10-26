@@ -3,7 +3,7 @@
 - Build user package in Archlinux
 - Requires package `base-devel`
 
-```shell
+```sh
 # Clone and install package from AUR
 git clone "https://aur.archlinux.org/google-chrome.git"
 cd "./google-chrome/"
@@ -41,7 +41,7 @@ makepkg -srciC
 - A `PKGBUILD` file is just a shell script!
 - Use `namcap` to sanity check your pkgbuild file
 
-```shell
+```sh
 # Maintainer: Your Name <youremail@domain.com>
 pkgbase="my-package-base" # (optional) used when a package is part of a collection of packages
 pkgname="Henry" # name of the package. If a pkgbase is defined, then an array of package names ("a" "b" "c")
@@ -115,7 +115,7 @@ package() {
 
 - Defines pacman hooks for `installing`, `upgrading`, `removing` the package
 
-```shell
+```sh
 # arg 1:  the new package version
 pre_install() {
   do something here

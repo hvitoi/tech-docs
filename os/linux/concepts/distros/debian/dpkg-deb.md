@@ -1,6 +1,6 @@
 # dkpg-deb
 
-```shell
+```sh
 # Extract .deb
 dpkg-deb --extract `package.deb` `location`
 ```

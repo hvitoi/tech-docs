@@ -5,7 +5,7 @@
   - `pulseaudio-alsa`
   - `pulseaudio-jack`
 
-```shell
+```sh
 
 # Load module
 pacmd load-module module-alsa-source device=hw:Loopback,1,0

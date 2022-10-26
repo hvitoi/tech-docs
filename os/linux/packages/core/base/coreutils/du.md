@@ -1,6 +1,6 @@
 # du
 
-```shell
+```sh
 # Size of each folder inside the current folder
 du
 du "/directory/"

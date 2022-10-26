@@ -1,6 +1,6 @@
 # paru
 
-```shell
+```sh
 paru
 
 # Remove unneeded dependencies

@@ -1,6 +1,6 @@
 # export
 
-```shell
+```sh
 # Export an environment variable to the current environment
 export MYVAR=value
 

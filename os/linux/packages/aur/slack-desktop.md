@@ -1,5 +1,5 @@
 # slack-desktop
 
-```shell
+```sh
 slack
 ```

@@ -1,5 +1,5 @@
 # git
 
-```shell
+```sh
 git --version
 ```

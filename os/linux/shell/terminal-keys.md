@@ -35,7 +35,7 @@
 
 - `C-x C-e`: Save the file to execute
 
-```shell
+```sh
 for host in $HOSTS
 do
   echo "${host}"

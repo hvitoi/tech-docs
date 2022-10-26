@@ -1,6 +1,6 @@
 # su
 
-```shell
+```sh
 # Switch users
 su - "user"
 

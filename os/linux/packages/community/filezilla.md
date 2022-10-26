@@ -1,5 +1,5 @@
 # filezilla
 
-```shell
+```sh
 filezilla
 ```

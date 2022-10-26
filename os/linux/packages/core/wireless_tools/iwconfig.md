@@ -2,11 +2,11 @@
 
 - Deprecated: use `iw` instead
 
-```shell
+```sh
 iwconfig
 ```
 
-```shell
+```sh
 # change interface mode to "monitor"
 iwconfig "wlp3s0" mode monitor
 

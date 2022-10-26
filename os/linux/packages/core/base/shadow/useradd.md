@@ -1,6 +1,6 @@
 # useradd
 
-```shell
+```sh
 useradd "user" # If no group is specified, it's added to a group with the same name
 
 useradd \
@@ -61,7 +61,7 @@ useradd \
   - Checks the field `passwd: files sss`
   - `sss` is the ldap server, it's the second option after a user is not found locally
 
-```shell
+```sh
 # Install
 sudo apt install *openldap*
 

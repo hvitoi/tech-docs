@@ -2,7 +2,7 @@
 
 - It's a backlight utility package that can be used to query and set brightness settings
 
-```shell
+```sh
 ddcutil capabilities # "Feature: 10" is brightness
 ddcutil environment
 ddcutil detect

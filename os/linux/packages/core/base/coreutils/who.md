@@ -4,7 +4,7 @@
 - Only new tty's count as logged in user
 - Open new tty navigating throw Ctrl+Alt+F1-F12
 
-```shell
+```sh
 # People logged
 who
 

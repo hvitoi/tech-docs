@@ -5,6 +5,6 @@
 - `jobs` lists the current jobs running
 - `fg` brings back the process to the foreground
 
-```shell
+```sh
 fg
 ```

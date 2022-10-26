@@ -1,5 +1,5 @@
 # spotify
 
-```shell
+```sh
 spotify
 ```

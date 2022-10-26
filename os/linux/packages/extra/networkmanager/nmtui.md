@@ -6,7 +6,7 @@
   - `Activate a connection`
   - `Set system hostname`
 
-```shell
+```sh
 nmtui
 ```
 

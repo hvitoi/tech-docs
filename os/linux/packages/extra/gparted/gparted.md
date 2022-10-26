@@ -1,5 +1,5 @@
 # gparted
 
-```shell
+```sh
 gparted
 ```

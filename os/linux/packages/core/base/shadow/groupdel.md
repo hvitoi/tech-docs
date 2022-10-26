@@ -1,5 +1,5 @@
 # groupdel
 
-```shell
+```sh
 groupdel "group"
 ```

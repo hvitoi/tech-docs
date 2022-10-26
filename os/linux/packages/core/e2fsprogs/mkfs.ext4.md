@@ -2,6 +2,6 @@
 
 - Create an ext4 file system
 
-```shell
+```sh
 mkfs.ext4 "/dev/sdx1"
 ```

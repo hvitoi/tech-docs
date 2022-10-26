@@ -5,7 +5,7 @@
 - Remove empty lines
 - Replace tabs with spaces
 
-```shell
+```sh
 # s - substitute
 # g - global (entire file)
 sed 's/word/newword/g' "file.txt" # Substitute but does not save

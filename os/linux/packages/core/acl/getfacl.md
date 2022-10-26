@@ -2,6 +2,6 @@
 
 - Get File Access Control List
 
-```shell
+```sh
 getfacl "file"
 ```

@@ -3,7 +3,7 @@
 - `/etc/apt/trusted.gpg`
 - `/etc/apt/trusted.gpg.d/`
 
-```shell
+```sh
 # List all keys
 sudo apt-key list
 

@@ -2,7 +2,7 @@
 
 - Kills by the process id (pid)
 
-```shell
+```sh
 # Kills a process
 kill "pid"
 
@@ -15,7 +15,7 @@ kill -s "signal" "pid" # SIGKILL
 
 - Default signal is 15 (SIGTERM)
 
-```shell
+```sh
 #List signals
 kill -l
 ```

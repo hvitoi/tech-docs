@@ -1,5 +1,5 @@
 # popcorntime-bin
 
-```shell
+```sh
 popcorntime
 ```

@@ -2,7 +2,7 @@
 
 ## setup
 
-```shell
+```sh
 # source nvm from .zshrc
 source "~/.nvm/nvm.sh"
 ```
@@ -11,7 +11,7 @@ source "~/.nvm/nvm.sh"
 
 - Install a new node version in the system
 
-```shell
+```sh
 nvm install "11.15.0"
 ```
 
@@ -19,6 +19,6 @@ nvm install "11.15.0"
 
 - Set a specific node version as default
 
-```shell
+```sh
 nvm use 11.15.0
 ```

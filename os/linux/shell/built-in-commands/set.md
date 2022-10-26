@@ -1,6 +1,6 @@
 # set
 
-```shell
+```sh
 # List an environment variables
 set
 ```

@@ -1,6 +1,6 @@
 # users
 
-```shell
+```sh
 # List all users logged-in
 users
 ```

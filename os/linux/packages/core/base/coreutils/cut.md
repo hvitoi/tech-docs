@@ -3,7 +3,7 @@
 - Cut parts of lines
 - Print the result to the stout
 
-```shell
+```sh
 # Create sample file
 echo "Henrique Abrantes Vitoi
 Lais Abrantes Vitoi
@@ -11,7 +11,7 @@ Simone Gomes Abrantes Vitoi
 Luiz Henrique Rossi Vitoi" > family
 ```
 
-```shell
+```sh
 # Cut by letters
 cut -c 2,4,6 "file" # 2nd 3rd, 6th letter of each line
 cut -c 2-5 "file" # 2nd to 4th letter of each line

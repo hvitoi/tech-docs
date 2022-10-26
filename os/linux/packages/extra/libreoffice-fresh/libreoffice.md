@@ -1,6 +1,6 @@
 # libreoffice
 
-```shell
+```sh
 # Convert PDF to DOCX
 libreoffice \
   --headless \

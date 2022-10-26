@@ -1,6 +1,6 @@
 # watch
 
-```shell
+```sh
 # Execute a command every 2 seconds
 watch `command`
 watch ls # ls command

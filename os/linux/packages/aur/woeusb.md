@@ -1,5 +1,5 @@
 # woeusb
 
-```shell
+```sh
 woeusb
 ```
