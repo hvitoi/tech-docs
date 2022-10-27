@@ -20,8 +20,9 @@
 
 ```conf
 DXVK_HUD=1 # fps counter
-DXVK_FILTER_DEVICE_NAME=DIMGREY_CAVEFISH # force a gpu for Direct X (9|10|11) -- get the id from vulkaninfo | grep '^GPU id'
-VKD3D_FILTER_DEVICE_NAME=DIMGREY_CAVEFISH # force a gpu for Direct X 12 -- get the id from vulkaninfo | grep '^GPU id'
+VKD3D_HUD=1 # fps counter
+DXVK_FILTER_DEVICE_NAME=6600 # force a gpu for Direct X (9|10|11) -- get the id from vulkaninfo | grep '^GPU id'
+VKD3D_FILTER_DEVICE_NAME=6600 # force a gpu for Direct X 12 -- get the id from vulkaninfo | grep '^GPU id'
 __NV_PRIME_RENDER_OFFLOAD=1
 __GLX_VENDOR_LIBRARY_NAME=nvidia
 __NV_PRIME_RENDER_OFFLOAD=1
