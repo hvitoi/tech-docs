@@ -4,65 +4,62 @@
 (def db (d/db conn))
 
 ;; --- FIND
-(d/q '[:find ?e ; find spec: relation (collection of lists)
-       :where [?e :movie/title]]
-     db) ; result as [[e1] [e2] [e3]]
+(-> '[:find ?e ; find spec: relation (collection of lists)
+      :where [?e :movie/title]]
+    (d/q db)) ; result as [[e1] [e2] [e3]]
 
-(d/q '[:find [?e ...] ; find spec: collection (collection)
-       :where [?e :movie/title]]
-     db) ; result as [e1 e2 e3]
+(-> '[:find [?e ...] ; find spec: collection (collection)
+      :where [?e :movie/title]]
+    (d/q db)) ; result as [e1 e2 e3]
 
-(d/q '[:find [?e] ; find spec: single tuple (list)
-       :where [?e :movie/title]]
-     db) ; result as [e1] (even if there are more)
+(-> '[:find [?e] ; find spec: single tuple (list)
+      :where [?e :movie/title]]
+    (d/q db)) ; result as [e1] (even if there are more)
 
-(d/q '[:find ?e . ; find spec: single scalar (scalar value)
-       :where [?e :movie/title]]
-     db)
+(-> '[:find ?e . ; find spec: single scalar (scalar value)
+      :where [?e :movie/title]]
+    (d/q db))
 
-
-(d/q '[:find ?movie-title
-       :where [_ :movie/title ?movie-title "1234" true]] ; filter results from the transaction "1234" only. true: added
-     db)
+(-> '[:find ?movie-title
+      :where [_ :movie/title ?movie-title "1234" true]] ; filter results from the transaction "1234" only. true: added
+    (d/q db))
 
 ;; --- WHERE
-(d/q '[:find ?e
-       :where [?e :movie/title]] ; filter entities from datoms that has this attribute associated
-     db)
+(-> '[:find ?e
+      :where [?e :movie/title]] ; filter entities from datoms that has this attribute associated
+    (d/q db))
 
-(d/q '[:find (pull ?e [*])
-       :where [?e :db/txInstant]] ; filter transaction entities (db/txInstant is the ID 50 with the timestamp of the transaction)
-     db)
+(-> '[:find (pull ?e [*])
+      :where [?e :db/txInstant]] ; filter transaction entities (db/txInstant is the ID 50 with the timestamp of the transaction)
+    (d/q db))
 
-(d/q '[:find ?title ?year ?genre
-       :where
-       [?e :movie/title ?title] ; binds a symbol at each where clause
-       [?e :movie/release-year ?year]
-       [?e :movie/genre ?genre]
-       [?e :movie/genre "action/adventure"]
-       [(< ?year 2010)] ; predicate
-       [(+ 1 ?year) ?year-plus-one] ; custom var
-       ]
+(-> '[:find ?title ?year ?genre
+      :where
+      [?e :movie/title ?title] ; binds a symbol at each where clause
+      [?e :movie/release-year ?year]
+      [?e :movie/genre ?genre]
+      [?e :movie/genre "action/adventure"]
+      [(< ?year 2010)] ; predicate
+      [(+ 1 ?year) ?year-plus-one] ; custom var
+      ]
+    (d/q db))
 
-     db)
+(-> '[:find ?title
+      :where [123456 :movie/title ?title]] ; find the specific entity! In this case it's better to use (d/pull db '[*] 123456)
+    (d/q db))
 
-(d/q '[:find ?title
-       :where [123456 :movie/title ?title]] ; find the specific entity! In this case it's better to use (d/pull db '[*] 123456)
-     db)
-
-(d/q '[:find ?movie-name ?genre-name
-       :where
-       [?movie-id :movie/title ?movie-name]
-       [?movie-id :movie/genre ?genre-id]
-       [?genre-id :genre/name ?genre-name]] ;; "join" query
-     db)
+(-> '[:find ?movie-name ?genre-name
+      :where
+      [?movie-id :movie/title ?movie-name]
+      [?movie-id :movie/genre ?genre-id]
+      [?genre-id :genre/name ?genre-name]] ;; "join" query
+    (d/q db))
 
 ;; --- IN
-(d/q '[:find ?e
-       :in $ ?my-param ; $ is the db and it's always the first (even when no "in" is used)
-       :where [?e :movie/title ?my-param]]
-     db
-     "Spider Man") ; the parameters to be substituted
+(-> '[:find ?e
+      :in $ ?my-param ; $ is the db and it's always the first (even when no "in" is used)
+      :where [?e :movie/title ?my-param]]
+    (d/q db "Spider Man")) ; the parameters to be substituted
 
 ; rules
 (def rules
@@ -70,42 +67,40 @@
     [(movie ?e ?title) [?e :movie/title ?title]]
     [(movie ?e ?title) [?e :movie/title ?title] [(ground "Spider Man") ?title]] ; fixes the symbol ?title
     ])
-(d/q '[:find ?e
-       :in $ % ; $: db, %: rules
-       :where
-       (movie ?e ?title)] ; invokes a rule
-     db
-     rules)
+(-> '[:find ?e
+      :in $ % ; $: db, %: rules
+      :where
+      (movie ?e ?title)] ; invokes a rule
+    (d/q db rules))
 
 ; bindings
 (def movie-titles ["Spider Man", "Forrest Gump"])
-(d/q '[:find ?e
-       :in $ [?movie-title ...] ; search for every item in the parameter (one by one)
-       :where
-       [?e :movie/title ?movie-title]]
-     db
-     movie-titles)
+(-> '[:find ?e
+      :in $ [?movie-title ...] ; search for every item in the parameter (one by one)
+      :where
+      [?e :movie/title ?movie-title]]
+    (d/q db movie-titles))
 
 ;; --- KEYS
-(d/q '[:find ?title ?genre
-       :keys my-title my-genre ;; return maps instead of tuples
-       :where
-       [?e :movie/title ?title]
-       [?e :movie/genre ?genre]]
-     db)
+(-> '[:find ?title ?genre
+      :keys my-title my-genre ;; return maps instead of tuples
+      :where
+      [?e :movie/title ?title]
+      [?e :movie/genre ?genre]]
+    (d/q db))
 
 ;; --- WITH
-(d/q '[:find ?title
-       :with ?movie-id ;; consider results with different "movie-id" as different result! (even if the value on the find is the same)
-       :where [?movie-id :movie/title ?title]]
-     db)
+(-> '[:find ?title
+      :with ?movie-id ;; consider results with different "movie-id" as different result! (even if the value on the find is the same)
+      :where [?movie-id :movie/title ?title]]
+    (d/q db))
 
 ;; NESTED QUERY
-(d/q '[:find ?title ?min-release-year
-       :where
-       [(q '[:find (min ?release-year)
-             :where [_ :movie/release-year ?release-year]]
-           $) [[?min-release-year]]] ;; binds the result of this subquery into this symbol
-       [?e :movie/title ?title]
-       [?e :movie/release-year ?min-release-year]]
-     db)
+(-> '[:find ?title ?min-release-year
+      :where
+      [(q '[:find (min ?release-year)
+            :where [_ :movie/release-year ?release-year]]
+          $) [[?min-release-year]]] ;; binds the result of this subquery into this symbol
+      [?e :movie/title ?title]
+      [?e :movie/release-year ?min-release-year]]
+    (d/q db))

@@ -6,7 +6,7 @@
 ;; ---
 
 ; count unique elements from the result
-(d/q '[:find (count ?e)
-       :where
-       [?e :movie/title]]
-     db)
+(-> '[:find (count ?e)
+      :where
+      [?e :movie/title]]
+    (d/q db))

@@ -6,6 +6,6 @@
 ;; ---
 
 ; sum unique results
-(d/q '[:find (sum ?release-year)
-       :where [?e :movie/release-year ?release-year]]
-     db)
+(-> '[:find (sum ?release-year)
+      :where [?e :movie/release-year ?release-year]]
+    (d/q db))

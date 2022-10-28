@@ -5,7 +5,7 @@
 
 ;; ---
 
-(d/q '[:find (min ?release-year)
-       :where
-       [_ :movie/release-year ?release-year]]
-     db)
+(-> '[:find (min ?release-year)
+      :where
+      [_ :movie/release-year ?release-year]]
+    (d/q db))

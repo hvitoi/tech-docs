@@ -1,11 +1,9 @@
 (require '[datomic.api :as d])
-(require '[schema.core :as s])
 
 (def conn (d/connect "datomic:dev://localhost:4334/hello"))
 (def db (d/db conn))
 
 ;; custom transactions are run in the transactor (server) in a serialized way
-
 
 ;; custom transaction
 (def increment-views
@@ -33,4 +31,4 @@
                    :db/doc "this function increases the number of views (:movie/views)"}])
 
 ;; invoke function
-(d/transact conn [[:increment-views "1234"]]) p
+(d/transact conn [[:increment-views "1234"]])
