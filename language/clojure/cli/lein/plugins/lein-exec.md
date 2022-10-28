@@ -8,6 +8,6 @@
 
 ## exec
 
-```shell
+```sh
 lein exec "app.clj"
 ```

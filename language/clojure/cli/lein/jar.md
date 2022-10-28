@@ -1,5 +1,5 @@
 # jar
 
-```shell
+```sh
 lein jar
 ```

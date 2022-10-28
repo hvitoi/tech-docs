@@ -2,6 +2,6 @@
 
 - Install a dependency in `~/.m2`
 
-```shell
+```sh
 lein pom; lein jar; lein install
 ```

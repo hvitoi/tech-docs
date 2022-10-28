@@ -22,3 +22,5 @@
             (reduced acc) ; "reduced" stops with a nil
             (str acc ":" n)))
         [1 1 2 3 5 8 nil 13 21])
+
+;; if no start value for reduce is used, the first value of the array is used and the reduce starts from the second element

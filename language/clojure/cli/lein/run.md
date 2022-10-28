@@ -2,7 +2,7 @@
 
 - Run the project's `-main` function (in :main namespace))
 
-```shell
+```sh
 # run the project
 lein run
 

@@ -2,7 +2,7 @@
 
 - Start a repl session either with the current project or standalone
 
-```shell
+```sh
 # start new REPL server and connect client
 lein repl
 lein repl :start # default
