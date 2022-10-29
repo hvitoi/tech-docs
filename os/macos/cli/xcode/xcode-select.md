@@ -3,12 +3,12 @@
 - Developer tools
 - `/Library/Developer/CommandLineTools/`
 
-```shell
+```sh
 # install xcode-select and all command line developer tools
 xcode-select --install
 ```
 
-```shell
+```sh
 # switch the active developer directory to a given path
 xcode-select --switch "/Applications/Xcode_13.2.1.app"
 ```

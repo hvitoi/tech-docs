@@ -1,13 +1,13 @@
 # sbt
 
-```shell
+```sh
 # Open sbt server with interactive prompt
 sbt
 ```
 
 ## run
 
-```shell
+```sh
 # Build & Run the main class
 sbt run
 ```

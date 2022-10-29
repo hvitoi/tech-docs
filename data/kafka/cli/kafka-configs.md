@@ -2,7 +2,7 @@
 
 ## Describe
 
-```shell
+```sh
 # Describe complete config from all brokers
 kafka-configs.sh \
   --bootstrap-server "localhost:9092" \
@@ -25,7 +25,7 @@ kafka-configs.sh \
   --entity-name "0"
 ```
 
-```shell
+```sh
 # Describe all configuration from a topic
 kafka-configs.sh \
   --bootstrap-server "localhost:9092" \
@@ -36,7 +36,7 @@ kafka-configs.sh \
 
 ## Alter
 
-```shell
+```sh
 # add broker config (clusterwide configs only)
 kafka-configs.sh \
   --bootstrap-server "localhost:9092" \
@@ -46,7 +46,7 @@ kafka-configs.sh \
   --add-config "compression.type=producer,message.max.bytes=512000"
 ```
 
-```shell
+```sh
 # add topic config
 kafka-configs.sh \
   --bootstrap-server "localhost:9092" \

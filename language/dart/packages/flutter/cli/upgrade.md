@@ -2,6 +2,6 @@
 
 - Upgrade flutter SDK
 
-```shell
+```sh
 flutter upgrade
 ```

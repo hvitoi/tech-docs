@@ -1,6 +1,6 @@
 # push
 
-```shell
+```sh
 # Push branch to its corresponding remote branch
 git push
 git push -v # verbose
@@ -13,7 +13,7 @@ git push --force
 
 ## Branches
 
-```shell
+```sh
 # Push new branch to remote
 git push --set-upstream `remote` `branch` # a upstream branch is created (git branch -vv to see the new tracking branch)
 git push -u `remote` `branch` # -u is the same as --set-upstream
@@ -25,7 +25,7 @@ git push `remote` -d `branch`
 
 ## Tags
 
-```shell
+```sh
 # Push all tags to remote (by default it's not pushed)
 git push --tags # Only tags are pushes. No commits at all
 
@@ -36,7 +36,7 @@ git push origin v1.0.1
 
 ## Clone Repo
 
-```shell
+```sh
 # Bare clone of the repo to be overwritten
 git clone --bare "https://github.com/exampleuser/old-repository.git"
 cd "./old-repository"

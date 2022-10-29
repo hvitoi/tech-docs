@@ -2,6 +2,6 @@
 
 - Search package and version
 
-```shell
+```sh
 brew search "k9s"
 ```

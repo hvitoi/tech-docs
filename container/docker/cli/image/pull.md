@@ -1,6 +1,6 @@
 # pull
 
-```shell
+```sh
 # Pull image
 docker image pull "image"
 ```

@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#list>
 
-```shell
+```sh
 # Create some string data
 
 # Insert on the left - Head

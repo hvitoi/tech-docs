@@ -21,26 +21,26 @@
 - A `threshold` is an objetive that should not be trespassed
 - Ideally the current `state` must not reach the threshold
 
-```shell
+```sh
 # Is my service up and/or scrapeable?
 absent(up{kubernetes_name+"doccserver"}) or
 sum(up{kubernetes_name="doccserver"})
 == 0
 ```
 
-```shell
+```sh
 # Do I have the number of LB I expect?
 sum(up{kubernetes_name="loadbalancer"}) < 3
 ```
 
-```shell
+```sh
 # Is out LB at 50% capacity in terms of sessions?
 max(haproxy_frontend_current_sessions / haproxy_frontend_limit_sessions)
 BY (kubernetes_node_name, frontend) * 100
 > 50
 ```
 
-```shell
+```sh
 # Are 50% of tests taking longer than 10min?
 max(test_duration_seconds{quantile="0.5", result="pass"})
 BY (test_name)

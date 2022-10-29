@@ -1,6 +1,6 @@
 # create
 
-```shell
+```sh
 # Create new chart
 helm create "chart"
 ```

@@ -2,7 +2,7 @@
 
 - Git configuration
 
-```shell
+```sh
 # List all the config parameters
 git config --list
 git config -l

@@ -4,7 +4,7 @@
 
 - SSH keys must be created before
 
-```shell
+```sh
 # Create SSH Key
 ssh-keygen \
   -m "PEM" \

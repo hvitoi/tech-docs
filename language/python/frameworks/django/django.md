@@ -1,6 +1,6 @@
 # Django
 
-```shell
+```sh
 # Install django
 pip3 install django
 

@@ -2,7 +2,7 @@
 
 ## Metadata List
 
-```shell
+```sh
 # Cluster information and topics
 kcat \
   -b "localhost:9092"
@@ -11,7 +11,7 @@ kcat \
 
 ## Consume
 
-```shell
+```sh
 kcat -C \
   -b "localhost:9092" \
   -t "my-topic"

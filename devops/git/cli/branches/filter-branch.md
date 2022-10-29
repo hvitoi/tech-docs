@@ -8,7 +8,7 @@
 - Commits that are empty afterwards (because they only changed the Rakefile) are removed entirely (prune-empty).
 - Find the file to be deleted with `git rev-list`
 
-```shell
+```sh
 # Remove a file completely from all branches
 git filter-branch \
   --force \
@@ -28,14 +28,14 @@ git filter-branch \
   --all
 ```
 
-```shell
+```sh
 # strip out the unwanted dirty data which has been expelled out
 rm -rf .git/refs/original/
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 ```
 
-```shell
+```sh
 # Commit the modified repo
 git push --all --force
 ```

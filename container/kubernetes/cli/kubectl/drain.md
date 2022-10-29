@@ -5,7 +5,7 @@
 - The node is also marked as `unscheduled` until you remove the restriction (`uncordon`)
 - The moved pod will not automatically come back to the original node
 
-```shell
+```sh
 kubectl drain "node-name"
 kubectl drain "node-name" --ignore-daemonsets
 kubectl drain "node-name" --force # force if there are pods not managed by a Deployment, ReplicaSet, etc. The pod will then be lost forever

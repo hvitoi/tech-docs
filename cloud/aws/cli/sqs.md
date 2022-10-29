@@ -1,6 +1,6 @@
 # sqs
 
-```shell
+```sh
 # list queues
 aws sqs list-queues --region "us-east-1"
 

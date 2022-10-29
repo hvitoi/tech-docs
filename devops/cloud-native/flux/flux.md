@@ -6,7 +6,7 @@
 - Create flux manifest and push to the repo
 - Installs flux manifest on `flux-system` namespace
 
-```shell
+```sh
 
 flux bootstrap github \
   --owner "$GITHUB_ORG" \
@@ -21,7 +21,7 @@ flux bootstrap github \
 - Source is just a source, it has no action
 - Sources are placed inside the `flux-fleet` repo (apps folder)
 
-```shell
+```sh
 # Create source (staging environment)
 flux create source git "staging" \
   --url "https://github.com/$GITHUB_ORG/flux-staging" \
@@ -60,7 +60,7 @@ flux get sources git
 
 - Kustomizations are appended together to its source
 
-```shell
+```sh
 # Append kustomization to its source
 flux create kustomization "staging" \
     --source "staging" \ # reference to the source created earlier
@@ -93,7 +93,7 @@ flux get kustomizations
 
 - The release is created in its own environment (E.g, flux-staging)
 
-```shell
+```sh
 
 # Create values for my-app release (staging environment)
 echo "image:
@@ -128,7 +128,7 @@ git push
 watch flux get helmreleases
 ```
 
-```shell
+```sh
 ###########################
 # Promoting to production #
 ###########################

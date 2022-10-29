@@ -3,7 +3,7 @@
 - Show all references (local and remote)
 - Print files contained in `.git/refs`
 
-```shell
+```sh
 # Show all refs
 git show-ref
 

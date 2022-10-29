@@ -1,6 +1,6 @@
 # ls
 
-```shell
+```sh
 # List containers
 docker container ls
 docker container ls --all # -a

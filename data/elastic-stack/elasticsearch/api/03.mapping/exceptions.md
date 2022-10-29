@@ -1,6 +1,6 @@
 # Exceptions
 
-```shell
+```sh
 # Create mapping
 curl --request PUT 'localhost:9200/microservice-logs' \
   --header "Content-Type: application/json" \
@@ -33,7 +33,7 @@ curl --request PUT 'localhost:9200/microservice-logs' \
 
 ## Trying to insert invalid document
 
-```shell
+```sh
 # String number instead of Integer (for port) - Passes successfully
 curl --request POST 'localhost:9200/microservice-logs/_doc?pretty' \
   --header "Content-Type: application/json" \
@@ -63,7 +63,7 @@ curl --request POST 'localhost:9200/microservice-logs/_doc?pretty' \
 
 ## Ignore malformed documents
 
-```shell
+```sh
 # Close index
 curl 'localhost:9200/microservice-logs/_close' \
   --request POST
@@ -83,7 +83,7 @@ curl 'localhost:9200/microservice-logs/_open' \
 
 ## Inserting invalid documents again
 
-```shell
+```sh
 # String not-number instead of Integer - Successful
 curl 'localhost:9200/microservice-logs/_doc?pretty' \
   --request POST \

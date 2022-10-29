@@ -2,7 +2,7 @@
 
 - Plugin name can be an `URL` or the `shortname` in the update center
 
-```shell
+```sh
 jenkinscli install-plugin "plugin-name"
 jenkinscli install-plugin "ssh"
 jenkinscli install-plugin "ssh" -deploy # deploy right away

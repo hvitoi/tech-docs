@@ -15,7 +15,7 @@
   - `PreferNoSchedule`: pods are avoided scheduling on this node
   - `NoExecute`: new pods will not be scheduled on this node, existing pods will be evicted on this node (it will be killed soon and recreated in another node)
 
-```shell
+```sh
 # Apply taints to a node
 kubectl taint "no" "node-name" \
   "app=blue:NoSchedule"

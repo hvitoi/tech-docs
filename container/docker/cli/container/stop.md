@@ -2,7 +2,7 @@
 
 - Gracefully stops the container (`SIGTERM`)
 
-```shell
+```sh
 # Stop container
 docker container stop "container"
 ```

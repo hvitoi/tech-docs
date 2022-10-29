@@ -3,7 +3,7 @@
 - Derry is a script manager for Dart
 - These scripts are saved at `pubspec.yaml`
 
-```shell
+```sh
 # list all available scripts with description
 derry ls -d
 ```

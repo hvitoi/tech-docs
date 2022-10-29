@@ -7,7 +7,7 @@
 
 - Create a "jenkins-docker" folder with a "jenkins_home" subfolder
 
-```shell
+```sh
 docker container run --detach \
   --name "jenkins" \
   --publish "8080:8080" \
@@ -35,7 +35,7 @@ networks:
 
 - Needs JRE!
 
-```shell
+```sh
 # install the gpg key
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 
@@ -54,7 +54,7 @@ sudo apt-get install jenkins
 
 ## Kubernetes
 
-```shell
+```sh
 # Helm install
 helm repo add "jenkins" "https://charts.jenkins.io"
 helm repo update

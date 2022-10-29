@@ -1,6 +1,6 @@
 # ACL
 
-```shell
+```sh
 kafka-acls.sh \
   --authorizer-properties \
   --zookeeper.connect=localhost:2181 \

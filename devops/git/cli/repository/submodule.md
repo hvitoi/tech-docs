@@ -1,6 +1,6 @@
 # submodule
 
-```shell
+```sh
 # Clone submodules
 git submodule update --init
 

@@ -20,7 +20,7 @@ Properties:
 - Use API `PutMetricData` to send values
 - `MetricResolution`: _Standard_ (1min), _High Resolution_ (10 or 30 seconds)
 
-```shell
+```sh
 aws cloudwatch put-metric-data \
   --namespace "Usage Metrics" \
   --metric-data "file://metric.json"

@@ -1,6 +1,6 @@
 # sdkmanager
 
-```shell
+```sh
 # Create emulator
 avdmanager create avd \
   -n "Nexus_5X_API_30" \

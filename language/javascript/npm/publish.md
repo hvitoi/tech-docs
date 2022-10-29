@@ -1,6 +1,6 @@
 # publish
 
-```shell
+```sh
 # push the current project to npm servers
 npm publish
 ```

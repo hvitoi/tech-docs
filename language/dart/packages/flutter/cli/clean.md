@@ -2,6 +2,6 @@
 
 - Delete `./build` and `.dart_tool/` directories
 
-```shell
+```sh
 flutter clean
 ```

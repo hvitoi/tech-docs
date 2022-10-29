@@ -2,7 +2,7 @@
 
 - Build Xcode projects and workspaces
 
-```shell
+```sh
 xcodebuild -license accept
 xcodebuild -runFirstLaunch
 ```

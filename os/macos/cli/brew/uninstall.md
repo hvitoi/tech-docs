@@ -2,6 +2,6 @@
 
 - Uninstall a formula or cask
 
-```shell
+```sh
 brew uninstall "bash"
 ```

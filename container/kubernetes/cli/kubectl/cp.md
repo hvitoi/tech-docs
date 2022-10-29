@@ -1,6 +1,6 @@
 # cp
 
-```shell
+```sh
 # Copy from local to remote pod
 kubectl cp "/tmp/foo_dir" "some-pod":"/tmp/bar_dir"
 

@@ -4,7 +4,7 @@
 - This way you can, for example, take the last commits that were discarded after a reset operation, and reset is back
 - Reflog is kept by 90 days
 
-```shell
+```sh
 # Reflog for the head pointer
 git reflog # You can checkout to the head points shown `git checkout HEAD@{6}`
 

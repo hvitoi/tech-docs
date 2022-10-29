@@ -2,7 +2,7 @@
 
 - Jobs can be viewed at `/job/job_name`
 
-```shell
+```sh
 # list all jobs
 jenkinscli list-jobs
 ```

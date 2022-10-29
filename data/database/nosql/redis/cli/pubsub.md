@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#pubsub>
 
-```shell
+```sh
 # Open two terms and have redis-cli open in both.
 
 # Client subscriber

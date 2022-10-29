@@ -2,6 +2,6 @@
 
 - Show running processes in the container
 
-```shell
+```sh
 docker container top "container"
 ```

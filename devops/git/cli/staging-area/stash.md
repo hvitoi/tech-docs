@@ -3,7 +3,7 @@
 - With stash you can save your WIP in a `temporary commit` and recover it later
 - Stash is saved as a commit stored at `.git/refs/stash`
 
-```shell
+```sh
 # Save WIP
 git stash
 

@@ -1,6 +1,6 @@
 # status
 
-```shell
+```sh
 # Release status
 helm status "release"
 ```

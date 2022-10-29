@@ -24,7 +24,7 @@
 
 - Generate a SSH key manually
 
-```shell
+```sh
 # Create SSH Key
 ssh-keygen \
   -m "PEM" \

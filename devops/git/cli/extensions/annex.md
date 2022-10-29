@@ -8,7 +8,7 @@
 - Initialize a git repo with git annex
 - The git annex repository has a description
 
-```shell
+```sh
 git annex init "MyFiles"
 ```
 
@@ -16,7 +16,7 @@ git annex init "MyFiles"
 
 - Add a large file with git annex
 
-```shell
+```sh
 git annex add "song.mp3"
 ```
 
@@ -24,7 +24,7 @@ git annex add "song.mp3"
 
 - Get the file from a symlink
 
-```shell
+```sh
 git annex get "song.mp3"
 ```
 
@@ -33,7 +33,7 @@ git annex get "song.mp3"
 - Sync files using changes from the remote remote
 - Uses info from the remotes to sync
 
-```shell
+```sh
 git annex sync
 git annex sync --content # sync the big files content too
 ```

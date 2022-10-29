@@ -2,6 +2,6 @@
 
 - Restart jenkins right away
 
-```shell
+```sh
 jenkinscli restart
 ```

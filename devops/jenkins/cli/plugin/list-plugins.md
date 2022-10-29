@@ -1,5 +1,5 @@
 # list-plugins
 
-```shell
+```sh
 jenkinscli list-plugins
 ```

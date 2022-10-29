@@ -5,6 +5,6 @@
   - Jenkins
   - Users
 
-```shell
+```sh
 jenkinscli list-credentials-context-resolvers
 ```

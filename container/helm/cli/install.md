@@ -8,7 +8,7 @@ There are five different ways you can express the chart you want to install:
 1. By absolute URL: `helm install mynginx https://example.com/charts/nginx-1.2.3.tgz`
 1. By chart reference and repo url: `helm install --repo https://example.com/charts/ mynginx nginx`
 
-```shell
+```sh
 # Install chart from repo
 helm install "repo/chart" --generate-name
 helm install "release" "repo/chart" # specify a name for the release

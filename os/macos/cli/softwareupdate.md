@@ -1,6 +1,6 @@
 # softwareupdate
 
-```shell
+```sh
 # list of outdated software
 softwareupdate --list
 

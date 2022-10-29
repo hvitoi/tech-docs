@@ -2,13 +2,13 @@
 
 ## Debian package manager
 
-```shell
+```sh
 sudo apt install postgresql # Currently version 13
 ```
 
 ## PostgreSQL native package
 
-```shell
+```sh
 # Create the file repository configuration:
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
@@ -31,7 +31,7 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 ## Docker
 
-```shell
+```sh
 docker container run \
   --name "meu-postgres" \
   -p "5432:5432" \

@@ -1,6 +1,6 @@
 # rm
 
-```shell
+```sh
 ## Remove container
 docker container rm "container"
 docker container rm --force "container" # -f force remove

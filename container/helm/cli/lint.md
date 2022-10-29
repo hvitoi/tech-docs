@@ -1,6 +1,6 @@
 # lint
 
-```shell
+```sh
 # Check chart syntax
 helm lint "/path/to/chart/"
 ```

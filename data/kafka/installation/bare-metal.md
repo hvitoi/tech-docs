@@ -2,7 +2,7 @@
 
 ## System preparation
 
-```shell
+```sh
 # Install Java JDK
 sudo apt install "openjdk-8-jdk"
 
@@ -25,7 +25,7 @@ echo 'export PATH=$PATH:$HOME/kafka/bin' >> "~/.zshrc"
 
 ## Start Zookeeper
 
-```shell
+```sh
 # Setup config file
 vim "~/kafka/bin/config/zookeeper.properties" # edit dataDir=~/kafka/data/zookeeper
 
@@ -38,7 +38,7 @@ vim "~/kafka/bin/config/zookeeper.properties" # edit dataDir=~/kafka/data/zookee
 
 - You can start multiple brokers, but the broker id and the advertised listeners of each broker must be different!
 
-```shell
+```sh
 # Setup config file
 vim "~/kafka/bin/config/server.properties" # edit log.dirs=~/kafka/data/kafka
 
@@ -49,7 +49,7 @@ vim "~/kafka/bin/config/server.properties" # edit log.dirs=~/kafka/data/kafka
 
 ## Service scripts
 
-```shell
+```sh
 # Stop Kafka & Zookeeper
 sudo ~/kafka/bin/kafka-server-stop.sh
 sudo ~/kafka/bin/zookeeper-server-stop.sh
@@ -59,7 +59,7 @@ sudo ~/kafka/bin/zookeeper-server-stop.sh
 
 - Create `/etc/systemd/system/zookeeper.service` and copy the content below
 
-```shell
+```sh
 sudo vim "/etc/systemd/system/zookeeper.service"
 ```
 
@@ -83,7 +83,7 @@ WantedBy=multi-user.target
 
 - Create `/etc/systemd/system/kafka.service` and copy the content below
 
-```shell
+```sh
 sudo vim "/etc/systemd/system/kafka.service"
 ```
 
@@ -104,14 +104,14 @@ WantedBy=multi-user.target
 
 ### Enable systemd scripts
 
-```shell
+```sh
 sudo systemctl enable "zookeeper.service"
 sudo systemctl enable "kafka.service"
 ```
 
 ### Service management via systemd
 
-```shell
+```sh
 sudo systemctl status "zookeeper"
 sudo systemctl status "kafka"
 
@@ -124,6 +124,6 @@ sudo systemctl stop "kafka"
 
 ### Logs
 
-```shell
+```sh
 sudo journalctl -u "kafka"
 ```

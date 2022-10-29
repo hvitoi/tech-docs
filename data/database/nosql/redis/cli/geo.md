@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#geo>
 
-```shell
+```sh
 # Create some string data
 GEOADD demo.cities -118.243685  34.052234 "Los Angeles"
 GEOADD demo.cities 28.047305 -26.204103 "Johannesburg"

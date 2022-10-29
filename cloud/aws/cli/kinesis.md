@@ -1,6 +1,6 @@
 # kinesis
 
-```shell
+```sh
 # Produce (returns the ShardId and SequenceNumber)
 aws kinesis put-record \
   --stream-name "test" \

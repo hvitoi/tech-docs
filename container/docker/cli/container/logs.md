@@ -2,7 +2,7 @@
 
 - Show all logs from a container (even if it's exited)
 
-```shell
+```sh
 # Show logs
 docker container logs -f "container" # -f to follow
 ```

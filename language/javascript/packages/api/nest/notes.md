@@ -15,13 +15,13 @@
 
 ## CLI
 
-```shell
+```sh
 # Create new project
 nest new "project-name" # Create boilerplate
 nest new  "nestjs-task-management"
 ```
 
-```shell
+```sh
 # Create a module
 nest generate "module" "module-name" # g for generate
 
@@ -46,7 +46,7 @@ nest generate "service" "service-name" --no-spec # Created as a provider decorat
   providers: [ForumService],
   controllers: [ForumController],
   imports: [PostModule, CommentModule, AuthModule],
-  exports: [ForumService]
+  exports: [ForumService],
 })
 export class ForumModule {}
 ```
@@ -88,9 +88,9 @@ export class TasksController {
 - We define the dependencies in the constructor of the class
 
 ```typescript
-import { TasksService } from './tasks.service';
+import { TasksService } from "./tasks.service";
 
-@Controller('/tasks')
+@Controller("/tasks")
 export class TasksController {
   constructor(private tasksService: TasksService) {} // Inject the dependency
 
@@ -189,20 +189,20 @@ docker run \
 
 ```typescript
 // typeorm
-const tasks = await Task.find({ status: 'DONE', user: 'Ashley' });
+const tasks = await Task.find({ status: "DONE", user: "Ashley" });
 
 // sql
 let tasks;
 db.query(
   `SELECT * FROM tasks WHERE status = 'DONE' AND user = 'Ashley'`,
   (err, res) => {
-    if (err) throw new Error('Could not retrieve tasks!');
+    if (err) throw new Error("Could not retrieve tasks!");
     tasks = res.rows;
   }
 );
 ```
 
-```shell
+```sh
 npm i @nestjs/typeorm # bridge to nestjs to integrate with nestjs
 npm i typeorm # actual typeorm module
 npm i pg # database driver for postgres
@@ -211,30 +211,30 @@ npm i pg # database driver for postgres
 - TypeORM configuration in NestJS
 
 ```typescript
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
-  host: 'localhost',
+  type: "postgres",
+  host: "localhost",
   port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'taskmanagement',
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: true
+  username: "postgres",
+  password: "postgres",
+  database: "taskmanagement",
+  entities: [__dirname + "/../**/*.entity.{js,ts}"],
+  synchronize: true,
 };
 ```
 
 - Import module in app.module.ts
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeorm.config';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { typeOrmConfig } from "./config/typeorm.config";
 
 // App module is the root module
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig)]
+  imports: [TypeOrmModule.forRoot(typeOrmConfig)],
 })
 export class AppModule {}
 ```
@@ -299,51 +299,51 @@ class FriendsList {
     const idx = this.friends.indexOf(name);
 
     if (idx === -1) {
-      throw new Error('Friend not found');
+      throw new Error("Friend not found");
     }
 
     this.friends.splice(idx, 1);
   }
 }
 
-describe('FriendsList', () => {
+describe("FriendsList", () => {
   let friendsList;
 
   beforeEach(() => {
     friendsList = new FriendsList();
   });
 
-  it('initializes friends list', () => {
+  it("initializes friends list", () => {
     expect(friendsList.friends.length).toEqual(0);
   });
 
-  it('adds a friend to the list', () => {
-    friendsList.addFriend('Henrique');
+  it("adds a friend to the list", () => {
+    friendsList.addFriend("Henrique");
     expect(friendsList.friends.length).toEqual(1);
   });
 
-  it('announces friendship', () => {
+  it("announces friendship", () => {
     friendsList.announceFriendship = jest.fn(); // Mock the function
     expect(friendsList.announceFriendship).not.toHaveBeenCalled();
-    friendsList.addFriend('Henrique');
+    friendsList.addFriend("Henrique");
     expect(friendsList.announceFriendship).toHaveBeenCalled();
     expect(friendsList.announceFriendship).toHaveBeenCalledTimes(1);
-    expect(friendsList.announceFriendship).toHaveBeenCalledWith('Henrique');
+    expect(friendsList.announceFriendship).toHaveBeenCalledWith("Henrique");
   });
 
-  describe('removeFriend', () => {
-    it('removes a friend from the list', () => {
-      friendsList.addFriend('Henrique');
-      expect(friendsList.friends[0]).toEqual('Henrique');
-      friendsList.removeFriend('Henrique');
+  describe("removeFriend", () => {
+    it("removes a friend from the list", () => {
+      friendsList.addFriend("Henrique");
+      expect(friendsList.friends[0]).toEqual("Henrique");
+      friendsList.removeFriend("Henrique");
       expect(friendsList.friends[0]).toBeUndefined();
     });
 
-    it('throws an error as friend does not exist', () => {
-      expect(() => friendsList.removeFriend('Henrique')).toThrow();
-      expect(() => friendsList.removeFriend('Henrique')).toThrow(Error);
-      expect(() => friendsList.removeFriend('Henrique')).toThrow(
-        new Error('Friend not found')
+    it("throws an error as friend does not exist", () => {
+      expect(() => friendsList.removeFriend("Henrique")).toThrow();
+      expect(() => friendsList.removeFriend("Henrique")).toThrow(Error);
+      expect(() => friendsList.removeFriend("Henrique")).toThrow(
+        new Error("Friend not found")
       );
     });
   });
@@ -354,7 +354,7 @@ describe('FriendsList', () => {
 
 ```typescript
 jest.fn().mockResolvedValue(true); // Promise response
-jest.fn().mockRejectedValue({ code: '23505' }); // Throw response with  code error
+jest.fn().mockRejectedValue({ code: "23505" }); // Throw response with  code error
 jest.fn().mockReturnValue({ save }); // no async
 ```
 
@@ -364,8 +364,8 @@ jest.fn().mockReturnValue({ save }); // no async
 expect(fn).toHaveBeenCalled();
 expect(fn).not.toHaveBeenCalled();
 expect(fn).toHaveBeenCalledWith(params);
-expect(result).toEqual('x');
-expect(result).toMatchObject({ x: 'blabla', y: 'bleble' });
+expect(result).toEqual("x");
+expect(result).toMatchObject({ x: "blabla", y: "bleble" });
 expect(fn).rejects.toThrow(); // Throw error (any)
 expect(fn).rejects.toThrow(NotFoundException);
 expect(fn).resolves.not.toThrow(); // resolves successfully
@@ -374,14 +374,14 @@ expect(fn).resolves.not.toThrow(); // resolves successfully
 ### Handle exception
 
 ```typescript
-test('should return a exception when doesnt create a user', async () => {
+test("should return a exception when doesnt create a user", async () => {
   const user = TestUtil.giveMeAValidUse();
   mockRepository.save.mockReturnValue(null);
   mockRepository.create.mockReturnValue(user);
 
   await service.createUser(user).catch((e) => {
     expect(e).toBeInstanceOf(InternalServerErrorException);
-    expect(e).toMatchObject({ message: 'Erro to create user' });
+    expect(e).toMatchObject({ message: "Erro to create user" });
   });
   expect(mockRepository.create).toBeCalledTimes(1);
   expect(mockRepository.save).toBeCalledTimes(1);

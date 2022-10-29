@@ -311,13 +311,13 @@ Prettier is an opinionated code formatter with support for JavaScript, CSS and J
 
 To format our code whenever we make a commit in git, we need to install the following dependencies:
 
-```shell
+```sh
 npm install --save husky lint-staged prettier
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add husky lint-staged prettier
 ```
 
@@ -369,13 +369,13 @@ If you use a custom server for your app in production and want to modify the tit
 
 The generated project includes React and ReactDOM as dependencies. It also includes a set of scripts used by Create React App as a development dependency. You may install other dependencies (for example, React Router) with `npm`:
 
-```shell
+```sh
 npm install --save react-router
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add react-router
 ```
 
@@ -556,13 +556,13 @@ Following this rule often makes CSS preprocessors less useful, as features like 
 
 First, let’s install the command-line interface for Sass:
 
-```shell
+```sh
 npm install --save node-sass-chokidar
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add node-sass-chokidar
 ```
 
@@ -601,13 +601,13 @@ At this point you might want to remove all CSS files from the source control, an
 
 As a final step, you may find it convenient to run `watch-css` automatically with `npm start`, and run `build-css` as a part of `npm run build`. You can use the `&&` operator to execute two scripts sequentially. However, there is no cross-platform way to run two scripts in parallel, so we will install a package for this:
 
-```shell
+```sh
 npm install --save npm-run-all
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add npm-run-all
 ```
 
@@ -767,13 +767,13 @@ You don’t have to use [React Bootstrap](https://react-bootstrap.github.io) tog
 
 Install React Bootstrap and Bootstrap from npm. React Bootstrap does not include Bootstrap CSS so this needs to be installed as well:
 
-```shell
+```sh
 npm install --save react-bootstrap bootstrap@3
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add react-bootstrap bootstrap@3
 ```
 
@@ -830,13 +830,13 @@ Create React App doesn't prescribe a specific routing solution, but [React Route
 
 To add it, run:
 
-```shell
+```sh
 npm install --save react-router-dom
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add react-router-dom
 ```
 
@@ -943,7 +943,7 @@ set "REACT_APP_SECRET_CODE=abcdef" && npm start
 
 #### Linux, macOS (Bash)
 
-```shell
+```sh
 REACT_APP_SECRET_CODE=abcdef npm start
 ```
 
@@ -1224,7 +1224,7 @@ set HTTPS=true&&npm start
 
 #### Linux, macOS (Bash)
 
-```shell
+```sh
 HTTPS=true npm start
 ```
 
@@ -1354,13 +1354,13 @@ When you encounter bugs caused by changing components, you will gain a deeper in
 
 If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). To install it, run:
 
-```shell
+```sh
 npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
@@ -1421,13 +1421,13 @@ expect(wrapper).toContainReact(welcome);
 
 To enable this, install `jest-enzyme`:
 
-```shell
+```sh
 npm install --save jest-enzyme
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add jest-enzyme
 ```
 
@@ -1588,11 +1588,11 @@ set CI=true&&npm run build
 
 ##### Linux, macOS (Bash)
 
-```shell
+```sh
 CI=true npm test
 ```
 
-```shell
+```sh
 CI=true npm run build
 ```
 
@@ -1665,7 +1665,7 @@ Add the following to the `scripts` section in your project's `package.json`
 
 Place `debugger;` statements in any test and run:
 
-```shell
+```sh
 $ npm run test:debug
 ```
 
@@ -1734,13 +1734,13 @@ Storybook is a development environment for React UI components. It allows you to
 
 First, install the following npm package globally:
 
-```shell
+```sh
 npm install -g @storybook/cli
 ```
 
 Then, run the following command inside your app’s directory:
 
-```shell
+```sh
 getstorybook
 ```
 
@@ -1759,13 +1759,13 @@ Styleguidist combines a style guide, where all your components are presented on 
 
 First, install Styleguidist:
 
-```shell
+```sh
 npm install --save react-styleguidist
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add react-styleguidist
 ```
 
@@ -1780,7 +1780,7 @@ Then, add these scripts to your `package.json`:
 
 Then, run the following command inside your app’s directory:
 
-```shell
+```sh
 npm run styleguide
 ```
 
@@ -1912,13 +1912,13 @@ bloat is coming from.
 
 To add Source map explorer to a Create React App project, follow these steps:
 
-```shell
+```sh
 npm install --save source-map-explorer
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add source-map-explorer
 ```
 
@@ -1948,7 +1948,7 @@ npm run analyze
 
 For environments using [Node](https://nodejs.org/), the easiest way to handle this would be to install [serve](https://github.com/zeit/serve) and let it handle the rest:
 
-```shell
+```sh
 npm install -g serve
 serve -s build
 ```
@@ -1957,7 +1957,7 @@ The last command shown above will serve your static site on the port **5000**. L
 
 Run this command to get a full list of the options available:
 
-```shell
+```sh
 serve -h
 ```
 
@@ -2077,7 +2077,7 @@ Install the Firebase CLI if you haven’t already by running `npm install -g fir
 
 Then run the `firebase init` command from your project’s root. You need to choose the **Hosting: Configure and deploy Firebase Hosting sites** and choose the Firebase project you created in the previous step. You will need to agree with `database.rules.json` being created, choose `build` as the public directory, and also agree to **Configure as a single-page app** by replying with `y`.
 
-```shell
+```sh
     === Project Setup
 
     First, let's associate this project directory with a Firebase project.
@@ -2126,7 +2126,7 @@ IMPORTANT: you need to set proper HTTP caching headers for `service-worker.js` f
 
 Now, after you create a production build with `npm run build`, you can deploy it by running `firebase deploy`.
 
-```shell
+```sh
     === Deploying to 'example-app-fd690'...
 
     i  deploying database, hosting
@@ -2173,13 +2173,13 @@ Now, whenever you run `npm run build`, you will see a cheat sheet with instructi
 
 To publish it at [https://myusername.github.io/my-app](https://myusername.github.io/my-app), run:
 
-```shell
+```sh
 npm install --save gh-pages
 ```
 
 Alternatively you may use `yarn`:
 
-```shell
+```sh
 yarn add gh-pages
 ```
 
@@ -2212,7 +2212,7 @@ additional modifications:
 
 Then run:
 
-```shell
+```sh
 npm run deploy
 ```
 
@@ -2285,7 +2285,7 @@ In this case, ensure that the file is there with the proper lettercase and that�
 
 **To do a manual deploy to Netlify’s CDN:**
 
-```shell
+```sh
 npm install netlify-cli -g
 netlify deploy
 ```
@@ -2341,7 +2341,7 @@ Install the Surge CLI if you haven’t already by running `npm install -g surge`
 
 When asked about the project path, make sure to specify the `build` folder, for example:
 
-```shell
+```sh
        project path: /path/to/project/build
 ```
 

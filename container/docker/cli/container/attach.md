@@ -2,6 +2,6 @@
 
 - Attach the PRIMARY PROCESS to the stdin, stdout and stderr of the container
 
-```shell
+```sh
 docker container attach "container"
 ```

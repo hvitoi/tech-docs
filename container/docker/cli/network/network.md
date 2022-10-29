@@ -5,7 +5,7 @@
 - `none`: containers cannot talk to each other or to the host
 - `overlay`: talk to nodes across nodes! Good for swarm. All the ips work as one!
 
-```shell
+```sh
 # Lists networks
 docker network ls
 

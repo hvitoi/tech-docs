@@ -1,6 +1,6 @@
 # eventgrid
 
-```shell
+```sh
 # Create topic
 az eventgrid topic create \
   --name "my-topic" \

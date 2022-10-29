@@ -1,6 +1,6 @@
 # deploy
 
-```shell
+```sh
 # deploy code to google servers
 firebase deploy
 ```

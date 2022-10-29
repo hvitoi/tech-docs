@@ -1,6 +1,6 @@
 # init
 
-```shell
+```sh
 # new plain project
 npm init -y
 

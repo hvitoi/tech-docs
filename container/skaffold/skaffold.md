@@ -6,7 +6,7 @@
 
 - [Skaffold GitHub](https://github.com/GoogleContainerTools/skaffold)
 
-```shell
+```sh
 # Download binary
 curl -Lo "skaffold" "https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64"
 
@@ -19,7 +19,7 @@ skaffold version
 
 ## Run
 
-```shell
+```sh
 # Run skaffold
 skaffold dev
 ```

@@ -1,5 +1,5 @@
 # exec
 
-```shell
+```sh
 kubectl exec "pod" -it -- "command"
 ```

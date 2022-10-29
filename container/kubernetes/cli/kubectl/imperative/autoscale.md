@@ -4,7 +4,7 @@
 - `Horizontal Pod Autoscaler` (HPA)
   - apiVersion: autoscaling/v1
 
-```shell
+```sh
 # Scales 1 when cpu reaches 70% until 10 max
 kubectl autoscale "deployment/mysql" \
   --min "5" \

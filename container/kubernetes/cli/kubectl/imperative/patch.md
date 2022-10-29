@@ -1,6 +1,6 @@
 # patch
 
-```shell
+```sh
 # partially update node
 kubectl patch "no" "my-node" \
   -p '{"spec":{"unschedulable":true}}'

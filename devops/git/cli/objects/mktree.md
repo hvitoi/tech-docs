@@ -12,6 +12,6 @@
 100644 blob b7aec520dec0a7516c18eb4c68b64ae1eb9b5a5e  file2.txt
 ```
 
-```shell
+```sh
 cat tree.txt | git mktree
 ```

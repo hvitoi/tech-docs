@@ -7,7 +7,7 @@
 
 - Provide configuration by arguments
 
-```shell
+```sh
 docker container run \
   docker.elastic.co/beats/metricbeat:7.10.1 \
     setup -E setup.kibana.host=kibana:5601 -E output.elasticsearch.hosts=["elasticsearch:9200"]
@@ -15,7 +15,7 @@ docker container run \
 
 - Provide configuration file `/usr/share/metricbeat/metricbeat.yml`
 
-```shell
+```sh
 docker run -d \
   --name=metricbeat \
   --user=root \

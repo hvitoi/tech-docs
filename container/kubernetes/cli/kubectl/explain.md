@@ -2,7 +2,7 @@
 
 - Detailed explanation about every possible field in a resource
 
-```shell
+```sh
 kubectl explain "obj-kind" --recursive
 kubectl explain "po" --recursive
 kubectl explain "svc" --recursive

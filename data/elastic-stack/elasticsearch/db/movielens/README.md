@@ -5,14 +5,14 @@
 
 ## Download documents
 
-```shell
+```sh
 curl -O http://media.sundog-soft.com/es7/movies.json
 curl -O http://media.sundog-soft.com/es7/series.json
 ```
 
 ## Mappings
 
-```shell
+```sh
 # Series
 curl -X PUT localhost:9200/series \
   -H "Content-Type: application/json" \
@@ -34,7 +34,7 @@ curl -X PUT localhost:9200/series \
 
 ## Bulk import
 
-```shell
+```sh
 # Movies
 curl -X PUT "localhost:9200/_bulk?pretty" \
   -H "Content-Type: application/json" \
@@ -48,7 +48,7 @@ curl -X PUT "localhost:9200/_bulk?pretty" \
 
 ## Search
 
-```shell
+```sh
 # Search movie
 curl -X GET "localhost:9200/movies/_search?pretty" \
   -H "Content-Type: application/json"

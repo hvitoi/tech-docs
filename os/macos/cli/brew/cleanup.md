@@ -1,5 +1,5 @@
 # cleanup
 
-```shell
+```sh
 brew cleanup
 ```

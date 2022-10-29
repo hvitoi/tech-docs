@@ -7,7 +7,7 @@
   - `must_not`: NOT
   - `should`: OR
 
-```shell
+```sh
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -42,7 +42,7 @@ curl -s "localhost:9200/movies/_search" \
 
 ## Filters
 
-```shell
+```sh
 curl "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \

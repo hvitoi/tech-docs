@@ -2,7 +2,7 @@
 
 - Download the latest MySQL Community Server
 
-```shell
+```sh
 # Checking MySQL service
 systemctl status "mysql"
 systemctl start "mysql"
@@ -20,6 +20,6 @@ SHOW databases;
 
 ## Source .sql command in MySQL CLI
 
-```shell
+```sh
 source $(pwd)/script.sql
 ```

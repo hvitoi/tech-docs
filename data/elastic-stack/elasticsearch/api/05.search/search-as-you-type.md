@@ -2,7 +2,7 @@
 
 ## Create analyzer
 
-```shell
+```sh
 curl -s "localhost:9200/movies/_analyze" \
   --request POST \
   --header "Content-Type: application/json" \
@@ -26,7 +26,7 @@ curl -s "localhost:9200/movies/_analyze" \
 
 ## Update mapping configuration
 
-```shell
+```sh
 
 # Update configuration
 curl -s 'localhost:9200/autocomplete' \
@@ -54,7 +54,7 @@ curl -s 'localhost:9200/autocomplete' \
 
 ## Reindex
 
-```shell
+```sh
 curl -s 'localhost:9200/_reindex' \
   --request POST \
   --header "Content-Type: application/json" \
@@ -76,7 +76,7 @@ curl -s 'localhost:9200/_reindex' \
 
 ## Search
 
-```shell
+```sh
 curl -s "localhost:9200/autocomplete/_search" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -99,7 +99,7 @@ curl -s "localhost:9200/autocomplete/_search" \
 
 ## Search while typing
 
-```shell
+```sh
 while true
 do
   IFS= read -rsn1 char

@@ -3,7 +3,7 @@
 - Creates a **Pod Resource**
 - Set the container images via command line
 
-```shell
+```sh
 # Create pod
 kubectl run "pod-name" \
   --image "nginx" \ # takes image from docker store by default
@@ -22,7 +22,7 @@ kubectl run "pod-name" \
   --restart "Never"
 ```
 
-```shell
+```sh
 # Just generate the yaml
 kubectl run "pod-name" \
   --image "nginx" \

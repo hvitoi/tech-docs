@@ -8,7 +8,7 @@
 - The config of the last applied object is stored as json in an annotation at the live object
   - `metadata.annotations.kubectl.kubernetes.io/last-applied-configuration`
 
-```shell
+```sh
 # Apply a single config file
 kubectl apply -f "manifest.yaml"
 kubectl apply -f "manifest1.yaml" -f "manifest2.yaml"

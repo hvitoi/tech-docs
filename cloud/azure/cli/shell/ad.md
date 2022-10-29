@@ -2,7 +2,7 @@
 
 ## sp
 
-```shell
+```sh
 # Create service principal
 az ad sp create-for-rbac \
   --name "http://my-service-principal-name" \
@@ -20,7 +20,7 @@ az ad sp show \
 
 ## user
 
-```shell
+```sh
 az ad user create \
   --display-name "john" \
   --user-principal-name "john@awesome.onmicrosoft.com" \
@@ -31,7 +31,7 @@ az ad user create \
 
 ## group
 
-```shell
+```sh
 # create
 az ad group create \
   --display-name "devteam" \

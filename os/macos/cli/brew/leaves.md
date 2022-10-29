@@ -2,7 +2,7 @@
 
 - List installed formulae that are not dependencies of another installed formula.
 
-```shell
+```sh
 # all
 brew leaves
 

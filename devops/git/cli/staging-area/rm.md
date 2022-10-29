@@ -3,7 +3,7 @@
 - Remove files from repository `git rm`
 - Remove files from repository + filesystem `git rm --cached`
 
-```shell
+```sh
 # Remove file from repository and filesystem. Remove from index only when you commit
 git rm "filename"
 git rm "filename" -r # recursive

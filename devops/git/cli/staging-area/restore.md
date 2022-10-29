@@ -2,6 +2,6 @@
 
 - Unstage changes
 
-```shell
+```sh
 git restore "file.txt"
 ```

@@ -4,7 +4,7 @@
 - `from`: start point (0 indexed)
 - `size`: number of results per page
 
-```shell
+```sh
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \

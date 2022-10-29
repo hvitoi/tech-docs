@@ -4,7 +4,7 @@
 
 ## Status
 
-```shell
+```sh
 # Check the rollout status of a resource
 kubectl rollout status deployment "foo"
 kubectl rollout status daemonset "foo"
@@ -13,7 +13,7 @@ kubectl rollout status statefulset "foo"
 
 ## History
 
-```shell
+```sh
 # Show revisions history (records last 10 by default)
 kubectl rollout history deployment "foo"
 
@@ -23,7 +23,7 @@ kubectl rollout history deployment "foo" --revision=1
 
 ## Undo
 
-```shell
+```sh
 # Rollback to previous revision
 kubectl rollout undo deployment "foo"
 
@@ -33,7 +33,7 @@ kubectl rollout undo deployment "foo" --to-revision "3"
 
 ## Restart
 
-```shell
+```sh
 # Restart current revision
 kubectl rollout restart deployment # from all deployments
 kubectl rollout restart deployment "foo" # from specific deployment
@@ -45,7 +45,7 @@ kubectl rollout restart -f "manifest.yaml" # from manifest
 - Pause the deployment controller so that no pods are rolled out
 - It's useful when you want to perform multiple imperative commands and resume only after all of them have been executed
 
-```shell
+```sh
 kubectl rollout pause deployment "foo"
 ```
 
@@ -53,6 +53,6 @@ kubectl rollout pause deployment "foo"
 
 - Resume deployment controlling
 
-```shell
+```sh
 kubectl rollout resume deployment "foo"
 ```

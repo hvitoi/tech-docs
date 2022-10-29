@@ -1,6 +1,6 @@
 # create
 
-```shell
+```sh
 # Interactive
 gh repo create
 

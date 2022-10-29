@@ -1,6 +1,6 @@
 # container
 
-```shell
+```sh
 # Create container
 az container create \
   --resource-group "demo-rg" \
@@ -23,7 +23,7 @@ az container attach
 
 ## Deployment yaml
 
-```shell
+```sh
 # Create container (From deployment file)
 az container create \
   --resource-group "demo-rg" \

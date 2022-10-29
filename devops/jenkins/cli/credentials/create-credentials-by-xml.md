@@ -1,5 +1,5 @@
 # create-credentials-by-xml
 
-```shell
+```sh
 jenkinscli create-credentials-by-xml "store-id" "domain-name" < "credential.xml"
 ```

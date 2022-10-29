@@ -1,6 +1,6 @@
 # install
 
-```shell
+```sh
 # formula
 brew install "neofetch"
 brew install "postgresql@8.4.4"

@@ -12,7 +12,7 @@
 - Logstash conf file: `mysql.conf`
 - Setup MySQL database
 
-```shell
+```sh
 docker cp ./Logstash/data/mysql-data:/tmp
 docker exec -it mysql bash
 mysql -u root -p
@@ -37,7 +37,7 @@ SET releaseDate = STR_TO_DATE (@var3, '%d-%M-%Y');
 - Download JDBC drivers in Logstash container
   - <https://dev.mysql.com/downloads/connector/j/8.0.html>
 
-```shell
+```sh
 curl -O https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.22.zip
 unzip mysql-connector-java-8.0.22
 docker cp ./mysql-connector-java-8.0.22 mysql:/tmp

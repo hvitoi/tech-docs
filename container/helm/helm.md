@@ -7,7 +7,7 @@
 
 ## Installation
 
-```shell
+```sh
 # Download and install
 curl -fsSL "https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3" -o "get_helm.sh"
 chmod 700 "get_helm.sh"

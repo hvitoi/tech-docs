@@ -8,7 +8,7 @@
   - selector
   - subject
 
-```shell
+```sh
 # Update image
 kubectl set image "object-kind/object-name" \
   "container-name"="new-image"
@@ -18,7 +18,7 @@ kubectl set image "deployment/client-deployment" \
   "myapp"="nginx:1.18"
 ```
 
-```shell
+```sh
 kubectl set resources "deployment/my-depl" \
   -c "my-container" \
   --limits=cpu=20m,memory=30Mi

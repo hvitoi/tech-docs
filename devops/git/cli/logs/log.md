@@ -3,7 +3,7 @@
 - History of changes (commits)
 - Read information about all commits made
 
-```shell
+```sh
 # Log
 git log
 git log --graph

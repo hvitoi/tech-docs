@@ -5,7 +5,7 @@
 
 ## List networks
 
-```shell
+```sh
 # List network sources
 airodump-ng "wlp3s0mon" # hop 2.4Ghz networks only
 airodump-ng "wlp3s0mon" --band "a" # hop 5GHz networks only
@@ -35,7 +35,7 @@ airodump-ng "wlp3s0mon" --band "abg" # 2.4GHz and 5Ghz networks
 
 ## Sniff a network
 
-```shell
+```sh
 # Sniff packets from a network and save to a file
 airodump-ng "wlp3s0mon" \
   --bssid "29:EE:52:8F:D0:A3" \

@@ -1,6 +1,6 @@
 # sdkmanager
 
-```shell
+```sh
 # Update the CLI
 sdkmanager --update --no_https
 

@@ -2,7 +2,7 @@
 
 ## Login
 
-```shell
+```sh
 psql -U "user"
 psql -U postgres
 ```

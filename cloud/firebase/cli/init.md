@@ -2,7 +2,7 @@
 
 - Initialize a product
 
-```shell
+```sh
 # firestore
 firebase init "firestore"
 

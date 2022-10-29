@@ -2,7 +2,7 @@
 
 - Upgrade a release
 
-```shell
+```sh
 # Upgrade config files
 helm upgrade "release" "repo/chart" --set "image.tag=1.16.1-alpine"
 helm upgrade "release" "/path/to/chart-folder/" --set "image.tag=1.16.1-alpine"

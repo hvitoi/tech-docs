@@ -19,7 +19,7 @@
 
 ## Manage volumes
 
-```shell
+```sh
 # List volumes
 docker volume ls
 
@@ -29,7 +29,7 @@ docker volume create "volume-name"
 
 ## Mount volumes
 
-```shell
+```sh
 # Volume mount - Unnamed volume (placeholder for the folder, so that the bind mount do not overwrite this file)
 docker container run \
     -v "/var/lib/mysql" \
@@ -67,7 +67,7 @@ docker container run \
   - `PortWorx`
   - `VMware vSphere Storage`
 
-```shell
+```sh
 docker container run \
   --volume-driver "rexray/ebs"
   --mount "type=bind,source=/data/mysql,target=/varlib/mysql"

@@ -7,7 +7,7 @@
 
 ## Auto-generated inner data types
 
-```shell
+```sh
 # Create index with auto-generated data types
 curl -X PUT "http://localhost:9200/demo-default/_doc/1" \
   -H "Content-Type: application/json" \
@@ -36,7 +36,7 @@ curl -X GET "http://localhost:9200/_cluster/state?pretty=true" > es-cluster-stat
 
 ## Flattened data type specified
 
-```shell
+```sh
 # Create index
 curl -X PUT "http://localhost:9200/demo-flattened"
 
@@ -96,7 +96,7 @@ curl -X POST "http://localhost:9200/demo-flattened/_update/1" \
   - `query_string`
   - `exists`
 
-```shell
+```sh
 # Search term "host" check all inner fields
 curl -X GET "http://localhost:9200/demo-flattened/_search?pretty=true" \
   -H "Content-Type: application/json" \

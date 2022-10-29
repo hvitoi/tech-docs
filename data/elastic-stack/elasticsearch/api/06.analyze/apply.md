@@ -1,6 +1,6 @@
 # Apply analyzer
 
-```shell
+```sh
 curl -s "localhost:9200/movies/_analyze" \
   --request GET \
   --header "Content-Type: application/json" \

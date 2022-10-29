@@ -2,7 +2,7 @@
 
 - Open files, directories, applications
 
-```shell
+```sh
 # open current directory in Finder
 open "."
 

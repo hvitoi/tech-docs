@@ -1,6 +1,6 @@
 # Gitlab Server
 
-```shell
+```sh
 docker run --detach \
   --name "gitlab" \
   --hostname "gitlab.example.com" \
@@ -13,7 +13,7 @@ docker run --detach \
   "gitlab/gitlab-ee:latest"
 ```
 
-```shell
+```sh
 sudo echo -n "127.0.0.1 gitlab.example.com" >> /etc/hosts
 ```
 

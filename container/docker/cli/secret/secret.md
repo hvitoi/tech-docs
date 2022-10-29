@@ -2,7 +2,7 @@
 
 - Secrets are stored at `/run/secrets/`
 
-```shell
+```sh
 # Create a secret
 docker secret create "secret-name" "file"
 docker secret create "psql_user" "psql_user.txt"

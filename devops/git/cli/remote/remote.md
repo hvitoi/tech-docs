@@ -1,6 +1,6 @@
 # remote
 
-```shell
+```sh
 # Show information about remotes
 git remote
 git remote -v # verbose
@@ -8,7 +8,7 @@ git remote -v # verbose
 
 ## add
 
-```shell
+```sh
 # Add/remove remote
 git remote add "remote-name" "remote-uri" # Name is usually origin
 git remove add "origin" "git@github.com:hvitoi/docs.git"
@@ -17,13 +17,13 @@ git remove add "localorigin" "~/docs/"
 
 ## remove
 
-```shell
+```sh
 git remote remove "remote-name" "remote-uri"
 ```
 
 ## show
 
-```shell
+```sh
 # Show specific remote
 git remote show "remote" # This command fetches metadata from remote
 git remote show "origin"
@@ -31,14 +31,14 @@ git remote show "origin"
 
 ## prune
 
-```shell
+```sh
 # Remove from remote the things deleted locally (E.g., branches)
 git remote prune "remote"
 ```
 
 ## update
 
-```shell
+```sh
 # Remove from local the things deleted remotely (E.g., branches)
 git remote update "remote" --prune
 ```

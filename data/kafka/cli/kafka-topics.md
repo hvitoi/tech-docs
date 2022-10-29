@@ -5,7 +5,7 @@
 
 ## List
 
-```shell
+```sh
 # List all the topics in the kafka cluster
 kafka-topics.sh --list \
   --bootstrap-server "localhost:9092"
@@ -18,7 +18,7 @@ kafka-topics.sh --list \
   - 3: leader + two replicas
   - Each instance goes into a different broker
 
-```shell
+```sh
 # Create topic
 kafka-topics.sh --create \
   --bootstrap-server "localhost:9092" \
@@ -38,7 +38,7 @@ kafka-topics.sh --create \
 
 ## Describe
 
-```shell
+```sh
 # Describe all topics
 kafka-topics.sh --describe \
   --bootstrap-server "localhost:9092"
@@ -68,7 +68,7 @@ kafka-topics.sh --describe \
 
 - The replication factor of the topic cannot be defined here (only at topic creation)
 
-```shell
+```sh
 # Change the number of partitions for a topic
 kafka-topics.sh --alter \
   --bootstrap-server "localhost:9092" \
@@ -79,7 +79,7 @@ kafka-topics.sh --alter \
 
 ## Delete
 
-```shell
+```sh
 # Delete a topic
 kafka-topics.sh --delete \
   --bootstrap-server "localhost:9092" \

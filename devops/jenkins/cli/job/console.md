@@ -6,7 +6,7 @@
 - The build is referenced by the build number or the permalink
   - Defaults to lastBuild if not specified
 
-```shell
+```sh
 # show build log
 jenkinscli console "job-name" "build-number"
 jenkinscli console "job-name" # last build

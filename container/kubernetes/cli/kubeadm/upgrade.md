@@ -17,7 +17,7 @@
 
 - **Control Plan**
 
-  ```shell
+  ```sh
   # upgrade kubeadm cli
   apt-get upgrade -y "kubeadm=1.21.0-00"
   kubeadm version
@@ -31,7 +31,7 @@
 
 - **Kubelet**
 
-  ```shell
+  ```sh
   # Drain pods in the node
   kubectl drain "master-node" --ignore-daemonsets
 
@@ -49,7 +49,7 @@
 
 - **Kubelet**
 
-```shell
+```sh
 # Drain node (must be run from the master node!)
 kubectl drain "worker-node" --ignore-daemonsets
 

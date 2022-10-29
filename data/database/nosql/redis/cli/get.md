@@ -1,5 +1,5 @@
 # get
 
-```shell
+```sh
 GET "key"
 ```

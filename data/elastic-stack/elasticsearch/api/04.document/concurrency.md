@@ -9,7 +9,7 @@
 - `if_primary_term`
 - `retry_on_conflict`: number of times to retry automatically
 
-```shell
+```sh
 # Deal with concurrency issues
 curl -X PUT "localhost:9200/movies/_doc/109487?if_seq_no=7&if_primary_term=1&retry_on_conflict=5" \
   -H "Content-Type: application/json" \

@@ -2,7 +2,7 @@
 
 - Read git object
 
-```shell
+```sh
 # Contents of the objects
 git cat-file -p `hash`
 

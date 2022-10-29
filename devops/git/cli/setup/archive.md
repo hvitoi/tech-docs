@@ -1,6 +1,6 @@
 # archive
 
-```shell
+```sh
 git archive \
   --format "zip" \
   --output "./authorizer.zip" \

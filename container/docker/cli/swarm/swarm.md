@@ -56,7 +56,7 @@
 
 `docker service create <image>`
 
-```shell
+```sh
 docker service create --replicas 3 alpine ping 8.8.8.8
 docker service create --name psql --network mydrupal -e POSTGRES_PASSWORD=mypass postgres
 docker service create --name drupal --network mydrupal -p 80:80 drupal
@@ -66,7 +66,7 @@ docker service create --name db --network backend -e POSTGRES_PASSWORD=mypass --
 
 ## Service with secret
 
-```shell
+```sh
 docker service create \
     --name psql \
     --secret psql_user \
@@ -100,7 +100,7 @@ docker service create \
 
 ## Update the service
 
-```shell
+```sh
 docker service update --replicas <number> <service>
 docker service update --secret-rm <service>
 docker service update --image <image> <service>

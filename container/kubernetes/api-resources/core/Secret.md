@@ -11,7 +11,7 @@
 
 ## Encoding/Decoding data
 
-```shell
+```sh
 # encode
 echo -n "my-top-secret" | base64
 

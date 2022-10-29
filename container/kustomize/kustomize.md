@@ -5,7 +5,7 @@
 - `Helm` also solves this problem, but it's an overkill!
 - Kustomize works directly with kubectl, therefore it's natively supported
 
-```shell
+```sh
 # Build manifests from a base folder
 kustomize build "base/" # contains the kustomization.yaml
 kustomize build "base/" | kubectl apply --filename -

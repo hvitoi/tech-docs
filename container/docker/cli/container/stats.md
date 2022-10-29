@@ -3,7 +3,7 @@
 - Show stats about containers
 - Memory, CPU, etc
 
-```shell
+```sh
 # all containers running
 docker container stats
 

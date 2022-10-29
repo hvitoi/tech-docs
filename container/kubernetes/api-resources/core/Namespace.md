@@ -30,7 +30,7 @@ spec:
 
 ## Terminating forever status
 
-```shell
+```sh
 # Force delete namespace in "terminating" state
 kubectl get ns "dev" -o yaml > "ns.yaml"
 kubectl replace --raw "/api/v1/namespaces/dev/finalize" -f "./ns.yaml" # remove spec.finalizers[0] (kubernetes)

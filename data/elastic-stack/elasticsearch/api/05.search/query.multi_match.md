@@ -2,7 +2,7 @@
 
 - Run the same query on multiple fields
 
-```shell
+```sh
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \

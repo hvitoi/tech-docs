@@ -32,7 +32,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123';
 
 ## Test Connections
 
-```shell
+```sh
 # Test connection from jenkins to ubuntu
 ssh -i "~/ubuntu.key" "ubuntu@ubuntu"
 
@@ -51,7 +51,7 @@ mysqldump -u "root" -h "mysql" -p "123" > "/tmp/db.sql" # mysql is the db hostna
 
 ## Ubuntu
 
-```shell
+```sh
 export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
 aws s3 cp "/tmp/db.sql" "s3://hvitoi/db.sql" # Copy a sql dump into S3

@@ -1,6 +1,6 @@
 # emulators
 
-```shell
+```sh
 # List available emulators
 flutter emulators
 

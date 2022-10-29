@@ -1,6 +1,6 @@
 # label
 
-```shell
+```sh
 # Set up a label for a namespace
 kubectl label "obj-kind" "obj-name" "label"
 kubectl label "ns" "default" "istio-injection=enabled"

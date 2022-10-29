@@ -3,7 +3,7 @@
 - Services in the same `docker-compose` file are connected to the same network!
 - Access between services are made via DNS by their service name
 
-```shell
+```sh
 # List Services of the docker-compose
 docker-compose ps
 

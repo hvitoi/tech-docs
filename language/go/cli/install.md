@@ -3,7 +3,7 @@
 - `$GOROOT`: sdk directory
 - `$GOPATH`: workspace directory
 
-```shell
+```sh
 # Compile and install a package
 go install
 

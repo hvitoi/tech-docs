@@ -2,6 +2,6 @@
 
 - Package description
 
-```shell
+```sh
 brew desc "bash"
 ```

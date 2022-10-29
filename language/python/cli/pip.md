@@ -1,6 +1,6 @@
 # pip
 
-```shell
+```sh
 python -m pip install --upgrade pip
 
 pip install jupyterlab
@@ -26,7 +26,7 @@ pip install scikit-learn
 pip install nltk
 ```
 
-```shell
+```sh
 django          # Framework for creating websites
 pillow          # Managing images
 ```

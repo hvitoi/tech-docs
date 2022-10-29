@@ -21,7 +21,7 @@ Properties:
   - Log config is defined in `/etc/awslogs/awslogs.conf`
   - Cloudwatch region is defined in `/etc/awslogs/awscli.conf`
 
-  ```shell
+  ```sh
   yum install -y awslogs
   ```
 

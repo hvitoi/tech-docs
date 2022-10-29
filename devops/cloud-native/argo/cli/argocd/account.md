@@ -1,5 +1,5 @@
 # account
 
-```shell
+```sh
 argocd account update-password
 ```

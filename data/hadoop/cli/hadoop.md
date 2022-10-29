@@ -4,7 +4,7 @@
 
 - Manipulate the HDFS
 
-```shell
+```sh
 # list files at root dir
 hadoop fs -ls "/"
 

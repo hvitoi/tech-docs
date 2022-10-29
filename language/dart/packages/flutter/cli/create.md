@@ -3,7 +3,7 @@
 - Package name must contain no dashes or dots
 - Convention is to use all lower case with snake case
 
-```shell
+```sh
 # create a new project
 flutter create "package_name"
 

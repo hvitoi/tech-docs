@@ -2,7 +2,7 @@
 
 - `Compiles` and `Runs` the flutter code in an `Android`/`iOS` emulator currently running
 
-```shell
+```sh
 # run in the first active device
 flutter run
 

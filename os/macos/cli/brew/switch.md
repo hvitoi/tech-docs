@@ -2,7 +2,7 @@
 
 - Switch formulae versions
 
-```shell
+```sh
 brew switch "hugo" "0.18.1"
 
 # list versions

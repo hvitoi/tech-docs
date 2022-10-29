@@ -2,7 +2,7 @@
 
 - Remove restriction of deploying pods to a node
 
-```shell
+```sh
 # Make a node unschedulable
 kubectl uncordon "node-name"
 ```

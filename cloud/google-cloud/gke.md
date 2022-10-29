@@ -18,7 +18,7 @@
 
 1. Install [GCloud SDK](https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu)
 
-```shell
+```sh
 # Add the Cloud SDK distribution URI as a package source
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 
@@ -31,7 +31,7 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk
 
 1. Add the new context
 
-```shell
+```sh
 # Login to GCloud SDK
 gcloud auth login
 
@@ -64,7 +64,7 @@ kubectl config use-context "context-name"
 
 - Go to official documentation of [Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke)
 
-```shell
+```sh
 # Initialize as cluster-admin
 kubectl create clusterrolebinding cluster-admin-binding \
   --clusterrole cluster-admin \
@@ -79,7 +79,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 1. Run the skaffold
 
-```shell
+```sh
 # Authenticate
 gcloud auth application-default login
 

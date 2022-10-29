@@ -9,13 +9,13 @@
 
 - Convert nginx json logs into bulk format
 
-```shell
+```sh
 awk '{print "{\"index\":{}}\n" $0}' nginx_json_logs > nginx_json_logs_bulk
 ```
 
 - Mapping
 
-```shell
+```sh
 curl -s "http://localhost:9200/nginx" \
   --request PUT \
   --header 'Content-Type: application/json' \
@@ -35,7 +35,7 @@ curl -s "http://localhost:9200/nginx" \
 
 - Import data
 
-```shell
+```sh
 curl -s  'http://localhost:9200/nginx/_doc/_bulk' \
   --request POST \
   --header 'Content-Type: application/x-ndjson' \

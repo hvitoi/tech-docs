@@ -4,11 +4,11 @@
 - Uses the native `type=module` import from ES2015
 - Supports `hot code replacement`
 
-```shell
+```sh
 npm init "vite" "my-app"
 ```
 
-```shell
+```sh
 # run app
 npm run dev
 

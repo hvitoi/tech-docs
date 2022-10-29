@@ -5,7 +5,7 @@
 - Show if there are changes ready to be committed
   - The cross sign in `zsh` tells that there are uncommitted changes
 
-```shell
+```sh
 git status
 git status -v # verbose
 ```

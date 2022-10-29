@@ -19,7 +19,7 @@
 
 - Run playbook
 
-```shell
+```sh
 ansible-playbook -i "hosts-file" "playbook-file"
 ansible-playbook -i "./hosts" "./playbook.yaml" -e "PEOPLE_AGE=25" # -e for parameters
 ```

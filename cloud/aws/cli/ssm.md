@@ -1,6 +1,6 @@
 # ssm
 
-```shell
+```sh
 # Get parameters
 aws ssm get-parameters \
   --names "/my-app/dev/db-url" "/my-app/dev/db-password"

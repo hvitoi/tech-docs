@@ -1,5 +1,5 @@
 # token
 
-```shell
+```sh
 kubeadm token list
 ```

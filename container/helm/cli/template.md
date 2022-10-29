@@ -1,6 +1,6 @@
 # template
 
-```shell
+```sh
 # save the manifest files from a repo
 helm template "consul" "hashicorp/consul" \
   --namespace "vault" \

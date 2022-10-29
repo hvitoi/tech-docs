@@ -25,7 +25,7 @@
 
 ## Commands
 
-```shell
+```sh
 # Pull changes (fetch and merge) for the current checked out branch (tracked branch)
 # The commits will be fetched from all branches, but it will only be merged into the current checked out branch
 git pull
@@ -37,7 +37,7 @@ git pull "origin" "main" -v # verbose
 
 ## Pull strategies
 
-```shell
+```sh
 # git config pull.ff only: fast-forward only
 git pull --ff-only
 

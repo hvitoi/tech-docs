@@ -16,7 +16,7 @@ target:
 
 - Send a POST request to the binding object API to update it
 
-```shell
+```sh
 curl "http://$SERVER/api/v1/namespaces/default/pods/$PODNAME/binding/" \
   --request "POST" \
   --header "Content-Type:application/json" \

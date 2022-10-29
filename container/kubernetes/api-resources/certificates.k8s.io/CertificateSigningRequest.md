@@ -15,7 +15,7 @@ spec:
   request: LS0tLkasRIJDHKAHK81LS0tLkasRIJDHKAHK81...
 ```
 
-```shell
+```sh
 kubectl get csr
 kubectl certificate approve "henry"
 ```

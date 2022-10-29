@@ -3,14 +3,14 @@
 - Show current flutter config
 - Modify flutter config
 
-```shell
+```sh
 # show all custom configs
 flutter config
 ```
 
 ## android studio
 
-```shell
+```sh
 # android studio path
 flutter config --android-studio-dir "/var/lib/flatpak/app/com.google.AndroidStudio/current/active/files/extra/android-studio" # flatpak installation
 flutter config --android-studio-dir "/Applications/Android Studio.app/Contents" # brew installation
@@ -18,7 +18,7 @@ flutter config --android-studio-dir "/Applications/Android Studio.app/Contents" 
 
 ## android sdk
 
-```shell
+```sh
 # android sdk path
 flutter config --android-sdk "~/android-sdk"
 ```
@@ -28,7 +28,7 @@ flutter config --android-sdk "~/android-sdk"
 - Enable flutter desktop support
 - This will create a new device
 
-```shell
+```sh
 # macos
 flutter config --enable-macos-desktop
 

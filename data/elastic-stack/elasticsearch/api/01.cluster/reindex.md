@@ -1,6 +1,6 @@
 # Reindex
 
-```shell
+```sh
 curl -s 'localhost:9200/_reindex' \
   --request POST \
   --header "Content-Type: application/json" \
@@ -20,7 +20,7 @@ curl -s 'localhost:9200/_reindex' \
 }
 ```
 
-```shell
+```sh
 curl --silent --request POST 'http://localhost:9200/_reindex?pretty' --data-raw '{
  "source": {
    "index": "movies"

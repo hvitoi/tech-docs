@@ -2,6 +2,6 @@
 
 - Check if the `.tf` files are valid
 
-```shell
+```sh
 terraform validate
 ```

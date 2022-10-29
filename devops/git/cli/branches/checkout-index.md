@@ -2,7 +2,7 @@
 
 - Take the files from staging area (index) and put them in the working directory
 
-```shell
+```sh
 # Select a file from index
 git checkout-index `file`
 
