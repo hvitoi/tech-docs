@@ -1,6 +1,6 @@
 # df
 
-- Disk partition information
+- Information about all mounted file systems
 
 ```sh
 # Disk information (Disk Free)
