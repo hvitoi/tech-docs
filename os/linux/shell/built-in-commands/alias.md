@@ -10,6 +10,9 @@ alias dir = "ls -l | grep ^d"
 # List all aliases
 alias
 
+# shows the content of an existing alias
+alias ll
+
 # Remove alias
-unalias `alias_name`
+unalias "alias_name"
 ```
