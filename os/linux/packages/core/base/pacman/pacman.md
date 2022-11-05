@@ -116,6 +116,12 @@ pacman -Fl "package"
 ```sh
 # test local database
 pacman -Dk
+
+# mark a package as explicit installed
+pacman -D --asexplicit "package"
+
+# mark a package as dependency
+pacman -D --asdeps "package"
 ```
 
 ## pacman.conf
