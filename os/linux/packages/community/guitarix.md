@@ -5,7 +5,7 @@
 ```sh
 # Add the necessary groups to your user
 sudo usermod -aG "audio" $USER
-sudo usermod -aG "realtime" $USER # create it if it doesn't exist
+sudo usermod -aG "realtime" $USER # might be necessary to install the realtime-privileges package (or realtime group)
 ```
 
 ## Limits

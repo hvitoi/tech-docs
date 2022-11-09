@@ -32,8 +32,32 @@ nmcli device wifi show-password
 ```sh
 # Show all connections (wifi, bridge, vpn, ethernet)
 nmcli connection
-nmcli connection show
+```
 
+```sh
+# import a connection configuration
+nmcli connection import \
+  type "wireguard" \
+  file "wg0.conf"
+```
+
+```sh
+nmcli connection show "wg0"
+```
+
+```sh
 # Up a connection
 nmcli connection up "connection-name"
+```
+
+```sh
+nncli connection modify "wg0" \
+  connection.autoconnect "no"
+
+nncli connection modify "wg0" \
+  connection.interface-name "wg1"
+```
+
+```sh
+nmcli connection delete "wg0"
 ```
