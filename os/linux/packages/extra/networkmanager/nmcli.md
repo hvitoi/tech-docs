@@ -55,6 +55,9 @@ nncli connection modify "wg0" \
   connection.autoconnect "no"
 
 nncli connection modify "wg0" \
+  connection.id "Awesome_vpn"
+
+nncli connection modify "wg0" \
   connection.interface-name "wg1"
 ```
 
