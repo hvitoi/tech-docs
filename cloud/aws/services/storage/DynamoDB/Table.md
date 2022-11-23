@@ -43,17 +43,6 @@ Properties:
 - The combination of both is the `Primary Key`
 - Here are defined the partition keys and sort keys
 
-## AttributeDefinitions
-
-- Define all the attributes that are going to be used for query
-- Each attribute defined here must be either in KeySchema or GlobalSecondaryIndexes
-- Attribute created on-the-fly cannot be used for searching
-
-- **Data types**
-  - `Scalar Types`: String, Number, Binary, Boolean, Null
-  - `Document Types`: List, Map
-  - `Set Types`: String Set, Number Set, Binary Set
-
 ## GlobalSecondaryIndexes
 
 - GSI is an index with a `partition key` (hash) and a `sort key` (range)
@@ -67,6 +56,66 @@ Properties:
 
 - LSI is an index with same `partition key` (hash), but different `sort key` (range)
 - Allows search within the same partition
+
+## AttributeDefinitions
+
+- Define all the attributes that are going to be used for query
+- Each attribute defined here must be either in KeySchema or GlobalSecondaryIndexes
+- Attribute created on-the-fly cannot be used for searching
+
+- **Data types**
+  - `Scalar Types`: String, Number, Binary, Boolean, Null
+  - `Document Types`: List, Map
+  - `Set Types`: String Set, Number Set, Binary Set
+
+```json
+{
+  "my-string": {
+    "S": "aa"
+  },
+  "my-number": {
+    "N": "0"
+  },
+  "my-boolean": {
+    "BOOL": false
+  },
+  "my-binary": {
+    "B": ""
+  },
+  "my-null": {
+    "NULL": true
+  },
+  "my-string-set": {
+    "SS": ["aa", "bb", "cc"]
+  },
+  "my-number-set": {
+    "NS": ["0", "1", "2"]
+  },
+  "my-binary-set": {
+    "BS": ["", ""]
+  },
+  "my-list": {
+    "L": [
+      {
+        "S": "aa"
+      },
+      {
+        "N": "0"
+      }
+    ]
+  },
+  "my-map": {
+    "M": {
+      "key1": {
+        "S": "aa"
+      },
+      "key2": {
+        "N": "0"
+      }
+    }
+  }
+}
+```
 
 ## BillingMode
 
