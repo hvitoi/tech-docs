@@ -3,7 +3,7 @@
 - Information about all mounted file systems
 
 ```sh
-# Disk information (Disk Free)
+# Disk information (mounted disks only)
 df
 
 # Human readable
