@@ -1,6 +1,5 @@
 (require '[clojure.walk :as walk])
 
-
 (def counter (atom -1))
 (def line-counter (atom 0))
 (def print-touch
