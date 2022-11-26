@@ -31,6 +31,8 @@ VK_LOADER_DEBUG=info vkcube
 
 ## VK_ICD_FILENAMES
 
+- Set the preferred vulkan driver
+
 ```sh
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json vkcube
 ```

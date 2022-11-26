@@ -4,6 +4,8 @@
 - Loading kernel modules manually (through `modprobe`) means you will have to modprobe every time you reboot
 - Modprobe by default loads modules located at the following directories (usually `.ko` extension)
   - `/lib/modules/$(uname -r)`
+    - `./updates/dkms` for dkms manually installed
+    - `./kernel` for modules built into the kernel
   - `/usr/lib/modules/$(uname -r)`
 
 ```sh

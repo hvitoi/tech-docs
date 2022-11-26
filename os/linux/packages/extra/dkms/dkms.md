@@ -35,3 +35,9 @@ sudo dkms remove "apple-bce/0.2" -k "6.0.1-arch1-1" # remove from a specific ker
 # clean up folders
 rm -rf "apple-bce-0.2"
 ```
+
+## unbuild
+
+```sh
+dkms unbuild -m "apple-gmux/yourversion"
+```

@@ -1,4 +1,4 @@
-# apple_ib_tb
+# apple_touchbar
 
 - Touchbar settings
 
@@ -12,7 +12,7 @@
 # 2: Show F1-F12, use the fn key to switch to media and brightness controls
 # 3: Only show media and brightness controls
 # 4: Only show the escape key
-options apple_ib_tb fnmode=1
+options apple_touchbar fnmode=1
 ```
 
 ## Issues with suspend
@@ -25,9 +25,9 @@ options apple_ib_tb fnmode=1
 
 #!/usr/bin/env bash
 if [ "${1}" = "pre" ]; then
-        modprobe -r apple_ib_tb
+        modprobe -r apple_touchbar
 elif [ "${1}" = "post" ]; then
-        modprobe apple_ib_tb
+        modprobe apple_touchbar
 fi
 ```
 
