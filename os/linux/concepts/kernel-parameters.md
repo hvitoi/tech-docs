@@ -46,27 +46,35 @@ pcie_ports=auto # capabilities depending on the bios
 ## pci
 
 ```conf
-pci=hpbussize=0x33,hpmemsize=4M,hpmmiosize=128M,realloc
-pci=hpbussize=0x10,hpmmiosize=32M,hpmmioprefsize=512M,realloc,assign-busses,nocrs
-```
-
-## iommu
-
-```conf
-iommu=on
-iommu=pt
-```
-
-## iommu.passthrough
-
-```conf
-iommu.passthrough=1
+pci=
+  realloc,
+  nocrs,
+  assign-busses,
+  hpbussize=0x33,
+  hpmemsize=4M,
+  hpmmiosize=256M,
+  hpmmioprefsize=512M
 ```
 
 ## intel_iommu
 
 ```conf
 intel_iommu=on
+```
+
+## iommu
+
+- Device passthrough
+
+```conf
+iommu=on
+iommu=pt # pass through only devices that are supported
+```
+
+## iommu.passthrough
+
+```conf
+iommu.passthrough=1
 ```
 
 ## nowatchdog
