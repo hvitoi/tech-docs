@@ -3,3 +3,4 @@
 
 (empty? ["a"]) ; false
 
+(read)
