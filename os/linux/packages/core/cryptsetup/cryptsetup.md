@@ -102,13 +102,18 @@ cryptsetup resize "/dev/mapper/lol"
 - `noauto` param mounts on demand
 
 ```sh
-# get UUID of the encrypted device
+# get UUID of the encrypted device (use this one on crypttab)
 cryptsetup luksUUID "/dev/sdx"
+
+# get UUID of the decrypted device (use this one on fstab)
+blkid "/dev/mapper/my-storage"
 ```
 
 ```crypttab
 moon UUID=692e7b5c-5c92-4fd3-8822-97b0355c0941 none luks
 ```
+
+- Suggest to store the key files at `/etc/cryptsetup-keys.d/`
 
 ```fstab
 /dev/mapper/moon  /media/hvitoi/moon  exfat defaults,uid=1000  0 2
