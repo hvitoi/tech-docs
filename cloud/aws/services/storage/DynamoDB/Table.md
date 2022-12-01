@@ -4,9 +4,10 @@
 - Multi-AZ
 - Integration with IAM for authentication & authorization
 
-- DynamoDB is made of `Tables` (Collection)
-- Each table can have infinite number of `Items` (Document). With maximum size of 400KB
-- Each item has `Attributes` (Field)
+- Structure
+  - DynamoDB is made of `Tables` (Collection)
+  - Each table can have infinite number of `Items` (Document). With maximum size of 400KB
+  - Each item has `Attributes` (Field)
 
 ```yaml
 Type: AWS::DynamoDB::Table
@@ -39,23 +40,42 @@ Properties:
 
 ## KeySchema
 
-- Each table has `Partition Key` (hash) and a `Sort Key` (range) (optional)
+- Each table has `Partition Key` (hash) and an optional `Sort Key` (range)
+- Partition Key
+  - It's used as input to the hashing function
+  - The output of the hashing function will tell to which physical partition the item will go
+  - Same partition key goes to same partition (similar to kafka)
+  - This speeds the lookup, given that with the partition key it's possible to know in which partition the data is stored
+- Sort key
+  - It's used to tell where dynamo will store the data inside of the partition
+  - This way, the values for the same partition key can be sorted physically on the partition
 - The combination of both is the `Primary Key`
 - Here are defined the partition keys and sort keys
 
 ## GlobalSecondaryIndexes
 
-- GSI is an index with a `partition key` (hash) and a `sort key` (range)
+- Creating a GSI clones the table using a new partition key (`GSI Partition Key`) and optionally a new sort key (`LSI Sort Key`)
+  - The main table and the GSI tables are kept in-sync
+  - The original partition key becomes a conventional attribute in the GSI Table
+- On the `GSI table` you can then `query on attributes` (the GSI partition key) that is not partition key or sort key
+  - More efficient! Avoids scanning the whole table
+- The RCU / WCU is defined separately for the `GSI table`
 - Allows search across partitions
-
-- Allows `query on attributes` other than on the Primary Key
+- Writes the Main Table leads to writes to GSI, which doubles the cost of writing
+  - Use the WCU for the GSI equal to the WCU of the main table!
+- There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
+- You can have up to `20 GSIs`
 
 ![Indexes](../../../images/dynamodb-indexes.png)
 
 ## LocalSecondaryIndexes
 
-- LSI is an index with same `partition key` (hash), but different `sort key` (range)
-- Allows search within the same partition
+- LSI add a new "sort key" (the `LSI Sort Key`)
+- This way, you can fetch the item directly using the partition key + the LSI sort key
+- Allows search within the same partition (or same partition key)
+- You can have up to `5 LSIs`
+- Can only be defined at table creation time
+- No extra cost! (this doesn't clone the table like GSI does)
 
 ## AttributeDefinitions
 
@@ -121,12 +141,17 @@ Properties:
 
 - It's how to control the table's `capacity` (read/write throughput)
 
-  - `Provisioned Mode` (default)
+  - **Provisioned Mode** (default)
     - Specified beforehand
     - Autoscaling can be configured
     - RCU (read capacity unit)
     - WCU (write capacity unit)
-  - `On-Demand Mode`
+    - The total capacity unit (read or write) is shared (splitted equally) for all partitions
+    - Therefore it's important the spread the data evenly across the partitions
+    - `Adaptive capacity` can also be used. With that, a hot partition can borrow capacity from another idler partition
+    - If the capacity is exceeded (throttling) dynamo will reject the request
+    - There is a hard limit of `3000 RCU` and `1000 WCU` per partition, if you need to go over it you need to use DAX (caching layer)
+  - **On-Demand Mode**
     - Scales automatically based on the workload
     - More expensive!
     - Useful for very unpredictable workloads
@@ -134,6 +159,8 @@ Properties:
 ## StreamSpecification
 
 - `DynamoDB Streams` offers an ordered stream of modifications in a table (create, update, delete, ...)
+- Capture item-level changes in the table and push the changes to DynamoDB streams
+- The change can be accessed through `DynamoDB Streams API`
 - Streams can be sent to
   - Kinesis Data Streams
   - AWS Lambda
@@ -151,3 +178,8 @@ Properties:
 ## TimeToLiveSpecification
 
 - Automatically expire an item using its `timestamp` attribute (`ExpTime`)
+- The deletion is not immediate. It can take up to 48 hours
+
+## PointInTimeRecoverySpecification
+
+- Snapshots of the table that allows reverting back to a specific point in time

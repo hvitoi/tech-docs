@@ -5,15 +5,23 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    Perioda.run();
+    PeriodNew.run();
 
+    // Instance methods
+    PeriodGetYears.run();
   }
 }
 
-class Perioda {
+class PeriodNew {
   static void run() {
-    // 5 seconds
     Period period = Period.between(LocalDate.now(), LocalDate.now());
     System.out.println(period.getYears());
+  }
+}
+
+class PeriodGetYears {
+  static void run() {
+    Period period = Period.between(LocalDate.now(), LocalDate.now());
+    int years = period.getYears();
   }
 }
