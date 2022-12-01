@@ -1,4 +1,6 @@
-# Hypervisor
+# Virtualization
+
+## Hypervisor
 
 - Program that creates and runs `virtual machines`
 - `Host machine` vs. `Guest Machine`
@@ -18,17 +20,11 @@ LC_ALL=C lscpu | grep Virtualization
 
 - Useful packages
 
-  - `qemu-desktop`: vm emulator (uses KVM or Zen under the hood). It's the API, command line
+  - `qemu-desktop`: vm emulator (uses KVM or Zen under the hood). It's the API, command line (`edk2-ovmf` installed as dependency - UEFI support)
   - `virt-manager`: GUI for managing VMs (`libvirt` is installed as a dependency)
   - `gnome-boxes`: GUI for managing VMs (also uses `libvirt`)
   - `dnsmasq`: networking
-
   - `qemu-arch-extra`: allow virtualizing different architectures
-  - `ovmf`: allows VM with UEFI
-  - `vde2`: networking tool
-  - `ebtables`: networking
-  - `bridge-utils`: networking
-  - `openbsd-netcat`: networking
 
 ```sh
 # Starts KVM daemon
