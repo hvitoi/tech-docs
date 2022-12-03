@@ -183,8 +183,13 @@ Properties:
 
 ## TimeToLiveSpecification
 
-- Automatically expire an item using its `timestamp` attribute (`ExpTime`)
-- The deletion is not immediate. It can take up to 48 hours
+- Automatically expire an item using a `timestamp` key that can be configured
+  - The timestamp key must be in `epoch seconds` format
+  - Stores the time when it will be expired
+  - Must be `N` type key (number)
+- The deletion is not immediate. It can take up to 48 hours. If the table is long it can take even longer. Don't rely on it.
+- Free! Does not consume write throughput
+- Consumes `burst capacity`. That means that if the burst capacity is over, the deletion will be delay until it's recovered
 
 ## PointInTimeRecoverySpecification
 
@@ -192,9 +197,57 @@ Properties:
 
 ## APIs
 
+### Scan
+
+- Scan the whole table to find an item
+- Consumes lots of RCU
+- **filter expressions** are applicable only for `scan` and `query` operations
+
+```python
+import boto3
+from boto3.dynamodb.conditions import Key
+
+def lambda_handler(event, context):
+  client = boto3.resource('dynamodb')
+  table = client.Table('MyTable')
+
+  response = table.scan(
+    FilterExpression = Attr('MyKey').eq('USA')
+  )
+
+    response = table.scan(
+    FilterExpression =
+      Attr('MyKey').eq('USA') &
+      Attr('MyKey').begins_with('2019')
+  )
+```
+
+## Query
+
+- Returns a list of items
+- Query operations require at least a `hash key`
+- It's like a scan but within a partition only
+
+```python
+import json
+import boto3
+from boto3.dynamodb.conditions import Key
+
+def lambda_handler(event, context):
+  client = boto3.resource('dynamodb')
+  table = client.Table('MyTable')
+
+  response = table.query(
+    KeyConditionExpression =
+      Key('MyPartitionKey').eq('Lala') &
+      Key('MySortKey ').gt('2019-01-01')
+  )
+```
+
 ### GetItem
 
-- Returns one item
+- Returns one specific item
+- Requires the `hash key` and the `range key` (if any)
 
 ```python
 import json
@@ -210,26 +263,6 @@ def lambda_handler(event, context):
       'MyPartitionKey': 'Lala',
       'MySortKey': '2019-11-17'
     }
-  )
-```
-
-## Query
-
-- Returns a list of items
-
-```python
-import json
-import boto3
-from boto3.dynamodb.conditions import Key
-
-def lambda_handler(event, context):
-  client = boto3.resource('dynamodb')
-  table = client.Table('MyTable')
-
-  response = table.query(
-    KeyConditionExpression =
-      Key('MyPartitionKey').eq('Lala') &
-      Key('MySortKey ').gt('2019-01-01')
   )
 ```
 
