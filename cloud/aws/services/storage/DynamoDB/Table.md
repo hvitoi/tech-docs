@@ -35,7 +35,13 @@ Properties:
 ```
 
 - **Transactions**
-  - Write to two tables at the same time or none=
+  - Write to two tables at the same time or none
+  - Available as of 2018
+  - Does not use locks! It just fails if any item is modified during the transaction
+  - You should design your system to handle these `write collisions`
+  - Limited to `25 items` per transaction
+  - Transactions lead to `double to the cost`. Given that an additional read have to be done to ensured the item hasn't changed (read + commit)
+  - Uses the `TransactGetItems` and `TransactWriteItems` APIs
     ![Transactions](../../../images/dynamodb-transactions.png)
 
 ## KeySchema
@@ -183,3 +189,58 @@ Properties:
 ## PointInTimeRecoverySpecification
 
 - Snapshots of the table that allows reverting back to a specific point in time
+
+## APIs
+
+### GetItem
+
+- Returns one item
+
+```python
+import json
+import boto3
+from boto3.dynamodb.conditions import Key
+
+def lambda_handler(event, context):
+  client = boto3.resource('dynamodb')
+  table = client.Table('MyTable')
+
+  response = table.get_item(
+    Key = {
+      'MyPartitionKey': 'Lala',
+      'MySortKey': '2019-11-17'
+    }
+  )
+```
+
+## Query
+
+- Returns a list of items
+
+```python
+import json
+import boto3
+from boto3.dynamodb.conditions import Key
+
+def lambda_handler(event, context):
+  client = boto3.resource('dynamodb')
+  table = client.Table('MyTable')
+
+  response = table.query(
+    KeyConditionExpression =
+      Key('MyPartitionKey').eq('Lala') &
+      Key('MySortKey ').gt('2019-01-01')
+  )
+```
+
+### BatchWriteItems
+
+- Allow partial write (if any of the data changes during the operation)
+
+### TransactGetItems
+
+- Get multiple items in multiple tables at once. If during this process one items changes, the whole transaction fails
+
+### TransactWriteItems
+
+- Write to multiple items in multiple tables at once. If any item modifies while the operation is taking place, the whole transaction is aborted
