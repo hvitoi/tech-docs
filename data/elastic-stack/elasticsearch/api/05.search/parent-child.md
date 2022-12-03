@@ -2,7 +2,7 @@
 
 - `franchise` is the parent, `film` is the child
 
-```sh
+```shell
 # Find films (child) by franchise (parent)
 curl -X GET "localhost:9200/series/_search?pretty" \
   -H "Content-Type: application/json" \

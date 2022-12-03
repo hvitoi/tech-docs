@@ -1,5 +1,5 @@
 # aws-cli-v2-bin
 
-```sh
+```shell
 aws --version
 ```

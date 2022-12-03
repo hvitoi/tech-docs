@@ -4,7 +4,7 @@
 - When applying a diff, the `terraform.tfstate` file is updated
 - Terraform state file is locked while the changes are being applied
 
-```sh
+```shell
 # plan and apply
 terraform apply
 

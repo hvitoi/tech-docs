@@ -8,7 +8,7 @@
 
 ## Install
 
-```sh
+```shell
 # Install with Helm Chart
 helm repo add "argo" "https://argoproj.github.io/argo-helm"
 helm upgrade "argocd" "argo/argo-cd" \

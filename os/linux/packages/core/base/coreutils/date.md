@@ -2,7 +2,7 @@
 
 - Usually combined with scripts
 
-```sh
+```shell
 # Show current date
 date
 

@@ -1,10 +1,10 @@
 # Data import via python script
 
-```sh
+```shell
 python3 MoviesToJson.py > movies.json
 ```
 
-```sh
+```shell
 curl -s 'localhost:9200/_bulk' \
   --request PUT \
   --header "Content-Type: application/json" \

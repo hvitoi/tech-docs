@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#generic>
 
-```sh
+```shell
 ECHO "List keys in your redis server"
 KEYS *
 

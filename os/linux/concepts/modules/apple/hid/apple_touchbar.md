@@ -31,7 +31,7 @@ elif [ "${1}" = "post" ]; then
 fi
 ```
 
-```sh
+```shell
 # copy the script into the sleep hooks
 cp "./rmmod_tb.sh" "/lib/systemd/system-sleep/rmmod_tb.sh"
 

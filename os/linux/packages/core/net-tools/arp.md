@@ -2,6 +2,6 @@
 
 - Deprecated: use `ip neighbor` instead
 
-```sh
+```shell
 arp
 ```

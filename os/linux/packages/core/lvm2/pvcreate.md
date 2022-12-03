@@ -6,7 +6,7 @@
   - A loopback file
   - A device mapper device
 
-```sh
+```shell
 pvcreate "/dev/sdx1"
 ```
 

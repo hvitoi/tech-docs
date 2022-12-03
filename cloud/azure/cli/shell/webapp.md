@@ -2,7 +2,7 @@
 
 ## List / Show
 
-```sh
+```shell
 # List all apps
 az webapp list \
   --resource-group "demo-rg"
@@ -16,7 +16,7 @@ az webapp show \
 
 ## Create
 
-```sh
+```shell
 # Create webapp. The app is tied to an service plan
 az webapp create \
   --resource-group "demo-rg" \
@@ -30,7 +30,7 @@ echo "http://hvitoi.azurewebsites.net"
 
 ## Up
 
-```sh
+```shell
 # Deploy or reload webapp app
 az webapp up \
   --location "region" \
@@ -43,7 +43,7 @@ az webapp up \
 - Configure the source code to be deployed
 - Pick the code from a local folder or from git repository
 
-```sh
+```shell
 # Deploy code from remote git repository
 az webapp deployment source config \
   --resource-group "demo-rg" \
@@ -65,7 +65,7 @@ az group deployment create \
   --parameters "siteName=$mySiteName" "hostingPlanName=viewerhost"
 ```
 
-```sh
+```shell
 # Setup credentials to deploy webapp from azure git repository
 az webapp deployment user set \
   --user-name "azure-webapp-username" \
@@ -83,7 +83,7 @@ git push azure master
 
 ## CORS
 
-```sh
+```shell
 az webapp cors add
   --resource-group "demog-rg" \
   --name "hvitoi" \
@@ -92,7 +92,7 @@ az webapp cors add
 
 ## Logs
 
-```sh
+```shell
 # Configuration for docker container
 az webapp log config \
   --name "hvitoi" \
@@ -119,7 +119,7 @@ az webapp log tail \
 
 ## Containers
 
-```sh
+```shell
 # Configure the access to the container repository
 az webapp config container set \
   --name "my-app" \
@@ -137,7 +137,7 @@ az webapp create \
 
 ## Custom DNS
 
-```sh
+```shell
 az webapp config hostname add \
   --webapp-name "my-app" \
   --resource-group "demo-rgs" \

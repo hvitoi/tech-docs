@@ -1,6 +1,6 @@
 # kafka-reassign-partitions
 
-```sh
+```shell
 # Generate
 kafka-reassign-partitions.sh \
   --broker-list "0,1,2" \

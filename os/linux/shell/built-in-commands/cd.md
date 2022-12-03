@@ -1,6 +1,6 @@
 # Navigating commands
 
-```sh
+```shell
 # Change directory
 cd "./dir"
 
@@ -17,7 +17,7 @@ cd ~
 
 ## Other navigating commands
 
-```sh
+```shell
 # Save currect dir and go to /etc dir
 pushd "/etc"
 

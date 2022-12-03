@@ -43,7 +43,7 @@
 
 ## Query
 
-```sh
+```shell
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \

@@ -2,11 +2,11 @@
 
 - Daemon to interact with KVM
 
-```sh
+```shell
 systemctl enable libvirtd.service
 ```
 
-```sh
+```shell
 # add yourself into the libvirt group to be able to run vms without root
 usermod -aG "libvirt" $USER
 ```

@@ -12,7 +12,7 @@
 - `indexes` turn into `tables`
 - `documents` turn into `rows`
 
-```sh
+```shell
 curl -s "localhost:9200/_sql?format=txt" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -39,7 +39,7 @@ curl -s "localhost:9200/_sql?format=txt" \
 
 ## Translate sql to conventional json query
 
-```sh
+```shell
 curl -s "localhost:9200/_sql/translate" \
   --request GET \
   --header "Content-Type: application/json" \

@@ -5,12 +5,12 @@
   - Kestrel web server must not be used for production
 - Builded applications are located at `bin/Release/net5.0/publish/app.dll`
 
-```sh
+```shell
 # Run (build & execute) current project
 dotnet run
 ```
 
-```sh
+```shell
 # Run builded project
 dotnet "awesome-app.dll"
 ```

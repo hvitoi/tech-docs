@@ -4,7 +4,7 @@
 - visudo adds groups to `/etc/sudoers`
 - Uncomment `%wheel ALL=(ALL) ALL` to give all users in this group root permissions
 
-```sh
+```shell
 # visudo with vi
 visudo
 

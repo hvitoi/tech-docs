@@ -5,7 +5,7 @@
 
 ## Install
 
-```sh
+```shell
 wget "https://github.com/etcd-io/etcd/releases/download/v3.5.0/etcd-v3.5.0-linux-amd64.tar.gz"
 tar -xzvf "etcd-v3.5.0-linux-amd64.tar.gz"
 ./etcd
@@ -16,7 +16,7 @@ tar -xzvf "etcd-v3.5.0-linux-amd64.tar.gz"
 - Control client for etcd
 - Version 2 is used by default unless v3 is specified
 
-```sh
+```shell
 # set key-value
 etcdctl set "key" "value"
 
@@ -24,7 +24,7 @@ etcdctl set "key" "value"
 etcdctl get "key"
 ```
 
-```sh
+```shell
 etcdctl backup
 etcdctl cluster-health
 etcdctl mk
@@ -36,7 +36,7 @@ etcdctl set
 
 - Set etcdctl v3: `export ETCDCTL_API=3`
 
-```sh
+```shell
 etcdctl snapshot save
 etcdctl endpoint health
 etcdctl get
@@ -45,7 +45,7 @@ etcdctl put
 
 ## Snapshots
 
-```sh
+```shell
 # save snapshot
 ETCDCTL_api=3 etcdctl \
   snapshot save "snapshot.db"
@@ -68,7 +68,7 @@ ExecStart=/usr/local/bin/etcd \\
   --data-dir=/var/lib/etcd-from-backup
 ```
 
-```sh
+```shell
 # Restart etcd with the newer snapshot data
 systemctl daemon-reload
 systemctl restart etcd

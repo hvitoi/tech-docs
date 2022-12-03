@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#set>
 
-```sh
+```shell
 # Set data
 SET "key" "value"
 SET "count" "10"

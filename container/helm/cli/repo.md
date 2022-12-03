@@ -1,6 +1,6 @@
 # repo
 
-```sh
+```shell
 # List repos
 helm repo list
 
@@ -11,7 +11,7 @@ helm repo add "repo-name" "repo-url"
 helm repo update
 ```
 
-```sh
+```shell
 helm repo add "stable" "https://kubernetes-charts.storage.googleapis.com/"
 helm repo add "strimzi" "https://strimzi.io/charts/"
 helm repo add "ingress-nginx" "https://kubernetes.github.io/ingress-nginx"

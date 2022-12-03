@@ -56,7 +56,7 @@ EndSection
 
 - `~/.xinitrc`: stores initial script to be run (not used if a display manager is set up, e.g., gdm)
 
-```sh
+```shell
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 ```

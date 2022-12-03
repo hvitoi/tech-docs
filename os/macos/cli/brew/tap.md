@@ -2,7 +2,7 @@
 
 - Taps are formula and cask repositories
 
-```sh
+```shell
 # list repos
 brew tap
 

@@ -20,7 +20,7 @@ UUID=be520a04-5f31-46cb-a881-29a86a1133fe       none                    swap    
 
 - `genfstab` is a util to generate the fstab avaialble at the package `arch-install-scripts`
 
-```sh
+```shell
 genfstab -U "/mnt" >> "/mnt/etc/fstab" # by UUID
 genfstab -L "/mnt" >> "/mnt/etc/fstab" # by label
 ```

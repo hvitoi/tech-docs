@@ -4,7 +4,7 @@
 
 - List all remotes
 
-```sh
+```shell
 flatpak remotes
 ```
 
@@ -12,18 +12,18 @@ flatpak remotes
 
 - List all installed packages
 
-```sh
+```shell
 flatpak list
 ```
 
 ## install
 
-```sh
+```shell
 flatpak install "flathub" "com.spotify.Client"
 ```
 
 ## run
 
-```sh
+```shell
 flatpak run "com.spotify.Client"
 ```

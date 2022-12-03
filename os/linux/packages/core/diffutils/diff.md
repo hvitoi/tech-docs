@@ -2,7 +2,7 @@
 
 - File comparison
 
-```sh
+```shell
 # Returns the lines that differ between the two files. Shows also the line number
 diff "file1.txt" "file2.txt"
 

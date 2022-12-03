@@ -24,7 +24,7 @@ spec:
       port: "12000"
 ```
 
-```sh
+```shell
 # Manually trigger the webhook
 curl -X POST \
     -H "Content-Type: application/json" \

@@ -1,6 +1,6 @@
 # slipt
 
-```sh
+```shell
 # Slipt file
 split -l 2 "file" "new-file" # Creates several new files with 2 lines each
 

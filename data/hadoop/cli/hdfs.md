@@ -4,14 +4,14 @@
 
 - run the DFS `namenode` daemon
 
-```sh
+```shell
 hdfs namenode -format
 hdfs namenode
 ```
 
 ## dfs
 
-```sh
+```shell
 # List the root of the hadoop filesystem
 hdfs dfs -ls /
 ```

@@ -1,6 +1,6 @@
 # vmss
 
-```sh
+```shell
 az vmss create \
   -n "demo-vmss" \
   -g "demo-rg" \
@@ -15,7 +15,7 @@ az vmss create \
 
 ## Extensions
 
-```sh
+```shell
 az vmss extension set \
   --publisher "Microsoft.Compute" \
   --version "1.10" \

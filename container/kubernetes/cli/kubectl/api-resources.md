@@ -1,6 +1,6 @@
 # api-resources
 
-```sh
+```shell
 # In a namespace
 kubectl api-resources --namespaced=true
 

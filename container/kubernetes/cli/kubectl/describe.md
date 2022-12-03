@@ -2,7 +2,7 @@
 
 - Information about an object
 
-```sh
+```shell
 # Inspect a specific object
 kubectl describe "object-kind" "object-name"
 kubectl describe "po" "my-pod"

@@ -1,11 +1,11 @@
 # certificate
 
-```sh
+```shell
 # Get all CSR
 kubectl get csr
 ```
 
-```sh
+```shell
 # Approve CSR
 kubectl certificate approve "csr-name"
 ```

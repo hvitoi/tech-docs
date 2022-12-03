@@ -7,7 +7,7 @@
 
 ## List
 
-```sh
+```shell
 # List all local branches
 git branch # * is the current branch
 
@@ -29,7 +29,7 @@ git branch --merged
 
 - New branches created are pointed to the same commit as the previous branch
 
-```sh
+```shell
 # Create a new branch
 git branch "branch-name"
 
@@ -42,7 +42,7 @@ git branch "branch" "SHA1"
 
 ## Modify
 
-```sh
+```shell
 # Rename branch
 git branch -m "old-name" "new-name"
 
@@ -52,7 +52,7 @@ git branch -M "main"
 
 ## Delete
 
-```sh
+```shell
 # Delete branch (only merged branch - no additional commits)
 git branch -d "branch-name"
 

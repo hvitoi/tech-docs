@@ -1,12 +1,12 @@
 # vkcube
 
-```sh
+```shell
 vkcube
 ```
 
 ## MESA_VK_DEVICE_SELECT
 
-```sh
+```shell
 # list devices
 MESA_VK_DEVICE_SELECT=list vkcube
 
@@ -17,7 +17,7 @@ MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1 vkcube
 
 ## MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE
 
-```sh
+```shell
 # force run on the default device (device 0)
 MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1 vkcube
 
@@ -25,7 +25,7 @@ MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1 vkcube
 
 ## VK_LOADER_DEBUG
 
-```sh
+```shell
 VK_LOADER_DEBUG=info vkcube
 ```
 
@@ -33,6 +33,6 @@ VK_LOADER_DEBUG=info vkcube
 
 - Set the preferred vulkan driver
 
-```sh
+```shell
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json vkcube
 ```

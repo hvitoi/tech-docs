@@ -2,7 +2,7 @@
 
 - Force container stop (`SIGKILL`)
 
-```sh
+```shell
 # Kill container
 docker container kill "container"
 ```

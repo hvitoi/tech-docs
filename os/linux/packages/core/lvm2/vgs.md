@@ -1,5 +1,5 @@
 # vgs
 
-```sh
+```shell
 vgs
 ```

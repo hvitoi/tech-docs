@@ -1,11 +1,11 @@
 # storage
 
-```sh
+```shell
 # List storage accounts
 az storage account list
 ```
 
-```sh
+```shell
 # Create a container
 az storage container create \
   --name "demo-container" \

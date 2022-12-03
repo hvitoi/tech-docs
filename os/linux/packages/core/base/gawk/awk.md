@@ -3,7 +3,7 @@
 - Text processing
 - Mostly to get columns
 
-```sh
+```shell
 # Create sample file
 echo "Henrique Abrantes Vitoi
 Lais Abrantes Vitoi
@@ -11,7 +11,7 @@ Simone Gomes Abrantes Vitoi
 Luiz Henrique Rossi Vitoi" > file.txt
 ```
 
-```sh
+```shell
 # Print a column
 awk '{print $1}' file.txt # First column
 awk '{print $1, $2}' file.txt # First and second columns
@@ -42,7 +42,7 @@ awk '{if($NF == "Vitoi") print $0;}' file.txt
 ls -l | awk '{print NF}'
 ```
 
-```sh
+```shell
 NAMESPACES=(desenvolvimento esteira-01 esteira-02 preproducao prodlike)
 SERVICES=(disponibilidade landing-page product-catalog-fixa cart-fixa leads content)
 for s in "${SERVICES[@]}"

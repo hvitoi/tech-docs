@@ -2,6 +2,6 @@
 
 - List PVs
 
-```sh
+```shell
 pvs
 ```

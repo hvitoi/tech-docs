@@ -6,7 +6,7 @@
 
 - Configuration file: `/etc/kibana/kibana.yml`
 
-```sh
+```shell
 sudo apt install kibana
 sudo systemctl start kibana
 ```
@@ -16,7 +16,7 @@ sudo systemctl start kibana
 - Documentation: <https://www.elastic.co/guide/en/kibana/current/docker.html>
 - Configuration file: `/usr/share/kibana/config/kibana.yml` or with environment variables
 
-```sh
+```shell
 docker container run \
   --rm \
   -it \

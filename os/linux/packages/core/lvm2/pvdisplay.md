@@ -1,5 +1,5 @@
 # pvdisplay
 
-```sh
+```shell
 pvdisplay
 ```

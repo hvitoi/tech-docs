@@ -1,6 +1,6 @@
 # ls
 
-```sh
+```shell
 # List stacks
 docker stack ls
 ```

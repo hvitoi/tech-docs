@@ -1,6 +1,6 @@
 # Broad search
 
-```sh
+```shell
 # Retrieve all data from an index
 curl -s -X GET "localhost:9200/movies/_search" | jq .
 ```
@@ -15,7 +15,7 @@ curl -s -X GET "localhost:9200/movies/_search" | jq .
   - It's handy just for quick experimenting
 - It must be URL encoded if used on browsers
 
-```sh
+```shell
 # Simple keyword
 curl -X GET "localhost:9200/movies/_search?q=Star"
 

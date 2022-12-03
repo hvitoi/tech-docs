@@ -2,6 +2,6 @@
 
 - Events happening to containers
 
-```sh
+```shell
 docker events
 ```

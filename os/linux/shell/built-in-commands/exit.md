@@ -1,6 +1,6 @@
 # exit
 
-```sh
+```shell
 # Exit from an environment
 exit # E.g., sudo, ssh, container, user session, etc
 ```

@@ -2,7 +2,7 @@
 
 - Add files from working directory to staging area
 
-```sh
+```shell
 # Add all untracked and modified files
 git add .
 

@@ -1,5 +1,5 @@
 # Show the current user name
 
-```sh
+```shell
 whoami
 ```

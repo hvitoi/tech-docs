@@ -2,14 +2,14 @@
 
 - Docker containers are Processes in the Operation System
 
-```sh
+```shell
 # Run image
 docker container run "image"
 docker container run "image:version"
 docker container run "image:version" "command"
 ```
 
-```sh
+```shell
 # Linux Container
 docker container run \
     --name "my-container" \ # container name
@@ -35,7 +35,7 @@ docker container run \
     "Hello World!" # CMD
 ```
 
-```sh
+```shell
 # Windows container
 docker container run \
     --name "myiis" \

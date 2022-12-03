@@ -2,7 +2,7 @@
 
 - size=0 shows only the aggregations and not the results
 
-```sh
+```shell
 curl -s "localhost:9200/ratings/_search?size=0" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -108,7 +108,7 @@ curl -s "localhost:9200/ratings/_search?size=0" \
 
 - Aggregation on text fields don't work well
 
-```sh
+```shell
 curl -s 'localhost:9200/movies' \
   --request PUT \
   --header "Content-Type: application/json" \

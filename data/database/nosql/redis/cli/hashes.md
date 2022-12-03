@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#hash>
 
-```sh
+```shell
 # Create some string data
 HSET demo.ml.movie#1 title "Toy Story (1995)"
 HSET demo.ml.movie#1 year 1995

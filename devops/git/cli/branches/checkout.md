@@ -6,7 +6,7 @@
   - Completely override the content of the working directory
 - Travel between different versions of the project (commits or branches)
 
-```sh
+```shell
 # Go to commit
 git checkout "commit-hash"
 

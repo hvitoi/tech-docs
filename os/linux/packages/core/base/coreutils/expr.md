@@ -2,6 +2,6 @@
 
 - Mathematical expression
 
-```sh
+```shell
 expr 1 + 1 # 2
 ```

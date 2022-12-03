@@ -1,6 +1,6 @@
 # MongoDB container installation
 
-```sh
+```shell
 # Pull, Build and Run
 docker pull mongo
 docker run --name meu_mongo -d -v /home/hvitoi/data/mongo:/data -p 27017:27017 mongo

@@ -2,7 +2,7 @@
 
 ## Download
 
-```sh
+```shell
 # Download istio
 curl -L https://istio.io/downloadIstio | sh -
 
@@ -26,7 +26,7 @@ env | grep istio
   - `empty`: deploys nothing (to be used as base profile)
   - `preview`: for experimental features
 
-```sh
+```shell
 istioctl profile list
 istioctl profile dump "profile-name" > "profile-name.yaml"
 istioctl profile diff "default" "demo"  # difference between default and demo
@@ -35,7 +35,7 @@ istioctl profile diff "default" "demo"  # difference between default and demo
 
 ## Install istio
 
-```sh
+```shell
 # Install Istio Operator with default profile
 istioctl install
 istioctl install -f "istio-operator.yaml" # specify local file containing the IstioOperator CR
@@ -51,7 +51,7 @@ istioctl install --set "meshConfig.enableTracing=true" # enable tracing
 istioctl install --set "values.global.jwtPolicy=third-party-jwt" # authentication config preferred
 ```
 
-```sh
+```shell
 # Configure the default namespace to inject envoy sidecar proxies
 kubectl label namespace default istio-injection=enabled
 ```
@@ -70,7 +70,7 @@ kubectl label namespace default istio-injection=enabled
 - Addons can be applied from <istio-1.9.1/samples/addons> for testing
   - E.g., `kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/prometheus.yaml`
 
-```sh
+```shell
 # Prometheus
 helm repo add "prometheus-community" "https://prometheus-community.github.io/helm-charts"
 helm install "prometheus" "prometheus-community/prometheus" -n "istio-system"
@@ -90,7 +90,7 @@ istioctl install --set "addonComponents.grafana.enabled=true" # Grafana
 
 - Experimental command line options that might be removed in the future
 
-```sh
+```shell
 # Experimental options
 istioctl experimental
 istioctl x
@@ -102,7 +102,7 @@ istioctl x uninstall --revision "1-7" # Delete specific revision
 
 ## Istio Manifest
 
-```sh
+```shell
 # Apply a istio manifest (install or reconfigure istio)
 istioctl manifest install -f "operator-file.yaml" # same as istioctl install -f operator.yaml
 
@@ -112,7 +112,7 @@ istioctl manifest generate -f "operator-file.yaml" > "k8s-config.yaml"
 
 ## Proxy
 
-```sh
+```shell
 # Show all proxies
 istioctl proxy-status
 ```
@@ -125,14 +125,14 @@ istioctl proxy-status
 - The upgrade has to be performed one by one. E.g., 1.7 to 1.8, 1.8 to 1.9
 - It requires that istio was installed with istioctl
 
-```sh
+```shell
 istioctl17 install # Install istio 1.7
 istioctl18 upgrade # Upgrade from istio 1.7 to istio 1.8
 ```
 
 - Istio cannot upgrade proxy on running pods. Therefore, after istio upgrade the pods must be restarted
 
-```sh
+```shell
 kubectl rollout restart deploy
 ```
 
@@ -143,7 +143,7 @@ kubectl rollout restart deploy
 - The tag `revision` can be used to deploy multiple independent control planes at same time
   - The revisions appears in the pod name of `istio-sidecard-injector` and `istiod`
 
-```sh
+```shell
 # install istio 1.7 with corresponding revision number
 istioctl17 install --set "profile=demo" --set "revision=1-7"
 
@@ -172,6 +172,6 @@ metadata:
 
 - After validated, the old revision can be safely removed
 
-```sh
+```shell
 istioctl7 x uninstall --revision "1-7"
 ```

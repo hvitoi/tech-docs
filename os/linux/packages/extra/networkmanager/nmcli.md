@@ -3,14 +3,14 @@
 - First the service must be enabled `systemctl enable NetworkManager.service`
 - `nm-connection-editor` to open GUI
 
-```sh
+```shell
 # general connection status
 nmcli
 ```
 
 ## device
 
-```sh
+```shell
 # Show all devices and its status
 nmcli device status # or nmcli device
 
@@ -29,28 +29,28 @@ nmcli device wifi show-password
 
 ## connection
 
-```sh
+```shell
 # Show all connections (wifi, bridge, vpn, ethernet)
 nmcli connection
 ```
 
-```sh
+```shell
 # import a connection configuration
 nmcli connection import \
   type "wireguard" \
   file "wg0.conf"
 ```
 
-```sh
+```shell
 nmcli connection show "wg0"
 ```
 
-```sh
+```shell
 # Up a connection
 nmcli connection up "connection-name"
 ```
 
-```sh
+```shell
 nncli connection modify "wg0" \
   connection.autoconnect "no"
 
@@ -61,6 +61,6 @@ nncli connection modify "wg0" \
   connection.interface-name "wg1"
 ```
 
-```sh
+```shell
 nmcli connection delete "wg0"
 ```

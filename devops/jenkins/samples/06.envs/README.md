@@ -2,7 +2,7 @@
 
 - Built-in environment variables available in jenkins container
 
-```sh
+```shell
 echo "Build number: $BUILD_NUMBER"
 echo "Build ID: $BUILD_ID"
 echo "Build URL: $BUILD_URL"

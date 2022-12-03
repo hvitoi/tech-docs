@@ -1,6 +1,6 @@
 # app
 
-```sh
+```shell
 # create
 argocd app create "app-name" \
   --repo "https://github.com/hvitoi/my-app.git" \

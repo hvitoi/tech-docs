@@ -1,6 +1,6 @@
 # AWS::EFS::MountTarget
 
-```sh
+```shell
 # EFS mount helper
 yum install -y "amazon-efs-utils"
 mount "fs-a7fe24dc:/" "./my-shared-dir" \

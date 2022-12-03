@@ -6,7 +6,7 @@
   - Default region. E.g. sa-east-1
   - Default output format. E.g, json
 
-```sh
+```shell
 aws configure
 ```
 
@@ -19,7 +19,7 @@ aws configure
 - Allow multiple logged-in profiles
 - All further commands must be run with `--profile` flag
 
-```sh
+```shell
 aws configure --profile "my-root-account"
 ```
 
@@ -27,14 +27,14 @@ aws configure --profile "my-root-account"
 
 - If MFA is activated under IAM, all commands must have the `--mfa` flag
 
-```sh
+```shell
 # example
 aws s3 ls --mfa "arn-of-mfa-device mfa-code"
 ```
 
 ## Set
 
-```sh
+```shell
 # set the proper signature version in order not to get issues when generating URLs for encrypted files
 aws configure set "default.s3.signature_version" "s3v4"
 ```

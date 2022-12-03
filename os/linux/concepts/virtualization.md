@@ -13,7 +13,7 @@
 
 ## KVM
 
-```sh
+```shell
 # Tells whether virtualization is enabled (VT-x for intel)
 LC_ALL=C lscpu | grep Virtualization
 ```
@@ -26,7 +26,7 @@ LC_ALL=C lscpu | grep Virtualization
   - `dnsmasq`: networking
   - `qemu-arch-extra`: allow virtualizing different architectures
 
-```sh
+```shell
 # Starts KVM daemon
 systemctl enable libvirtd.service
 ```

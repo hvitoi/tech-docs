@@ -2,7 +2,7 @@
 
 ## get-credentials
 
-```sh
+```shell
 # Get the credentials (kubeconfig) of the cluster
 az aks get-credentials \
   --resource-group "aks-rg" \
@@ -13,14 +13,14 @@ az aks get-credentials \
 
 ## get-versions
 
-```sh
+```shell
 # Ger available kubernetes versions
 az aks get-versions --location "southcentralus" -o table
 ```
 
 ## show
 
-```sh
+```shell
 # Show the RG in which external cloud resources (PVs, Public IPs, etc) are created
 az aks show \
   --resource-group "demo-rg" \
@@ -38,7 +38,7 @@ az aks show \
 
 ## create
 
-```sh
+```shell
 # Create Kubernetes Cluster
 az aks create \
   --resource-group "demo-rg" \
@@ -54,7 +54,7 @@ az aks create \
 
 ## update
 
-```sh
+```shell
 # Allow AKS cluster to pull images without username/password
 az aks update \
   --resource-group "demo-rg" \
@@ -70,7 +70,7 @@ az aks update \
 
 ## delete
 
-```sh
+```shell
 # Delete Cluster
 az aks delete \
   --resource-group "aks-rg" \
@@ -79,7 +79,7 @@ az aks delete \
 
 ## nodepool
 
-```sh
+```shell
 # List nodepools
 az aks nodepool list \
   --resource-group "aks-rg" \
@@ -121,7 +121,7 @@ az aks nodepool add \
 
 ## enable-addons
 
-```sh
+```shell
 # http_application_routing
 az aks enable-addons \
   --resource-group "aks-rg" \
@@ -142,7 +142,7 @@ az aks enable-addons \
 
 - **With Secrets & Service Principal**
 
-```sh
+```shell
 # Create service principal
 az ad sp create-for-rbac \
   --name "http://my-service-principal-name" \
@@ -158,7 +158,7 @@ az ad sp show \
   --output "tsv" # outsputs the id of newly created principal
 ```
 
-```sh
+```shell
 # Get clientId of the AKS "Service Principal"
 SERVICE_PRINCIPAL_NAME=$(az aks show --resource-group "demo-rg" --name "demo-k8s" --query "servicePrincipalProfile.clientId" --output tsv)
 
@@ -172,7 +172,7 @@ az role assignment create \
   --role "acrpull"
 ```
 
-```sh
+```shell
 # Create create with the service principal
 kubectl create secret docker-registry "my-acr-secret" \
     --docker-server "container-registry-name.azurecr.io" \
@@ -195,7 +195,7 @@ spec:
 
 - **With AKS-ACR Integration**
 
-```sh
+```shell
 # Allow AKS cluster to pull images without username/password
 az aks update \
   --resource-group "demo-rg" \
@@ -213,14 +213,14 @@ az aks update \
 
 ![Node Pools](../../resources/images/nodepools.png)
 
-```sh
+```shell
 # Resource Group
 az group create \
   --name "aks-rg" \
   --location "southcentralus"
 ```
 
-```sh
+```shell
 # Create Virtual Network and a Default Subnet
 az network vnet create \
   --resource-group "aks-rg" \
@@ -237,7 +237,7 @@ az network vnet subnet create \
   --address-prefixes "10.241.0.0/16"
 ```
 
-```sh
+```shell
 # Azure AD Group
 az ad group create \
   --display-name "aks-admins" \
@@ -259,7 +259,7 @@ az ad group member add \
   --member-id "user-id" # replace with output from above
 ```
 
-```sh
+```shell
 # SSH keys
 ssh-keygen \
     -m "PEM" \
@@ -270,7 +270,7 @@ ssh-keygen \
     -N "mypassphrase" # generates aks-rsa & aks-rsa.pub
 ```
 
-```sh
+```shell
 # Log Analytics Workspace
 az monitor log-analytics workspace create \
   --resource-group "aks-rg" \
@@ -279,7 +279,7 @@ az monitor log-analytics workspace create \
   --output "tsv"
 ```
 
-```sh
+```shell
 # Get Azure Active Directory ID - AD Tenant ID
 az account show \
   --query "tenantId" \
@@ -307,7 +307,7 @@ az monitor log-analytics workspace show \
   --output "tsv"
 ```
 
-```sh
+```shell
 az aks create \
   --resource-group "aks-rg" \
   --name "aks-cluster" \
@@ -354,7 +354,7 @@ az aks create \
 - When using `SYSTEM assigned identity`, azure-cli will grant "Network Contributor" role to it
 - Optionally use `USER assigned identity` (--assign-identity)
 
-```sh
+```shell
 # get vnet id
 az network vnet show \
   --resource-group "aks-rg" \
@@ -376,7 +376,7 @@ az role assignment create \
   --role "Contributor"
 ```
 
-```sh
+```shell
 # Enable Virtual Nodepool
 az aks enable-addons \
     --resource-group "aks-rg" \
@@ -387,7 +387,7 @@ az aks enable-addons \
 # go to "aciconnectorlinux" managed identity and add role assignment, giving permissions (contributor role) to the "aks-rg" resource group
 ```
 
-```sh
+```shell
 # Create linux user nodepool
 az aks nodepool add \
   --resource-group "aks-rg" \
@@ -405,7 +405,7 @@ az aks nodepool add \
   --zones {1,2,3}
 ```
 
-```sh
+```shell
 # Create windows user nodepool
 az aks nodepool add \
   --resource-group "aks-rg" \

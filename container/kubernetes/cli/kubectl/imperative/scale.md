@@ -2,7 +2,7 @@
 
 - Used to scale a `ReplicaSet`, `Deployment` or a `Replication Controller`
 
-```sh
+```shell
 # Scale a replicaset named 'foo' to 3
 kubectl scale "rs/foo" \
   --replicas=3

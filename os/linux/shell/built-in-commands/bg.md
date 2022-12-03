@@ -4,6 +4,6 @@
 - `bg` sends the stopped process to the background
 - `jobs` lists the current jobs running
 
-```sh
+```shell
 bg
 ```

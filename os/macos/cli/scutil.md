@@ -1,6 +1,6 @@
 # scutil
 
-```sh
+```shell
 # primary hostname - fully qualified hostname e.g., mymac.domain.com
 scutil --set HostName "new-hostname"
 

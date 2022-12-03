@@ -3,7 +3,7 @@
 - Import many documents at once
 - The index for each data can be specified
 
-```sh
+```shell
 curl -s 'localhost:9200/_bulk' \
   --request PUT \
   --header "Content-Type: application/json" \

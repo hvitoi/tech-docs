@@ -1,6 +1,6 @@
 # Kafka Console Producer
 
-```sh
+```shell
 # Produce messages
 kafka-console-producer.sh \
   --bootstrap-server "localhost:9092" \

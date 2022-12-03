@@ -1,5 +1,5 @@
 # reinstall
 
-```sh
+```shell
 brew reinstall "kubernetes-cli"
 ```

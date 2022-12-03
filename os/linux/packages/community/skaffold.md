@@ -1,5 +1,5 @@
 # skaffold
 
-```sh
+```shell
 skaffold --version
 ```

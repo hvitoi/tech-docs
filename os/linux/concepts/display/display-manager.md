@@ -21,10 +21,10 @@ X-GNOME-Autostart-Phase=DisplayServer
 
 - Support launching Wayland compositors, but the display manager itself runs on Xorg
 
-```sh
+```shell
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 ```
 
-```sh
+```shell
 systemctl enable lightdm
 ```

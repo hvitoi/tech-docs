@@ -2,7 +2,7 @@
 
 -
 
-```sh
+```shell
 # Write string to a hex string in blocks of 8 bytes
 echo -n "abc" | od -t x8 -An
 

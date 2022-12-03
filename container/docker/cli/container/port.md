@@ -1,6 +1,6 @@
 # port
 
-```sh
+```shell
 # Show exposed ports
 docker container port "container"
 ```

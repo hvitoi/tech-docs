@@ -1,6 +1,6 @@
 # diskutil
 
-```sh
+```shell
 # list disks
 diskutil list
 

@@ -4,6 +4,6 @@
 
 ## Create
 
-```sh
+```shell
 vue create video-browser
 ```

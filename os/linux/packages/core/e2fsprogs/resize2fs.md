@@ -1,5 +1,5 @@
 # resize2fs
 
-```sh
+```shell
 resize2fs "/dev/mapper/lol"
 ```

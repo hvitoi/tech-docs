@@ -2,7 +2,7 @@
 
 - Used to setup permissions
 
-```sh
+```shell
 # Get clientId of the "Service Principal"
 CLIENT_ID=$(az aks show --resource-group "demo-rg" --name "demo-k8s" --query "servicePrincipalProfile.clientId" --output tsv)
 

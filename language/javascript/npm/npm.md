@@ -2,7 +2,7 @@
 
 - NPM projects
 
-```sh
+```shell
 # Create npm project
 npm init
 
@@ -17,7 +17,7 @@ npm init -y
 
 ## Install packages
 
-```sh
+```shell
 # Install globally
 sudo npm install -g "package"
 
@@ -35,14 +35,14 @@ npm install "package" --save-dev
 
 ## List packages
 
-```sh
+```shell
 # All global packages
 npm list -g --depth 0
 ```
 
 ## Update packages
 
-```sh
+```shell
 # Show outdated packages
 npm outdated
 
@@ -52,7 +52,7 @@ npm update
 
 ## Uninstall packages
 
-```sh
+```shell
 # global
 npm uninstall -g `package`
 
@@ -62,7 +62,7 @@ npm uninstall `package`
 
 ## Link
 
-```sh
+```shell
 # Create a symlink in your global node_modules directory that points to the actual location of the project on your machine.
 npm link
 

@@ -1,6 +1,6 @@
 # cluster-info
 
-```sh
+```shell
 # Display addresses of the master and services
 kubectl cluster-info
 

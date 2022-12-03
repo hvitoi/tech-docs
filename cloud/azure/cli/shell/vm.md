@@ -1,6 +1,6 @@
 # vm
 
-```sh
+```shell
 # Show a VM
 az vm image show --location `location`
 
@@ -12,7 +12,7 @@ az vm image list-publishers --location `location`
 
 - If no location is provided, the location used is the one from the resource group
 
-```sh
+```shell
 az vm create \
   --resource-group "demo-rg" \
   --name "demovm" \
@@ -23,7 +23,7 @@ az vm create \
 
 ## Apply extension
 
-```sh
+```shell
 az vm extension set \
   --resource-group "demo-rg" \
   --vm-name "demovm" \
@@ -36,7 +36,7 @@ az vm extension set \
 
 - Encrypt a disk with keys to be stored in key vault
 
-```sh
+```shell
 az vm encryption enable \
   --name "demo-vm" \
   --resource-group "demo-rg" \

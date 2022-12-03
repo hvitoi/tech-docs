@@ -47,7 +47,7 @@ Properties:
   - To permanently delete a version, to suspend the versioning, etc
   - Only root account can enable/disable this option through the CLI
 
-  ```sh
+  ```shell
   # enable MFA delete (must be root account)
   aws s3api put-bucket-versioning \
     --bucket "my-bucket" \
@@ -70,7 +70,7 @@ Properties:
 
   - Access multiple operations GET, PUT, POST, ...
 
-  ```sh
+  ```shell
   # generate pre-signed URL for an object
   aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1"
   aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1" --expires-in "300" # 3600 by default

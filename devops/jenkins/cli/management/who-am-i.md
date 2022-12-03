@@ -2,6 +2,6 @@
 
 - Reports your credential and permissions
 
-```sh
+```shell
 jenkinscli who-am-i
 ```

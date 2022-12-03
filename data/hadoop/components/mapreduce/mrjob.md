@@ -7,7 +7,7 @@
 - It must be installed inside of the worker node
 - For HDP 2.6.5, it must be configured the following way
 
-```sh
+```shell
 # install from pip
 pip install "pathlib"
 pip install "mrjob==0.7.4"
@@ -16,7 +16,7 @@ pip install "PyYAML==5.4.1"
 
 ## Running
 
-```sh
+```shell
 # run locally
 python "script.py" "data.csv"
 

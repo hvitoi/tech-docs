@@ -2,6 +2,6 @@
 
 - Audio volume control
 
-```sh
+```shell
 pavucontrol
 ```

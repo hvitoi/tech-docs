@@ -1,6 +1,6 @@
 # Create kubernetes context
 
-```sh
+```shell
 # Install management tools
 sudo snap install "doctl"
 

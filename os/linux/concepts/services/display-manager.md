@@ -1,5 +1,5 @@
 # display-manager.sevice
 
-```sh
+```shell
 systemctl restart "display-manager.service"
 ```

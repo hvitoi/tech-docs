@@ -2,7 +2,7 @@
 
 - Show a reference
 
-```sh
+```shell
 # Show reference to a tag
 git show "v1.0.0"
 

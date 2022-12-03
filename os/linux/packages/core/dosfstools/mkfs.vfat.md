@@ -3,6 +3,6 @@
 - Create a FAT file system
 - E.g., EFI partition
 
-```sh
+```shell
 mkfs.vfat "/dev/sdx1"
 ```

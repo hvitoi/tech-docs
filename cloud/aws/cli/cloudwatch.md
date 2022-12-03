@@ -1,6 +1,6 @@
 # cloudwatch
 
-```sh
+```shell
 # custom metric
 aws cloudwatch put-metric-data \
   --namespace "Usage Metrics" \
@@ -14,7 +14,7 @@ aws cloudwatch put-metric-data \
   --dimensions "InstanceId=1-12344,InstanceType=m1.small"
 ```
 
-```sh
+```shell
 # Trigger alarm
 aws cloudwatch set-alarm-state \
   --alarm-name "myalarm" \

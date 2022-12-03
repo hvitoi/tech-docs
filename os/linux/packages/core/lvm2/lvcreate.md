@@ -4,7 +4,7 @@
 - "Virtual/logical partition" that resides in a VG and is composed of PEs
 - LVs are Unix block devices analogous to physical partitions, e.g. they can be directly formatted with a file system.
 
-```sh
+```shell
 # create a logical partition (fixed size)
 lvcreate "volume-group" \
   -n "logical-volume" \

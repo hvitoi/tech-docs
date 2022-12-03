@@ -2,7 +2,7 @@
 
 - Package up the project files and all dependencies into a jar file.
 
-```sh
+```shell
 # Package up the project files and all dependencies into a jar file
 lein uberjar
 ```

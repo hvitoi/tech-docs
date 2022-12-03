@@ -1,6 +1,6 @@
 # doctor
 
-```sh
+```shell
 # look for problems in flutter installation
 flutter doctor
 

@@ -1,11 +1,11 @@
 # groupadd
 
-```sh
+```shell
 # Create a group
 groupadd "group"
 ```
 
-```sh
+```shell
 # List groups
 cat /etc/group
 ```

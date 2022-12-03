@@ -18,7 +18,7 @@ H 1 * * *
 - Invoke the URL of the job `http://localhost:8080/job/simple-job/build?delay=0sec` with a crumb!
 - CSRF protection must be enabled in Global security in order to get a crumb
 
-```sh
+```shell
 # Get a Jenkins-crumb token!
 curl -u "admin:123" -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
 
@@ -29,7 +29,7 @@ curl -u "admin:123" -H "$crumb" -X POST "http://localhost:8080/job/simple-job/bu
 curl -u "admin:123" -H "$crumb" -X POST "http://localhost:8080/job/simple-job/buildWithParameters?DB_HOST=db&DB_NAME=testdbql"
 ```
 
-```sh
+```shell
 # Invoke job with a token (No parameters)
 curl -u "admin:123" "http://localhost:8080/job/simple-job/build?token=mytoken" # Token is configured in the item configuration
 

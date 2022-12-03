@@ -2,7 +2,7 @@
 
 - List all connected devices
 
-```sh
+```shell
 flutter devices
 flutter devices --machine # detailed info
 ```

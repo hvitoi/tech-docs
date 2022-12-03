@@ -1,5 +1,5 @@
 # test
 
-```sh
+```shell
 terraform test
 ```

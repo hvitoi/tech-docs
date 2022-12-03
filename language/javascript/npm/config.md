@@ -2,14 +2,14 @@
 
 ## List
 
-```sh
+```shell
 npm config list
 npm config list -l # additional info
 ```
 
 ## Set
 
-```sh
+```shell
 # Set the registry globally
 npm config set registry "registry-url"
 

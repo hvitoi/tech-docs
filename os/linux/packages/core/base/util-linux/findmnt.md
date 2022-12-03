@@ -2,7 +2,7 @@
 
 - List all mounted filesystems
 
-```sh
+```shell
 # all mounted
 findmnt
 

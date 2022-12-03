@@ -1,5 +1,5 @@
 # docker
 
-```sh
+```shell
 docker --version
 ```

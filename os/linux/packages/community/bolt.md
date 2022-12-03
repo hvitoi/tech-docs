@@ -2,6 +2,6 @@
 
 ## boltctl
 
-```sh
+```shell
 boltctl
 ```

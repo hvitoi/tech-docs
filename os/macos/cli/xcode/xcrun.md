@@ -1,6 +1,6 @@
 # scrun
 
-```sh
+```shell
 # list apple devices
 xcrun simctl list "devices" "booted"
 

@@ -3,6 +3,6 @@
 - Shutdown the system right away!
 - As if interrupting the energy abruptly
 
-```sh
+```shell
 halt
 ```

@@ -2,7 +2,7 @@
 
 ## Set Interface Mode as "Monitor"
 
-```sh
+```shell
 # get wireless interface info
 airmon-ng
 
@@ -19,7 +19,7 @@ airmon-ng start "wlp3s0" # wlp3s0 is replaced with wlp3s0mon
 airmon-ng stop "wlp3s0mon"
 ```
 
-```sh
+```shell
 # restart nm
 systemctl start "NetworkManager"
 ```

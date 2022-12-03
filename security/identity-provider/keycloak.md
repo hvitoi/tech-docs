@@ -2,7 +2,7 @@
 
 - It's an `identity provider` and `token issuer` (oauth 2)
 
-```sh
+```shell
 kubectl apply -f ./keycloack.yaml
 kubectl apply -f ./keycloack-ingress.yaml
 

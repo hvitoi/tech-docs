@@ -2,7 +2,7 @@
 
 ## Generate key
 
-```sh
+```shell
 # Generate RSA private key
 openssl genrsa # 2048 by default.
 openssl genrsa -out "private.key" # output to a file
@@ -18,7 +18,7 @@ openssl genrsa -aes256 -out "private.key" # PEM is the extension for keys
 
 ## Extract public from a private key
 
-```sh
+```shell
 # Retrieve public key from a private key
 openssl rsa \
   -in "private.key" \
@@ -34,7 +34,7 @@ openssl rsa \
 - `ST`: State
 - `O`: Organization
 
-```sh
+```shell
 # Simple CSR
 openssl req \
   -new \
@@ -43,7 +43,7 @@ openssl req \
   -out "cert.csr"
 ```
 
-```sh
+```shell
 # Certificate Signing Request (CSR) with openssl config file
 openssl req \
   -new \
@@ -73,7 +73,7 @@ IP.2 = 172.17.0.87
 
 ## Sign Certificates
 
-```sh
+```shell
 # Sign CSR
 openssl x509 \
   -req \
@@ -84,7 +84,7 @@ openssl x509 \
 
 ## Inspect Certificate
 
-```sh
+```shell
 openssl x509 \
   -text \
   -noout \
@@ -93,14 +93,14 @@ openssl x509 \
 
 ## Test Connectivity
 
-```sh
+```shell
 # Test connectivity
 openssl s_client -connect "20.244.9.3:9093"
 ```
 
 ## System CA certificates
 
-```sh
+```shell
 awk -v cmd='openssl x509 -noout -subject' '
     /BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt
 ```

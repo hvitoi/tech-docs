@@ -1,5 +1,5 @@
 # nvtop
 
-```sh
+```shell
 nvtop
 ```

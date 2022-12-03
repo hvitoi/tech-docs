@@ -1,5 +1,5 @@
 # powershell-bin
 
-```sh
+```shell
 pwsh
 ```

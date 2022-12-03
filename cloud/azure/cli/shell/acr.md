@@ -5,21 +5,21 @@
 
 ## Setup
 
-```sh
+```shell
 # Login to ACR
 az acr login --name "hvitoi" # under the hood it adds a registry to docker
 ```
 
 ## Retag and push image
 
-```sh
+```shell
 docker image tag "nginx" "hvitoi.azurecr.io/nginx" # retag
 docker image push "hvitoi.azurecr.io/nginx" # push
 ```
 
 ## Manage
 
-```sh
+```shell
 # Create repository
 az acr create \
   --resource-group "demo-rg" \
@@ -46,7 +46,7 @@ az acr list \
 
 ## Assign RBAC role to K8S cluster
 
-```sh
+```shell
 # Get K8S clientID
 CLIENT_ID=$(az aks show --resource-group "demo-rg" --name "demo-k8s" --query "servicePrincipalProfile.clientId" --output tsv)
 

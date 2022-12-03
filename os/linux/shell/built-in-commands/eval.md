@@ -3,10 +3,10 @@
 - Evaluates shell commands from a text input
 - Usually used to evaluate "export" commands in order to set environment variables
 
-```sh
+```shell
 eval myenvs.txt
 ```
 
-```sh
+```shell
 eval $(minikube docker-env)
 ```

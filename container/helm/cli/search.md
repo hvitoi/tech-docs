@@ -1,6 +1,6 @@
 # search
 
-```sh
+```shell
 # Search a chart in a repo
 helm search repo "stable" # show latest version of charts found
 helm search repo "strimzi"

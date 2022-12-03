@@ -1,6 +1,6 @@
 # Configure SSH
 
-```sh
+```shell
 # List existing keys
 ls ~/.ssh
 

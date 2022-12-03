@@ -1,6 +1,6 @@
 # defaults
 
-```sh
+```shell
 # read all config
 defaults read
 

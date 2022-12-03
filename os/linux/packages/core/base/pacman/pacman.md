@@ -13,7 +13,7 @@
 
 - A package on arch is a tarball
 
-```sh
+```shell
 # Query all packages
 pacman --query
 pacman -Q
@@ -48,7 +48,7 @@ pacman -Qc "package"
 
 ## Sync
 
-```sh
+```shell
 # Install package
 pacman --sync "package"
 pacman -S "package"
@@ -74,7 +74,7 @@ pacman -Sl "core"
 
 ## Remove
 
-```sh
+```shell
 # Remove package
 pacman --remove "package"
 pacman -R "package"
@@ -91,7 +91,7 @@ pacman -Rc "package"
 
 ## Upgrade
 
-```sh
+```shell
 # Downgrade a kernel
 pacman --upgrade "linux-4.15.8-1-x86_64.pkg.tar.xz"
 pacman -U "linux-4.15.8-1-x86_64.pkg.tar.xz"
@@ -99,7 +99,7 @@ pacman -U "linux-4.15.8-1-x86_64.pkg.tar.xz"
 
 ## Files
 
-```sh
+```shell
 # refresh package databases from the server
 pacman -Fy
 
@@ -113,7 +113,7 @@ pacman -Fl "package"
 
 ## Database
 
-```sh
+```shell
 # test local database
 pacman -Dk
 

@@ -2,7 +2,7 @@
 
 - destroy resources contained in `.tf` files
 
-```sh
+```shell
 # destroy resources from all tf files
 terraform destroy
 

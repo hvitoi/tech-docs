@@ -1,6 +1,6 @@
 # Deploy
 
-```sh
+```shell
 kubectl create ns kaniko
 kubectl create secret generic docker-config --from-file=config.json -n kaniko
 kubectl delete -f kaniko-directory.yml

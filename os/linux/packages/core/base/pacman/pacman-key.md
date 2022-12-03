@@ -2,7 +2,7 @@
 
 Add the key that the CI uses to sign the packages
 
-```sh
+```shell
 # Manually installing it
 sudo pacman-key --recv-keys "DEB7F121BAAA6F3E" --keyserver "pgp.mit.edu"
 

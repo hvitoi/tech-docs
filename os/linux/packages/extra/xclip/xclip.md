@@ -2,7 +2,7 @@
 
 - Clipboard manipulation
 
-```sh
+```shell
 # Copy to clipboard
 echo "aaa" | xclip -selection c
 ```

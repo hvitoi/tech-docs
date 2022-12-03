@@ -1,6 +1,6 @@
 # history
 
-```sh
+```shell
 # Show the last executed commands
 history # 1000 by default
 

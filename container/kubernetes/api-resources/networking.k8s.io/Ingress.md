@@ -72,7 +72,7 @@ spec:
 - The Ingress Controller Pods have a single `Public IP` (must be created beforehand) - `az network public-ip create ...`
 - All the external traffic now passed through one of the ingress controller replicas
 
-```sh
+```shell
 # create public IP for the ingress controller pods
 az network public-ip create \
   --resource-group "MC_aks-rg_aks-cluster_southcentralus" \ # must be the "nodeResourceGroup"
@@ -83,7 +83,7 @@ az network public-ip create \
   -o "tsv"
 ```
 
-```sh
+```shell
 helm install "ingress-controller" "ingress-nginx/ingress-nginx" \
   --namespace "ingress" --create-namespace \
   --version "3.30.0" \

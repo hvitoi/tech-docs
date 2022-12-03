@@ -7,13 +7,13 @@
 
 ### From scratch
 
-```sh
+```shell
 # Download coredns binary
 wget "https://github.com/coredns/coredns/releases/download/v1.4.0/coredns_1.4.0_linux_amd64.tgz"
 tar -xzvf "coredns_1.4.0_linux_amd64.tgz"
 ```
 
-```sh
+```shell
 # Run
 ./coredns
 ```

@@ -2,12 +2,12 @@
 
 - Python version management
 
-```sh
+```shell
 # add this to your .zshrc
 eval $(pyenv init --path)
 ```
 
-```sh
+```shell
 # list python versions available for download
 pyenv install --list
 

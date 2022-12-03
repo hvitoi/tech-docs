@@ -1,6 +1,6 @@
 # delete
 
-```sh
+```shell
 # Delete object by manifest
 kubectl delete -f "manifest.yaml"
 
@@ -24,7 +24,7 @@ kubectl delete "all" -l "app=myapp" # same as --selector
 
 ## Multiple delete
 
-```sh
+```shell
 export K8S_OBJECT=serviceaccount;
 export K8S_PARAMETER=prometheus;
 for i in $(kubectl get $K8S_OBJECT | grep -i $K8S_PARAMETER | awk '{print$1}'); do kubectl delete $K8S_OBJECT/$i; done;

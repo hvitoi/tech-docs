@@ -1,6 +1,6 @@
 # ls
 
-```sh
+```shell
 # List images
 docker image ls
 ```

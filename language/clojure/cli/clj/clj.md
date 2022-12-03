@@ -1,11 +1,11 @@
 # clj
 
-```sh
+```shell
 # REPL mode
 clj # write code on the fly
 ```
 
-```sh
+```shell
 # Execute a function (src/ is used as default classpath)
 clj -X "myns/myfn"
 ```

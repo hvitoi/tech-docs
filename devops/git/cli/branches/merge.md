@@ -6,7 +6,7 @@
   - **3-way** (recursive)
 - For 3-way merge, a new merge commit object is created, which incorporate all the changes made in the secondary branch
 
-```sh
+```shell
 # merge the branch "feature" into the currently checked out branch
 git merge "feature"
 
@@ -16,7 +16,7 @@ git merge --abort
 
 ## Merged branches
 
-```sh
+```shell
 ## Show merged branches
 git branch --merged
 

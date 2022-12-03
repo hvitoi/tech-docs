@@ -10,7 +10,7 @@
 
 - **SSH**: Private SSH key must have `400` permission (or yourself as owner of the file on windows)
 
-```sh
+```shell
 ssh "ec2-user@0.0.0.0" -i "ec2demo.pem"
 ```
 

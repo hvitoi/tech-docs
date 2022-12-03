@@ -6,7 +6,7 @@
   - `netstat -i` -> `ip -s link`
   - `netstat -g` -> `ip maddr`
 
-```sh
+```shell
 # Print network connections
 netstat
 netstat -rnv # Show the gateways

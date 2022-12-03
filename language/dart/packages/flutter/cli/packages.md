@@ -2,6 +2,6 @@
 
 - Install the dependencies defined in `pubspec.yaml`
 
-```sh
+```shell
 flutter packages get
 ```

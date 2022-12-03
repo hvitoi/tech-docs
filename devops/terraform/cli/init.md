@@ -5,6 +5,6 @@
   - Creates a lock file `.terraform.lock.hcl`
   - Creates a `.terraform/` folder with the provider binaries
 
-```sh
+```shell
 terraform init
 ```

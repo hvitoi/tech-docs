@@ -4,14 +4,14 @@
 
 ## Generic
 
-```sh
+```shell
 kubectl create -f "manifest.yaml"
 kubectl create -f "manifest.yaml" --save-config # save last applied config to metadata
 ```
 
 ## Deployment
 
-```sh
+```shell
 kubectl create deployment "nginx" \
   --image "nginx" \
   --replicas "5" \
@@ -22,7 +22,7 @@ kubectl create deployment "nginx" \
 
 ## Service
 
-```sh
+```shell
 kubectl create service clusterip "my-svc" \
   --tcp "6379:6379" \
   --dry-run="client" \
@@ -32,7 +32,7 @@ kubectl create service clusterip "my-svc" \
 
 ## ConfigMap
 
-```sh
+```shell
 # From literal
 kubectl create configmap "simpleconfig" \
   --from-literal "foo_env=bar" \
@@ -60,7 +60,7 @@ kubectl create configmap "app-envs" \
 
 ## Secret
 
-```sh
+```shell
 # generic
 kubectl create secret generic "secret-name" \
   --from-literal "key1=value1" \

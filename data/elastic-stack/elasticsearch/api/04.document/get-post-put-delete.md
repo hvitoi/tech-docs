@@ -7,7 +7,7 @@
 
 ## GET document
 
-```sh
+```shell
 curl -X GET "localhost:9200/movies/_doc/109487"
 ```
 
@@ -15,7 +15,7 @@ curl -X GET "localhost:9200/movies/_doc/109487"
 
 - Auto-generated ID: `xH_UtnYB5ac5TgxH2ksQ`
 
-```sh
+```shell
 curl -s "localhost:9200/movies/_doc" \
   --request POST \
   --header "Content-Type: application/json" \
@@ -36,7 +36,7 @@ curl -s "localhost:9200/movies/_doc" \
 - Specified ID: `109487`
 - If the ID already exists, the document will be replaced entirely
 
-```sh
+```shell
 curl -X PUT "localhost:9200/movies/_doc/109487" \
   --header "Content-Type: application/json" \
   --data @document.json
@@ -52,7 +52,7 @@ curl -X PUT "localhost:9200/movies/_doc/109487" \
 
 ## DELETE document
 
-```sh
+```shell
 # First get the doc to see if it's the correct doc to be deleted
 curl -X GET "localhost:9200/movies/_search?q=Dark"
 curl -X GET "localhost:9200/movies/_doc/58559"

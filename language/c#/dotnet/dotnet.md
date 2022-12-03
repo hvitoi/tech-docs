@@ -1,12 +1,12 @@
 # dotnet
 
-```sh
+```shell
 # Install
 pacman -S dotnet-sdk
 pacman -S aspnet-runtime
 ```
 
-```sh
+```shell
 # List runtimes
 dotnet --list-runtimes
 ```

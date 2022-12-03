@@ -2,6 +2,6 @@
 
 - Markdown reader
 
-```sh
+```shell
 typora
 ```

@@ -8,7 +8,7 @@
 - _Job_: It's a service or process that is scheduled (workorder)
 - _Script_: List of instructions. pwd, useradd
 
-```sh
+```shell
 # List processes running in the system
 ps -ef
 

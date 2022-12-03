@@ -2,6 +2,6 @@
 
 - MongoDB UI
 
-```sh
+```shell
 robo3t
 ```

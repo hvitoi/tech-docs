@@ -2,7 +2,7 @@
 
 ## metrics
 
-```sh
+```shell
 # Alert when API goes beyond 80% for a period of 5 min
 az monitor metrics alert create \
   -n "linuxvm" \
@@ -17,7 +17,7 @@ az monitor metrics alert create \
 
 ## log-analytics
 
-```sh
+```shell
 az monitor log-analytics workspace create \
   --resource-group "aks-rg" \
   --workspace-name "aks-loganalyticsworkspace" \

@@ -14,7 +14,7 @@ remotehost ansible_host=ubuntu ansible_user=ubuntu ansible_private_key_file=/var
 webserver ansible_host=nginx ansible_user=root ansible_private_key_file=/var/jenkins_home/ansible/nginx-key
 ```
 
-```sh
+```shell
 ansible -i "hosts-file" -m "command" "host-alias"
 ansible -i "./hosts" -m "ping" "remotehost"
 ```

@@ -2,7 +2,7 @@
 
 - Opens a prompt to edit a yaml manifest
 
-```sh
+```shell
 # Edit an object
 kubectl edit "object-type" "object-name"
 kubectl edit "svc" "my-service"

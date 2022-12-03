@@ -2,7 +2,7 @@
 
 - Information about all mounted file systems
 
-```sh
+```shell
 # Disk information (mounted disks only)
 df
 

@@ -4,7 +4,7 @@
 - **Formula**: package definition built from upstream sources
 - **Cask**: install macOS native applications
 
-```sh
+```shell
 brew list
 brew ls
 

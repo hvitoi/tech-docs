@@ -4,7 +4,7 @@
 - Make a specific commit the last one in a branch
 - Additionally `unstage all the changes` made in further commits
 
-```sh
+```shell
 # Soft: Discard commit, do not unstage or remove from WIP
 git reset --soft # Last commit
 git reset --soft "SHA1" # Specific commit
@@ -22,7 +22,7 @@ git reset --hard "origin/main" # replace your local code with remote code
 
 ## Reset by quantity of commits
 
-```sh
+```shell
 # Move 5 commits back
 git reset "HEAD~5"
 ```

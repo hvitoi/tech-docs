@@ -3,7 +3,7 @@
 - Add a package and run `dotnet restore` to get that package
 - The dependency is added to the `.csproj` file
 
-```sh
+```shell
 # Add package
 dotnet add package "package" # latest
 dotnet add package "package" --version "version" # specific version
@@ -26,7 +26,7 @@ dotnet add package "package" --version "version" # specific version
 
 ## Packages
 
-```sh
+```shell
 dotnet add package "Azure.Storage.Blobs"
 dotnet add package "Azure.Storage.Queues"
 dotnet add package "System.Data.SqlClient"

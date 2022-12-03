@@ -1,6 +1,6 @@
 # inspect
 
-```sh
+```shell
 # Inspect image
 docker image inspect "image"
 ```

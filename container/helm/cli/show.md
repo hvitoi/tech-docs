@@ -1,6 +1,6 @@
 # show
 
-```sh
+```shell
 # Show all info about a chart
 helm show all "repo/chart"
 

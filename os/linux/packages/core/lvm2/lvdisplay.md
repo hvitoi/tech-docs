@@ -1,5 +1,5 @@
 # lvdisplay
 
-```sh
+```shell
 lvdisplay
 ```

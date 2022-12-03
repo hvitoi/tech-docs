@@ -2,6 +2,6 @@
 
 - Extract files (pointed by a tree) from git repository to staging area
 
-```sh
+```shell
 git read-tree `tree-hash`
 ```

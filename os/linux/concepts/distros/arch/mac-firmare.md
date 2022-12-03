@@ -4,7 +4,7 @@
 
 - This sets the `gpu-power-prefs` NVRAM variable to make the iGPU/dGPU/eGPU the Boot GPU
 
-```sh
+```shell
 # use integrated gpu as primary on next boot
 gpu-switch -i
 

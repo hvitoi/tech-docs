@@ -15,13 +15,13 @@
 
 ## CLI
 
-```sh
+```shell
 # Create new project
 nest new "project-name" # Create boilerplate
 nest new  "nestjs-task-management"
 ```
 
-```sh
+```shell
 # Create a module
 nest generate "module" "module-name" # g for generate
 
@@ -177,7 +177,7 @@ export class TasksController {
 
 - Deploy a Postgres server
 
-```sh
+```shell
 docker run \
   --name my-postgres \
   -e POSTGRES_PASSWORD=postgres \
@@ -202,7 +202,7 @@ db.query(
 );
 ```
 
-```sh
+```shell
 npm i @nestjs/typeorm # bridge to nestjs to integrate with nestjs
 npm i typeorm # actual typeorm module
 npm i pg # database driver for postgres
@@ -275,7 +275,7 @@ this.logger.debug(
 
 ## Environemnt variables
 
-```sh
+```shell
 # Define envs on the fly
 PORT=3001 npm run start:dev
 ```

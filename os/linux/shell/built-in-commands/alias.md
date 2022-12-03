@@ -1,6 +1,6 @@
 # alias
 
-```sh
+```shell
 # Create alias
 alias ll = "ls -laF"
 alias pl = "pws; ls"

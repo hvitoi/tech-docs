@@ -1,5 +1,5 @@
 # postman-bin
 
-```sh
+```shell
 postman
 ```

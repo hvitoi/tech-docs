@@ -2,7 +2,7 @@
 
 - Administer `/etc/group` and `/etc/gshadow`
 
-```sh
+```shell
 # add a user to a named group
 gpasswd -a "user" "group"
 ```

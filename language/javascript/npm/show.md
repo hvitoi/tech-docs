@@ -1,5 +1,5 @@
 # npm show
 
-```sh
+```shell
 npm show @microservicos-api/<NOME_DO_PROJETO> version
 ```

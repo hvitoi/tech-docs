@@ -1,6 +1,6 @@
 # prune
 
-```sh
+```shell
 # Soft cleanup
 docker system prune
 

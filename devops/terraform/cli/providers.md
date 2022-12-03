@@ -2,6 +2,6 @@
 
 - Print the tree of providers used in the manifest files
 
-```sh
+```shell
 terraform providers
 ```

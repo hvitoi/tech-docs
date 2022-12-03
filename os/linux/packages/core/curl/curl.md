@@ -3,7 +3,7 @@
 - Similar to `wget`
 - Mostly used for REST request
 
-```sh
+```shell
 ## Fetch the content of the URL and display immediately
 curl "url"
 curl www.google.com
@@ -45,7 +45,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-
 
 ## HTTP methods
 
-```sh
+```shell
 curl \
   -H "Content-Type: application/json" \
   -X GET "localhost:9200/shakespeare/_search?pretty" \
@@ -58,7 +58,7 @@ curl \
       }'
 ```
 
-```sh
+```shell
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -68,7 +68,7 @@ curl -s "localhost:9200/movies/_search" \
 
 ## Script for testing requests
 
-```sh
+```shell
 while true;
 do curl -s fleetman.dev:31380/ | grep title;
   sleep 0.5;

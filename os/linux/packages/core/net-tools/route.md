@@ -4,7 +4,7 @@
 - Routing tables
 - Traffic going to any IP not specified in the routing table goes to the `default gateway`
 
-```sh
+```shell
 # list routing tables
 route
 

@@ -1,6 +1,6 @@
 # man
 
-```sh
+```shell
 # Shows the manual of a command
 man "ls"
 

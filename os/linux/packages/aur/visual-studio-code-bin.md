@@ -1,5 +1,5 @@
 # visual-studio-code-bin
 
-```sh
+```shell
 code
 ```

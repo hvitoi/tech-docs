@@ -2,7 +2,7 @@
 
 ## vnet
 
-```sh
+```shell
 # Create Virtual Network and a Default Subnet
 az network vnet create \
   --resource-group "aks-rg" \
@@ -29,7 +29,7 @@ az network vnet subnet show \
 
 ## private-dns
 
-```sh
+```shell
 # Create your Private DNS Zone
 az network private-dns zone create \
   -g "demo-rg" \
@@ -46,7 +46,7 @@ az network private-dns link vnet create \
 
 ## public-ip
 
-```sh
+```shell
 # Create a Public IP
 az network public-ip create \
   --resource-group "demo-rg" \
@@ -59,7 +59,7 @@ az network public-ip create \
 
 ## dns
 
-```sh
+```shell
 # Show A records
 az network dns record-set a list \
   --resource-group "demo-rg" \

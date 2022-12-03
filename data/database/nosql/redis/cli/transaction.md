@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#transactions>
 
-```sh
+```shell
 # Create string data
 SET foos 230
 

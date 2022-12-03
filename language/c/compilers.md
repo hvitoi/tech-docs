@@ -5,7 +5,7 @@
 - `MinGW`: Windows
   - <http://www.mingw.org/>
 
-```sh
+```shell
 gcc "hello-world.c" -o "HelloWorld"
 ./HelloWorld # run
 ```

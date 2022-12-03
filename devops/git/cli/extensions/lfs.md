@@ -1,6 +1,6 @@
 # lfs
 
-```sh
+```shell
 pacman -S "git-lfs"
 ```
 
@@ -11,7 +11,7 @@ pacman -S "git-lfs"
 - Set up the git repo as an lfs repo
 - Updates git hooks (`pre-push`, `post-merge`, `post-commit`, `post-checkout`)
 
-```sh
+```shell
 git lfs install
 ```
 
@@ -20,7 +20,7 @@ git lfs install
 - Start tracking some files as lfs
 - This adds info to the `.gitattribute` file
 
-```sh
+```shell
 git lfs track "*.mp3"
 ```
 
@@ -30,6 +30,6 @@ git lfs track "*.mp3"
 
 ## env
 
-```sh
+```shell
 git lfs env
 ```

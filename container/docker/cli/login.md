@@ -1,6 +1,6 @@
 # login
 
-```sh
+```shell
 # Login
 docker login
 
@@ -9,7 +9,7 @@ docker login -u "user" -p "password"
 echo "password" | docker login -u "user" --password-stdin # legacy
 ```
 
-```sh
+```shell
 # Logout
 docker logout
 ```
@@ -25,7 +25,7 @@ docker logout
 }
 ```
 
-```sh
+```shell
 docker login "myregistrydomain.com:5000"
 docker image build -t "myregistrydomain.com:5000/myimage:latest" .
 docker image push "myregistrydomain.com:5000/myimage:latest"

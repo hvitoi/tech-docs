@@ -1,6 +1,6 @@
 # Kafka Console Consumer
 
-```sh
+```shell
 # Subscribe to a topic
 kafka-console-consumer.sh \
   --bootstrap-server "localhost:9092" \ # When no consumer-group is specified, a random group is created. E.g., console-consumer-58262

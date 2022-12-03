@@ -1,5 +1,5 @@
 # dbeaver
 
-```sh
+```shell
 dbeaver
 ```

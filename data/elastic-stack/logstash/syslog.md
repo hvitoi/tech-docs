@@ -5,7 +5,7 @@
   - Can be stored locally or remotelly (port 514 UDP or 6514 TCP)
 - Logstash: Opens a TCP port and listens for syslog data
 
-```sh
+```shell
 sudo head -10 /var/log/syslog
 ```
 

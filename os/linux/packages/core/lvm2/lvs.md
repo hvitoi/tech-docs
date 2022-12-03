@@ -1,5 +1,5 @@
 # lvs
 
-```sh
+```shell
 lvs
 ```

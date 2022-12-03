@@ -1,6 +1,6 @@
 # list
 
-```sh
+```shell
 # List all packages
 dotnet list package
 ```

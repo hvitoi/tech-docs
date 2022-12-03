@@ -1,5 +1,5 @@
 # go
 
-```sh
+```shell
 go --version
 ```

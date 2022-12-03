@@ -2,7 +2,7 @@
 
 ## pactree
 
-```sh
+```shell
 # Dependencies of linux package
 pactree "linux" -scu
 
@@ -12,7 +12,7 @@ pactree "linux" -scur
 
 ## paclist
 
-```sh
+```shell
 # Find installed packages from a given repository
 paclist "multilib"
 ```
@@ -22,7 +22,7 @@ paclist "multilib"
 - Cache packages are stored at `/var/cache/pacman/pkg`
 - Requires the `pacman-contrib` package in order to clean pacman cache
 
-```sh
+```shell
 paccache -r
 pacman -Sc # more aggressive (doesn't keep old versions)
 ```

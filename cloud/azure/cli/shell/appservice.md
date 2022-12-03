@@ -1,6 +1,6 @@
 # appservice
 
-```sh
+```shell
 # Create App Service Plan
 az appservice plan create \
   --resource-group "demo-rg" \

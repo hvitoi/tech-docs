@@ -1,6 +1,6 @@
 # grub-install
 
-```sh
+```shell
 # Preparation
 pacman -S "grub" "efibootmgr" "os-prober"
 mount "/dev/sdx1" "/boot"
@@ -16,7 +16,7 @@ grub-install \
 grub-mkconfig -o "/boot/grub/grub.cfg"
 ```
 
-```sh
+```shell
 # Non-arch
 sudo mount "/dev/sdx1" "/mnt"
 for i in /dev /dev/pts /proc /sys /run; do

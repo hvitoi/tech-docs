@@ -1,6 +1,6 @@
 # Confluent CLI
 
-```sh
+```shell
 # Start kafka + many other tools (single node)
 confluent local start
 

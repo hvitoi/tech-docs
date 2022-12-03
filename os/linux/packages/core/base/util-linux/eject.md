@@ -2,6 +2,6 @@
 
 - Eject drive
 
-```sh
+```shell
 eject "/dev/cdrom"
 ```

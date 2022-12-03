@@ -2,6 +2,6 @@
 
 - Logitech mouse and keyboard integration
 
-```sh
+```shell
 solaar
 ```

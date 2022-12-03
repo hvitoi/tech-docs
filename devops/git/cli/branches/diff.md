@@ -2,7 +2,7 @@
 
 - Show diferences between files in `git repository` and `working directory`
 
-```sh
+```shell
 git diff # git repo - WIP
 git diff master..HEAD # master - HEAD
 ```

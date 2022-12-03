@@ -1,6 +1,6 @@
 # servicebus
 
-```sh
+```shell
 # Create service bus namespace
 az servicebus namespace create \
   --resource-group "demo-rg" \

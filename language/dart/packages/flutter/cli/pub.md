@@ -4,7 +4,7 @@
 
 - Add a new dependency
 
-```sh
+```shell
 flutter pub add "package-name"
 flutter pub add "package-name" --dev # as dev dependency
 ```
@@ -13,7 +13,7 @@ flutter pub add "package-name" --dev # as dev dependency
 
 - Download and install dependencies
 
-```sh
+```shell
 flutter pub get
 flutter pub get "packages/foo" # get from a subdirectory
 ```
@@ -22,7 +22,7 @@ flutter pub get "packages/foo" # get from a subdirectory
 
 - Global dependency
 
-```sh
+```shell
 # List all global packages
 flutter pub global list
 

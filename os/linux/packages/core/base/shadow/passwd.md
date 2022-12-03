@@ -1,6 +1,6 @@
 # Passwd
 
-```sh
+```shell
 # Change password an a user
 passwd "username" # A prompt will ask for the old and new password
 
@@ -8,7 +8,7 @@ passwd "username" # A prompt will ask for the old and new password
 passwd
 ```
 
-```sh
+```shell
 # Passwords
 cat /etc/passwd
 

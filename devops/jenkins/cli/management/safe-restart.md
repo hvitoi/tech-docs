@@ -1,5 +1,5 @@
 # safe-restart
 
-```sh
+```shell
 jenkins safe-restart
 ```

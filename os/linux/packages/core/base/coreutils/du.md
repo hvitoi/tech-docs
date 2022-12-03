@@ -1,6 +1,6 @@
 # du
 
-```sh
+```shell
 # Size of each folder inside the current folder
 du
 du "/directory"
@@ -19,7 +19,7 @@ du -sh "/var/lib/docker" # docker image folder
 
 ## File size
 
-```sh
+```shell
 echo -n "0123456789" > a.txt # 10-byte size file
 
 # real size (filesystem size)

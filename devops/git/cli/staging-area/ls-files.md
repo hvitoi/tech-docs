@@ -6,7 +6,7 @@
   1. `Staged`
   1. `Unmodified`
 
-```sh
+```shell
 # Show filename
 git ls-files
 

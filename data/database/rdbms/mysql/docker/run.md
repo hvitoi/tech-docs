@@ -1,6 +1,6 @@
 # Docker Run
 
-```sh
+```shell
 # Run
 docker build -t "mysql-custom" "." # Only if creating a new image from Dockerfile
 docker run \

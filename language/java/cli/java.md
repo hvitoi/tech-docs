@@ -1,6 +1,6 @@
 # Java CLI
 
-```sh
+```shell
 # Java version
 java -version
 

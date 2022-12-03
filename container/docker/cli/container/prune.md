@@ -2,6 +2,6 @@
 
 - Remove all stopped containers
 
-```sh
+```shell
 docker container prune
 ```

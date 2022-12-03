@@ -21,7 +21,7 @@ Second commit
 - Time in commit is formatted in Unix timestamp (1 Jan 1970 - Unix epoch) + timezone
 - Parent is the hash of the previous commit
 
-```sh
+```shell
 # Commit files with a message
 git commit -m "description"
 git commit -m "description" --allow-empty # empty commit
@@ -35,7 +35,7 @@ git commit -a -m "description"
 - Amend modifies the very last commit
 - A `new commit` is created and the other one is garbage collected
 
-```sh
+```shell
 # Modify author
 git commit --amend --author="Mike Githubber <mike.githubber@gmail.com>" # change author
 

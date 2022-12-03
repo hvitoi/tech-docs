@@ -12,7 +12,7 @@
 
 ## image
 
-```sh
+```shell
 # list vulnerabilities in an image
 trivy image "node:14.9.0"
 
@@ -23,14 +23,14 @@ trivy image --ignore-unfixed "node:14.9.0"
 
 ## repo
 
-```sh
+```shell
 # list vulnearbilities in a repository
 trivy repo "https://github.com/user/repo"
 ```
 
 ## config
 
-```sh
+```shell
 # spot misconfiguration in kubernetes manifests
 trivy config "deployment.yaml"
 
@@ -40,7 +40,7 @@ trivy config "main.tf"
 
 ## fs
 
-```sh
+```shell
 # vulnearbilities in a filesystem
 trivy fs "/"
 ```

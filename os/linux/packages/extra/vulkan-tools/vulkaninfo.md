@@ -5,7 +5,7 @@
   - `radeon_icd.i686.json`: vulkan-radeon (RADV - part of mesa project)
   - `radeon_icd.x86_64.json`
 
-```sh
+```shell
 vulkaninfo
 vulkaninfo | grep '^GPU id'
 

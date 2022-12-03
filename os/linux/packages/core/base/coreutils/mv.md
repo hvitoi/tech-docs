@@ -2,7 +2,7 @@
 
 - Move or rename a file/folder
 
-```sh
+```shell
 # Moves the file to new folder
 mv "old-path" "new-path"
 mv bashrc.bak new-folder

@@ -4,7 +4,7 @@
 - New pack files with along with index files are created
   - `.git/objects/pack` stores `.idx` and `.pack` files
 
-```sh
+```shell
 # Garbage collection for current git repo
 git gc
 

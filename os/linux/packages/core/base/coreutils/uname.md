@@ -2,7 +2,7 @@
 
 - Information about the system
 
-```sh
+```shell
 uname
 uname -a # all information
 ```

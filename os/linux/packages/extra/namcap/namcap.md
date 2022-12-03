@@ -3,6 +3,6 @@
 - Sanity check PKGBUILD files
 - Returns empty with success status code if okay
 
-```sh
+```shell
 namcap "PKGBUILD"
 ```

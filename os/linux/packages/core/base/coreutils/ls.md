@@ -48,7 +48,7 @@
 
 ## Listing
 
-```sh
+```shell
 ls
 ls -l
 ls -la

@@ -3,7 +3,7 @@
 - Remove untracked files
 - Useful after a git reset command
 
-```sh
+```shell
 git clean -df
 git clean -dxf
 ```

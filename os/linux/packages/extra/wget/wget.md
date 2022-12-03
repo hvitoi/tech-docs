@@ -3,7 +3,7 @@
 - World wide web get
 - Download files!
 
-```sh
+```shell
 wget "url"
 wget -qO - "url" # -q for quiet
 ```

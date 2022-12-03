@@ -1,5 +1,5 @@
 # cgdisk
 
-```sh
+```shell
 cgdisk
 ```

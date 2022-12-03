@@ -7,7 +7,7 @@
   1. `deletion`: interstellar -> interstelar
 - The edit distance can be parametrized with `fuzziness`
 
-```sh
+```shell
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \

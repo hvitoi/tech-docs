@@ -2,7 +2,7 @@
 
 - View the content one line at a time
 
-```sh
+```shell
 # Read text file line by line (q quits)
 less "file.txt"
 less "file.txt" "file2.txt" # :n (next file), :p (previous file)

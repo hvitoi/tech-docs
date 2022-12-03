@@ -1,5 +1,5 @@
 # login
 
-```sh
+```shell
 argocd login "host:port" --insecure --grpc-web
 ```

@@ -9,6 +9,6 @@
   - `pass`
   - `qtpass`: pass GUI
 
-```sh
+```shell
 bitwarden-desktop
 ```

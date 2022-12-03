@@ -1,5 +1,5 @@
 # vgdisplay
 
-```sh
+```shell
 vgdisplay "volume-group"
 ```

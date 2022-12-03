@@ -1,6 +1,6 @@
 # kafka-broker-api
 
-```sh
+```shell
 # Get broker ids
 kafka-broker-api.sh \
   --bootstrap-server "localhost:9092" \

@@ -3,7 +3,7 @@
 - Change user-specific policies
 - User-specific policies can be also seen at `/etc/shadow`
 
-```sh
+```shell
 # Show password policy for a user
 chage "username" -l
 

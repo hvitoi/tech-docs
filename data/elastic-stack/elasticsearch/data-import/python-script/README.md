@@ -1,6 +1,6 @@
 # Data import via python client
 
-```sh
+```shell
 pip3 install elasticsearch
 python3 IndexRatings.py
 ```

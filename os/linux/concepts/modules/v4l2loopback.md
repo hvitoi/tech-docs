@@ -2,7 +2,7 @@
 
 - DKMS package: **v4l2loopback-dkms**
 
-```sh
+```shell
 # Load loopback device temporarely
 modprobe v4l2loopback exclusive_caps=1 max_buffers=2
 lsmod | grep v4l2loopback

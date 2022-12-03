@@ -5,13 +5,13 @@
 - Configuration file: `/etc/logstash/conf.d/logstash.yml`
 - Pipeline: `/etc/logstash/conf.d/logstash.conf`
 
-```sh
+```shell
 sudo apt install openjdk-8-jre-headless
 sudo apt install logstash
 sudo bin/logstash -f /etc/logstash/conf.d/logstash.conf
 ```
 
-```sh
+```shell
 sudo bin/logstash --path.settings `/etc/logstash/conf.d/logstash.yml` -f `/etc/logstash/conf.d/logstash.conf`
 ```
 
@@ -21,7 +21,7 @@ sudo bin/logstash --path.settings `/etc/logstash/conf.d/logstash.yml` -f `/etc/l
   - Configuration can be set by means of environment variables!
 - Pipelines: `/usr/share/logstash/pipeline/logstash.conf`
 
-```sh
+```shell
 docker container run \
   --rm \
   -it \

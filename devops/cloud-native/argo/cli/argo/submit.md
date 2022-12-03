@@ -1,5 +1,5 @@
 # submit
 
-```sh
+```shell
 argo submit "workflow.yaml" -n "workflows"
 ```

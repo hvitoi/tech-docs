@@ -2,7 +2,7 @@
 
 - Word count
 
-```sh
+```shell
 wc "file" # <lines> <words> <bytes>
 wc "file" -l # Only lines
 wc "file" -w  # Only words

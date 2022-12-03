@@ -7,7 +7,7 @@
   - Into HDFS: by default to `/user/username/tablename`
   - Into Hive (on HDFS): by default to `/apps/hive/warehouse/tablename`
 
-```sh
+```shell
 sqoop import \
   --connect "jdbc:mysql://localhost/movielens" \
   --driver "com.mysql.jdbc.Driver" \
@@ -21,7 +21,7 @@ sqoop import \
 - Export job
 - Export table from HDFS (a file) to a relational database
 
-```sh
+```shell
 sqoop export \
   --connect "jdbc:mysql://localhost/movielens" \
   --driver "com.mysql.jdbc.Driver" \

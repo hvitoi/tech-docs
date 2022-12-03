@@ -1,6 +1,6 @@
 # timedatectl
 
-```sh
+```shell
 # List timezones
 timedatectl list-timezones
 timedatectl list-timezones | grep "America/Sao_Paulo"

@@ -1,6 +1,6 @@
 # logs
 
-```sh
+```shell
 # Logs from pod (single container)
 kubectl logs "pod-name"
 kubectl logs "pod-name" -c "container-name" # specify container
@@ -30,7 +30,7 @@ kubectl logs job/hello
 kubectl logs "deployment/deployment-name" -c "container-name"
 ```
 
-```sh
+```shell
 kubectl logs \
   --context "admin-user@lojaonline-prd" \
   --namespace "production" \

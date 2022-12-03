@@ -4,7 +4,7 @@
 
 - Default context is stored at `~/.kube/config` and it must have `600` permission
 
-```sh
+```shell
 # Show kubeconfig
 kubectl config view
 kubectl config view -o jsonpath='{.users[?(@.name == "admin")].user.password}' # get user + password of the admin user
@@ -12,7 +12,7 @@ kubectl config view -o jsonpath='{.users[?(@.name == "admin")].user.password}' #
 
 ## set-credentials, set-cluster, set-context
 
-```sh
+```shell
 # Set user
 kubectl config set-credentials "user-name" --token="token"
 
@@ -28,7 +28,7 @@ kubectl config current-context
 
 ## get-context
 
-```sh
+```shell
 # List all contexts (clusters)
 kubectl config get-contexts
 
@@ -38,7 +38,7 @@ kubectl config use-context "context-name"
 
 ## kubeconfig
 
-```sh
+```shell
 # Linux/Mac (bash)
 export KUBECONFIG="/home/hvitoi/Documents/kubeconfig.yaml"
 ```

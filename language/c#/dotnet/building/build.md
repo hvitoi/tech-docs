@@ -5,7 +5,7 @@
 - The code to be published is inside of the `publish` folder
 - `./bin/Release/net5.0/publish`
 
-```sh
+```shell
 # Build project (inside of the project folder)
 dotnet build
 

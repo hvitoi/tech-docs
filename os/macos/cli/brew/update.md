@@ -2,6 +2,6 @@
 
 - Update all repos
 
-```sh
+```shell
 brew update --verbose
 ```

@@ -3,7 +3,7 @@
 - See any changes to be applied to the infrastructure (diff)
 - The `diff` is compared with the `real state` in the cloud
 
-```sh
+```shell
 # plan
 terraform plan
 

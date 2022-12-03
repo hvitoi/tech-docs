@@ -1,6 +1,6 @@
 # rev-list
 
-```sh
+```shell
 # Find the 10 biggest files from the entire git repository (all commits)
 git rev-list --objects --all \
   | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \

@@ -5,7 +5,7 @@
 - The `kubelet` component contains a subcomponent `cAdvisor`
 - `cAdvisor` retrives performance metrics from pods and expose them through the kubelet API
 
-```sh
+```shell
 # Minikube
 minikube addons enable "metrics-server"
 
@@ -15,7 +15,7 @@ kubectl apply -f "https://github.com/kubernetes-sigs/metrics-server/releases/lat
 
 - Metrics Server unlocks the `TOP` command
 
-```sh
+```shell
 # Metrics for all pods/nodes
 kubectl top pod --all-namespaces --containers=true
 kubectl top node --all-namespaces --containers=true

@@ -3,7 +3,7 @@
 - With rebase, the commits from the main branch are merged as fast-forward into the feature branch (`rebase`)
 - All the commits from the feature branch are then `rewritten` on top of the new latest commit
 
-```sh
+```shell
 # switch to feature branch
 git checkout "feature"
 
@@ -24,7 +24,7 @@ git merge "feature"
 - At each commit, it's checked wether it can be fast-forwarded, or if there are conflicts
 - If there are conflicts, you must resolve it, add it to staging area (do not commit) and continue the rebasing process
 
-```sh
+```shell
 # first resolve the conflicts and add changes them to staging area
 git rebase --continue # continue to next feature commit
 git rebase --skip # skip the conflicting feature commit (it will be discarded)
@@ -38,7 +38,7 @@ git rebase --abort # abort the whole rebasing process
 - Must be done `interactively`
 - `SHA1` is usually the first commit in the feature branch (the new base - rebase)
 
-```sh
+```shell
 git rebase "SHA1" --interactive
 git rebase "62079b5" -i
 git rebase "62079b5^" -i # includes the commit mentioned
@@ -55,7 +55,7 @@ squash 100002 Message2
 squash 100003 Message3
 ```
 
-```sh
+```shell
 # Alternatively you can squash with the following:
 git reset "SHA1" # first commit in the feature branch
 git add -A && git commit -m "condensed commit"

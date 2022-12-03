@@ -1,6 +1,6 @@
 # powermetrics
 
-```sh
+```shell
 # MacbookPro16 very high CPU temperature ~90 C
 powermetrics --samplers smc | grep -i "CPU die temperature"
 

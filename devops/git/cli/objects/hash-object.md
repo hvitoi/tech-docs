@@ -15,7 +15,7 @@
 blob 11\0Hello, Git
 ```
 
-```sh
+```shell
 # Generate object hash
 git hash-object `value`
 git hash-object `/path/to/file`
@@ -27,7 +27,7 @@ git hash-object `/path/to/file` -w
 echo `value` | git hash-object --stdin -w
 ```
 
-```sh
+```shell
 # Create object with value
 echo "Hello, Git" | git hash-object --stdin -w
 
@@ -53,7 +53,7 @@ git hash-object ./index.js -w
 
 ### SHA1
 
-```sh
+```shell
 # Generate SHA1 hash
 echo "Hello" | shasum
 ```

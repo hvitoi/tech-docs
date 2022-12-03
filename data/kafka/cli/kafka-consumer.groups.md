@@ -4,7 +4,7 @@
 
 - List all consumer groups
 
-```sh
+```shell
 kafka-consumer-groups.sh --list \
   --bootstrap-server "localhost:9092"
 ```
@@ -18,7 +18,7 @@ kafka-consumer-groups.sh --list \
   - `Log-End-Offset`: Last message of the partition
   - `Lag`: Difference between both. How many messages it has to read to keep up to date. The sum of the lags is how many messages will be received by a member when it logs in
 
-```sh
+```shell
 # describe all groups
 kafka-consumer-groups.sh --describe \
   --bootstrap-server "localhost:9092" \
@@ -34,7 +34,7 @@ kafka-consumer-groups.sh --describe \
 
 - Reset offsets for a consumer group
 
-```sh
+```shell
 # shift-by
 kafka-consumer-groups.sh --execute \
   --bootstrap-server "localhost:9092" \

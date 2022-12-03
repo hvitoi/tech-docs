@@ -38,7 +38,7 @@ myremotehost ansible_host=ubuntu ansible_user=ubuntu ansible_private_key_file=/v
 - Copy the `hosts` file into the jenkins_home/ansible folder
 - Connect with the jenkins-ansible container!
 
-```sh
+```shell
 ansible -i "hosts-file" -m "command" "host-alias"
 ansible -i "./hosts" -m "ping" "myremotehost"
 ```
@@ -56,7 +56,7 @@ ansible -i "./hosts" -m "ping" "myremotehost"
 
 - Run playbook
 
-```sh
+```shell
 ansible-playbook -i "hosts-file" "playbook-file"
 ansible-playbook -i "./hosts" "./playbook.yaml"
 ```
@@ -74,7 +74,7 @@ ansible-playbook -i "./hosts" "./playbook.yaml"
 
 ## Copy the script to copy txt into database into db-host container
 
-```sh
+```shell
 docker cp ./people.txt db-host:/tmp
 docker cp ./put.sh db-host:/tmp
 ```
@@ -90,7 +90,7 @@ test1 ansible_host=remote-host ansible_user=ubuntu ansible_private_key_file=/var
 web1 ansible_host=web ansible_user=ubuntu ansible_private_key_file=/var/jenkins_home/ansible/ubuntu-key
 ```
 
-```sh
+```shell
 # Test connection
 ansible -m ping -i hosts web1
 ansible -m ping -i hosts all
@@ -107,7 +107,7 @@ ansible -m ping -i hosts all
         dest: /var/www/html/index.php
 ```
 
-```sh
+```shell
 # Run playbook
 ansible-playbook -i hosts people.yml -e "PEOPLE_AGE=25" # -e specify parameters
 ```

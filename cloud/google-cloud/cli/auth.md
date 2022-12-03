@@ -1,11 +1,11 @@
 # auth
 
-```sh
+```shell
 # Login to GCloud SDK
 gcloud auth login
 ```
 
-```sh
+```shell
 # Authenticate (writes application default credentials)
 gcloud auth application-default login
 ```

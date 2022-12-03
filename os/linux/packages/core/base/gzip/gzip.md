@@ -2,7 +2,7 @@
 
 - Compress or uncompress a file
 
-```sh
+```shell
 # Compress file and saves it to itself
 gzip "file.tar" # output file.tar.gz
 

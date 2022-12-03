@@ -79,7 +79,7 @@
 
 ## Command Line Interface
 
-```sh
+```shell
 mvn clean
 mvn package
 mvn install # install the current project into the ~/.m2 folder

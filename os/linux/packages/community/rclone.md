@@ -4,7 +4,7 @@
 
 - Config file is stored at `~/.config/rclone/rclone.conf`
 
-```sh
+```shell
 # Configure remote storage server
 rclone config
 rclone config file # print config file location
@@ -12,7 +12,7 @@ rclone config file # print config file location
 
 ## listremotes
 
-```sh
+```shell
 # Get all remotes
 rclone listremotes
 
@@ -23,7 +23,7 @@ rclone about hvitoi:/
 
 ## List
 
-```sh
+```shell
 # Files
 rclone lsf "remote":"path"
 
@@ -38,7 +38,7 @@ rclone ncdu "remote":"path"
 
 - It is always the contents of the directory that is synced, not the directory so when source:path is a directory, it's the contents of source:path that are copied, not the directory name and contents.
 
-```sh
+```shell
 # Copy the content
 rclone copy "/local/path" "remote":"/remote/path"
 rclone copy ~/Documents/my-folder hvitoi:/my-folder
@@ -46,7 +46,7 @@ rclone copy ~/Documents/my-folder hvitoi:/my-folder
 
 ## Remove
 
-```sh
+```shell
 # Remove a single file
 rclone deletefile "remote":"remote/path"
 
@@ -58,7 +58,7 @@ rclone purge "remote":"remote/path" --interactive
 
 ## Sync
 
-```sh
+```shell
 # dry-run
 rclone sync --dry-run "/local/path" "remote":"/remote/path" # "test" the sync, but do not perform data transfer
 
@@ -91,7 +91,7 @@ rclone sync "/media/code" "remote:/code" --verbose --progress --exclude "node_mo
 
 ## Filters
 
-```sh
+```shell
 rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 ```
 
@@ -100,7 +100,7 @@ rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 - Mount remote to a mount point
 - Requires `fuse2` package
 
-```sh
+```shell
 # mount
 rclone mount "remote":"/remote/path" "/local/path"
 rclone mount hvitoi:/ /mnt/hvitoi
@@ -118,7 +118,7 @@ rclone mount hvitoi:/ /mnt/hvitoi
 1. Create passwords
 1. Done
 
-```sh
+```shell
 # checks a remote against a crypted remote. It works by reading the nonce from each file on the crypted remote
 rclone cryptcheck "/path/to/files" "remote-crypt:path"
 ```

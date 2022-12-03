@@ -1,6 +1,6 @@
 # Index configuration
 
-```sh
+```shell
 # Get index configuration
 curl -X GET "localhost:9200/movies?pretty"
 

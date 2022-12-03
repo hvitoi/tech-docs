@@ -1,12 +1,12 @@
 # Account
 
-```sh
+```shell
 az login
 ```
 
 ## show
 
-```sh
+```shell
 # Show account
 az account show \
   --output "table"
@@ -24,7 +24,7 @@ az account show \
 
 ## set
 
-```sh
+```shell
 # Set up a account
 az account set --subscription "subscription-id"
 ```

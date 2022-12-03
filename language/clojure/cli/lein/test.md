@@ -2,7 +2,7 @@
 
 - Run the project's tests
 
-```sh
+```shell
 lein test
 
 # tests from a namespace only

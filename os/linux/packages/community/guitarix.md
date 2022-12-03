@@ -2,7 +2,7 @@
 
 ## Groups
 
-```sh
+```shell
 # Add the necessary groups to your user
 sudo usermod -aG "audio" $USER
 sudo usermod -aG "realtime" $USER # might be necessary to install the realtime-privileges package (or realtime group)
@@ -13,7 +13,7 @@ sudo usermod -aG "realtime" $USER # might be necessary to install the realtime-p
 - Check `max locked memory` (should be unlimited)
 - Check `real-time priority` (should be over 90)
 
-```sh
+```shell
 ulimit -a
 ```
 

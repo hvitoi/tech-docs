@@ -1,5 +1,5 @@
 # auth
 
-```sh
+```shell
 gh auth login
 ```

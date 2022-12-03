@@ -1,6 +1,6 @@
 # cosmosdb
 
-```sh
+```shell
 # Single region (no redundancy)
 az cosmosdb create \
   --name "hvitoi" \

@@ -1,6 +1,6 @@
 # submodule
 
-```sh
+```shell
 # Clone submodules
 git submodule update --init
 
@@ -11,7 +11,7 @@ git clone --recursive "repo"
 git pull --recurse-submodules
 ```
 
-```sh
+```shell
 # ignore dirty commits in the submodule
 git config -f .gitmodules submodule.mymodule.ignore dirty
 ```

@@ -1,6 +1,6 @@
 # sway
 
-```sh
+```shell
 pacman -S \
   "sway" \
   "swaylock" \
@@ -36,7 +36,7 @@ pacman -S \
 
 ## swaymsg
 
-```sh
+```shell
 # Get monitor devices
 swaymsg --type get_outputs
 

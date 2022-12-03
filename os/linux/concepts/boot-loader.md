@@ -14,12 +14,12 @@
 
 - 0, 1 and 6 are the main run levels
 
-```sh
+```shell
 # Tells the current run level of the session
 who -r # Usually 5 (networking with gui)
 ```
 
-```sh
+```shell
 # Set default run level (5 by default)
 systemctl set-default "new-target"
 ```
@@ -64,7 +64,7 @@ permitted by applicable law.
 - Customize the message of the day
 - Create a new file for the scripts in `/etc/profile.d/motd.sh`
 
-```sh
+```shell
 #!/bin/bash
 
 echo -e "
@@ -81,7 +81,7 @@ You are logged in as `whoami`
 PrintMotd no
 ```
 
-```sh
+```shell
 # Restart sshd service
 systemctl restart sshd
 ```

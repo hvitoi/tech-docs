@@ -2,7 +2,7 @@
 
 - Manage the system certificates
 
-```sh
+```shell
 # List all certificates
 trust list
 

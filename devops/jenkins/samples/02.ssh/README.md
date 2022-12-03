@@ -2,7 +2,7 @@
 
 ## SSH server
 
-```sh
+```shell
 # Generate keys to access the SSH server
 ssh-keygen -m "PEM" -f "./ubuntu/ubuntu-key"
 ```
@@ -44,7 +44,7 @@ networks:
 
 - Test connection (Jenkins -> Ubuntu)
 
-```sh
+```shell
 # Copy the ssh key to jenkins
 docker container cp "./ubuntu/ubuntu-key" "jenkins:/tmp/ubuntu-key"
 ssh "ubuntu@remote-host" # Access via SSH (with password)

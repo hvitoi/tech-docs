@@ -1,6 +1,6 @@
 # tag
 
-```sh
+```shell
 # List all tags
 git tag
 ls .git/refs/tags
@@ -8,7 +8,7 @@ ls .git/refs/tags
 
 ## Create
 
-```sh
+```shell
 # Create Lightweight tag
 git tag v1.0.0
 
@@ -26,14 +26,14 @@ git tag -a "36+202103191200-master-36" -m "36+202103191200-master-36" # 36 is th
 
 ## Show
 
-```sh
+```shell
 # Show tag details (Only for annotated tags)
 git tag -v v1.0.0
 ```
 
 ## Push Tags
 
-```sh
+```shell
 # Push all tags to remote (by default it's not pushed)
 git push --tags # Only tags are pushes. No commits at all
 

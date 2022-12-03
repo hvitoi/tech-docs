@@ -1,6 +1,6 @@
 # gparted
 
-```sh
+```shell
 # interactive mode
 parted "/dev/sda"
 
@@ -10,14 +10,14 @@ parted -l
 
 ## print
 
-```sh
+```shell
 # print partition table and partition numbers
 parted "/dev/sda" print
 ```
 
 ## resizepart
 
-```sh
+```shell
 # resize a partition
 parted "/dev/sda" resizepart
 ```

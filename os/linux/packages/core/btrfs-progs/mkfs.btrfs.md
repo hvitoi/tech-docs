@@ -1,5 +1,5 @@
 # mkfs.btrfs
 
-```sh
+```shell
 mkfs.btrfs "/dev/sda"
 ```

@@ -1,6 +1,6 @@
 # Clear screen
 
-```sh
+```shell
 # Clear screen
 clear
 ```

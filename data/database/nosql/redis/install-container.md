@@ -1,6 +1,6 @@
 # Redis container install
 
-```sh
+```shell
 # Pull, Build and Run
 docker pull redis
 

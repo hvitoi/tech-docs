@@ -2,6 +2,6 @@
 
 - Upgrade all packages
 
-```sh
+```shell
 brew upgrade
 ```

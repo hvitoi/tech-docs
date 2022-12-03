@@ -1,5 +1,5 @@
 # gdisk
 
-```sh
+```shell
 gdisk
 ```

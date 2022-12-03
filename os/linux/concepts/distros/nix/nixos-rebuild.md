@@ -2,6 +2,6 @@
 
 - Update the configuration file
 
-```sh
+```shell
 nixos-rebuild switch
 ```

@@ -8,7 +8,7 @@ the job
 `-v`: print console output of the build. Use with -s or -f
 `-w`: Wait until the start of the command (default: false)
 
-```sh
+```shell
 # build with parameters
 jenkinscli build "job-name" -p "key1=value1" -p "key2=value2"
 

@@ -45,7 +45,7 @@ output {
 
 - If a pattern doesn't match, a tag `_grokparsefailure` will be added to the document
 
-```sh
+```shell
 curl -s "localhost:9200/nginx-logs/_search" \
   --request GET \
   --header "Content-Type: application/json" \

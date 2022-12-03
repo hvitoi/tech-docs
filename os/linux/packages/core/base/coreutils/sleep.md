@@ -3,6 +3,6 @@
 - set time out
 - do nothing but wait
 
-```sh
+```shell
 sleep 10 # sleep 10 seconds
 ```

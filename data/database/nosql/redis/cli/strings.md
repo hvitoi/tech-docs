@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#string>
 
-```sh
+```shell
 # Create some string data
 # EX - Expiration / NX - If not exists / XX - If already exists
 

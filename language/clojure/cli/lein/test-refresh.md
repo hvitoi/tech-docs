@@ -3,7 +3,7 @@
 - Autoruns `clojure.test` tests upon changes on source code
 - Alternatively run `(clojure.test/run-all-tests)` on repl
 
-```sh
+```shell
 lein test-refresh
 lein test-refresh :changes-only
 ```

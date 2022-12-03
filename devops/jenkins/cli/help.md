@@ -6,7 +6,7 @@
 
 ## HTTP connection mode
 
-```sh
+```shell
 # username + password
 java -jar "jenkins-cli.jar" \
   -s "http://localhost:8080" \
@@ -34,7 +34,7 @@ java -jar "jenkins-cli.jar" \
 
 - Instead of defining `-auth` param, you can set it as environment variables
 
-```sh
+```shell
 export JENKINS_USER_ID=admin
 export JENKINS_API_TOKEN=abc1234ffe4a
 java -jar "jenkins-cli.jar" "http://localhost:8080" help
@@ -45,7 +45,7 @@ java -jar "jenkins-cli.jar" "http://localhost:8080" help
 - Avoid problems with many reverse proxies or the need for special proxy configuration
   SSH connection mode
 
-```sh
+```shell
 java -jar "jenkins-cli.jar" \
   -s "http://localhost:8080" \
   -webSocket -auth "admin:123" \
@@ -57,7 +57,7 @@ java -jar "jenkins-cli.jar" \
 - Authentication via SSH keypair
 - Acts like a native ssh command
 
-```sh
+```shell
 java -jar "jenkins-cli.jar" \
   -s "http://localhost:8080" \
   -ssh -user "admin" \
@@ -66,6 +66,6 @@ java -jar "jenkins-cli.jar" \
 
 ## Alias
 
-```sh
+```shell
 echo "alias jenkinscli=\"java -jar ~/bin/jenkins-cli.jar -s http://localhost:8080 -webSocket -auth admin:123\"" >> ~/.zshrc
 ```

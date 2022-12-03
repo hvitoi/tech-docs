@@ -3,7 +3,7 @@
 - Creates multiple nodes (with busybox linux)
 - Requires VM VirtualBox
 
-```sh
+```shell
 # List all nodes
 docker-machine ls
 
@@ -21,7 +21,7 @@ docker-machine stop "node-name"
 docker-machine rm "node-name"
 ```
 
-```sh
+```shell
 # SSH into the node
 docker-machine ssh "node-name"
 
@@ -33,7 +33,7 @@ docker-machine env "node-name" --shell "cmd"
 docker-machine env "node-name" --shell "powershell"
 ```
 
-```sh
+```shell
 # Switch to the specified node
 eval $(docker-machine env "node-name")
 ```

@@ -1,6 +1,6 @@
 # pwd - Print working directory
 
-```sh
+```shell
 # Print working directory
 pwd
 ```

@@ -1,5 +1,5 @@
 # drawio-desktop-bin
 
-```sh
+```shell
 drawio
 ```

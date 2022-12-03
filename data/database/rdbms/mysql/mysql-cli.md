@@ -2,7 +2,7 @@
 
 ## user/pass
 
-```sh
+```shell
 # Simple login
 mysql -u "user" -p"pass"
 mysql -u root -p123
@@ -11,7 +11,7 @@ mysql -u root -p123
 mysql -u "user" -p"pass" "db"
 ```
 
-```sh
+```shell
 # source a sql script
 # alternatively use "SCRIPT script.sql"
 mysql -u "root" -p123 < "script.sql"
@@ -21,7 +21,7 @@ mysql -u "root" -p123 < "script.sql"
 
 - Login to a remote host
 
-```sh
+```shell
 mysql -u root -h "remote-ip" -p
 ```
 
@@ -29,7 +29,7 @@ mysql -u root -h "remote-ip" -p
 
 - Run an expression
 
-```sh
+```shell
 mysql \
   -uroot \
   -p123 \
@@ -40,7 +40,7 @@ mysql \
 
 - Backup the whole DB
 
-```sh
+```shell
 mysqldump -u "root" -p "db-to-backup" > "path/to/save.sql"
 mysqldump -u "root" -p "testdb" > "/tmp/db.sql"
 ```

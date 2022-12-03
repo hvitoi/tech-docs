@@ -1,6 +1,6 @@
 # restore
 
-```sh
+```shell
 # restore installed dependencies
 dotnet restore
 ```

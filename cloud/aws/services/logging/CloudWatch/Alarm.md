@@ -6,7 +6,7 @@
 
 - `Actions`: EC2, auto scaling, SNS
 
-```sh
+```shell
 aws cloudwatch set-alarm-state \
   --alarm-name "myalarm" \
   --state-value "ALARM" \

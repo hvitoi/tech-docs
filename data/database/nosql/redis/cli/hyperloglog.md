@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#hyperloglog>
 
-```sh
+```shell
 # Create some string data
 PFADD demo.ml.rating.users 1 1 3 4 12 3 4 6 3 5 7 65 5 33 2 213 3 7 4
 

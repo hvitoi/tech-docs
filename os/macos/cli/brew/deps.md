@@ -1,6 +1,6 @@
 # deps
 
-```sh
+```shell
 # dependency graph
 brew deps --tree --installed
 

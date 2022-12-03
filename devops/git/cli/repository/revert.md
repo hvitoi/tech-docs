@@ -4,7 +4,7 @@
 - Take a `single commit` and `inverse all its changes` made in that commit
 - Create a `new commit` with those inverted changes
 
-```sh
+```shell
 # Revert changes made by the last commit (HEAD)
 git revert HEAD
 
@@ -17,7 +17,7 @@ git revert "SHA1"
 - Conflicts can happen in revert operation
 - In this case, conflicts must be solved and be staged
 
-```sh
+```shell
 git add .
 git revert --continue
 ```

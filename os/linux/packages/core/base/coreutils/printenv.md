@@ -2,6 +2,6 @@
 
 - Same as `env`
 
-```sh
+```shell
 printenv
 ```

@@ -2,7 +2,7 @@
 
 - <https://redis.io/commands#sorted_set>
 
-```sh
+```shell
 # Create some string data
 
 ZADD demo.ml.genre_hist 20 Action 34 Adventure 10 Animation 16 Children 55 Comedy 19 Crime 39 Drama 11 Fantasy

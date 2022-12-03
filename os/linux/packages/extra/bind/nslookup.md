@@ -3,7 +3,7 @@
 - Check an IP of a hostname in a DNS server
 - nslookup does not include entries in `/etc/hosts`
 
-```sh
+```shell
 # Find the IP from a hostname
 nslookup "hostname"
 nslookup www.google.com
@@ -42,14 +42,14 @@ nslookup -type=NS hvitoi.com
 
 - `bind9` is the name of the DNS package
 
-```sh
+```shell
 sudo apt install bind9
 apt-get install bind9-doc
 ```
 
 - `named` is the name of the dns service
 
-```sh
+```shell
 systemctl status named
 ```
 

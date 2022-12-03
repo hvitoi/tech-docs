@@ -6,7 +6,7 @@
   - `mandatory`: all mandatory dependent plugins are also disabled, optional dependent plugins are kept
   - `all`: all mandatory and optional dependent plugins are disabled
 
-```sh
+```shell
 jenkinscli disable-plugin "plugin-name"
 jenkinscli disable-plugin "plugin-name" -quiet # print only error messages
 jenkinscli disable-plugin "plugin-name" -restart # restart after disabling

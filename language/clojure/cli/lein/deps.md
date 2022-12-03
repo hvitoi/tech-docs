@@ -2,7 +2,7 @@
 
 - Download and examine dependencies
 
-```sh
+```shell
 # dependencies
 lein deps
 

@@ -1,6 +1,6 @@
 # pipelinerun
 
-```sh
+```shell
 # list all pipelines currently running
 tkn pipelinerun list --namespace "test"
 

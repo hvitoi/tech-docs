@@ -2,6 +2,6 @@
 
 - Detect non-free software
 
-```sh
+```shell
 vrms
 ```

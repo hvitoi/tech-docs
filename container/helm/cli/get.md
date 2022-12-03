@@ -1,6 +1,6 @@
 # get
 
-```sh
+```shell
 # Get release
 helm get "release-name"
 

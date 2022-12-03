@@ -2,7 +2,7 @@
 
 - Sort can only be performed by `not_analyzed` fields. E.g. `keyword`
 
-```sh
+```shell
 curl -s "localhost:9200/movies/_search" \
   --request GET \
   --header "Content-Type: application/json" \
@@ -30,7 +30,7 @@ curl -s "localhost:9200/movies/_search" \
 
 - Create new subfield "raw" to be used for sorting purposes
 
-```sh
+```shell
 curl -s "localhost:9200/movies" \
   --request PUT \
   --header "Content-Type: application/json" \

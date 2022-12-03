@@ -17,7 +17,7 @@
 
 - `Build->Execute shell`: run a shell script
 
-```sh
+```shell
 NAME=Henrique # temporary environment variable
 echo "Hello World"
 echo "Current date is $(date)"
@@ -30,7 +30,7 @@ echo "Hello, $NAME. The current date and time is $(date)" > /tmp/info # Save the
 - Check `This job is parametrized` to define envs
   - string, choice (list), boolean, etc
 
-```sh
+```shell
 echo "Hello, $NAME. The current date and time is $(date)." > /tmp/hello.txt # The $NAME will be defined in jenkins
 ```
 
@@ -38,11 +38,11 @@ echo "Hello, $NAME. The current date and time is $(date)." > /tmp/hello.txt # Th
 
 - Define shell script to be executed
 
-```sh
+```shell
 /tmp/script.sh $FIRST_NAME $LAST_NAME $SHOW # run script with parameters
 ```
 
-```sh
+```shell
 # copy the script into the container
 docker container cp "./script.sh" "jenkins:/tmp/script.sh"
 ```

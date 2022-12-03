@@ -7,6 +7,6 @@
   - Set default region (y)
   - southamerica-east1-a
 
-```sh
+```shell
 gcloud init
 ```

@@ -2,7 +2,7 @@
 
 - GNU Emacs
 
-```sh
+```shell
 # Start emacs as a process (not as a client)
 emacs
 ```
@@ -12,6 +12,6 @@ emacs
 - Start emacs server as a daemon
 - Allows now starting emacs as a client (faster bootup)
 
-```sh
+```shell
 emacs --daemon
 ```

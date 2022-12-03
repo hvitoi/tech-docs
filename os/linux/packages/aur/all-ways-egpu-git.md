@@ -2,7 +2,7 @@
 
 - Switch gpus on wayland
 
-```sh
+```shell
 # Setup
 all-ways-egpu
 ```
@@ -13,7 +13,7 @@ all-ways-egpu
 - The daemon is used to disable a particular gpu at startup
 - Runs before the display manager
 
-```sh
+```shell
 all-ways-egpu boot
 ```
 
@@ -22,7 +22,7 @@ all-ways-egpu boot
 - Automatically set the `boot-vga` flag at startup
 - Runs after the display manager
 
-```sh
+```shell
 # set the eGPU as primary before the DE starts
 all-ways-egpu set-boot-vga egpu
 
@@ -34,6 +34,6 @@ all-ways-egpu set-boot-vga internal
 
 - Enables a gpu
 
-```sh
+```shell
 all-ways-egpu switch internal
 ```

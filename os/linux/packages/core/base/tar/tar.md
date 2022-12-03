@@ -6,7 +6,7 @@
 
 ## Tar
 
-```sh
+```shell
 # TAR
 tar -cvf "file.tar" "file-folder-1" "file-folder-2" "file-folder-3"
 tar -cvf tarball.tar .
@@ -26,7 +26,7 @@ tar -czvf tarball.tar.gz /home/eu --exclude=*.mp4
 
 ## Untar
 
-```sh
+```shell
 # UNTAR
 tar -xvf "file" # Extracts to current folder
 tar -xvf "file" -C "destination" # Extract to a destination
@@ -40,7 +40,7 @@ tar -xJxvf "file" # xz
 
 ## Other
 
-```sh
+```shell
 # Strip
 tar -xzvf "file.tgz" --strip-components=1
 ```

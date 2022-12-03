@@ -2,7 +2,7 @@
 
 - CPU information
 
-```sh
+```shell
 lscpu
 
 # Tells whether virtualization is enabled (VT-x for intel, AMD-V for amd)

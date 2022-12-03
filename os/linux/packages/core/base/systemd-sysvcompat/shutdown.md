@@ -2,7 +2,7 @@
 
 - May result in `halt`, `power off` or `reboot` the machine
 
-```sh
+```shell
 # Shutdown gracefully
 shutdown -P # the default
 

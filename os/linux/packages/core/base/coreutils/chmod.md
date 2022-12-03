@@ -16,7 +16,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
 
-```sh
+```shell
 chmod +x "file" # Make the file executable for all (u+g+o)
 chmod 700 "file" # User can rwx, the rest can do nothing
 chmod 731 "file" # User rwx, group -wx, others --x
@@ -31,7 +31,7 @@ chmod a+rwx "file" # Add "read-execute" to all
 
 - Folders MUST have executable permission (+x) in order to be accessible (cd into it)
 
-```sh
+```shell
 # Default folder permission
 chmod 755 "folder"
 

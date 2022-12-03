@@ -2,7 +2,7 @@
 
 ## Debian package
 
-```sh
+```shell
 sudo apt install mongodb-server
 mongo
 ```
@@ -11,7 +11,7 @@ mongo
 
 - `Version`: 4.2.6 Debian Linux x64 Package TGZ
 
-```sh
+```shell
 # Move the mongodb folder to a permanent place
 mv mongodb ~/mongodb
 
@@ -24,7 +24,7 @@ mkdir data
 
 ## Mongo custom repository
 
-```sh
+```shell
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
 echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
 sudo apt-get update
@@ -42,7 +42,7 @@ mongo
 - Website: <https://robomongo.org/>
 - Install Robo 3T (not studio). .tar.gz file
 
-```sh
+```shell
 mv robo3t /usr/local/bin/robo3t
 cd /usr/local/bin/robo3t/bin
 sudo chmod +x robo3t

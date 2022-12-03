@@ -2,7 +2,7 @@
 
 - Lists the contents of the git repository in the current commit
 
-```sh
+```shell
 git ls-tree "main"
 git ls-tree "main" -r # recursive
 

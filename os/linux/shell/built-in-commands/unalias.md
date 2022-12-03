@@ -1,6 +1,6 @@
 # unalias
 
-```sh
+```shell
 # Remove alias
 unalias `alias_name`
 ```

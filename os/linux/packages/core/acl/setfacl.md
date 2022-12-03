@@ -5,7 +5,7 @@
 - It's an additional permission system
 - Allows access for a user without having to add it to a group (g) or to allow access to "others" (o)
 
-```sh
+```shell
 # Modify a file ACL
 setfacl -m u:"user":rwx "file" # Set rwx to a user
 setfacl -m g:"group":rwx "file" # Set rwx to a group

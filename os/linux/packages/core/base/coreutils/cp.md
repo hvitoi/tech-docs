@@ -1,6 +1,6 @@
 # Copy
 
-```sh
+```shell
 # Copy a file
 cp "file" "new-file"
 cp ~/.bashrc bashrc.bak

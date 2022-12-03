@@ -23,7 +23,7 @@
 
 ### Mapping
 
-```sh
+```shell
 curl -s "http://localhost:9200/nginx" \
   --request PUT \
   --header 'Content-Type: application/json' \
@@ -53,7 +53,7 @@ curl -s "http://localhost:9200/nginx" \
 
 ### Transform preview
 
-```sh
+```shell
 curl --location --request POST -H 'Content-Type:application/json' 'http://localhost:9200/_transform/_preview' \
 --data-raw '{
    "source": {
@@ -106,7 +106,7 @@ curl --location --request POST -H 'Content-Type:application/json' 'http://localh
 
 ### Transform
 
-```sh
+```shell
 curl --location --request PUT -H 'Content-Type:application/json' 'http://localhost:9200/_transform/nginx_transform' \
 --data-raw '{
    "source": {
@@ -165,6 +165,6 @@ curl --location --request PUT -H 'Content-Type:application/json' 'http://localho
 
 ### Start transform
 
-```sh
+```shell
 curl "localhost:9200/_transform/nginx_transform/_start"  --request POST
 ```

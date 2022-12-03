@@ -2,7 +2,7 @@
 
 ## filesystem
 
-```sh
+```shell
 btrfs filesystem usage "/"
 
 btrfs filesystem df "/"
@@ -20,7 +20,7 @@ btrfs filesystem show "/"
 - A size `quota` can be imposed for each subvolume
 - Subvolumes can be referenced in fstab by name (e.g., `subvol=/@files` ) or by id (e.g., `subvolid=243`) mount flags
 
-```sh
+```shell
 # List all subvolumes and snapshots in the filesystem
 btrfs subvolume list "/"
 

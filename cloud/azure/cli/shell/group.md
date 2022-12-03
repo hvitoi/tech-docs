@@ -1,6 +1,6 @@
 # Resource Group
 
-```sh
+```shell
 # List
 az group list
 

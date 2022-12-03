@@ -1,5 +1,5 @@
 # Open index
 
-```sh
+```shell
 curl -X POST 'http://localhost:9200/movies/_open'
 ```

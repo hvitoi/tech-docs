@@ -3,6 +3,6 @@
 - Improved fdisk!
 - Supports partition resizing
 
-```sh
+```shell
 cfdisk "/dev/sda"
 ```

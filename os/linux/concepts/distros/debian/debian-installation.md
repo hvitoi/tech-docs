@@ -20,7 +20,7 @@
 
 ### Firmware info
 
-```sh
+```shell
 ## List out missing drivers
 sudo update-initramfs -u
 
@@ -33,7 +33,7 @@ aptitude search '~i ?section(non-free)'
 
 ### Nvidia drivers
 
-```sh
+```shell
 # Install
 sudo apt install linux-headers-amd64 nvidia-driver
 
@@ -49,7 +49,7 @@ apt install --reinstall xserver-xorg-core xserver-xorg-video-nouveau
 
 - Allows the use of NVIDIA Optimus both on `nvidia` or `nouveau` drivers
 
-```sh
+```shell
 # Nouveau
 sudo apt install bumblebee primus
 

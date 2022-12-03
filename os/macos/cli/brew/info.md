@@ -2,6 +2,6 @@
 
 - Information about an app installed
 
-```sh
+```shell
 brew info "aws-iam-authenticator"
 ```

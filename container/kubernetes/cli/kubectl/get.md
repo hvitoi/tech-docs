@@ -1,6 +1,6 @@
 # get
 
-```sh
+```shell
 # Options
 kubectl get "po"
 kubectl get "po" -o "wide" # additional info
@@ -43,7 +43,7 @@ kubectl get "all" \
 
 ## jsonpath
 
-```sh
+```shell
 kubectl get "po" \
   -o=jsonpath='{​range .items[*]}​{​"\n"}​{​.metadata.name}​{​":\t"}​{​range .spec.containers[*]}​{​.image}​{​", "}​{​end}​{​end}​'
 
@@ -56,7 +56,7 @@ kubectl get "po" "my-pod" \
 
 ## Authentication
 
-```sh
+```shell
 kubectl get po \
   --server "my-kube-playground:6443" \
   --client-certiticate "admin.key" \
@@ -66,7 +66,7 @@ kubectl get po \
 
 - Instead of passing these parameters manually you might want to set them in a kubeconfig file
 
-```sh
+```shell
 kubectl get po \
   --kubeconfig "kubeconfig.yaml"
 ```

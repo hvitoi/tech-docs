@@ -1,6 +1,6 @@
 # df
 
-```sh
+```shell
 # System info
 docker system df
 ```

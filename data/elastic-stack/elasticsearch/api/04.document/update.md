@@ -7,7 +7,7 @@
 
 - POST WITH `_update` will only update the changed fields. If not changes are made, the document is not udpated
 
-```sh
+```shell
 curl -X POST "localhost:9200/movies/_doc/109487/_update" \
   -H "Content-Type: application/json" \
   -d  '

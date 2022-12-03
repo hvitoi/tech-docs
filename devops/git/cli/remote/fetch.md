@@ -5,7 +5,7 @@
 - Git fetch `does not update working directory or staging area`
 - Git fetch is run `independent of the local checked out branch`
 
-```sh
+```shell
 # Fetch (default) remote repo
 git fetch
 

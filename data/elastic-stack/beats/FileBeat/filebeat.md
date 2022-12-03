@@ -46,6 +46,6 @@
 
 - Install filebeat plugin for kibana
 
-```sh
+```shell
 sudo filebeat setup --dashboard
 ```

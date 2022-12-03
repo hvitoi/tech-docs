@@ -2,7 +2,7 @@
 
 - Masquerade the connection, so that the request coming from a namespace is thought as if it came from the host itself
 
-```sh
+```shell
 # List rules
 iptables -nvL -t "nat"
 

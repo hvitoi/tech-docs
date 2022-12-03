@@ -1,6 +1,6 @@
 # kms
 
-```sh
+```shell
 # Encryption
 aws kms encrypt \
   --region "eu-west-2" \

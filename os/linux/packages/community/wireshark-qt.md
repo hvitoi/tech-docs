@@ -1,5 +1,5 @@
 # wireshark-qt
 
-```sh
+```shell
 wireshark
 ```

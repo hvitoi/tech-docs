@@ -2,6 +2,6 @@
 
 - Remove unused dependencies
 
-```sh
+```shell
 brew autoremove
 ```

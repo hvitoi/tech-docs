@@ -187,7 +187,7 @@ spec:
 
 - In order to authenticate against a private container registry, a secret must be created
 
-```sh
+```shell
 kubectl create secret docker-registry "regcred" \
   --docker-server "private-registry.io" \
   --docker-username "registry-user" \

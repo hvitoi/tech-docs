@@ -6,7 +6,7 @@
 
 - Install new package
 
-```sh
+```shell
 dart pub add "package-name"
 ```
 
@@ -14,6 +14,6 @@ dart pub add "package-name"
 
 - Install dependencies from the project
 
-```sh
+```shell
 dart pub get
 ```

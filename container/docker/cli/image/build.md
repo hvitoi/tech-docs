@@ -1,6 +1,6 @@
 # build
 
-```sh
+```shell
 # Build image
 docker image build -t "image-name" . # . is the context to dockerfile
 

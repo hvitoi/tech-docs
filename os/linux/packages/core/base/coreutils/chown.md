@@ -4,7 +4,7 @@
   - User
   - Group
 
-```sh
+```shell
 # Change user ownership
 sudo chown "new-user-owner" "file"
 sudo chown -R "new-user-owner" "folder" # Recursive

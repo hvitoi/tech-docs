@@ -1,6 +1,6 @@
 # del
 
-```sh
+```shell
 # delete a key-value pair
 DEL "key"
 ```

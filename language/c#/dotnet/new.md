@@ -1,6 +1,6 @@
 # new
 
-```sh
+```shell
 # List template projects
 dotnet new --list
 

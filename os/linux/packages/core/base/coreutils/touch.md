@@ -1,6 +1,6 @@
 # Touch
 
-```sh
+```shell
 # Create an empty file in the current directory
 touch "filename"
 

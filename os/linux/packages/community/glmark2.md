@@ -2,7 +2,7 @@
 
 - GPU benchmark
 
-```sh
+```shell
 glmark2
 DRI_PRIME=1 glmark2
 ```

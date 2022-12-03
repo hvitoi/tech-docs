@@ -47,7 +47,7 @@
 
 ## Tests
 
-```sh
+```shell
 # install jest dependency
 npm i
 

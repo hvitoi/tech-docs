@@ -1,6 +1,6 @@
 # Argo Rollouts
 
-```sh
+```shell
 # Replace `[...]` with the GitHub organization or the username
 export GH_ORG=[...]
 

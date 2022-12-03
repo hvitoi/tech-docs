@@ -1,6 +1,6 @@
 # unpause
 
-```sh
+```shell
 # Pause container
 docker container unpause "container"
 ```

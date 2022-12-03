@@ -6,7 +6,7 @@
 - Instructions <https://kubernetes.io/docs/tasks/tools/install-minikube/>
 - [Get started](https://minikube.sigs.k8s.io/docs/start/)
 
-```sh
+```shell
 # Download binary
 curl -Lo "minikube" "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
 
@@ -20,7 +20,7 @@ sudo install "minikube" "/usr/local/bin/"
 
 ## Basics
 
-```sh
+```shell
 # Start a new cluster (exposes apiserver on port 8443)
 minikube start
 minikube start --memory "4096" # megabytes by default
@@ -39,7 +39,7 @@ minikube delete
 
 ## Managing
 
-```sh
+```shell
 ## Switch into the node
 minikube ssh
 
@@ -62,7 +62,7 @@ minikube tunnel
 
 ## Addons
 
-```sh
+```shell
 # List of available addons
 minikube addons list
 

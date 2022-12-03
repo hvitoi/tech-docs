@@ -2,7 +2,7 @@
 
 - `i2c-tools` package must be installed for a good integration with `i2c_dev` module
 
-```sh
+```shell
 pacman -S "i2c-tools"
 groupadd --system "i2c" # create i2c group (if not exists already)
 cp "/usr/share/ddcutil/data/45-ddcutils-i2c.rules" "/etc/udev/rules.d" # Copy the udev rule for the new group to rules.d

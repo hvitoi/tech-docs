@@ -4,7 +4,7 @@
   - User
   - Group
 
-```sh
+```shell
 sudo chgrp "new-group-owner" "file"
 ```
 

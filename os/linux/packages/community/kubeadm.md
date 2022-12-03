@@ -1,5 +1,5 @@
 # kubeadm
 
-```sh
+```shell
 kubeadm
 ```

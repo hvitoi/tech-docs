@@ -4,14 +4,14 @@
 
 ## list-tables
 
-```sh
+```shell
 aws dynamodb list-tables \
   --endpoint-url "http://localhost:8000"
 ```
 
 ## scan
 
-```sh
+```shell
 aws dynamodb scan \
   --endpoint-url "http://localhost:8000" \
   --table-name "local-insurance-social-policies-docstore"
@@ -19,7 +19,7 @@ aws dynamodb scan \
 
 ## delete-table
 
-```sh
+```shell
 aws dynamodb delete-table \
   --endpoint-url "http://localhost:8000" \
   --table-name "local-insurance-social-policies-docstore"

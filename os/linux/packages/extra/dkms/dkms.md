@@ -7,13 +7,13 @@
 
 - Show installed dkms
 
-```sh
+```shell
 dkms status
 ```
 
 ## install
 
-```sh
+```shell
 dkms install "."
 dkms install "rtl8188gu/r14.23b04ff" \
   --no-depmod \
@@ -22,13 +22,13 @@ dkms install "rtl8188gu/r14.23b04ff" \
 
 ## uninstall
 
-```sh
+```shell
 dkms uninstall -m "rtl8188gu/1.0"
 ```
 
 ## remove
 
-```sh
+```shell
 sudo dkms remove "apple-bce/0.2" --all # remove from all kernel versions
 sudo dkms remove "apple-bce/0.2" -k "6.0.1-arch1-1" # remove from a specific kernel only
 
@@ -38,6 +38,6 @@ rm -rf "apple-bce-0.2"
 
 ## unbuild
 
-```sh
+```shell
 dkms unbuild -m "apple-gmux/yourversion"
 ```

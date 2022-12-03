@@ -2,10 +2,10 @@
 
 - Write a `pom.xml` file to disk for Maven interoperability
 
-```sh
+```shell
 lein pom
 ```
 
-```sh
+```shell
 mvn dependency:tree
 ```

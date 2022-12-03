@@ -4,7 +4,7 @@
 - Get the dkms from `rtl8821cu-morrownr-dkms-git` (aur)
 - You might need to change the dongle usb mode from cd-rom to pci device
 
-```sh
+```shell
 # try
 eject /dev/sr0
 

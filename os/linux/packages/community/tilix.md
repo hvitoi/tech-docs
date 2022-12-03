@@ -1,5 +1,5 @@
 # tilix
 
-```sh
+```shell
 tilix
 ```

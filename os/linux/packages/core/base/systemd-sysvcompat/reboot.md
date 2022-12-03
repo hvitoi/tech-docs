@@ -1,5 +1,5 @@
 # reboot
 
-```sh
+```shell
 reboot
 ```

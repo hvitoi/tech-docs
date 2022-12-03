@@ -21,7 +21,7 @@
 </network>
 ```
 
-```sh
+```shell
 # Define the bridge network
 virsh net-define "br10.xml"
 

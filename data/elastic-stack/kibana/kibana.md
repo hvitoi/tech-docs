@@ -18,7 +18,7 @@
 - `Spaces` for segregating users
 - One `default` space by default
 
-```sh
+```shell
 curl localhost:5601/api/spaces/space/devops
 ```
 

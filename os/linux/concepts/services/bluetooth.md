@@ -1,5 +1,5 @@
 # bluetooth.service
 
-```sh
+```shell
 sudo systemctl restart bluetooth
 ```

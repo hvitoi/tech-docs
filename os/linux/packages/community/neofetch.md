@@ -1,5 +1,5 @@
 # neofetch
 
-```sh
+```shell
 neofetch
 ```

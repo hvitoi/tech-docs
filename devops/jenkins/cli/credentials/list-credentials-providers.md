@@ -5,6 +5,6 @@
   - Jenkins Credentials Provider
   - User Credentials Provider
 
-```sh
+```shell
 jenkinscli list-credentials-providers
 ```

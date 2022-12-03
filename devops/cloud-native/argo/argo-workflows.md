@@ -5,7 +5,7 @@
 
 ## Install
 
-```sh
+```shell
 # Install
 helm repo add "argo" "https://argoproj.github.io/argo-helm"
 helm upgrade "argo" "argo/argo-workflows" --install \

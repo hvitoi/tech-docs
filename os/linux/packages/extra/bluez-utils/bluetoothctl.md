@@ -2,7 +2,7 @@
 
 ## List
 
-```sh
+```shell
 # List controllers
 bluetoothctl list
 
@@ -15,7 +15,7 @@ bluetoothctl info "mac-addr"
 
 ## Pairing
 
-```sh
+```shell
 # Scan devices
 bluetoothctl scan on
 
@@ -31,7 +31,7 @@ bluetoothctl remove "mac-addr"
 
 ## Connection
 
-```sh
+```shell
 # Connect
 bluetoothctl connect "mac-addr"
 
@@ -41,7 +41,7 @@ bluetoothctl disconnect "mac-addr"
 
 ## Trust
 
-```sh
+```shell
 # Trust
 bluetoothctl trust "mac-add"
 

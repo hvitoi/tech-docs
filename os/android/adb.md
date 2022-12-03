@@ -2,7 +2,7 @@
 
 ## Connect
 
-```sh
+```shell
 adb devices
 fastboot devices
 
@@ -12,14 +12,14 @@ adb -s "device-name" reverse "tcp:8081" "tcp:8081"
 
 ## Unlock Bootloader
 
-```sh
+```shell
 fastboot oem unlock
 adb reboot bootloader
 ```
 
 ## flash
 
-```sh
+```shell
 fastboot flash bootloader "bootloader.img"
 fastboot reboot-bootloader
 
@@ -39,7 +39,7 @@ fastboot reboot-bootloader
 
 ## push
 
-```sh
+```shell
 adb push "elementalx.zip" "/sdcard/"
 adb push "supersu.zip" "/sdcard/"
 ```
