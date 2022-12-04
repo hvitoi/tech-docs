@@ -5,10 +5,7 @@
 
 ```shell
 # Create sample file
-echo "A a
-B a
-C c
-D d" > family
+echo "a b c" > "file.txt"
 ```
 
 ```shell
@@ -16,6 +13,7 @@ D d" > family
 grep "keyword" "file"
 
 # Parameters
+grep -q "keyword" "file" # quiet mode
 grep -c "keyword" "file" # Count matching lines
 grep -n "keyword" "file" # Display matching lines and show its number
 grep -i "keyword" "file" # Case insensitive

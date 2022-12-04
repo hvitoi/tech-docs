@@ -10,6 +10,12 @@ Shell + Application = `Software`
 - `CLI` is a Shell
 - `GUI` is a Shell
 
+## Shell Scripts
+
+- Shell scripts must have executable permissions!
+- Shell scripts must be called from the absolute or relative path ./script.sh
+- Shell scripts are usually stored at `/usr/local/bin` (this path is already in $PATH)
+
 ## Find your shell
 
 ```shell
@@ -44,16 +50,6 @@ chsh -s $(which zsh) # Log out to apply!
 cat /etc/passwd | grep "username"
 echo $SHELL
 ```
-
-## Shell Scripting
-
-- Shell: `#!/bin/bash`
-- Comments: `# comments`
-- Commands: `echo, cp, grep etc`
-- Statements: `if, while, for etc`
-
---> Shell scripts MUST have executable permissions!
---> Shell scripts MUST be called from the absolute or relative path ./script.bash
 
 ## Aliases
 

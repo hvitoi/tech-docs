@@ -5,10 +5,7 @@
 
 ```shell
 # Create sample file
-echo "A a
-B a
-C c
-D d" > family
+echo "a b c" > "file.txt"
 ```
 
 ```shell

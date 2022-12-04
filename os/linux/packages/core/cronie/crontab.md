@@ -5,13 +5,16 @@
 
 ```shell
 # Schedule a cronjob
-crontab -e # Edit the list of cronjobs in vi
+# Jobs are per user
+# Edit the list of cronjobs in vi
+crontab -e
+crontab -e -u "bob" # specify another user
 
 # Substitute all entries in crontab
 echo "* * * * * root echo 'oi' > /root/oi" | crontab -
 
 # Add entry to crontab
-(crontab -l && echo "* *  * * *  test") | crontab -
+(crontab -l && echo "* * * * *  test") | crontab -
 
 # List all cronjobs
 crontab -l

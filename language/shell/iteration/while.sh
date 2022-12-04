@@ -17,5 +17,3 @@ while [ $count -lt 10 ]; do
   sleep 1
   count=$(expr $count + 1)
 done
-
-echo $1 process is stopped # $1 is the process id
