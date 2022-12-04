@@ -1,41 +1,75 @@
-#!/bin/bash
-
-count=100
-if [ $count -eq 100 ]; then
-  echo Count is 100
+# if statement with any command
+foo=htop
+if command -v $foo; then
+  echo "Command available"
 else
-  echo Count is not 100
+  echo "Command not available"
 fi
 
-if [ -e /home/hvitoi/Documents/error.txt ]; then # -e checks if a file exists
+## When brackets [] are used, the "test" command is invoked
+
+# -eq
+foo=10
+if [ $foo -eq 10 ]; then # same as "if test $foo -eq 10; then"
+  echo "Is equal"
+else
+  echo "Is not equal"
+fi
+
+# -ne
+foo=10
+if [ $foo -ne 5 ]; then
+  echo "Is not equal"
+else
+  echo "Is equal"
+fi
+
+# -gt
+foo=10
+if [ $foo -gt 5 ]; then
+  echo "Is greater"
+else
+  echo "Is not greater"
+fi
+
+# !
+# negates the condition (not)
+foo=10
+if [ ! $foo -eq 5 ]; then
+  echo "Is not equal"
+else
+  echo "Is equal"
+fi
+
+# -f
+foo=~/file.txt
+if [ -f $foo ]; then
   echo "File exists"
 else
   echo "File does not exist"
 fi
 
-##
-#!/bin/bash
-host="192.168.1.1"
-
-ping -c1 $host        # c1 is count. Ping once
-if [ $? -eq 0 ]; then # $? exit status of the previous above
-  echo $host is OK
+# -d
+foo=~/.config
+if [ -d $foo ]; then
+  echo "Directory exists"
 else
-  echo $host is NOT OK
+  echo "Directory does not exist"
 fi
 
-ping -c1 $host &>/dev/null # /dev/null is a blackhole and the message is not shown
-if [ $? -eq 0 ]; then      # $? is the reutrn of the command above
-  echo $host is OK
+# -e
+foo=~/file.txt
+if [ -e $foo ]; then
+  echo "Exists"
 else
-  echo $host is NOT OK
+  echo "Does not exist"
 fi
 
-# Read the hosts from a file
-hosts=$(cat /home/hvitoi/Documents/my-hosts)
-for ip in $hosts; do       # or $(cat /home/hvitoi/Documents/my-hosts)
-  ping -c1 $ip &>/dev/null # /dev/null is a blackhole and the message is not shown
-  if [ $? -eq 0 ]; then    # $? is the reutrn of the command above
+## Test the health of hosts
+hosts=$(cat ~/hosts-to-be-tested)
+for ip in $hosts; do
+  ping -c1 $ip &>/dev/null # ping once and do not show the return message
+  if [ $? -eq 0 ]; then    # check the return status
     echo $ip is OK
   else
     echo $ip is NOT OK

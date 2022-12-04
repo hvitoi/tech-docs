@@ -5,7 +5,7 @@
 
 ## Processes
 
-- `C-z`: Suspends the foreground process (SIGTSTP). Bring it back with fg
+- `C-z`: Suspends the foreground process (SIGTSTP). Bring it back later with fg
 - `C-c`: Interrupt the foreground process (SIGINT)
 - `C-d`: exit terminal
 
