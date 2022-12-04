@@ -5,10 +5,10 @@
 
 ```shell
 # Create sample file
-echo "Henrique Abrantes Vitoi
-Lais Abrantes Vitoi
-Simone Gomes Abrantes Vitoi
-Luiz Henrique Rossi Vitoi" > file.txt
+echo "A a
+B a
+C c
+D d" > file.txt
 ```
 
 ```shell
