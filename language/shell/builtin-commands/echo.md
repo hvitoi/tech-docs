@@ -1,0 +1,5 @@
+# echo
+
+```shell
+echo "abc"
+```

@@ -14,6 +14,7 @@ Shell + Application = `Software`
 
 ```shell
 echo $0 # Current shell
+echo $SHELL # The current user default shell
 cat /etc/shells # Available shells
 echo $? # Print the exit code
 ```

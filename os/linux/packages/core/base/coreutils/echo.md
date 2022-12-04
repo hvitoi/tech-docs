@@ -1,5 +1,7 @@
 # echo
 
+- There is also the shell built-in command echo
+
 ```shell
 # Prints a text
 echo "hey"
