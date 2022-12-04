@@ -12,11 +12,9 @@ done
 # "while" statement with "test" command (when brackets are used)
 
 count=0
-num=10
 while [ $count -lt 10 ]; do
-  echo $num seconds left to stop this process
+  echo "$(expr 10 - $count) seconds left to stop this process"
   sleep 1
-  num=$(expr $num - 1)
   count=$(expr $count + 1)
 done
 
