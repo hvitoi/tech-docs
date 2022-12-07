@@ -77,6 +77,7 @@ Properties:
 ## LocalSecondaryIndexes
 
 - LSI add a new "sort key" (the `LSI Sort Key`)
+- It's index that has the same partition key as the base table, but a different sort key
 - This way, you can fetch the item directly using the partition key + the LSI sort key
 - Allows search within the same partition (or same partition key)
 - You can have up to `5 LSIs`
@@ -147,25 +148,33 @@ Properties:
 
 - It's how to control the table's `capacity` (read/write throughput)
 
-  - **Provisioned Mode** (default)
-    - Specified beforehand
-    - Autoscaling can be configured
-    - RCU (read capacity unit)
-    - WCU (write capacity unit)
-    - The total capacity unit (read or write) is shared (splitted equally) for all partitions
-    - Therefore it's important the spread the data evenly across the partitions
-    - `Adaptive capacity` can also be used. With that, a hot partition can borrow capacity from another idler partition
-    - If the capacity is exceeded (throttling) dynamo will reject the request
-    - There is a hard limit of `3000 RCU` and `1000 WCU` per partition, if you need to go over it you need to use DAX (caching layer)
-  - **On-Demand Mode**
-    - Scales automatically based on the workload
-    - More expensive!
-    - Useful for very unpredictable workloads
+- **Provisioned Mode** (default)
+  - `RCU`: read capacity unit
+  - `WCU`: write capacity unit
+  - `Consumed Capacity`: RCU + WCU consumed so far
+  - `Provisioned Capacity`: RCU + WCU total provisioned. This is actually what you pay for. This is specified beforehand
+  - `Burst Capacity`: an additional pool of capacity that dynamo saves to avoid throttling when the consumed capacity exceeds the provisioned capacity a bit. Usually for random spikes in usage. It's transparent for the user/developer
+  - Autoscaling (self adjusting provisioned capacity) can be configured for peak hours. Under the hood, autoscaling in done by cloud watch alarms that trigger a table config update
+  - RCU (read capacity unit)
+  - WCU (write capacity unit)
+  - The total capacity unit (read or write) is shared (splitted equally) for all partitions
+  - Therefore it's important the spread the data evenly across the partitions
+  - `Adaptive capacity` can also be used. With that, a hot partition can borrow capacity from another idler partition
+  - If the capacity is exceeded (`throttling`) dynamo will reject the request
+  - There is a hard limit of `3000 RCU` and `1000 WCU` per partition, if you need to go over it you need to use DAX (caching layer)
+- **On-Demand Mode**
+  - Scales automatically based on the workload
+  - More expensive!
+  - Useful for very unpredictable workloads
 
 ## StreamSpecification
 
-- `DynamoDB Streams` offers an ordered stream of modifications in a table (create, update, delete, ...)
+- `DynamoDB Streams` offers an ordered stream of modifications in a table
+  - INSERT
+  - UPDATE
+  - REMOVE
 - Capture item-level changes in the table and push the changes to DynamoDB streams
+- Events are guaranteed in the same order the modification took place
 - The change can be accessed through `DynamoDB Streams API`
 - Streams can be sent to
   - Kinesis Data Streams
@@ -175,11 +184,72 @@ Properties:
 - Use cases:
   - React to changes in real-time (e.g., welcome new users)
   - Analytics
+  - Real Time Dashboards
   - Insert into derivative tables
   - Insert into elasticsearch
   - Implement cross-region replication
 
 ![Streams](../../../images/dynamodb-streams.png)
+
+- The event
+  - Keys
+  - NewImage
+  - OldImage
+  - NewImage & OldImage
+
+```json
+{
+  "Records": [
+    {
+      "eventId": "1",
+      "eventName": "INSERT",
+      "eventVersion": "1.0",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "us-east-1",
+      "dynamodb": {
+        "NewImage": {
+          "playerId": {
+            "S": "11111"
+          },
+          "date": {
+            "S": "Aug 10 2022 10:00:00"
+          },
+          "score": {
+            "N": "100"
+          }
+        }
+      },
+      "eventSourceARN": "MyTableARN"
+    }
+  ]
+}
+```
+
+- IAM role setup
+  - For lambda you can use the pre-built policy `AWSLambdaDynamoDBExecutionRole`
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        // to access the dynamodb stream
+        "dynamodb:DescribeStream",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:ListStreams",
+        // to log on cloud watch
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
 
 ## TimeToLiveSpecification
 
