@@ -4,4 +4,7 @@
 
 ```shell
 mkfs.ext4 "/dev/sdx1"
+
+# with label
+mkfs.ext4 -L "my-system" "/dev/sda1"
 ```

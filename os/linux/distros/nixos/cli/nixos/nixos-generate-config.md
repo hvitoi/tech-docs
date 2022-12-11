@@ -1,8 +1,8 @@
 # nix-generate-config
 
 - Generate the default nix configuration
-- `/etc/nixos/hardware-configration.nix`
-- `/etc/nixos/configration.nix`
+- `/etc/nixos/hardware-configuration.nix`
+- `/etc/nixos/configuration.nix`
 
 ```shell
 # into the root partition mounted at /mnt
