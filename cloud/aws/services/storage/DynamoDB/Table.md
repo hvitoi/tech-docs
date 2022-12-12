@@ -292,7 +292,7 @@ def lambda_handler(event, context):
   )
 ```
 
-## Query
+### Query
 
 - Returns a list of items
 - Query operations require at least a `hash key`
