@@ -1,7 +1,8 @@
-; clojure.lang.ExceptionInfo
-(throw (ex-info "some error message" {:type :my-custom-error})) ; the type is used to catch the exact error in the catch block
+(def my-exception
+  (ex-info "awesome-message" {:awesome-data "lala"} (ArithmeticException.))) ; the type is used to catch the exact error in the catch block
 
-; additional data in the exception map
-(throw (ex-info "some error message" {:additional-data-as-you-want "anything"}))
+(type my-exception) ; => clojure.lang.ExceptionInfo 
+(ex-message (ex-cause my-exception)) ; => java.lang.ArithmeticException (the nested exception)
 
-(throw (Exception.))
+(ex-message my-exception) ; => "awesome-message" (same as .getMessage)
+(ex-data my-exception) ; => {:awesome-data "lala"}

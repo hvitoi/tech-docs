@@ -1,3 +1,3 @@
-(def str "aa")
+(def any-text "aa")
 
-(format "My string: %s" str)
+(format "My string: %s" any-text)
