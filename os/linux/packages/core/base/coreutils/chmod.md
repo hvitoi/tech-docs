@@ -12,9 +12,9 @@
 - rwx: Read, Write, eXecute
 - E.g., 421, 421, 421, 700
 
-| --- | --x | -w- | -wx | r-- | r-x | rw- | rwx |
+| rwx | rw- | r-x | r-- | -wx | -w- | --x | --- |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+| 7   | 6   | 5   | 4   | 3   | 2   | 1   | 0   |
 
 ```shell
 chmod +x "file" # Make the file executable for all (u+g+o)
