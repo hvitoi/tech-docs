@@ -5,7 +5,7 @@
   "macro documentation"
   [arg1 arg2 arg3] ;; raw symbols (or values)
   (println arg1 arg2 arg3) ;; print symbols
-  [arg1 arg2 arg3]) ;; symbols are evaluated only on the final return
+  [arg1 arg2 arg3]) ;; the last symbol returned is evaluated
 
 (def name "Henry")
 (def number 10)
