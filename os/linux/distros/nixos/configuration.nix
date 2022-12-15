@@ -1,0 +1,19 @@
+{ config, pkgs, ... }: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
+
+  #boot.loader.grub.device = "/dev/sda";   # (for BIOS systems only)
+  boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Note: setting fileSystems is generally not
+  # necessary, since nixos-generate-config figures them out
+  # automatically in hardware-configuration.nix.
+  #fileSystems."/".device = "/dev/disk/by-label/nixos";
+
+  # Enable the OpenSSH server.
+  services.sshd.enable = true;
+  system.stateVersion = "22.11";
+}

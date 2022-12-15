@@ -23,10 +23,8 @@ pacman -Qe
 
 # Installed as dependency
 pacman -Qd
-
-# Installed as dependency and not required anymore
-pacman -Qdt
-pacman -Qdtt # plus optional deps
+pacman -Qdt  # + unrequired
+pacman -Qdtt # + optional deps
 
 # AUR packages (foreign)
 pacman -Qm
@@ -44,6 +42,9 @@ pacman -Qu
 
 # Changelog
 pacman -Qc "package"
+
+# Query the package that owns a file
+pacman -Qo "file"
 ```
 
 ## Sync
