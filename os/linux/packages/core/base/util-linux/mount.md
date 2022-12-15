@@ -18,6 +18,45 @@ mount -l
 mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ "/dev/vda2" "/mnt"
 ```
 
+## Mount options
+
+### Filesystem-independent options
+
+- `man mount`
+
+- **sync**: all i/o to the fs is done synchronously
+- **async**: all i/o to the fs is done asynchronously
+
+- **atime**: inode access time is controlled by kernel defaults
+- **noatime**: do not update inode access times on this fs (for faster access)
+
+- **auto**: this fs is mounted with the `-a` option
+- **noauto**: not mounted automatically with `-a` option
+
+- **dev**: interpret character or block special devices on the fs
+- **nodev**: do not interpret character or block special devices
+
+- **exec**: permit the execution of executable files in the fs
+- **noexec**: do not permit the execution of executable files in the fs
+
+- **user**: allow an ordinary user to mount the fs (if the user is in the mtab list)
+- **owner**: allow an ordinary user to mount the fs (if the user is the owner of the device)
+- **group**: allow an ordinary user to mount the fs (if one of the user's group match the group of the device)
+- **users**: allow any ordinary user to mount the fs
+
+- _defaults_: `rw`, `suid`, `dev`, `exec`, `auto`, `nouser`, `async`
+
+### btrfs options
+
+- `man 5 btrfs`
+
+- **compress=...**: `zlib`, `lzo`, `zstd`, `no`
+- **discard=...**: Enable discarding of freed file blocks. `async` or `sync`
+- **space_cache=...**: Options to control the free space cache. `v2`, `v1`
+- **ssd**: Options to control SSD allocation schemes
+- **subvol**: subvolume path
+- **subvolid**: subvolume id
+
 ## Permanent mount
 
 - `/etc/fstab`
