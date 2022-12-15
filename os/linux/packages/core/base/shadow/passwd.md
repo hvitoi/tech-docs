@@ -21,6 +21,3 @@ cat /etc/login.defs
 # Other security config
 cat /etc/pam.d/system-auth
 ```
-
-- /etc/passwd shows `user-name`:`user-password`:`user-id`:`group-id`:`description`:`home-dir`:`shell`
-- /etc/passwd shows encrypted password, if it expires, etc
