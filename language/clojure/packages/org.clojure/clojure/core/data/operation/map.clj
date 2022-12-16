@@ -4,6 +4,7 @@
 ;; vector
 (map #((+ % 1)) [10 20 30]) ; [11 21 31]
 (map inc [10 20 30]) ; [11 21 31]
+(map inc #{10 20 30}) ; [11 21 31]
 
 ;; map
 (map println {:a 1, :b 2}) ; each element is treated as a vector [key value]
