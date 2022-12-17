@@ -30,4 +30,7 @@ mount "/dev/sda" "/home" -o subvol=/path/to/subvolume,subvolid=objectid
 
 # take a snapshot of a subvolume (the snapshot itself is created as a new subvolume)
 btrfs subvolume snapshot "/" "/my-snapshot"
+
+# set the default volume (to be mounted without specifying subvol or subvolid)
+btrfs subvolume set-default "/mnt"
 ```
