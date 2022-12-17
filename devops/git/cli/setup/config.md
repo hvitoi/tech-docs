@@ -11,4 +11,5 @@ git config -l
 git config --global user.name "Henrique Vitoi"
 git config --global user.email "hvitoi@gmail.com"
 git config --global credential.helper "cache" # caches the password/token
+git config --global pull.ff only       # fast-forward only
 ```

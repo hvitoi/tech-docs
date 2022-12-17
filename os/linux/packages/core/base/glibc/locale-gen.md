@@ -10,6 +10,6 @@ vi "/etc/locale.gen"
 # Generate location configuration
 locale-gen
 
-# Create locale.conf
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+# or simply
+locale-gen "en_US.UTF8"
 ```

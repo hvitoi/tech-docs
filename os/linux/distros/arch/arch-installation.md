@@ -141,9 +141,9 @@ ln -sf "/usr/share/zoneinfo/America/Sao_Paulo" "/etc/localtime"
 hwclock --systohc
 
 # Localization
-vim "/etc/locale.gen" # Uncomment the desired locale
+vim "/etc/locale.gen" # Uncomment the desired locale (de_DE.utf8, en_US.utf8, pt_BR.utf8)
 locale-gen # Generate config
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf # or localectl set-locale "LANG=en_US.UTF-8"
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 
 # Network
