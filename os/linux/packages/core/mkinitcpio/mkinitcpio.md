@@ -4,8 +4,6 @@
 - Creates the initramfs/initrd (initial RAM filesystem (initramfs) / initial RAM disk (initrd))
 - The initial ramdisk is a very small environment (early userspace) which early loads various kernel modules and sets up necessary things before handing over control to init
 
-## Generate
-
 ```shell
 # Generate images based on preset file configuration
 mkinitcpio -P # for all presets
@@ -36,9 +34,16 @@ mkinitcpio -H "base"
 - It's a list of information required to create initial ramdisk images
 - The preset is used so that manually specifying the various parameters is not needed when generating the image
 
+- `mkinitcpio install` and `mkinitcpio remove` are pacman hook script helpts to generate the preset file
+
 ```shell
-# manually generate presets for all kernels
+# Create preset file for a kernel
+# And copies the ELF kernel image from /usr/lib/modules/<kernel>/vmlinuz to /boot/vmlinuz
 mkinitcpio install
+
+# Remove the preset file for a kernel
+# And removes the /boot/vmlinuz kernel image
+mkinitcpio remove
 ```
 
 ```conf
