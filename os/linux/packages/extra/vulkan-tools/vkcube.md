@@ -20,7 +20,6 @@ MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1 vkcube
 ```shell
 # force run on the default device (device 0)
 MESA_VK_DEVICE_SELECT_FORCE_DEFAULT_DEVICE=1 vkcube
-
 ```
 
 ## VK_LOADER_DEBUG
