@@ -1,11 +1,13 @@
 (require '[clojure.set :refer [join]])
 
-(def set-a
-  {:id 1 :name "henry"}
-  {:id 2 :name "john"})
+(def a
+  [{:id 1 :name "henry"}
+   {:id 2 :name "john"}
+   {:id 3 :name "lauren"}])
 
-(def set-b
-  {:id 1 :age 28}
-  {:id 2 :name 29})
+(def b
+  [{:id 1 :age 28}
+   {:id 2 :age 29}
+   {:id 4 :age 5}])
 
-(join set-a set-b {:id :id})
+(join a b {:id :id})
