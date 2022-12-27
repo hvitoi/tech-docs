@@ -1,9 +1,8 @@
 // Lists contain values with same type
-
 val foo: List[String] = List("a", "b", "c", "d")
 
 // zero-indexed
-foo(1)
+foo(0)
 foo.head // head item
 foo.tail // remaining items (apart from the head)
 

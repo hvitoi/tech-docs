@@ -4,6 +4,4 @@ val impossible = isGreater & isLesser // bitwise and
 val logicalAnd = isGreater && isLesser // logical and
 val logicalOr = isGreater || isLesser // logical or
 
-val picard: String = "Picard"
-val bestCaptain: String = "Picard"
-val isBest: Boolean = picard == bestCaptain
+val isBest: Boolean = "Picard" == "Picard"

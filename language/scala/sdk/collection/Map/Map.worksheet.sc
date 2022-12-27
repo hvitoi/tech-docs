@@ -6,7 +6,9 @@ val foo = Map(
 )
 
 // access a value from a key
-val res: Int = foo("b")
+foo("b")
 
 // try to access a value. With exception handling
-val archersShip = util.Try(foo("z")) getOrElse "Unknown"
+util.Try(
+  foo("z")
+) getOrElse "Unknown"

@@ -1,0 +1,1 @@
+val letterA: Char = 'a'
