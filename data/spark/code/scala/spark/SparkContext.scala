@@ -1,4 +1,4 @@
-package com.hvitoi.spark
+//package com.hvitoi.spark
 
 // import org.apache.spark._ // not good!
 import org.apache.spark.rdd.RDD
@@ -7,7 +7,6 @@ import org.apache.log4j.Logger
 import org.apache.log4j.Level
 
 object Main {
-
   def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
@@ -24,6 +23,7 @@ object Main {
     SparkContextCountByValue.run(rdd)
   }
 }
+
 object SparkContextNew {
   def run(): SparkContext = {
     // Create a SparkContext named "RatingsCounter"
