@@ -32,14 +32,14 @@
 
 ;; -----
 
-;; when macro (if true (do "hello" "hey"))
+;; "when" macro (if true (do "hello" "hey"))
 (defmacro when
-  [test & body]
-  (list 'if test (cons 'do body))) ; 
+  [condition & body]
+  (list 'if condition (cons 'do body))) ; 
 
 (defmacro when ; same effect
-  [test & body]
-  `(if ~test ~(cons 'do body)))
+  [condition & body]
+  `(if ~condition ~(cons 'do body)))
 
 (defmacro when ; same effect
   [test & body]

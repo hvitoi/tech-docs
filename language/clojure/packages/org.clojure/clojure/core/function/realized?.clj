@@ -2,8 +2,12 @@
 ; it can be evaluated only once (the second time it returns the first evaluation)
 (def my-uuid
   (delay
-   (random-uuid)))
+    (random-uuid)))
 
 (realized? my-uuid) ; false
 @my-uuid
 (realized? my-uuid) ; true
+
+
+; realized for a normal function
+(realized? (fn [_] "aaa"))

@@ -5,3 +5,5 @@
 (cons 0 [1 2 3]) ; vector -> seq
 (cons 0 #{1 2 3}) ; set -> seq
 (cons 0 '(1 2 3)) ; list -> seq
+
+(concat ['a 'b] ['c 'd])

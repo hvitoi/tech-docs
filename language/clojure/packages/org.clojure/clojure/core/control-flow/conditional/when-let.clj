@@ -1,3 +1,7 @@
 (when-let
+ [id "aa"]
+  id)
+
+(when-let
  [id false]
-  (println id))
+  id)
