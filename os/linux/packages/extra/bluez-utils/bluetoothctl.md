@@ -54,4 +54,16 @@ bluetoothctl untrust "mac-add"
 - LinkKey is an unique id created at the device pairing
 - Stored at `/var/lib/bluetooth/<controller-id>/<device-id>/info`
 - In order to pair device across OS's in the same machine, you must use the same key for both OS's
-- You can get the LinkKey on windows with `chntpw` and on macos with `key access`
+- You can get the LinkKey on windows with `chntpw` and on macos with `Keychain Access`
+
+## IdentityResolvingKey / PeripheralLongTermKey / SlaveLongTermKey
+
+- For Bluetooth Low Energy (LE) devices, these 3 keys are set up on the connection
+- To pair simultaneous with MacOS, get the get these keys in `Keychain Access` (search bluetooth)
+  - `Long-term Key` -> `PeripheralLongTermKey` and `SlaveLongTermKey`
+  - `Remote IRK` -> `IdentityResolvingKey`
+- The keys in MacOS must be decoded from base64 into hex
+
+```shell
+echo -n "mykeybase64" | base64 -d | od -t x1 -An | tr -d ' ' | tr "[a-z]" "[A-Z]"
+```
