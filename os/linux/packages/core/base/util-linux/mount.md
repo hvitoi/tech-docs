@@ -12,6 +12,7 @@ mount "/dev/sda1" "/mnt/boot" --mkdir # create folder
 mount -a
 
 # list mount points
+mount
 mount -l
 
 # mount with flag options

@@ -10,7 +10,7 @@ object Main {
   def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
-    val rdd = RDDNew.run()
+    val rdd = SparkContextTextFile.run()
 
     /*
      * RDD transforms
@@ -32,7 +32,7 @@ object Main {
   }
 }
 
-object RDDNew {
+object SparkContextTextFile {
   def run(): RDD[String] = {
     // Create a singleton SparkContext named "MyApp"
     // Run on the local machine and use all cores
