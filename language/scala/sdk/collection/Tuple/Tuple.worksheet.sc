@@ -1,5 +1,6 @@
 // Tuple is an immutable list
-val captainStuff: (String, String, String) = ("Picard", "Enterprise-D", "NCC-1701-D")
+val captainStuff: (String, String, String) =
+  ("Picard", "Enterprise-D", "NCC-1701-D")
 
 // Refer to the individual fields with a ONE-BASED index
 captainStuff._1

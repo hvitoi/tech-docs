@@ -4,13 +4,11 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
-// import org.apache.spark._ // not good!
 
 object Main {
   def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
-
-    val rdd = SparkContextTextFile.run()
+    val rdd = Init.run()
 
     /*
      * RDD transforms
@@ -32,7 +30,7 @@ object Main {
   }
 }
 
-object SparkContextTextFile {
+object Init {
   def run(): RDD[String] = {
     // Create a singleton SparkContext named "MyApp"
     // Run on the local machine and use all cores
