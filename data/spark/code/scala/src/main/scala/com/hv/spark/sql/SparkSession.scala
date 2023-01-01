@@ -46,13 +46,17 @@ object SparkSessionRead {
     // import from an object
     // make scala implicit infer a schema
     import ss.implicits._
-    // read from file
+
+    // read from csv
     ss.read
       .option("header", "true") // the document has a header row
       .option("inferSchema", "true") // match class attrs with headers
       .csv("ml-latest-small/movies.csv") // creates DF
       .as[Movie] // converts the DF into a DS
       .createOrReplaceTempView("movies")
+
+    // read from text file
+    ss.read.text("data/book.txt")
   }
 }
 

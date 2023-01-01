@@ -4,6 +4,7 @@ import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.RelationalGroupedDataset
+import org.apache.spark.sql.functions._
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 
@@ -18,6 +19,8 @@ object Main {
      * Instance methods
      */
     RelationalGroupedDatasetCount.run(groupedDs)
+    RelationalGroupedDatasetAvg.run(groupedDs)
+    RelationalGroupedDatasetAgg.run(groupedDs)
 
   }
 }
@@ -44,7 +47,26 @@ object Init {
 
 object RelationalGroupedDatasetCount {
   def run(groupedDs: RelationalGroupedDataset) = {
-    val result: DataFrame = groupedDs.count()
-    result.show()
+    val res: DataFrame = groupedDs.count()
+    res.show()
+  }
+}
+
+object RelationalGroupedDatasetAvg {
+  def run(groupedDs: RelationalGroupedDataset) = {
+    val res: DataFrame = groupedDs.avg()
+    // val res: DataFrame = groupedDs.avg("age")
+    res.show()
+  }
+}
+
+object RelationalGroupedDatasetAgg {
+  def run(groupedDs: RelationalGroupedDataset) = {
+    // agg creates a new column with the aggregated data
+    val res: DataFrame =
+      groupedDs
+        .agg(round(avg("movieId"), 2))
+        .alias("the_rounded_avg")
+    res.show()
   }
 }

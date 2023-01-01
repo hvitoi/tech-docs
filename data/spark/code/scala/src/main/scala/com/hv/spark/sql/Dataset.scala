@@ -1,8 +1,10 @@
 package com.hv.spark.sql.Dataset
 
 import org.apache.spark.sql.Dataset
+import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.RelationalGroupedDataset
+import org.apache.spark.sql.functions._
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 
@@ -14,23 +16,38 @@ object Main {
     val ds = Init.run()
 
     /*
-     * Aux methods
+     * -> Unit
      */
     DatasetPrintSchema.run(ds)
     DatasetCreateOrReplaceTempView.run(ds)
     DatasetShow.run(ds)
 
     /*
-     * Queries
+     * -> RDD
      */
-    DatasetFilter.run(ds)
+    DatasetRdd.run(ds)
+
+    /*
+     * RelationalGroupedDataset
+     */
     DatasetGroupBy.run(ds)
 
     /*
-     * Actions
+     * -> Dataset
      */
-    // DataSetSelect.run()
-    // DataSetRdd.run()
+    DatasetFilter.run(ds)
+    DatasetSort.run(ds)
+    DatasetAlias.run(ds)
+
+    /*
+     * -> DataFrame
+     */
+    DatasetSelect.run(ds)
+
+    /*
+     * -> Array
+     */
+    DatasetCollect.run(ds)
 
   }
 }
@@ -68,6 +85,13 @@ object DatasetCreateOrReplaceTempView {
   }
 }
 
+object DatasetRdd {
+  def run(ds: Dataset[Movie]) = {
+    // Convert a dataset into a rdd
+    ds.rdd
+  }
+}
+
 object DatasetShow {
   def run(ds: Dataset[Movie]) = {
     // Print the results from a DS
@@ -77,15 +101,54 @@ object DatasetShow {
 
 object DatasetFilter {
   def run(ds: Dataset[Movie]) = {
-    val filteredDs: Dataset[Movie] =
+    // same as SELECT * FROM movies WHERE movieId=1
+    val res: Dataset[Movie] =
       ds.filter(ds("movieId") === 1)
-    filteredDs.show()
+    // ds.filter(ds("age") > 18)
+    res.show()
+  }
+}
+
+object DatasetSort {
+  def run(ds: Dataset[Movie]) = {
+    // return results
+    ds.sort()
+    // ds.sort("age")
+  }
+}
+
+object DatasetAlias {
+  def run(ds: Dataset[Movie]) = {
+    // print results
+    val dsWithAlias: Dataset[Movie] = ds.alias("blabla")
   }
 }
 
 object DatasetGroupBy {
   def run(ds: Dataset[Movie]) = {
+    // same as SELECT * FROM movies GROUP BY genres
     val groupedDs: RelationalGroupedDataset =
       ds.groupBy("genres")
+  }
+}
+
+object DatasetSelect {
+  def run(ds: Dataset[Movie]) = {
+    // same as SELECT movieId, genres FROM movies
+    val res: DataFrame = ds.select(ds("movieId"), ds("genres"))
+    val res2: DataFrame = ds.select(ds("movieId") + 10, ds("genres"))
+    val res3: DataFrame = ds
+      .select(
+        explode(split(ds("genres"), "\\W+")).alias("genres_splitted")
+      ) // a new column is created (therefore the return is a DataFrame, because it does not conform with the Dataset schema)
+
+    res3.show()
+  }
+}
+
+object DatasetCollect {
+  def run(ds: Dataset[Movie]) = {
+    // return results
+    ds.collect()
   }
 }
