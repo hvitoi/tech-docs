@@ -19,6 +19,8 @@ object Main {
      * Instance methods
      */
     RelationalGroupedDatasetCount.run(groupedDs)
+    RelationalGroupedDatasetMin.run(groupedDs)
+    RelationalGroupedDatasetSum.run(groupedDs)
     RelationalGroupedDatasetAvg.run(groupedDs)
     RelationalGroupedDatasetAgg.run(groupedDs)
 
@@ -48,7 +50,18 @@ object Init {
 object RelationalGroupedDatasetCount {
   def run(groupedDs: RelationalGroupedDataset) = {
     val res: DataFrame = groupedDs.count()
-    res.show()
+  }
+}
+
+object RelationalGroupedDatasetMin {
+  def run(groupedDs: RelationalGroupedDataset) = {
+    val res: DataFrame = groupedDs.min()
+  }
+}
+
+object RelationalGroupedDatasetSum {
+  def run(groupedDs: RelationalGroupedDataset) = {
+    val res: DataFrame = groupedDs.sum()
   }
 }
 
@@ -56,7 +69,6 @@ object RelationalGroupedDatasetAvg {
   def run(groupedDs: RelationalGroupedDataset) = {
     val res: DataFrame = groupedDs.avg()
     // val res: DataFrame = groupedDs.avg("age")
-    res.show()
   }
 }
 
@@ -67,6 +79,5 @@ object RelationalGroupedDatasetAgg {
       groupedDs
         .agg(round(avg("movieId"), 2))
         .alias("the_rounded_avg")
-    res.show()
   }
 }

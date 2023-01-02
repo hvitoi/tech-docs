@@ -43,6 +43,7 @@ object Main {
      * -> DataFrame
      */
     DatasetSelect.run(ds)
+    DatasetWithColumn.run(ds)
 
     /*
      * -> Array
@@ -95,7 +96,8 @@ object DatasetRdd {
 object DatasetShow {
   def run(ds: Dataset[Movie]) = {
     // Print the results from a DS
-    ds.show()
+    ds.show() // print first 20 results
+    // ds.show(ds.count.toInt) // print all results
   }
 }
 
@@ -104,8 +106,10 @@ object DatasetFilter {
     // same as SELECT * FROM movies WHERE movieId=1
     val res: Dataset[Movie] =
       ds.filter(ds("movieId") === 1)
-    // ds.filter(ds("age") > 18)
-    res.show()
+    val res2: Dataset[Movie] =
+      ds.filter(ds("movieId") =!= 10)
+    val res3: Dataset[Movie] =
+      ds.filter(ds("movieId") > 10)
   }
 }
 
@@ -139,10 +143,20 @@ object DatasetSelect {
     val res2: DataFrame = ds.select(ds("movieId") + 10, ds("genres"))
     val res3: DataFrame = ds
       .select(
-        explode(split(ds("genres"), "\\W+")).alias("genres_splitted")
+        explode(split(ds("genres"), "\\W+"))
+          .alias("genres_splitted")
       ) // a new column is created (therefore the return is a DataFrame, because it does not conform with the Dataset schema)
 
     res3.show()
+  }
+}
+
+object DatasetWithColumn {
+  def run(ds: Dataset[Movie]) = {
+    // modify a column with a function
+    // a new column can also be added
+    val dsWithWithColumn =
+      ds.withColumn("movieId", ds("movieId") * 2)
   }
 }
 

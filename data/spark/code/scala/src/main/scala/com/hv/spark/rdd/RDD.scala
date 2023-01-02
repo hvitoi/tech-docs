@@ -27,6 +27,7 @@ object Main {
 
     RDDCollect.run(rdd)
     RDDCountByValue.run(rdd)
+
   }
 }
 
@@ -58,7 +59,6 @@ object RDDFlatMap {
 
 object RDDFilter {
   def run(rdd: RDD[String]) = {
-
     val transformedRdd: RDD[String] = rdd.filter(x => x == "Batman")
   }
 }
@@ -66,7 +66,6 @@ object RDDFilter {
 object RDDMapValues {
   def run(rdd: RDD[String]) = {
     val tupleRdd: RDD[(String, Int)] = rdd.map(x => (x, 1))
-
     val transformedRdd: RDD[(String, Int)] = tupleRdd.mapValues(x => x + 1)
   }
 }
@@ -74,7 +73,6 @@ object RDDMapValues {
 object RDDReduceByKey {
   def run(rdd: RDD[String]) = {
     val tupleRdd: RDD[(String, Int)] = rdd.map(x => (x, 1))
-
     // Reduce only duplicated keys
     // E.g., a -> 1, a -> 2, b -> 3 --- a -> 3, b -> 3
     // Final output is do have unique keys only (the duplicated ones are reduced)
@@ -89,7 +87,6 @@ object RDDReduceByKey {
 object RDDSortByKey {
   def run(rdd: RDD[String]) = {
     val tupleRdd: RDD[(String, Int)] = rdd.map(x => (x, 1))
-
     // sorts by the tuple key (x._1)
     val transformedRdd: RDD[(String, Int)] = tupleRdd.sortByKey()
   }
@@ -98,7 +95,6 @@ object RDDSortByKey {
 object RDDCollect {
   def run(rdd: RDD[String]) = {
     val result: Array[String] = rdd.collect()
-
   }
 }
 
@@ -106,7 +102,6 @@ object RDDCountByValue {
   def run(rdd: RDD[String]) = {
     // count the occurrences of each value in the RDD
     val result: scala.collection.Map[String, Long] = rdd.countByValue()
-
     // result.toSeq.sortBy(_._1).foreach(println)
   }
 }

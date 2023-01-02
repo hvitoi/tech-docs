@@ -4,6 +4,10 @@ import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import org.apache.spark.SparkContext
+import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.types.StringType
+import org.apache.spark.sql.types.IntegerType
 
 // For Datasets, the schema has to be defined at compile time, therefore a case class must be defined before
 case class Movie(movieId: Int, title: String, genres: String)
@@ -20,6 +24,7 @@ object Main {
     /*
      * Instance methods
      */
+    SparkSessionSparkContext.run(ss)
     SparkSessionRead.run(ss)
     SparkSessionStop.run(ss)
     SparkSessionSql.run(ss)
@@ -47,7 +52,10 @@ object SparkSessionRead {
     // make scala implicit infer a schema
     import ss.implicits._
 
-    // read from csv
+    // read from text file
+    ss.read.text("ml-latest-small/README.txt")
+
+    // read from csv (schemas inferred)
     ss.read
       .option("header", "true") // the document has a header row
       .option("inferSchema", "true") // match class attrs with headers
@@ -55,8 +63,24 @@ object SparkSessionRead {
       .as[Movie] // converts the DF into a DS
       .createOrReplaceTempView("movies")
 
-    // read from text file
-    ss.read.text("data/book.txt")
+    // read from csv (schemas explicit)
+    val movieSchema = new StructType()
+      .add("movieId", IntegerType, nullable = true)
+      .add("title", StringType, nullable = true)
+      .add("genres", StringType, nullable = false)
+
+    ss.read
+      .schema(movieSchema)
+      .csv("ml-latest-small/movies.csv")
+      .as[Movie]
+      .createOrReplaceTempView("movies")
+
+  }
+}
+
+object SparkSessionSparkContext {
+  def run(ss: SparkSession) = {
+    val sc: SparkContext = ss.sparkContext
   }
 }
 
