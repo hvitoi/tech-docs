@@ -336,6 +336,16 @@ def lambda_handler(event, context):
   )
 ```
 
+### PutItem
+
+```shell
+aws dynamodb update-item \
+    --table-name "proposals" \
+    --key '{"status": {"S": "open"}, "expires-at": {"S": "???now"}}' \
+    --update-expression "SET status = expires" \
+    --expression-attribute-values '{"nextStartTime": { "N": "4"}}'
+```
+
 ### BatchWriteItems
 
 - Allow partial write (if any of the data changes during the operation)

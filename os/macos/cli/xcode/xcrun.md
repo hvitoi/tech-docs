@@ -1,4 +1,4 @@
-# scrun
+# xcrun
 
 ```shell
 # list apple devices
