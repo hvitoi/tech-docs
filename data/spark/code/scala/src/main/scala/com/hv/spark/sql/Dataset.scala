@@ -7,6 +7,8 @@ import org.apache.spark.sql.RelationalGroupedDataset
 import org.apache.spark.sql.functions._
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import org.apache.spark.sql.streaming.DataStreamWriter
+import org.apache.spark.sql.streaming.StreamingQuery
 
 case class Movie(movieId: Int, title: String, genres: String)
 
@@ -42,6 +44,11 @@ object Main {
     DatasetCache.run(ds)
 
     /*
+     * -> Array[Dataset]
+     */
+    DatasetRandomSplit.run(ds)
+
+    /*
      * -> DataFrame
      */
     DatasetSelect.run(ds)
@@ -58,6 +65,10 @@ object Main {
      */
     DatasetCollect.run(ds)
 
+    /*
+     * DataStreamWriter
+     */
+    DatasetWriteStream.run(ds)
   }
 }
 
@@ -159,6 +170,19 @@ object DatasetGroupBy {
     // same as SELECT * FROM movies GROUP BY genres
     val groupedDs: RelationalGroupedDataset =
       ds.groupBy("genres")
+
+    // time window
+    val groupedDs2: RelationalGroupedDataset =
+      ds.groupBy(
+        window(col("eventTime"), "30 seconds", "10 seconds"),
+        col("endpoint")
+      )
+  }
+}
+
+object DatasetRandomSplit {
+  def run(ds: Dataset[Movie]) = {
+    val splitted: Array[Dataset[Movie]] = ds.randomSplit(Array(0.5, 0.5))
   }
 }
 
@@ -209,5 +233,15 @@ object DatasetFirst {
   def run(ds: Dataset[Movie]) = {
     // First item of a dataset
     val firstItem: Movie = ds.first()
+  }
+}
+
+object DatasetWriteStream {
+  def run(ds: Dataset[Movie]) = {
+    val stream: StreamingQuery = ds.writeStream
+      .outputMode("complete")
+      .format("console")
+      .queryName("counts")
+      .start()
   }
 }

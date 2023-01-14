@@ -18,6 +18,8 @@ object Main {
     val ds = Init.run()
 
     Explode.run(ds)
+    Regexp_extract.run(ds)
+    Window.run(ds)
     Split.run(ds)
     Round.run(ds)
     Size.run(ds)
@@ -53,6 +55,21 @@ object Explode {
     // Transforms each column of the data into individual rows
     val res: Column =
       explode(ds("genres"))
+  }
+}
+
+object Regexp_extract {
+  def run(ds: Dataset[Movie]) = {
+    val res: Column =
+      regexp_extract(col("value"), "\\s(\\d{3})\\s", 1)
+  }
+}
+
+object Window {
+  def run(ds: Dataset[Movie]) = {
+    // group by chunks of time window
+    val res: Column =
+      window(col("eventTime"), "30 seconds", "10 seconds")
   }
 }
 

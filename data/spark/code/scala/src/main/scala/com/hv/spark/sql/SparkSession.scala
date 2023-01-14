@@ -1,13 +1,14 @@
 package com.hv.spark.sql.SparkSession
 
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
+import org.apache.spark.SparkContext
+import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.SparkSession
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import org.apache.spark.SparkContext
-import org.apache.spark.sql.types.StructType
-import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.IntegerType
+import org.apache.spark.sql.types.StringType
+import org.apache.spark.sql.types.StructType
 
 // For Datasets, the schema has to be defined at compile time, therefore a case class must be defined before
 // The case class defines the schema of the table
@@ -27,6 +28,7 @@ object Main {
      */
     SparkSessionSparkContext.run(ss)
     SparkSessionRead.run(ss)
+    SparkSessionReadStream.run(ss)
     SparkSessionStop.run(ss)
     SparkSessionSql.run(ss)
 
@@ -77,6 +79,22 @@ object SparkSessionRead {
       .csv("ml-latest-small/movies.csv")
       .as[Movie]
       .createOrReplaceTempView("movies")
+
+  }
+}
+
+object SparkSessionReadStream {
+  def run(ss: SparkSession) = {
+
+    // read a stream of data
+    // the stream is just like a conventional dataset
+    // this Dataset increases constantly
+
+    val streamDfJson: DataFrame = ss.readStream
+      .json("s3://logs")
+
+    val streamDfText: DataFrame = ss.readStream
+      .text("s3://logs")
 
   }
 }
