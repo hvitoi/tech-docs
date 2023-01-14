@@ -39,6 +39,7 @@ object Main {
     DatasetSort.run(ds)
     DatasetOrderBy.run(ds)
     DatasetAlias.run(ds)
+    DatasetCache.run(ds)
 
     /*
      * -> DataFrame
@@ -146,6 +147,13 @@ object DatasetAlias {
   }
 }
 
+object DatasetCache {
+  def run(ds: Dataset[Movie]) = {
+    // persist the dataset to memory
+    val cachedDs: Dataset[Movie] = ds.cache()
+  }
+}
+
 object DatasetGroupBy {
   def run(ds: Dataset[Movie]) = {
     // same as SELECT * FROM movies GROUP BY genres
@@ -182,6 +190,11 @@ object DatasetJoin {
   def run(ds: Dataset[Movie]) = {
     val anotherDs = ds // using the same just to avoid creating a new one
     val joined: DataFrame = ds.join(anotherDs, usingColumn = "id")
+
+    // self-join
+    val joined2 = ds
+      .as("ds1")
+      .join(ds.as("ds2"), usingColumn = "id")
   }
 }
 

@@ -35,7 +35,7 @@ object SparkContextNew {
 object SparkContextTextFile {
   def run(sc: SparkContext) = {
     // Load a text file into an RDD (in SC)
-    val lines: RDD[String] = sc.textFile("data/ml-100k/ratings.csv")
+    val rdd: RDD[String] = sc.textFile("data/ml-100k/ratings.csv")
   }
 }
 

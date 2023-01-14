@@ -10,9 +10,7 @@ import org.apache.spark.util.LongAccumulator
 object Main {
   def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
-    val myMap = Init.run()
-
-    // Instance methods
+    val accumulator = Init.run()
 
   }
 }
