@@ -26,7 +26,8 @@ pacman -Qd
 pacman -Qdt  # + unrequired
 pacman -Qdtt # + optional deps
 
-# AUR packages (foreign)
+# Foreign packages (installed manually, AUR packages or from libraries removed from pacman.conf)
+
 pacman -Qm
 
 # Info about a package

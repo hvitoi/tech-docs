@@ -16,7 +16,7 @@ object Main {
     val groupedDs = Init.run()
 
     /*
-     * Instance methods
+     * -> DataFrame
      */
     RelationalGroupedDatasetCount.run(groupedDs)
     RelationalGroupedDatasetMin.run(groupedDs)

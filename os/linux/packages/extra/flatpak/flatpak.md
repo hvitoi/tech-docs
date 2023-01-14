@@ -27,3 +27,14 @@ flatpak install "flathub" "com.spotify.Client"
 ```shell
 flatpak run "com.spotify.Client"
 ```
+
+## override
+
+- Set filesystem permission for an app
+
+```shell
+flatpak override \
+  --user \
+  --filesystem "/path/to/mounted/drive" \
+  "com.valvesoftware.Steam"
+```

@@ -10,6 +10,7 @@ import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.IntegerType
 
 // For Datasets, the schema has to be defined at compile time, therefore a case class must be defined before
+// The case class defines the schema of the table
 case class Movie(movieId: Int, title: String, genres: String)
 
 object Main {
@@ -58,6 +59,8 @@ object SparkSessionRead {
     // read from csv (schemas inferred)
     ss.read
       .option("header", "true") // the document has a header row
+      // .option("sep", "\t") // tab delimiter
+      // .option("sep", " ") // space delimiter (does not consider squads inside of quotation marks)
       .option("inferSchema", "true") // match class attrs with headers
       .csv("ml-latest-small/movies.csv") // creates DF
       .as[Movie] // converts the DF into a DS

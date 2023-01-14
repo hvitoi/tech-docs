@@ -1,3 +1,5 @@
+import scala.Tuple
+
 // Tuple is an immutable list
 val captainStuff: (String, String, String) =
   ("Picard", "Enterprise-D", "NCC-1701-D")

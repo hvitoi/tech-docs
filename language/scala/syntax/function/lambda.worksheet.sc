@@ -3,6 +3,8 @@ def transformInt(x: Int, f: Int => Int): Int = {
 }
 
 // Lambda functions / Anonymous functions / Function literals
-transformInt(1, x => x * x * x)
+val myLambda = (x: Int) => { x * x * x }
+val myLambda2 = (x: Int) => { val y = x * 2; y * y }
 
-transformInt(1, x => { val y = x * 2; y * y })
+transformInt(1, myLambda)
+transformInt(1, myLambda2)

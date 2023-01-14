@@ -37,6 +37,7 @@ object Main {
      */
     DatasetFilter.run(ds)
     DatasetSort.run(ds)
+    DatasetOrderBy.run(ds)
     DatasetAlias.run(ds)
 
     /*
@@ -44,6 +45,12 @@ object Main {
      */
     DatasetSelect.run(ds)
     DatasetWithColumn.run(ds)
+    DatasetJoin.run(ds)
+
+    /*
+     * -> Row
+     */
+    DatasetFirst.run(ds)
 
     /*
      * -> Array
@@ -98,6 +105,7 @@ object DatasetShow {
     // Print the results from a DS
     ds.show() // print first 20 results
     // ds.show(ds.count.toInt) // print all results
+    // ds.show(ds.count.toInt, truncate = false)
   }
 }
 
@@ -116,8 +124,18 @@ object DatasetFilter {
 object DatasetSort {
   def run(ds: Dataset[Movie]) = {
     // return results
+    // sort does not guarantee global sort across partitions
     ds.sort()
     // ds.sort("age")
+    // ds.sort("age".desc)
+  }
+}
+
+object DatasetOrderBy {
+  def run(ds: Dataset[Movie]) = {
+    // orderBy guarantees global sort across partitions (differently from sort)
+    ds.orderBy("movieId")
+    ds.orderBy(desc("movieId"))
   }
 }
 
@@ -160,9 +178,23 @@ object DatasetWithColumn {
   }
 }
 
+object DatasetJoin {
+  def run(ds: Dataset[Movie]) = {
+    val anotherDs = ds // using the same just to avoid creating a new one
+    val joined: DataFrame = ds.join(anotherDs, usingColumn = "id")
+  }
+}
+
 object DatasetCollect {
   def run(ds: Dataset[Movie]) = {
     // return results
     ds.collect()
+  }
+}
+
+object DatasetFirst {
+  def run(ds: Dataset[Movie]) = {
+    // First item of a dataset
+    val firstItem: Movie = ds.first()
   }
 }

@@ -14,3 +14,8 @@ def transformInt(x: Int, f: Int => Int): Int = {
 }
 
 val result = transformInt(2, cubeIt)
+
+val transformInt: Int => Int =
+  (x: Int) => {
+    x * x * x
+  }
