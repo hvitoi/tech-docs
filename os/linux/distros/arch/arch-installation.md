@@ -22,12 +22,11 @@ lsblk
 # List disks
 fdisk -l # Optionally use cgdisk
 
-# Format
-mkfs.vfat "/dev/sdx1" # efi partition (use 300 MB)
-mkfs.ext4 "/dev/sdx2" # root partition
+# partition
+# +0.5G for /dev/sdx1 and the rest for /dev/sdx2
 ```
 
-## Encryption (optional)
+## Encryption
 
 ```shell
 # Format encrypted partition
@@ -35,39 +34,63 @@ cryptsetup luksFormat "/dev/sdx2" -v -y
 
 # Unlock partition
 cryptsetup open "/dev/sdx2" "sun"
-
-# Format partition
-mkfs.ext4 "/dev/mapper/sun"
 ```
 
-## Mounting
+## Root partition: BTRFS setup
 
 ```shell
-# Mount root partition
-mount "/dev/sdx2" "/mnt" # if not encrypted
-mount "/dev/mapper/sun" "/mnt" # if encrypted
+# Format partition
+mkfs.btrfs "/dev/mapper/sun"
 
-# Mount efi partition
+# Temporarily mount root subvolume to create the child subvolumes
+mount "/dev/mapper/sun" "/mnt"
+
+# create subvolumes
+btrfs subvolume create "/mnt/@"
+btrfs subvolume create "/mnt/@home"
+
+# umount root subvolume
+umount "/mnt"
+
+# mount subvolumes
+mount "/dev/mapper/sun" "/mnt" -o "compress=zstd,subvol=@"
+mount -m "/dev/mapper/sun" "/mnt/home" -o "compress=zstd,subvol=@home"
+```
+
+## EFI partition
+
+```shell
+# Format
+mkfs.vfat "/dev/sdx1"
+
+# Mount
 mount -m "/dev/sdx1" "/mnt/boot"
 ```
 
 ## Swap (optional)
 
 ```shell
-dd if="/dev/zero" of="/swapfile" bs="1M" count="1024" status="progress" # 1GB swap file (only for UEFI systems)
+# 1GB swap file (only for UEFI systems)
+dd if="/dev/zero" of="/swapfile" bs="1M" count="1024" status="progress"
+
+# swap file permission
 chmod 600 "/swapfile"
-mkswap "/swapfile" # optionally use a swap partition /dev/sdx4
-swapon "/swapfile" # or /dev/sdx4
+
+# create swap from file
+mkswap "/swapfile"
+
+# activate swap
+swapon "/swapfile" # if using a partition use its device e.g., /dev/sdy
 ```
 
 ## Install System
 
 ```shell
-# Update mirrors
-pacman -Syy
+# Optionally use reflector to get the current best mirrors
+reflector -l "10" --sort "rate" --save "/etc/pacman.d/mirrorlist"
 
 # Install system
-pacstrap "/mnt" "linux" "linux-firmware" "base" "base-devel" "vim" "zsh" # add "intel-ucode" or "amd-ucode"
+pacstrap -K "/mnt" "base" "linux" "linux-firmware"
 
 # Generate fstab
 genfstab -U "/mnt" >> "/mnt/etc/fstab"
@@ -76,7 +99,32 @@ genfstab -U "/mnt" >> "/mnt/etc/fstab"
 arch-chroot "/mnt"
 ```
 
-## Initial ramdisk environment
+## Packages
+
+```shell
+# Packages
+pacman -S "vim" "reflector"
+
+# Pacman config
+vim "/etc/pacman.conf" #  ParallelDownloads = 10
+
+# Mirror list
+reflector -l "10" --sort "rate" --save "/etc/pacman.d/mirrorlist"
+
+# Update package database
+pacman -Syy
+
+# Gnome DE
+pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez" "bluez-utils"
+
+# Sway DE
+pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
+
+# Other packages
+pacman -S "base-devel" "zsh" "firefox" "neofetch" # "intel-ucode" or "amd-ucode"
+```
+
+## Initial ramdisk environment (initramfs)
 
 - Necessary for encrypted drivers only
 - Modify the file `/etc/mkinitcpio.conf` and add the hooks
@@ -84,7 +132,12 @@ arch-chroot "/mnt"
   - `encrypt`
 
 ```conf
-HOOKS=(base udev autodetect keyboard modconf block encrypt filesystems fsck)
+HOOKS=(base udev autodetect modconf kms keyboard block encrypt filesystems fsck)
+BINARIES=(btrfs) # if btrfs root partition
+```
+
+```shell
+mkinitcpio -P
 ```
 
 ## Boot loader & Kernel parameters
@@ -97,7 +150,7 @@ bootctl install
 ```conf
 # efi/loader/loader.conf
 default arch.conf
-timeout 2
+timeout menu-hidden
 ```
 
 ```conf
@@ -106,23 +159,10 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options root=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab rw # for unencrypted devices
-options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapper/sun rw # for encrypted devices
+options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapper/sun rootflags=subvol=@ rw # for encrypted devices
 ```
 
-- Get the root PARTUUID with `blkid`
-
-## Packages
-
-```shell
-# Gnome DE
-pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez-utils"
-
-# Sway DE
-pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
-
-# Other utils
-pacman -S "firefox" "solaar" "dkms" "tilix" "pipewire-pulse" "pipewire-alsa" "pavucontrol" "mesa" "mesa-utils" "steam" "nvtop" "gnu-efi" "glmark2" "ddcutil" "neofetch" "man-db" "networkmanager-openconnect"
-```
+- Get the root partition UUID with `:r !blkid` inside of vim
 
 ## Services
 
@@ -147,14 +187,14 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf # or localectl set-locale "LANG=en_U
 echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
 
 # Network
-echo "sun" >> /etc/hostname
+echo "lol" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1 localhost" >> /etc/hosts
 
 # User
-useradd -m -d "/home/hvitoi" -s "/bin/zsh" "hvitoi" # new user
-usermod -aG "wheel" "hvitoi" # add into a group
-passwd "hvitoi" # change password
+useradd -m -d "/home/me" -s "/bin/zsh" "me" # new user
+usermod -aG "wheel" "me" # add into a group
+passwd "me" # change password
 EDITOR=vim visudo # Uncomment %wheel ALL=(ALL) ALL
 ```
 

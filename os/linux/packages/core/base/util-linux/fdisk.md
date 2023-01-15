@@ -17,3 +17,13 @@ fdisk "/dev/sdx"
   - `t`: Change partition system id
   - `w`: write/apply changes
 ```
+
+## n
+
+- `+10G` to set the size
+
+## t
+
+- `1`: EFI System
+- `19`: Linux Swap
+- `20`: Linux Filesystem
