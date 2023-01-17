@@ -5,3 +5,11 @@
 (swap! my-atom inc)
 (swap! my-atom2 update :z inc)
 (swap! my-atom2 assoc :b "b")
+
+(swap! my-atom
+       (fn [v]
+         (println v)
+         (Thread/sleep 5000)
+         (inc v)))
+
+@my-atom
