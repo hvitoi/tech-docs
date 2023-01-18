@@ -1,13 +1,16 @@
-(require '[clojure.core.async :refer [chan thread put! take!]])
+(require '[clojure.core.async :as async])
 
-(def c (chan))
+;; same as >! but accepts callback
 
-(thread
-  (put! c "my value!!"
-        (fn [sent?]
-          (println "this is my callback function (this is print in repl). Has been sent?:" sent?))))
+(def channel (async/chan 5))
 
-(thread
-  (take! c
-         (fn [value]
-           (println "this is my callback function. Value taken:" value))))
+(async/thread
+  (let [val :foo
+        callback (fn [sent?]
+                   (println "A value has been put?" sent?))]
+    (async/put! channel val callback)))
+
+(async/thread
+  (let [callback (fn [value]
+                   (println "Got value" value))]
+    (async/take! channel callback)))

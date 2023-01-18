@@ -5,3 +5,6 @@
 (+ 1 2 3) ; same
 
 (apply str [1 1 2 3 5 8 13 21])
+
+(apply str ["a" "b"])
+(str ["a" "b"])

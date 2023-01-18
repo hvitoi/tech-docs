@@ -1,15 +1,11 @@
-(require '[clojure.core.async :refer [chan thread >!! <!!]])
+(require '[clojure.core.async :as async])
 
-(def c (chan))
+(def channel (async/chan))
 
-; push values into channel
-(thread
-  (doseq [i (range 0 5)]
-    (>!! c i)
-    (println "Value" i "was put on the channel")))
+(async/go
+  (let [val :foo]
+    (async/>!! channel val)))
 
-; pull values out of channel
-(thread
-  (doseq [_ (range 0 5)]
-    (->> (<!! c)
-         (println "got:"))))
+(async/go
+  (let [val (async/<!! channel)]
+    (println val)))

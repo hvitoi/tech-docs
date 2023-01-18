@@ -1,14 +1,14 @@
-(require '[clojure.core.async :refer [chan go >! <!]])
+(require '[clojure.core.async :as async])
 
 ;; prevents blocking the thread
+;; but the code won't proceed until a value is received
 
-(let [c (chan)]
-  (go
-    (doseq [i (range 0 5)]
-      (>! c i)
-      (println "Value" i "was put on the channel")))
+(def channel (async/chan))
 
-  (go
-    (doseq [_ (range 0 5)]
-      (->> (<! c)
-           (println "got:")))))
+(async/go
+  (let [val :foo]
+    (async/>! channel val)))
+
+(async/go
+  (let [val (async/<! channel)]
+    (println val)))

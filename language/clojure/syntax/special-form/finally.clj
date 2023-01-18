@@ -1,7 +1,8 @@
 (try
-  (inc "abc")
-  (catch ClassCastException e
-    (println "Caught ClassCastException:" (.getMessage e)))
+  (/ 1 0)
+  (catch ArithmeticException e
+    (println "Caught ClassCastException:" (.getMessage e))
+    (throw (Exception.)))
   (catch Exception e
     (println "Caught Exception:" (.getMessage e)))
   (catch clojure.lang.ExceptionInfo e

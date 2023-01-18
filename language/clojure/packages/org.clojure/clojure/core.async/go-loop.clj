@@ -1,30 +1,31 @@
-(require '[clojure.core.async :refer :all])
+(require '[clojure.core.async :as async])
 
-;; tasks created inside of a "go routine" is much lighter than a thread
+(def channel (async/chan))
 
-(let [c (chan)]
-  (go-loop
-   (doseq [i (range 0 5)]
-     (>! c i)
-     (println "Value" i "was put on the channel")))
+;; same as (go (loop ...))
+(async/go-loop
+ [i 0]
+  (when (< i 5)
+    (async/>! channel i)
+    (recur (inc i))))
 
-  (go
-    (doseq [_ (range 0 5)]
-      (->> (<! c)
-           (println "got:")))))
+(async/go
+  (let [val (async/<! channel)]
+    (println "got" val)))
 
-
-(type (go-loop [_ true]
-        (println "I am printing forever" (rand-int 10))
-        (recur (<! (timeout 5000)))))
+(async/go-loop
+ []
+  (println "I am printing forever" (rand-int 10))
+  (async/<! (async/timeout 5000)) ; similar to a "sleep" (it will return nil only after the channel is closed, until there it will hang)
+  (recur))
 
 (def print-forever
   (delay
     (let [a (atom nil)]
-      (go-loop [_ true]
+      (async/go-loop [_ true]
         (reset! a (rand-int 10))
         (println "Forever printing" @a)
-        (recur (<! (timeout 5000)))))))
+        (recur (async/<! (async/timeout 5000)))))))
 
 (realized? print-forever)
 @print-forever

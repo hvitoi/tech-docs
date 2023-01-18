@@ -8,4 +8,4 @@
   [[k v]]
   (= 0 (rem v 2)))
 
-(filter even?? {:k0 0, :k1 1, :k2 2})
+(filter even? {:a 1, :b 2, :c 3})

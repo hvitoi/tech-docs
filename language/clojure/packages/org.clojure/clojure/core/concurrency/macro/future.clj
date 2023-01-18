@@ -1,8 +1,12 @@
 ; this starts execution in a new thread!
 (defn my-async-fn []
   (future
-    (Thread/sleep 1000)
-    "result available after 1s"))
+    (println "----------------------------------")
+    (println "Done!")
+    (println "----------------------------------")
+    (recur)))
+
+(my-async-fn)
 
 ; "await" for the result (block the current thread)
 (println @(my-async-fn)); 

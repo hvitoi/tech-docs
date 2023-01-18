@@ -1,14 +1,17 @@
-(require '[clojure.core.async :refer [chan go >! <!]])
+(require '[clojure.core.async :as async])
 
-;; tasks created inside of a "go routine" is much lighter than a thread
+;; similar to "thread", but a much lighter one (no system threads)
 
-(let [c (chan)]
-  (go
-    (doseq [i (range 0 5)]
-      (>! c i)
-      (println "Value" i "was put on the channel")))
+(def channel (async/chan))
 
-  (go
-    (doseq [_ (range 0 5)]
-      (->> (<! c)
-           (println "got:")))))
+(async/go
+  (let [val (do
+              (println "Building value")
+              (Thread/sleep 5000)
+              (println "Building finished")
+              :foo)]
+    (async/>! channel val)))
+
+(async/go
+  (let [val (async/<! channel)]
+    (println val)))
