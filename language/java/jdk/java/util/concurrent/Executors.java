@@ -44,7 +44,6 @@ class _newFixedThreadPool {
 
 class _newScheduledThreadPool {
   static void run() {
-
     Executors.newScheduledThreadPool(1);
   }
 }
