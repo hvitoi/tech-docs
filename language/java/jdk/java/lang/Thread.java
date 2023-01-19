@@ -1,32 +1,57 @@
+/*
+ * Thread class
+ */
+
 class Main {
   public static void main(String[] args) {
-    // Static methods
-    ThreadNew.run();
-    ThreadSleep.run();
+    /*
+     * Static
+     */
+    _new.run();
+    _sleep.run();
+    _currentThread.run();
 
-    // Instance methods
-    ThreadStart.run();
+    /*
+     * Instance
+     */
+    _start.run();
+    _getName.run();
   }
 }
 
-class ThreadNew {
+class _new {
   static void run() {
-    Thread thread = new Thread(() -> System.out.println("I will run in a new thread"));
+    new Thread(() -> System.out.println("I will run in a new thread"));
   }
 }
 
-class ThreadSleep {
+class _sleep {
   static void run() {
     try {
-      Thread.sleep(1000); // thread sleeps 1s
+      // sleeps the current thread (1s)
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
   }
 }
 
-class ThreadStart {
+class _currentThread {
   static void run() {
-    Thread thread = new Thread(() -> System.out.println("I will run in a new thread"));
+    // get the thread object of the current thread
+    Thread.currentThread();
+  }
+}
+
+class _start {
+  static void run() {
+    var thread = new Thread(() -> System.out.println("I will run in a new thread"));
     thread.start();
+  }
+}
+
+class _getName {
+  static void run() {
+    var thread = new Thread(() -> System.out.println(""));
+    thread.getName();
   }
 }

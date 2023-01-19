@@ -1,3 +1,7 @@
+/*
+ * Class class
+ */
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -7,52 +11,52 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    ClassForName.run();
+    _forName.run();
 
     // Instance methods
-    ClassGetName.run();
-    ClassGetCanonicalName.run();
-    ClassGetSimpleName.run();
-    ClassGetPackage.run();
-    ClassGetSuperclass.run();
-    ClassGetInterfaces.run();
-    ClassGetModifiers.run();
+    _getName.run();
+    _getCanonicalName.run();
+    _getSimpleName.run();
+    _getPackage.run();
+    _getSuperclass.run();
+    _getInterfaces.run();
+    _getModifiers.run();
 
-    ClassGetDeclaredFields.run();
-    ClassGetDeclaredField.run();
-    ClassGetFields.run();
-    ClassGetField.run();
+    _getDeclaredFields.run();
+    _getDeclaredField.run();
+    _getFields.run();
+    _getField.run();
 
-    ClassGetDeclaredMethods.run();
-    ClassGetDeclaredMethod.run();
-    ClassGetMethods.run();
-    ClassGetMethod.run();
+    _getDeclaredMethods.run();
+    _getDeclaredMethod.run();
+    _getMethods.run();
+    _getMethod.run();
 
-    ClassGetConstructors.run();
+    _getConstructors.run();
 
   }
 }
 
-class ClassForName {
+class _forName {
   static void run() {
     try {
-      Class<?> clazz = Class.forName("Person"); // FQN: e.g., com.hvitoi.Person
+      Class.forName("Person"); // FQN: e.g., com.hvitoi.Person
     } catch (ClassNotFoundException e) {
     }
 
   }
 }
 
-class ClassGetName {
+class _getName {
   static void run() {
     // Get class from an instance
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    String className = clazz.getName(); // DQN: e.g., com.hvitoi.Person
+    var person = new Person();
+    var clazz = person.getClass();
+    clazz.getName(); // DQN: e.g., com.hvitoi.Person
   }
 }
 
-class ClassGetCanonicalName {
+class _getCanonicalName {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -60,7 +64,7 @@ class ClassGetCanonicalName {
   }
 }
 
-class ClassGetSimpleName {
+class _getSimpleName {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -69,7 +73,7 @@ class ClassGetSimpleName {
   }
 }
 
-class ClassGetDeclaredFields {
+class _getDeclaredFields {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -79,7 +83,7 @@ class ClassGetDeclaredFields {
   }
 }
 
-class ClassGetDeclaredField {
+class _getDeclaredField {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -92,7 +96,7 @@ class ClassGetDeclaredField {
   }
 }
 
-class ClassGetFields {
+class _getFields {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -102,7 +106,7 @@ class ClassGetFields {
   }
 }
 
-class ClassGetField {
+class _getField {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -115,7 +119,7 @@ class ClassGetField {
   }
 }
 
-class ClassGetDeclaredMethods {
+class _getDeclaredMethods {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -123,7 +127,7 @@ class ClassGetDeclaredMethods {
   }
 }
 
-class ClassGetDeclaredMethod {
+class _getDeclaredMethod {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -136,7 +140,7 @@ class ClassGetDeclaredMethod {
   }
 }
 
-class ClassGetMethods {
+class _getMethods {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -147,7 +151,7 @@ class ClassGetMethods {
   }
 }
 
-class ClassGetMethod {
+class _getMethod {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -161,7 +165,7 @@ class ClassGetMethod {
   }
 }
 
-class ClassGetPackage {
+class _getPackage {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -169,7 +173,7 @@ class ClassGetPackage {
   }
 }
 
-class ClassGetSuperclass {
+class _getSuperclass {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -177,7 +181,7 @@ class ClassGetSuperclass {
   }
 }
 
-class ClassGetInterfaces {
+class _getInterfaces {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -188,7 +192,7 @@ class ClassGetInterfaces {
   }
 }
 
-class ClassGetConstructors {
+class _getConstructors {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
@@ -198,7 +202,7 @@ class ClassGetConstructors {
   }
 }
 
-class ClassGetModifiers {
+class _getModifiers {
   static void run() {
     Person person = new Person();
     Class<?> clazz = person.getClass();
