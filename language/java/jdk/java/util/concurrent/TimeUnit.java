@@ -1,17 +1,20 @@
+/*
+ * TimeUnit class
+ */
+
 import java.util.concurrent.TimeUnit;
 
 class Main {
   public static void main(String[] args) {
-    TimeUnitSleep.run();
+    _sleep.run();
   }
 }
 
-class TimeUnitSleep {
+class _sleep {
   static void run() {
     try {
       TimeUnit.SECONDS.sleep(5);
     } catch (InterruptedException e) {
-      e.printStackTrace();
     }
   }
 }

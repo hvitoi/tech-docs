@@ -1,22 +1,23 @@
-import java.util.concurrent.ExecutorService;
+/*
+ * Executors class
+ */
+
 import java.util.concurrent.Executors;
 
 class Main {
   public static void main(String[] args) {
-
     /**
      * Static
      */
-    ExecutorsNewCachedThreadPool.run();
-    ExecutorsNewFixedThreadPool.run();
+    _newCachedThreadPool.run();
+    _newFixedThreadPool.run();
   }
-
 }
 
-class ExecutorsNewCachedThreadPool {
+class _newCachedThreadPool {
   static void run() {
-    ExecutorService service1 = Executors.newCachedThreadPool();
-    service1.submit(() -> {
+    var executorService1 = Executors.newCachedThreadPool();
+    executorService1.submit(() -> {
       Thread.sleep(5000);
       System.out.println("I finished executing after 5 seconds.");
       return null;
@@ -24,22 +25,19 @@ class ExecutorsNewCachedThreadPool {
 
     //
 
-    ExecutorService service2 = Executors.newCachedThreadPool();
-    service2.submit(() -> {
+    var executorService2 = Executors.newCachedThreadPool();
+    executorService2.submit(() -> {
       Thread.sleep(10000);
       System.out.println("I finished executing after 10 seconds.");
       return null;
     });
-
   }
-
 }
 
-class ExecutorsNewFixedThreadPool {
+class _newFixedThreadPool {
   static void run() {
     // if a thread terminates due to a failure in the task, then a new thread with
     // the task in created to replace it
-    ExecutorService service = Executors.newFixedThreadPool(3);
+    var executorService = Executors.newFixedThreadPool(3);
   }
-
 }
