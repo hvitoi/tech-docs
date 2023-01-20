@@ -12,6 +12,7 @@ class Main {
     _newCachedThreadPool.run();
     _newFixedThreadPool.run();
     _newScheduledThreadPool.run();
+    _newSingleThreadScheduledExecutor.run();
   }
 }
 
@@ -45,5 +46,11 @@ class _newFixedThreadPool {
 class _newScheduledThreadPool {
   static void run() {
     Executors.newScheduledThreadPool(1);
+  }
+}
+
+class _newSingleThreadScheduledExecutor {
+  static void run() {
+    Executors.newSingleThreadScheduledExecutor();
   }
 }
