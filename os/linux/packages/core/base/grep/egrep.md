@@ -1,15 +1,21 @@
 # egrep
 
-- A grep with multiple keywords
+- Grep with regex
+- Libraries under the hood
+  - `oniguruma`: "re" (python), RegExp (js), gem-oniguruma (ruby)
+  - `re2`: on c#, c++, go
+- Styles
+  - `C style`
+    - Used in perl
+  - `ICU` (International Components for Unicode)
+    - Common for datetime formatters
+    - java.util.regex (java)
+    - icu.regex.pattern (c++)
+    - ns.regular.expression (swift)
+    - pi-reg\* (php)
+
+## or
 
 ```shell
-# Create sample file
-echo "a b c" > "file.txt"
-```
-
-```shell
-# OR operator
-egrep -i "keyword1|keyword2" "file.txt" # Either the key1 or key2
-egrep -i "a|z" "file.txt"
-dmesg | egrep -i 'blue|firm'
+egrep -i "a|b" file
 ```

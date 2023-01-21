@@ -8,7 +8,6 @@ import java.util.concurrent.Executors;
 class Main {
   public static void main(String[] args) {
     var executorService = Init.run();
-
     /**
      * Instance
      */
@@ -26,7 +25,8 @@ class Init {
 
 class _submit {
   static void run(ExecutorService executorService) {
-    // submit a task to be run in the thread (Runnable or Callable)
+    // submit a task to be run in the thread
+    // Takes a Runnable task which returns back a value
     // Returns a Future can be used to get the result
     executorService.submit(() -> {
       Thread.sleep(1000);
@@ -45,6 +45,7 @@ class _submit {
 class _execute {
   static void run(ExecutorService executorService) {
     // Returns nil so that the result is lost
+    // Takes a Callable task which does not return a value
     executorService.execute(() -> System.out.println("lol!"));
   }
 }
