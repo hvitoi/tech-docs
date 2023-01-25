@@ -23,8 +23,8 @@ ENV var1=Henrique var2=Joao
 # Create a volume on root of the cointainer that is accessible by the host
 VOLUME /data
 
-# Copies files from the local system onto the docker image
-COPY . /opt/source-code
+# Copies files from the local system onto the docker image, ignoring those in .dockerignore
+COPY . /opt/source-code --exclude-from=.dockerignore
 
 # Doesn't actually map the port! Just serve as information for the developer to use -p 3000:3000
 EXPOSE 3000
