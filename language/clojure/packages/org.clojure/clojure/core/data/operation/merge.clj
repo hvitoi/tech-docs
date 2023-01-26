@@ -3,3 +3,5 @@
 (def ef {:e "e", :f "f"})
 
 (merge ab cd ef)
+
+(merge nil {:a :b})
