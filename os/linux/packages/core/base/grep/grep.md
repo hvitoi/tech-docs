@@ -23,8 +23,8 @@ grep -e "bluez" -e "a2dp_codec" "file" # regex patterns
 grep -iE "installed|upgraded|removed" "/var/log/pacman.log" # extended regex
 grep -A5 "keyword" "file" # print 5 lines underneath the keyword
 
-# Find in all file contents
-grep -R "hvitoi" "." # look for the keyword "hvitoi" in all file content inside of the current directory
+# Find in all file contents (excluding binaries and ignoring case)
+grep -RIi "hvitoi" "." # look for the keyword "hvitoi" in all file content inside of the current directory
 
 # Pipe
 ls -l ~/ | grep Desktop
