@@ -10,3 +10,5 @@
 ;; set as a predicate
 (def my-set #{"a"})
 (some my-set ["a" "b" "z"])
+
+(some #(contains? #{:a} %) [:a :b :c])

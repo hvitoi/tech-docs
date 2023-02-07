@@ -2,3 +2,5 @@
 
 (println (deref my-atom))
 (println @my-atom) ; same
+
+(deref nil) ; exception!
