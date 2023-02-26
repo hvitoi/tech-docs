@@ -80,13 +80,8 @@ rclone sync \
   "remote:/remote/folder" \
   --verbose \
   --progress \
-  --exclude "node_modules/"
-
-rclone sync "/media/document" "remote:/document" --verbose --progress --exclude "node_modules/" --exclude "target/"
-rclone sync "/media/image" "remote:/image" --verbose --progress --exclude "node_modules/" --exclude "target/"
-rclone sync "/media/music" "remote:/music" --verbose --progress --exclude "node_modules/" --exclude "target/"
-rclone sync "/media/video" "remote:/video" --verbose --progress --exclude "node_modules/" --exclude "target/"
-rclone sync "/media/code" "remote:/code" --verbose --progress --exclude "node_modules/" --exclude "target/"
+  --exclude "node_modules/" \
+  --exclude "target/"
 ```
 
 ## Filters
