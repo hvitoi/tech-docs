@@ -5,7 +5,7 @@
 ```shell
 lspci
 lspci -k # Show PCI device alongside with its firmware
-lspci -vvv # max verbose
+lspci -vvv # max verbose (run with sudo for more details)
 lspci -mm # Readable
 
 # Graphocs cards

@@ -8,7 +8,6 @@ dmidecode
 
 # type 17: RAM
 sudo dmidecode --type 17
-
 ```
 
 - `type 0`: bios info
@@ -25,5 +24,3 @@ sudo dmidecode --type 17
 - `type 17`: memory device
 - `type 20`: memory device mapped address
 - `type 32`: system boot info
-- `type 0`: bios
-- `type 0`: bios
