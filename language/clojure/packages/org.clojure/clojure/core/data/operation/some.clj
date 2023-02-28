@@ -1,8 +1,8 @@
-; Returns true if at least the predicate for at least 1 element returns true
-; Returns nil otherwise
+; Returns the first truthy value, otherwise nil
 
 ;; vector
-(some #(> % 0) [-1 0 1]) ; if at least one element is greater than zero
+(some #(> % 0) [-1 0 1])
+(some identity [false nil 4 5])
 
 ;; map
 (some #(> (second %) 0) {:a -1, :b 0, :c 1}) ; if at least one element is greater than zero
