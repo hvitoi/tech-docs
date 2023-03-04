@@ -4,9 +4,17 @@
 
 ```shell
 # mount
-mount "partition" "folder"
-mount "/dev/sdx1" "/data"
-mount "/dev/sda1" "/mnt/boot" --mkdir # create folder
+mount "device" "directory"
+mount "/dev/sdx1" "/mnt"
+mount "LABEL=FOO" "/mnt"
+mount "UUID=1234..." "/mnt"
+
+# create directories as necessary
+mount "/dev/sda1" "/mnt/boot" --mkdir
+mount "/dev/sda1" "/mnt/boot" -m
+
+# mount by label
+mount /mnt -L "FOO" # same as mount LABEL=FOO /mnt
 
 # show mounts
 mount -a

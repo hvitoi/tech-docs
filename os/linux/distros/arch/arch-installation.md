@@ -98,7 +98,7 @@ pacman-key --refresh-keys
 pacman -Syy
 
 # Install system
-pacstrap -K "/mnt" "base" "base-devel" "linux" "linux-firmware"
+pacstrap -K "/mnt" "base" "base-devel" "linux" "linux-firmware" "intel-ucode"
 
 # Generate fstab
 genfstab -U "/mnt" >> "/mnt/etc/fstab"
@@ -111,7 +111,7 @@ arch-chroot "/mnt"
 
 ```shell
 # Packages
-pacman -S "vim" "zsh"  # "intel-ucode" or "amd-ucode"
+pacman -S "vim" "zsh"
 
 # Pacman config
 vim "/etc/pacman.conf" #  ParallelDownloads = 10
@@ -153,6 +153,7 @@ timeout menu-hidden
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
+initrd /intel-ucode.img
 options root=LABEL=FOO rw # for unencrypted devices
 options cryptdevice=LABEL=FOO_CRYPT:sun root=/dev/mapper/sun rootflags=subvol=@ rw # for encrypted devices
 ```
