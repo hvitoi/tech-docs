@@ -18,3 +18,10 @@ sudo pacman-key --lsign-key "DEB7F121BAAA6F3E"
 # Refresh database
 pacman -Syy
 ```
+
+```shell
+pacman-key --init
+pacman-key --populate
+pacman-key --refresh-keys
+pacman -Syy
+```

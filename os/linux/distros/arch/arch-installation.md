@@ -26,24 +26,26 @@ fdisk -l # Optionally use cgdisk
 # +0.5G for /dev/sdx1 and the rest for /dev/sdx2
 ```
 
-## Encryption
+## Encryption: LUKS
 
 ```shell
 # Format encrypted partition
 cryptsetup luksFormat "/dev/sdx2" -v -y
 
+cryptsetup config "/dev/sdx2" --label FOO_CRYPT
+
 # Unlock partition
-cryptsetup open "/dev/sdx2" "sun"
+cryptsetup open "/dev/sdx2" "foo"
 ```
 
 ## Root partition: BTRFS setup
 
 ```shell
 # Format partition
-mkfs.btrfs "/dev/mapper/sun"
+mkfs.btrfs "/dev/mapper/foo"
 
 # Temporarily mount root subvolume to create the child subvolumes
-mount "/dev/mapper/sun" "/mnt"
+mount "/dev/mapper/foo" "/mnt"
 
 # create subvolumes
 btrfs subvolume create "/mnt/@"
@@ -53,8 +55,11 @@ btrfs subvolume create "/mnt/@home"
 umount "/mnt"
 
 # mount subvolumes
-mount "/dev/mapper/sun" "/mnt" -o "compress=zstd,subvol=@"
-mount -m "/dev/mapper/sun" "/mnt/home" -o "compress=zstd,subvol=@home"
+mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
+mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
+
+# set filesystem label
+btrfs filesystem label /dev/mapper/foo FOO
 ```
 
 ## EFI partition
@@ -86,11 +91,14 @@ swapon "/swapfile" # if using a partition use its device e.g., /dev/sdy
 ## Install System
 
 ```shell
-# Optionally use reflector to get the current best mirrors
-reflector -l "10" --sort "rate" --save "/etc/pacman.d/mirrorlist"
+# Setup pacman keys
+pacman-key --init
+pacman-key --populate
+pacman-key --refresh-keys
+pacman -Syy
 
 # Install system
-pacstrap -K "/mnt" "base" "linux" "linux-firmware"
+pacstrap -K "/mnt" "base" "base-devel" "linux" "linux-firmware"
 
 # Generate fstab
 genfstab -U "/mnt" >> "/mnt/etc/fstab"
@@ -103,37 +111,24 @@ arch-chroot "/mnt"
 
 ```shell
 # Packages
-pacman -S "vim" "reflector"
+pacman -S "vim" "zsh"  # "intel-ucode" or "amd-ucode"
 
 # Pacman config
 vim "/etc/pacman.conf" #  ParallelDownloads = 10
 
-# Mirror list
-reflector -l "10" --sort "rate" --save "/etc/pacman.d/mirrorlist"
-
-# Update package database
-pacman -Syy
-
 # Gnome DE
-pacman -S "gnome" "gnome-tweaks" "gnome-themes-extra" "networkmanager" "bluez" "bluez-utils"
+pacman -S "gnome" "xdg-desktop-portal-gnome" "networkmanager"  "bluez"
 
 # Sway DE
-pacman -S "sway" "swaylock" "swayidle" "dmenu" "alacritty" "xdg-desktop-portal-wlr" "networkmanager" "bluez"
-
-# Other packages
-pacman -S "base-devel" "zsh" "firefox" "neofetch" # "intel-ucode" or "amd-ucode"
+pacman -S "sway" "xdg-desktop-portal-wlr" "networkmanager" "bluez" "swaylock" "swayidle" "dmenu" "alacritty"
 ```
 
 ## Initial ramdisk environment (initramfs)
 
-- Necessary for encrypted drivers only
-- Modify the file `/etc/mkinitcpio.conf` and add the hooks
-  - `keyboard`
-  - `encrypt`
+- Modify the file `/etc/mkinitcpio.conf` and add the `encrypt` hooks
 
 ```conf
 HOOKS=(base udev autodetect modconf kms keyboard block encrypt filesystems fsck)
-BINARIES=(btrfs) # if btrfs root partition
 ```
 
 ```shell
@@ -158,8 +153,8 @@ timeout menu-hidden
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options root=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab rw # for unencrypted devices
-options cryptdevice=UUID=310bac7d-c20d-4cc0-a7eb-2e5e71d7baab:sun root=/dev/mapper/sun rootflags=subvol=@ rw # for encrypted devices
+options root=LABEL=FOO rw # for unencrypted devices
+options cryptdevice=LABEL=FOO_CRYPT:sun root=/dev/mapper/sun rootflags=subvol=@ rw # for encrypted devices
 ```
 
 - Get the root partition UUID with `:r !blkid` inside of vim
@@ -183,8 +178,7 @@ hwclock --systohc
 # Localization
 vim "/etc/locale.gen" # Uncomment the desired locale (de_DE.utf8, en_US.utf8, pt_BR.utf8)
 locale-gen # Generate config
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf # or localectl set-locale "LANG=en_US.UTF-8"
-echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf
+localectl set-locale "LANG=en_US.UTF-8"
 
 # Network
 echo "lol" >> /etc/hostname

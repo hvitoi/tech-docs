@@ -8,6 +8,9 @@ btrfs filesystem usage "/"
 btrfs filesystem df "/"
 
 btrfs filesystem show "/"
+
+# assign label to a btrfs filesystem
+btrfs filesystem label /dev/mapper/lala LALA
 ```
 
 ## subvolume

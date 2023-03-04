@@ -8,4 +8,7 @@ tune2fs "/dev/sdx1" -m 0
 
 # Filesystem information
 tune2fs "/dev/sdx1" -l | grep "Block size"
+
+# Set filesystem label
+tune2fs -L "YOUR_LABEL" /dev/sdx1
 ```
