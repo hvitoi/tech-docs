@@ -1,13 +1,21 @@
 # bluetoothctl
 
-## List
+## list
 
 ```shell
 # List controllers
 bluetoothctl list
+```
 
+## device
+
+```shell
 # List available devices
-bluetoothctl devices
+bluetoothctl devices # all
+bluetoothctl devices Paired
+bluetoothctl devices Bonded
+bluetoothctl devices Trusted
+bluetoothctl devices Connected
 
 # Show info about a device (from /var/lib/bluetooth/<controller-id>/<device-id>/info)
 bluetoothctl info "mac-addr"
@@ -66,4 +74,22 @@ bluetoothctl untrust "mac-add"
 
 ```shell
 echo -n "mykeybase64" | base64 -d | od -t x1 -An | tr -d ' ' | tr "[a-z]" "[A-Z]"
+```
+
+## Connecting
+
+```shell
+service bluetooth start
+btmgmt power off
+btmgmt privacy on
+btmgmt power on
+bluetoothctl
+> scan on
+(turn on the device and enter pairing mode, wait for it to be detected)
+> scan off
+> pair <address>
+> connect <address>
+> trust <address>
+(power-cycle the device)
+[agent] Accept pairing (yes/no): yes
 ```

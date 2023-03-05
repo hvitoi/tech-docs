@@ -1,4 +1,4 @@
-# fstab
+# /etc/fstab
 
 - `/etc/fstab`
 - `fstab` file can be used to define how disk partitions, various other block devices, or remote filesystems should be mounted into the filesystem

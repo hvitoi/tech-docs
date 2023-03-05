@@ -3,6 +3,12 @@
 - Mount the volume to a folder
 
 ```shell
+# list mount points in the order they were mounted
+mount
+mount -l
+```
+
+```shell
 # mount
 mount "device" "directory"
 mount "/dev/sdx1" "/mnt"
@@ -18,10 +24,6 @@ mount /mnt -L "FOO" # same as mount LABEL=FOO /mnt
 
 # show mounts
 mount -a
-
-# list mount points
-mount
-mount -l
 
 # mount with flag options
 mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ "/dev/vda2" "/mnt"

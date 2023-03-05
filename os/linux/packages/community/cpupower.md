@@ -23,12 +23,22 @@ cpupower frequency-set -f "2.0GHz"
 
 # clock frequency based on a scaling governor
 cpupower frequency-set -g "powersave"
+cpupower frequency-set -g "performance"
 ```
 
 ## /proc/cpuinfo
 
 ```shell
-# Monitor clock frequency
+# Clock frequency
 watch -n.5 "grep \"^[c]pu MHz\" /proc/cpuinfo"
 watch "cat /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_cur_freq"
+```
+
+```shell
+# Get scaling governor
+cat "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+
+# Set scaling governor
+echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 ```

@@ -7,8 +7,7 @@ lspci
 lspci -k # Show PCI device alongside with its firmware
 lspci -vvv # max verbose (run with sudo for more details)
 lspci -mm # Readable
-
-# Graphocs cards
+lspci -nn | grep VGA # get vid and pid
 lspci -d ::0300 && lspci -d ::0302
 ```
 
