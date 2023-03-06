@@ -10,12 +10,13 @@
 udevadm info "/dev/dri/card1" \
   --query "all"
   # --query "name" # N (NAME). E.g., dri/card1
-  # --query "symlink" # S (symlink). E.g., dri/by-path/pci-0000:0e:00.0-card
-  # --query "path" # P (path). E.g., /devices/pci0000:00/.../0000:0e:00.0>
+  # --query "symlink" # S (SYMLINK). E.g., dri/by-path/pci-0000:0e:00.0-card
+  # --query "path" # P (PATH). E.g., /devices/pci0000:00/.../0000:0e:00.0>
   # --query "property" # E (ENV). E.g., ID_PATH=pci-0000:0e:00.0
 
 # by node name
-udevadm info -a -n "/dev/dri/card1"
+udevadm info
+  --name "/dev/dri/card1"
 
 # print the device information and all its parents
 # all the properties can be used in udev rules to match the specified device

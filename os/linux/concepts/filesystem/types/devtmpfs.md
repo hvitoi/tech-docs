@@ -24,7 +24,7 @@
 - Types
   - **KERNEL**
   - **ATTRS**
-  - **ENV**
+  - **ENV**: by property
 
 ### Actions
 
@@ -37,6 +37,7 @@
   - **MODE**: change the device file permission
   - **SYMLINK**: create a symbolic link at a location (relative to /dev)
   - **TAG**
+  - **ENV**: add a property
 
 - The actions are taken only if all the match conditions are met
 
@@ -58,4 +59,7 @@ SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{idVendor}=="1002", ATTRS{idProduct}=="7
 
 # Assign tag by ID_PATH
 SUBSYSTEM=="drm", ENV{ID_PATH}=="pci-0000:0e:00.0", TAG+="mutter-device-preferred-primary"
+
+# If a env is define then take the run a command
+ENV{SOME_ENV}=="?*" IMPORT{program}="ls -la"
 ```
