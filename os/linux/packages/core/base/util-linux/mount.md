@@ -55,6 +55,8 @@ mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ "/dev/v
 - **group**: allow an ordinary user to mount the fs (if one of the user's group match the group of the device)
 - **users**: allow any ordinary user to mount the fs
 
+- **nofail**: do not return error code if the device fails to mount
+
 - _defaults_: `rw`, `suid`, `dev`, `exec`, `auto`, `nouser`, `async`
 
 ### btrfs options
