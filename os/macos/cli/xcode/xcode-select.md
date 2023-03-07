@@ -1,10 +1,11 @@
 # xcode-select
 
-- Developer tools
-- `/Library/Developer/CommandLineTools/`
+- If Xcode is installed, this should point at the `Xcode` installation (/Applications/Xcode.app/Contents/Developer)
+- Else it should point at the `developer tools` (/Library/Developer/CommandLineTools/)
 
 ```shell
-# install xcode-select and all command line developer tools
+# Install Command line developer tools
+# Not necessary if Xcode is available
 xcode-select --install
 ```
 
