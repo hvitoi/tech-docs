@@ -24,8 +24,10 @@ systemctl --failed # failed units
 # Starting, restarting, reloading a unit
 systemctl start "unit"
 systemctl stop "unit"
-systemctl restart "unit"
-sudo systemctl daemon-reload # reload all
+systemctl restart "unit"]
+systemctl --user restart pipewire.service
+
+systemctl daemon-reload # reload all
 
 #Enabling a unit
 systemctl enable "unit"

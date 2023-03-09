@@ -17,16 +17,3 @@
 # Tells whether virtualization is enabled (VT-x for intel)
 LC_ALL=C lscpu | grep Virtualization
 ```
-
-- Useful packages
-
-  - `qemu-desktop`: vm emulator (uses KVM or Zen under the hood). It's the API, command line (`edk2-ovmf` installed as dependency - UEFI support)
-  - `virt-manager`: GUI for managing VMs (`libvirt` is installed as a dependency)
-  - `gnome-boxes`: GUI for managing VMs (also uses `libvirt`)
-  - `dnsmasq`: networking
-  - `qemu-arch-extra`: allow virtualizing different architectures
-
-```shell
-# Starts KVM daemon
-systemctl enable libvirtd.service
-```
