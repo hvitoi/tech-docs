@@ -90,6 +90,16 @@ rclone sync \
 rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 ```
 
+## dedupe
+
+- Some remote can store two files with the same file path
+- This commands can remove/rename duplicates
+
+```shell
+# interactively asks what to do on each duplicate file
+rclone dedupe remote:/
+```
+
 ## Mount
 
 - Mount remote to a mount point

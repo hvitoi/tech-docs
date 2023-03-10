@@ -1,12 +1,14 @@
-# Mv
+# mv
 
 - Move or rename a file/folder
 
 ```shell
-# Moves the file to new folder
-mv "old-path" "new-path"
-mv bashrc.bak new-folder
+# Move file to new a folder
+mv "a/a.txt" "b/"
 
-# Rename a file
-mv "old-name" "new-name"
+# Move and rename
+mv "a/a.txt" "b/b.txt"
+
+# Just rename
+mv "a/a.txt" "b/a.txt"
 ```
