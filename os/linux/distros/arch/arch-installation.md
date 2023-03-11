@@ -128,7 +128,7 @@ pacman -S "sway" "xdg-desktop-portal-wlr" "networkmanager" "bluez" "swaylock" "s
 - Modify the file `/etc/mkinitcpio.conf` and add the `encrypt` hooks
 
 ```conf
-HOOKS=(base udev autodetect modconf kms keyboard block encrypt filesystems fsck)
+HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block encrypt filesystems fsck)
 ```
 
 ```shell
