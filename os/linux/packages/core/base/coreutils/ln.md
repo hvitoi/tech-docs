@@ -10,7 +10,7 @@
 # List the inodes in a directory
 ls -li # i stands for inode
 
-# Create a soft link
+# Create a symbolic link
 ln -s "original-file-path" "soft-link-path"
 
 # Create a hard link
