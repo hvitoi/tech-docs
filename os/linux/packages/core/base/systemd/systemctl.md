@@ -3,62 +3,71 @@
 - `systemctl` is the interaction with `systemd`
 - New version of the legacy `service` command
 
-## Units
+## Unit Commands
 
-- Units can be `services` (.service), `mount points` (.mount), `devices` (.device) or `sockets` (.socket)
+- Units types
+  - `services` (.service)
+  - `mount points` (.mount)
+  - `devices` (.device)
+  - `sockets` (.socket)
 - `/usr/lib/systemd/system/`: units provided by installed packages
 - `/etc/systemd/system/`: units installed by the system administrator
 
 ```shell
-# Analyzing the system state
-systemctl status
-systemctl status "unit.service" # status of a specific unit
-
 # Checking the unit status
 systemctl
 systemctl list-units # same output
+
+# filters
 systemctl list-units --type=automount # auto mounted partitions
-systemctl --failed # failed units
-
-
-# Starting, restarting, reloading a unit
-systemctl start "unit"
-systemctl stop "unit"
-systemctl restart "unit"]
-systemctl --user restart pipewire.service
-
-systemctl daemon-reload # reload all
-
-#Enabling a unit
-systemctl enable "unit"
-systemctl disable "unit"
-
-## List all
-systemctl -a
-
-## List all services
-systemctl --type=service
+systemctl list-units --type=service
+systemctl list-units --failed
+systemctl list-units --all # loaded but inactive
 ```
 
-## set-environment
+### status
 
 ```shell
-# set environment variables for a service
-systemctl set-environment MYSQLD_OPTS="--skip-grant-tables --skip-networking"
+# Analyzing the system state
+systemctl status
+systemctl status "unit" # status of a specific unit
 ```
 
-## Service files
+### list-units
+
+### start
+
+```shell
+systemctl start "unit"
+```
+
+### stop
+
+```shell
+systemctl stop "unit"
+```
+
+### restart
+
+```shell
+systemctl restart "unit"
+systemctl restart pipewire.service --user
+```
+
+## Job Commands
+
+### list-jobs
+
+```shell
+systemctl list-jobs --user
+```
+
+## Unit File Commands
 
 - `/etc/systemd/system/`
 
-```shell
-#Add new service
-sudo vim /etc/systemd/system/tomcat.service
-```
-
-- Example .service file
-
 ```conf
+# Example /etc/systemd/system/tomcat.service
 [Unit]
 Description=Apache Tomcat Web Application Container
 After=network.target
@@ -84,4 +93,34 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+```
+
+### enable
+
+```shell
+systemctl enable "unit"
+```
+
+### disable
+
+```shell
+systemctl disable "unit"
+```
+
+## Environment Commands
+
+### set-environment
+
+```shell
+# set environment variables for a service
+systemctl set-environment \
+  MYSQLD_OPTS="--skip-grant-tables --skip-networking"
+```
+
+## Manager State Commands
+
+### daemon-reload
+
+```shell
+systemctl daemon-reload
 ```
