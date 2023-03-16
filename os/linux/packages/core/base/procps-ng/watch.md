@@ -1,8 +1,6 @@
 # watch
 
 ```shell
-# Execute a command every 2 seconds
-watch `command`
-watch ls # ls command
-watch free # free command
+# Repeatedly execute a command (every 1s)
+watch -n 1 "grep \"cpu MHz\" /proc/cpuinfo"
 ```
