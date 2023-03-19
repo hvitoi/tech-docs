@@ -6,6 +6,10 @@ my_function # execute
 
 ##
 
+$(pwd)
+
+##
+
 f() {
   folders=("document" "image" "music")
   if [[ ! " ${folders[*]} " =~ " $1 " ]]; then
