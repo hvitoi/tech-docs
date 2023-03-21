@@ -16,10 +16,13 @@ mount | grep sysfs
 ## devices
 
 - Every hardware attached to the computer
+  - E.g., `/sys/devices/pci0000:00/0000:00:00.0`
 
 ## bus
 
 - `/sys/bus/pci/devices/`: all pci devices
+
+  - Actually points to `/sys/devices/pci0000:00/`
 
 - GPU
   - `/sys/bus/pci/devices/0000:03:00.0`

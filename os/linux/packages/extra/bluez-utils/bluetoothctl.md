@@ -82,7 +82,6 @@ echo -n "mykeybase64" | base64 -d | od -t x1 -An | tr -d ' ' | tr "[a-z]" "[A-Z]
 ## Connecting
 
 ```shell
-service bluetooth start
 btmgmt power off
 btmgmt privacy on
 btmgmt power on
