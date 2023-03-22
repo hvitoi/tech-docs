@@ -23,3 +23,12 @@ done
 for word in $(cat ~/.zshrc); do
   echo $word
 done
+
+boot-vga() {
+  for boot_vga in /sys/bus/pci/devices/*/boot_vga; do
+    vga_device=$(dirname -- "${boot_vga}")
+    for dev in "${vga_device::-1}"*; do
+      echo "Device: ${dev}. Boot?: $(<"${boot_vga}")"
+    done
+  done
+}

@@ -15,8 +15,9 @@ udevadm info "/dev/dri/card1" \
   # --query "property" # E (ENV). E.g., ID_PATH=pci-0000:0e:00.0
 
 # by node name
-udevadm info
-  --name "/dev/dri/card1"
+udevadm info \
+  --name "/dev/dri/card1" # query all by default
+
 
 # by path (relative to /sys)
 udevadm info \

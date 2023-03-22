@@ -110,17 +110,11 @@ arch-chroot "/mnt"
 ## Packages
 
 ```shell
-# Packages
-pacman -S "vim" "zsh"
-
 # Pacman config
 vim "/etc/pacman.conf" #  ParallelDownloads = 10
 
-# Gnome DE
-pacman -S "gnome" "xdg-desktop-portal-gnome" "networkmanager"  "bluez"
-
-# Sway DE
-pacman -S "sway" "xdg-desktop-portal-wlr" "networkmanager" "bluez" "swaylock" "swayidle" "dmenu" "alacritty"
+# Packages
+pacman -S "gnome" "xdg-desktop-portal-gnome" "vim" "zsh" "networkmanager" "bluez"
 ```
 
 ## Initial ramdisk environment (initramfs)
