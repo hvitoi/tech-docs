@@ -4,11 +4,26 @@
 
 ```shell
 lspci
+
+# Readable
+lspci -mm # Readable format
+
+# Verbose
+lspci -vvv # run with sudo for more details
+
+# Drivers
 lspci -k # Show PCI device alongside with its firmware
-lspci -vvv # max verbose (run with sudo for more details)
-lspci -mm # Readable
-lspci -nn | grep VGA # get vid and pid
-lspci -d ::0300 && lspci -d ::0302
+
+# Textual & Numeric ID
+lspci -nn # -n for numeric only
+
+# Select device
+lspci -d "vendor:device:class"
+lspci -d "::0300" # GPU class
+lspci -d "::0302" # GPU class (alternative)
+
+lspci -d "1002::" # AMD vendor
+lspci -d "1002:73ff:0300" # Specific GPU from AMD vendor
 ```
 
 ## VGA controller
@@ -18,3 +33,5 @@ lspci -d ::0300 && lspci -d ::0302
 ```shell
 lspci -vk | grep -A 2 -E "(VGA|3D)"
 ```
+
+sudo lspci -v -d 1002:
