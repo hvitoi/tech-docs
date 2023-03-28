@@ -8,3 +8,4 @@ msg="How are you?"                      # Muti-word strings must be in quotes!
 echo                                    # Print blank line
 echo "Good day, $name $surname. $msg\!" # quote quotes will print the variable values!
 echo 'Good day, $name $surname. $msg!'  # single quote will NOT print variable values!
+echo $(pwd)                             # variable from function stdout

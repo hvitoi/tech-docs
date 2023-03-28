@@ -4,8 +4,12 @@
 - Stash is saved as a commit stored at `.git/refs/stash`
 
 ```shell
-# Save WIP
-git stash
+# Save WIP (push to the stash list)
+# the last stash is stored in refs/stash
+git stash push
+git stash # same as git stash push
+git stash -u # --include-untracked
+git stash -m "message" # --message ()"WIP on branchname ..." by default)
 
 # List all Stash
 git stash list

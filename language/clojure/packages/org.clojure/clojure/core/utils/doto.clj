@@ -1,4 +1,4 @@
 (doto
- (+ 1 1)
+ {:a "a"}
   (println "is the value printed")
-  (println "is the evaluation"))
+  println)
