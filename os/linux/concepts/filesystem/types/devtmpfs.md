@@ -34,6 +34,7 @@
   - `:=` (add and prevent other rules from overwriting)
 - Types
 
+  - **ATTR**: change attribute
   - **MODE**: change the device file permission
   - **SYMLINK**: create a symbolic link at a location (relative to /dev)
   - **TAG**

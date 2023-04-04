@@ -46,4 +46,6 @@ for boot_vga in /sys/bus/pci/devices/*/boot_vga; do
     echo "Found Boot VGA Device - true: ${boot_vga}"
   fi
 done
+
+for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
 ```
