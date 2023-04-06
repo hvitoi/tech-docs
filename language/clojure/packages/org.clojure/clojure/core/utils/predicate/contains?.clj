@@ -12,3 +12,7 @@
 ; verify if a keyword exists
 (contains? data2 :a) ; true
 (contains? data2 :z) ; false
+
+;; set
+
+(contains? #{:a :b} :c)
