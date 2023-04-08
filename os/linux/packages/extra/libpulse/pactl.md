@@ -2,6 +2,8 @@
 
 - Pulse Audio CTL
 
+## list
+
 ```shell
 # List connections
 pactl list
@@ -14,11 +16,8 @@ pactl list sinks
 pactl list modules
 ```
 
-## Fix volume delay issue
-
-- At `/etc/pulse/daemon.conf`
-- Uncomment `enable-deferred-volume` line and change value to `no`
+## get-default-sink
 
 ```shell
-pulseaudio -k && pulseaudio --start
+pactl get-default-sink
 ```

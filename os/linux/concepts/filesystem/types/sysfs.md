@@ -8,15 +8,15 @@
 mount | grep sysfs
 ```
 
-## block
-
-- Devices that are storage
-- Usually link files that point to `devices`
-
 ## devices
 
 - Every hardware attached to the computer
   - E.g., `/sys/devices/pci0000:00/0000:00:00.0`
+
+## block
+
+- Devices that are storage
+- Usually link files that point to `devices`
 
 ## bus
 
@@ -49,3 +49,8 @@ done
 
 for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
 ```
+
+## class
+
+- Backlight device
+  - `/sys/class/backlight/gmux_backlight/brightness`
