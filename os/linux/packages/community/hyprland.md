@@ -44,6 +44,12 @@ hyprctl clients
 hyprctl layers
 ```
 
+### workspaces
+
+```shell
+hyprctl workspaces
+```
+
 ### monitors
 
 ```shell
@@ -56,4 +62,26 @@ hyprctl monitors
 
 ```shell
 hyprctl keyword monitor ',preferred,auto,1'
+```
+
+## dispatch
+
+- Issue a dispatch to call a keybind dispatcher with an arg
+
+```shell
+hyprctl dispatch exec kitty
+
+hyprctl dispatch -- exec kitty --single-instance
+```
+
+## switchxkblayout
+
+```shell
+hyprctl switchxkblayout <keyboard> next
+```
+
+## notify
+
+```shell
+hyprctl notify -1 10000 "rgb(ff1ea3)" "Hello everyone!"
 ```
