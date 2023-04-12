@@ -28,4 +28,6 @@ wpctl status
 
 ```shell
 wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 ```

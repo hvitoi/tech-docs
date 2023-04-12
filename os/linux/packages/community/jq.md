@@ -1,6 +1,6 @@
 # jq
 
-- JQ is a commandline JSON processor
+- JQ is a command-line JSON processor
 
 ```shell
 # Format the JSON pretty
@@ -29,4 +29,13 @@ var=$(jq -n --arg b "$bar" '{
 thousandone_fields_json=$(echo {1..1001..1} | jq -Rn '( input | split(" ") ) as $nums | $nums[] | . as $key | [{key:($key|tostring),value:($key|tonumber)}] | from_entries' | jq -cs 'add')
 
 echo "$thousandone_fields_json"
+```
+
+##
+
+```shell
+hyprctl -j monitors \
+  | jq -r '.[]
+              |select(.focused == true)
+              | .id'
 ```

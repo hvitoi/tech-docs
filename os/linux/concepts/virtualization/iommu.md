@@ -14,7 +14,7 @@ iommu=pt # do not touch the devices which cannot be passed through
 ## Groups
 
 - An IOMMU group is the smallest set of physical devices that can be passed to a VM
-- A group can be passed to a VM withouta affecting the other groups
+- A group can be passed to a VM without affecting the other groups
 
 ```shell
 #!/bin/bash

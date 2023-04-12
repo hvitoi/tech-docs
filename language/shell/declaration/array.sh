@@ -1,13 +1,24 @@
+# Create
+
 readarray -t MY_ARRAY < <(ls -la)
+FOO=("alpha" "beta" "gamma") # can contain different data types
 
-FOO=("a" "b" "c")
+# Access
+echo $FOO       # first element
+echo ${#FOO[@]} # size
+echo ${!FOO[@]} # indexes
+echo ${FOO[0]}  # first element
+echo ${FOO[*]}  # all elements
 
-FOO_SIZE=${#FOO[@]}
-FOO_INDEXES=${!FOO[@]}
-FOO_FIRST=${FOO[0]}
-FOO_ALL=${FOO[*]}
+# Update
 
-echo $FOO_SIZE
-echo $FOO_INDEXES
-echo $FOO_FIRST
-echo $FOO_ALL
+FOO[0]="new-alpha" # update first element
+echo ${FOO[*]}
+
+FOO+=("delta") # add element
+echo ${FOO[*]}
+
+# Remove
+
+unset FOO[0] # remove first element
+echo ${FOO[*]}

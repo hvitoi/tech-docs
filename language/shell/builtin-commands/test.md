@@ -7,7 +7,24 @@
 test 2 -gt 1
 ```
 
+## =
+
+- String comparison
+- You may also use `==`, but it's not POSIX compliant
+- Always use quotes on variable expansions. E.g.,`"$foo"`. Otherwise empty space will crash the execution
+
+```shell
+foo='lol'
+if [ "$foo" = 'lol' ]; then
+  echo "It's lol!"
+else
+  echo "Is not!"
+fi
+```
+
 ## -eq
+
+- Numeric comparison
 
 ```shell
 # same
@@ -26,6 +43,19 @@ if test $foo -eq 10; then
 else
   echo "Is not equal"
 fi
+```
+
+```shell
+## Test the health of hosts
+hosts=$(cat ~/hosts-to-be-tested)
+for ip in $hosts; do
+  ping -c1 $ip &>/dev/null # ping once and do not show the return message
+  if [ $? -eq 0 ]; then    # check the return status
+    echo $ip is OK
+  else
+    echo $ip is NOT OK
+  fi
+done
 ```
 
 ## -ne
@@ -52,6 +82,18 @@ else
 fi
 ```
 
+## -ge
+
+```shell
+# -gt
+foo=10
+if [ $foo -ge 5 ]; then
+  echo "Is greater or equal"
+else
+  echo "Is not greater or equal"
+fi
+```
+
 ## -lt
 
 ```shell
@@ -60,6 +102,17 @@ if [ $foo -lt 5 ]; then
   echo "Is lesser"
 else
   echo "Is not lesser"
+fi
+```
+
+## -le
+
+```shell
+foo=10
+if [ $foo -le 5 ]; then
+  echo "Is lesser or equal"
+else
+  echo "Is not lesser or equal"
 fi
 ```
 
