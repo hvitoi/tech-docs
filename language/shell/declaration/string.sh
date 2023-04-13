@@ -2,14 +2,20 @@
 # variables in uppercase are usually reserved for system variables!
 # prefer using variables in lowercase
 
-name=Henrique
-surname=Vitoi
-msg="How are you?"                      # Muti-word strings must be in quotes!
-echo                                    # Print blank line
-echo "Good day, $name $surname. $msg\!" # quote quotes will print the variable values!
-echo 'Good day, $name $surname. $msg!'  # single quote will NOT print variable values!
-echo $(pwd)                             # variable from function stdout
+first_name=Henrique
+last_name=Vitoi
+msg="How are you?"                              # Muti-word strings must be in quotes!
+echo                                            # Print blank line
+echo "Good day, $first_name $last_name. $msg\!" # quote quotes will print the variable values!
+echo 'Good day, $first_name $last_name. $msg!'  # single quote will NOT print variable values!
+echo $(pwd)                                     # variable from function stdout
 
 # substring
-echo ${name:1}   # enrique
-echo ${name:1:5} # enriq
+echo ${msg:1}   # enrique
+echo ${msg:1:5} # enriq
+
+if [ -z ${msg+x} ]; then
+  echo "var is unset"
+else
+  echo "var is set to '$msg'"
+fi

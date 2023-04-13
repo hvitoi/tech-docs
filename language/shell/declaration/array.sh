@@ -6,7 +6,8 @@ FOO=("alpha" "beta" "gamma") # can contain different data types
 # Access
 echo $FOO       # first element
 echo ${#FOO[@]} # size
-echo ${!FOO[@]} # indexes
+echo ${!FOO[@]} # indexes (keys)
+echo ${FOO[@]}  # values
 echo ${FOO[0]}  # first element
 echo ${FOO[*]}  # all elements
 

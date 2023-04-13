@@ -3,39 +3,87 @@
 - JQ is a command-line JSON processor
 
 ```shell
-# Format the JSON pretty
-echo '{"foo": 0}' | jq .
-
-# Save JSON into environment variable
-var=$(jq -n --arg b "$bar" '{
-  Comment: "Update DNSName.",
-  Changes: [
-    {
-      Action: "UPSERT",
-      ResourceRecordSet: {
-        Name: "alex.",
-        Type: "A",
-        AliasTarget: {
-          HostedZoneId: "######",
-          DNSName: $b,
-          EvaluateTargetHealth: false
-        }
-      }
-    }
-  ]
-}')
-
-# Thousand fields JSON
-thousandone_fields_json=$(echo {1..1001..1} | jq -Rn '( input | split(" ") ) as $nums | $nums[] | . as $key | [{key:($key|tostring),value:($key|tonumber)}] | from_entries' | jq -cs 'add')
-
-echo "$thousandone_fields_json"
+echo '{"foo":}' | jq -c # json line (compact)
+echo '{"foo":0}' | jq -M # no color
+echo '{"b":2,"a":1}' | jq -S # sort keys
+echo 'a b c' | jq -R '{}' # read input (instead of json)
+echo '{"foo":"bar"}' | jq -r '.foo'  # raw output (without quotes)
+jq --arg MY_VAR bar '{"foo":$MY_VAR}' # set variable
 ```
 
-##
+## . (identity)
+
+- Return the initial input
+- If no other modifier is passed, returns the unchanged input
 
 ```shell
-hyprctl -j monitors \
-  | jq -r '.[]
-              |select(.focused == true)
-              | .id'
+echo $json | jq '.'
+echo $json | jq
+```
+
+## .[]
+
+- Extract values from a json array
+
+```shell
+# first element in array
+echo '["a", "b", "c"]' |
+  jq '.[0]'
+
+# all elements
+echo '["a", "b", "c"]' |
+  jq '.[]'
+```
+
+## .key
+
+- Get a field
+
+```shell
+echo '{"a":1}' |
+  jq '.a'
+
+# nested field
+echo '{"a":{"a1":1,"a2":2}}' |
+  jq '.a.a1'
+
+# field from array
+echo '[{"a":1}]' |
+  jq '.[]
+      | .a'
+```
+
+## [.]
+
+- Force the result into an array
+
+```shell
+# Destructure and the array and convert it back to array
+echo '[{"a":1}]' |
+  jq '[ .[] ]'
+```
+
+## select
+
+```shell
+echo '[{"foo":true},{"foo":false}]' |
+  jq '.[]
+      | select(.foo == false)'
+```
+
+## other
+
+```shell
+echo {1..10..1} |
+  jq -Rn '(input | split(" ")) as $nums
+          | $nums[]
+          | . as $num
+          | [
+              {
+                key: ($num | tostring),
+                value:($num | tonumber)
+              }
+            ]
+          | from_entries' |
+  jq -cs 'add'
 ```
