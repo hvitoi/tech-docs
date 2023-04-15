@@ -158,7 +158,6 @@ options cryptdevice=LABEL=FOO_CRYPT:sun root=/dev/mapper/sun rootflags=subvol=@ 
 
 ```shell
 # Enable services
-systemctl enable "gdm.service" # for gnome only
 systemctl enable "NetworkManager.service"
 systemctl enable "bluetooth.service"
 ```
