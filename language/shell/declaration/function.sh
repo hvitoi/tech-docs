@@ -20,3 +20,7 @@ f() {
   unset -f f
 }
 f
+
+function foo() {
+  echo "hello"
+}

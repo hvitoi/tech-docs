@@ -32,3 +32,9 @@ boot-vga() {
     done
   done
 }
+
+foo=("a" "b" "c")
+for ((i = 0; i < ${#foo[@]}; i++)); do
+  echo $i
+  echo ${foo[$index]}
+done
