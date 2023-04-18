@@ -98,9 +98,9 @@ WantedBy=multi-user.target
 ### enable
 
 ```shell
-sudo systemctl enable "unit" # system session
-systemctl enable "unit" --user # user session (local config)
-systemctl enable "unit" --user --global # user session (global config)
+sudo systemctl enable "unit" # system unit (--system implied)
+systemctl enable "unit" --user # user unit (local config)
+systemctl enable "unit" --user --global # user unit (global config)
 ```
 
 ### disable
