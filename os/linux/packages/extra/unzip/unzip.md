@@ -2,7 +2,7 @@
 
 ```shell
 unzip "file.zip"
-unzip "file.zip" -d "dest-folder"
+unzip "*.zip" # extract all zips in a folder
 ```
 
 ```shell
@@ -10,4 +10,14 @@ unzip "file.zip" -d "dest-folder"
 cat "parts-*" > "full-broken.zip"
 zip -FF "full-broken.zip" --out "full-fixed.zip"
 unzip "full-fixed.zip"
+```
+
+## -d
+
+- Extract into a directory
+
+```shell
+# extract into a exdir
+unzip "file.zip" -d "dest-folder"
+unzip 'multipartfile.zip*' -d combined
 ```
