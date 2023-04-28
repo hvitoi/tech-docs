@@ -1,2 +1,0 @@
-(coll? "") ; false
-(coll? []) ; true

@@ -1,1 +1,0 @@
-(map? {:alpha "a" :beta "b"})
