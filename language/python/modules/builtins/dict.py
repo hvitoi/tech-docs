@@ -1,8 +1,3 @@
-
-
-# ---------------------------------------------------------
-# Dictionaries
-
 monthConversions = {
     "Jan": "January",
     "Feb": "February",
@@ -14,5 +9,5 @@ print(monthConversions.get("Feb"))
 print(monthConversions.get("Luv"))  # Returns none
 print(monthConversions.get("Luv", "Not a valid key"))
 
-del(monthConversions["Apr"])
+del (monthConversions["Apr"])
 print(monthConversions)

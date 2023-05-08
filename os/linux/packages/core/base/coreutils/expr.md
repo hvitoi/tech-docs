@@ -1,6 +1,7 @@
 # expr
 
 - Mathematical expression
+- Works only with integers
 
 ```shell
 expr 1 + 1 # add

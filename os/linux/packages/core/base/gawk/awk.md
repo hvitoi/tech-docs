@@ -12,6 +12,13 @@ D d" > file.txt
 ```
 
 ```shell
+# Mathematic operations
+awk 'BEGIN {print 100*2}'
+awk 'BEGIN {x=60;y=-9;print x/y}'
+
+# Substring
+brightnessctl i -m | awk -F ',' '{print substr($4, 1, length($4)-1)}'
+
 # Print a column
 awk '{print $1}' file.txt # First column
 awk '{print $1, $2}' file.txt # First and second columns

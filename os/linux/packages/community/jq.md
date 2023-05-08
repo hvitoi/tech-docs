@@ -6,7 +6,7 @@
 echo '{"foo":}' | jq -c # json line (compact)
 echo '{"foo":0}' | jq -M # no color
 echo '{"b":2,"a":1}' | jq -S # sort keys
-echo 'a b c' | jq -R '{}' # read input (instead of json)
+echo "abc" | jq -R '[.]' # raw input (instead of json)
 echo '{"foo":"bar"}' | jq -r '.foo'  # raw output (without quotes)
 jq --arg MY_VAR bar '{"foo":$MY_VAR}' # set variable
 ```
@@ -40,14 +40,23 @@ echo '["a", "b", "c"]' |
 - Get a field
 
 ```shell
+# Single key
 echo '{"a":1}' |
   jq '.a'
 
-# nested field
+# Single key with special characters
+echo '{"The key":1}' |
+  jq '."The key"'
+
+# Multiple keys
+echo '{"a":1,"b":2,"c":3}' |
+  jq '.a,.b'
+
+# Nested keys
 echo '{"a":{"a1":1,"a2":2}}' |
   jq '.a.a1'
 
-# field from array
+# Keys in a map in an array
 echo '[{"a":1}]' |
   jq '.[]
       | .a'

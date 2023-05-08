@@ -1,7 +1,3 @@
-
-# -----------------------------------
-# Try Except
-
 try:
     value = 10/0
     number = int("texto nao eh numero")

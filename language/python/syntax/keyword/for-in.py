@@ -3,6 +3,9 @@ colors = ["blue", "green", "red"]
 for color in colors:
     print(color)
 
+for index, color in enumerate(colors):
+    print(index, color)
+
 for index in range(len(colors)):
     print(colors[index])
 
