@@ -13,16 +13,16 @@ django-admin startproject "<project-name>" "." # installs it in the current exis
 ## runserver
 
 ```shell
-# Starting the server (at localhost:8000)
-django-admin runserver
+# Starting the server
+django-admin runserver # at localhost:8000 by default
+django-admin runserver "3000" # specify port
 ```
 
 ## startapp
 
 ```shell
-
-# Add a new App to a Project
-# New app must be included in the settings.py INSTALLED_APPS
+# Add a new App to a Project. It is included as a new folder in the root of the project
+# The New app must also be included in the settings.py (INSTALLED_APPS variables) with the same name
 django-admin startapp <app-name>
 ```
 

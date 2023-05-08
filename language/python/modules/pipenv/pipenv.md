@@ -9,6 +9,9 @@
 ```shell
 # sources the virtual environment (creates it if not yet existent)
 pipenv shell
+
+# prints the path of the venv
+pipenv --venv
 ```
 
 ## install
@@ -20,3 +23,8 @@ pipenv install
 # Add dependency to Pipfile
 pipenv install "numpy"
 ```
+
+## Python Interpreter
+
+- You can configure your IDE to use the python interpreter (the version) as specified by your virtual environment
+- On vscode, `Python: Select Interpreter`
