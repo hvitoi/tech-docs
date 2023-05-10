@@ -1,7 +1,10 @@
 # dconf
 
 - Database of configuration
-- `/etc/dconf/db`
+- All preferences are stored in a single large binary file: `~/.config/dconfig/user`
+- **Profiles**
+  - Profile is a list of config databases that dconf consults
+  - Defaults to `~/.config/dconfig/user` only
 
 ## list
 

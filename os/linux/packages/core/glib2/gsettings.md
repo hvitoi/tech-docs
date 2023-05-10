@@ -1,14 +1,7 @@
 # gsettings
 
 - Write changes to `dconf` database
-
-## org.gnome.settings-daemon.plugins.color
-
-```shell
-gsettings set \
-  org.gnome.settings-daemon.plugins.color \
-  night-light-temperature 5000
-```
+- It's a wrapper over `dconf`
 
 ## org.gnome.desktop.interface
 
@@ -24,6 +17,18 @@ gsettings set \
 gsettings set \
   org.gnome.desktop.interface \
   icon-theme theme-name
+
+gsettings set \
+  org.gnome.desktop.interface \
+  color-scheme prefer-dark # dark mode
+```
+
+## org.gnome.settings-daemon.plugins.color
+
+```shell
+gsettings set \
+  org.gnome.settings-daemon.plugins.color \
+  night-light-temperature 5000
 ```
 
 ## org.gnome.desktop.calendar
