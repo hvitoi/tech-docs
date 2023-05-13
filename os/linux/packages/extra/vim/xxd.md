@@ -1,11 +1,11 @@
 # xxd
 
-- Hexadecimal representation of a file
+- Hexadecimal representation of a binary (e.g., a file executable)
 
 ```shell
-# Hexadecimal
+# Hexadecimal representation
 xxd "file"
 
-# Binary
-xxd -b "file" # Each letter is a byte
+# Binary representation
+xxd -b "file"
 ```
