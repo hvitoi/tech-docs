@@ -14,3 +14,9 @@ for index in range(10):
 
 for letter in "Eu sou Henrique":
     print(letter)
+
+# Tuples
+foo = [("a", 1), ("b", 2)]
+for (first, second) in foo:
+    print(first)
+    print(second)
