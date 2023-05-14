@@ -1,17 +1,12 @@
-# ---------------------------------------------------------
-# Print variables
-from math import *
-print("Hello World")
-
-name = "Henrique"
-age = "35"
-age_num = 35.23
-is_male = True
-
-print("There once was a man named " + name + ", he is " + age + " years old.")
-# String interpolation
+# Simple usage
+name = "John"
+age = 21
+print('Hello World')
+print("Hello " + name + "!" + " You are " + str(age) + " years old.")
 print(f"There once was a man named {name}, he is {age} years old.")
-print("There once was a man named {}, he is {} years old.".format(name, age))
+print("There once was a man named {name}, he is {age} years old.".format(
+    name=name, age=age))
 
-# entrada = input("Enter your name: ")    # Get input from User
-#print("Hello " + entrada +"!")
+# Triple quotes
+print("""Trip'le qu"oted""")
+print('''Ag'ain qu"oted''')

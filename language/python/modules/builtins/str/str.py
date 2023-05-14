@@ -1,16 +1,16 @@
-str(1)  # cast to string
+# cast to string
+str(1)
 
+# single quote
+'single quotes'
 
-foo = "Giraffe Academy"
-foo.lower()
-foo.upper()
-foo.isupper()
-foo.upper().isupper()
+# double quotes
+"double quotes"
 
-len(foo)
-foo[0]
-foo.index("r")
-foo.index("iraf")
+# nested quotes
+"wrap lot's of other quotes"
 
-foo.replace("Giraffe", "Elephant")
-foo
+# interpolation
+name = "John"
+age = 21
+f"There once was a man named {name}, he is {age} years old."
