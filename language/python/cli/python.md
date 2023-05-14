@@ -1,5 +1,7 @@
 # python
 
+- Additionally install `python-pip` (Extra)
+
 ```shell
 # run a module as a script
 # useful to run a package without installing it (similar to npx)
