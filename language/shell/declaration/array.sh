@@ -52,3 +52,6 @@ for i in ${!FOO[@]}; do
   echo "index/key": $i
   echo "value": ${FOO[$i]}
 done
+
+# jq to array
+CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))

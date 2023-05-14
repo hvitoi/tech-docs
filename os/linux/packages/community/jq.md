@@ -11,6 +11,11 @@ echo '{"foo":"bar"}' | jq -r '.foo'  # raw output (without quotes)
 jq --arg MY_VAR bar '{"foo":$MY_VAR}' # set variable
 ```
 
+```shell
+# JQ to array
+CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))
+```
+
 ## . (identity)
 
 - Return the initial input
@@ -95,4 +100,10 @@ echo {1..10..1} |
             ]
           | from_entries' |
   jq -cs 'add'
+```
+
+## @sh
+
+```shell
+msgids=($(<test.json jq -r '.logs[]._id | @sh'))
 ```

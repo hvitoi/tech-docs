@@ -52,5 +52,7 @@ for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
 
 ## class
 
-- Backlight device
+- Backlight
   - `/sys/class/backlight/gmux_backlight/brightness`
+- Leds
+  - `/sys/class/leds/:white:kbd_backlight/brightness`
