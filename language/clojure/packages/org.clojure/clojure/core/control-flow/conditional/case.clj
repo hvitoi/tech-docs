@@ -9,3 +9,6 @@
   (str "default value to be returned" :a))
 
 ;; if no clause is met and there is no default clause, a error its thrown
+
+(case (-> {:a 1} :a)
+  (-> {:a 1} :a) "lol")

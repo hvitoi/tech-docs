@@ -39,3 +39,5 @@
      (map (fn [[key val]] (str key "=" val)))
      (interpose "&")
      (str/join))
+
+(map identity nil)
