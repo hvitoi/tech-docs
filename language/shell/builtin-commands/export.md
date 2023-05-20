@@ -27,14 +27,17 @@ export -p
 
 ## User environments
 
-- `~/.bashrc`
-- `~/.bash_profile`
-
-- source `file` to apply right away
+- System
+  - `~/.profile`
+- Bash
+  - `~/.bashrc`
+  - `~/.bash_profile`
 
 ## Global environments
 
-- `/etc/environment`: parsed by pam_env module
-- `/etc/profile`: also loads /etc/profile.d
-- `/etc/profile.d/`: preferred folder for global variables
-- `/etc/bashrc`
+- System
+  - `/etc/environment`: parsed by pam_env module
+  - `/etc/profile`: also loads /etc/profile.d
+  - `/etc/profile.d/`: preferred folder for global variables
+- Bash
+  - `/etc/bashrc`

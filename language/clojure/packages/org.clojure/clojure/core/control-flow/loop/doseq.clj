@@ -4,8 +4,9 @@
         y ["a" "b" "c"]]
   (println x y)) ; 9 loops
 
-(doseq [i {:a {"a" "c"} :b "b"}]
-  (println i))
+(doseq [i {:a {"a" "c"}
+           :b "b"}]
+  (println i)) ; iterate over the [key value]
 
 (doseq [n (range 10)
         :let [i (-> n
