@@ -24,4 +24,5 @@ const searchSuggestions = (repository, customerQuery) => {
   }
   return suggestions;
 };
+
 console.log(searchSuggestions(repository, customerQuery));
