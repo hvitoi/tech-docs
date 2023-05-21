@@ -17,9 +17,6 @@ const suggestions = (repository, searchQuery) => {
   return suggestions;
 };
 
-
-
-
 // --
 
 const repository = ["mobile", "mouse", "moneypot", "monitor", "mousepad"];

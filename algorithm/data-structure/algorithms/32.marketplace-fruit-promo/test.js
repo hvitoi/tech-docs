@@ -1,4 +1,4 @@
-const foo = require("./index");
+const foo = require("./solution");
 
 test("Test 1", () => {
   const codeList = [

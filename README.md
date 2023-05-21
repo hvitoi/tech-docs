@@ -1,6 +1,7 @@
 # tech-docs
 
 - **Agile**
+- **AI**
 - **Algorithm**
 - **Architecture**
 - **Cloud**
@@ -13,4 +14,6 @@
 - **Hardware**
 - **Language**
 - **OS**
+- **Platform**
 - **Security**
+- **SRE**
