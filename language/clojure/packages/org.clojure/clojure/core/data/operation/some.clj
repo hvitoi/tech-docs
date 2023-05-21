@@ -1,7 +1,7 @@
 ; Returns the first truthy value, otherwise nil
 
 ;; vector
-(some #(> % 0) [-1 0 1])
+(some #(> % 2) [0 1 2 3 4])
 (some identity [false nil 4 5])
 
 ;; map

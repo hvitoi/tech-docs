@@ -9,3 +9,5 @@
 
 ;; vector
 (assoc-in [0 1 [20 21]] [2 0] 100) ; modify existing element
+
+(coll?)

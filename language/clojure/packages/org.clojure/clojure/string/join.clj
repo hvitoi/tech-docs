@@ -1,3 +1,1 @@
-(require '[clojure.string :as str])
-
-(str/join ["a" "b" "c"])
+(clojure.string/join ["a" "b" "c"])

@@ -1,2 +1,4 @@
 const word = 'Hello there!';
-console.log(word.includes('ello'));
+const foo = word.includes('ello');
+
+console.log(foo);
