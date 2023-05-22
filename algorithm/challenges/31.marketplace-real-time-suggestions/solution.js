@@ -1,5 +1,3 @@
-
-
 const suggestions = (repository, searchQuery) => {
   repository = repository.sort().map((el) => el.toLowerCase()); // O(n*log(n))
   searchQuery = searchQuery.toLowerCase();
