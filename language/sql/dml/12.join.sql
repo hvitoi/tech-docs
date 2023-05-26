@@ -6,7 +6,7 @@ FROM
   orders;
 
 -------------------------
-/* INNER JOIN: Show only the tables that have a matching ID field and merge them together */
+/* INNER JOIN: Show only the rows that have a matching ID field and merge them together */
 -- Implicit inner join
 SELECT
   *
