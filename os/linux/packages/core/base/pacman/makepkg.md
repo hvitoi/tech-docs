@@ -8,7 +8,7 @@
 git clone "https://aur.archlinux.org/google-chrome.git"
 cd "./google-chrome/"
 
-# Build package (creates a *.pkg.tar.xz)
+# Build package (creates a *.pkg.tar.xz or *.pkg.tar.zst)
 makepkg
 
 # Install dependencies and build package
