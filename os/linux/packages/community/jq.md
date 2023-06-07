@@ -85,6 +85,14 @@ echo '[{"foo":true},{"foo":false}]' |
       | select(.foo == false)'
 ```
 
+## sort_by
+
+```shell
+echo '[{"a":2},{"a":1}]' |
+  jq -s '.[]
+          | sort_by(.a)'
+```
+
 ## other
 
 ```shell
