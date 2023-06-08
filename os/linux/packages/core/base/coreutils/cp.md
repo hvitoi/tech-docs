@@ -12,4 +12,7 @@ cp ~/ola.txt ~/novo # copies as ola.txt in ~/novo dir)
 # Copy a directory
 cp -r "dir" "new-dir"
 cp -rv "dir" "new-dir" # verbose
+
+# Create directories as needed
+mkdir -p /foo/bar && cp myfile "$_"
 ```

@@ -10,6 +10,12 @@ nmcli
 
 ## device
 
+- Devices
+  - wlp5s0
+  - wg0
+  - lo
+  - etc
+
 ```shell
 # Show all devices and its status
 nmcli device status # or nmcli device
@@ -28,6 +34,12 @@ nmcli device wifi show-password
 ```
 
 ## connection
+
+- Connection
+  - MyWifiHome
+  - Mullvad
+  - lo (Loopback)
+  - etc
 
 ```shell
 # Show all connections (wifi, bridge, vpn, ethernet)
