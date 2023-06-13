@@ -5,4 +5,6 @@
 
 ```shell
 modinfo "module"
+
+modinfo -F depends "apple-bce"
 ```
