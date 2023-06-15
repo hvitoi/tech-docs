@@ -1,5 +1,0 @@
-# powershell-bin
-
-```shell
-pwsh
-```

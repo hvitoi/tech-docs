@@ -1,5 +1,0 @@
-# dbeaver
-
-```shell
-dbeaver
-```

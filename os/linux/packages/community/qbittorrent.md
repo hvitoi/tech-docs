@@ -1,5 +1,0 @@
-# qbittorrent
-
-```shell
-qbittorrent
-```

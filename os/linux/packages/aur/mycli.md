@@ -1,5 +1,0 @@
-# mycli
-
-```shell
-mycli
-```

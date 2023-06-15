@@ -1,5 +1,0 @@
-# popcorntime-bin
-
-```shell
-popcorntime
-```

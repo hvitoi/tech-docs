@@ -1,5 +1,0 @@
-# kubectl
-
-```shell
-kubectl --version
-```

@@ -1,5 +1,0 @@
-# kubeadm
-
-```shell
-kubeadm
-```

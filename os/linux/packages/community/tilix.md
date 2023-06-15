@@ -1,5 +1,0 @@
-# tilix
-
-```shell
-tilix
-```

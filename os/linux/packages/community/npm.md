@@ -1,5 +1,0 @@
-# npm
-
-```shell
-npm init
-```

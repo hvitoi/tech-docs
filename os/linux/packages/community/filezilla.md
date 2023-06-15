@@ -1,5 +1,0 @@
-# filezilla
-
-```shell
-filezilla
-```

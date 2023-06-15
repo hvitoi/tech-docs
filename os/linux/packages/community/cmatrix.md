@@ -1,5 +1,0 @@
-# cmatrix
-
-```shell
-cmatrix
-```

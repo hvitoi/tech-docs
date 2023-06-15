@@ -1,3 +1,0 @@
-# ttf-droid
-
-- General-purpose fonts released by Google as part of Android

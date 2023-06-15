@@ -1,5 +1,0 @@
-# helm
-
-```shell
-helm --version
-```

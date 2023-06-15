@@ -1,3 +1,0 @@
-# clojure
-
-- Clojure programming language

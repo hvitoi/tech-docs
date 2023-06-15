@@ -1,5 +1,0 @@
-# minikube
-
-```shell
-minikube --version
-```
