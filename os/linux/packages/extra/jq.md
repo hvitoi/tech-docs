@@ -3,12 +3,13 @@
 - JQ is a command-line JSON processor
 
 ```shell
-echo '{"foo":}' | jq -c # json line (compact)
-echo '{"foo":0}' | jq -M # no color
-echo '{"b":2,"a":1}' | jq -S # sort keys
-echo "abc" | jq -R '[.]' # raw input (instead of json)
-echo '{"foo":"bar"}' | jq -r '.foo'  # raw output (without quotes)
-jq --arg MY_VAR bar '{"foo":$MY_VAR}' # set variable
+jq -c <<< '{"foo":}' # json line (compact)
+jq -M <<< '{"foo":0}' # no color
+jq -S <<<'{"b":2,"a":1}' # sort keys
+jq '[.]' -R <<< 'abc' # raw input (instead of json)
+jq '.foo' -r <<< '{"foo":"bar"}' # raw output (without quotes)
+jq -s '.[]' <<< '[{}]' # dump output into array after filters
+jq --arg MY_VAR bar <<< '{"foo":"$MY_VAR"}' # set variable ???
 ```
 
 ```shell
@@ -22,8 +23,8 @@ CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))
 - If no other modifier is passed, returns the unchanged input
 
 ```shell
-echo $json | jq '.'
-echo $json | jq
+jq '.' <<< $json
+jq <<< $json
 ```
 
 ## .[]
@@ -32,12 +33,10 @@ echo $json | jq
 
 ```shell
 # first element in array
-echo '["a", "b", "c"]' |
-  jq '.[0]'
+jq '.[0]' <<< '["a", "b", "c"]'
 
 # all elements
-echo '["a", "b", "c"]' |
-  jq '.[]'
+jq '.[]' <<< '["a", "b", "c"]'
 ```
 
 ## .key
@@ -46,25 +45,19 @@ echo '["a", "b", "c"]' |
 
 ```shell
 # Single key
-echo '{"a":1}' |
-  jq '.a'
+jq '.a' <<< '{"a":1}'
 
 # Single key with special characters
-echo '{"The key":1}' |
-  jq '."The key"'
+jq '."The key"' <<< '{"The key":1}'
 
 # Multiple keys
-echo '{"a":1,"b":2,"c":3}' |
-  jq '.a,.b'
+jq '.a,.b' <<< '{"a":1,"b":2,"c":3}'
 
 # Nested keys
-echo '{"a":{"a1":1,"a2":2}}' |
-  jq '.a.a1'
+jq '.a.a1' <<< '{"a":{"a1":1,"a2":2}}'
 
 # Keys in a map in an array
-echo '[{"a":1}]' |
-  jq '.[]
-      | .a'
+jq '.[] | .a' <<< '[{"a":1}]'
 ```
 
 ## [.]
@@ -73,41 +66,44 @@ echo '[{"a":1}]' |
 
 ```shell
 # Destructure and the array and convert it back to array
-echo '[{"a":1}]' |
-  jq '[ .[] ]'
+jq '[ .[] ]' <<< '[{"a":1}]'
 ```
 
 ## select
 
 ```shell
-echo '[{"foo":true},{"foo":false}]' |
-  jq '.[]
-      | select(.foo == false)'
+jq '.[] | select(.foo == false)' <<< '[{"foo":true},{"foo":false}]'
 ```
 
 ## sort_by
 
+- Sorty by can only be used over arrays (not destructured arrays)
+
 ```shell
-echo '[{"a":2},{"a":1}]' |
-  jq -s '.[]
-          | sort_by(.a)'
+jq -s '.[] | sort_by(.a)' <<< '[{"a":2},{"a":1}]'
+```
+
+## last
+
+- Take last element of an array
+
+```shell
+jq -s 'last' <<< '["a", "b", "c"]'
 ```
 
 ## other
 
 ```shell
-echo {1..10..1} |
-  jq -Rn '(input | split(" ")) as $nums
-          | $nums[]
-          | . as $num
-          | [
-              {
-                key: ($num | tostring),
-                value:($num | tonumber)
-              }
-            ]
-          | from_entries' |
-  jq -cs 'add'
+jq -Rn '(input | split(" ")) as $nums
+        | $nums[]
+        | . as $num
+        | [
+            {
+              key: ($num | tostring),
+              value:($num | tonumber)
+            }
+          ]
+        | from_entries' <<< {1..10..1} | jq -cs 'add'
 ```
 
 ## @sh
