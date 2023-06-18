@@ -6,6 +6,7 @@
 
 ```shell
 # Generate images based on preset file configuration
+# Presets are available at /etc/mkinitcpio.d
 mkinitcpio -P # for all presets
 mkinitcpio -p "linux-lts" # specified preset
 ```
@@ -30,11 +31,10 @@ mkinitcpio -H "base"
 
 - Every time a kernel is installed or upgraded, a pacman hook automatically generates a `.preset` file
 - Presets for each kernel are stored at `/etc/mkinitcpio.d/`
-- /etc/mkinitcpio.d/
 - It's a list of information required to create initial ramdisk images
 - The preset is used so that manually specifying the various parameters is not needed when generating the image
 
-- `mkinitcpio install` and `mkinitcpio remove` are pacman hook script helpts to generate the preset file
+- `mkinitcpio install` and `mkinitcpio remove` are pacman hook script generate the preset file
 
 ```shell
 # Create preset file for a kernel

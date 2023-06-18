@@ -13,6 +13,16 @@
 - `/usr/lib/systemd/system/`: units provided by installed packages
 - `/etc/systemd/system/`: units installed by the system administrator
 
+### status
+
+```shell
+# Analyzing the system state
+systemctl status
+systemctl status "unit" # status of a specific unit
+```
+
+### list-units
+
 ```shell
 # Checking the unit status
 systemctl
@@ -24,16 +34,6 @@ systemctl list-units --type=service
 systemctl list-units --failed
 systemctl list-units --all # loaded but inactive
 ```
-
-### status
-
-```shell
-# Analyzing the system state
-systemctl status
-systemctl status "unit" # status of a specific unit
-```
-
-### list-units
 
 ### start
 
