@@ -41,9 +41,4 @@ sudo dd \
   bs=4M \
   conv=fdatasync \
   status=progress
-
-sudo dd \
-  if=path/to/filename.iso \
-  of=/dev/rdiskX \
-  bs=1m
 ```

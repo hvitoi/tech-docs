@@ -5,6 +5,17 @@
 ```shell
 # log in as root
 sudo -i
+sudo su
+su -
+```
+
+## Mounting
+
+```shell
+cryptsetup open "/dev/sdxN" "foo"
+mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
+mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
+mount -m "/dev/sdx1" "/mnt/boot"
 ```
 
 ## Wifi
@@ -18,15 +29,6 @@ sudo modprobe -r brcmfmac && sudo modprobe brcmfmac
 ```shell
 systemctl start wpa_supplicant
 wpa_cli
-```
-
-## Mounting
-
-```shell
-cryptsetup open "/dev/sdxN" "foo"
-mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
-mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
-mount -m "/dev/sdx1" "/mnt/boot"
 ```
 
 ## Nix configuration
