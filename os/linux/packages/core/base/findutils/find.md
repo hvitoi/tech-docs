@@ -20,4 +20,7 @@ find "/" -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp {} {}.bak \;
 # node_modules
 find "." -name "node_modules" -type d -prune # list
 find "." -name "node_modules" -type d -prune -exec rm -rf "{}" + # delete
+
+# Files without group (group has been removed)
+sudo find / -nogroup -ls
 ```
