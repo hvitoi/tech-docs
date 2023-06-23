@@ -13,6 +13,9 @@ cd .
 # Go to the user directory
 cd
 cd ~
+
+# Print the current directory and change to last directory
+cd -
 ```
 
 ## Other navigating commands

@@ -5,4 +5,6 @@
 ```shell
 # List an environment variables
 set
+
+set -euo pipefail
 ```

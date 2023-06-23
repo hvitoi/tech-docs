@@ -2,31 +2,31 @@
 
 - Installation page <https://nixos.org/manual/nixos/stable/>
 
-## Partitioning
-
 ```shell
 # log in as root
 sudo -i
-
-# create boot + root partition
-cfdisk
 ```
 
-## Formatting
+## Wifi
 
 ```shell
-mkfs.ext4 "/dev/vda2" -L "my-nix"
-mkfs.fat "/dev/vda1" -F 32 -n "my-boot"
+sudo mkdir -p /lib/firmware
+tar -xvf apple-wifi-firmware.tar -C /lib/firmware
+sudo modprobe -r brcmfmac && sudo modprobe brcmfmac
+```
+
+```shell
+systemctl start wpa_supplicant
+wpa_cli
 ```
 
 ## Mounting
 
 ```shell
-# mount the root partition
-mount "/dev/vda2" "/mnt"
-
-# mount the boot partition
-mount "/dev/vda1" "/mnt/boot" --mkdir
+cryptsetup open "/dev/sdxN" "foo"
+mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
+mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
+mount -m "/dev/sdx1" "/mnt/boot"
 ```
 
 ## Nix configuration
@@ -34,6 +34,27 @@ mount "/dev/vda1" "/mnt/boot" --mkdir
 ```shell
 # creates "configuration.nix" and "hardware-configuration.nix" at /etc/nixos
 nixos-generate-config --root "/mnt"
+```
+
+```nix
+{ config, pkgs, ... }: {
+  imports = [
+    "${builtins.fetchGit { url = "https://github.com/kekrby/nixos-hardware.git"; }}/apple/t2"
+  ];
+  hardware.firmware = [
+    (pkgs.stdenvNoCC.mkDerivation {
+      name = "brcm-firmware";
+
+      buildCommand = ''
+        dir="$out/lib/firmware"
+        mkdir -p "$dir"
+        cp -r ${./files/firmware}/* "$dir"
+      '';
+    })
+  ];
+  programs.hyprland.enable = true;
+}
+
 ```
 
 ```shell

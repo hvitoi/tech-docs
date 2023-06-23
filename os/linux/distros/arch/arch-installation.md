@@ -30,12 +30,12 @@ fdisk -l # Optionally use cgdisk
 
 ```shell
 # Format encrypted partition
-cryptsetup luksFormat "/dev/sdx2" -v -y
+cryptsetup luksFormat "/dev/sdxN" -v -y
 
-cryptsetup config "/dev/sdx2" --label FOO_CRYPT
+cryptsetup config "/dev/sdxN" --label FOO_CRYPT
 
 # Unlock partition
-cryptsetup open "/dev/sdx2" "foo"
+cryptsetup open "/dev/sdxN" "foo"
 ```
 
 ## Root partition: BTRFS setup
@@ -43,6 +43,9 @@ cryptsetup open "/dev/sdx2" "foo"
 ```shell
 # Format partition
 mkfs.btrfs "/dev/mapper/foo"
+
+# set filesystem label
+btrfs filesystem label /dev/mapper/foo FOO
 
 # Temporarily mount root subvolume to create the child subvolumes
 mount "/dev/mapper/foo" "/mnt"
@@ -57,9 +60,6 @@ umount "/mnt"
 # mount subvolumes
 mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
 mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
-
-# set filesystem label
-btrfs filesystem label /dev/mapper/foo FOO
 ```
 
 ## EFI partition

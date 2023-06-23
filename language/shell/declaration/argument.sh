@@ -1,5 +1,6 @@
 echo "Zero arg (the fucntion itself): $0"
 echo "First arg: $1"
+echo "First arg: ${1-falback}" # uses fallback if $1 is empty
 echo "Second arg: $2"
 echo "All args: $@" #  in an array
 echo "All args: $*" #  in string separated by spaces

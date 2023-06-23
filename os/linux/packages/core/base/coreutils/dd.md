@@ -23,6 +23,8 @@ dd if=/dev/sdx1 of=/data/sdx1.img # Copy partition to file
 dd if=/data/sdx1.img of=/dev/sdx1 # Restory backup from file
 ```
 
+- `Ctrl+T` while dd is copying shows the progress
+
 ## Copy ISO to flash drive
 
 ```shell
@@ -39,4 +41,9 @@ sudo dd \
   bs=4M \
   conv=fdatasync \
   status=progress
+
+sudo dd \
+  if=path/to/filename.iso \
+  of=/dev/rdiskX \
+  bs=1m
 ```
