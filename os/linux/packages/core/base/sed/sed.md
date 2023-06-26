@@ -30,3 +30,10 @@ sed G "file.txt"
 # Substitute only certain occurrence
 sed '8!s/word/S' "file.txt" # SUbstitute all but the line 8
 ```
+
+## regex
+
+```shell
+# keep only numbers
+sed 's/[^0-9]//g' <<< '98%'
+```

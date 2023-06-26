@@ -83,6 +83,12 @@ jq '.[] | select(.foo == false)' <<< '[{"foo":true},{"foo":false}]'
 jq -s '.[] | sort_by(.a)' <<< '[{"a":2},{"a":1}]'
 ```
 
+## reduce
+
+```shell
+jq 'to_entries | reduce .[] as $i (""; . + "\($i.key): Download \($i.value.NET_DOWN), Upload \($i.value.NET_UP)\n")' <<<'{"a":{"NET_DOWN": 1, "NET_UP": 2},"b":{"NET_DOWN": 1, "NET_UP": 2}}'
+```
+
 ## last
 
 - Take last element of an array
@@ -94,7 +100,8 @@ jq -s 'last' <<< '["a", "b", "c"]'
 ## other
 
 ```shell
-jq -Rn '(input | split(" ")) as $nums
+echo {1..10..1} |
+ jq -Rn '(input | split(" ")) as $nums
         | $nums[]
         | . as $num
         | [
@@ -103,7 +110,8 @@ jq -Rn '(input | split(" ")) as $nums
               value:($num | tonumber)
             }
           ]
-        | from_entries' <<< {1..10..1} | jq -cs 'add'
+        | from_entries' |
+  jq -cs 'add'
 ```
 
 ## @sh
