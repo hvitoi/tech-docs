@@ -7,7 +7,18 @@
 bluetoothctl list
 ```
 
-## device
+## info
+
+- Information about connected devices
+
+```shell
+bluetoothctl info
+
+# Show info about a device (from /var/lib/bluetooth/<controller-id>/<device-id>/info)
+bluetoothctl info "mac-addr"
+```
+
+## devices
 
 ```shell
 # List available devices
@@ -16,9 +27,6 @@ bluetoothctl devices Paired
 bluetoothctl devices Bonded
 bluetoothctl devices Trusted
 bluetoothctl devices Connected
-
-# Show info about a device (from /var/lib/bluetooth/<controller-id>/<device-id>/info)
-bluetoothctl info "mac-addr"
 ```
 
 ## Pairing
