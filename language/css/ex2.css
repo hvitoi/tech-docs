@@ -1,6 +1,6 @@
 /*Choose a cool Font Text Scheme*/
 
-h1{
+h1 {
   font-family: 'Permanent Marker';
   text-align: center;
 }
@@ -20,33 +20,33 @@ paletton.com/
 #FF1654
 */
 
-.art{
+.art {
   margin: auto;
 }
 
 
-td{
+td {
   height: 200px;
   padding: 100px;
   border: 6px solid white;
 }
 
-#one{
+#one {
   background-color: #247BA0;
 }
 
-#two{
+#two {
   background-color: #70C1B3;
 }
 
-#three{
+#three {
   background-color: #B2DBBF;
 }
 
-#four{
+#four {
   background-color: #F3FFBD;
 }
 
-#five{
+#five {
   background-color: #FF1654;
 }

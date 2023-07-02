@@ -6,37 +6,39 @@
 /* Class selectors start with a dot . */
 /* ID selectors start with a hash # */
 
-.firstDiv{
+.firstDiv {
   color: blue;
 }
 
-.secondDiv{
+.secondDiv {
   background-color: gray;
 }
 
-#singledout{
+#singledout {
   color: red;
   text-decoration: underline;
 }
 
 /* Asterisk to select all elements */
-*{
+* {
   color: black;
 }
 
 /* Adjacent sibling: Elements that are next to each other */
-h3 + ul{  /* Applies to ul close to h3 */
+h3+ul {
+  /* Applies to ul close to h3 */
   border: 5px double purple;
 }
 
 /* Descendants */
-li a{ /* Applies to a inside of li */
+li a {
+  /* Applies to a inside of li */
   color: pink;
 }
 
 /* Attributes */
-li a[href="www.npr.org"]{ /* Applies only to the anchor that has this href */
+li a[href="www.npr.org"] {
+  /* Applies only to the anchor that has this href */
   color: red;
   border: 2px solid orange;
 }
-

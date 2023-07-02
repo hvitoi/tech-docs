@@ -1,15 +1,15 @@
 /*https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity*/
 /*https://designshack.net/articles/css/what-the-heck-is-css-specificity/*/
 
-li{
+li {
   color: red;
 }
 
-.TopItems{
+.TopItems {
   color: blue;
 }
 
-#two{
+#two {
   border: 2px solid black;
 }
 

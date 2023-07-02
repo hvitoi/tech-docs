@@ -8,18 +8,22 @@ Selected Tag {
 }
 */
 
-h1{
-  color: blue; /* by name */
+h1 {
+  color: blue;
+  /* by name */
 }
 
 li {
-  color: rgb(0,200,0); /* by rgb */
+  color: rgb(0, 200, 0);
+  /* by rgb */
 }
 
-p{
-  color: #000000; /* by hex */
+p {
+  color: #000000;
+  /* by hex */
 }
 
-h4{
-  color: rgba(13,90,140,0.5) /* by rgba */
+h4 {
+  color: rgba(13, 90, 140, 0.5)
+    /* by rgba */
 }
