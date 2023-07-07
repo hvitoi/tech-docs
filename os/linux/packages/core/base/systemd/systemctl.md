@@ -109,6 +109,14 @@ systemctl enable "unit" --user --global # user unit (global config)
 systemctl disable "unit"
 ```
 
+### mask
+
+- Symlinks to /dev/null
+
+```shell
+systemctl mask "systemd-rfkill.service"
+```
+
 ## Environment Commands
 
 ### set-environment
