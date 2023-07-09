@@ -36,4 +36,7 @@ sed '8!s/word/S' "file.txt" # SUbstitute all but the line 8
 ```shell
 # keep only numbers
 sed 's/[^0-9]//g' <<< '98%'
+
+# keep only letters
+sed 's/[^A-Z]*//g' <<< '[MUTED]'
 ```

@@ -1,6 +1,8 @@
 # make
 
-- Utility to manager programs
+- Utility to manage programs
+- It's a `universal packager` for linux distributions
+- In archlinux it's more common to use `PKGBUILD`
 
 ```makefile
 BINDIR := /usr/bin

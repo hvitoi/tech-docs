@@ -4,8 +4,11 @@
   - <https://gcc.gnu.org/>
 - `MinGW`: Windows
   - <http://www.mingw.org/>
+- `Clang`
+  - Frontend for LLVM. Generates IR code
 
-```shell
-gcc "hello-world.c" -o "HelloWorld"
-./HelloWorld # run
-```
+## Tools
+
+- `CMake`
+  - Build-generator tool
+  - Generates the file needed by the build tool

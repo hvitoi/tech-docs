@@ -1,6 +1,6 @@
 echo "Zero arg (the fucntion itself): $0"
 echo "First arg: $1"
-echo "First arg: ${1-falback}" # uses fallback if $1 is empty
+
 echo "Second arg: $2"
 echo "All args: $@" #  in an array
 echo "All args: $*" #  in string separated by spaces
@@ -20,3 +20,10 @@ arguments() {
 }
 
 arguments hello world
+
+# Fallback
+echo "First arg: ${1-Undefined}" # uses "Undefined" if $1 is empty
+echo "The arg: ${1:-Undefined}"  # uses "Undefined" if $1 is empty
+
+# Parameter expansion: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02
+where ${var+Other}
