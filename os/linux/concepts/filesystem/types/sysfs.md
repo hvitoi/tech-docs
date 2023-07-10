@@ -52,12 +52,13 @@ for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
 
 ## class
 
-- Backlight
-  - `/sys/class/backlight/gmux_backlight/brightness`
-- Leds
-  - `/sys/class/leds/:white:kbd_backlight/brightness`
-- DRM
-  - `/sys/class/drm/card2-DP-8/enabled`
+### leds
+
+- `/sys/class/leds/:white:kbd_backlight/brightness`
+
+### backlight
+
+- `/sys/class/backlight/gmux_backlight/brightness`
 
 ```python
 #!/bin/python
@@ -96,4 +97,12 @@ def backlight_devices():
 
     return backlight_devices
 sys.stdout.write(json.dumps(backlight_devices()))
+```
+
+### drm
+
+- `/sys/class/drm/card2-DP-8/enabled`
+
+```shell
+for p in /sys/class/drm/*/status; do con=${p%/status}; echo -n "${con#*/card?-}: "; cat $p; done
 ```
