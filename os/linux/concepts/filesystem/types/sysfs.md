@@ -56,6 +56,8 @@ for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
   - `/sys/class/backlight/gmux_backlight/brightness`
 - Leds
   - `/sys/class/leds/:white:kbd_backlight/brightness`
+- DRM
+  - `/sys/class/drm/card2-DP-8/enabled`
 
 ```python
 #!/bin/python
