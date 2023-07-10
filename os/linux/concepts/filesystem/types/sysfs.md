@@ -56,3 +56,42 @@ for f in /sys/bus/pci/devices/*/boot_vga ; do echo -n "$f:" ; cat $f ; done
   - `/sys/class/backlight/gmux_backlight/brightness`
 - Leds
   - `/sys/class/leds/:white:kbd_backlight/brightness`
+
+```python
+#!/bin/python
+import subprocess
+import json
+import sys
+
+
+def backlight_devices():
+    devices_output = subprocess.check_output(
+        "brightnessctl -l -m -c backlight",
+        shell=True,
+        encoding='utf-8',
+    )
+
+    backlight_devices = []
+
+    for device in devices_output.splitlines():
+        device_id = device.split(",")[0]
+
+        # device_name = subprocess.check_output(
+        #     "cat /sys/class/backlight/" + device_id +
+        #     "/device/idModel" + "|| echo " + device_id,
+        #     shell=True,
+        #     encoding='utf-8',
+        # ).strip()
+
+        device_brightness_percentage = device.split(",")[3].replace("%", "")
+
+        backlight_devices.append(
+            {
+                "id": device_id,
+                # "name": device_name,
+                "brightness_percentage": device_brightness_percentage
+            })
+
+    return backlight_devices
+sys.stdout.write(json.dumps(backlight_devices()))
+```

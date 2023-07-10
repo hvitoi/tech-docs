@@ -19,3 +19,5 @@ if [ -z ${msg+x} ]; then
 else
   echo "var is set to '$msg'"
 fi
+
+echo "String size ${#first_name})"
