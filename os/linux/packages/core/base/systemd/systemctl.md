@@ -39,6 +39,7 @@ systemctl list-units --all # loaded but inactive
 
 ```shell
 systemctl start "unit"
+systemctl start sway.service --wait --user
 ```
 
 ### stop
@@ -122,6 +123,9 @@ systemctl mask "systemd-rfkill.service"
 ### set-environment
 
 ```shell
+# import import-environment variables
+systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
 # set environment variables for a service
 systemctl set-environment \
   MYSQLD_OPTS="--skip-grant-tables --skip-networking"
