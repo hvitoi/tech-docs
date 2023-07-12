@@ -162,6 +162,12 @@ else
 fi
 ```
 
+## -x
+
+```shell
+if pgrep -x swaylock; then swaymsg "output * power off"
+```
+
 ## ! (not)
 
 ```shell

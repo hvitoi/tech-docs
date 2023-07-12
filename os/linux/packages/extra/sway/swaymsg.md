@@ -21,4 +21,16 @@ swaymsg --type get_outputs
 ```shell
 # Get input devices
 swaymsg --type get_inputs
+
+# Get the layout of a keyboard
+swaymsg -t get_inputs | jq -r '.[] | select(.identifier == "<kbd_identifier>") | .xkb_active_layout_name'
+```
+
+### get_tree
+
+```shell
+swaymsg --type get_tree
+
+# app_id of the currectly focused window
+swaymsg -t get_tree | jq -r '..|try select(.focused == true)'
 ```
