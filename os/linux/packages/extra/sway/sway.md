@@ -34,19 +34,6 @@ pacman -S \
 - `Mod + Left/Right`: navigate
 - `Mod + Shift + Num`: move the application to a workspace
 
-## swaymsg
-
-```shell
-# Get monitor devices
-swaymsg --type get_outputs
-
-# Get input devices
-swaymsg --type get_inputs
-
-# Execute command
-swaymsg -- output * resolution --custom 1920x1080
-```
-
 ## Statusbar
 
 - `swaybar` (default)

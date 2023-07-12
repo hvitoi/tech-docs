@@ -6,7 +6,15 @@
 tty
 ```
 
-- The output is `/dev/ttyX`, when a "root" tty
-  - Where X is the number of the tty, as switched by `Ctrl + Alt + FX`
-- The output is `/dev/pts/X`, when a "virtual" tty
+- The output is `/dev/ttyN`, when a "root" tty
+  - Where N is the number of the tty, as switched by `Ctrl + Alt + Fn`
+- The output is `/dev/pts/N`, when a "virtual" tty
   - When running from a terminal emulator, for instance
+
+## Autostart a DE when logging in
+
+```conf
+# .bash_profile (bash)
+# .zlogin or .zprofile (Zsh)
+[ "$(tty)" = "/dev/tty1" ] && exec sway
+```
