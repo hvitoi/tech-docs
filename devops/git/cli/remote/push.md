@@ -15,12 +15,12 @@ git push --force
 
 ```shell
 # Push new branch to remote
-git push --set-upstream `remote` `branch` # a upstream branch is created (git branch -vv to see the new tracking branch)
-git push -u `remote` `branch` # -u is the same as --set-upstream
+git push --set-upstream "remote" "branch" # a upstream branch is created (git branch -vv to see the new tracking branch)
+git push -u "remote" "branch" # -u is the same as --set-upstream
 # A PR suggestion will appear https://github.com/hvitoi/prs/pull/new/feature-1
 
 # Delete branch from remote
-git push `remote` -d `branch`
+git push "remote" -d "branch"
 ```
 
 ## Tags
@@ -30,7 +30,7 @@ git push `remote` -d `branch`
 git push --tags # Only tags are pushes. No commits at all
 
 # Push specific tag
-git push `remote` `tag`
+git push "remote" "tag"
 git push origin v1.0.1
 ```
 

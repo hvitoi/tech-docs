@@ -8,7 +8,8 @@
 git checkout "feature"
 
 # rebase "feature" branch on top of main branch
-git rebase "main" # "main" under the hood is SHA1 of the last commit in main
+git rebase "origin/main" # "main" under the hood is SHA1 of the last commit in main
+git rebase "origin/main" # rebase with a upstream repo in a forked repo
 
 # switch to main branch
 git checkout "main"

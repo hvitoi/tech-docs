@@ -1,6 +1,4 @@
-# libvirt
-
-## virsh
+# virsh
 
 - Setting up a new network interface is optional given that a `default` open is already created (requires `dnsmaq` package)
 

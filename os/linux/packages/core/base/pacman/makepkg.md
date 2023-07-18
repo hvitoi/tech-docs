@@ -11,10 +11,10 @@ cd "./google-chrome/"
 # Build package (creates a *.pkg.tar.xz or *.pkg.tar.zst)
 makepkg
 
-# Install dependencies and build package
+# Install build dependencies & Build package
 makepkg -s
 
-# Install dependencies, build package and install package
+# Install build dependencies & Build package & Install package
 makepkg -si
 
 # Manually install a built package
@@ -23,6 +23,10 @@ pacman -U "pacote.pkg.tar.xz"
 #
 makepkg --syncdeps --rmdeps --clean --install --cleanbuild
 makepkg -srciC
+```
+
+```shell
+makepkg -od --skippgpcheck # --nobuild --nodeps --skippgpcheck
 ```
 
 ## Templates
@@ -71,7 +75,7 @@ source=("awesome::git://github.com/hey/awesome.git") # source code from a git re
 source=("$pkgname-r$pkgver.tag.gz::https://github.com/gokcehan/$pkgname/archive/r$pkgver.tar.gz") # source code from a git archive
 noextract=("test.rar") # files that shouldn't be downloaded from the source above
 md5sums=("SKIP") # integrity checking. There is also sha1sums, sha256sums, sha224sums, sha384sums, sha124sums, b2sums. Makes sure the source files are actually the files you expect to be
-validpgpkeys=() # pgp keys for the source code. Delete this if not needed
+validpgpkeys=() # An array of PGP fingerprints that might be necessary for the source code.
 
 # change the package version number before compiling
 pkgver() {

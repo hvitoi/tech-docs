@@ -1,6 +1,4 @@
-# bolt
-
-## boltctl
+# boltctl
 
 ```shell
 # List

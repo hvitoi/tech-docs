@@ -9,6 +9,8 @@ patch < changes.diff
 
 # Revert a patch applied
 patch -R < changes.diff
+
+patch -Np1 <$t2_patch
 ```
 
 ## Rejects

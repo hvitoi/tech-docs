@@ -10,7 +10,7 @@
 git fetch
 
 # Fetch from specific remote
-git fetch "remote"
+git fetch "origin"
 
 # Verbose - show the branches fetched
 git fetch -v

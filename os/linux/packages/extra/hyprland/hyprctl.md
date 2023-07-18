@@ -1,12 +1,4 @@
-# hyprland
-
-- **Configuration**
-
-  - `~/.config/hypr/hyprland.conf`
-  - `Variables`: configuration variables. e.g., general, animations
-  - `Keywords`: commands that define special behaviors. e.g., monitor, exec-once
-
-## hyprctl
+# hyprctl
 
 ## devices
 
@@ -21,7 +13,7 @@
 hyprctl devices
 ```
 
-### clients
+## clients
 
 - Clients describe the **windows**
 - It's every tiled window
@@ -31,7 +23,7 @@ hyprctl devices
 hyprctl clients
 ```
 
-### layers
+## layers
 
 - **LayerSurfaces**
   - Wallpapers
@@ -44,13 +36,13 @@ hyprctl clients
 hyprctl layers
 ```
 
-### workspaces
+## workspaces
 
 ```shell
 hyprctl workspaces
 ```
 
-### monitors
+## monitors
 
 ```shell
 hyprctl monitors

@@ -8,7 +8,3 @@
   - `lastpass`: stores passwords on a server
   - `pass`
   - `qtpass`: pass GUI
-
-```shell
-bitwarden-desktop
-```
