@@ -1,13 +1,37 @@
 # GitHub Action
 
-- An action to be performed on triggering an event. E.g.,
-  - Code pushed
-  - Pull Request Created
-  - Pull Request Closed
-  - Repository is Forked
+- An action to be performed on triggering an event, e.g., Code pushed, PR merged, Issue added, etc
 - Actions Tab are the Repository
   - Setup a new workflow
-- Actions `main.yml` must be committed to master branch on the GitHub platform
+- Actions `main.yml` must be committed to master branch on the GitHub platform\*
+- An **event** triggers a **workflow** which executes the **jobs** on the **runners**
+
+## Events
+
+- Pull Request
+- Push to branch
+- Issue Created, Closed
+
+## Workflow
+
+- The file containers to jobs (actions) to be perfomed
+- Each workflow contains at least one job
+
+## Job
+
+- Composed of a series of steps
+- Jobs can run in parallel
+- Steps run serially (not in parallel)
+
+## Runner
+
+- The machine in which the jobs run on
+- `Github-hosted` runners
+  - Ubuntu, Windows, MacOS
+- `Self-hosted` runners
+  - Managed by you
+
+## Examples
 
 - `Test Script`
 
@@ -41,7 +65,7 @@ on:
     branches:
       - master
     paths:
-      - 'myservice/**'
+      - "myservice/**"
 
 jobs:
   build:
@@ -86,7 +110,7 @@ on:
     branches:
       - master
     paths:
-      - 'infra/**'
+      - "infra/**"
 
 jobs:
   build:
