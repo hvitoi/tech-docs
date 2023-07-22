@@ -31,6 +31,7 @@ systemctl list-units # same output
 # filters
 systemctl list-units --type=automount # auto mounted partitions
 systemctl list-units --type=service
+systemctl list-units --user --type=target
 systemctl list-units --failed
 systemctl list-units --all # loaded but inactive
 ```
@@ -116,6 +117,13 @@ systemctl disable "unit"
 
 ```shell
 systemctl mask "systemd-rfkill.service"
+```
+
+### list-unit-files
+
+```shell
+systemctl list-unit-files --state=masked
+systemctl list-unit-files | grep masked
 ```
 
 ## Environment Commands

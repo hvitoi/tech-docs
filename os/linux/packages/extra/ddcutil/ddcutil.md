@@ -11,7 +11,6 @@ ddcutil detect
 ddcutil getvcp 10 # Get current brightness value
 ddcutil setvcp 10 70 # Set brightness to 70
 ddcutil setvcp 10 + 10 # -10 brightness
-
 ```
 
 - `Brightness control using ddcutil` gnome extension to control external monitor brightness
