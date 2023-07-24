@@ -13,6 +13,7 @@ sed 's/word//g' "file.txt" # Substitute with nothing
 sed 's/\t/ /g' "file.txt" # substitute tab "/t" with spaces " "
 sed -i 's/word/newword/g' "file.txt" # Substitute and save
 sed "s/\bfoo\b/bar/" "file.txt" # match whole words only
+sed -i 's/^[^#]*word/#&/g' "file.txt" # comment out matching lines
 
 # d - delete
 sed '/word/d' "file.txt" # Delete the line with the word
