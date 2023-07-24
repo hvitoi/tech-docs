@@ -1,0 +1,14 @@
+[Unit]
+Description=Awesome Unit
+
+[Mount]
+What=          # absolute path of the resource to be mounted
+Where=         # absolute path to mount the resource
+Type=          # filesystem to mount
+Options=       # mount options (comman separated)
+SloppyOptions= # true/false: to fail if the mount option is invalid
+DirectoryMode= # If parent directories need to be created, define the permission mode
+TimeoutSec=    # Wait time before marking as failed
+
+[Install]
+WantedBy=multi-user.target

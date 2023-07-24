@@ -1,0 +1,11 @@
+[Unit]
+Description=Awesome Unit
+
+[Swap]
+What=
+Priority=
+Options=
+TimeoutSec=
+
+[Install]
+WantedBy=multi-user.target

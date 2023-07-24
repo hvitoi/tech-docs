@@ -1,0 +1,28 @@
+[Unit]
+Description=Awesome Unit
+Documentation=man:awesome-unit(8)
+Requires=a.target b.target # these units must be activated before this unit - otherwise it fails (started in parallel with this unit)
+Wants=c.target # like Requires but less strict (won't fail it any of them fail)
+BindsTo=d.taget # like Requires but also causes the current unit to stop when the other units does so
+After=systemd-sysusers.service # start these units only after the current unit has started
+Before=time-set.target sysinit.target shutdown.target # units listed here won't start until the current unit does
+Conflicts=shutdown.target # these units cannot be run at the same time as the current unit
+ConditionCapability=CAP_SYS_TIME
+ConditionVirtualization=!container
+ConditionPathIsDirectory=/sys/class/bluetooth
+Assert...= # similar to Condition...
+DefaultDependencies=no
+
+##
+## Unit-Specific Section Directives ...
+##
+
+# Optional Section
+# Defines the behavior of an unit when it's enabled (installed)
+# Enabling an unit makes it to start at boot (in certain conditions)
+[Install]
+WantedBy=multi-user.target # a dir is created at /etc/systemd/system with the name of the wanted dependency. This means that multi-user.target.wants this unit
+RequiredBy=multi-user.target # similar to wantedby but causes multi-user to fail if this unit does not start
+Alias=lol.service # Allows the unit to be started with another name (symlink is created)
+Also=foo.service # Enabling the current unit also enables this other
+DefaultInstance=... # for template units

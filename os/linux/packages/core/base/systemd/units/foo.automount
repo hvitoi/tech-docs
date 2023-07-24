@@ -1,0 +1,10 @@
+[Unit]
+Description=Awesome Unit
+
+# Automount at boot
+[Automount]
+Where=
+DirectoryMode=
+
+[Install]
+WantedBy=multi-user.target

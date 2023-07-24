@@ -13,4 +13,4 @@ i2c_dev
 ```
 
 - **ddcutil** packages contains a tools to manage the capabilities
-- **i2c-tools** is necessary for a good integration with the module. Rememver to set the correct permissions
+- **i2c-tools** is necessary for a good integration with the module. Remember to set the correct permissions. (installed as dependency of ddcutil)

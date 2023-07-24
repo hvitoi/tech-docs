@@ -1,0 +1,16 @@
+[Unit]
+Description=Awesome Unit
+
+OnActiveSec=       #
+OnBootSec=         # timer relative to boot
+OnStartupSec=      # timer relative to systemd startup
+OnUnitActiveSec=   #
+OnUnitInactiveSec= #
+OnCalendar=        #
+AccuracySec=       #
+Unit=              # Unit to run when activated
+Persistent=        #
+WakeSystem=        # wake from suspend?
+
+[Install]
+WantedBy=multi-user.target

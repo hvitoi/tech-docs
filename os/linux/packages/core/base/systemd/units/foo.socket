@@ -1,0 +1,18 @@
+[Unit]
+Description=Awesome Unit
+
+[Socket]
+
+ListenStream=           # socket address (TCP)
+ListenDatagram=         # socket address (UDP)
+ListenSequentialPacket= # unix socket
+ListenFIFO=             # FIFO buffer
+
+Accept=      # false: one instance for all connections
+SocketUser=  # owner of an unix socket
+SocketGroup= # group owner of an unit socket
+SocketMode=  # for unix socket or fifo buffer
+Service=     # service to handle the socket (if not equal to this socket name)
+
+[Install]
+WantedBy=multi-user.target

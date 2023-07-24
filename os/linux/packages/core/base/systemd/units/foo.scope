@@ -1,0 +1,7 @@
+[Unit]
+Description=Awesome Unit
+
+# No unit-specific directives
+
+[Install]
+WantedBy=multi-user.target

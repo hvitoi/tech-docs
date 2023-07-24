@@ -12,3 +12,6 @@
 # /etc/modules-load.d/ddcci.conf
 ddcci
 ```
+
+- Each detected DDC/CI device gets a directory in `/sys/bus/ddcci/devices`
+- The main device on a bus is named `ddcci[I²C bus number]`

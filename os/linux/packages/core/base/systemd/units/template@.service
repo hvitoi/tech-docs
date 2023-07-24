@@ -1,0 +1,12 @@
+%n # full resulting unit name is inserted
+%N # same as above but any escaping is reversed
+%p # unit name prefix (before @)
+%P # ...
+%i # instance name (name after @)
+%I # ...
+%f #
+%c #
+%u # user configured to run the unit
+%U # user UID
+%H # hostname
+%% # literal percentage

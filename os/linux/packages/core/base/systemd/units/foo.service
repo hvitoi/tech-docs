@@ -1,0 +1,40 @@
+[Unit]
+Description=Awesome Unit
+
+[Service]
+Type=simple  # (default when ExecStart is set) ataches to a socket for instance
+Type=forking # forks a child process. Tells systemd that this process is still running even the parent process has exited
+Type=oneshot # (default when ExecStart is not set)
+Type=dbus    # take a name on the D-Bus bus
+Type=notify  # Issue a notification when the process has finished starting up
+Type=idle    # the service will not run until all jobs are dispatched
+
+RemainAfterExit= # This directive is commonly used with the oneshot type. It indicates that the service should be considered active even after the process exits.
+PIDFile=         # If the service type is marked as “forking”, this directive is used to set the path of the file that should contain the process ID number of the main child that should be monitored.
+BusName=         # This directive should be set to the D-Bus bus name that the service will attempt to acquire when using the “dbus” service type.
+NotifyAccess=    # This specifies access to the socket that should be used to listen for notifications when the “notify” service type is selected
+
+ExecStart=/opt/bin/startup.sh
+ExecStartPre=/opt/bin/foo.sh      # Command to be run before the main command
+ExecStartPost=/opt/bin/bar.sh     # ...
+ExecReload=/bin/foo.sh            # Command to reload the config (if available)
+ExecStop=/opt/bin/shutdown.sh     # ...
+ExecStopPost=/opt/bin/shutdown.sh # ...
+
+Restart=always # always, on-success, on-failure, on-abnormal, on-abort, on-watchdog
+RestartSec=10  # Amount of time to wait before tryign to restart a failed service
+TimeoutSec=    # Time to wait (start or stop) before marking it as failed
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+User=tomcat
+Group=tomcat
+UMask=0007
+
+[Install]
+WantedBy=multi-user.target

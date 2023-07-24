@@ -1,0 +1,16 @@
+[Unit]
+Description=Awesome Unit
+
+# Path activity is determined by inotify events
+[Path]
+PathExists=
+PathExistsGlob=
+PathChanged=
+PathModified=
+DirectoryNotEmpty=
+Unit= # Unit to activate when the condition is met (if not takes the service name as this path unit)
+MakeDirectory=
+DirectoryMode=
+
+[Install]
+WantedBy=multi-user.target
