@@ -106,3 +106,29 @@ sys.stdout.write(json.dumps(backlight_devices()))
 ```shell
 for p in /sys/class/drm/*/status; do con=${p%/status}; echo -n "${con#*/card?-}: "; cat $p; done
 ```
+
+### power_supply
+
+- `/sys/class/power_supply/BAT0`
+
+```txt
++++ Battery Care
+Plugin: generic
+Supported features: none available
+
++++ Battery Status: BAT0
+/sys/class/power_supply/BAT0/manufacturer                   = DSY
+/sys/class/power_supply/BAT0/model_name                     = bq40z651
+/sys/class/power_supply/BAT0/cycle_count                    =    229
+/sys/class/power_supply/BAT0/charge_full_design             =   8790 [mAh]
+/sys/class/power_supply/BAT0/charge_full                    =   7155 [mAh]
+/sys/class/power_supply/BAT0/charge_now                     =   6986 [mAh]
+/sys/class/power_supply/BAT0/current_now                    =      0 [mA]
+/sys/class/power_supply/BAT0/status                         = Full
+
+/sys/class/power_supply/BAT0/charge_control_start_threshold = (not available)
+/sys/class/power_supply/BAT0/charge_control_end_threshold   = (not available)
+
+Charge                                                      =   97.6 [%]
+Capacity                                                    =   81.4 [%]
+```

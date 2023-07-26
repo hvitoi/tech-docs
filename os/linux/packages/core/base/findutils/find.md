@@ -23,4 +23,8 @@ find "." -name "node_modules" -type d -prune -exec rm -rf "{}" + # delete
 
 # Files without group (group has been removed)
 sudo find / -nogroup -ls
+
+# Find empty directories
+find . -type d -empty -print
+find . -type d -empty -delete
 ```
