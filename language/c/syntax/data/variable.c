@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main() {
   int x;     // declaration
   x = 9;     // initialization
@@ -25,7 +27,10 @@ int main() {
   const float PI = 3.14; // cannot change during execution
 
   // Arrays
-  char name[] = "bro";
+  char name[] = "Henry";
+
+  // Null (from stdio.h)
+  int *pAge = NULL;
 
   return 0;
 }

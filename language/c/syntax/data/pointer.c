@@ -1,26 +1,31 @@
 #include <malloc.h>
 #include <stdio.h>
 
+// The reason why it exists is that some tasks are performed more easily with
+// pointers
+
 typedef struct {
   int height;
   int age;
 } Person;
 
 int main() {
-  // variable pointer
-  int a = 98;
-  int *b = &a; // int pointer
-  *b = 99;     // value pointed by the int pointer
-  printf("a = %i\n", a);
-  printf("*b = %i\n\n", *b);
+  // pointer to a variable
+  int age = 29;     // Pointer to a memory address that contains a integer value
+  int *pAge = NULL; // It's a good practice to declare a point assigning it NULL
+  pAge = &age;
+  *pAge = 99; // value pointed by the int pointer
+  printf("a = %i\n", age);
+  printf("*b = %i\n", *pAge); // dereferencing
 
-  // struct pointer
-  Person p1;
-  Person *p2 = &p1;
-  p2->age = 12;
-  p2->height = 170;
-  printf("p1.age = %i, p1.height = %i\n", p1.age, p1.height);
-  printf("p2->age = %i, p2->height = %i\n\n", p2->age, p2->height);
+  // pointer to a struct
+  Person henry;
+  Person *pHenry = &henry;
+  pHenry->age = 12;
+  pHenry->height = 170;
+  printf("henry.age = %i, henry.height = %i\n", henry.age, henry.height);
+  printf("pHenry->age = %i, pHenry->height = %i\n\n", pHenry->age,
+         pHenry->height);
 
   // Manual memory allocation
   int *c = (int *)malloc(sizeof(int));

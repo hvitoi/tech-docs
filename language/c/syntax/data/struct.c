@@ -1,19 +1,34 @@
 #include <stdio.h>
+#include <string.h>
 
-// "Struct" is a custom variable definition
-// "Typedef" gives a name for the struct
+// Similar to classes, but has no methods
+
+// Create a struct (reference as struct Player)
+struct Player {
+  char name[20];
+  int score;
+};
+struct Player maria;
+
+// Create a struct (reference simply as Person)
+// typedef gives a name for the struct
 typedef struct {
-  int weight;
-  int height;
+  char name[20];
+  int age;
 } Person;
+Person henry;
 
 int main() {
-  Person person;
-  person.weight = 80;
-  person.height = 185;
 
-  printf("weight: %i, height: %i.\n", person.weight, person.height);
-  printf("Addresses: %p %p.\n", &person, person);
+  // Creation using name arguments
+  strcpy(henry.name, "Henry");
+  henry.age = 29;
+
+  printf("name: %s, age: %d\n", henry.name, henry.age);
+  printf("Memory Address: %p %p\n", &henry, henry);
+
+  // Creation using positional arguments
+  Person luigi = {"Luigi", 27};
 
   return 0;
 }

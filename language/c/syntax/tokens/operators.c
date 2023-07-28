@@ -6,7 +6,10 @@
 // ++ (increment)
 // -- (decrement)
 
+#include <stdio.h>
 int main() {
+
+  // Math
   int a = 1 + 1;
   int b = 2 - 1;
   int c = 2 * 2;
@@ -23,6 +26,13 @@ int main() {
   a *= 1;
   a /= 1;
   a %= 1;
+
+  float temp = (temp * 9 / 5) + 32;
+
+  // Logical
+  // && (AND)
+  // || (OR)
+  // ! (NOT)
 
   return 0;
 }

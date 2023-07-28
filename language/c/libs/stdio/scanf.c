@@ -4,6 +4,8 @@ int main() {
   char name[25];
   int age;
 
+  // & means the address in memory
+
   printf("What is your name?");
   scanf("%s", &name); // do not support whitespaces
 
