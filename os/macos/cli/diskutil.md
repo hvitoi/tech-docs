@@ -11,27 +11,29 @@ diskutil list
 
 ```shell
 # info about a physical disk
-diskutil info "/dev/disk0"
+diskutil info "/dev/diskX"
 ```
 
 ## mount
 
 ```shell
 # mount a parition into /Volumes (EFI partition)
-diskutil mount "disk0s1"
+diskutil mount "diskX"
 ```
 
 ## unmount
 
 ```shell
 # unmount partition
-diskutil unmount "disk0s1"
+diskutil unmount "diskX"
 ```
 
 ## unmountDisk
 
+- Unmount all partitions of a disk
+
 ```shell
-diskutil unmountDisk "disk0"
+diskutil unmountDisk "/dev/diskX"
 ```
 
 ## eject

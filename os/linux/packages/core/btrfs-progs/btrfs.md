@@ -40,3 +40,10 @@ btrfs subvolume get-default "."
 # set the default volume (to be mounted without specifying subvol or subvolid)
 btrfs subvolume set-default "/mnt"
 ```
+
+## rescue
+
+```shell
+# Clear the tree log. Usable if it's corrupted and prevents mount
+btrfs rescue zero-log "/dev/mapper/a"
+```
