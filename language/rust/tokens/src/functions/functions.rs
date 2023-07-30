@@ -1,6 +1,5 @@
 fn just_print() {
-    // The compiler infers the return type
-    // In this case the return type is an empty Unit ()
+    // If not specified, the return type is an empty Unit ()
     println!("Hey!");
 }
 

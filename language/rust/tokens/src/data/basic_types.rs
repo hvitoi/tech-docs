@@ -11,7 +11,10 @@ fn main() {
     let i: f64; // float (default) - 32 or 64
 
     // String
-    let z: &str = "Hello"; // string
+    // stack size: 3 * usize (8 usually - 64 bits) = 24 bytes - 1 byte for pointer, 1 byte for length, 1 byte for capacity
+    // heap size: 5 * char (4 bytes) =  20 bytes
+    let z = String::from("hello"); // holds pointer, length and capacity
+    let z: &str = "hello"; // holds only the pointer
 
     // Char
     let c: char = 'a'; // 4 bytes! Holds every unicode symbol
