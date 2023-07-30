@@ -1,5 +1,5 @@
 // imports a module
-// mod somemod;
+mod math;
 
 // call function of a module
-// somemod::foo();
+// math::foo();

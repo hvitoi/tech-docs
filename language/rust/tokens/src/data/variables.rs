@@ -4,6 +4,7 @@ fn main() {
     let a = "hello"; // it can be declared again and with another type! It shadows the first one
     let _b: i32; // declaration only (unused warning and be ignore with the _). Or #[allow(unused_variables)] annotation
     let c = 5; // type infer
+    let c = 'a';
 
     // let mut: mutable variable!
     let mut d = 1;
