@@ -1,3 +1,5 @@
+// Tuples are also considered "Units" ()
+
 fn main() {
     // Declaration tuples (with type annotations)
     let (a, b): (i32, i32);
@@ -6,4 +8,7 @@ fn main() {
 
     // Destructuring
     let (mut x, mut y) = (1, 2);
+
+    // Tuples can have multiple values
+    let (a, b, c) = ('a', 'b', 'c');
 }
