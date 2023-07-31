@@ -6,4 +6,6 @@ fn main() {
 
     // Custom formatting
     println!("{:04b}", 10); // 4 digits binary representation of 10
+
+    println!("{:?}", 10);
 }

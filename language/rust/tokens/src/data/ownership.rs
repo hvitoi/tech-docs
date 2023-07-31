@@ -1,11 +1,11 @@
 fn main() {
     // Give ownership
-    let x = String::from("foo");
+    let x = String::from("foo"); // size unknown at compile-time
     takes_ownership(x);
     // println!("{}", a_string); // Not possible (ownership has been moved)
 
     // Copy ownership
-    let x = 5;
+    let x = 5; // size known at compile-time
     copies_ownership(x);
     println!("{}", x); // Possible! (ownership has been copied)
 

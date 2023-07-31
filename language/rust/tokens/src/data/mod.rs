@@ -2,6 +2,7 @@ mod address;
 mod array;
 mod basic_types;
 mod cast;
+mod dereference;
 mod ownership;
 mod scopes;
 mod tuple;

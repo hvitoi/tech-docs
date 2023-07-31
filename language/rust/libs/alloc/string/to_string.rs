@@ -1,4 +1,4 @@
 fn main() {
-    let a = "a";
+    let a = "hello";
     a.to_string();
 }
