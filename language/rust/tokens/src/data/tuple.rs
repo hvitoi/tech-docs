@@ -11,4 +11,9 @@ fn main() {
 
     // Tuples can have multiple values
     let (a, b, c) = ('a', 'b', 'c');
+
+    // Access
+    let t = (String::from("hey"), String::from("hello"));
+    println!("{}", t.0);
+    println!("{}", t.1);
 }
