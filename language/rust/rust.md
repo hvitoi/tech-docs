@@ -95,7 +95,7 @@ let s3 = s2.clone(); // force copy (both ownerships are kept)
 ```
 
 - **Ownership guarantees**
-  - Prevents `dangling pointers`
+  - Prevents `dangling pointers` (reference to nothing or trash)
   - Prevents `double-free` (trying to free a memory that has already been freed)
   - Prevents `memory leaks` (not freeing memory that should have been freed)
 
@@ -122,5 +122,19 @@ fn calculate_length(s: &String) -> usize {
 
 fn add_more(s: &mut String) {
     s.push_str("world");
+}
+```
+
+```rust
+// This won't compile as it will cause a dangling pointer
+// Breaks the rule: reference must always be valid
+fn main() {
+  let reference_to_nothing = dangle();
+}
+
+fn dangle() -> &String {
+  let s = String::from("hello");
+  &s
+  // as dangle finishes execution s is destroy but its pointer is still returned
 }
 ```

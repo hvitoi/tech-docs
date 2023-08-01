@@ -1,4 +1,6 @@
 fn main() {
     let a = 42;
-    format!("{}", a);
+
+    // Similar to print! but instead returns a string
+    format!("{}", a)
 }

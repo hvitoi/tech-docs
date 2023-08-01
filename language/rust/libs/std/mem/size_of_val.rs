@@ -12,4 +12,8 @@ fn main() {
     // Boolean has 1 byte
     let c: bool = true;
     assert_eq!(size_of_val(&c), 1);
+
+    // Array of chars
+    let d: [char; 3] = ['a', 'b', 'c'];
+    assert_eq!(size_of_val(&d), 12);
 }

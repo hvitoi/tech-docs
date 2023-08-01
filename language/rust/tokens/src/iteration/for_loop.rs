@@ -15,4 +15,9 @@ fn main() {
     for c in 'a'..='z' {
         println!("{}: {}", c, c as u8);
     }
+
+    // from string
+    for i in "Henrique".chars() {
+        println!("{}", i);
+    }
 }

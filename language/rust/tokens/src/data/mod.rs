@@ -5,6 +5,8 @@ mod cast;
 mod ownership;
 mod reference;
 mod scopes;
+mod slices;
+mod strings;
 mod struct_;
 mod tuple;
 mod variables;

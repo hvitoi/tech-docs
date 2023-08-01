@@ -10,7 +10,7 @@ fn main() {
     // Float
     let i: f64; // float (default) - 32 or 64
 
-    // String (hard coded - live in the stack)
+    // String literal (hard coded - live in the stack)
     let z: &str = "hello"; // size known at compile time
 
     // Char
