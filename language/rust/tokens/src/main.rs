@@ -1,7 +1,7 @@
-mod control_flow;
+mod conditionals;
 mod data;
 mod functions;
-mod iteration;
+mod loops;
 mod operators;
 
 fn main() {

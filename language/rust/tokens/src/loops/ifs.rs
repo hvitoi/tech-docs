@@ -21,4 +21,11 @@ fn main() {
     } else {
         panic!("Never let this run.")
     }
+
+    let five: Option<i32> = Some(5);
+    if let Some(n) = five {
+        println!("The number is {}.", n);
+    } else {
+        println!("No number found.");
+    }
 }
