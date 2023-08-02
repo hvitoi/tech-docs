@@ -8,7 +8,7 @@ fn main() {
     // Size defined beforehand
     let a: [char; 3] = ['a', 'b', 'c'];
     let b: [_; 3] = ['a', 'b', 'c']; // compiler infers the data type
-    let c = ['a', 'b', 'c']; // compiler infers everything
+    let c: [char; 3] = ['a', 'b', 'c']; // compiler infers everything
     let d: [i32; 100] = [1; 100]; // [1, 1, 1, ..., 1]
 
     // Access

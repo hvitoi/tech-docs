@@ -8,6 +8,7 @@ fn main() {
     // Allocated in stack, does not own the data and it's immutable
     // str itself can never be used as a type, only as a reference
 
+    let foo: &str = &s; // &String is converted to &str implicitly
     let hello: &str = &s[0..5];
     let word: &str = &s[6..11];
     let hey: &str = "hey Ru\x73t!"; // \x73 is the hexadecimal representation of 's'

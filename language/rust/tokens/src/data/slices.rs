@@ -9,4 +9,7 @@ fn main() {
     let a: &[i32] = &arr[0..2]; // index 0 and 1
     let b: &[i32] = &arr[..2]; // index 0 and 1
     let c: &[i32] = &arr[1..]; // index 1 and 2
+    let d: &[i32] = &arr[..]; // everything
+
+    print!("{:?}", d);
 }

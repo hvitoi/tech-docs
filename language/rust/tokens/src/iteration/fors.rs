@@ -20,4 +20,9 @@ fn main() {
     for i in "Henrique".chars() {
         println!("{}", i);
     }
+
+    // from array
+    for el in ['a', 'b', 'c'] {
+        println!("{}", el);
+    }
 }

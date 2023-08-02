@@ -16,4 +16,8 @@ fn main() {
     // Array of chars
     let d: [char; 3] = ['a', 'b', 'c'];
     assert_eq!(size_of_val(&d), 12);
+
+    // Slice
+    let e = &d[..]; // each element occupies usize given that it's a pointer
+    assert_eq!(size_of_val(&e), 16);
 }
