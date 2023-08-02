@@ -1,8 +1,11 @@
 fn main() {
-    if 1 == 1 {
-        println!("Correct!");
+    let num = 5;
+    if num > 0 {
+        println!("Positive.");
+    } else if num < 0 {
+        println!("Negative.");
     } else {
-        println!("Lie!");
+        println!("Zero.");
     }
 
     // assert while assigning
@@ -28,4 +31,15 @@ fn main() {
     } else {
         println!("No number found.");
     }
+
+    /*
+        If-else conditionals inside of let
+    */
+
+    let num: i32 = 5;
+    let big_n: i32 = if num < 10 && num > -10 {
+        10 * num
+    } else {
+        num / 2
+    };
 }
