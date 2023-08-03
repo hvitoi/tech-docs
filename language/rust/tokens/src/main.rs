@@ -1,7 +1,7 @@
 mod conditionals;
 mod data;
 mod functions;
-mod loops;
+mod iteration;
 mod operators;
 
 fn main() {
