@@ -13,16 +13,27 @@ fn main() {
         Quit,
         Move { x: i32, y: i32 },
         Write(String),
-        ChangeColor(i32, i32, i32),
+        ChangeColor(u8, u8, u8),
     }
-    let msg: Message = Message::Move { x: 1, y: 2 };
+    let msg1: Message = Message::Move { x: 1, y: 2 };
+    let msg2: Message = Message::ChangeColor(255, 255, 255);
 
-    // Destructuring
-    if let Message::Move { x: a, y: b } = msg {
+    /*
+       If Let destructuring
+       It's this truthy if the destructuring can happen successfully
+    */
+    if let Message::Move { x: a, y: b } = msg1 {
         // ensure that it's a Move variant
-        print!("{}, {}", a, b);
+        println!("{}, {}", a, b);
     } else {
-        panic!("Never let this run.")
+        panic!("")
+    }
+
+    if let Message::ChangeColor(a, b, c) = msg2 {
+        // ensure that it's a Move variant
+        println!("{}, {}, {}", a, b, c);
+    } else {
+        panic!("")
     }
 
     let five: Option<i32> = Some(5);
