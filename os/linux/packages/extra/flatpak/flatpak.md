@@ -33,8 +33,19 @@ flatpak run "com.spotify.Client"
 - Set filesystem permission for an app
 
 ```shell
-flatpak override \
-  --user \
-  --filesystem "/path/to/mounted/drive" \
-  "com.valvesoftware.Steam"
+# system-wide overrides
+flatpak override com.foo.Bar
+flatpak override --system com.foo.Bar
+
+# user-wide overrides
+flatpak override --user com.foo.Bar
+
+# show overrides
+flatpak override --show com.foo.Bar
+
+# filesystem permission
+flatpak override --filesystem "/give/permission/to/dir/" com.foo.Bar
+
+# reset existing overrides
+flatpak override --reset com.foo.Bar
 ```

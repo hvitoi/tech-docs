@@ -28,3 +28,14 @@ __GLX_VENDOR_LIBRARY_NAME=nvidia
 __NV_PRIME_RENDER_OFFLOAD=1
 %command%
 ```
+
+## Flatpak
+
+```shell
+# Add permissions to external drive
+# Select the path that holds the SteamLibrary folder
+flatpak override \
+  --user \
+  --filesystem "/media/hv/moon/game" \
+  "com.valvesoftware.Steam"
+```
