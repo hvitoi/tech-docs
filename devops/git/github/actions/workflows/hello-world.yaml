@@ -18,6 +18,9 @@ on:
   issues:
     types: [opened] # Trigger on opening an issue
 
+  schedule:
+    - cron: "0 */8 * * *" # cronjob trigger
+
   workflow_dispatch: # Trigger manually (actions tab)
 
 jobs:
