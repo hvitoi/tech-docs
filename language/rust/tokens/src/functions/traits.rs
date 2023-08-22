@@ -66,11 +66,15 @@ fn main() {
     // Trait Objects
 
     // Trait as return type
-    // fn random_animal(random_number: i32) -> impl Animal {
+    // The return type (and its size) is not known at compile time
+    // However the pointer size is known (usize)
+    // fn random_animal(random_number: i32) -> &dyn Animal {
     //     if random_number > 0 {
-    //         Sheep
+    //         &Sheep
     //     } else {
-    //         Cow
+    //         &Cow
     //     }
     // }
+
+    // Static Dispatch
 }

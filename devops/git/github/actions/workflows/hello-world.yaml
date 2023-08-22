@@ -1,0 +1,48 @@
+name: Hello World
+
+# multiple triggers with default value
+# on: [push, pull_request, workflow_dispatch]
+
+# multiple triggers with overrides
+on:
+  push:
+    branches: # Triggers when code is pushed to these branches
+      - main
+    paths:
+      - "src/**" # Files that need to be modified to order to trigger
+
+  pull_request:
+    branches: # Triggers when a PR is merged to these branches
+      - main
+
+  issues:
+    types: [opened] # Trigger on opening an issue
+
+  workflow_dispatch: # Trigger manually (actions tab)
+
+jobs:
+  hello: # Name of the job
+    runs-on: ubuntu-latest # The runner
+    steps:
+      # Step 1
+      # Run based on a template (it's actually a git repo) and version (a tag, a release, a commit etc)
+      - name: Checkout the repo! # name for the step is optional
+        uses: actions/checkout@v3
+
+      # Step 2
+      # Run a shell command
+      - name: Print the hello world
+        run: echo "Hello $person_name!"
+        shell: bash
+        env: # set environment variables
+          person_name: "Henry"
+
+      # Step 3
+      - name: Create a random comment
+        uses: peter-evans/create-or-update-comment@v1
+        with: # pass variables values to the templates
+          issue-number: 1
+          body: |
+            Multiline test
+            Cool!
+          reactions: "+1"

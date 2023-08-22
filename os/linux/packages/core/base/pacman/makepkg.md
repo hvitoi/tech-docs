@@ -16,20 +16,51 @@ makepkg -s
 
 # Install build dependencies & Build package & Install package
 makepkg -si
+makepkg -sircC # --syncdeps --install --rmdeps --clean  --cleanbuild
 
 # Manually install a built package
 pacman -U "pacote.pkg.tar.xz"
 
-#
-makepkg --syncdeps --rmdeps --clean --install --cleanbuild
-makepkg -srciC
-```
-
-```shell
+# No build
 makepkg -od --skippgpcheck # --nobuild --nodeps --skippgpcheck
 ```
 
-## Templates
+```shell
+# Use all available cpus
+export MAKEFLAGS=j$(nproc) && makepkg -s --noconfirm
+```
+
+## The build process
+
+1. The sources are downloaded into the root level
+1. The sources are unpacked into $srcdir
+1. Prepare script is run
+1. Package script is run (installs to $pkgdir)
+
+## Variables
+
+- `$srcdir`
+  - ./src
+  - Where the sources are unpacked to
+- `$pkgdir`
+  - ./pkg
+  - Used as a fakeroot for building the package
+
+## Import keys
+
+- Or use `--skippgpcheck` to skip it
+
+```shell
+# Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+gpg --keyserver hkps://keys.openpgp.org --recv-keys 3B94A80E50A477C7
+
+# Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+gpg --keyserver keyserver.ubuntu.com --recv-keys 38DBBDC86092693E
+```
+
+## Files
+
+### Templates
 
 - `PKGBUILD` templates can be found at `/usr/share/pacman`
 
@@ -40,7 +71,7 @@ makepkg -od --skippgpcheck # --nobuild --nodeps --skippgpcheck
 
 - Remove the `.proto` when copying the template
 
-## PKGBUILD
+### PKGBUILD
 
 - A `PKGBUILD` file is just a shell script!
 - Use `namcap` to sanity check your pkgbuild file
@@ -115,7 +146,7 @@ package() {
 }
 ```
 
-## .install
+### .install
 
 - Defines pacman hooks for `installing`, `upgrading`, `removing` the package
 

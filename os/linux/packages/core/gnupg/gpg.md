@@ -36,6 +36,13 @@ gpg --import "public.key"
 curl -sS "https://download.spotify.com/debian/pubkey_0D811D58.gpg" | gpg --import -
 ```
 
+```shell
+# Import keys from a server
+gpg \
+  --recv-keys 38DBBDC86092693E \
+  --keyserver keyserver.ubuntu.com
+```
+
 ## Verify signature
 
 ```shell

@@ -5,6 +5,9 @@
 du
 du "/directory"
 
+# size of the items (files and folders in depth 1)
+du -d1
+
 # Size of each folder and individual files
 du -a
 
