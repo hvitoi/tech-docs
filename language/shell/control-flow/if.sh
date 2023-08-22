@@ -24,3 +24,7 @@ if [[ 10 > 9 ]]; then
 else
   echo "Is not greater"
 fi
+
+## inline
+
+if [ ! -z "$foo" ]; then echo "foo"; else echo "bar"; fi

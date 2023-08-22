@@ -5,11 +5,13 @@
 ```shell
 jq -c <<< '{"foo":}' # json line (compact)
 jq -M <<< '{"foo":0}' # no color
-jq -S <<<'{"b":2,"a":1}' # sort keys
+jq -S <<< '{"b":2,"a":1}' # sort keys
 jq '[.]' -R <<< 'abc' # raw input (instead of json)
 jq '.foo' -r <<< '{"foo":"bar"}' # raw output (without quotes)
 jq -s '.[]' <<< '[{}]' # dump output into array after filters
-jq --arg MY_VAR bar <<< '{"foo":"$MY_VAR"}' # set variable ???
+jq -n '{}' # accepts no input
+jq -n --arg MY_VAR "$my_var" '{"foo":$MY_VAR}' # access variable
+jq -n --argjson MY_VAR '{"a":"b"}' '{"foo":$MY_VAR}' # access variable (also accepts null variables)
 ```
 
 ```shell
@@ -37,6 +39,13 @@ jq '.[0]' <<< '["a", "b", "c"]'
 
 # all elements
 jq '.[]' <<< '["a", "b", "c"]'
+```
+
+## {}
+
+```shell
+# select keys a and c
+jq -c '{ a, c }' <<< '{"a":"aa","bb":"b","cc":"c"}'
 ```
 
 ## .key
@@ -112,6 +121,36 @@ echo {1..10..1} |
           ]
         | from_entries' |
   jq -cs 'add'
+```
+
+## del
+
+```shell
+# Remove nulls and empties
+jq -n \
+  '{
+    "a": "a",
+    "b": null,
+    "c": "c",
+    "d": ""
+    } | del(.[] | select( . == null or . == ""))'
+```
+
+```shell
+# Remove nulls
+jq -n \
+  '{
+    "a": "a",
+    "b": null,
+    "c": "c",
+    "d": ""
+    } | del(.[] | nulls)'
+```
+
+## if
+
+```shell
+jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end' <<< '2'
 ```
 
 ## @sh
