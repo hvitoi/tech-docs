@@ -104,7 +104,11 @@ sys.stdout.write(json.dumps(backlight_devices()))
 - `/sys/class/drm/card2-DP-8/enabled`
 
 ```shell
-for p in /sys/class/drm/*/status; do con=${p%/status}; echo -n "${con#*/card?-}: "; cat $p; done
+for p in /sys/class/drm/*/status; do
+  con=${p%/status}
+  echo -n "${con#*/card?-}: "
+  cat $p
+done
 ```
 
 ### power_supply
