@@ -4,7 +4,7 @@
 
 ```shell
 # Select a file from index
-git checkout-index `file`
+git checkout-index "file"
 
 # Select all files from index
 git checkout-index -a

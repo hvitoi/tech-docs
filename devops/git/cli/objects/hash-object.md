@@ -17,14 +17,14 @@ blob 11\0Hello, Git
 
 ```shell
 # Generate object hash
-git hash-object `value`
-git hash-object `/path/to/file`
-echo `value` | git hash-object --stdin
+git hash-object "value"
+git hash-object "/path/to/file"
+echo "value" | git hash-object --stdin
 
 # Write object to git's database
-git hash-object `value` -w
-git hash-object `/path/to/file` -w
-echo `value` | git hash-object --stdin -w
+git hash-object "value" -w
+git hash-object "/path/to/file" -w
+echo "value" | git hash-object --stdin -w
 ```
 
 ```shell

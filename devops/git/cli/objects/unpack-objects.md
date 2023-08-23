@@ -4,5 +4,5 @@
 
 ```shell
 # Unpack and create a conventional "objects" folder
-cat `file.pack` | git unpack-objects
+cat "file.pack" | git unpack-objects
 ```

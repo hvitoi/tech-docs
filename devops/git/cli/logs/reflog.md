@@ -9,7 +9,7 @@
 git reflog # You can checkout to the head points shown `git checkout HEAD@{6}`
 
 # Reflog for a specific branch
-git reflog show `branch`
+git reflog show "branch"
 
 # Remove log
 git reflog expire --expire=now --all

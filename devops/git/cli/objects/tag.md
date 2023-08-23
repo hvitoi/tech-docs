@@ -38,6 +38,6 @@ git tag -v v1.0.0
 git push --tags # Only tags are pushes. No commits at all
 
 # Push specific tag
-git push `remote` `tag`
+git push "remote" "tag"
 git push origin v1.0.1
 ```
