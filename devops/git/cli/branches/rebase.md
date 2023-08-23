@@ -30,6 +30,7 @@ git merge "feature"
 git rebase --continue # continue to next feature commit
 git rebase --skip # skip the conflicting feature commit (it will be discarded)
 git rebase --abort # abort the whole rebasing process
+git rebase --edit-todo # edit to rebase instructions (in case something has been entered wrongly)
 ```
 
 ## Rebase with squash
@@ -48,7 +49,8 @@ git rebase "62079b5^" -i # includes the commit mentioned
 - `pick` (p): use commit
 - `reword` (r): use commit, but edit its message
 - `edit` (e): use commit, but stop for amending
-- `squash` (s) use commit, but meld into previous commits
+- `squash` (s): use commit, but meld into previous commits
+- `break` (b): stop the executing between commits
 
 ```txt
 pick 100001 Message1
