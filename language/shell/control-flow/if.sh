@@ -26,5 +26,15 @@ else
 fi
 
 ## inline
-
 if [ ! -z "$foo" ]; then echo "foo"; else echo "bar"; fi
+
+## elif
+
+num=9
+if [ $num -gt 0 ]; then
+  echo "Positive!"
+elif [ $num -lt 0 ]; then
+  echo "Negative!"
+else
+  echo "Zero!"
+fi
