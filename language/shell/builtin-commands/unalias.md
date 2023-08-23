@@ -2,5 +2,5 @@
 
 ```shell
 # Remove alias
-unalias `alias_name`
+unalias "alias_name"
 ```

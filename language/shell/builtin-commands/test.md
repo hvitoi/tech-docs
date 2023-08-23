@@ -152,6 +152,24 @@ else
 fi
 ```
 
+## -n
+
+```shell
+foo=bar
+if [ -n "$foo" ]; then
+  echo "var is set"
+else
+  echo "var is unset"
+fi
+
+# same
+if [ "$foo" ]; then
+  echo "var is set"
+else
+  echo "var is unset"
+fi
+```
+
 ## -z
 
 ```shell
