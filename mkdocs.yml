@@ -1,0 +1,18 @@
+site_name: Tech Docs
+docs_dir: .
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  # - pymdownx.tasklist
+  # - pymdownx.details
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+
+plugins:
+  - same-dir
+  - search
