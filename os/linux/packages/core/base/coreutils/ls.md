@@ -12,6 +12,7 @@
 
 ```shell
 ls
+ls -1 # multiline output
 ls -l
 ls -la
 ls -laF
