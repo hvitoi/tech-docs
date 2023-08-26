@@ -12,6 +12,10 @@ pip install numpy
 
 # upgrade package to the newest version
 pip install numpy --upgrade
+
+# install from a directory
+git clone https://github.com/squidfunk/mkdocs-material.git
+pip install -e mkdocs-material
 ```
 
 ## Useful packages
