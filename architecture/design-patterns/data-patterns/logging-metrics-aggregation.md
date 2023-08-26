@@ -1,3 +1,3 @@
 # Logging & Metrics Aggregation
 
-![Logging & Metrics Aggregation](../images/logging-metrics-aggregation.png)
+![Logging & Metrics Aggregation](../../images/logging-metrics-aggregation.png)

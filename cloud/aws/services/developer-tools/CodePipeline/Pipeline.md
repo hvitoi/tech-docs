@@ -2,4 +2,4 @@
 
 - Orchestrate the whole `Code` -> `Build` -> `Test` -> `Deploy` -> `Provision`
 
-![CodePipeline](../../../../images/codepipeline.png)
+![CodePipeline](../../../images/codepipeline.png)

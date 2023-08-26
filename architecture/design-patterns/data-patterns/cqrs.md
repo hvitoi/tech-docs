@@ -3,9 +3,9 @@
 - Responsabilities for the data aggregation (`command` and `query`) are "segregated"
 - `queries` (select) are performed in a database and `commands` (update, create, delete) are performed in another database
 
-![CQRS](../images/cqrs.png)
+![CQRS](../../images/cqrs.png)
 
-![CQRS Databases](../images/cqrs-databases.png)
+![CQRS Databases](../../images/cqrs-databases.png)
 
 ## Sync strategies
 

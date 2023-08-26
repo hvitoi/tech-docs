@@ -8,14 +8,14 @@
 - The gateway has to be installed in your on-premises environment
 - A Storage Gateway `Hardware Appliance` can be bought as the physical infrastructure (mini server) for the gateway
 
-![Storage Gateway](../../../images/storage-gateway.png)
+![Storage Gateway](../../images/storage-gateway.png)
 
 ## File Gateway
 
 - Access `S3 files` with `NFS` or `SMB` protocols
 - Integrated with `AD` for user authentication with the file gateway
 
-![File Gateway](../../../images/file-gateway.png)
+![File Gateway](../../images/file-gateway.png)
 
 ## Volume Gateway
 
@@ -25,10 +25,10 @@
 - `Cached volumes` (low latency)
 - `Stored volumes`
 
-![Volume Gateway](../../../images/volume-gateway.png)
+![Volume Gateway](../../images/volume-gateway.png)
 
 ## Tape Gateway
 
 - Access `Virtual Tape Library (VTL)` (backed in S3) with `iSCSI` protocol
 
-![Tape Gateway](../../../images/tape-gateway.png)
+![Tape Gateway](../../images/tape-gateway.png)

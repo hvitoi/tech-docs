@@ -25,7 +25,7 @@
   1. Name Node tells the client where the data lives
   1. Client go and fetch the data directly from the data nodes
 
-![HDFS Reading](./images/hdfs-reading.png)
+![HDFS Reading](../../concepts/images/hdfs-reading.png)
 
 - `Writing`
   1. Client tells the Name Node that it's gonna write a file
@@ -34,7 +34,7 @@
   1. Data Node acks the client if OK
   1. Client acks the Name Node
 
-![HDFS Writing](./images/hdfs-writing.png)
+![HDFS Writing](../../concepts/images/hdfs-writing.png)
 
 ## HDFS Interfaces
 
