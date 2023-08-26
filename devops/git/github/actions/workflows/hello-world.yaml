@@ -22,12 +22,29 @@ on:
     - cron: "0 */8 * * *" # cronjob trigger
 
   workflow_dispatch: # Trigger manually (actions tab)
-
+    inputs: # specify custom inputs when manually triggering
+      PR_number: # ${{ github.event.inputs.PR_number }}
+        description: "Pull request number"
+        required: true
 jobs:
   hello: # Name of the job
     runs-on: ubuntu-latest # The runner
+    environment: staging # environment to run the job on
     container: # runs in a container
       image: archlinux:base-devel
+    outputs: # outputs of this job that can be accessed by other jobs
+      foo: ${{ steps.theprint.outputs.foo }}
+    defaults: # defaults to be applied to all steps
+      run:
+        shell: bash
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript"] # jobs can be iterates over each value in this array ${{ matrix.language }}
     steps:
       # Run based on a template (it's actually a git repo) and version (a tag, a release, a commit etc)
       - name: Checkout the repo! # name for the step is optional
@@ -38,7 +55,23 @@ jobs:
 
       # Run a shell command
       - name: Print the hello world
-        run: echo "Hello $person_name!"
+        id: theprint
+        run: |
+          echo "Hello $person_name!"
+          echo "foo=bar" >> "$GITHUB_OUTPUT" # set job output
+        working-directory: infra/instances/staging # dir to run the script on
+        continue-on-error: true
         shell: bash
         env: # set environment variables
           person_name: "Henry"
+  goodbye:
+    runs-on: ubuntu-latest
+    needs: hello # dependency between jobs. Use array to set multiple dependencies
+    if: needs.hello.outputs.foo == bar # only execute this job if a condition is met
+    steps:
+      - run: echo $FOO # access output from another job
+        env:
+          FOO: ${{ needs.hello.outputs.foo }}
+      - name: Failed
+        if: ${{ failure() }} # if any steps below failed
+        run: echo Failed!

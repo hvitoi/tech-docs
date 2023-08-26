@@ -42,3 +42,15 @@ git remote prune "remote"
 # Remove from local the things deleted remotely (E.g., branches)
 git remote update "remote" --prune
 ```
+
+## set-url
+
+```shell
+git config --global user.name '${{ github.actor }}'
+git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+
+git remote set-url "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/..."
+
+git add ./\*.tf
+git commit -m blabla && git push || echo "Nothing to commit"
+```

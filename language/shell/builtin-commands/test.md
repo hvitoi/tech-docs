@@ -180,6 +180,14 @@ else
 fi
 ```
 
+```shell
+if [ -z "$foo" ]; then
+  echo "foo is unset"
+else
+  echo "foo is set to '$foo'"
+fi
+```
+
 ## ! (not)
 
 ```shell
