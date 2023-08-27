@@ -11,13 +11,18 @@ ls -1 | xargs echo # same
 ```
 
 ```shell
-mkdocs get-deps | xargs pip install
+# ask for confirmation
+echo 'one two three' | xargs -p touch
 ```
 
 ```shell
+# Replace string
 xargs -I "{}" echo 'I am {}!' <<< 'Henrique'
 xargs -I "{}" echo Blah {} blabla {} < <(seq 1 5)
 xargs -I "{}" code --install-extension {} --force < "$HOME/.dotfiles/vscode/extensions"
+
+# Multiple substitutions
+cat directories.txt | xargs -I % sh -c 'echo %; mkdir %'
 ```
 
 ```shell
