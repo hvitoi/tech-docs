@@ -7,7 +7,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 # Can also be set per job
 permissions:
-  contents: read
+  contents: write # write to repository (e.g., create releases)
   pages: write
   id-token: write
   actions: read
