@@ -8,6 +8,15 @@ dig "example.com" # A records by default
 dig "example.com" A
 dig "example.com" NS
 dig "example.com" MX # mail
+
+# CNAME
+dig www.example.com +nostats +nocomments +nocmd
+
+# A
+dig example.com +noall +answer -t A
+
+# AAAA
+dig example.com +noall +answer -t AAAA
 ```
 
 - `Header`
