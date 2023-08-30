@@ -51,9 +51,10 @@ pci=
   nocrs,
   assign-busses,
   hpbussize=0x33,
-  hpmemsize=4M,
-  hpmmiosize=256M,
-  hpmmioprefsize=512M
+  hpiosize=4M, # IO window [default: 256 bytes]
+  hpmemsize=256M, # MMIO and MMIO_PREF windows [default: 2MB] prefetchable + non-prefetchable MMIO windows
+  hpmmiosize=256M, # MMIO window [default: 2MB] - non-prefetchable MMIO window (reserve hotplug bridge memory for non-prefetchable memory)
+  hpmmioprefsize=256M # MMIO_PREF window [default: 2MB] - prefetchable MMIO window (reserve hotplug bridge memory for prefetchable memory)
 ```
 
 ## intel_iommu

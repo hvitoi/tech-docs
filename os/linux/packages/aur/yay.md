@@ -7,20 +7,15 @@ yay # same as above
 
 ## Operation: yay
 
-- `--yay`/`-Y` operation
+- `--yay`/`-Y`
 
 ```shell
-yay -Y "proton-ge" # search the keyword including in aur
+yay -Y "proton-ge" # search for packages given a keyword (includes aur packages)
 yay "proton-ge" # same as above
-```
 
-## Operation: show
-
-- `--show`/`-P`
-
-```shell
-# display all packages and respective repo
-yay -Pc
+# Auto update -git packages
+yay -Y --gendb #
+yay --devel
 ```
 
 ## Operation: build
@@ -32,6 +27,15 @@ yay -Pc
 yay -Bi .
 ```
 
+## Operation: show
+
+- `--show`/`-P`
+
+```shell
+# display all packages and respective repo
+yay -Pc
+```
+
 ## Operation: getpkgbuild
 
 - `--getpkgbuild`/`-G`
@@ -39,4 +43,24 @@ yay -Bi .
 ```shell
 # Print pkgbuild
 yay -Gp
+```
+
+## Operation: web
+
+- `--web`/`-w`
+
+```shell
+# vote for a package
+yay -Wv "package"
+```
+
+## Permanent options
+
+```shell
+# Also updates -git packages
+yay -Y --gendb
+yay --devel
+
+# Saves this behavior to the config file
+yay -save --devel
 ```
