@@ -1,6 +1,7 @@
 # QT
 
 - QT is a `widget toolkit` for building GUI applications
+- To enable Wayland support in Qt 5 or 6, install the `qt5-wayland` or `qt6-wayland` package
 
 - `QT6`: qt6-base
 - `QT5`: qt5-base

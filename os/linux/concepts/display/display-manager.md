@@ -1,5 +1,7 @@
 # Display Manager
 
+- Wayland sessions definition: `/usr/share/wayland-sessions`
+
 ## GDM
 
 - Runs on wayland and launches wayland compositors

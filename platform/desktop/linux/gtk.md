@@ -1,6 +1,8 @@
 # GTK
 
 - GKT is a `widget toolkit` for building GUI applications
+- GTK will default to the Wayland backend
+  - Override it to Xwayland by modifying the environment variable: `GDK_BACKEND=x11`
 
 ## Configuration
 

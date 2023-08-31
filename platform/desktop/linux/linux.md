@@ -1,5 +1,0 @@
-# Linux
-
-- Options
-  - GTK
-  - QT
