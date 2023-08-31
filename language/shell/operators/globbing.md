@@ -1,6 +1,5 @@
 # Globbing Patterns
 
-- `man glob`
 - Also known as `standard wildcards`
 
 ## Special characters

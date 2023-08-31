@@ -1,12 +1,12 @@
 # zsh
 
-## Installation
+## Oh My Zsh
 
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-## Plugins
+### Plugins
 
 - <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins>
 - <https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins>
@@ -29,7 +29,7 @@ plugins=(
 )
 ```
 
-## Themes
+### Themes
 
 ```conf
 ZSH_THEME="robbyrussell" # Default theme
@@ -45,7 +45,7 @@ ZSH_THEME_RANDOM_CANDIDATES=(
 ZSH_THEME_RANDOM_IGNORED=(pygmalion tjkirch_mod)
 ```
 
-## Installation folder
+### Installation folder
 
 - `~/.oh-my-zsh`
 

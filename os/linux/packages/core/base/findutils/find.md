@@ -27,4 +27,7 @@ sudo find / -nogroup -ls
 # Find empty directories
 find . -type d -empty -print
 find . -type d -empty -delete
+
+# Print files recursively
+find . -print
 ```

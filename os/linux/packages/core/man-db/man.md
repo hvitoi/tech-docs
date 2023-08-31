@@ -1,12 +1,9 @@
 # man
 
 ```shell
-# Shows the manual of a command
-man "ls"
+# show manual page (default dection)
+man "kashi"
 
 # select section
 man 5 "kanshi"
-
-# Show additional documentation info
-ls --help
 ```
