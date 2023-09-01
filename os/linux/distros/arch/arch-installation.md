@@ -98,7 +98,7 @@ pacman-key --refresh-keys
 pacman -Syy
 
 # Install system
-pacstrap -K "/mnt" "base" "base-devel" "linux" "linux-firmware" "intel-ucode"
+pacstrap "/mnt" "base" "base-devel" "linux" "linux-firmware" "intel-ucode"
 
 # Generate fstab
 genfstab -U "/mnt" >> "/mnt/etc/fstab"

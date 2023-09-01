@@ -14,7 +14,7 @@ yay -Y "proton-ge" # search for packages given a keyword (includes aur packages)
 yay "proton-ge" # same as above
 
 # Auto update -git packages
-yay -Y --gendb #
+yay -Y --gendb
 yay --devel
 ```
 

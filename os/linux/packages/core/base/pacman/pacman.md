@@ -53,6 +53,7 @@ pacman -Qo "file"
 # Install package
 pacman --sync "package"
 pacman -S "package"
+pacman -S --overwrite \* foo # overwrite conflicting files
 
 # Refresh package database from server
 pacman -Sy
@@ -96,6 +97,7 @@ pacman -Rc "package"
 # Downgrade a kernel
 pacman --upgrade "linux-4.15.8-1-x86_64.pkg.tar.xz"
 pacman -U "linux-4.15.8-1-x86_64.pkg.tar.xz"
+pacman -U --overwrite \* foo.pkg.tar.zst  # overwrite conflicting files
 ```
 
 ## Files
