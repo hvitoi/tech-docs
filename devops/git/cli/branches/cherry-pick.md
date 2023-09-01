@@ -6,4 +6,5 @@
 ```shell
 git cherry-pick "SHA1"
 git cherry-pick --no-commit "SHA1" # Just copy the files to the WIP and stage them (no commit)
+git cherry-pick ..mybranch # Pick all the missing commits of another branch
 ```

@@ -7,7 +7,14 @@
 - `*` for any char
 - `?` for single char
 - `[]` for range
+- `{}` for range
 - `!` for negation
 - `\` for escape
 - `/` for directory
 - `#` for comment
+
+## {}
+
+```shell
+touch abc{1..9}
+```
