@@ -20,6 +20,13 @@ flatpak list
 
 ```shell
 flatpak install "flathub" "com.spotify.Client"
+flatpak install "com.spotify.Client" # flathub by default
+```
+
+## uninstall
+
+```shell
+flatpak uninstall "com.valvesoftware.Steam.CompatibilityTool.Proton"
 ```
 
 ## run
