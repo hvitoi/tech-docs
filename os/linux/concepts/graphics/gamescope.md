@@ -32,6 +32,13 @@ gamescope -e -- steam -gamepadui
 ```
 
 ```shell
-gamescope -H 1200 -W 1920 -h 800 -w 1280 --prefer-vk-device 1002:73ff --rt -e -U -f -- %command% # 16:10 (8:5)
-gamescope -H 1080 -W 2560 -h 720 -w 1680 -U -f -- %command% # 21:9 (7:3)
+# 16:9
+gamescope -H 1440 -W 2560 -h 1080 -w 1920 --prefer-vk-device 1002:73ff --rt -e -U -f -- %command%
+gamescope -H 1440 -W 2560 -h 720 -w 1280 --prefer-vk-device 1002:73ff --rt -e -U -f -- %command%
+
+# 16:10 (8:5)
+gamescope -H 1200 -W 1920 -h 800 -w 1280 --prefer-vk-device 1002:73ff --rt -e -U -f -- %command%
+
+# 21:9 (7:3)
+gamescope -H 1080 -W 2560 -h 720 -w 1680 --prefer-vk-device 1002:73ff --rt -e -U -f -- %command%
 ```
