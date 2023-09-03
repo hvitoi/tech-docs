@@ -4,10 +4,22 @@
 
 ## root
 
-- What device to be used as root partition while booting
+- Specifies the device of the **decrypted** root file system
 
 ```conf
-root=/dev/mapper/root
+root=UUID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+root=LABEL=foo
+root=/dev/sda1
+root=/dev/mapper/foo # mapper from a decrypted drive
+root=/dev/volumegroup/logicalvolume # lLVM
+```
+
+### resume
+
+- Descrypted swap filesystem used for suspend to disk
+
+```conf
+resume=UUID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 ```
 
 ## rootflags
