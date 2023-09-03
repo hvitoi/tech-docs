@@ -6,4 +6,5 @@
 # Kills a process
 pkill "process-name"
 pkill top # kills the process top
+pkill -f gamescope
 ```
