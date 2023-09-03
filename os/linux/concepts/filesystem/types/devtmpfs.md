@@ -8,6 +8,20 @@
   - The daemon creates a file in /dev
 - The udev daemon searches configured rules to match the event with a rule to identify the device
 
+## Devices
+
+### input
+
+- `/dev/input`
+
+```shell
+# all mice events (touch + mouse)
+cat /dev/input/mice
+
+# keyboard
+cat /dev/input/by-id/usb-my-keyboard-event-kbd
+```
+
 ## Udev Rules
 
 - Location
