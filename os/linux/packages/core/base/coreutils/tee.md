@@ -7,6 +7,8 @@
 echo "Example" | tee "file.txt" # Replaces text (>)
 echo "Example" | tee -a "file.txt" # Appends text (>>)
 
+echo "foo" | tee "file1.txt" "file2.txt" # write to multiple files
+
 # Display and save to multiple files
 echo "Example" | tee "file1.txt" "file2.txt" "file3.txt"
 ```

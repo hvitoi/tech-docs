@@ -111,6 +111,10 @@ for p in /sys/class/drm/*/status; do
 done
 ```
 
+```shell
+cat /sys/class/drm/card?-*/enabled
+```
+
 ### power_supply
 
 - `/sys/class/power_supply/BAT0`

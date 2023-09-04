@@ -6,6 +6,13 @@ else
   echo "Command not available"
 fi
 
+# Input to if as output of a command
+for boot_vga in /sys/bus/pci/devices/*/boot_vga; do
+  if [ $(<"${boot_vga}") -eq 0 ]; then
+    echo "It's the boot vga"
+  fi
+done
+
 # "if" with [] (uses the"test" command)
 # POSIX!
 
