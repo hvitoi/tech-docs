@@ -11,6 +11,10 @@ printf "\x07\x00\x00\x00\x${1}\x00\x00\x00" > "${sysfs_efi_vars}/${efi_gpu}"
 ```
 
 ```shell
+printf /sys/class/drm/card?-eDP-?
+```
+
+```shell
 # Mathemtical expressions support only integers
 x=60
 y=-9
