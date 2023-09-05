@@ -32,6 +32,12 @@ else
   echo "Is not greater"
 fi
 
+folders=("document" "image" "music")
+if [[ ! " ${folders[*]} " =~ " $1 " ]]; then
+  echo >&2 "Folder not allowed."
+  return 1
+fi
+
 ## inline
 if [ ! -z "$foo" ]; then echo "foo"; else echo "bar"; fi
 
