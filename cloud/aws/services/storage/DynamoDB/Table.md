@@ -296,6 +296,7 @@ def lambda_handler(event, context):
 
 - Returns a list of items
 - Query operations require at least a `hash key`
+- Additionally you can use `filter expressions` to query based on other fields that are not hash/range keys
 - It's like a scan but within a partition only
 
 ```python
