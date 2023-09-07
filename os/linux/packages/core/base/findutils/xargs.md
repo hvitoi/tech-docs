@@ -16,6 +16,10 @@ echo 'one two three' | xargs -p touch
 ```
 
 ```shell
+echo "package1 package2 package3" | xargs -ro sudo pacman -S
+```
+
+```shell
 # Replace string
 xargs -I "{}" echo 'I am {}!' <<< 'Henrique'
 xargs -I "{}" echo Blah {} blabla {} < <(seq 1 5)
