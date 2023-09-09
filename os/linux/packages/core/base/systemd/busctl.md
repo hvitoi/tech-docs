@@ -17,4 +17,5 @@ busctl status "org.freedesktop.UPower"
 
 ```shell
 busctl monitor "org.freedesktop.UPower"
+busctl monitor "org.bluez"
 ```

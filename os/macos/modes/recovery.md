@@ -1,13 +1,27 @@
-# Recovery
+# MacOS Recovery
 
 - `Command-r Boot`
-- When entered the password, you enter in `recovery mode`, with options to
+- When entered the password, you enter in `recovery mode` with several apps
 
-  - Restore from time machine
-  - Reinstall macOS
-  - Safari
-  - Disk Utility
+## Recovery Assistant
 
-- Allows also accessing:
-  - Security Utility
-  - Terminal
+- The default app when recovery is launched
+
+## Recovery
+
+- Launched as soon as logged in `Recovery Assistant`.
+- Shows as prompt to choose: restore from time machine, reinstall macOS, Safari, Disk Utility
+
+## Startup Disk
+
+- Allows `booting the system` or enter `target disk mode`
+
+## Restore from time machine
+
+## Reinstall macOS
+
+## Safari
+
+## Disk Utility
+
+## Terminal

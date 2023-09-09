@@ -18,6 +18,17 @@ git clone https://github.com/squidfunk/mkdocs-material.git
 pip install -e mkdocs-material
 ```
 
+## requirements.txt
+
+```shell
+# This file contains the direct dependencies required for building the docs
+# To install them all run 'pip install -r requirements.txt' in the same directory
+
+mkdocs == 1.5.2
+mkdocs-material == 9.1.21
+mkdocs-redirects == 1.2.1
+```
+
 ## Useful packages
 
 ```txt

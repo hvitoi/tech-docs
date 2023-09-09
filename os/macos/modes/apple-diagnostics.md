@@ -1,4 +1,4 @@
 # Apple Diagnostics
 
-- `D Boot`
+- `Command-d Boot`
 - Look for hardware issues

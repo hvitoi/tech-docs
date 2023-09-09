@@ -2,9 +2,19 @@
 
 ## list
 
+- List controllers (usually one)
+
 ```shell
 # List controllers
 bluetoothctl list
+```
+
+## show
+
+- Show controllers information
+
+```shell
+bluetoohctl show
 ```
 
 ## info

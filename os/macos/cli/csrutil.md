@@ -1,0 +1,5 @@
+# csrutil
+
+```shell
+csrutil disable
+```
