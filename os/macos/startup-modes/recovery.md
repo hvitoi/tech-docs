@@ -1,6 +1,6 @@
 # MacOS Recovery
 
-- `Command-r Boot`
+- **Command-r Boot**
 - When entered the password, you enter in `recovery mode` with several apps
 
 ## Recovery Assistant

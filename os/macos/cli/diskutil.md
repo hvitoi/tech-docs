@@ -28,9 +28,17 @@ diskutil mount "diskX"
 diskutil unmount "diskX"
 ```
 
+## mountDisk
+
+- Mount all volumes of a disk/partition
+
+```shell
+diskutil mountDisk "/dev/diskX"
+```
+
 ## unmountDisk
 
-- Unmount all partitions of a disk
+- Unmount all volumes of a disk/partition
 
 ```shell
 diskutil unmountDisk "/dev/diskX"
