@@ -11,7 +11,8 @@ brew ls
 # One entry per line
 brew list -1
 
-# specific package info
-brew list "k9s"
-brew list "k9s" --versions
+# List files of a given package
+brew list "fish"
+brew list "fish" -v # verbose expands the directories and show the nested files
+brew list "fish" --versions
 ```

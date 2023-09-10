@@ -15,3 +15,18 @@ function fish_user_key_bindings
     fzf_key_bindings # enable key binding
 end
 ```
+
+### Homebrew installation
+
+- On Homebrew the key bindings are not automatically added to vendor_functions.d. It must be done manually
+
+```shell
+mkdir $__fish_user_data_dir/vendor_functions.d
+ln -sf $(brew --prefix)/opt/fzf/shell/key-bindings.fish $__fish_user_data_dir/vendor_functions.d/key-bindings.fish
+```
+
+- Or simply source it in the config
+
+```shell
+source $(brew --prefix fzf)/shell/key-bindings.fish
+```
