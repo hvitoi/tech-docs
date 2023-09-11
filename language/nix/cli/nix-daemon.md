@@ -1,6 +1,9 @@
 # nix-daemon
 
-- For arch users, install `nix` package
+```shell
+# Run nix daemon manually
+nix-daemon
+```
 
 ```shell
 # access the daemon socket

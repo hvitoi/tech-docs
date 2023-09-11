@@ -1,10 +1,11 @@
 # env
 
+- Takes a command name as argument and will run the first executable by that name it finds in the directories listed in the environment variable `$PATH`
+
 ```shell
-# List an environment variables
 env
 
-# run a command but set an env first
+# run command with additional environment variables
 env MOZ_ENABLE_WAYLAND=1 firefox
 ```
 

@@ -35,3 +35,5 @@
 - `Command` + `J`: view options
 - `Command` + `T`: new tab
 - `Command` + `N`: new window
+- `Command` + `Shift` + `.`: show hidden files
+- `Command` + `Shift` + `G`: navigate to path

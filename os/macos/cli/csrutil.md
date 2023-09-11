@@ -2,4 +2,5 @@
 
 ```shell
 csrutil disable
+csrutil enable
 ```

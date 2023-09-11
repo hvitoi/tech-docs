@@ -10,11 +10,11 @@
 # generate gpg key (secret + public)
 gpg --full-generate-key # gpg: key 0123456789ABCDEF marked as ultimately trusted. This is the gpg id of the secret key
 
-# gpg: directory '/home/foo/.gnupg' created
-# gpg: keybox '/home/foo/.gnupg/pubring.kbx' created
-# gpg: /home/foo/.gnupg/trustdb.gpg: trustdb created
-# gpg: directory '/home/foo/.gnupg/openpgp-revocs.d' created
-# gpg: revocation certificate stored as '/home/foo/.gnupg/openpgp-revocs.d/X.rev'
+# gpg: directory '~/.gnupg' created
+# gpg: keybox '~/.gnupg/pubring.kbx' created
+# gpg: ~/.gnupg/trustdb.gpg: trustdb created
+# gpg: directory '~/.gnupg/openpgp-revocs.d' created
+# gpg: revocation certificate stored as '~/.gnupg/openpgp-revocs.d/X.rev'
 ```
 
 - In order to use the gpg key for git commit signature (without having to specify the id manually), the real name and email must match exactly.

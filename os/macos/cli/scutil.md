@@ -1,5 +1,11 @@
 # scutil
 
+- Access/modify config store
+
+```shell
+scutil --get HostName
+```
+
 ```shell
 # primary hostname - fully qualified hostname e.g., mymac.domain.com
 scutil --set HostName "new-hostname"
