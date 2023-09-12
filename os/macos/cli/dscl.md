@@ -5,6 +5,8 @@
 ```shell
 dscl localhost \
     -list /Local/Default/Users
+
+sudo dscl . -list /Users
 ```
 
 ## read
@@ -31,4 +33,13 @@ dscl localhost \
 # Change root password of a given system
 dscl -f "/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default" localhost \
     -passwd "/Local/Default/Users/root"
+```
+
+## delete
+
+- Remove group
+
+```shell
+dscl . -delete /Groups/thegroup
+dscl . -delete /Users/theuser
 ```

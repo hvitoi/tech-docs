@@ -49,3 +49,9 @@ diskutil unmountDisk "/dev/diskX"
 ```shell
 diskutil eject "/dev/diskX"
 ```
+
+## deleteVolume
+
+```shell
+diskutil apfs deleteVolume disk1s7
+```

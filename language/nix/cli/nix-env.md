@@ -4,6 +4,9 @@
 
 ## install
 
+- Packages are stored at `/nix/store/<hash>-<package>-<version>`
+- To install a package, the `attr-path` id must be specified. Get it with `nix-env -qaP`
+
 ```shell
 # Install a package by its id
 nix-env --install --attr nixpkgs.neovim
@@ -11,19 +14,25 @@ nix-env -iA nixpkgs.neovim
 
 # Specify channel
 nix-env -iA nixpkgs.neovim -f '<nixpkgs>'
+```
 
-# install vim
-nix-env -iAv nixos.vim
+## upgrade
 
-#$ install "hello"
-# stores it at "/nix/store/[hash]-hello-[version]/bin/hello"
-nix-env -iA nixpkgs.hello
+```shell
+# Upgrade all packages
+nix-env --upgrade
+
+# Upgrade a specific package
+nix-env --upgrade --attr nixpkgs.neovim
 ```
 
 ## uninstall
 
+- To uninstall a package, the `package name` must be specified. Get it with `nix-env -q`
+
 ```shell
-nix-env --uninstall "hello"
+nix-env --uninstall "neovim"
+nix-env -e "neovim"
 ```
 
 ## query
