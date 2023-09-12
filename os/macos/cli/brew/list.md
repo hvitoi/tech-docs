@@ -8,8 +8,8 @@
 brew list
 brew ls
 
-# One entry per line
-brew list -1
+brew list -l # long format
+brew list -1 # one line per package
 
 # List files of a given package
 brew list "fish"

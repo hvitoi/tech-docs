@@ -1,6 +1,6 @@
 # leaves
 
-- List installed formulae that are not dependencies of another installed formula.
+- List installed `formulae` that are not dependencies of another installed formula.
 
 ```shell
 # all
