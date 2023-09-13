@@ -10,4 +10,7 @@ lsblk -m # output info about permissions
 
 # exclude loopback devices
 lsblk -e 7
+
+# select columns to display
+lsblk -o "type,name,label,partlabel"
 ```
