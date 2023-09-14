@@ -1,2 +1,2 @@
 ; define the decimal fields
-(with-precision 2 (/ 1M 3))
+(with-precision 2 (/ 100M 3))

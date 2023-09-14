@@ -8,8 +8,10 @@
 # the last stash is stored in refs/stash
 git stash push
 git stash # same as git stash push
+
 git stash -u # --include-untracked
 git stash -m "message" # --message ()"WIP on branchname ..." by default)
+git stash push -m bdc-timeout path/to/file # stash a single file
 
 # List all Stash
 git stash list
