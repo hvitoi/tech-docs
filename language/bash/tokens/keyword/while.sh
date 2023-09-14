@@ -17,3 +17,12 @@ while [ $count -lt 10 ]; do
   sleep 1
   count=$(expr $count + 1)
 done
+
+# while entries from stdin
+brew list --formula |
+  while read formula; do
+    brew list $formula |
+      while read file; do
+        echo -e "$formula\t$file"
+      done
+  done
