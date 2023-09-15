@@ -62,6 +62,10 @@ gpg \
 
 ## Export
 
+- You can export the following files to another machine:
+  - `~/.gnupg/private-keys-v1.d/*`: dir 700 permission, files 600 permission
+  - `~/.gnupg/pubring.kbx`: file 644 permission
+
 ```shell
 # ascii armored output
 gpg --armor --export "0123456789ABCDEF" # print public key

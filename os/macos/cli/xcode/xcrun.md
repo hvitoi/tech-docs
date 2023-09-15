@@ -1,5 +1,7 @@
 # xcrun
 
+- `xcrun <tool name> [tool arguments]`
+
 ## simctl
 
 - CLI to control the iOS simulator
