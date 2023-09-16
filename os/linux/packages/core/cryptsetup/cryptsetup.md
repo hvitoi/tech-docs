@@ -97,8 +97,8 @@ cryptsetup resize "/dev/mapper/lol"
 ## config
 
 ```shell
-# Setup a label
-sudo cryptsetup config "/dev/sdx1" --label YOURLABEL
+# Set filesystem label
+cryptsetup config "/dev/sdx1" --label YOURLABEL
 ```
 
 ## crypttab

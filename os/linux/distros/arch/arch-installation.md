@@ -137,22 +137,32 @@ bootctl install
 ```
 
 ```conf
-# efi/loader/loader.conf
+# /boot/loader/loader.conf
 default arch.conf
 timeout menu-hidden
 ```
 
 ```conf
-# efi/loader/entries/arch.conf
+# /boot/loader/entries/arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
 initrd /intel-ucode.img
-options root=LABEL=FOO rw # for unencrypted devices
-options cryptdevice=LABEL=FOO_CRYPT:sun root=/dev/mapper/sun rootflags=subvol=@ rw # for encrypted devices
+options root=LABEL=FOO rootflags=subvol=@ loglevel=3
 ```
 
-- Get the root partition UUID with `:r !blkid` inside of vim
+```conf
+# /etc/mkinitcpio.conf
+MODULES=()
+BINARIES=()
+FILES=()
+HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt)
+```
+
+```conf
+# /etc/crypttab.initramfs
+sun LABEL=FOO_CRYPT
+```
 
 ## Services
 
