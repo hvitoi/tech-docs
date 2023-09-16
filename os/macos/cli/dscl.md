@@ -35,6 +35,11 @@ dscl -f "/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default" localho
     -passwd "/Local/Default/Users/root"
 ```
 
+```shell
+# Skip graphical user setup
+touch "/Volumes/Macintosh - Data/private/var/db/.AppleSetupDone"
+```
+
 ## delete
 
 - Remove group

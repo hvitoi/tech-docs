@@ -27,29 +27,32 @@
   - Sealed: no
   - FileVault: yes
   - Encrypted: yes
-  - Size: ~15 GB
 - **System**
   - Sealed: yes
   - FileVault: yes
   - Encrypted: no
-  - Size: ~9 GB
   - Snapshot is taken from it
 - **Preboot**
   - Sealed: no
   - FileVault: no
-  - Size: ~2 GB
 - **VM**
   - Sealed: no
   - FileVault: no
-  - Size: ~20 KB
 - **Recovery**
   - Sealed: no
   - FileVault: no
-  - Size: ~1 GB
 
-## Recovery Keys
+## Crypto Users/Keys (APFSCryptoUserType)
 
-- `Personal Recovery Key` (PRK)
+- Get the crypto users for a given APFS filesystem using `fdesetup list -extended` or `diskutil apfs listCryptoUsers diskX`
+
+- **Local Open Directory User** / OS User / LocalOpenDirectory
+  - A local user
+  - It has a unique UUID for every new user created
+- **Personal Recovery User** / Personal Recovery Record / PersonalRecovery / PRK
   - Alphanumeric string generated at the time of encryption
-- `Institutional recovery key` (IRK)
-  - Pre-made recovery key that can be installed on a system prior to encryption
+  - Its UUID is the same for every File Vault 2 encrypted MacOs in the world: EBC6C064-0000-11AA-AA11-00306543ECAC
+- **MDM Bootstrap Token External Key** / Bootstrap Token / MDMRecovery
+  - This key is managed by an organization
+  - It's unique for a mac computer, even on fresh installs
+- **Institutional Recovery Key** / IRK

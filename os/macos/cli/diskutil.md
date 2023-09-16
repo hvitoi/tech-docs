@@ -83,11 +83,6 @@ diskutil apfs unlockVolume disk1s1
 diskutil apfs listCryptoUsers disk1s1
 ```
 
-- APFSCryptoUserType
-  - `LocalOpenDirectory`: a local user
-  - `PersonalRecovery`: recovery key generated at encryption time
-  - `MDMRecovery`
-
 ### listSnapshots
 
 - List snapshots associated with a volume

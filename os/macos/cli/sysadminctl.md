@@ -1,12 +1,14 @@
 # sysadminctl
 
 - This CLI is not available from Recovery
+- Use `-` to type passwords interactively
 
 ```shell
 # Create a new user
-sysadminctl -addUser myself -password - # - to type password interactively
+sysadminctl -addUser myself -admin -password -
 ```
 
 ```shell
-sysadminctl -secureTokenOn hv -password - -adminUser root -adminPassword -
+# Enable secure token for a given user
+sysadminctl -secureTokenOn myself -password - -adminUser root -adminPassword -
 ```
