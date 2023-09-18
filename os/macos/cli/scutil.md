@@ -4,6 +4,8 @@
 
 ```shell
 scutil --get HostName
+scutil --get LocalHostName
+scutil --get ComputerName
 ```
 
 ```shell

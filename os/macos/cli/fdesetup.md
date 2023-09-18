@@ -2,6 +2,14 @@
 
 - Configure FileVault
 
+## status
+
+- Wether file vault is on
+
+```shell
+fdesetup status
+```
+
 ## list
 
 - Lists all the crypto users
