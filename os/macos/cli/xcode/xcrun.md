@@ -21,6 +21,11 @@ xcrun simctl list runtimes
 xcrun simctl list pairs
 ```
 
+```shell
+# "File > Open Simulator" to see all available simulators
+open -a Simulator
+```
+
 ## create
 
 - Create a device
@@ -32,6 +37,18 @@ xcrun simctl create "<device-name>" "<device type id>" "[<runtime id>]"
 # Create
 xcrun simctl create 'My iPhone 14 Pro Max' \
   "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro-Max"
+```
+
+```shell
+# "File > New Simulator" to create a new simulator graphically
+open -a Simulator
+```
+
+### delete
+
+```shell
+# Delete all devices
+xcrun simctl delete all
 ```
 
 ### boot
