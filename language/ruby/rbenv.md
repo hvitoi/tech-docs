@@ -17,12 +17,6 @@ rbenv install --list
 rbenv install 3.2.2
 ```
 
-## use
-
-```shell
-rbenv use 3.1.2
-```
-
 ## global
 
 - Use a specific version globally
