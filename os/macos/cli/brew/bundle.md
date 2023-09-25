@@ -6,6 +6,7 @@
 ```shell
 # Extract the current packages into a Brewfile
 brew bundle dump --describe
+brew bundle dump --file - > ~/.Brewfile
 
 # Install/Upgrade all apps listed in Brewfile
 brew bundle install
