@@ -9,7 +9,7 @@
 - `k`: up
 - `j`: down
 
-- `^` / `0`: beggining of line
+- `^` / `0`: beginning of line
 - `$`: end of line
 
 - `w`: next word (first char)
