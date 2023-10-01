@@ -1,5 +1,13 @@
 # dscl
 
+```shell
+# Manage the users on a given system
+dscl_path='/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default'
+
+# Skip graphical user setup
+touch '/Volumes/Macintosh - Data/private/var/db/.AppleSetupDone'
+```
+
 ## list
 
 ```shell
@@ -23,6 +31,10 @@ dscl localhost \
 # Create a new user
 dscl localhost \
     -create "/Local/Default/Users/myself"
+
+# Create a new user on a given system
+dscl -f "$dscl_path" localhost \
+    -create "/Local/Default/Users/myself"
 ```
 
 ## passwd
@@ -30,14 +42,9 @@ dscl localhost \
 - Change password
 
 ```shell
-# Change root password of a given system
-dscl -f "/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default" localhost \
+# Change root password on a given system
+dscl -f "$dscl_path" localhost \
     -passwd "/Local/Default/Users/root"
-```
-
-```shell
-# Skip graphical user setup
-touch "/Volumes/Macintosh - Data/private/var/db/.AppleSetupDone"
 ```
 
 ## delete
