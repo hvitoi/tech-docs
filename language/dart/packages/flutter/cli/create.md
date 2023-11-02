@@ -9,4 +9,7 @@ flutter create "package_name"
 
 # create flutter project from existing code with a new name
 flutter create "." --project-name "personality_app"
+
+# choose platform
+flutter create "." --platforms=macos
 ```

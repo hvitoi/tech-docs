@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -6,23 +7,24 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    LocalDateTimeNow.run();
-    LocalDateTimeParse.run();
+    _now.run();
+    _parse.run();
 
     // Instance methods
-    LocalDateTimeFormat.run();
-    LocalDateTimeToEpochSecond.run();
+    _format.run();
+    _toEpochSecond.run();
+    _toLocalDate.run();
 
   }
 }
 
-class LocalDateTimeNow {
+class _now {
   static void run() {
     LocalDateTime time = LocalDateTime.now(); // current time
   }
 }
 
-class LocalDateTimeParse {
+class _parse {
   static void run() {
     String str = "24/05/2022 20:12";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -31,7 +33,7 @@ class LocalDateTimeParse {
   }
 }
 
-class LocalDateTimeFormat {
+class _format {
   static void run() {
     LocalDateTime time = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -40,9 +42,16 @@ class LocalDateTimeFormat {
   }
 }
 
-class LocalDateTimeToEpochSecond {
+class _toEpochSecond {
   static void run() {
     LocalDateTime time = LocalDateTime.now();
     long epochTime = time.toEpochSecond(ZoneOffset.UTC);
+  }
+}
+
+class _toLocalDate {
+  static void run() {
+    LocalDateTime time = LocalDateTime.now();
+    LocalDate date = time.toLocalDate();
   }
 }
