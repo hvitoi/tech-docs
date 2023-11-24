@@ -22,7 +22,6 @@
 
   (stop [this] ()))
 
-
 (defn new-database [] (->Database))
 (defn new-printer [] (map->Printer {})) ; component lib will inject here the necessary dependencies
 

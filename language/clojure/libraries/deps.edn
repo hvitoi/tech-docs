@@ -1,3 +1,19 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.11.0"}
-        com.stuartsierra/component {:mvn/version "1.1.0"}}}
+        org.clojure/data.json {:mvn/version "2.4.0"}
+        org.clojure/test.check {:mvn/version "1.1.1"}
+
+        com.stuartsierra/component {:mvn/version "1.1.0"}
+
+        prismatic/schema {:mvn/version "1.1.12"}
+        prismatic/schema-generators {:mvn/version "0.1.4"}
+
+        com.datomic/datomic-free {:mvn/version "0.9.5697"} ; peer mode
+        com.datomic/client-pro {:mvn/version "1.0.74"} ; client mode
+
+        io.pedestal/pedestal.service {:mvn/version "0.5.10"} ; web framework
+        io.pedestal/pedestal.jetty {:mvn/version "0.5.10"} ; web server backend
+
+        http-kit {:mvn/version "2.3.0"}}
+ :aliases {:run-deez-thing {:main-opts ["-m" "myns"]}
+           :awesome-repl {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}}}}

@@ -4,7 +4,8 @@
 - Fetches and uses the dependencies are defined at `deps.edn`
 
 ```shell
-clj # start repl
+# start repl using dependencies from deps.edn
+clj
 ```
 
 ## Exec Opts
@@ -12,6 +13,9 @@ clj # start repl
 ```shell
 # Execute a function (src/ is used as default classpath)
 clj -X "myns/myfn"
+
+# Execute an alias (defined at deps.edn)
+clj -A:mycustomalias
 ```
 
 ## Clj Opts
