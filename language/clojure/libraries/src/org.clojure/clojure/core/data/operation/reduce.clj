@@ -29,3 +29,9 @@
 
 ; exponential
 (reduce * (repeat n x))
+
+(reduce
+ (fn [m [k v]]
+   (println m k v))
+ {}
+ {:a "a" :b "b"}) ; same as reduce-kv

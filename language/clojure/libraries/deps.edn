@@ -15,5 +15,5 @@
         io.pedestal/pedestal.jetty {:mvn/version "0.5.10"} ; web server backend
 
         http-kit {:mvn/version "2.3.0"}}
- :aliases {:run-deez-thing {:main-opts ["-m" "myns"]}
-           :awesome-repl {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}}}}
+ :aliases {#_#_:run-deez-thing {:main-opts ["-m" "myns"]}
+           #_#_:awesome-repl {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}}}}
