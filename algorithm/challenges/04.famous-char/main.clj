@@ -17,11 +17,9 @@
   [string]
   (->> (frequencies string)
        (reduce-kv (fn [m k v]
-                    (if (> v (:occurences m))
-                      {:char k :occurences v}
-                      m))
-                  {:char nil :occurences 0})
-       :char))
+                    (if (> v (get m 1)) [k v] m))
+                  [nil 0])
+       first))
 
 (defn famous-char-with-frequency-and-sort-by
   [string]
