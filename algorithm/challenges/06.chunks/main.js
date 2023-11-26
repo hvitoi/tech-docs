@@ -1,14 +1,3 @@
-// --- Directions
-//   Given an array and chunk size, divide the array into many subarrays
-//   where each subarray is of length size
-// --- Examples
-//   chunk([1, 2, 3, 4], 2) --> [[ 1, 2], [3, 4]]
-//   chunk([1, 2, 3, 4, 5], 2) --> [[ 1, 2], [3, 4], [5]]
-//   chunk([1, 2, 3, 4, 5, 6, 7, 8], 3) --> [[ 1, 2, 3], [4, 5, 6], [7, 8]]
-//   chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
-//   chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
-module.exports = subChunk;
-
 // Check if it's the last element
 function lastSubchunk(array, size) {
   const chunkedArray = [];
@@ -93,8 +82,52 @@ function subChunk3(arr, chunkSize) {
   return chunkedArray;
 }
 
-console.log(subChunk([1, 2, 3, 4, 5, 6], 2));
-console.log(subChunk2([1, 2, 3, 4, 5, 6, 7], 2));
-console.log(subChunk3([1, 2, 3, 4, 5, 6, 7], 2));
-console.log(lastSubchunk([1, 2, 3, 4, 5], 2));
-console.log(chunkSlice([1, 2, 3, 4, 5], 2));
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('chunk divides an array of 10 elements with chunk size 2', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const chunkSize = 2;
+  const expected = [
+    [1, 2],
+    [3, 4],
+    [5, 6],
+    [7, 8],
+    [9, 10]
+  ];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('chunk divides an array of 3 elements with chunk size 1', () => {
+  const arr = [1, 2, 3];
+  const chunkSize = 1;
+  const expected = [
+    [1],
+    [2],
+    [3]
+  ];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('chunk divides an array of 5 elements with chunk size 3', () => {
+  const arr = [1, 2, 3, 4, 5];
+  const chunkSize = 3;
+  const expected = [
+    [1, 2, 3],
+    [4, 5]
+  ];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('chunk divides an array of 13 elements with chunk size 5', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const chunkSize = 5;
+  const expected = [
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13]
+  ];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
