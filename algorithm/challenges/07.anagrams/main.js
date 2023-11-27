@@ -1,15 +1,3 @@
-// --- Directions
-//   Check to see if two provided strings are anagrams of eachother.
-//   One string is an anagram of another if it uses the same characters
-//   in the same quantity. Only consider characters, not spaces
-//   or punctuation.  Consider capital letters to be the same as lower case
-// --- Examples
-//   anagrams('rail safety', 'fairy tales') --> True
-//   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
-//   anagrams('Hi there', 'Bye there') --> False
-module.exports = anagramCharMap;
-
-// My solution
 function anagramCharMap(strA, strB) {
   // Clean strings
   strA = strA.replace(/[^\w]/g, "").toLowerCase();
@@ -58,5 +46,15 @@ function anagramSorted(strA, strB) {
   return true;
 }
 
-console.log(anagramCharMap("Hey@!!", "ehy"));
-console.log(anagramSorted("Hey@!!", "ehy"));
+// Testing
+const test = require("node:test");
+const assert = require("node:assert");
+
+test('anagrams', () => {
+  assert.strictEqual(anagramCharMap('hello', 'llohe'), true);
+  assert.strictEqual(anagramCharMap('Whoa! Hi!', 'Hi! Whoa!'), true);
+
+  assert.strictEqual(anagramCharMap('One One', 'Two two two'), false);
+  assert.strictEqual(anagramCharMap('One one', 'One one c'), false);
+  assert.strictEqual(anagramCharMap('A tree, a life, a bench', 'A tree, a fence, a yard'), false);
+});

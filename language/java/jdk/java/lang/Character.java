@@ -1,13 +1,14 @@
 class Main {
   public static void main(String[] args) {
     // Static Methods
-    CharacterNew.run();
-    CharacterValueOf.run();
+    _new.run();
+    _valueOf.run();
+    _isLetter.run();
 
   }
 }
 
-class CharacterNew {
+class _new {
   static void run() {
     // Stores unicode characters
     char myChar = 'D'; // Stores only one character
@@ -16,8 +17,16 @@ class CharacterNew {
   }
 }
 
-class CharacterValueOf {
+class _valueOf {
   static void run() {
     Character ref = Character.valueOf('a');
+  }
+}
+
+class _isLetter {
+  static void run() {
+    boolean foo = Character.isLetter('a'); // true
+    boolean bar = Character.isLetter('2'); // false
+
   }
 }
