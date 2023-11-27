@@ -11,6 +11,7 @@ foo
 barr
 ba
 bar9
+a-b-c-d
 Bar
 foofoo
 foolalabar
@@ -76,7 +77,7 @@ echo $data | grep -E 'bar[^0-9]' # next char is not a digit
 echo $data | grep -E 'bar[^[:digit:]]' # same
 
 # bracket expressions (not universal)
-echo $data | grep -E '[[:alnum:]]' # At least one Alphanumeric Character
+echo $data | grep -E '[[:alnum:]]' # At least one Alphanumeric character
 echo $data | grep -E '[[:alpha:]]' # .. Alphabetic character
 echo $data | grep -E '[[:blank:]]' # .. Blank character (space and tab)
 echo $data | grep -E '[[:digit:]]' # .. Digit (0 1 2 3 4 5 6 7 8 9)
@@ -120,21 +121,21 @@ echo $data | grep -E 'purchase..'
 echo $data | grep -E 'purchase.db'
 ```
 
-## `?` (optional character)
+## `?` (optional pattern)
 
 ```shell
 # The preceding item is optional and will be matched, at most, once.
 echo $data | grep -E 'bar?' # bar, ba
 ```
 
-## `*` (optional or multiple character)
+## `*` (optional or multiple pattern)
 
 ```shell
 # The preceding item will be matched zero or more times
 echo $data | grep -E 'bar*' # ba, bar, barr
 ```
 
-## `+` (multiple character)
+## `+` (multiple pattern)
 
 ```shell
 # The preceding item will be matched one or more times.

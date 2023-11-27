@@ -9,3 +9,6 @@
 
 ; get all the individual letters in a string
 (re-seq #"[A-z]" "Heyy!")
+
+; returns truthy if the last character is not a letter or digit
+(re-seq #"[^A-z]$" "hey!")

@@ -1,13 +1,3 @@
-// --- Directions
-//   Write a function that accepts a string.  The function should
-//   capitalize the first letter of each word in the string then
-//   return the capitalized string.
-// --- Examples
-//   capitalize('a short sentence') --> 'A Short Sentence'
-//   capitalize('a lazy fox') --> 'A Lazy Fox'
-//   capitalize('look, it is working!') --> 'Look, It Is Working!'
-module.exports = splitWordsAndCapitalizeFirst;
-
 // Split the string and capitalize each first letter
 function splitWordsAndCapitalizeFirst(str) {
   // Split the string into an array
@@ -48,6 +38,21 @@ function matchNonLetters(str) {
   return cap;
 }
 
-console.log(splitWordsAndCapitalizeFirst("my name is henrique"));
-console.log(checkIfEmptySpace("my name is henrique"));
-console.log(matchNonLetters("my name is henrique, nice to meet you! ok?"));
+// Testing
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('capitalizes the first letter of every word in a sentence', () => {
+  assert.strictEqual(
+    splitWordsAndCapitalizeFirst("my name is henrique, nice to meet you! ok?"),
+    "My Name Is Henrique, Nice To Meet You! Ok?");
+
+  assert.strictEqual(
+    checkIfEmptySpace("my name is henrique, nice to meet you! ok?"),
+    "My Name Is Henrique, Nice To Meet You! Ok?");
+
+  assert.strictEqual(
+    matchNonLetters("my name is henrique, nice to meet you! ok?"),
+    "My Name Is Henrique, Nice To Meet You! Ok?");
+
+});

@@ -1,5 +1,4 @@
 (require '[clojure.string :as str])
 
-
-(def my-str "abc")
-(str/capitalize my-str) ; Abc
+; Capitalizes only the first char of a string
+(str/capitalize "my name is henry")
