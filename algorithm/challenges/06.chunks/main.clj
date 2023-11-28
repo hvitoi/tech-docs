@@ -43,4 +43,4 @@
     (test/is (= [[]]
                 (arr-chunk [], 2)))))
 
-(chunk-test)
+(test/run-test (chunk-test))

@@ -24,4 +24,4 @@
     (test/is (= [1]
                 (fizzbuzz 1)))))
 
-(fizzbuzz-test)
+(test/run-test (fizzbuzz-test))

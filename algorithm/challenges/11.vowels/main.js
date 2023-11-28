@@ -1,13 +1,3 @@
-// --- Directions
-//   Write a function that returns the number of vowels
-//   used in a string.  Vowels are the characters 'a', 'e'
-//   'i', 'o', and 'u'.
-// --- Examples
-//   vowels('Hi There!') --> 3
-//   vowels('Why do you ask?') --> 4
-//   vowels('Why?') --> 0
-module.exports = vowels1;
-
 // Basic solution
 function vowels1(str) {
   let count = 0;
@@ -40,6 +30,13 @@ function vowels3(str) {
   return n;
 }
 
-console.log(vowels1("Ola!"));
-console.log(vowels2("Ola!"));
-console.log(vowels3("Ola!"));
+// Testing
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('returns the number of vowels used', () => {
+  assert.strictEqual(vowels1('aeiou'), 5);
+  assert.strictEqual(vowels1('AEIOU'), 5);
+  assert.strictEqual(vowels1('abcdefghijklmnopqrstuvwxyz'), 5);
+  assert.strictEqual(vowels1('bcdfghjkl'), 0);
+});

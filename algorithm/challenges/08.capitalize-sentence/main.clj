@@ -26,4 +26,4 @@
     (test/is (= "My Name Is Henrique, Nice To Meet You! Ok?"
                 (capitalize-with-split-and-capitalize "my name is henrique, nice to meet you! ok?")))))
 
-(capitalize-test)
+(test/run-test (capitalize-test))

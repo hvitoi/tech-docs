@@ -23,4 +23,4 @@
     (test/is (false? (palindrome?-with-reverse " abba")))
     (test/is (false? (palindrome?-with-map " abba")))))
 
-(palindrome?-test)
+(test/run-test palindrome?-test)

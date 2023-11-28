@@ -29,4 +29,4 @@
     (test/is (= -9 (reverse-integer -90)))
     (test/is (= -9532 (reverse-integer -2359)))))
 
-(reverse-integer-test)
+(test/run-test (reverse-integer-test))

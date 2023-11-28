@@ -26,4 +26,4 @@
     (test/is (= "edcba" (reserve-str-with-reduce "abcde")))
     (test/is (= "edcba" (reserve-str-with-for "abcde")))))
 
-(reverse-str-test)
+(test/run-test reverse-str-test)
