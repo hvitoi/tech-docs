@@ -34,4 +34,4 @@
     (test/is (= \a (famous-char-with-frequency "abca")))
     (test/is (= \b (famous-char-with-frequency-and-sort-by "abbbca")))))
 
-(test/run-test (famous-char-test))
+(test/run-test famous-char-test)

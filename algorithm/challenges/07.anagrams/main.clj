@@ -17,4 +17,4 @@
     (test/is (true? (anagram? "hello" "llohe")))
     (test/is (true? (anagram? "Whoa!    Hi!!!!" "Hi! Whoa!")))))
 
-(test/run-test (anagram?-test))
+(test/run-test anagram?-test)

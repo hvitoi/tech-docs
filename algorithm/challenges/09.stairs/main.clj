@@ -26,4 +26,4 @@
     (test/is (= ["#  " "## " "###"]
                 (stairs-recursive 3)))))
 
-(test/run-test (stairs-test))
+(test/run-test stairs-test)

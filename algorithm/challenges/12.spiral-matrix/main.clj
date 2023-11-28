@@ -2,7 +2,22 @@
   (:require [clojure.test :as test]))
 
 (defn spiral-matrix
-  [n])
+  [n]
+  (loop [num 1
+         matrix (map (fn [_] (repeat n nil))
+                     (range n))
+         current-position [0 0]
+
+         direction :right]
+    (if (> num (n * n))
+      matrix
+      (recur
+       (inc num)
+       (assoc-in matrix current-position num)
+       ()
+       ()
+       ;
+       ))))
 
 (test/deftest spiral-matrix-test
   (test/testing "Return a spiral matrix"
