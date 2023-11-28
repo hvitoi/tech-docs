@@ -10,4 +10,4 @@
 ;; vector
 (assoc-in [0 1 [20 21]] [2 0] 100) ; modify existing element
 
-(coll?)
+(assoc-in [[:a :b] [:c :d]] [0 0] :z)
