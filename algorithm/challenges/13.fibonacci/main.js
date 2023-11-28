@@ -1,14 +1,3 @@
-// --- Directions
-//   Print out the n-th entry in the fibonacci series.
-//   The fibonacci series is an ordering of numbers where
-//   each number is the sum of the preceding two.
-//   For example, the sequence
-//   [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-//   forms the first ten entries of the fibonacci series.
-// --- Example:
-//   fib(4) === 3
-module.exports = fibonacciIterative;
-
 // Iterative solution - LINEAR RUNTIME
 function fibonacciIterative(n) {
   // Initial values
@@ -68,28 +57,42 @@ function fibMemoized(n, mem = {}) {
   return mem[n];
 }
 
-// Execution
-var start = Date.now();
-console.log(fibonacciIterative(30));
-var end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+// Execution time
+// var start = Date.now();
+// console.log(fibonacciIterative(30));
+// var end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
 
-var start = Date.now();
-console.log(fibonacciRecursive(30));
-var end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+// var start = Date.now();
+// console.log(fibonacciRecursive(30));
+// var end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
 
-var start = Date.now();
-console.log(fibonacciExponential(30));
-var end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+// var start = Date.now();
+// console.log(fibonacciExponential(30));
+// var end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
 
-var start = Date.now();
-console.log(memoize(fibonacciExponential)(30));
-var end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+// var start = Date.now();
+// console.log(memoize(fibonacciExponential)(30));
+// var end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
 
-var start = Date.now();
-console.log(fibMemoized(30));
-var end = Date.now();
-console.log(`Execution time: ${end - start} ms`);
+// var start = Date.now();
+// console.log(fibMemoized(30));
+// var end = Date.now();
+// console.log(`Execution time: ${end - start} ms`);
+
+
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('calculates correct fibonacci series', () => {
+  assert.strictEqual(fibonacciIterative(1), 0);
+  assert.strictEqual(fibonacciIterative(2), 1);
+  assert.strictEqual(fibonacciIterative(3), 1);
+  assert.strictEqual(fibonacciIterative(4), 2);
+  assert.strictEqual(fibonacciIterative(15), 377);
+});
