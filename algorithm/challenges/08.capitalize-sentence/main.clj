@@ -15,10 +15,9 @@
 
 (defn capitalize-with-split-and-capitalize
   [sentence]
-  (as-> sentence $
-    (str/split $ #" ")
-    (map str/capitalize $)
-    (str/join $)))
+  (->> (str/split sentence #" ")
+       (map str/capitalize)
+       (str/join " ")))
 
 (test/deftest capitalize-test
   (test/testing "Capitalize a sentence"

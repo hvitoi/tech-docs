@@ -1,2 +1,3 @@
+(require '[clojure.string :as str])
 
-(clojure.string/starts-with? "Henrique" "Hen")
+(str/starts-with? "Henrique" "Hen")

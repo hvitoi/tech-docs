@@ -1,4 +1,5 @@
-(require '[clojure.test :refer :all])
+(require '[clojure.test :as test])
 
-; run a single test
-(clojure.test/test-vars [#'namespace/function-test])
+; like test-var, but receives a list of functions
+(test/test-vars [#'namespace1/function-test
+                 #'namespace2/function-test])

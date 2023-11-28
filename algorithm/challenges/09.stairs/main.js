@@ -1,25 +1,6 @@
-// --- Directions
-//   Write a function that accepts a positive number N.
-//   The function should console log a step shape
-//   with N levels using the # character.  Make sure the
-//   step has spaces on the right hand side!
-//   --- Examples
-//     steps(2)
-//         '# '
-//         '##'
-//     steps(3)
-//         '#  '
-//         '## '
-//         '###'
-//     steps(4)
-//         '#   '
-//         '##  '
-//         '### '
-//         '####'
-module.exports = steps;
-
 // Building each step with if statements
-function steps(n) {
+function stairs(n) {
+  let stairs = []
   let step;
   for (let i = 1; i <= n; i++) {
     step = "";
@@ -27,26 +8,27 @@ function steps(n) {
       if (j <= i) step += "#";
       else step += " ";
     }
-    console.log(step);
+    stairs.push(step)
   }
+  return stairs;
 }
 
 // Repeat
-function stepsRepeat(n) {
+function stairsRepeat(n) {
   for (let i = 1; i <= n; i++) {
     console.log("#".repeat(i) + " ".repeat(n - i));
   }
 }
 
 // Repeat
-function stepsRepeatRecursive(n, s = 1) {
+function stairsRepeatRecursive(n, s = 1) {
   if (s > n) return; // if the highest step is reached
   console.log("#".repeat(s) + " ".repeat(n - s));
-  stepsRepeatRecursive(n, s + 1);
+  stairsRepeatRecursive(n, s + 1);
 }
 
 // Recursive solution
-function stepsRecursive(n, s = 1) {
+function stairsRecursive(n, s = 1) {
   // Leave the solution if the last step is reached
   if (s === n + 1) return; // Base case
 
@@ -62,7 +44,7 @@ function stepsRecursive(n, s = 1) {
 }
 
 // Recursive solution without fors
-function stepsRecursiveNoFors(n, row = 0, stair = "") {
+function stairsRecursiveNoFors(n, row = 0, stair = "") {
   // Leave the solution if the step limit is reached
   if (n === row) return;
 
@@ -79,8 +61,13 @@ function stepsRecursiveNoFors(n, row = 0, stair = "") {
   }
 }
 
-steps(10);
-stepsRecursive(10);
-stepsRecursiveNoFors(3);
-stepsRepeat(10);
-stepsRepeatRecursive(4);
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('build stairs ', () => {
+  assert.deepStrictEqual(stairs(1), ['#'])
+  assert.deepStrictEqual(stairs(2), ['# ', '##'])
+  assert.deepStrictEqual(stairs(3), ['#  ', '## ', '###'])
+});

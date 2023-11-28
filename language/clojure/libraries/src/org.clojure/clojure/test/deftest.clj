@@ -1,6 +1,6 @@
-(require '[clojure.test :refer :all])
+(require '[clojure.test :as test])
 
 ; define a test block
-(deftest foo-test
-  (testing "a"
-    (is (= 1 1))))
+(test/deftest foo-test
+  (test/testing "a"
+    (test/is (= 1 1))))

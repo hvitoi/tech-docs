@@ -20,3 +20,5 @@
 (conj {:a 1 :b 2 :c 3} {:c 4}) ; replace
 (conj {:a 1 :b 2 :c 3} {:c 3.1 :d 4 :e 5})
 (merge {:a 1 :b 2 :c 3} {:c 3.1 :d 4 :e 5}) ; same (except when first arg is nil)
+
+(conj nil "a")

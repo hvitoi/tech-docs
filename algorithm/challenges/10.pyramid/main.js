@@ -1,20 +1,3 @@
-// --- Directions
-//   Write a function that accepts a positive number N.
-//   The function should console log a pyramid shape
-//   with N levels using the # character.  Make sure the
-//   pyramid has spaces on both the left *and* right hand sides
-// --- Examples
-//   pyramid(1)
-//       '#'
-//   pyramid(2)
-//       ' # '
-//       '###'
-//   pyramid(3)
-//       '  #  '
-//       ' ### '
-//       '#####'
-module.exports = pyramid1;
-
 function pyramidRecursive(n, levelNumber = 1, levelString = "") {
   if (levelNumber > n) return; // if the final level is reached (base case)
 
@@ -28,7 +11,7 @@ function pyramidRecursive(n, levelNumber = 1, levelString = "") {
   } else {
     levelString =
       levelString.length < whiteWidth / 2 ||
-      levelString.length >= whiteWidth / 2 + hashWidth
+        levelString.length >= whiteWidth / 2 + hashWidth
         ? levelString + " "
         : levelString + "#";
     pyramidRecursive(n, levelNumber, levelString);
@@ -38,6 +21,7 @@ function pyramidRecursive(n, levelNumber = 1, levelString = "") {
 // Add the white spaces + hashes + white spaces
 function pyramid1(n) {
   let width = 1 + 2 * (n - 1); // Calculate the bottom width of the pyramid // (n*2)-1
+  pyramid = [];
   for (let level = 1; level <= n; level++) {
     // Reset the stair on each new level
 
@@ -53,8 +37,9 @@ function pyramid1(n) {
     //stair = " ".repeat(w / 2) + "#".repeat(h) + " ".repeat(w / 2);
 
     // Print each level of the pyramid, from top to bottom
-    console.log(stair);
+    pyramid.push(stair)
   }
+  return pyramid;
 }
 
 // Build from each midpoint
@@ -104,7 +89,11 @@ function pyramid3(n, row = 0, level = "") {
   pyramid3(n, row, level + add);
 }
 
-pyramid1(10);
-pyramid2(10);
-pyramid3(10);
-pyramidRecursive(10);
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('build stairs ', () => {
+  assert.deepStrictEqual(pyramid1(4), ['   #   ', '  ###  ', ' ##### ', '#######']);
+});
