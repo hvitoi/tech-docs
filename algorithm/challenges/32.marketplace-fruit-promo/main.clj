@@ -1,12 +1,11 @@
-(ns main
-  (:require [clojure.test :as test]))
+(require '[clojure.test :as test])
 
-(defn fibonacci
+(defn foo
   [])
 
 (test/deftest foo-test
   (test/testing ""
     (test/is (= nil
-                (fibonacci)))))
+                (foo)))))
 
 (test/run-test foo-test)

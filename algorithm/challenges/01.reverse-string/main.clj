@@ -1,6 +1,5 @@
-(ns main
-  (:require [clojure.string :as str]
-            [clojure.test :as test]))
+(require '[clojure.string :as str]
+         '[clojure.test :as test])
 
 (defn reserve-str-simple
   [string]

@@ -1,5 +1,4 @@
-(ns main
-  (:require [clojure.test :as test]))
+(require '[clojure.test :as test])
 
 (defn arr-chunk
   [arr max-chunk-size]

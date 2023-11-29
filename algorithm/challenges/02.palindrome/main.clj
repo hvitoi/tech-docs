@@ -1,6 +1,5 @@
-(ns main
-  (:require [clojure.test :as test]
-            [clojure.string :as str]))
+(require '[clojure.string :as str]
+         '[clojure.test :as test])
 
 (defn palindrome?-with-reverse
   [word]

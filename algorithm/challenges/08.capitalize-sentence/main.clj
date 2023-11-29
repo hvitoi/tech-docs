@@ -1,6 +1,5 @@
-(ns main
-  (:require [clojure.test :as test]
-            [clojure.string :as str]))
+(require '[clojure.test :as test]
+         '[clojure.string :as str])
 
 (defn capitalize-with-regex
   [sentence]

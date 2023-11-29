@@ -1,7 +1,6 @@
-(ns main
-  (:require [clojure.test :as test]
-            [clojure.string :as str]
-            [clojure.math :as math]))
+(require '[clojure.string :as str]
+         '[clojure.test :as test]
+         '[clojure.math :as math])
 
 (defn reverse-integer
   [num]

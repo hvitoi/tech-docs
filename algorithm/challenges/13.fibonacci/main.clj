@@ -1,5 +1,4 @@
-(ns main
-  (:require [clojure.test :as test]))
+(require '[clojure.test :as test])
 
 (defn fibonacci-recursive
   [n]
@@ -15,7 +14,7 @@
     0 0
     1 1
     (loop [fibo [0 1]]
-      (if (> (count fibo) n)
+      (if (< n (count fibo))
         (last fibo)
         (recur
          (conj fibo
