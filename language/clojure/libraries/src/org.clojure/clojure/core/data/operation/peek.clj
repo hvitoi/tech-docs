@@ -8,3 +8,5 @@
 
 ;; linked list (beginning)
 (peek '(1 2 3))
+
+(peek (lazy-seq))

@@ -4,3 +4,6 @@
 (vec #{1 2 3}) ; set -> vec
 (vec {:a "a" :b "b"})
 (vec "abc")
+
+; vectors implement iFn
+([:a] 0)
