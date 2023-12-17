@@ -175,4 +175,65 @@ class LinkedList {
   }
 }
 
-module.exports = { Node, LinkedList };
+// In circular list there's no tail node
+function circular(list) {
+  let slow = list.head;
+  let fast = list.head;
+
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true; // If it is circular, at some point in time they will match!
+  }
+
+  return false; // Returns false if a tail (fast.next === null) is found
+}
+
+
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('circular detects circular linked lists', () => {
+  const l = new LinkedList();
+  const a = new Node('a');
+  const b = new Node('b');
+  const c = new Node('c');
+
+  l.head = a;
+  a.next = b;
+  b.next = c;
+  c.next = b;
+
+  assert.strictEqual(circular(l), true)
+
+});
+
+test('circular detects circular linked lists linked at the head', () => {
+  const l = new LinkedList();
+  const a = new Node('a');
+  const b = new Node('b');
+  const c = new Node('c');
+
+  l.head = a;
+  a.next = b;
+  b.next = c;
+  c.next = a;
+
+  assert.strictEqual(circular(l), true)
+});
+
+test('circular detects non-circular linked lists', () => {
+  const l = new LinkedList();
+  const a = new Node('a');
+  const b = new Node('b');
+  const c = new Node('c');
+
+  l.head = a;
+  a.next = b;
+  b.next = c;
+  c.next = null;
+
+  assert.strictEqual(circular(l), false)
+});

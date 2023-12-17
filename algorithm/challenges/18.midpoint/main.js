@@ -175,4 +175,57 @@ class LinkedList {
   }
 }
 
-module.exports = { Node, LinkedList };
+function midpoint(list) {
+  let slow = list.head;
+  let fast = list.head;
+
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  return slow;
+}
+
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test.describe('Midpoint returns the middle node of an odd numbered list', () => {
+  test('when the list has 3 elements', () => {
+    const l = new LinkedList();
+    l.insertLast('a');
+    l.insertLast('b');
+    l.insertLast('c');
+    assert.strictEqual(midpoint(l).data, 'b')
+  });
+
+  test('when the list has 5 elements', () => {
+    const l = new LinkedList();
+    l.insertLast('a');
+    l.insertLast('b');
+    l.insertLast('c');
+    l.insertLast('d');
+    l.insertLast('e');
+    assert.strictEqual(midpoint(l).data, 'c')
+  });
+});
+
+test.describe('Midpoint returns the middle node of an even numbered list', () => {
+  test('when the list has 2 elements', () => {
+    const l = new LinkedList();
+    l.insertLast('a');
+    l.insertLast('b');
+    assert.strictEqual(midpoint(l).data, 'a')
+  });
+
+  test('when the list has 4 elements', () => {
+    const l = new LinkedList();
+    l.insertLast('a');
+    l.insertLast('b');
+    l.insertLast('c');
+    l.insertLast('d');
+    assert.strictEqual(midpoint(l).data, 'b')
+  });
+});
