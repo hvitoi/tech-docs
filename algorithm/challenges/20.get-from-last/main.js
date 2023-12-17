@@ -153,4 +153,37 @@ class LinkedList {
   }
 }
 
-module.exports = { Node, LinkedList };
+function fromLast(list, n) {
+  if (n >= 0 && n > list.size() - 1) return null; // n out of bounds
+
+  let slow = list.head;
+  let fast = list.head;
+
+  // Move the 'fast' to the n position
+  for (i = 0; i < n; i++) fast = fast.next;
+
+  // Move both nodes at same time
+  while (fast.next) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  return slow;
+}
+
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+
+test('fromLast returns the node n elements from the end', () => {
+  const l = new LinkedList();
+
+  l.insertLast('a');
+  l.insertLast('b');
+  l.insertLast('c');
+  l.insertLast('d');
+  l.insertLast('e');
+
+  assert.strictEqual(fromLast(l, 3).data, 'b')
+});
