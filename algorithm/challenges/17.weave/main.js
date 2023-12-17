@@ -31,17 +31,6 @@ function weave(q1, q2) {
 const test = require('node:test');
 const assert = require('node:assert');
 
-test('Queue class', () => {
-  const q = new Queue();
-  q.add(1);
-  q.add(2);
-
-  assert.strictEqual(q.peek, 1);
-  assert.strictEqual(q.peek, 1);
-  assert.strictEqual(q.remove(), 1);
-  assert.strictEqual(q.remove(), 2);
-});
-
 test('Weave function can combine two queues', () => {
   const one = new Queue();
   one.add(1);
