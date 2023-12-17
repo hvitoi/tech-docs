@@ -1,15 +1,13 @@
-// --- Directions
-//   Given the root node of a tree, return
-//   an array where each element is the width
-//   of the tree at each level.
-// --- Example
-//   Given:
-//       0
-//     / |  \
-//   1   2   3
-//   |       |
-//   4       5
-//   Answer: [1, 3, 2]
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.children = [];
+  }
+
+  add(data) {
+    this.children.push(new Node(data));
+  }
+};
 
 function levelWidth(root) {
   const tree = [[root]];
@@ -50,4 +48,28 @@ function levelWidth2(root) {
   return counters;
 }
 
-module.exports = levelWidth;
+// Testing
+
+const test = require('node:test');
+const assert = require('node:assert');
+
+test('levelWidth returns number of nodes at widest point', () => {
+  const root = new Node(0);
+  root.add(1);
+  root.add(2);
+  root.add(3);
+  root.children[0].add(4);
+  root.children[2].add(5);
+
+  assert.deepStrictEqual(levelWidth(root), [1, 3, 2])
+});
+
+test('levelWidth returns number of nodes at widest point', () => {
+  const root = new Node(0);
+  root.add(1);
+  root.children[0].add(2);
+  root.children[0].add(3);
+  root.children[0].children[0].add(4);
+
+  assert.deepStrictEqual(levelWidth(root), [1, 1, 2, 1])
+});

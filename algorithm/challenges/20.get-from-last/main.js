@@ -175,7 +175,6 @@ function fromLast(list, n) {
 const test = require('node:test');
 const assert = require('node:assert');
 
-
 test('fromLast returns the node n elements from the end', () => {
   const l = new LinkedList();
 
