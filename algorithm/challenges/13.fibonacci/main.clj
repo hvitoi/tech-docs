@@ -21,7 +21,7 @@
                (apply +
                       (take-last 2 fibo))))))))
 
-(test/deftest foo-test
+(test/deftest fibonacci-test
   (test/testing ""
     (test/is (= 0 (fibonacci-recursive 0)))
     (test/is (= 1 (fibonacci-recursive 1)))
@@ -31,4 +31,4 @@
     (test/is (= 1 (fibonacci-reduce 1)))
     (test/is (= 610 (fibonacci-reduce 15)))))
 
-(test/run-test foo-test)
+(test/run-test fibonacci-test)

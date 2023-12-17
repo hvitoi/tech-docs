@@ -11,7 +11,6 @@ class Queue {
     return this.data.pop();
   }
 
-  // new 'peek' method looks the next element to be removed
   get peek() {
     return this.data[this.data.length - 1];
   }
@@ -27,16 +26,7 @@ function weave(q1, q2) {
   return queue;
 }
 
-// const q1 = new Queue();
-// q1.add(1);
-// q1.add(2);
-
-// const q2 = new Queue();
-// q2.add("Hi");
-// q2.add("There");
-
-// const q = weave(q1, q2);
-// console.log(q.data);
+// Testing
 
 const test = require('node:test');
 const assert = require('node:assert');
@@ -76,5 +66,4 @@ test('Weave function can combine two queues', () => {
   assert.strictEqual(result.remove(), 4);
   assert.strictEqual(result.remove(), 'four');
   assert.strictEqual(result.remove(), undefined);
-
 });
