@@ -9,6 +9,7 @@
 ```shell
 # generate gpg key (secret + public)
 gpg --full-generate-key # gpg: key 0123456789ABCDEF marked as ultimately trusted. This is the gpg id of the secret key
+gpg --full-generate-key --pinentry-mode=loopback # don't ask for PIN
 
 # gpg: directory '~/.gnupg' created
 # gpg: keybox '~/.gnupg/pubring.kbx' created
