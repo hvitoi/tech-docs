@@ -9,3 +9,5 @@
     (let [result (apply func args)]
       (println "Log result: " result)
       result)))
+
+((fn [x & _] x) 9 8 7)
