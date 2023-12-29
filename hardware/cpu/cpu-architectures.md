@@ -11,6 +11,8 @@ void add(){
 
 ## ARM Family
 
+- `64-bit` version: aarch64
+- `32-bit` version: aarch32
 - Apple M1 processors
 - Require less transistors, therefore it's good for battery life
 

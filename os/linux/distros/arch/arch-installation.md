@@ -26,7 +26,7 @@ fdisk -l # Optionally use cgdisk
 # +0.5G for /dev/sdx1 and the rest for /dev/sdx2
 ```
 
-## Encryption: LUKS
+## Root partition: LUKS encryption
 
 ```shell
 # Format encrypted partition
@@ -58,8 +58,8 @@ btrfs subvolume create "/mnt/@home"
 umount "/mnt"
 
 # mount subvolumes
-mount "/dev/mapper/foo" "/mnt" -o "compress=zstd,subvol=@"
-mount -m "/dev/mapper/foo" "/mnt/home" -o "compress=zstd,subvol=@home"
+mount "/dev/mapper/foo" "/mnt" -o "subvol=@"
+mount -m "/dev/mapper/foo" "/mnt/home" -o "subvol=@home"
 ```
 
 ## EFI partition
@@ -96,40 +96,20 @@ pacman-key --init
 pacman-key --populate
 pacman-key --refresh-keys
 pacman -Syy
+```
 
+```shell
 # Install system
-pacstrap "/mnt" "base" "base-devel" "linux" "linux-firmware" "intel-ucode"
+pacstrap /mnt base base-devel linux
 
 # Generate fstab
-genfstab -U "/mnt" >> "/mnt/etc/fstab"
+genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot
-arch-chroot "/mnt"
+arch-chroot /mnt
 ```
 
-## Packages
-
-```shell
-# Pacman config
-vim "/etc/pacman.conf" #  ParallelDownloads = 10
-
-# Packages
-pacman -S "gnome" "xdg-desktop-portal-gnome" "vim" "zsh" "networkmanager" "bluez"
-```
-
-## Initial ramdisk environment (initramfs)
-
-- Modify the file `/etc/mkinitcpio.conf` and add the `encrypt` hooks
-
-```conf
-HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block encrypt filesystems fsck)
-```
-
-```shell
-mkinitcpio -P
-```
-
-## Boot loader & Kernel parameters
+## Boot loader & Initial Ramdisk Environment
 
 ```shell
 # Install systemd-boot
@@ -164,12 +144,28 @@ HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt)
 sun LABEL=FOO_CRYPT
 ```
 
+```shell
+mkinitcpio -P
+```
+
+## Packages
+
+```shell
+# Pacman config
+vim /etc/pacman.conf #  ParallelDownloads = 10
+
+# Packages
+pacman -S linux-firmware intel-ucode
+pacman -S gnome
+pacamn -S xdg-desktop-portal-gnome vim networkmanager bluez
+```
+
 ## Services
 
 ```shell
 # Enable services
-systemctl enable "NetworkManager.service"
-systemctl enable "bluetooth.service"
+systemctl enable NetworkManager.service
+systemctl enable bluetooth.service
 ```
 
 ## Configuration

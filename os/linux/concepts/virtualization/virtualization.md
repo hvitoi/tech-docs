@@ -21,7 +21,7 @@
 ### UTM
 
 - For MacOS and iOS
-- Based off of `QEMU`
+- It's a frontend for QEMU
 
 ### Parallels Desktop
 

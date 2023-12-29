@@ -8,6 +8,12 @@
 # Show disks and devices
 fdisk -l
 
+# Start fdisk on a disk
+fdisk /dev/sdx
+
+# start disk on a disk (and wipe existing signatures)
+fdisk /dev/sdx --wipe auto
+
 # Pick a disk to modify
 fdisk "disk"
 fdisk "/dev/sdx"
@@ -18,12 +24,19 @@ fdisk "/dev/sdx"
   - `w`: write/apply changes
 ```
 
+## g
+
+- Creates a new empty `GPT partition table`
+- GPT is the `disklabel type`
+- This is usually the first step on a new drive
+
 ## n
 
 - `+10G` to set the size
 
 ## t
 
-- `1`: EFI System
-- `19`: Linux Swap
-- `20`: Linux Filesystem
+- Partition types (alias) for GPT
+  - `1`: EFI System
+  - `19`: Linux Swap
+  - `20`: Linux Filesystem
