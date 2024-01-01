@@ -12,6 +12,12 @@
 flatpak remotes
 ```
 
+## remote-add
+
+```shell
+flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
+```
+
 ## list
 
 - List all installed packages

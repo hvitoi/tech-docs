@@ -3,6 +3,7 @@
 - It's a bash script used to create an `initial ramdisk environment` (`initramfs` stage - `initramfs-linux.img`)
 - Creates the initramfs/initrd (initial RAM filesystem (initramfs) / initial RAM disk (initrd))
 - The initial ramdisk is a very small environment (early userspace) which early loads various kernel modules and sets up necessary things before handing over control to init
+- `Dracut` is an alternative used in Fedora, RHEL, Gentoo and Debian
 
 ```shell
 # Generate images based on preset file configuration
