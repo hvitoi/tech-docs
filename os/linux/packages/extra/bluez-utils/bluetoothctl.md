@@ -92,8 +92,12 @@ bluetoothctl untrust "mac-add"
 ### MacOS
 
 - Access `Keychain access`
-- Search for "bluetooth"
-- Conventional bluetooth devices will show up as `MobileBluetooth`, bluetooth BLE devices will show up as an `UUID`
+- Search for "bluetooth"s
+- Conventional bluetooth
+  - Show up as `MobileBluetooth`
+- BLE bluetooth
+  - Show up as an `UUID`
+  - These devices generate an increasing UUID on each pairing. In that case, get the exact UUID on MacOS and rename the folder on linux
 
 ```shell
 # Decode keys from base64 into hex
