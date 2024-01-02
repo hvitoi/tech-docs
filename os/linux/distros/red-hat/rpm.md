@@ -12,13 +12,13 @@ rpm -qa
 rpm -qa | wc -l
 
 # Check a specific package
-rpm -qa | grep `package-name`
+rpm -qa | grep <package>
 
 # Show package information
-rpm -qi `package-name` # E.g., ksh-20120801-137.e17.x86_64
+rpm -qi <package> # E.g., ksh-20120801-137.e17.x86_64
 
 # Show package configuration
-rpm -qc `package-name`
+rpm -qc <package>
 
 # Show the package that a command belongs to
 rpm -qf `command-dir`
@@ -29,8 +29,13 @@ rpm -qf /etc/bin/ksh
 
 ```shell
 # Install rpm package from file
-rpm -ihv `/package/location.rmp`
+rpm -ihv "/package/location.rmp"
 
 # Uninstall a package
-rpm -e `package-name` # E.g., ksh-20120801-137.e17.x86_64
+rpm -e <package> # E.g., ksh-20120801-137.e17.x86_64
+```
+
+```shell
+# find files not owned by any package
+sudo find / ! -path "/home/*" ! -path "/proc/*" -path "/dev/*" -path "/sys/*" | xargs rpm -qf | grep 'not owned'
 ```

@@ -15,7 +15,7 @@ file "/" -type f # f for file
 file "/" -type d # d for directory
 
 # REgex
-find "/" -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp {} {}.bak \;
+find "/" -regex ".*\(aaa\|bbb\).*\.so" -exec cp {} {}.bak \;
 
 # node_modules
 find "." -name "node_modules" -type d -prune # list
@@ -30,4 +30,8 @@ find . -type d -empty -delete
 
 # Print files recursively
 find . -print
+
+# Exclude a path from search
+find / -not -path "/home/*" # find everything that is not in the home folder
+find / ! -path "/home/*" ! -path "/proc/*" # exclude multiple folders
 ```

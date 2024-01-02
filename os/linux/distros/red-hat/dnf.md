@@ -130,6 +130,9 @@ dnf repoquery -f "/usr/bin/vim" # must be full-path
 
 # list files in a package
 dnf repoquery -l <package>
+
+# Find installed packages that has a specific dependency
+dnf repoquery -q --installed --whatrequires <package>
 ```
 
 ## repository-packages
@@ -139,4 +142,13 @@ dnf repoquery -l <package>
 ```shell
 dnf repository-packages <repo> list
 dnf repository-packages <repo> list --installed
+```
+
+## leaves (plguin)
+
+- Install plugin: `sudo dnf install 'dnf-command(leaves)'`
+- List installed packages not required by any other package
+
+```shell
+dnf leaves
 ```
