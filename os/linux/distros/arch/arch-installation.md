@@ -68,6 +68,9 @@ mount -m "/dev/mapper/foo" "/mnt/home" -o "subvol=@home"
 # Format
 mkfs.vfat "/dev/sdx1"
 
+# Set label
+dosfslabel "/dev/sdx1" "ESP"
+
 # Mount
 mount -m "/dev/sdx1" "/mnt/boot"
 ```
@@ -103,7 +106,7 @@ pacman -Syy
 pacstrap /mnt base base-devel linux
 
 # Generate fstab
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -L /mnt >> /mnt/etc/fstab
 
 # Chroot
 arch-chroot /mnt

@@ -127,6 +127,9 @@ dnf repoquery '*' # same
 # Shows packages that own a file
 dnf repoquery -f <file>
 dnf repoquery -f "/usr/bin/vim" # must be full-path
+
+# list files in a package
+dnf repoquery -l <package>
 ```
 
 ## repository-packages

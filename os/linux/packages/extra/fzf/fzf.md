@@ -7,6 +7,8 @@ pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S
 
 ## Fish integration
 
+### Pacman
+
 - Fish keybinding are installed at `/usr/share/fish/vendor_functions.d/fzf_key_bindings.fish`
 
 ```fish
@@ -16,7 +18,7 @@ function fish_user_key_bindings
 end
 ```
 
-### Homebrew installation
+### Homebrew
 
 - On Homebrew the key bindings are not automatically added to vendor_functions.d. It must be done manually
 
