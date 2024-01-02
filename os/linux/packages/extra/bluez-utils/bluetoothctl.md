@@ -89,7 +89,7 @@ bluetoothctl untrust "mac-add"
 
 - Get the keys with `chntpw`
 
-## MacOS
+### MacOS
 
 - Access `Keychain access`
 - Search for "bluetooth"
