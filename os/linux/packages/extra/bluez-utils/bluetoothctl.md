@@ -93,7 +93,7 @@ bluetoothctl untrust "mac-add"
 
 - Access `Keychain access`
 - Search for "bluetooth"
-- Conventional bluetooth devices will show up as `MobileBluetooth`, bluetooth BLE devices will show up as an UUID
+- Conventional bluetooth devices will show up as `MobileBluetooth`, bluetooth BLE devices will show up as an `UUID`
 
 ```shell
 # Decode keys from base64 into hex
