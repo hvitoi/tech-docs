@@ -61,29 +61,6 @@ dnf list # --all (default)
 dnf list --installed
 ```
 
-## group
-
-- Groups are a collection of bundled packages
-- Types of Groups
-  - `Group`: Groups of packages
-  - `Environment Group`: Groups of groups
-
-```shell
-# Installed groups (groups & environment groups)
-dnf group list
-dnf group list --hidden # show also the groups which are part of other groups
-dnf group list -v # show group id
-dnf group list --installed # installed only
-
-# Group information (includes the contents of the group)
-dnf group info <group>
-
-# install
-dnf group instal <group>
-dnf group install "Fedora Workstation" # by group-name
-dnf group install "workstation-product-environment" # by group-id
-```
-
 ## info
 
 ```shell
@@ -110,6 +87,38 @@ dnf provides <value>
 dnf provides "ping" # returns the iputils package
 ```
 
+## repository-packages
+
+- Get the repo-id with `dnf repolist`
+
+```shell
+dnf repository-packages <repo> list
+dnf repository-packages <repo> list --installed
+```
+
+## group
+
+- Groups are a collection of bundled packages
+- Types of Groups
+  - `Group`: Groups of packages
+  - `Environment Group`: Groups of groups
+
+```shell
+# Installed groups (groups & environment groups)
+dnf group list
+dnf group list --hidden # show also the groups which are part of other groups
+dnf group list -v # show group id
+dnf group list --installed # installed only
+
+# Group information (includes the contents of the group)
+dnf group info <group>
+
+# install
+dnf group instal <group>
+dnf group install "Fedora Workstation" # by group-name
+dnf group install "workstation-product-environment" # by group-id
+```
+
 ## repolist
 
 ```shell
@@ -124,6 +133,9 @@ dnf repoquery
 dnf repoquery --all # same
 dnf repoquery '*' # same
 
+# Explicitly installed packages
+dnf repoquery --userinstalled
+
 # Shows packages that own a file
 dnf repoquery -f <file>
 dnf repoquery -f "/usr/bin/vim" # must be full-path
@@ -131,17 +143,11 @@ dnf repoquery -f "/usr/bin/vim" # must be full-path
 # list files in a package
 dnf repoquery -l <package>
 
-# Find installed packages that has a specific dependency
+# Find installed packages that requires a specific dependency
 dnf repoquery -q --installed --whatrequires <package>
-```
 
-## repository-packages
-
-- Get the repo-id with `dnf repolist`
-
-```shell
-dnf repository-packages <repo> list
-dnf repository-packages <repo> list --installed
+# Get the group that a package belongs to
+dnf repoquery --groupmember <package>
 ```
 
 ## leaves (plguin)
