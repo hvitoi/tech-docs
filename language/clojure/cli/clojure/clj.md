@@ -16,6 +16,9 @@ clj -X "myns/myfn"
 
 # Execute an alias (defined at deps.edn)
 clj -A:mycustomalias
+
+# Build and install a package defined with deps.edn
+clojure -T:nu jar && clojure -T:nu install
 ```
 
 ## Clj Opts
