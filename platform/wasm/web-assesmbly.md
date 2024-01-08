@@ -27,6 +27,8 @@ emcc myapp.c -s "NO_EXIT_RUNTIME=1" -s "EXPORTED_RUNTIME_METHODS=ccall,cwrap" //
 
 ### wasm-pack (Rust)
 
+- Libraries: `externref` and `yew`
+
 ```shell
 cargo install wasm-pack
 cargo install cargo-generate
