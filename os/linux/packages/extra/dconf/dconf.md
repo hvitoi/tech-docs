@@ -28,3 +28,10 @@ dconf update
 ```shell
 dconf dump "/"
 ```
+
+## reset
+
+```shell
+# reset gnome settings to default
+dconf reset -f /org/gnome/
+```

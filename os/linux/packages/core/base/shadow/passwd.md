@@ -1,4 +1,4 @@
-# Passwd
+# passwd
 
 ```shell
 # Change password an a user

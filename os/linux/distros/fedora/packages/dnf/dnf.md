@@ -123,6 +123,7 @@ dnf group install "workstation-product-environment" # by group-id
 
 ```shell
 dnf repolist
+dnf repolist -v
 ```
 
 ## repoquery
@@ -150,7 +151,7 @@ dnf repoquery -q --installed --whatrequires <package>
 dnf repoquery --groupmember <package>
 ```
 
-## leaves (plguin)
+## leaves (plugin)
 
 - Install plugin: `sudo dnf install 'dnf-command(leaves)'`
 - List installed packages not required by any other package
