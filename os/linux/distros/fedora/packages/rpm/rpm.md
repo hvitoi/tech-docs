@@ -23,6 +23,9 @@ rpm -qc <package>
 # Show the package that a command belongs to
 rpm -qf `command-dir`
 rpm -qf /etc/bin/ksh
+
+# get release
+rpm -E %fedora
 ```
 
 ## Install/Uninstall packages

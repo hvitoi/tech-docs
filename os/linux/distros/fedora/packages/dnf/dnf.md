@@ -59,6 +59,7 @@ dnf autoremove
 ```shell
 dnf list # --all (default)
 dnf list --installed
+dnf list --installed | sort -k 3
 ```
 
 ## info
@@ -133,22 +134,34 @@ dnf repolist -v
 dnf repoquery
 dnf repoquery --all # same
 dnf repoquery '*' # same
-
-# Explicitly installed packages
-dnf repoquery --userinstalled
-
-# Shows packages that own a file
-dnf repoquery -f <file>
-dnf repoquery -f "/usr/bin/vim" # must be full-path
-
-# list files in a package
-dnf repoquery -l <package>
-
-# Find installed packages that requires a specific dependency
-dnf repoquery -q --installed --whatrequires <package>
+dnf repoquery --userinstalled # explicitly installed
+dnf repoquery --installed # explicitly installed
+dnf repoquery --nevra # (default) name-epoch:version-release.architecture
+dnf repoquery --nvr # name-version-release
 
 # Get the group that a package belongs to
 dnf repoquery --groupmember <package>
+dnf repoquery --groupmember <package>
+
+# Find packages that depends on a package
+dnf repoquery --whatrequires <package> # mandatory
+dnf repoquery --alldeps --whatdepends <package> # packages that depends on a provider
+dnf repoquery --exactdeps --whatdepends <package> # packages that depends on a provider or exact dependencyc
+
+# Capabilities by packages
+dnf repoquery --requires <package> # mandatory capabilities
+dnf repoquery --provides <package> # capabilities provided by this package
+dnf repoquery --requires --resolve <package> # resolve capabilities into packages
+
+# Package that own a file
+dnf repoquery -f <file>
+dnf repoquery -f "/usr/bin/vim" # must be full-path
+
+# List files in a package
+dnf repoquery -l <package>
+
+# Package info
+dnf repoquery -i <package>
 ```
 
 ## leaves (plugin)
