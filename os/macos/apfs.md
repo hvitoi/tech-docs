@@ -42,6 +42,17 @@
   - Sealed: no
   - FileVault: no
 
+### Special Containers
+
+- On Apple Silicon machines, there are 2 special APFS containers
+  - **iBoot System Container**
+    - Type: `Apple_APFS_ISC`
+    - The first partition on the disk
+  - **System Recovery**
+    - Type: `Apple_APFS_Recovery`
+    - The last one on the disk
+- These partitions should never be touched
+
 ## Crypto Users/Keys (APFSCryptoUserType)
 
 - Get the crypto users for a given APFS filesystem using `fdesetup list -extended` or `diskutil apfs listCryptoUsers diskX`
