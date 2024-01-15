@@ -2,11 +2,15 @@
 
 - Access/modify config store
 
+## get
+
 ```shell
 scutil --get HostName
 scutil --get LocalHostName
 scutil --get ComputerName
 ```
+
+## set
 
 ```shell
 # primary hostname - fully qualified hostname e.g., mymac.domain.com
@@ -17,4 +21,11 @@ scutil --set LocalHostName "new-hostname"
 
 # computer name
 scutil --set ComputerName "new-name"
+```
+
+## dns
+
+```shell
+# show DNS resolver servers
+scutil --dns
 ```
