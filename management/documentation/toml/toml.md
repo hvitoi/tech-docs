@@ -1,0 +1,81 @@
+# Toml
+
+- `Tom's obvious minimal language`
+- Introduced in 2013
+
+```toml
+# Root-level key-value pairs
+name = 'My Project' # single quotes for literal strings
+version = "1.0.0" # double quotes allow interpolation
+updated = true # boolean
+numbers = [1, 2, 3] # array
+letters = ['a', 'b', 'c'] # array
+age = 30 # number
+timestamp = 2019-01-01T00:00:00Z
+"ç" = 'non-utf8 character in quotation marks'
+inline_table = { name = "John Doe", age = 30 } # table
+
+# Table: a map with key-value pairs
+[table]
+nested_table1.type = "sqlite" # inline table
+nested_table1.path = "data.db" # inline table
+
+# Nested table
+[table.nested_table2]
+author = 'John Joe'
+
+# Table group: List of Tables
+[[table_group]]
+fruit = "apple"
+
+[[table_group]]
+fruit = "orange"
+
+[[table_group]]
+fruit = "banana"
+```
+
+```json
+{
+  "name": "My Project",
+  "version": "1.0.0",
+  "updated": true,
+  "numbers": [
+    1,
+    2,
+    3
+  ],
+  "letters": [
+    "a",
+    "b",
+    "c"
+  ],
+  "age": 30,
+  "timestamp": "2019-01-01T00:00:00.000Z",
+  "ç": "non-utf8 character in quotation marks",
+  "inline_table": {
+    "name": "John Doe",
+    "age": 30
+  },
+  "table": {
+    "nested_table1": {
+      "type": "sqlite",
+      "path": "data.db"
+    },
+    "nested_table2": {
+      "author": "John Joe"
+    }
+  },
+  "table_group": [
+    {
+      "fruit": "apple"
+    },
+    {
+      "fruit": "orange"
+    },
+    {
+      "fruit": "banana"
+    }
+  ]
+}
+```
