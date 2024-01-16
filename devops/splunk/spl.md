@@ -36,3 +36,11 @@ log=<log>
 ```sql
 | table <field>
 ```
+
+## timechart
+
+- Count occurences by a time interval
+
+```sql
+| timechart count span=60s
+```
