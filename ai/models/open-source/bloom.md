@@ -1,3 +1,0 @@
-# Bloom
-
-- Opensource language model

@@ -1,6 +1,8 @@
 # MLops
 
 - The process on turning raw data into an actual machine learning model
+- Approach to ML lifecycle management
+- MLOps applies to the entire lifecycle - from integrating with model generation (software development lifecycle, continuous integration/continuous delivery), orchestration, and deployment, to health, diagnostics, governance, and business metrics
 
 ## VertexAI
 
