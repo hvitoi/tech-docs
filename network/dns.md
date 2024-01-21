@@ -1,7 +1,8 @@
 # DNS (Domain Name System)
 
 - DNS servers are crucial for the functioning of the internet as they facilitate the resolution of `domain names` to `IP addresses`.
-- `ICANN`: nonprofit organization that oversees the use of internet domains.
+- `ICANN`: nonprofit organization that oversees the use of internet domains
+  - WHOIS info: <https://lookup.icann.org/> (includes registrar and nameserver config)
 - **Terminology**
 
   - `Domain Name System` (DNS) translates hostnames
@@ -19,9 +20,9 @@
   - GoDaddy
   - Wix
   - AWS Route53
+  - Registo BR (*.br only)
 - They verify if the domain is available and allow you to purchase it
 - Once the domain is registered, you are the `legal owner` of the domain name
-- Find the Registrar of a given domain: <https://whois.icann.org/en/lookup?name=hvitoi.com>
 
 ## DNS Server
 
@@ -66,10 +67,16 @@ Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
 
 ## Domain Names & Levels
 
-- `Root`: .
-- `Top Level Domain` (TLD): .com, .net, .gov
-- `Second Level Domain` (SLD): amazon.com, google.com
-- `Sub Domain`: api.amazon.com. It is managed by the domain registrar
+- **Root**: .
+- **Top Level Domain** (TLD)
+  - E.g., .com, .net, .gov
+- **Second Level Domain** (SLD)
+  - Also known as apex domain
+  - Configured with A, ALIAS or ANAME records
+  - E.g., amazon.com, google.com
+- **Subdomain**
+  - Configured with CNMAE record
+  - E.g, api.amazon.com.
 
 ![Domain Name](./images/domain-name.png)
 
