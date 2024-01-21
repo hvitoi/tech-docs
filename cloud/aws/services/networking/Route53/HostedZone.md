@@ -26,25 +26,6 @@ Properties:
     - VPC
 ```
 
-- **Terminology**
-
-  - `Domain Name System` (DNS) translates hostnames
-  - `Domain Registrar`: GoDaddy, Route53, etc
-  - `DNS Record Types`: A, AAAA, CNAME, NS, ...
-  - `Zone File`: Contains all the DNS records
-  - `Name Server`: Servers that resolve the DNS query (authoritative or non-authoritative)
-
-- **Domain Levels**
-
-  - `Root`: .
-  - `Top Level Domain` (TLD): .com, .net, .gov
-  - `Second Level Domain` (SLD): amazon.com, google.com
-  - `Sub Domain`: api.amazon.com. It is managed by the domain registrar
-
-  ![Domain Name](../../../images/domain-name.png)
-
-  ![DNS Flow](../../../images/dns-flow.png)
-
 - **Authoritative DNS Server**
 
   - A DNS Server where the customer (you) can modify the DNS records

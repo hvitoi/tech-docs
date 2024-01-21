@@ -15,51 +15,6 @@
 
 ![Package routing](./images/package-routing.png)
 
-## DNS (Domain Name System)
-
-- `Name resolution`: translate hostnames to IP addresses
-- Add dns entries locally to `/etc/hosts`
-- A `DNS server` manages dns tables centrally. Then all hosts must look up that server.
-- The host must configure the file `/etc/resolv.conf` with the dns server URL to fetch from
-
-```conf
-search mycompany.com prod.mycompany.com # append domain names to the requests
-nameserver 192.168.1.100 # ip of a dns server
-nameserver 8.8.8.8 # another dns server (google)
-```
-
-- `DNS Lookup Order`: 1st /etc/hosts, 2nd DNS server.
-  - The order can be modified at `/etc/nsswitch.conf` (line with hosts entry)
-
-## Domain Names & Levels
-
-- `Root`: .
-- `Top Level Domain` (TLD): .com, .net, .gov
-- `Second Level Domain` (SLD): amazon.com, google.com
-- `Sub Domain`: api.amazon.com. It is managed by the domain registrar
-
-![Domain Name](./images/domain-name.png)
-
-- Resolving steps
-  1. Hit the local dns server
-  1. Hit the root dns server
-  1. Hit the .com dns server
-  1. Hit the google dns server: serve you with the IP of the apps subdomain
-
-![Gateway](./images/dns-caching.png)
-
-## Record Types
-
-- `A`: hostname to IPv4
-  - webserver 192.168.1.1
-- `AAAA`: hostname to IPv6
-  - webserver 2804:14d:1:0:181:213:132:4
-- `CNAME`: hostname to hostname (aliases)
-  - food.web-server eat.web-server,hungry.web-server
-- `NS`: name server. e.g., .com, .net
-
-- Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
-
 ## Network namespaces
 
 - It's an isolated network configuration applied only to a container
