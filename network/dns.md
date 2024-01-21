@@ -1,7 +1,7 @@
 # DNS (Domain Name System)
 
-- Performs (not only) name resolution (translates hostnames to IP addresses)
-
+- DNS servers are crucial for the functioning of the internet as they facilitate the resolution of `domain names` to `IP addresses`.
+- `ICANN`: nonprofit organization that oversees the use of internet domains.
 - **Terminology**
 
   - `Domain Name System` (DNS) translates hostnames
@@ -10,32 +10,24 @@
   - `Zone File`: Contains all the DNS records
   - `Name Server`: Servers that resolve the DNS query (authoritative or non-authoritative)
 
-## DNS Record Types
-
-- `A`: hostname to IPv4
-  - webserver 192.168.1.1
-- `AAAA`: hostname to IPv6
-  - webserver 2804:14d:1:0:181:213:132:4
-- `CNAME`: hostname to hostname (aliases)
-  - food.web-server eat.web-server,hungry.web-server
-- `NS`: name server. e.g., .com, .net
-
-- Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
-
 ## Domain Registrar
 
 - `Domain Registrar` is a company who can provide internet domain names
 - Examples:
+  - Cloudfare (recommended)
+  - Namecheap (recommended)
   - GoDaddy
   - Wix
-  - Namecheap
   - AWS Route53
 - They verify if the domain is available and allow you to purchase it
 - Once the domain is registered, you are the `legal owner` of the domain name
+- Find the Registrar of a given domain: <https://whois.icann.org/en/lookup?name=hvitoi.com>
 
 ## DNS Server
 
-- A `DNS server` manages dns tables centrally. Then all hosts must look up that server.
+- Also known as `authoritative DNS server` or `nameserver`
+- A **DNS server** is any server that implements the DNS protocol
+- It manages dns tables centrally. Then all hosts must look up that server.
 - The host must configure the file `/etc/resolv.conf` with the dns server URL to fetch from
 - Add dns entries locally to `/etc/hosts`
 
@@ -52,6 +44,25 @@ nameserver 8.8.8.8 # another dns server (google)
 
   - A DNS Server where the customer (you) can modify the DNS records
   - For instance, Route53 is both an `authoritative DNS server` and a `domain registrar`
+
+## DNS Record Types
+
+- **A**
+  - hostname to IPv4
+  - webserver 192.168.1.1
+- **AAAA**
+  - hostname to IPv6
+  - webserver 2804:14d:1:0:181:213:132:4
+- **CNAME**
+  - hostname to hostname (aliases)
+  - E.g, food.web-server eat.web-server,hungry.web-server
+- **NS**
+  - The NS records are pointers to the `authoritative name servers` for a particular domain or subdomain.
+  - When using a Registrar that has DNS server support, this config is usually automatically configured
+  - You can also use a registrar and configure a different NS (custom name server)
+  - E.g., .com, .net
+
+Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
 
 ## Domain Names & Levels
 
@@ -71,3 +82,9 @@ nameserver 8.8.8.8 # another dns server (google)
   1. Hit the google dns server: serve you with the IP of the apps subdomain
 
 ![Gateway](./images/dns-caching.png)
+
+## DNSSEC (DNS Security Extensions)
+
+- Protect your domain from threats
+  - DNS cache poisoning attacks
+  - DNS spoofing
