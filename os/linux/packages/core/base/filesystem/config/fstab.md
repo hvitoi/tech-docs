@@ -30,18 +30,18 @@ genfstab -L "/mnt" >> "/mnt/etc/fstab" # by label
 
 - <https://wiki.archlinux.org/title/Persistent_block_device_naming>
 
-- **PARTUUID**
-  - Partition identifier
-  - Available GPT disks
-  - Can be set using `gdisk`
-- **PARTLABEL**
-  - Partition label
-  - Available GPT disks
-  - Can be set using `gdisk` (max 72 characters long)
-  - Partition labels are defined in the header of the partition entry on GPT disks
 - **UUID**
   - Filesystem identifier
   - Can be set with filesystem-specific tools (e.g., e2label, xfs_admin, fatlabel)
 - **LABEL**
   - Filesystem label
   - Can be set with filesystem-specific tools (e.g., e2label, xfs_admin, fatlabel)
+- **PARTUUID** (GUID only)
+  - Partition identifier
+  - Available GPT disks
+  - Can be set using `gdisk`
+- **PARTLABEL** (GUID only)
+  - Partition label
+  - Available GPT disks
+  - Can be set using `gdisk` (max 72 characters long)
+  - Partition labels are defined in the header of the partition entry on GPT disks

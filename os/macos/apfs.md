@@ -2,6 +2,15 @@
 
 - Replaces `HFS+` (MacOS Extended)
 
+## Concepts
+
+- `Container`: contains volumes
+- `Volume Group`: logically classify volumes
+- `Volume`: unit of filesystem inside of containers
+
+- `Volume Name`: the "LABEL"
+- `Volume UUID`: the "UUID"
+
 ## Chracteristics
 
 - **Space sharing**
