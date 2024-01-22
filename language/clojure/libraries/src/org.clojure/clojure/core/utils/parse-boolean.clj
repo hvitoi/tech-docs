@@ -1,2 +1,3 @@
-(parse-boolean "false")
-(parse-boolean nil)
+(parse-boolean "false") :false
+(parse-boolean "a") ; nil
+(parse-boolean nil) ; exception
