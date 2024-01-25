@@ -2,6 +2,10 @@
 
 - Wayland sessions definition: `/usr/share/wayland-sessions`
 
+```shell
+systemctl restart "display-manager.service"
+```
+
 ## GDM
 
 - Runs on wayland and launches wayland compositors
