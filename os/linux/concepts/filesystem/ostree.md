@@ -6,3 +6,7 @@
   - Endless
   - Opensuse microos
   - Clear Linux
+
+## OSTree
+
+- Layered architecture for filesystem (or entire linux systems)

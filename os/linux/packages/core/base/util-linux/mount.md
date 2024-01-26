@@ -22,6 +22,9 @@ mount "/dev/sda1" "/mnt/boot" -m
 # mount by label
 mount /mnt -L "FOO" # same as mount LABEL=FOO /mnt
 
+# mount filesystem
+mount -t proc proc /proc
+
 # show mounts
 mount -a
 

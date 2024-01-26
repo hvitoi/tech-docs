@@ -43,3 +43,13 @@ docker container run \
     -d \
     "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019"
 ```
+
+## Examples
+
+```shell
+# Alpine Linux shell
+docker container run --rm -it alpine
+
+# Mount the whole host filesystem into the container (unsafe)
+docker run -it -v /:/mnt alpine
+```
