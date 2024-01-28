@@ -4,22 +4,19 @@ class Main {
   public static void main(String[] args) {
 
     // Number Implementations
-    NumberImplementations.run();
+    _implementations();
 
     // Instance methods
-    NumberByteValue.run();
-    NumberShortValue.run();
-    NumberIntValue.run();
-    NumberLongValue.run();
+    _byteValue();
+    _shortValue();
+    _intValue();
+    _longValue();
 
-    NumberDoubleValue.run();
-    NumberFloatValue.run();
+    _floatValue();
+    _doubleValue();
   }
-}
 
-class NumberImplementations {
-  static void run() {
-
+  static void _implementations() {
     byte myByte = 120;
     byte byteSizeBytes = Byte.BYTES; // 1 byte
     byte byteMinValue = Byte.MIN_VALUE; // -128
@@ -54,45 +51,33 @@ class NumberImplementations {
     double doubleMaxValue = Double.MAX_VALUE; // 1.7976931348623157 E+308
 
   }
-}
 
-class NumberByteValue {
-  static void run() {
+  static void _byteValue() {
     Number number = 29;
     byte byteValue = number.byteValue();
   }
-}
 
-class NumberShortValue {
-  static void run() {
+  static void _shortValue() {
     Number number = 29;
     short shortValue = number.shortValue();
   }
-}
 
-class NumberIntValue {
-  static void run() {
+  static void _intValue() {
     Number number = 29;
     int intValue = number.intValue();
   }
-}
 
-class NumberLongValue {
-  static void run() {
+  static void _longValue() {
     Number number = 29;
     long longValue = number.longValue();
   }
-}
 
-class NumberFloatValue {
-  static void run() {
+  static void _floatValue() {
     Number number = 29;
     float floatValue = number.floatValue();
   }
-}
 
-class NumberDoubleValue {
-  static void run() {
+  static void _doubleValue() {
     Number number = 29;
     double doubleValue = number.doubleValue();
   }

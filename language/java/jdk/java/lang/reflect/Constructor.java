@@ -2,27 +2,22 @@ import java.lang.reflect.Constructor;
 
 class Main {
   public static void main(String[] args) {
-    ClassGetConstructors.run();
-    ClassGetConstructor.run();
+    _getConstructors();
+    _getConstructor();
 
     // Instance methods
-    ConstructorGetName.run();
-    ConstructorNewInstance.run();
-
+    _getName();
+    _newInstance();
   }
-}
 
-class ClassGetConstructors {
-  static void run() {
+  static void _getConstructors() {
     Class clazz = new Person().getClass();
 
     // List containing public Person() constructor
     Constructor[] constructors = clazz.getConstructors();
   }
-}
 
-class ClassGetConstructor {
-  static void run() {
+  static void _getConstructor() {
     Class clazz = new Person().getClass();
 
     // NoSuchMethodException is thrown is the constructor is not found
@@ -31,10 +26,8 @@ class ClassGetConstructor {
     // Constructor constructor2 = clazz.getConstructor(String.class); // get
     // constructor with string arg
   }
-}
 
-class ConstructorGetName {
-  static void run() {
+  static void _getName() {
     Class clazz = new Person().getClass();
     Constructor[] constructors = clazz.getConstructors();
 
@@ -42,18 +35,14 @@ class ConstructorGetName {
       String constructorName = constructor.getName();
       System.out.println(constructorName);
     }
-
   }
-}
 
-class ConstructorNewInstance {
-  static void run() {
+  static void _newInstance() {
     Class clazz = new Person().getClass();
     Constructor constructor = clazz.getConstructors()[0]; // get first constructor (no args)
 
     // Instantiate a new object from an constructor
     // Person newPerson = (Person) constructor.newInstance();
-
   }
 }
 

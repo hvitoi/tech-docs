@@ -1,23 +1,16 @@
 class Main {
   public static void main(String[] args) {
 
-    /**
-     * Static
-     */
-    MathAbs.run();
-    MathRandom.run();
-
+    // Static methods
+    _abs();
+    _random();
   }
-}
 
-class MathAbs {
-  static void run() {
+  static void _abs() {
     int absolute = Math.abs(-1);
   }
-}
 
-class MathRandom {
-  static void run() {
+  static void _random() {
     double rand = Math.random(); // [0,1)
   }
 }

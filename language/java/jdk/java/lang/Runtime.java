@@ -7,24 +7,20 @@ class Main {
     /*
      * Static
      */
-    _getRuntime.run();
+    _getRuntime();
 
     /*
      * Instance
      */
-    _availableProcessors.run();
+    _availableProcessors();
 
   }
-}
 
-class _getRuntime {
-  static void run() {
+  static void _getRuntime() {
     Runtime.getRuntime();
   }
-}
 
-class _availableProcessors {
-  static void run() {
+  static void _availableProcessors() {
     var runtime = Runtime.getRuntime();
     runtime.availableProcessors();
   }

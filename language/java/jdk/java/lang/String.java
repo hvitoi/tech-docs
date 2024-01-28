@@ -4,28 +4,26 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    StringNew.run();
-    StringFormat.run();
+    _new();
+    _format();
 
     // Instance methods
-    StringCharAt.run();
-    StringCompareTo.run();
-    StringConcat.run();
-    StringContains.run();
-    StringIsEmpty.run();
-    StringIndexOf.run();
-    StringLength.run();
-    StringMatches.run();
-    StringReplace.run();
-    StringSubstring.run();
-    StringToLowerCase.run();
-    StringToUpperCase.run();
-    StringTrim.run();
+    _charAt();
+    _compareTo();
+    _concat();
+    _contains();
+    _isEmpty();
+    _indexOf();
+    _length();
+    _matches();
+    _replace();
+    _substring();
+    _toLowerCase();
+    _toUpperCase();
+    _trim();
   }
-}
 
-class StringNew {
-  static void run() {
+  static void _new() {
     // String initialization with object literal
     String str = "My String"; // new String("My String")
 
@@ -37,26 +35,19 @@ class StringNew {
     String englishString = "Develop with pleasure";
     byte[] englishBytes = englishString.getBytes();
     String utf8EncondedEnglishString = new String(englishBytes, StandardCharsets.UTF_8);
-
   }
-}
 
-class StringFormat {
-  static void run() {
+  static void _format() {
     String name = "Henry";
     String formatted = String.format("hello, %s!", name);
   }
-}
 
-class StringCharAt {
-  static void run() {
+  static void _charAt() {
     String s = "blue";
     s.charAt(2); // char at index 2
   }
-}
 
-class StringCompareTo {
-  static void run() {
+  static void _compareTo() {
     String s1 = "blue";
     String s2 = "blue";
     String s3 = "green";
@@ -64,41 +55,31 @@ class StringCompareTo {
     s1.compareTo(s2); // zero
     s1.compareTo(s3); // non-zero
   }
-}
 
-class StringConcat {
-  static void run() {
+  static void _concat() {
     String s = "hey";
     s.concat("!"); // hey!
   }
-}
 
-class StringContains {
-  static void run() {
+  static void _contains() {
     String s = "awesome";
     s.contains("esom"); // true
   }
-}
 
-class StringIsEmpty {
-  static void run() {
+  static void _isEmpty() {
     String s = "";
     s.isEmpty(); // true
   }
-}
 
-class StringIndexOf {
-  static void run() {
+  static void _indexOf() {
     String s = "blue";
 
     s.indexOf('u'); // index of character u (first occurrence)
     s.indexOf("lu"); // index of a substring (first occurrence)
 
   }
-}
 
-class StringLength {
-  static void run() {
+  static void _length() {
     String s = "blue";
 
     s.length(); // string length
@@ -106,12 +87,9 @@ class StringLength {
     for (int i = 0; i < s.length(); i++) {
       s.charAt(i);
     }
-
   }
-}
 
-class StringMatches {
-  static void run() {
+  static void _matches() {
     String email = "mail@mail.com";
     email.matches("^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 
@@ -126,54 +104,35 @@ class StringMatches {
     // String numero = "963400122";
     // ddd.matches("\\d{2}");
     // numero.matches("\\d{8}|\\d{9}");
-
   }
-}
 
-class StringReplace {
-  static void run() {
+  static void _replace() {
     String s = "blue";
 
     s.replace("e", "eee"); // original string remains untouched
     s.replace('e', 'i');
     s.replace("bl", "Bl");
-
   }
-}
 
-class StringSubstring {
-  static void run() {
+  static void _substring() {
     String s = "blue";
 
     // get "blu"
     s.substring(0, 3); // throws StringIndexOutOfBoundsException if out of bounds
-
   }
-}
 
-class StringToLowerCase {
-  static void run() {
+  static void _toLowerCase() {
     String s = "BLUE";
-
     s.toLowerCase(); // original string remains untouched
-
   }
-}
 
-class StringToUpperCase {
-  static void run() {
+  static void _toUpperCase() {
     String s = "blue";
-
     s.toUpperCase(); // original string remains untouched
-
   }
-}
 
-class StringTrim {
-  static void run() {
+  static void _trim() {
     String s = " hey!   ";
-
     s.trim(); // hey!
-
   }
 }

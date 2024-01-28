@@ -5,13 +5,10 @@ class Main {
   public static void main(String[] args) {
 
     // Instance methods
-    PackageGetName.run();
-
+    _getName();
   }
-}
 
-class PackageGetName {
-  static void run() {
+  static void _getName() {
     Class clazz = new Person().getClass();
     Package pkg = clazz.getPackage();
 

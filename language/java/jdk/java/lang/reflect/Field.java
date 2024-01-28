@@ -8,13 +8,81 @@ class Main {
     ClassGetField.run();
 
     // Instance methods
-    FieldGetName.run();
-    FieldGetType.run();
-    FieldSetAccessible.run();
-    FieldCanAccess.run();
-    FieldSet.run();
-    FieldGet.run();
-    FieldGetBoolean.run();
+    _getName();
+    _getType();
+    _setAccessible();
+    _canAccess();
+    _set();
+    _get();
+    _getBoolean();
+  }
+
+  static void _getName() {
+    Person person = new Person();
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    String fieldName = field.getName();
+  }
+
+  static void _getType() {
+    Person person = new Person();
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    Class fieldType = field.getType();
+  }
+
+  static void _setAccessible() {
+    Person person = new Person();
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    field.setAccessible(true);
+  }
+
+  static void _canAccess() {
+    Person person = new Person();
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    field.canAccess(person); // false
+    field.setAccessible(true);
+    field.canAccess(person); // true
+  }
+
+  static void _set() {
+    Person person = new Person("henry");
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    field.setAccessible(true);
+
+    try {
+      field.set(person, "john"); // modify its value
+    } catch (IllegalAccessException e) {
+    }
+
+  }
+
+  static void _get() {
+    Person person = new Person("henry");
+    Field field = person.getClass().getDeclaredFields()[0];
+
+    field.setAccessible(true);
+
+    try {
+      Object value = field.get(person);
+      // Object value = field.get(null); // if field is public static
+    } catch (IllegalAccessException e) {
+    }
+  }
+
+  static void _getBoolean() {
+    Person person = new Person("henry");
+    Field field = person.getClass().getDeclaredFields()[2]; // isHappy field
+
+    field.setAccessible(true);
+
+    try {
+      boolean isHappy = field.getBoolean(person); // get boolean value from a field
+    } catch (IllegalAccessException e) {
+    }
 
   }
 }
@@ -53,91 +121,6 @@ class ClassGetField {
       Field field = person.getClass().getField("name");
     } catch (NoSuchFieldException e) {
     }
-  }
-}
-
-class FieldGetName {
-  static void run() {
-    Person person = new Person();
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    String fieldName = field.getName();
-  }
-}
-
-class FieldGetType {
-  static void run() {
-    Person person = new Person();
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    Class fieldType = field.getType();
-  }
-}
-
-class FieldSetAccessible {
-  static void run() {
-    Person person = new Person();
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    field.setAccessible(true);
-  }
-}
-
-class FieldCanAccess {
-  static void run() {
-    Person person = new Person();
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    field.canAccess(person); // false
-    field.setAccessible(true);
-    field.canAccess(person); // true
-
-  }
-}
-
-class FieldSet {
-  static void run() {
-    Person person = new Person("henry");
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    field.setAccessible(true);
-
-    try {
-      field.set(person, "john"); // modify its value
-    } catch (IllegalAccessException e) {
-    }
-
-  }
-}
-
-class FieldGet {
-  static void run() {
-    Person person = new Person("henry");
-    Field field = person.getClass().getDeclaredFields()[0];
-
-    field.setAccessible(true);
-
-    try {
-      Object value = field.get(person);
-      // Object value = field.get(null); // if field is public static
-    } catch (IllegalAccessException e) {
-    }
-
-  }
-}
-
-class FieldGetBoolean {
-  static void run() {
-    Person person = new Person("henry");
-    Field field = person.getClass().getDeclaredFields()[2]; // isHappy field
-
-    field.setAccessible(true);
-
-    try {
-      boolean isHappy = field.getBoolean(person); // get boolean value from a field
-    } catch (IllegalAccessException e) {
-    }
-
   }
 }
 

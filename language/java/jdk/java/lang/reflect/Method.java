@@ -8,14 +8,37 @@ class Main {
     ClassGetMethod.run();
 
     // Instance methods
-    MethodGetName.run();
-    MethodInvoke.run();
-    // MethodGetType.run();
-    // MethodSetAccessible.run();
-    // MethodSet.run();
-    // MethodGet.run();
-    // MethodGetBoolean.run();
+    _getName();
+    _invoke();
+    // _getType();
+    // _setAccessible();
+    // _set();
+    // _get();
+    // _getBoolean();
 
+  }
+
+  static void _getName() {
+    Class clazz = new Person().getClass();
+    Method[] methods = clazz.getDeclaredMethods();
+
+    for (Method method : methods) {
+      String methodName = method.getName();
+      System.out.println(methodName);
+    }
+  }
+
+  static void _invoke() {
+    Person person = new Person();
+    Class clazz = person.getClass();
+
+    try {
+      Method method = clazz.getDeclaredMethod("printName");
+      method.invoke(person);
+      // method.invoke(person, arg1, arg2);
+      // String name = (String) method.invoke(person);
+    } catch (NoSuchMethodException e) {
+    }
   }
 }
 
@@ -65,35 +88,6 @@ class ClassGetMethod {
   }
 }
 
-class MethodGetName {
-  static void run() {
-    Class clazz = new Person().getClass();
-    Method[] methods = clazz.getDeclaredMethods();
-
-    for (Method method : methods) {
-      String methodName = method.getName();
-      System.out.println(methodName);
-    }
-
-  }
-}
-
-class MethodInvoke {
-  static void run() {
-    Person person = new Person();
-    Class clazz = person.getClass();
-
-    try {
-      Method method = clazz.getDeclaredMethod("printName");
-      method.invoke(person);
-      // method.invoke(person, arg1, arg2);
-      // String name = (String) method.invoke(person);
-    } catch (NoSuchMethodException e) {
-    }
-
-  }
-}
-
 public class Person {
   private String name;
   private int age;
@@ -105,5 +99,4 @@ public class Person {
   public void printName(String dummyString) {
     System.out.println(this.name);
   }
-
 }

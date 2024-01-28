@@ -5,13 +5,11 @@ import java.util.function.Consumer;
 
 class Main {
   public static void main(String[] args) {
-    IterableForEach.run();
+    _forEach();
   }
-}
 
-class IterableForEach {
-  // inherited from java.lang.Iterable
-  static void run() {
+  static void _forEach() {
+    // inherited from java.lang.Iterable
     Iterable<String> stringData = Arrays.asList("john", "tom", "jane");
 
     Consumer<String> consumer1 = (el) -> System.out.println(el);
@@ -26,10 +24,8 @@ class IterableForEach {
 }
 
 class MyConsumerClass implements Consumer<String> {
-
   @Override
   public void accept(String str) {
     System.out.println(str);
   }
-
 }

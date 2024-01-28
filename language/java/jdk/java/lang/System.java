@@ -3,32 +3,24 @@ import java.util.Optional;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _println.run();
-    _currentTimeMillis.run();
-    _getenv.run();
+    _println();
+    _currentTimeMillis();
+    _getenv();
   }
-}
 
-class _println {
-  static void run() {
+  static void _println() {
     // "out" is a static attribute
     // "println" is a non-static method
     System.out.println("Hello World!");
-
   }
-}
 
-class _currentTimeMillis {
-  static void run() {
+  static void _currentTimeMillis() {
     // the difference, measured in milliseconds, between the current time and
     // midnight, January 1, 1970 UTC.
     Long msSinceEpoch = System.currentTimeMillis();
-
   }
-}
 
-class _getenv {
-  static void run() {
+  static void _getenv() {
     System.getenv("JAVA_HOME"); // environment variable
 
     try {

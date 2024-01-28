@@ -7,50 +7,40 @@ class Main {
     /*
      * Static
      */
-    _new.run();
-    _sleep.run();
-    _currentThread.run();
+    _new();
+    _sleep();
+    _currentThread();
 
     /*
      * Instance
      */
-    _start.run();
-    _getName.run();
+    _start();
+    _getName();
   }
-}
 
-class _new {
-  static void run() {
+  static void _new() {
     new Thread(() -> System.out.println("I will run in a new thread"));
   }
-}
 
-class _sleep {
-  static void run() {
+  static void _sleep() {
     try {
       // sleeps the current thread (1s)
       Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
   }
-}
 
-class _currentThread {
-  static void run() {
+  static void _currentThread() {
     // get the thread object of the current thread
     Thread.currentThread();
   }
-}
 
-class _start {
-  static void run() {
+  static void _start() {
     var thread = new Thread(() -> System.out.println("I will run in a new thread"));
     thread.start();
   }
-}
 
-class _getName {
-  static void run() {
+  static void _getName() {
     var thread = new Thread(() -> System.out.println(""));
     thread.getName();
   }

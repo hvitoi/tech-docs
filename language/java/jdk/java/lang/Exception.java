@@ -2,19 +2,15 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    _new.run();
-    _printStackTrace.run();
+    _new();
+    _printStackTrace();
   }
-}
 
-class _new {
-  static void run() {
+  static void _new() {
     Exception e = new Exception();
   }
-}
 
-class _printStackTrace {
-  static void run() {
+  static void _printStackTrace() {
     Exception e = new Exception();
     e.printStackTrace();
   }
