@@ -12,3 +12,5 @@
             d (Math/abs d')]
       :when (even? y)]
   y)
+
+(for [x "abc"] x)

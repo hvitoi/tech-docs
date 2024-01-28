@@ -1,24 +1,21 @@
 class Main {
+
   public static void main(String[] args) {
 
     // Static methods
-    BooleanNew.run();
+    _new();
 
     // Instance methods
-    BooleanBooleanValue.run();
+    _value();
 
   }
-}
 
-class BooleanNew {
-  static void run() {
+  static void _new() {
     boolean myTrue = true;
     boolean myFalse = false;
   }
-}
 
-class BooleanBooleanValue {
-  static void run() {
+  static void _value() {
     Boolean myTrue = Boolean.TRUE;
     Boolean myFalse = Boolean.FALSE;
 
