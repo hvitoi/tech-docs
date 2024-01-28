@@ -7,13 +7,10 @@ class Main {
     /**
      * Static
      */
-    DriverManagerGetConnection.run();
-
+    _getConnection();
   }
-}
 
-class DriverManagerGetConnection {
-  static void run() throws SQLException {
+  static void _getConnection() throws SQLException {
     // Uses a JDBC driver implementation
     // E.g., org.xerial:sqlite-jdbc
     Connection conn = DriverManager.getConnection("jdbc:sqlite:users_database.db");

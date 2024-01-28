@@ -4,21 +4,17 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    DurationOfMillis.run();
-    DurationOfSeconds.run();
+    _ofMillis();
+    _ofSeconds();
 
   }
-}
 
-class DurationOfMillis {
-  static void run() {
+  static void _ofMillis() {
     // 5 seconds
     Duration duration = Duration.ofMillis(5000);
   }
-}
 
-class DurationOfSeconds {
-  static void run() {
+  static void _ofSeconds() {
     Duration duration = Duration.ofSeconds(5.1);
   }
 }

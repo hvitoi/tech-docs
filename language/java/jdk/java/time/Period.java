@@ -5,22 +5,18 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    PeriodNew.run();
+    _between();
 
     // Instance methods
-    PeriodGetYears.run();
+    _getYears();
   }
-}
 
-class PeriodNew {
-  static void run() {
+  static void _between() {
     Period period = Period.between(LocalDate.now(), LocalDate.now());
     System.out.println(period.getYears());
   }
-}
 
-class PeriodGetYears {
-  static void run() {
+  static void _getYears() {
     Period period = Period.between(LocalDate.now(), LocalDate.now());
     int years = period.getYears();
   }

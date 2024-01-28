@@ -7,22 +7,18 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    _now.run();
+    _now();
 
     // Instance methods
-    _plusDays.run();
+    _plusDays();
 
   }
-}
 
-class _now {
-  static void run() {
+  static void _now() {
     LocalDate now = LocalDate.now();
   }
-}
 
-class _plusDays {
-  static void run() {
+  static void _plusDays() {
     LocalDate now = LocalDate.now();
     now.plusDays(1);
   }

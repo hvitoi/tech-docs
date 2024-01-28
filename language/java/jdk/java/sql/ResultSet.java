@@ -9,28 +9,24 @@ class Main {
     /**
      * Static
      */
-    ResultSetNew.run();
+    _new();
 
     /**
      * Instance
      */
-    ResultSetNext.run();
+    _next();
 
   }
-}
 
-class ResultSetNew {
-  static ResultSet run() throws SQLException {
+  static ResultSet _new() throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:sqlite:user_database.db");
     PreparedStatement preparedStatement = conn
         .prepareStatement("INSERT INTO user (uuid, email) values (?,?)");
     ResultSet resultSet = preparedStatement.executeQuery();
     return resultSet;
   }
-}
 
-class ResultSetNext {
-  static void run() throws SQLException {
+  static void _next() throws SQLException {
     ResultSet rs = ResultSetNew.run();
 
     // goes to the next line in the result set

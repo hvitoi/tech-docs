@@ -7,50 +7,40 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    _now.run();
-    _parse.run();
+    _now();
+    _parse();
 
     // Instance methods
-    _format.run();
-    _toEpochSecond.run();
-    _toLocalDate.run();
+    _format();
+    _toEpochSecond();
+    _toLocalDate();
 
   }
-}
 
-class _now {
-  static void run() {
+  static void _now() {
     LocalDateTime time = LocalDateTime.now(); // current time
   }
-}
 
-class _parse {
-  static void run() {
+  static void _parse() {
     String str = "24/05/2022 20:12";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     LocalDateTime time = LocalDateTime.parse(str, formatter);
   }
-}
 
-class _format {
-  static void run() {
+  static void _format() {
     LocalDateTime time = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     String str = time.format(formatter);
   }
-}
 
-class _toEpochSecond {
-  static void run() {
+  static void _toEpochSecond() {
     LocalDateTime time = LocalDateTime.now();
     long epochTime = time.toEpochSecond(ZoneOffset.UTC);
   }
-}
 
-class _toLocalDate {
-  static void run() {
+  static void _toLocalDate() {
     LocalDateTime time = LocalDateTime.now();
     LocalDate date = time.toLocalDate();
   }

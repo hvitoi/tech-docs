@@ -8,26 +8,21 @@ class Main {
     /**
      * Static
      */
-    StatementNew.run();
+    _new();
 
     /**
      * Instance
      */
-    StatementExecute.run();
-
+    _execute();
   }
-}
 
-class StatementNew {
-  static Statement run() throws SQLException {
+  static Statement _new() throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:sqlite:user_database.db");
     Statement statement = conn.createStatement();
     return statement;
   }
-}
 
-class StatementExecute {
-  static void run() throws SQLException {
+  static void _execute() throws SQLException {
     Statement statement = StatementNew.run();
     statement.execute("CREATE TABLE user (uuid varchar(200) primary key, email varchar(200))");
   }

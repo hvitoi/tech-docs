@@ -9,26 +9,20 @@ class Main {
     /**
      * Static
      */
-    ConnectionNew.run();
-
+    _new();
     /**
      * Instance
      */
-    ConnectionCreateStatement.run();
-    ConnectionPrepareStatement.run();
-
+    _createStatement();
+    _prepareStatement();
   }
-}
 
-class ConnectionNew {
-  static Connection run() throws SQLException {
+  static Connection _new() throws SQLException {
     Connection conn = DriverManager.getConnection("jdbc:sqlite:user_database.db");
     return conn;
   }
-}
 
-class ConnectionCreateStatement {
-  static void run() throws SQLException {
+  static void _createStatement() throws SQLException {
     Connection conn = ConnectionNew.run();
 
     // Statement (empty)
@@ -36,10 +30,8 @@ class ConnectionCreateStatement {
     statement.execute("CREATE TABLE user (uuid varchar(200) primary key, email varchar(200))");
 
   }
-}
 
-class ConnectionPrepareStatement {
-  static void run() throws SQLException {
+  static void _prepareStatement() throws SQLException {
     Connection conn = ConnectionNew.run();
 
     // PreparedStatement (with query built)
