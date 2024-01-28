@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 class Main {
   public static void main(String[] args) {
-
   }
 }
 

@@ -4,12 +4,10 @@ import java.io.StringWriter;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    PrintWriterNew.run();
+    _new();
   }
-}
 
-class PrintWriterNew {
-  static void run() {
+  static void _new() {
     StringWriter sw = new StringWriter();
     PrintWriter pw = new PrintWriter(sw);
 
@@ -19,6 +17,5 @@ class PrintWriterNew {
       e.printStackTrace(pw);
       System.out.println(sw.toString());
     }
-
   }
 }

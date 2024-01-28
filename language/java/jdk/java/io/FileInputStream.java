@@ -5,17 +5,15 @@ import java.io.IOException;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    FileInputStreamNew.run();
+    _new();
 
     // Instance methods
-    FileInputStreamRead.run();
-    FileInputStreamClose.run();
+    _read();
+    _close();
 
   }
-}
 
-class FileInputStreamNew {
-  static FileInputStream run() {
+  static FileInputStream _new() {
     try {
       FileInputStream fileInputStream = new FileInputStream("file.txt");
       return fileInputStream;
@@ -23,30 +21,22 @@ class FileInputStreamNew {
       return null;
     }
   }
-}
 
-class FileInputStreamRead {
-  static void run() {
-
+  static void _read() {
     FileInputStream fileInputStream = FileInputStreamNew.run();
     try {
       int binaryData = fileInputStream.read();
       fileInputStream.close();
     } catch (IOException e) {
     }
-
   }
-}
 
-class FileInputStreamClose {
-  static void run() {
-
+  static void _close() {
     FileInputStream fileInputStream = FileInputStreamNew.run();
     try {
       int binaryData = fileInputStream.read();
       fileInputStream.close();
     } catch (IOException e) {
     }
-
   }
 }

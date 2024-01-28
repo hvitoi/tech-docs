@@ -9,18 +9,15 @@ import java.io.Serializable;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    ObjectInputStreamNew.run();
+    _new();
 
     // Instance methods
-    ObjectInputStreamReadObject.run();
-    ObjectInputStreamClose.run();
+    _readObject();
+    _close();
 
   }
-}
 
-class ObjectInputStreamNew {
-  static ObjectInputStream run() {
-
+  static ObjectInputStream _new() {
     try {
       FileInputStream fileInputStream = new FileInputStream("file.txt");
       ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -30,35 +27,26 @@ class ObjectInputStreamNew {
     } catch (IOException e) { // for ObjectInputStream
       return null;
     }
-
   }
-}
 
-class ObjectInputStreamReadObject {
-  static void run() {
+  static void _readObject() {
     ObjectInputStream objectInputStream = ObjectInputStreamNew.run();
-
     try {
       Person p2 = (Person) objectInputStream.readObject(); // Person [age=20, height=null, name=Joe]
       objectInputStream.close();
     } catch (IOException e) {
     } catch (ClassNotFoundException e) {
     }
-
   }
-}
 
-class ObjectInputStreamClose {
-  static void run() {
+  static void _close() {
     ObjectInputStream objectInputStream = ObjectInputStreamNew.run();
-
     try {
       Person p2 = (Person) objectInputStream.readObject(); // Person [age=20, height=null, name=Joe]
       objectInputStream.close();
     } catch (IOException e) {
     } catch (ClassNotFoundException e) {
     }
-
   }
 }
 

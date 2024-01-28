@@ -6,45 +6,35 @@ class Main {
     /**
      * Static
      */
-    FileNew.run();
+    _new();
 
     /**
      * Instance
      */
-    FileToPath.run();
-    FileGetParentFile.run();
-    FileGetMkdirs.run();
+    _toPath();
+    _getParentFile();
+    _mkdirs();
   }
-}
 
-class FileNew {
-  static File run() {
+  static File _new() {
     File file = new File("src/main/resources/sample.json"); // scoped to the root project path
     return file;
   }
-}
 
-class FileToPath {
-  static void run() {
-    File file = FileNew.run();
-
+  static void _toPath() {
+    File file = _new();
     Path path = file.toPath();
   }
-}
 
-class FileGetParentFile {
-  static void run() {
-    File file = FileNew.run();
+  static void _getParentFile() {
+    File file = _new();
 
     // the same filename but at a parent directory
     File parentFile = file.getParentFile();
   }
-}
 
-class FileGetMkdirs {
-  static void run() {
-    File file = FileNew.run();
-
+  static void _mkdirs() {
+    File file = _new();
     // create parent directories as needed to create the file
     file.mkdirs();
   }

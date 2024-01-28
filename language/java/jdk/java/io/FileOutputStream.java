@@ -5,17 +5,14 @@ import java.io.IOException;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    FileOutputStreamNew.run();
+    _new();
 
     // Instance methods
-    FileOutputStreamWrite.run();
-    FileOutputStreamClose.run();
-
+    _write();
+    _close();
   }
-}
 
-class FileOutputStreamNew {
-  static FileOutputStream run() {
+  static FileOutputStream _new() {
     try {
       FileOutputStream fileOutputStream = new FileOutputStream("file.txt");
       return fileOutputStream;
@@ -23,30 +20,22 @@ class FileOutputStreamNew {
       return null;
     }
   }
-}
 
-class FileOutputStreamWrite {
-  static void run() {
-
-    FileOutputStream fileOutputStream = FileOutputStreamNew.run();
+  static void _write() {
+    FileOutputStream fileOutputStream = _new();
     try {
       fileOutputStream.write(1234567890); // write binary to a file
       fileOutputStream.close();
     } catch (IOException e) {
     }
-
   }
-}
 
-class FileOutputStreamClose {
-  static void run() {
-
-    FileOutputStream fileOutputStream = FileOutputStreamNew.run();
+  static void _close() {
+    FileOutputStream fileOutputStream = _new();
     try {
       fileOutputStream.write(1234567890); // write binary to a file
       fileOutputStream.close();
     } catch (IOException e) {
     }
-
   }
 }

@@ -9,18 +9,15 @@ import java.io.Serializable;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    ObjectOutputStreamNew.run();
+    _new();
 
     // Instance methods
-    ObjectOutputStreamWriteObject.run();
-    ObjectOutputStreamFlush.run();
-    ObjectOutputStreamClose.run();
-
+    _writeObject();
+    _flush();
+    _close();
   }
-}
 
-class ObjectOutputStreamNew {
-  static ObjectOutputStream run() {
+  static ObjectOutputStream _new() {
     try {
       FileOutputStream fileOutputStream = new FileOutputStream("file.txt"); // save to file
       ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream); // save obj to file
@@ -31,10 +28,8 @@ class ObjectOutputStreamNew {
       return null;
     }
   }
-}
 
-class ObjectOutputStreamWriteObject {
-  static void run() {
+  static void _writeObject() {
     ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
 
     // Object -> Serialize -> File
@@ -47,10 +42,8 @@ class ObjectOutputStreamWriteObject {
     }
 
   }
-}
 
-class ObjectOutputStreamFlush {
-  static void run() {
+  static void _flush() {
     ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
 
     // Object -> Serialize -> File
@@ -62,10 +55,8 @@ class ObjectOutputStreamFlush {
     } catch (IOException e) {
     }
   }
-}
 
-class ObjectOutputStreamClose {
-  static void run() {
+  static void _close() {
     ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
 
     // Object -> Serialize -> File
@@ -90,5 +81,4 @@ class Person implements Serializable {
     this.name = name;
     this.age = age;
   }
-
 }

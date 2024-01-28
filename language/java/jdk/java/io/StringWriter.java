@@ -3,12 +3,10 @@ import java.io.StringWriter;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    StringWriterNew.run();
+    _new();
   }
-}
 
-class StringWriterNew {
-  static void run() {
+  static void _new() {
     StringWriter sw = new StringWriter();
   }
 }
