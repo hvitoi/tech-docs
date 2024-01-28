@@ -10,14 +10,11 @@ class Main {
     /**
      * Static
      */
-    FilesCopy.run();
-    FilesWrite.run();
-
+    _copy();
+    _write();
   }
-}
 
-class FilesCopy {
-  static void run() throws IOException {
+  static void _copy() throws IOException {
 
     File file = new File("file");
     Path newPath = Path.of("/");
@@ -25,10 +22,8 @@ class FilesCopy {
     // copy file from path1 to path2
     Files.copy(file.toPath(), newPath, StandardCopyOption.REPLACE_EXISTING);
   }
-}
 
-class FilesWrite {
-  static void run() throws IOException {
+  static void _write() throws IOException {
 
     File file = new File("file");
 

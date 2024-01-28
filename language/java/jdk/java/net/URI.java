@@ -4,24 +4,19 @@ import java.net.URISyntaxException;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    URINew.run();
-    URICreate.run();
-
+    _new();
+    _create();
   }
-}
 
-class URINew {
-  static void run() {
+  static void _new() {
     try {
       URI uri = new URI("https://example.com");
     } catch (URISyntaxException e) {
     }
 
   }
-}
 
-class URICreate {
-  static void run() {
+  static void _create() {
     URI uri = URI.create("https://example.com");
   }
 }

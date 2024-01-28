@@ -8,24 +8,19 @@ class Main {
   public static void main(String[] args) {
 
     // Static Methods
-    BigIntegerNew.run();
-    BigIntegerValueOf.run();
-
+    _new();
+    _valueOf();
   }
-}
 
-class BigIntegerNew {
-  static void run() {
+  static void _new() {
     BigInteger biFromString = new BigInteger("1234567890987654321");
     BigInteger biFromByteArray = new BigInteger(
         new byte[] { 64, 64, 64, 64, 64, 64 });
     BigInteger biFromSignMagnitude = new BigInteger(-1,
         new byte[] { 64, 64, 64, 64, 64, 64 });
   }
-}
 
-class BigIntegerValueOf {
-  static void run() {
+  static void _valueOf() {
     BigInteger bi = BigInteger.valueOf(2305843009213693951L);
   }
 }

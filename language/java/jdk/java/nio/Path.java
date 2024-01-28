@@ -5,13 +5,10 @@ class Main {
     /**
      * Static
      */
-    PathOf.run();
-
+    _of();
   }
-}
 
-class PathOf {
-  static void run() {
+  static void _of() {
     Path path = Path.of("/");
   }
 }
