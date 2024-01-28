@@ -10,65 +10,53 @@ class Main {
      * Implementations
      */
     // Implementations
-    MapImplementations.run();
+    implementations();
 
     /**
      * Static
      */
-    MapNew.run();
-    MapOf.run();
+    _new();
+    of();
 
     /**
      * Instance
      */
-    MapPut.run();
-    MapGet.run();
-    MapEntrySet.run();
-    MapKeySet.run();
-    MapValues.run();
+    put();
+    get();
+    entrySet();
+    keySet();
+    values();
 
   }
-}
 
-class MapImplementations {
-  static void run() {
+  static void implementations() {
     Map<Integer, String> hashMap = new HashMap<>();
     Map<Integer, String> linkedHashMap = new LinkedHashMap<>();
     Map<Integer, String> hashtable = new Hashtable<>(); // thread-safe
   }
-}
 
-class MapNew {
-  static Map<Integer, String> run() {
+  static Map<Integer, String> _new() {
     Map<Integer, String> map = new HashMap<>();
     return map;
   }
-}
 
-class MapOf {
-  static void run() {
+  static void of() {
     Map.of("cpf", "000.000.000-00");
   }
-}
 
-class MapPut {
-  static void run() {
+  static void put() {
     Map<Integer, String> map = MapNew.run();
     map.put(1, "aaa");
     map.put(2, "bbb");
   }
-}
 
-class MapGet {
-  static void run() {
+  static void get() {
     Map<Integer, String> map = MapNew.run();
     map.put(1, "aaa");
     map.get(1); // aaa
   }
-}
 
-class MapEntrySet {
-  static void run() {
+  static void entrySet() {
     Map<Integer, String> map = MapNew.run();
     map.put(1, "aaa");
 
@@ -78,10 +66,8 @@ class MapEntrySet {
     }
 
   }
-}
 
-class MapKeySet {
-  static void run() {
+  static void keySet() {
     Map<Integer, String> map = MapNew.run();
     map.put(1, "aaa");
 
@@ -90,10 +76,8 @@ class MapKeySet {
     }
 
   }
-}
 
-class MapValues {
-  static void run() {
+  static void values() {
     Map<Integer, String> map = MapNew.run();
     map.put(1, "aaa");
 

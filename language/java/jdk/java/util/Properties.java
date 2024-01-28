@@ -8,45 +8,37 @@ class Main {
     /**
      * Static
      */
-    PropertiesNew.run();
+    _new();
 
     /**
      * Instance
      */
-    PropertiesSetProperty.run();
-    PropertiesGetProperty.run();
-    PropertiesPutAll.run();
+    getProperty();
+    putAll();
+    setProperty();
 
   }
-}
 
-class PropertiesNew {
-  static void run() {
+  static void _new() {
     Properties props = new Properties();
   }
-}
 
-class PropertiesSetProperty {
-  static void run() {
-    Properties props = new Properties();
-
-    props.setProperty("a", "alpha");
-  }
-}
-
-class PropertiesGetProperty {
-  static void run() {
+  static void getProperty() {
     Properties props = new Properties();
 
     props.getProperty("a");
   }
-}
 
-class PropertiesPutAll {
-  static void run() {
+  static void putAll() {
     Properties props = new Properties();
 
     // set all key-value pairs contained inside of a map
     props.putAll(Map.of("a", 1));
+  }
+
+  static void setProperty() {
+    Properties props = new Properties();
+
+    props.setProperty("a", "alpha");
   }
 }

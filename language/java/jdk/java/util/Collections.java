@@ -10,54 +10,42 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    CollectionsEmptySet.run();
-    CollectionsNCopies.run();
-    CollectionsReverse.run();
-    CollectionsShuffle.run();
-    CollectionsSingletonList.run();
-    CollectionsSort.run();
-    CollectionsSwap.run();
-    CollectionsUnmodifiableList.run();
-    CollectionsUnmodifiableSet.run();
+    emptySet();
+    nCopies();
+    reverse();
+    shuffle();
+    singletonList();
+    sort();
+    swap();
+    unmodifiableList();
+    unmodifiableSet();
   }
-}
 
-class CollectionsEmptySet {
-  static void run() {
+  static void emptySet() {
     // create unmodified empty set
     Set<String> set = Collections.emptySet();
   }
-}
 
-class CollectionsNCopies {
-  static void run() {
+  static void nCopies() {
     // Array with size 1000 with nulls
     List<String> list = Collections.nCopies(1000, null);
   }
-}
 
-class CollectionsReverse {
-  static void run() {
+  static void reverse() {
     List<Integer> list = Arrays.asList(3, -3, 2);
     Collections.reverse(list);
   }
-}
 
-class CollectionsShuffle {
-  static void run() {
+  static void shuffle() {
     List<Integer> list = Arrays.asList(3, -3, 2);
     Collections.shuffle(list);
   }
-}
 
-class CollectionsSingletonList {
-  static void run() {
+  static void singletonList() {
     Collections.singletonList("hey"); // List with a single immutable element
   }
-}
 
-class CollectionsSort {
-  static void run() {
+  static void sort() {
     List<Integer> numberList = Arrays.asList(3, -3, 2);
     List<Integer> stringList = Arrays.asList("hey", "12", "awesome");
     List<Person> objectList = Arrays.asList(new Person(5, "Henry"), new Person(9, "Albert"), new Person(4, "John"));
@@ -82,26 +70,20 @@ class CollectionsSort {
     Collections.sort(personList, Comparator.comparing(Person::getName));
 
   }
-}
 
-class CollectionsSwap {
-  static void run() {
+  static void swap() {
     List<Integer> list = Arrays.asList(3, -3, 2);
 
     Collections.swap(list, 0, 2); // change value from index 0 to index 2
   }
-}
 
-class CollectionsUnmodifiableList {
-  static void run() {
+  static void unmodifiableList() {
     List<Integer> list = Arrays.asList(3, -3, 2);
 
     Collections.unmodifiableList(list); // return a new reference to a list that is unmodifiable
   }
-}
 
-class CollectionsUnmodifiableSet {
-  static void run() {
+  static void unmodifiableSet() {
     Set<Integer> numberSet = new HashSet<>();
     numberSet.add(5);
     numberSet.add(-3);

@@ -5,25 +5,21 @@ import java.util.Iterator;
 
 class Main {
   public static void main(String[] args) {
-    IteratorNew.run();
+    _new();
 
     // Instance methods
-    IteratorHasNext.run();
-    IteratorNext.run();
-    IteratorRemove.run();
+    hasNext();
+    next();
+    remove();
   }
-}
 
-class IteratorNew {
-  static Iterator run() {
+  static Iterator _new() {
     Iterable<String> list = Arrays.asList("henry", "john", "albert");
     Iterator<String> it = list.iterator(); // must be reset in order to iterate again
     return it;
   }
-}
 
-class IteratorHasNext {
-  static void run() {
+  static void hasNext() {
     Iterator<String> it = ListIterator.run();
 
     // loop the list
@@ -31,10 +27,8 @@ class IteratorHasNext {
       String el = it.next();
     }
   }
-}
 
-class IteratorNext {
-  static void run() {
+  static void next() {
     Iterator<String> it = ListIterator.run();
 
     // loop the list
@@ -42,10 +36,8 @@ class IteratorNext {
       String el = it.next(); // the current element in the loop
     }
   }
-}
 
-class IteratorRemove {
-  static void run() {
+  static void remove() {
     Iterator<String> it = ListIterator.run();
 
     // loop the list

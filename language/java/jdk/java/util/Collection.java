@@ -10,60 +10,49 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    CollectionNew.run();
+    _new();
 
     // Instance methods
-    CollectionAdd.run();
-    CollectionAddAll.run();
-    CollectionClear.run();
-    CollectionContains.run();
-    CollectionIsEmpty.run();
-    CollectionIterator.run();
-    CollectionRemove.run();
-    CollectionSize.run();
-    CollectionStream.run();
+    add();
+    addAll();
+    clear();
+    contains();
+    isEmpty();
+    iterator();
+    remove();
+    size();
+    stream();
     // CollectionForEach.run(); // Inherited from Iterable
   }
-}
 
-class CollectionNew {
-  static Collection run() {
+  static Collection _new() {
     Collection<String> col = new ArrayList<>();
     col.add("awesome");
     return col;
   }
-}
 
-class CollectionAdd {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void add() {
+    Collection<String> col = _new();
 
     col.add("cool"); // add element to end
     // col.add(0, "great"); // Implemented in Lists only
-
   }
-}
 
-class CollectionAddAll {
-  static void run() {
-    Collection<String> col1 = CollectionNew.run();
-    Collection<String> col2 = CollectionNew.run();
+  static void addAll() {
+    Collection<String> col1 = _new();
+    Collection<String> col2 = _new();
 
     col1.addAll(col2); // add a whole list to the list
     // col1.addAll(col2.stream().map(RespostaDto::new).collect(Collectors.toList()));
   }
-}
 
-class CollectionClear {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void clear() {
+    Collection<String> col = _new();
     col.clear(); // clear all the elements
   }
-}
 
-class CollectionContains {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void contains() {
+    Collection<String> col = _new();
 
     col.add("abc");
     col.add("abcd");
@@ -73,25 +62,21 @@ class CollectionContains {
      * element in the list. The equals method must be @Override in order to
      * customize the behavior of the comparison. The default implementation of
      * equals compare the references
-     * 
+     *
      */
     // public boolean equals(Object ref)
     col.contains("abc"); // verify if a list contains a single element
 
   }
-}
 
-class CollectionIsEmpty {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void isEmpty() {
+    Collection<String> col = _new();
     col.isEmpty(); // true or false
   }
-}
 
-class CollectionIterator {
-  static void run() {
+  static void iterator() {
 
-    Collection<String> col = CollectionNew.run();
+    Collection<String> col = _new();
     col.add("henry");
     col.add("john");
     col.add("albert");
@@ -105,26 +90,20 @@ class CollectionIterator {
     }
 
   }
-}
 
-class CollectionRemove {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void remove() {
+    Collection<String> col = _new();
 
     col.remove(0); // remove element at index 0
   }
-}
 
-class CollectionSize {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void size() {
+    Collection<String> col = _new();
     col.size(); // get size
   }
-}
 
-class CollectionStream {
-  static void run() {
-    Collection<String> col = CollectionNew.run();
+  static void stream() {
+    Collection<String> col = _new();
     col.stream(); // returns a Stream object
   }
 }

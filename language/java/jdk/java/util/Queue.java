@@ -5,47 +5,37 @@ import java.util.Queue;
 class Main {
   public static void main(String[] args) {
     // Implementations
-    QueueImplementations.run();
+    implementations();
 
     // Static methods
-    QueueNew.run();
+    _new();
 
     // Instance methods
-    QueueAdd.run();
-    QueueAddAll.run();
-    QueuePeek.run();
+    add();
+    addAll();
+    peek();
   }
-}
 
-class QueueImplementations {
-  static void run() {
+  static void implementations() {
     Queue<String> queue = new LinkedList<>();
   }
-}
 
-class QueueNew {
-  static Queue run() {
+  static Queue _new() {
     Queue<String> queue = new LinkedList<>();
     return queue;
   }
-}
 
-class QueueAdd {
-  static void run() {
+  static void add() {
     Queue<String> queue = QueueNew.run();
     queue.add("a");
   }
-}
 
-class QueueAddAll {
-  static void run() {
+  static void addAll() {
     Queue<String> queue = QueueNew.run();
     queue.addAll(Arrays.asList("a", "b", "c"));
   }
-}
 
-class QueuePeek {
-  static void run() {
+  static void peek() {
     Queue<String> queue = QueueNew.run();
     queue.add("a");
 

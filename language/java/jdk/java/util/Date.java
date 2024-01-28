@@ -4,16 +4,14 @@ import java.util.Date;
 public class Main {
   public static void main(String[] args) {
     // Static methods
-    DateNew.run();
+    _new();
 
     // Instance methods
-    DateGetTime.run();
+    getTime();
 
   }
-}
 
-class DateNew {
-  static void run() {
+  static void _new() {
     new Date(); // Current date
     new Date(System.currentTimeMillis()); // Date from a unix epoch duration
 
@@ -22,10 +20,8 @@ class DateNew {
     System.out.println(formatter.format(new Date()));
 
   }
-}
 
-class DateGetTime {
-  static void run() {
+  static void getTime() {
     Date date = new Date();
 
     Long time = date.getTime();

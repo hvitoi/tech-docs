@@ -5,14 +5,11 @@ public class Main {
   public static void main(String[] args) {
 
     // Static Methods
-    ArrayNew.run();
+    _new();
 
   }
-}
 
-class ArrayNew {
-  static void run() {
-
+  static void _new() {
     // 1D array (empty values)
     int[] scores = new int[3]; // int default value: 0
     Object[] words = new Object[3]; // obj default value: null
@@ -43,5 +40,4 @@ class ArrayNew {
     System.out.println(scores.length);
 
   }
-
 }

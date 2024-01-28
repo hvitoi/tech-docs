@@ -9,21 +9,19 @@ class Main {
   public static void main(String[] args) {
 
     // Implementations
-    ListImplementations.run();
+    implementations();
 
     // Static methods
-    ListNew.run();
+    _new();
 
     // Instance methods
-    ListAdd.run();
-    ListGet.run();
-    ListRemove.run();
-    ListSort.run();
+    add();
+    get();
+    remove();
+    sort();
   }
-}
 
-class ListImplementations {
-  static void run() {
+  static void implementations() {
 
     /**
      * * Lists accept duplicate values
@@ -43,10 +41,8 @@ class ListImplementations {
     List<String> vectorList = new Vector<>();
 
   }
-}
 
-class ListNew {
-  static List run() {
+  static List _new() {
 
     List<String> list1 = new ArrayList<>(); // empty list
     List<String> list2 = new ArrayList<>(5, 1, -3); // initial size 1, but it can be expanded
@@ -54,31 +50,23 @@ class ListNew {
 
     return list2;
   }
-}
 
-class ListAdd {
-  static void run() {
+  static void add() {
     List list = ListNew.run();
     list.add("hey");
   }
-}
 
-class ListGet {
-  static void run() {
-    List list = ListNew.run();
-    list.remove(0); // remove by index
-  }
-}
-
-class ListRemove {
-  static void run() {
+  static void get() {
     List list = ListNew.run();
     list.get(0); // get element by index
   }
-}
 
-class ListSort {
-  static void run() {
+  static void remove() {
+    List list = ListNew.run();
+    list.remove(0); // remove by index
+  }
+
+  static void sort() {
 
     List<Integer> numberList = new ArrayList<>();
     numberList.add(5);

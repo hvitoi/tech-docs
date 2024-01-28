@@ -6,15 +6,13 @@ import java.util.TreeSet;
 class Main {
   public static void main(String[] args) {
     // Implementations
-    SetImplementations.run();
+    implementations();
 
     // Static methods
-    SetNew.run();
+    _new();
   }
-}
 
-class SetImplementations {
-  static void run() {
+  static void implementations() {
 
     /**
      * * Sets do not accept duplicate values
@@ -34,10 +32,8 @@ class SetImplementations {
     treeSet.add("Henry");
 
   }
-}
 
-class SetNew {
-  static void run() {
+  static void _new() {
     Set<String> set = new HashSet<String>();
   }
 }

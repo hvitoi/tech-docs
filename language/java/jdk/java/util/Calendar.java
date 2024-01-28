@@ -5,23 +5,19 @@ import java.util.GregorianCalendar;
 public class Main {
   public static void main(String[] args) {
     // Static methods
-    CalendarNew.run();
+    _new();
 
     // Instance methods
-    CalendarGetTime.run();
+    getTime();
 
   }
-}
 
-class CalendarNew {
-  static Calendar run() {
+  static Calendar _new() {
     Calendar calendar = new GregorianCalendar();
     return calendar;
   }
-}
 
-class CalendarGetTime {
-  static void run() {
+  static void getTime() {
     Calendar calendar = CalendarNew.run();
     Date date = calendar.getTime();
   }

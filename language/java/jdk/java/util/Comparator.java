@@ -12,24 +12,18 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    ComparatorNew.run();
-    ComparatorComparing.run();
+    _new();
+    _comparing();
   }
-}
 
-class ComparatorNew {
-  static void run() {
+  static void _new() {
     Comparator comparator1 = new PersonComparator(); // old way of creating comparators
     Comparator comparator2 = (a, b) -> Integer.compare(a, b); // new syntax
 
   }
-}
 
-class ComparatorComparing {
-  static void run() {
-
+  static void _comparing() {
     // Comparator.comparing();
-
   }
 }
 
