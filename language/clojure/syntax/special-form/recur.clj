@@ -3,13 +3,13 @@
 ; can only recur from tail position!
 ; transforms a recursion into a loop!
 
-(defn my-fn
-  [function collection]
-  (when (not (nil? (first collection)))
-    (function first collection)
-    (recur function (rest collection))))
+(defn first-even
+  [coll]
+  (if (even? (first coll))
+    (first coll)
+    (recur (next coll))))
 
-(my-fn println (range 10))
+(first-even [1 3 9 2 6 7]) ; => 2
 
 ;; my own reduce (recursive)
 (defn my-reduce-sum

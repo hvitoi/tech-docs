@@ -1,21 +1,23 @@
 (require '[clojure.test :as test]
          '[clojure.string :as str])
 
-(defn partition-n
-  [s n]
-  (let [times (- (count s) n)]))
-
 (defn greatest-common-dividor
   [s1 s2]
-  (loop [s s2
-         size (count s2)]
-    (if (str/includes? s1 s)
-      s
-      (recur))))
+  (let [s (str s1 s2)]
+    (->> (range 1 (count s))
+         (map #(partition-all % s))
+         (reduce (fn [_ split]
+                   (if (apply = split)
+                     (reduced (str/join (first split)))
+                     ""))))))
 
 (test/deftest greatest-common-dividor-test
   (test/testing ""
     (test/is (= "ABC"
-                (greatest-common-dividor "ABCABC" "ABC")))))
+                (greatest-common-dividor "ABCABC" "ABC")))
+    (test/is (= "AB"
+                (greatest-common-dividor "ABABAB" "ABAB")))
+    (test/is (= ""
+                (greatest-common-dividor "LEET" "CODE")))))
 
 (test/run-test greatest-common-dividor-test)
