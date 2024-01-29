@@ -1,6 +1,10 @@
 (require '[clojure.test :as test]
          '[clojure.string :as str])
 
+(defn partition-n
+  [s n]
+  (let [times (- (count s) n)]))
+
 (defn greatest-common-dividor
   [s1 s2]
   (loop [s s2

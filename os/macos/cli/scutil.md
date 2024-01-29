@@ -25,6 +25,8 @@ scutil --set ComputerName "new-name"
 
 ## dns
 
+- Also: `cat /etc/resolv.conf`
+
 ```shell
 # show DNS resolver servers
 scutil --dns

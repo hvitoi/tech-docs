@@ -1,6 +1,7 @@
 # DNS (Domain Name System)
 
 - DNS servers are crucial for the functioning of the internet as they facilitate the resolution of `domain names` to `IP addresses`.
+- A UDP package is sent over `UDP` (unencrypted) to the `DNS Resolver` on port `53`
 - `ICANN`: nonprofit organization that oversees the use of internet domains
   - WHOIS info: <https://lookup.icann.org/> (includes registrar and nameserver config)
 - **Terminology**
@@ -24,9 +25,10 @@
 - They verify if the domain is available and allow you to purchase it
 - Once the domain is registered, you are the `legal owner` of the domain name
 
-## DNS Server
+## DNS Resolver (DNS Server)
 
 - Also known as `authoritative DNS server` or `nameserver`
+- Also known as `recursive DNS resolver`
 - A **DNS server** is any server that implements the DNS protocol
 - It manages dns tables centrally. Then all hosts must look up that server.
 - The host must configure the file `/etc/resolv.conf` with the dns server URL to fetch from
@@ -95,3 +97,38 @@ Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
 - Protect your domain from threats
   - DNS cache poisoning attacks
   - DNS spoofing
+
+## DNS Server Types
+
+### Plain DNS
+
+- Plain `UDP/53` connection
+- Public Servers
+
+  - **Google**
+    - `8.8.8.8` & `8.8.4.4` (unfiltered)
+
+  - **Cloudflare**
+    - `1.1.1.1` & `1.0.0.1` (unfiltered)
+    - `1.1.1.2` e `1.0.0.2` (blocks malware)
+
+  - **AdGuard**
+    - <https://adguard-dns.io/en/public-dns.html>
+    - `94.140.14.14` & `94.140.15.15` (block ads and trackers )
+
+### DNS over HTTPS (DoH)
+
+- Establishes a TCP connection (instead of UDP) using TLS (encrypted) on port `443`
+- Avoids DNS leak
+- Improvement: Oblivious DNS over HTTPS (ODoH)
+
+- Public Servers
+  - **AdGuard**
+    - <https://dns.adguard-dns.com/dns-query>
+
+### DNS over TLS (DoT)
+
+- Plain TCP connection on port `853`
+- Public Servers
+  - **AdGuard**
+    - <tls://dns.adguard-dns.com>
