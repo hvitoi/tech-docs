@@ -1,6 +1,5 @@
-; Returns a vector of booleans representing the predicate for each element
-; Similar to map, but with "keep", truthy values are converted to "true"
+; Same as "map" but nil values are removed
 
 ;; vector
-(keep even? [0 1 2])
-(map even? [0 1 2])
+(keep identity [9 "a" true false nil])
+(map identity [9 "a" true false nil])
