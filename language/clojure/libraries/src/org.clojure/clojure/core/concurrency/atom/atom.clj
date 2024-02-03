@@ -2,3 +2,4 @@
 
 ; access value of an atom with @
 (println @my-atom)
+(instance? clojure.lang.IDeref my-atom)

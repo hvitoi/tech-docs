@@ -1,5 +1,5 @@
 ;; give a value to a symbols
-;; symbols are shared between threads 
+;; symbols are shared between threads
 ;; root binding
 
 ; define a simple variable

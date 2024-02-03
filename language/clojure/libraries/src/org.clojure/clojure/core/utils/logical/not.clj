@@ -1,3 +1,5 @@
 (not true)
+(not false)
+(not nil)
 (not "a")
 (not 0)
