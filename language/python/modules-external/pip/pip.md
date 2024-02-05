@@ -3,6 +3,9 @@
 - Installed modules directory
   - Non-root:`~/.local/lib/python3.11/site-packages/` and `~/.local/bin/`
   - Root: `/usr/lib/pythonX.X/site-packages/` and `/usr/bin/`
+- It's not advisable to install system-wide packages via pip (its other packaging system's responsability, e.g., brew, pacman, apt)
+  - pip is not a OS packaging system, but rather meant to be used on `python virtual environments`
+- Python packages: <https://pypi.org/>
 
 ## install
 
@@ -12,10 +15,17 @@ pip install numpy
 
 # upgrade package to the newest version
 pip install numpy --upgrade
+pip install pip --upgrade # upgrade pip itself
 
 # install from a directory
 git clone https://github.com/squidfunk/mkdocs-material.git
 pip install -e mkdocs-material
+```
+
+## list
+
+```shell
+pip list
 ```
 
 ## requirements.txt

@@ -23,8 +23,3 @@ pipenv install
 # Add dependency to Pipfile
 pipenv install "numpy"
 ```
-
-## Python Interpreter
-
-- You can configure your IDE to use the python interpreter (the version) as specified by your virtual environment
-- On vscode, `Python: Select Interpreter`

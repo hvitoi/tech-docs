@@ -1,3 +1,3 @@
-from math import *
+import math
 
-ceil(4.2)
+math.ceil(4.2)

@@ -1,6 +1,7 @@
 # pyenv
 
 - Python version management
+- Easily switch between multiple versions of Python
 
 ```shell
 # add this to your .zshrc
