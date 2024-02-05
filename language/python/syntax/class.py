@@ -13,7 +13,7 @@ class Estudante:
         else:
             return False
 
-    school = "UFJF"         # Class variable
+    school = "UFJF"  # Class variable (static)
 
 
 # Instance of a class. An object
@@ -21,7 +21,7 @@ estudante1 = Estudante("Jim", "Business", 3.1, False)
 estudante2 = Estudante("Maria", "Engineering", 4.2, True)
 print(estudante1.name)
 print(estudante2.on_honor_roll())
-estudante1.age = 26             # New variables can be added on fly
+estudante1.age = 26  # New variables can be added on fly
 print(estudante1.age)
 print(Estudante.school)
 
@@ -47,11 +47,13 @@ def run_test(questions):
             score += 1
     print("You scored" + str(score) + "/" + str(len(questions)))
 
+
 # run_test(questions)
 
 
 # -----------------------------------
 # Inheritance
+
 
 class Chef:
     def make_chicken(self):

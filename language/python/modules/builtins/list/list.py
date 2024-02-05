@@ -13,12 +13,7 @@ foo[1:2]
 foo[0] = "lala"  # index 0 is replaced
 
 # Nested Lists
-number_grid = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [0]
-]
+number_grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
 
 for row in number_grid:
     for col in row:
@@ -26,7 +21,7 @@ for row in number_grid:
 
 
 # remove element by index
-del (foo[2])
+del foo[2]
 
 # length
 len(foo)

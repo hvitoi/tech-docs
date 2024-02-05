@@ -2,7 +2,7 @@
 str(1)
 
 # single quote
-'single quotes'
+'single quotes allows "double quotes" inside'
 
 # double quotes
 "double quotes"

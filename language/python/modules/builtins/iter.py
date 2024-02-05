@@ -1,4 +1,3 @@
-
 # iterator is an object that contains a countable number of values
 # iterator is an object that can be iterated upon (a stream of elements)
 # while the iterator is not yet exhausted, "next" returns the next element in the stream

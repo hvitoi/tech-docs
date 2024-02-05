@@ -54,14 +54,13 @@ import sys
 sinks_json = subprocess.check_output(
     "pactl -f json list sinks",
     shell=True,
-    encoding='utf-8',
+    encoding="utf-8",
 )
 sinks = json.loads(sinks_json)
 
 
-sinks_processed = [sink["index"]
-                   for sink in sinks
-                   for sink in sinks if sink["index"] == 39
-                   ]
+sinks_processed = [
+    sink["index"] for sink in sinks for sink in sinks if sink["index"] == 39
+]
 
 sys.stdout.write(json.dumps(sinks_processed))

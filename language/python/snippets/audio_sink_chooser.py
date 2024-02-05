@@ -8,12 +8,16 @@ import sys
 
 def parse_wpctl_status():
     # Execute the wpctl status command and store the output in a variable.
-    output = str(subprocess.check_output(
-        "wpctl status", shell=True, encoding='utf-8'))
+    output = str(subprocess.check_output("wpctl status", shell=True, encoding="utf-8"))
 
     # remove the ascii tree characters and return a list of lines
-    lines = output.replace("├", "").replace("─", "").replace(
-        "│", "").replace("└", "").splitlines()
+    lines = (
+        output.replace("├", "")
+        .replace("─", "")
+        .replace("│", "")
+        .replace("└", "")
+        .splitlines()
+    )
 
     # get the index of the Sinks line as a starting point
     sinks_index = None
@@ -24,7 +28,7 @@ def parse_wpctl_status():
 
     # start by getting the lines after "Sinks:" and before the next blank line and store them in a list
     sinks = []
-    for line in lines[sinks_index + 1:]:
+    for line in lines[sinks_index + 1 :]:
         if not line.strip():
             break
         sinks.append(line.strip())
@@ -40,10 +44,7 @@ def parse_wpctl_status():
 
     # make the dictionary in this format {'sink_id': <int>, 'sink_name': <str>}
     sinks_dict = [
-        {
-            "sink_id": int(sink.split(".")[0]),
-            "sink_name": sink.split(".")[1].strip()
-        }
+        {"sink_id": int(sink.split(".")[0]), "sink_name": sink.split(".")[1].strip()}
         for sink in sinks
     ]
 
@@ -51,10 +52,10 @@ def parse_wpctl_status():
 
 
 # get the list of sinks ready to put into wofi - highlight the current default sink
-output = ''
+output = ""
 sinks = parse_wpctl_status()
 for items in sinks:
-    if items['sink_name'].endswith(" - Default"):
+    if items["sink_name"].endswith(" - Default"):
         output += f"-> {items['sink_name']}\n"
     else:
         output += f"{items['sink_name']}\n"
@@ -64,11 +65,10 @@ selected_sink_name = subprocess.check_output(
     f"echo '{output}' \
     | fuzzel --dmenu",
     shell=True,
-    encoding='utf-8',
+    encoding="utf-8",
 ).strip()
 sinks = parse_wpctl_status()
-selected_sink = next(
-    sink for sink in sinks if sink['sink_name'] == selected_sink_name)
+selected_sink = next(sink for sink in sinks if sink["sink_name"] == selected_sink_name)
 subprocess.run(f"wpctl set-default {selected_sink['sink_id']}", shell=True)
 
 
