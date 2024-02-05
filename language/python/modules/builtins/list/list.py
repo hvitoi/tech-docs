@@ -8,6 +8,7 @@ foo[3][1]  # nested element
 foo[1:]  # from index 1 on
 foo[:2]  # until index 2 (not inclusive)
 foo[1:2]
+foo[::-1]  # reverse
 
 # write elements
 foo[0] = "lala"  # index 0 is replaced

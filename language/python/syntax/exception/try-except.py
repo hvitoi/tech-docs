@@ -1,5 +1,5 @@
 try:
-    value = 10/0
+    value = 10 / 0
     number = int("texto nao eh numero")
     print(number)
 except ValueError as err:  # err guarda o erro

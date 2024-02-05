@@ -1,6 +1,6 @@
 if 1 == 2:
-    print('first')
+    print("first")
 elif 3 == 3:
-    print('middle')
+    print("middle")
 else:
-    print('Last')
+    print("Last")

@@ -21,7 +21,7 @@ foo = [1, 2, 3, 4]
 # Generator expression can be used to return a pure generator instead
 
 
-seq1 = 'abc'
+seq1 = "abc"
 seq2 = (1, 2, 3)
 [(x, y) for x in seq1 for y in seq2]
 # [('a', 1), ('a', 2), ('a', 3),

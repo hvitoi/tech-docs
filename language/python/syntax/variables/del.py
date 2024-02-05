@@ -7,7 +7,7 @@ foo  # name is not defined
 
 # lists
 foo = ["a", "b", "c"]
-del (foo[1])
+del foo[1]
 foo  # ["a", "c"]
 
 # dict
@@ -17,5 +17,5 @@ foo = {
     "c": 3,
 }
 
-del (foo["a"])
+del foo["a"]
 foo
