@@ -1,4 +1,7 @@
 # %%
+import unittest
+
+
 def merge_alternately(word1: str, word2: str) -> str:
     """
     Merge two strings
@@ -16,4 +19,5 @@ def merge_alternately(word1: str, word2: str) -> str:
     return "".join(merged)
 
 
-merge_alternately("abc", "123")
+test_case = unittest.TestCase()
+test_case.assertEqual(merge_alternately("abc", "123"), "a1b2c3")

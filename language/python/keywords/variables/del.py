@@ -1,9 +1,10 @@
+# %%
 # -> unset/undefine a symbol!
 
 # plain variables
 foo = "john"
 del foo
-foo  # name is not defined
+# foo  # name is not defined
 
 # lists
 foo = ["a", "b", "c"]
