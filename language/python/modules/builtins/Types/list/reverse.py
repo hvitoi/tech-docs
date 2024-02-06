@@ -1,5 +1,6 @@
-foo = ["a", 1, True]
+# Mutates
 
-# reverse order of elements
-foo.reverse()
-foo
+# %%
+my_list = ["a", "b", "c"]
+my_list.reverse()
+my_list

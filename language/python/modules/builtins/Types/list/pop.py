@@ -1,7 +1,7 @@
-foo = ["a", "b", "c"]
+# Mutates
 
-# Remove last item
-foo.pop()
-
-# Remove first item
-foo.pop(0)
+# %%
+my_list = ["a", "b", "c"]
+my_list.pop()  # removes last
+my_list.pop(0)  # removes first
+my_list

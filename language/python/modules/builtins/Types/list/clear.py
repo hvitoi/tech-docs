@@ -1,5 +1,5 @@
-foo = ["a", 1, True]
-
-# wipe elements
-foo.clear()
-foo
+# Mutates
+# %%
+my_list = ["a", "b", "c"]
+my_list.clear()
+my_list

@@ -1,4 +1,5 @@
-foo = ["a", "a", "b", "c"]
+# %%
+my_list = ["a", "b", "c"]
 
 # count the appearance of the of the value 'a'
-foo.count("a")
+my_list.count("a")

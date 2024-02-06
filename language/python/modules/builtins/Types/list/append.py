@@ -1,4 +1,7 @@
-foo = ["a", "b", "c"]
+# Mutates
+# Append to last position
 
-# append to last position
-foo.append("d")
+# %%
+my_list = ["a", "b", "c"]
+my_list.append("d")
+my_list

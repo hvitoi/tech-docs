@@ -1,5 +1,7 @@
-foo1 = ["a", "b"]
-foo2 = ["c", "d"]
-
+# Mutates
 # foo1 receive the elements of foo2 and go to the last positions
-foo1.extend(foo2)
+
+# %%
+my_list = ["a", "b", "c"]
+my_list.extend(["d", "e"])
+my_list

@@ -1,5 +1,6 @@
-foo = ["a", 1, True]
+# Mutates
 
-# insert to a specific index
-# the other elements are then shifted
-foo.insert(0, "lol")
+# %%
+my_list = ["a", "c"]
+my_list.insert(1, "b")
+my_list

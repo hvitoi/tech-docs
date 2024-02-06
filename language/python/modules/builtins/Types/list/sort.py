@@ -1,5 +1,6 @@
-foo = ["c", "b", "a"]
+# Mutates
 
-# sort ASC
-foo.sort()
-foo
+# %%
+my_list = ["c", "a", "b"]
+my_list.sort()
+my_list

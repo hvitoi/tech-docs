@@ -1,5 +1,6 @@
-foo = ["a", "b", "z", "c", "z"]
+# Mutates
 
-# removes the FIRST element whose value is z
-foo.remove("z")
-foo
+# %%
+my_list = ["a", "b", "c"]
+my_list.remove("b")  # removes the FIRST element whose value is z
+my_list
