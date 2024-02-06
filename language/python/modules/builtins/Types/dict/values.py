@@ -1,7 +1,8 @@
-foo = {
+# %%
+my_dict: dict = {
     "a": 1,
     "b": 2,
     "c": 3,
 }
 
-foo.values()
+my_dict.values()

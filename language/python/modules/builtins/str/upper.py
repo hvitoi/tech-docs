@@ -1,2 +1,0 @@
-foo = "aaa"
-foo.upper()

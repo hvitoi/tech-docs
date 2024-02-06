@@ -1,9 +1,9 @@
 # %%
-foo = {
+my_dict: dict = {
     "a": 1,
     "b": 2,
     "c": 3,
 }
 
 # List of tuples
-foo.items()
+my_dict.items()

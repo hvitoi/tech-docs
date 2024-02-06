@@ -1,2 +1,0 @@
-foo = "AAA"
-foo.lower()
