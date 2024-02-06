@@ -1,6 +1,7 @@
+# %%
 # lists accept multiple data types
 foo = ["a", 1, True, ["c", 9]]
-
+list("abc")  # str -> list
 
 # accessing elements
 foo[2]  # get value from index 2

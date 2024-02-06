@@ -2,4 +2,6 @@ foo = ["a", "b", "c"]
 
 # Remove last item
 foo.pop()
-foo
+
+# Remove first item
+foo.pop(0)
