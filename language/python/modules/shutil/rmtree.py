@@ -1,4 +1,5 @@
-import shutil
+# %%
+from shutil import rmtree
 
 # removes a whole directory
-shutil.rmtree("/home/hv/a")
+rmtree("/home/hv/a")

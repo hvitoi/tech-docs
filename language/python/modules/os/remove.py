@@ -1,3 +1,4 @@
-import os
+# %%
+from os import remove
 
-os.remove("/home/hv/a.txt")
+remove("/home/hv/a.txt")

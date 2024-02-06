@@ -1,3 +1,5 @@
-import os
+# %%
+from os import path
 
-filename = os.path.basename("/home/hv/.zshrc")
+filename = path.basename("/home/hv/.zshrc")
+filename

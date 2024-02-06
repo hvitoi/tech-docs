@@ -1,3 +1,4 @@
+# %%
 import subprocess
 
 p = subprocess.Popen(

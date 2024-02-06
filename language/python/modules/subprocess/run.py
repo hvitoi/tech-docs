@@ -1,4 +1,4 @@
-import subprocess
+# %%
+from subprocess import run
 
-
-subprocess.run("ls -la", shell=True)
+run("ls -la", shell=True)

@@ -1,4 +1,5 @@
-import shutil
+# %%
+from shutil import copytree
 
 # copies a whole directory
-shutil.copytree("/home/hv/a", "home/hv/b")
+copytree("/home/hv/a", "home/hv/b")

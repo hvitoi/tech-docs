@@ -1,3 +1,4 @@
-import math
+# %%
+from math import ceil
 
-math.ceil(4.2)
+ceil(4.2)

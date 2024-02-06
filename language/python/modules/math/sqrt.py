@@ -1,3 +1,4 @@
-from math import *
+# %%
+from math import sqrt
 
 sqrt(36)

@@ -1,3 +1,4 @@
-import shutil
+# %%
+from shutil import copy2
 
-shutil.copy2("/home/hv/a.txt", "/home/hv/b.txt")
+copy2("/home/hv/a.txt", "/home/hv/b.txt")

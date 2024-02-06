@@ -1,4 +1,5 @@
-import os
+# %%
+from os import listdir
 
 # lists the directories inside of a directory as an array
-os.listdir(path="/home")
+listdir(path="/")
