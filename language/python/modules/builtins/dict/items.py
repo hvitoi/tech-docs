@@ -5,5 +5,5 @@ foo = {
     "c": 3,
 }
 
-# -> list of tuples
+# List of tuples
 foo.items()

@@ -14,7 +14,7 @@
 pip install numpy
 
 # upgrade package to the newest version
-pip install numpy --upgrade
+pip install numpy --upgrade # -U
 pip install pip --upgrade # upgrade pip itself
 
 # install from a directory
