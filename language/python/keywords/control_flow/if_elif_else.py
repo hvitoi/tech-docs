@@ -8,4 +8,4 @@ else:
 
 # %%
 if True is True:
-    print("a")
+    print("It's true")
