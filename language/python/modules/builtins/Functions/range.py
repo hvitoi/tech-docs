@@ -11,6 +11,9 @@ for i in range(5):
 for i in range(5).__reversed__():
     print(i)
 
+for i in reversed(range(5)):  # same as above
+    print(i)
+
 # %%
 # Make a list out of a range
 
