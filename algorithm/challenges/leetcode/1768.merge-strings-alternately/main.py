@@ -1,5 +1,6 @@
 # %%
-import unittest
+from unittest import TestCase
+from itertools import zip_longest
 
 
 def merge_alternately(word1: str, word2: str) -> str:
@@ -19,5 +20,10 @@ def merge_alternately(word1: str, word2: str) -> str:
     return "".join(merged)
 
 
-test_case = unittest.TestCase()
+def merge_alternately2(w1, w2):
+    return "".join(a + b for a, b in zip_longest(w1, w2, fillvalue=""))
+
+
+test_case = TestCase()
 test_case.assertEqual(merge_alternately("abc", "123"), "a1b2c3")
+test_case.assertEqual(merge_alternately2("abc", "123"), "a1b2c3")

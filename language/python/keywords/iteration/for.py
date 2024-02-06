@@ -1,22 +1,34 @@
-colors = ["blue", "green", "red"]
+# %%
 
-for color in colors:
-    print(color)
+# range
+for i in range(10):
+    print(i)
 
-for index, color in enumerate(colors):
-    print(index, color)
+# %%
 
-for index in range(len(colors)):
-    print(colors[index])
+# list
+for el in ["blue", "green", "red"]:
+    print(el)
 
-for index in range(10):
-    print(index)
+# %%
 
-for letter in "Eu sou Henrique":
-    print(letter)
+# string
+for el in "Henrique":
+    print(el)
+
+# %%
 
 # Tuples
-foo = [("a", 1), ("b", 2)]
-for first, second in foo:
-    print(first)
-    print(second)
+for i, el in [(1, "a"), (2, "b"), (3, "c")]:
+    print(i, el)
+
+for i, el in enumerate(["a", "b", "c"]):
+    print(i, el)
+
+# %%
+
+# map
+my_map = {"a": "alpha", "b": "beta"}
+for key in my_map:
+    # iterates over the key
+    print(key, my_map[key])
