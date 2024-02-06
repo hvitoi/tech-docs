@@ -1,3 +1,5 @@
-filter(lambda el: el % 2 == 0, [1, 2, 3, 4])  # map object
+# Returns an iterator
+# %%
 
-list(filter(lambda el: el % 2 == 0, [1, 2, 3, 4]))
+it = filter(lambda el: el % 2 == 0, [1, 2, 3, 4, 5])
+list(it)
