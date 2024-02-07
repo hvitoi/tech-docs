@@ -26,3 +26,40 @@ sum_nums()  # take default values
 def my_movie_splitter(line):
     (userId, movieId, rating, timestamp) = line.split("\t")
     yield userId, movieId
+
+
+# %%
+# Side Effects & Pointers
+
+nums = []
+
+
+def fn_with_side_effects(arr: list) -> None:
+    arr.append("a")
+
+
+def fn_with_side_effects2() -> None:
+    nums.append("b")
+
+
+fn_with_side_effects(nums)
+fn_with_side_effects2()
+nums
+
+
+# %%
+# Prevent side effects
+import copy
+
+nums = ["a"]
+
+
+def fn_without_side_effects(arr: list) -> list:
+    arr = copy.deepcopy(arr)
+    arr.append("b")
+    return arr
+
+
+fn_without_side_effects(nums)
+
+nums  # original array untouched
