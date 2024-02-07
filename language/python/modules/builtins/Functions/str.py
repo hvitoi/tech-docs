@@ -18,3 +18,7 @@ f"There once was a man named {name}, he is {age} years old."
 
 myStr: str = "Henrique"
 print(myStr[1:])  # strings function like lists
+
+# %%
+assert "abc"
+assert ""  # fails! empty strings are Falsy

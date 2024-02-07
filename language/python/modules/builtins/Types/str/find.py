@@ -3,3 +3,4 @@
 
 # %%
 "ab abc ab abc".find("abcd")
+"ab abc ab abc".find("abc", 10, 13)
