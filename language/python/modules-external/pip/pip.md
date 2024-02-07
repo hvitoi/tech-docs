@@ -7,6 +7,12 @@
   - pip is not a OS packaging system, but rather meant to be used on `python virtual environments`
 - Python packages: <https://pypi.org/>
 
+## list
+
+```shell
+pip list
+```
+
 ## install
 
 ```shell
@@ -20,47 +26,24 @@ pip install pip --upgrade # upgrade pip itself
 # install from a directory
 git clone https://github.com/squidfunk/mkdocs-material.git
 pip install -e mkdocs-material
+
+# install from requirements file
+pip install -r requirements.txt
 ```
 
-## list
+## freeze
+
+- Lists all the dependencies and creates a `requirements.txt` file
+- This file contains the direct dependencies required
+- To install them all run `pip install -r requirements.txt`
+- Requirements file does not store the hash of the dependencies, so it might potentially be unsafe
 
 ```shell
-pip list
+pip freeze
 ```
-
-## requirements.txt
-
-```shell
-# This file contains the direct dependencies required for building the docs
-# To install them all run 'pip install -r requirements.txt' in the same directory
-
-mkdocs == 1.5.2
-mkdocs-material == 9.1.21
-mkdocs-redirects == 1.2.1
-```
-
-## Useful packages
 
 ```txt
-jupyterlab
-
-numpy
-pandas
-
-sqlalchemy
-lxml
-html5lib
-BeautifulSoup4
-xlrd
-
-matplotlib
-seaborn
-
-plotly
-cufflinks
-plotly-geo
-
-scikit-learn
-
-nltk
+mkdocs==1.5.2
+mkdocs-material==9.1.21
+mkdocs-redirects==1.2.1
 ```
