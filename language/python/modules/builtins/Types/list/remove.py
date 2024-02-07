@@ -1,4 +1,4 @@
-# Mutates
+# MUTATES
 
 # %%
 my_list = ["a", "b", "c"]

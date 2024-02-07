@@ -7,3 +7,4 @@
 "a" in ("c", "a")  # True
 "a" in ("a", 1)  # True
 "a" in (1, "a")  # True
+"a" in {"a"}  # True

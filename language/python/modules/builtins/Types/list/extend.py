@@ -1,4 +1,4 @@
-# Mutates
+# MUTATES
 # foo1 receive the elements of foo2 and go to the last positions
 
 # %%
