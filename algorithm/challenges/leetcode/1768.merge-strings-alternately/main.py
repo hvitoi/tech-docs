@@ -25,5 +25,7 @@ def merge_alternately2(w1, w2):
 
 
 test_case = TestCase()
-test_case.assertEqual(merge_alternately("abc", "123"), "a1b2c3")
-test_case.assertEqual(merge_alternately2("abc", "123"), "a1b2c3")
+
+for fn in [merge_alternately, merge_alternately2]:
+    test_case.assertEqual(fn("abc", "123"), "a1b2c3")
+    test_case.assertEqual(fn("abc", "123"), "a1b2c3")

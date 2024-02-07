@@ -1,0 +1,5 @@
+# %%
+not True
+
+# %%
+not None
