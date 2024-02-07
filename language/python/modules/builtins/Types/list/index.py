@@ -5,6 +5,9 @@ my_list = ["a", "b", "z", "c", "z"]
 my_list.index("z")
 
 # %%
+["a", "b", "c"].index("z")  # Throws!
+
+# %%
 # Get the first found index starting from index 3 (inclusive)
 my_list.index("z", 3)
 
