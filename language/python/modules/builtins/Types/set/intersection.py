@@ -1,4 +1,5 @@
 # Return a set with the elements contained in both sets
 
 # %%
-{"a", "e", "i", "o", "u"}.intersection({"a"})
+my_set = {"a", "e", "i", "o", "u"}
+my_set.intersection({"a", "o", "z"})

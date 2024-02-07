@@ -1,3 +1,5 @@
+# Mutates and returns None
+
 # %%
 my_set: set = {"a", "b"}
 
