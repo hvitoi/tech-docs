@@ -1,4 +1,4 @@
-# MUTATES
+# Mutates and returns the removed element
 
 # %%
 my_list = ["a", "b", "c"]

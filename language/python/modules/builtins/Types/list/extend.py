@@ -1,5 +1,6 @@
-# MUTATES
-# foo1 receive the elements of foo2 and go to the last positions
+# Mutates and returns None
+
+# Concatenates 2 lists
 
 # %%
 my_list = ["a", "b", "c"]

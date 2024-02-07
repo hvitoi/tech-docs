@@ -1,0 +1,5 @@
+# Removes whitespaces
+
+# %%
+
+" Hey!   ".strip()

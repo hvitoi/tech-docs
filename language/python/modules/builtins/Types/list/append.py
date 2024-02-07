@@ -1,5 +1,6 @@
-# MUTATES
-# Append to last position
+# Mutates and returns None
+
+# Appends to last position
 
 # %%
 my_list = ["a", "b", "c"]

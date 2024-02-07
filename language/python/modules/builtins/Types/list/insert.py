@@ -1,5 +1,6 @@
-# MUTATES
-# Insert an element before the index
+# Mutates and returns None
+
+# Inserts an element before the index
 
 # %%
 my_list = ["a", "c"]
