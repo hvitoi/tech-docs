@@ -1,2 +1,7 @@
-foo = 5.1
-foo = float("5.1")
+# %%
+5.1
+float("5.1")
+
+# %%
+float("inf")  # Positive infinity
+float("inf")  # Negative infinity

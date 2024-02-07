@@ -1,10 +1,9 @@
 # %%
 import unittest
-import sys
 
 
 def find_max_average(nums: list, k: int) -> float:
-    max_sum = sys.float_info.min
+    max_sum = float("-inf")
     for i in range(len(nums) - k + 1):
         subarray = nums[i : i + k]
         max_sum = max(max_sum, sum(subarray))
