@@ -1,12 +1,12 @@
 # %%
-from unittest import TestCase
+import unittest
+import functools
+import operator
 
 
 def multiply_elements(nums: list) -> int:
-    product = 1
-    for num in nums:
-        product *= num
-    return product
+    return functools.reduce(operator.mul, nums)
+    # return functools.reduce(lambda acc, el: acc * el, nums)
 
 
 def product_except_self(nums: list) -> list:
@@ -15,7 +15,7 @@ def product_except_self(nums: list) -> list:
     )
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 test_case.assertEqual(product_except_self([1, 2, 3, 4]), [24, 12, 8, 6])
 test_case.assertEqual(product_except_self([-1, 1, 0, -3, 3]), [0, 0, 9, 0, 0])

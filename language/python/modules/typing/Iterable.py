@@ -21,7 +21,7 @@ for el in my_range:
     print(el)
 
 # %%
-# Accessing elements
+# Access & Slicing
 foo = ["a", "b", "c", "d", ["e", "f"]]
 
 foo[2]  # index 2
@@ -30,7 +30,7 @@ foo[1:]  # from index 1 onwards
 foo[:3]  # until index 3 (not inclusive)
 foo[1:3]  # from index 1 until index 3 (not inclusive)
 foo[-1]  # last index
-# foo[::-1]  # reverse
+foo[::-1]  # reverse
 
 # %%
 # Overwriting elements (index must exist)
