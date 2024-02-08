@@ -11,4 +11,11 @@ foo = [el for el in range(10) if el % 2 == 0]
 
 # %%
 # Nested fors
-[(x, y) for x in "abc" for y in (1, 2, 3)]
+[
+    y
+    for x in [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+    ]
+    for y in x
+]
