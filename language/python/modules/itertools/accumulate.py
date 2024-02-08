@@ -4,3 +4,4 @@
 from itertools import accumulate
 
 list(accumulate([1, 2, 3, 4, 5], lambda acc, el: acc * el))
+list(accumulate([1, 2, 3, 4, 5]))  # same

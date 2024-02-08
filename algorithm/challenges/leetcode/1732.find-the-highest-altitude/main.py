@@ -13,13 +13,7 @@ def largest_altitude(gain: list) -> int:
 
 
 def largest_altitude2(gain: list) -> int:
-    return max(
-        itertools.accumulate(
-            gain,
-            lambda acc, el: acc + el,
-            initial=0,
-        ),
-    )
+    return max(itertools.accumulate(gain, initial=0))
 
 
 test_case = unittest.TestCase()
