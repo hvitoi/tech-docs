@@ -6,6 +6,7 @@
 # %%
 # addition
 1 + 1.1
+None + 1  # throws!
 
 # %%
 # subtraction
