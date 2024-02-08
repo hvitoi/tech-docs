@@ -1,3 +1,5 @@
+# Accepts expressions only
+
 # %%
 assert 1 == 1
 
