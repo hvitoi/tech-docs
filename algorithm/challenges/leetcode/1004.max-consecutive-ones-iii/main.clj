@@ -33,6 +33,8 @@
     (test/is (= 6
                 (max-consecutive-ones [1,1,1,0,0,0,1,1,1,1,0] 2)))
     (test/is (= 10
-                (max-consecutive-ones [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1] 3)))))
+                (max-consecutive-ones [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1] 3)))
+    (test/is (= 8
+                (max-consecutive-ones [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0] 2)))))
 
 (test/run-test max-consecutive-ones-test)
