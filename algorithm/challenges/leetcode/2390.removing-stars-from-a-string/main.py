@@ -18,9 +18,20 @@ def remove_stars2(s: str) -> str:
     return s
 
 
+def remove_stars3(s: str) -> str:
+    res = []
+    for el in s:
+        if el == "*":
+            if res:
+                res.pop()
+        else:
+            res.append(el)
+    return "".join(res)
+
+
 test_case = unittest.TestCase()
 
-for fn in {remove_stars, remove_stars2}:
+for fn in {remove_stars, remove_stars2, remove_stars3}:
     test_case.assertEqual(
         fn("leet**cod*e"),
         "lecoe",
