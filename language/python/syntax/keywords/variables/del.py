@@ -1,3 +1,4 @@
+# O(N) for lists
 # %%
 # -> unset/undefine a symbol!
 

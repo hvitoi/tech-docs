@@ -1,3 +1,4 @@
+# O(N) for lists, O(1) for dicts and sets
 # %%
 # Checks if a value is present in a list, tuple, etc.
 # right-hand side argument must be an iterator

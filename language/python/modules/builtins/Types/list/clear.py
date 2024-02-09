@@ -1,3 +1,4 @@
+# O(1)
 # Mutates and returns None
 
 # Clears the whole list

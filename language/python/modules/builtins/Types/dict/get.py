@@ -1,3 +1,4 @@
+# O(1)
 # Similar to my_dict[i], but allows more options and fallbacks
 # %%
 my_dict: dict = {"a": 1, "b": 2, "c": 3}
