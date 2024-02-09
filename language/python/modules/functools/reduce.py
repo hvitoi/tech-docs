@@ -1,4 +1,6 @@
 # %%
 from functools import reduce
 
-reduce(lambda acc, el: acc * el, [1, 2, 3, 4, 5], 1)
+reduce(lambda acc, el: acc + el, [1, 1, 1], 10)
+reduce(lambda acc, el: acc + el, [1, 1, 1], 0)
+reduce(lambda acc, el: acc + el, [1, 1, 1])

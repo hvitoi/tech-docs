@@ -1,6 +1,7 @@
 # %%
 # Function with default parameters
-def sum_nums(num1=10, num2=20, num3=30):
+# Default parameters must be the last ones (except on kwargs, which doesn't matter the order)
+def sum_nums(num1, num2=20, num3=30):
     """
     This function does X
     """
@@ -19,6 +20,23 @@ def do_something(x, y) -> tuple:
 
 sum_nums(1, 2, 3)
 sum_nums()  # take default values
+
+
+# %%
+# Keyword arguments
+# asterisk marks the start of keyword arguments
+
+
+def foo(x, y, *, z):
+    return z
+
+
+# ... *args also mark the start of kwargs
+def foo2(x, y, *args, z):
+    return z
+
+
+foo("a", "b", z="c")
 
 
 # %%
@@ -63,3 +81,25 @@ def fn_without_side_effects(arr: list) -> list:
 fn_without_side_effects(nums)
 
 nums  # original array untouched
+
+# %%
+# Flexible number of args
+
+
+def foo_args(x, y, *args):
+    return args  # a list of extra arguments
+
+
+def foo_kwargs(x, y, **kwargs):
+    return kwargs  # a map of extra keyword arguments
+
+
+foo_args("a", "b", "c", "d")
+foo_kwargs("a", "b", foo=1, bar=2)
+
+
+def everything_mixed_up(x, y, z=None, *args, foo, bar=None, baz, **kwargs):
+    return (x, y, z, args, foo, bar, baz, kwargs)
+
+
+everything_mixed_up("x", "y", foo="foo", baz="baz")  # bare minimum
