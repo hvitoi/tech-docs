@@ -1,0 +1,5 @@
+# depmod
+
+```shell
+depmod -a
+```

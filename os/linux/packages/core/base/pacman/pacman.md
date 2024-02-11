@@ -11,6 +11,7 @@
 
 ## Query
 
+- Fetches from pacman's local database
 - A package on arch is a tarball
 
 ```shell
@@ -48,6 +49,8 @@ pacman -Qo "file"
 ```
 
 ## Sync
+
+- Fetches from pacman's remote database (can be cached)
 
 ```shell
 # Install package
@@ -101,6 +104,8 @@ pacman -U --overwrite \* foo.pkg.tar.zst  # overwrite conflicting files
 ```
 
 ## Files
+
+- Fetches from pacman's remote database (can be cached)
 
 ```shell
 # refresh package databases from the server
