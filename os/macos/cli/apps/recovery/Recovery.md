@@ -10,7 +10,7 @@
   - Safari
   - Disk Utility
 
-## Recovery (Startup Mode)
+## Recovery Startup Mode
 
 - To access it, press and hold Power power and tell select `Options` (on Intel Macs: `Command-r Boot`)
 - When logged in in with the password, the default app is opened (Recovery.app)
