@@ -1,6 +1,6 @@
 # Recovery
 
-- This is the `default app` on the `Options mode` (similar to Finder on MacOS)
+- This is the `default app` on the `Options mode` once the password for the drive is already entered
 - Options namings
   - `Options`
   - `Recovery mode`

@@ -1,4 +1,6 @@
-# Install macOS Ventura
+# Install macOS
+
+## Install macOS Ventura
 
 - Download this app from `App Store`
 - Launch it to install on a disk directly or flash it into an usb drive
