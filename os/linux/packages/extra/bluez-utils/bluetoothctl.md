@@ -85,14 +85,10 @@ bluetoothctl untrust "mac-add"
   - **PeripheralLongTermKey** (Long-term Key): BLE
   - **SlaveLongTermKey** (Long-term Key): BLE
 
-### Windows
-
-- Get the keys with `chntpw`
-
 ### MacOS
 
 - Access `Keychain access`
-- Search for "bluetooth"s
+- Search for "bluetooth"
 - Conventional bluetooth
   - Show up as `MobileBluetooth`
 - BLE bluetooth
@@ -103,6 +99,10 @@ bluetoothctl untrust "mac-add"
 # Decode keys from base64 into hex
 echo -n "mykeybase64" | base64 -d | od -t x1 -An | tr -d ' ' | tr "[a-z]" "[A-Z]"
 ```
+
+### Windows
+
+- Get the keys with `chntpw`
 
 ## Connecting
 
