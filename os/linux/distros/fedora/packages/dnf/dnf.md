@@ -107,9 +107,9 @@ dnf repository-packages <repo> list --installed
 ```shell
 # Installed groups (groups & environment groups)
 dnf group list
-dnf group list --hidden # show also the groups which are part of other groups
-dnf group list -v # show group id
 dnf group list --installed # installed only
+dnf group list --hidden # show also the groups which are part of other groups
+dnf group list --hidden -v # show group id
 
 # Group information (includes the contents of the group)
 dnf group info <group>
@@ -146,7 +146,7 @@ dnf repoquery --groupmember <package>
 # Find packages that depends on a package
 dnf repoquery --whatrequires <package> # mandatory
 dnf repoquery --alldeps --whatdepends <package> # packages that depends on a provider
-dnf repoquery --exactdeps --whatdepends <package> # packages that depends on a provider or exact dependencyc
+dnf repoquery --exactdeps --whatdepends <package> # packages that depends on a provider or exact dependency
 
 # Capabilities by packages
 dnf repoquery --requires <package> # mandatory capabilities
@@ -164,6 +164,14 @@ dnf repoquery -l <package>
 dnf repoquery -i <package>
 ```
 
+## config-manager
+
+- Manage dnf configuration options and repositories
+
+```shell
+sudo dnf config-manager --enable fedora-cisco-openh264
+```
+
 ## leaves (plugin)
 
 - Install plugin: `sudo dnf install 'dnf-command(leaves)'`
@@ -171,4 +179,21 @@ dnf repoquery -i <package>
 
 ```shell
 dnf leaves
+```
+
+## Third-party repositories
+
+- RPM Fusion Repository: community-maintained software repository providing additional packages that are not distributed by Fedora.
+  - <https://docs.fedoraproject.org/en-US/quick-docs/rpmfusion-setup/>
+  - <https://rpmfusion.org>
+- A repo is installed just like a package
+
+```shell
+# Free software
+# repo-id: rpmfusion-free + rpmfusion-free-updates
+sudo dnf install "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+
+# Non-free software
+# repo-id: rpmfusion-nonfree + rpmfusion-nonfree-updates
+sudo dnf install "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 ```
