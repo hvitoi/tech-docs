@@ -58,6 +58,26 @@ diskutil eject "/dev/diskX"
 diskutil apfs deleteVolume disk1s7
 ```
 
+## listFilesystems
+
+```shell
+diskutil listFilesystems
+```
+
+## eraseVolume
+
+- Erases a disk and format it with a new filesystem
+- Uses the command `newfs_*` under the hood (e.g., `newfs_apfs`)
+- List the formattable file systems with `diskutil listFilesystems`
+
+```shell
+# APFS
+diskutil eraseVolume "APFS" "Untitled" "diskXsY"
+
+# Unallocated space
+diskutil eraseVolume free free disk0s5
+```
+
 ## apfs
 
 ### list\*
