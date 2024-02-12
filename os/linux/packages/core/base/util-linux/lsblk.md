@@ -12,5 +12,5 @@ lsblk -m # output info about permissions
 lsblk -e 7
 
 # select columns to display
-lsblk -o "type,name,label,partlabel"
+lsblk -o "type,name,uuid,label"
 ```
