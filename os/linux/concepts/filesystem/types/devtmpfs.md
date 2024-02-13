@@ -22,6 +22,14 @@ cat /dev/input/mice
 cat /dev/input/by-id/usb-my-keyboard-event-kbd
 ```
 
+### disk
+
+- `/dev/disk`
+  - `/dev/disk/by-id`
+  - `/dev/disk/by-label`
+  - `/dev/disk/by-uuid`
+  - `/dev/disk/by-path`
+
 ## Udev Rules
 
 - Location
