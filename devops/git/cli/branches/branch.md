@@ -23,6 +23,9 @@ git branch -vv # * main 61d49e6 [origin/main] Create hello.txt (branch local/mai
 
 # List merged branches
 git branch --merged
+
+# Setup a track (link) between a local and remote branch
+git branch -u origin/main main # local main branch will follow remote origin/main branch
 ```
 
 ## Create
