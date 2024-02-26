@@ -8,4 +8,10 @@ sudo -s # Same as su -
 
 # print sudoers configuration
 sudo -ll
+
+# login as root
+sudo su
+
+# login as root
+sudo -u <user> -- sh -c "cd /; /bin/bash"
 ```
