@@ -22,6 +22,10 @@ rbenv install 3.2.2
 - Use a specific version globally
 
 ```shell
+# show the current global ruby version
+rbenv global
+
+# set a global ruby version
 rbenv global 3.2.2
 ```
 
