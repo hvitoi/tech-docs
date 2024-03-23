@@ -14,3 +14,8 @@ for row in matrix:
 # %%
 # Concatenate lists
 ["a", "b"] + ["c", "d"]
+
+# %%
+my_list = []
+if not my_list:
+    print("List is empty")

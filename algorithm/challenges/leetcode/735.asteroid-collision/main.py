@@ -42,9 +42,30 @@ def asteroid_collision(asteroids: list) -> list:
     return asteroids
 
 
+def asteroid_collision2(asteroids: list) -> list:
+    arr = []
+
+    for incoming_asteroid in asteroids:
+        incumbent_asteroid = arr[-1] if len(arr) > 0 else None
+
+        if not incumbent_asteroid:
+            arr.append(incoming_asteroid)
+            continue
+
+        if sign(incumbent_asteroid) == sign(incoming_asteroid):
+            arr.append(incoming_asteroid)
+            continue
+
+        if abs(incoming_asteroid) >= abs(incumbent_asteroid):
+            arr.pop()
+            continue
+
+    return arr
+
+
 test_case = unittest.TestCase()
 
-for fn in {asteroid_collision}:
+for fn in {asteroid_collision, asteroid_collision2}:
     test_case.assertEqual(
         fn([5, 10, -5]),
         [5, 10],
