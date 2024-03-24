@@ -34,3 +34,7 @@ None + 1  # throws!
 # %%
 # rest
 10 % 3
+
+# %%
+# quotient
+10 // 3

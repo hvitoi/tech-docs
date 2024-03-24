@@ -24,3 +24,6 @@ print(myStr[1:])  # strings function like lists
 # %%
 assert "abc"
 assert ""  # fails! empty strings are Falsy
+
+# %%
+"12" + str(3)

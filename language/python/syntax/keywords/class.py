@@ -5,7 +5,8 @@ class Student:
     number_of_students = 0  # class attribute
 
     # constructor
-    def __init__(self, name, major):  # self is object instance
+    # python does not allow multiple constructors (with multiple signatures), instead you can define default values for each argument
+    def __init__(self, name, major):  # self is the object instance
         Student.number_of_students += 1  # increase a static attribute
         self.name = name  # instance attribute
         self.major = major  # instance attribute
