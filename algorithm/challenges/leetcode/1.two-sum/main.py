@@ -1,6 +1,6 @@
 # %%
 from typing import List
-import unittest
+from unittest import TestCase
 
 
 def two_sum(nums: List[int], target: int):
@@ -12,7 +12,7 @@ def two_sum(nums: List[int], target: int):
     return []  # no solution
 
 
-test_case = unittest.TestCase()
+test_case = TestCase()
 
 test_case.assertEqual(two_sum([2, 7, 11, 15], 9), [0, 1])
 test_case.assertEqual(two_sum([3, 2, 4], 6), [1, 2])
