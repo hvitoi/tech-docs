@@ -1,9 +1,8 @@
 # %%
-import unittest
-# from <module> import <function_to_test>
+from unittest import TestCase
 
 
-test_case = unittest.TestCase()
+test_case = TestCase()
 
 # assertEqual
 test_case.assertEqual(1, 1)
