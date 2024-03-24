@@ -14,3 +14,7 @@ one
 two
 three
 rest
+
+# %%
+# Unpacking a tuple
+one, two, three = 1, 2, 3
