@@ -13,6 +13,7 @@ foo[:-1]  # until last index (exclusive)
 # %%
 foo = ["a", "b", "c", "d", "e"]
 foo[1:3]  # from index 1 (inclusive) until index 3 (exclusive)
+foo[3:1]  # empty
 
 # %%
 foo = ["a", "b", "c", "d", "e"]
