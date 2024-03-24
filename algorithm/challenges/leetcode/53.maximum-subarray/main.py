@@ -13,6 +13,7 @@ def max_sub_array(nums: List[int]) -> int:
 
 
 def max_sub_array2(nums: List[int]) -> int:
+    # Kadane's algorithm
     for i in range(1, len(nums)):
         if nums[i - 1] > 0:
             nums[i] += nums[i - 1]
@@ -20,6 +21,7 @@ def max_sub_array2(nums: List[int]) -> int:
 
 
 def max_sub_array3(nums: List[int]) -> int:
+    # Kadane's algorithm
     return max(
         accumulate(nums, lambda prev, curr: curr + prev if prev > 0 else curr),
     )
