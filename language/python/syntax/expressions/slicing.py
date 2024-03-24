@@ -32,4 +32,5 @@ foo[::-1]  # the whole array in reverse
 foo = ["a", "b", "c", "d", "e"]
 foo[0]
 foo[-1]
+foo[-2]
 # foo[5]  # Throws!

@@ -86,7 +86,7 @@ jq '.[] | select(.foo == false)' <<< '[{"foo":true},{"foo":false}]'
 
 ## sort_by
 
-- Sorty by can only be used over arrays (not destructured arrays)
+- Sort by can only be used over arrays (not destructured arrays)
 
 ```shell
 jq -s '.[] | sort_by(.a)' <<< '[{"a":2},{"a":1}]'

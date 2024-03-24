@@ -7,3 +7,4 @@
 
 # Split every char into a list
 list("Hi, my name is Henry")
+# split("") throws!

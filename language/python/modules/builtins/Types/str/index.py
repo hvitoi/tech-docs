@@ -1,4 +1,6 @@
-# Similar to "find", but raises exception when not found
+# Returns the lowest index in which a found substring starts
+# Raises an exception when not found
+# Similar to "find"
 
 # %%
 "Henrique".index("H")  # 0
