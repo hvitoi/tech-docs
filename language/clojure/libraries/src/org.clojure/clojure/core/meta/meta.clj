@@ -6,3 +6,11 @@
 
 ;; return metadata of an object
 (meta #'i-have-attributes)
+
+; ---
+
+(defn foo
+  [a b]
+  1)
+
+(meta #'foo)
