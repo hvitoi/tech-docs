@@ -5,7 +5,7 @@
 - It's estimated by counting the number of elementary steps performed by any algorithm to finish execution
 - We use the worst-case time complexity of an algorithm because that is the maximum time taken for any input size
 
-![Runtime Complexity](./images/runtime-complexity.png)
+![Runtime Complexity](./runtime-complexity.png)
 
 ## Constant time
 
