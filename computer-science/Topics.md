@@ -15,19 +15,61 @@
 - A Star
 - Greedy
 - Reverse Linked List
-- Travelling sales with app sack (NP complete)
+- Traveling salesman in the nap sock (NP complete)
+- For each algorithm challenge clarify if there are any time complexity requirements
+
+## Recursion
+
+- Alternative to iterative solutions
+
+## Testing
+
+- Testing borders (edge cases)
+- Interesting inputs
+- End-To-End integration
+- Loaded performance
+- Security tests
+
+## Dynamic programming
 
 ## Complexity
 
 - Space & Time complexity
 - NP complete
-
-## Dynamic programming
-
--
-
-## Testing
+- O(n)
 
 ## Maths
 
-- N2 Case Problems
+- Combinatorics
+- Probability theory
+
+## Operating Systems
+
+- Processes
+- Threads
+- Concurrency
+- Semaphores
+- Mutexes (Mutual exclusion)
+- Locks
+- Resource allocation
+  - What resource a thread or process might need
+- Context switching
+  - Initiated in the OS and underlying hardware
+- Scheduling
+
+## System Design
+
+- Architecture system of a real-world system
+- Feature sets
+- Interfaces
+- Class hierarchies
+- Distributed systems
+- Design under constraints
+- Internet
+  - Routes
+  - DNS
+  - Load balancers
+  - Firewalls
+- How search works
+
+## Object Oriented Programming
