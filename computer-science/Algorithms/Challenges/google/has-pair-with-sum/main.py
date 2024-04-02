@@ -37,7 +37,7 @@ def hasPairWithSumHasBeenSeen(data: List[int], target_sum: int) -> bool:
     seen_numbers = set()
     for el in data:
         complement = target_sum - el
-        if complement in seen_numbers:
+        if complement in seen_numbers:  # lookups on sets is O(1)
             return True
         seen_numbers.add(el)
     return False
