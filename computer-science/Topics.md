@@ -71,5 +71,6 @@
   - Load balancers
   - Firewalls
 - How search works
+  - <https://blog.bytebytego.com/p/ep104-how-do-search-engines-work>
 
 ## Object Oriented Programming
