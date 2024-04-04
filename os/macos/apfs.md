@@ -77,7 +77,11 @@
   - It's unique for a mac computer, even on fresh installs
 - **Institutional Recovery Key** / IRK
 
-## System Seal Volume (SSV)
+## Signed System Volume (SSV)
 
-- The system snapshot must be seal. That means that the system mounted into `/` has integrity.
-- Optionally the system volume can be sealed, but often it's broken due to being mounted as writable in the past (even if it doesn’t modify any files or metadata). But the only important is the snapshot
+- It's a `read-only` system volume
+- SSV features a kernel mechanism that verifies the integrity of the system content at runtime
+- SSV uses APFS snapshots to be mounted on the root filesystem
+- The root node's hash value of the SSV snapshot is called a `seal`
+- The seal of the filesystem can be broken due to being mounted as writable in the past (even if it doesn’t modify any files or metadata). But the only important seal is the snapshot
+- Also referred to as "Sealed System Volume"

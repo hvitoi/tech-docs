@@ -8,6 +8,7 @@
 - Graphs
 - Linked List
 - Trees: Traverse (BF and DP) & Manipulation
+- binary hash (Merkle) tree
 
 ## Algorithms
 

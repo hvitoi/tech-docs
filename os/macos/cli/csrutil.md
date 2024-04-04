@@ -12,7 +12,8 @@ csrutil enable
 # Enable SIP with exceptions
 csrutil enable --without fs --without debug --without nvram
 
-# Get SIP status
+# Get SIP status (if the system is sealed)
 csrutil status
 csrutil authenticated-root status
+csrutil authenticated-root disable # allow changing the SSV
 ```
