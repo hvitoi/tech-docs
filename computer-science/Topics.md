@@ -2,26 +2,56 @@
 
 ## Data structures
 
-- Hash tables
-- Stacks
-- Arrays
-- Graphs
-- Linked List
-- Trees: Traverse (BF and DP) & Manipulation
-- binary hash (Merkle) tree
+- `Array`
+- `Linked List`
+- `Stack`
+- `Queue`
+- `Hash-table`
+  - Hash-map
+  - Dictionary
+- `Hash-set`
+  - Set
+- `Graph`
+  - Properties
+    - Distance
+    - Search
+    - Connectivity
+    - Cycle-detection
+  - Representation
+    - Objects and pointers
+    - Matrix
+    - Adjacency list
+  - Traversing
+    - Breadth-first (BF)
+    - Depth-first (DP)
+- `Heap`
+- `Tree`
+  - Binary Tree
+  - Binary hash (Merkle) tree
 
 ## Algorithms
 
 - Dijkstra
-- A Star
+- A*
 - Greedy
 - Reverse Linked List
 - Traveling salesman in the nap sock (NP complete)
-- For each algorithm challenge clarify if there are any time complexity requirements
 
-## Recursion
+- Sorting
+- Searching
+  - And the kind of input data on which they're efficient or inefficient
+  - E.g., when to use `insertion-sort` or `radix-sort` instead of `quick-sort`, `merge-sort`, `heap-sort`
+- Binary searching
+- Divide-and-conquer
+- Dynamic programming & Memoization
+- Greedy algorithms
+- Recursion
 
-- Alternative to iterative solutions
+## Complexity
+
+- Space & Time complexity
+- NP complete
+- O(n)
 
 ## Testing
 
@@ -31,17 +61,11 @@
 - Loaded performance
 - Security tests
 
-## Dynamic programming
-
-## Complexity
-
-- Space & Time complexity
-- NP complete
-- O(n)
-
-## Maths
+## Mathematics
 
 - Combinatorics
+  - Counting problems
+  - n-choose-k (combinations)
 - Probability theory
 
 ## Operating Systems
@@ -54,24 +78,31 @@
 - Locks
 - Resource allocation
   - What resource a thread or process might need
+- Scheduling
 - Context switching
   - Initiated in the OS and underlying hardware
-- Scheduling
+- Deadlocks & livelocks and how to avoid them
 
 ## System Design
 
 - Architecture system of a real-world system
-- Feature sets
-- Interfaces
-- Class hierarchies
-- Distributed systems
-- Design under constraints
-- Internet
+- Topics
+  - Feature sets
+  - Interfaces
+  - Class hierarchies
+  - Distributed systems
+  - Design under constraints
+  - Simplicity
+  - Limitations
+  - Robustness
+  - Tradeoffs
+  - Resource estimation
+  - Caching
+  - Map reduces
+- How Internet works
   - Routes
   - DNS
   - Load balancers
   - Firewalls
 - How search works
   - <https://blog.bytebytego.com/p/ep104-how-do-search-engines-work>
-
-## Object Oriented Programming
