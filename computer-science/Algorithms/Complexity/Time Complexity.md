@@ -1,5 +1,6 @@
 # Time Complexity
 
+- Measures the `speed aspect` of an algorithm
 - Describe the performance of an algorithm
 - How much the `runtime` grows as the `input size` grows (n vs. t).
 - It's estimated by counting the number of elementary steps performed by any algorithm to finish execution
