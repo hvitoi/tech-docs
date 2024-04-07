@@ -19,3 +19,9 @@ for row in matrix:
 my_list = []
 if not my_list:
     print("List is empty")
+
+# %%
+# Extract the keys into a list (values are ignored)
+# Keeps the order of keys on the dict
+
+list({"b": 2, "a": 1})

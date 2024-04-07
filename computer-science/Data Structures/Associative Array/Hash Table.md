@@ -1,13 +1,10 @@
 # Hash Table
 
-- It's a `key-value pair`, the key can also be an index
-- The association between a key and a value is often known as a `mapping`
-- Hash tables are `unordered`
-
 - Uses a `hash function` to calculate the index (hash code) based on the `key` name
 - The values are stored within a large array, known as `array of buckets` or `slots`
 - Ideally, the hash function assigns each `key` to a unique `bucket` (within the array of buckets). This is where the `key-value` pair is stored
 - During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored (within the array of buckets)
+- Hash tables are `unordered`
 
 ## Tradeoffs
 
@@ -27,31 +24,9 @@ where
 
 When the load factor is reaching 1, it's necessary to resize the array of buckets and rehash everything
 
-## Namings per language
-
-- **Hash Map**
-- **Associative array**
-- **Symbol Table**
-
-- Per language
-  - `Dictionary` (python)
-  - `Map` (clojure)
-  - `Object` (javascript)
-
-## Operations
-
-- **Insert**, **Put**
-- **Remove**, **Delete**
-- **Lookup**, **Find**, **Get**
-
 ## Other applications
 
 - Associative arrays
 - Database indexing
 - Caches
 - Sets
-
-## Hash Set
-
-- Similar idea to a Hash Map, however only the `key` is stored
-- This results in a set of unique elements with same runtime complexity for the operations

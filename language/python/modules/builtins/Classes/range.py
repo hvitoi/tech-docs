@@ -19,3 +19,8 @@ for i in reversed(range(5)):  # same as above
 # Make a list out of a range
 
 list(range(5))
+
+# %%
+# Reversed range (9 to 0)
+range(9, -1, -1)  # less intuitive
+reversed(range(10))

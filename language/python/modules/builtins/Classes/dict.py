@@ -30,3 +30,11 @@ my_dict = {"a": 1, "b": 2, "c": 3}
 my_tuples = my_dict.items()
 my_dict_back = dict(my_tuples)
 my_dict_back
+
+# %%
+# dict from list of tuples
+dict([("a", 1), ("b", 2)])
+
+# %%
+# dict from kwargs
+dict(sape=4139, guido=4127, jack=4098)
