@@ -38,3 +38,8 @@ dict([("a", 1), ("b", 2)])
 # %%
 # dict from kwargs
 dict(sape=4139, guido=4127, jack=4098)
+
+# %%
+# Duplicate keys are removed
+dict.fromkeys("abcac")  # {'a': None, 'b': None, 'c': None}
+list(dict.fromkeys("abcac"))  # a way to remove duplicate from a list
