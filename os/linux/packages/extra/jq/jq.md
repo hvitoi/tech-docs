@@ -78,6 +78,12 @@ jq '.[] | .a' <<< '[{"a":1}]'
 jq '[ .[] ]' <<< '[{"a":1}]'
 ```
 
+## map
+
+```shell
+echo $foo | jq '.invoices | map(select(.amount > 0))'
+```
+
 ## select
 
 ```shell
@@ -151,6 +157,12 @@ jq -n \
 
 ```shell
 jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end' <<< '2'
+```
+
+## length
+
+```shell
+echo '["a","b","c"]' | jq 'length'
 ```
 
 ## @sh
