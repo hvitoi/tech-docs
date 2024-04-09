@@ -16,18 +16,6 @@ def first_recurring_character(arr: List[int]) -> int:
 
 
 test_case = TestCase()
-
-test_case.assertEqual(
-    first_recurring_character([2, 5, 1, 2, 3, 5, 1, 2, 4]),
-    2,
-)
-
-test_case.assertEqual(
-    first_recurring_character([2, 1, 1, 2, 3, 5, 1, 2, 4]),
-    1,
-)
-
-test_case.assertEqual(
-    first_recurring_character([2, 3, 4, 5]),
-    None,
-)
+test_case.assertEqual(first_recurring_character([2, 5, 1, 2, 3, 5, 1, 2, 4]), 2)
+test_case.assertEqual(first_recurring_character([2, 1, 1, 2, 3, 5, 1, 2, 4]), 1)
+test_case.assertEqual(first_recurring_character([2, 3, 4, 5]), None)
