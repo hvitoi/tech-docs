@@ -94,27 +94,3 @@ $$t = 2 ^ n$$
 $$t = n!$$
 
 - You are adding a loop for every element
-
-## Data Structure Operations
-
-- The operation complexity always considers the worst case
-
-|                      | Access   | Search   | Insertion   | Deletion   | Space Complexity   |
-| -                    | -        | -        | -           | -          | -                  |
-| Array                | $O(1)$   | $O(n)$   | $O(n)$      | $O(n)$     | $O(n)$             |
-| Stack                | $O(n)$   | $O(n)$   | $O(1)$      | $O(1)$     | $O(n)$             |
-| Queue                | $O(n)$   | $O(n)$   | $O(1)$      | $O(1)$     | $O(n)$             |
-| Linked List (Singly) | $O(n)$   | $O(n)$   | $O(1)$      | $O(1)$     | $O(n)$             |
-| Linked List (Doubly) | $O(n)$   | $O(n)$   | $O(1)$      | $O(1)$     | $O(n)$             |
-| Hash Table           | $N/A$     | $O(n)$  | $O(n)$      | $O(n)$     | $O(n)$             |
-
-## Sorting Algorithms
-
-|                | Space complexity   | Time complexity (best)     | Time complexity (worst) |
-| -              | -                  | -                          | -                       |
-| Insertion Sort | $O(1)$             | $O(n)$                     | $O(n^2)$                |
-| Selection Sort | $O(1)$             | $O(n^2)$                   | $O(n^2)$                |
-| Bubble Sort    | $O(1)$             | $O(n)$                     | $O(n^2)$                |
-| Mergesort      | $O(n)$             | $O(n\ log\ n)$             | $O(n\ log\ n)$          |
-| Quicksort      | $O(log\ n)$        | $O(n\ log\ n)$             | $O(n^2)$                |
-| Heapsort       | $O(1)$             | $O(n\ log\ n)$             | $O(n\ log\ n)$          |
