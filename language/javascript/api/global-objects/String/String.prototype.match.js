@@ -14,3 +14,7 @@ console.log(res4);
 
 const a = "aeiouhyhyhy".match(new RegExp(/[aeiou]/gi));
 console.log(a);
+
+//
+const stringMatchesUrlPattern = "lala.example.com.br".match(`^.*.example.com.br$`);
+console.log(stringMatchesUrlPattern);
