@@ -7,3 +7,7 @@ lambda x: x % 2 == 0  # is even
 lambda s: s[0]  # grab first char
 lambda s: s[::-1]  # reverse string
 lambda x, y: x + y  # adder
+
+# %
+# lambda with no args
+lambda: print("hello")

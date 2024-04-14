@@ -7,10 +7,6 @@
   - Data structures
   - Function Calls
   - Allocations
-- **Heap Memory**
-  - Where `variables` are stored
-- **Stack Memory**
-  - Where we keep track of function calls
 
 ## $O(1)$
 
