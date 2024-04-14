@@ -18,8 +18,9 @@
 ## Types
 
 - **Preemptive**
-  - Resources whose accessing process that can be interrupted without problems
+  - The resource can be released gracefully by the OS (external scheduler)
   - E.g., memory: if the process is interrupted, the memory stays reserved for this process to when it's resumed
 - **Non-preemptive**
-  - Resources whose accessing process that cannot be interrupted without problems
+  - The resource cannot be released gracefully by the OS (external scheduler)
+  - The resource can only be released by the holding process itself
   - E.g., printer: the paper would be stuck in the middle of the impression
