@@ -82,10 +82,18 @@ fn_without_side_effects(nums)
 
 nums  # original array untouched
 
+
 # %%
-# Flexible number of args
+# args and kwargs (and optional ones)
+def args_and_kwargs(x, y=None, *, foo, bar=None):
+    return (x, y, foo, bar)
 
 
+args_and_kwargs("a", foo="b")
+
+
+# %%
+# rest of args and kwargs
 def foo_args(x, y, *args):
     return args  # a list of extra arguments
 
@@ -98,6 +106,8 @@ foo_args("a", "b", "c", "d")
 foo_kwargs("a", "b", foo=1, bar=2)
 
 
+# %%
+# args and kwargs, rests and defaults
 def everything_mixed_up(x, y, z=None, *args, foo, bar=None, baz, **kwargs):
     return (x, y, z, args, foo, bar, baz, kwargs)
 
