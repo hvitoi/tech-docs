@@ -30,3 +30,16 @@ class Node:
   - Properties
     1. Number of total nodes doubles at each level: 1, 2, 4, 8, ...
     1. Number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
+
+## Traversal
+
+- `Depth-First Search`
+  - **Pre order** traversal
+    - Visit order: node, left, right
+  - **In order** traversal
+    - Visit order: left, node, right
+    - In a BST the output is sorted
+  - **Post order** traversal
+    - Visit order: left, right, node
+- `Breadth-First Search`
+  - Visit order: by level, from left to right

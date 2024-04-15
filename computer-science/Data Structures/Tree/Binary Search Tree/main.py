@@ -1,4 +1,6 @@
 # %%
+from typing import Any
+from unittest import TestCase
 
 
 class Node:
@@ -12,94 +14,80 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def insert(self, data):
-        new_node = Node(data)
-        node = self.root
-
-        if node is None:
-            self.root = new_node
-            return
-
-        while True:
-            if data > node.data:
-                if node.right is None:
-                    node.right = new_node
-                    break
-                else:
-                    node = node.right
-                    continue
-            elif data < node.data:
-                if node.left is None:
-                    node.left = new_node
-                    break
-                else:
-                    node = node.left
-                    continue
-
-    def insert_recursively(self, data, *, root=None):
-        new_node = Node(data)
-
+    def to_set(self, elements=set(), node=None):
+        """Depth-First In-Order Traversal"""
         if self.root is None:
-            self.root = new_node
-            return
+            return set()
 
-        node = root if root is not None else self.root
+        node = node if node is not None else self.root
 
-        if data > node.data:
-            if node.right is None:
-                node.right = new_node
-                return
-            else:
-                self.insert_recursively(data, root=node.right)
-                return
-        elif data < node.data:
-            if node.left is None:
-                node.left = new_node
-                return
-            else:
-                self.insert_recursively(data, root=node.left)
-                return
+        if node.left:
+            elements = self.to_set(elements, node.left)
+
+        elements.add(node.data)
+
+        if node.right:
+            elements = self.to_set(elements, node.right)
+
+        return elements
+
+
+test_case = TestCase()
+
+
+# %%
+def insert(tree: BST, data: Any, node: Node = None) -> None:
+    new_node = Node(data)
+
+    if tree.root is None:
+        tree.root = new_node
+        return
+
+    node = node if node is not None else tree.root
+
+    if data == node.data:
+        raise Exception("Duplicated value")
+
+    if data < node.data:
+        if node.left is None:
+            node.left = new_node
         else:
-            raise Exception("Duplicated value")
+            insert(tree, data, node.left)
 
-    def lookup(self, target, *, root=None) -> bool:
-        node = root if root is not None else self.root
+    if data > node.data:
+        if node.right is None:
+            node.right = new_node
+        else:
+            insert(tree, data, node.right)
 
-        if not isinstance(node, Node):
-            return False
 
-        if target == node.data:
-            return True
+bst = BST()
+insert(bst, 8)
+insert(bst, 10)
+insert(bst, 3)
+insert(bst, 1)
 
-        if target > node.data and isinstance(node.right, Node):
-            return self.lookup(target, root=node.right)
+test_case.assertEqual({1, 3, 8, 10}, bst.to_set())
 
-        if target < node.data and isinstance(node.left, Node):
-            return self.lookup(target, root=node.left)
 
+# %%
+def lookup(tree: BST, target, node=None) -> bool:
+    node = node if node is not None else tree.root
+
+    if node is None:
         return False
 
+    if target == node.data:
+        return True
 
-# %%
-bst = BST()
-bst.insert(5)
-bst.insert(15)
-bst.insert(0)
-bst.insert(20)
+    if target > node.data and isinstance(node.right, Node):
+        return lookup(tree, target, node.right)
 
-# %%
-bst = BST()
-bst.insert_recursively(5)
-bst.insert_recursively(15)
-bst.insert_recursively(0)
-bst.insert_recursively(20)
+    if target < node.data and isinstance(node.left, Node):
+        return lookup(tree, target, node.left)
 
-# %%
-bst = BST()
-bst.insert(5)
-bst.insert(15)
-bst.insert(0)
-bst.insert(20)
+    return False
 
-bst.lookup(5)  # True
-bst.lookup(99)  # False
+
+test_case.assertEqual(True, lookup(bst, 3))
+test_case.assertEqual(False, lookup(bst, 99))
