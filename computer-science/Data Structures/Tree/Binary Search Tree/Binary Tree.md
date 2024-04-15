@@ -16,8 +16,17 @@ class Node:
 
 ## Variations
 
-- **Binary Tree**: each node has up to 2 children
-- **Full Binary Tree**: each node has either 0 or 2 children
-- **Perfect Binary Tree**: each node has exactly 2 children
-  1. Number of total nodes doubles at each level: 1, 2, 4, 8, ...
-  1. Number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
+- **Binary Tree**
+  - Each node has up to 2 children
+- **Full Binary Tree**
+  - It's a BT
+  - Plus each node has either 0 or 2 children
+- **Complete Binary Tree**
+  - It's a full BT
+  - Plus the BT is filled from top to bottom, left to right
+- **Perfect Binary Tree**
+  - It's a complete BT
+  - Plus all the leaves are on the same level
+  - Properties
+    1. Number of total nodes doubles at each level: 1, 2, 4, 8, ...
+    1. Number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
