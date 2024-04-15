@@ -24,9 +24,16 @@ statement;
 
 $$t = log(n)$$
 
-- Examples:
-  - Searching sorted arrays (binary search) - divide and conquer
-  - Numbers of times a number can be divided by 2 (divides the working area in half with each iteration). Dividing the working area in half is logarithmic
+- Based on a initial value, make the search to the left or to the right (like a phone book)
+  - On each iteration, the working area (number of elements left to search) is halved
+  - Divide and conquer strategy
+- The base 2 is implicit on the runtime complexity $log_2\ n$
+- Logarithmic
+  - How many divisions by `<base>` on the `<anti-logarithm>` do I need to do until it reaches 1
+- `Examples`:
+  - Binary Search
+    - Sorted arrays
+    - Binary search tree
 
 ```javascript
 // Numbers of times a number can be divided by 2

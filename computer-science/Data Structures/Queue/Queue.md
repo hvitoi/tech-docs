@@ -2,7 +2,7 @@
 
 - **FIFO**: First In, First Out
 - Ideally built on top of `Linked Lists`
-  - If the queue implementation holds the `tail`, the dequeue would be $O(1)$, otherwise $O(n)$
+  - If the linked list implementation holds the `tail`, the dequeue would be $O(1)$, otherwise $O(n)$
 
 ## Interface
 
