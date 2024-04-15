@@ -46,4 +46,4 @@ class Node:
 - **Breadth-First Search**
   - Visit order: by level, from left to right
   - Can be implemented using:
-    - A `queue`: to hold all the elements for the next level
+    - A `queue`: to append the element of the next layer into the end of the processing queue
