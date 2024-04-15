@@ -33,13 +33,17 @@ class Node:
 
 ## Traversal
 
-- `Depth-First Search`
-  - **Pre order** traversal
+- **Depth-First Search**
+  - `Pre order` traversal
     - Visit order: node, left, right
-  - **In order** traversal
+  - `In order` traversal
     - Visit order: left, node, right
     - In a BST the output is sorted
-  - **Post order** traversal
+  - `Post order` traversal
     - Visit order: left, right, node
-- `Breadth-First Search`
+  - Can be implemented using:
+    - A `stack (callstack)`: to recursively call the nodes starting from the root node
+- **Breadth-First Search**
   - Visit order: by level, from left to right
+  - Can be implemented using:
+    - A `queue`: to hold all the elements for the next level
