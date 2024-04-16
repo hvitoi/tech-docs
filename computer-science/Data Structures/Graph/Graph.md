@@ -6,7 +6,7 @@
 ## Elements
 
 - `Node (Vertex)`
-- `Edge`: connect two nodes
+- `Edge`: connects nodes
 
 ## Types
 
