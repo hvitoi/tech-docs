@@ -6,6 +6,7 @@
   - A node value will always be smaller than its children values
 
 - A head is always a `complete binary tree`
+- That means it has an order of elements and it can be implemented on top of arrays
 
 ## Restoration
 
