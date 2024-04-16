@@ -4,7 +4,7 @@
   - Each node can have `at most 2 child nodes`
   - Each node must have only one parent
 
-## Node
+## Node & Tree
 
 ```python
 class Node:
@@ -12,6 +12,10 @@ class Node:
         self.data = data
         self.left = left
         self.right = right
+
+class Tree:
+    def __init__(self):
+        self.root = None
 ```
 
 ## Variations
@@ -22,11 +26,11 @@ class Node:
   - It's a BT
   - Plus each node has either 0 or 2 children
 - **Complete Binary Tree**
-  - It's a full BT
-  - Plus the BT is filled from top to bottom, left to right
+  - It's a BT
+  - Plus it's filled from top to bottom, left to right
 - **Perfect Binary Tree**
-  - It's a complete BT
-  - Plus all the leaves are on the same level
+  - It's a BT
+  - Plus the last level is completely filled
   - Properties
     1. Number of total nodes doubles at each level: 1, 2, 4, 8, ...
     1. Number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)

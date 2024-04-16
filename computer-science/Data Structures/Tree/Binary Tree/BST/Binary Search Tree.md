@@ -1,3 +1,4 @@
+
 # Binary Search Tree (BST)
 
 - A tree structure to store numbers in a sorted fashion so that searching on it is easy
