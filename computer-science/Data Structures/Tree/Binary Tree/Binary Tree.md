@@ -1,7 +1,7 @@
 # Binary Tree
 
 - A special kind of tree with a few rules
-  - Each node can have `at most 2 child nodes`
+  - Each node can have `up to 2 child nodes`
   - Each node must have only one parent
 
 ## Node & Tree
@@ -20,20 +20,28 @@ class Tree:
 
 ## Variations
 
-- **Binary Tree**
-  - Each node has up to 2 children
 - **Full Binary Tree**
-  - It's a BT
-  - Plus each node has either 0 or 2 children
+  - Each node has either 0 or 2 children
 - **Complete Binary Tree**
-  - It's a BT
-  - Plus it's filled from top to bottom, left to right
+  - It has a filling order: top to bottom, left to right
 - **Perfect Binary Tree**
-  - It's a BT
-  - Plus the last level is completely filled
-  - Properties
-    1. Number of total nodes doubles at each level: 1, 2, 4, 8, ...
-    1. Number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
+  - The last level is completely filled
+
+## Tree properties
+
+> Strictly applies only to perfect binary trees, but can be generalized for any kind of binary tree
+
+$$h = \lfloor log_2(n) \rfloor + 1$$
+
+Where
+
+- $h = number\ of\ levels$
+- $n = number\ of\ nodes$
+
+That means
+
+- The number of total nodes doubles at each level: 1, 2, 4, 8, ...
+- The number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
 
 ## Traversal
 

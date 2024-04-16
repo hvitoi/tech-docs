@@ -4,21 +4,6 @@
 - A tree structure to store numbers in a sorted fashion so that searching on it is easy
 - <https://visualgo.net/en/bst>
 
-## Nodes/Levels relationship
-
-$$h = \lfloor log_2(n) \rfloor + 1$$
-
-Where
-
-- $h = number\ of\ levels$
-- $n = number\ of\ nodes$
-
-## Operations
-
-- `Lookup`: $O(log\ n)$
-- `Insert`: $O(log\ n)$
-- `Delete`: $O(log\ n)$
-
 ## Balancing a BST
 
 - As new elements get added to the BST, the tree can become `unbalanced`
@@ -30,3 +15,9 @@ Where
   - The rebalance happens only around the item that was inserted
 - **Red Black Tree**
   - Also self balancing
+
+## Operations
+
+- `Lookup`: $O(log\ n)$
+- `Insert`: $O(log\ n)$
+- `Delete`: $O(log\ n)$
