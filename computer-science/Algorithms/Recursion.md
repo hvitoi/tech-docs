@@ -2,10 +2,12 @@
 
 > A function that calls itself
 
-- Used to solve problems that itself include a subproblem
-  - Specially useful when dealing with data structures that you do not know how deep they are
+- Used to solve problems that itself includes the same problem (smaller instances of that same problem)
+  - E.g., $5! = 5 * 4!$
+- Specially useful when dealing with data structures that you do not know how deep they are
+- Useful for `divide and conquer` algorithms
 - A recursion needs a **base case** with indicates when the function should stop calling itself
-- E.g., $5! = 5 * 4!$
+- Any problems can be refactored to use iteration instead of recursion
 
 ```python
 def factorial(n):

@@ -54,7 +54,7 @@ That means
   - `Post order` traversal
     - Visit order: left, right, node
   - Can be implemented using:
-    - A `stack (callstack)`: to recursively call the nodes starting from the root node
+    - A `stack` (stack datastructure or the callstack/recursion): to call the nodes starting from the root node
 - **Breadth-First Search**
   - Visit order: by level, from left to right
   - Can be implemented using:
