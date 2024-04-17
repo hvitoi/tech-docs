@@ -1,7 +1,3 @@
-// --- MERGE SORT O(n*log(n)) - worst, average and best
-//   array is divided into n subarrays, each containing 1 element (sorted array)
-//   subarrays are then merged against each other
-
 function mergeSort2(arr) {
   if (arr.length === 1) return arr; // Base case
 
