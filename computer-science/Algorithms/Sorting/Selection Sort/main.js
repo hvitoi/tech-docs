@@ -1,7 +1,3 @@
-// --- SELECTION SORT O(n^2)
-//   Iterates over the whole array n times (n is the length of the array)
-//   On each iteration pull the lowest value to the beginning of the array
-
 function selectionSort(arr) {
   for (let i in arr) {
     // Assumes the first element is the lowest one
@@ -32,8 +28,6 @@ function selectionSortSimple(arr) {
   }
   return arr;
 }
-
-module.exports = selectionSort;
 
 console.log(selectionSort([10, 3, 2, -1, 0]));
 console.log(selectionSortSimple([10, 3, 2, -1, 0]));
