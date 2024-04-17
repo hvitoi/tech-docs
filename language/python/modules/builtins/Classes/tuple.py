@@ -15,3 +15,7 @@ coordinate_2d[1]  # 2
 # list -> tuple
 my_tuple = tuple(["a", "b"])
 my_tuple
+
+# %%
+my_tuple = ()  # empty tuple
+type(my_tuple)
