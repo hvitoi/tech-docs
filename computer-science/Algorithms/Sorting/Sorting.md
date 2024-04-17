@@ -10,8 +10,11 @@
 - Quick Sort
 - Merge Sort
 
-## B-Tier — $O(n^2)$
+## B-Tier — $O(n^2)$ ~ $O(n)
 
-- Selection Sort
 - Insertion Sort
+
+## C-Tier — $O(n^2)$
+
 - Bubble Sort
+- Selection Sort

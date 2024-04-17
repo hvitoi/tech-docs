@@ -24,3 +24,7 @@ list(range(5))
 # Reversed range (9 to 0)
 range(9, -1, -1)  # less intuitive
 reversed(range(10))
+
+# %%
+list(range(1, 0))  # empty
+list(range(10, 5))  # empty
