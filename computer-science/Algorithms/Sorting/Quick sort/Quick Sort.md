@@ -5,7 +5,7 @@
 - Time complexity: $O(n\ log\ n)$
   - $O(n)$ due to the division of left and right for the halves
   - $O(log\ n)$ due to the recursive sorting of each half
-  - The complexity can be $O(n)$ when the pivot is not distributed around the mid point
+  - The complexity can be $O(n)$ when the pivot is not distributed well around the mid point
 - Space complexity: $O(log\ n)$
   - The call stack
 
