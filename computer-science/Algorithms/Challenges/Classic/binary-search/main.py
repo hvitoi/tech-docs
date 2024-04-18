@@ -2,7 +2,7 @@
 from unittest import TestCase
 
 
-def binary_search(arr, el):
+def binary_search(arr, target):
     """O(log n)"""
     low = 0
     high = len(arr) - 1
@@ -10,22 +10,40 @@ def binary_search(arr, el):
     while low <= high:
         mid = (high + low) // 2
 
-        if el == arr[mid]:
+        if target == arr[mid]:
             return True
 
-        if el < arr[mid]:
+        if target < arr[mid]:
             high = mid - 1
             continue
 
-        if el > arr[mid]:
+        if target > arr[mid]:
             low = mid + 1
             continue
 
     return False
 
 
+def binary_search_recusive(arr, target):
+    """O(log n)"""
+    if not arr:
+        return False
+
+    mid_index = len(arr) // 2
+
+    if target == arr[mid_index]:
+        return True
+
+    if target < arr[mid_index]:
+        return binary_search_recusive(arr[:mid_index], target)
+
+    if target > arr[mid_index]:
+        return binary_search_recusive(arr[mid_index + 1 :], target)
+
+
 test_case = TestCase()
 
-test_case.assertEqual(binary_search([1, 2, 3, 4, 5], 4), True)
-test_case.assertEqual(binary_search([1, 2, 3, 4, 5], 99), False)
-test_case.assertEqual(binary_search([], 99), False)
+for fn in {binary_search, binary_search_recusive}:
+    test_case.assertEqual(fn([1, 2, 3, 4, 5], 4), True)
+    test_case.assertEqual(fn([1, 2, 3, 4, 5], 99), False)
+    test_case.assertEqual(fn([], 99), False)
