@@ -3,9 +3,18 @@
 ## Complexity
 
 - Time complexity: $O(n\ log\ n)$
+  - $O(n)$ due to the division of left and right for the halves
+  - $O(log\ n)$ due to the recursive sorting of each half
 - Space complexity: $O(log\ n)$
+  - The call stack
+  - This could be $O(n)$ is the division left/right is done by an auxiliary array
 
 ## Steps
 
-- We divide the list into halves every time, but we repeat the iteration N times (where N is the size of list).
-- The running time consists of N loops (iterative or recursive) that are logarithmic, thus the algorithm is a combination of linear and logarithmic.
+- Divide and conquer!
+- Uses a pivoting technique
+
+1. Elect a pivot (the middle point in the array)
+1. All elements smaller than the pivot are moved to the left, all elements greater than the pivot are moved to the right
+1. Each divided part is called recursively
+1. Concatenate everything together (left + pivot + right)

@@ -3,8 +3,8 @@
 ## Complexity
 
 - Time complexity: $O(n\ log\ n)$
-  - $log\ n$ due to the recursive sorting
-  - $n$ due to the concatenation of each half
+  - $O(n)$ due to the concatenation of each half
+  - $O(log\ n)$ due to the recursive sorting of each half
 - Space complexity: $O(n)$
   - Each subarray created
 
