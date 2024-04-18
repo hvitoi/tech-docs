@@ -12,3 +12,6 @@ def selection_sort(arr):
 
 test_case = TestCase()
 test_case.assertEqual(selection_sort([4, 5, 1, 3, 2]), [1, 2, 3, 4, 5])
+test_case.assertEqual(selection_sort([]), [])
+test_case.assertEqual(selection_sort([1]), [1])
+test_case.assertEqual(selection_sort([1, 1]), [1, 1])

@@ -1,7 +1,3 @@
-// --- QUICK SORT - O(n*log(n)).
-// we divide the list into halves every time, but we repeat the iteration N times(where N is the size of list).
-// The running time consists of N loops (iterative or recursive) that are logarithmic, thus the algorithm is a combination of linear and logarithmic.
-
 function swap(items, leftIndex, rightIndex) {
   const aux = items[leftIndex];
   items[leftIndex] = items[rightIndex];
@@ -41,9 +37,5 @@ function quickSort(items, left, right) {
   }
   return items;
 }
-
-// ---
-
-module.exports = quickSort;
 
 console.log(quickSort(items, 0, items.length - 1));

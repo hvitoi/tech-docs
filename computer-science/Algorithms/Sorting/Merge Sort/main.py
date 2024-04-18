@@ -7,9 +7,9 @@ def merge_sort(arr):
         return arr
 
     # sort each part
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
+    mid_index = len(arr) // 2
+    left = merge_sort(arr[:mid_index])
+    right = merge_sort(arr[mid_index:])
 
     # concatenate the two parts in the correct order
     if left[-1] <= right[0]:
@@ -21,4 +21,5 @@ def merge_sort(arr):
 test_case = TestCase()
 test_case.assertEqual(merge_sort([4, 5, 1, 3, 2]), [1, 2, 3, 4, 5])
 test_case.assertEqual(merge_sort([]), [])
-test_case.assertEqual(merge_sort([2, 1, 1]), [1, 1, 2])
+test_case.assertEqual(merge_sort([1]), [1])
+test_case.assertEqual(merge_sort([1, 1]), [1, 1])

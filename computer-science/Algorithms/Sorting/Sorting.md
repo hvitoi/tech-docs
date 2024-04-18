@@ -18,3 +18,9 @@
 
 - Selection Sort
 - Bubble Sort
+
+## Stable vs. Unstable
+
+A given sorting algorithms is considered `stable` when two elements with same value appear in the same order in the sorted list
+
+On `unstable` algorithms, this order is not guaranteed
