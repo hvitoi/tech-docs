@@ -6,19 +6,29 @@ def quick_sort(arr: list):
     if len(arr) <= 1:
         return arr
 
-    pivot_index = len(arr) // 2
+    pivot_index = 0
+    i = len(arr) - 1
+    direction = "<-"
 
-    left = []
-    right = []
+    while i != pivot_index:
+        match direction:
+            case "<-":
+                if arr[i] < arr[pivot_index]:
+                    arr[i], arr[pivot_index] = arr[pivot_index], arr[i]
+                    i, pivot_index = pivot_index, i
+                    direction = "->"
+                else:
+                    i -= 1
+            case "->":
+                if arr[i] > arr[pivot_index]:
+                    arr[i], arr[pivot_index] = arr[pivot_index], arr[i]
+                    i, pivot_index = pivot_index, i
+                    direction = "<-"
+                else:
+                    i += 1
 
-    for i in range(len(arr)):
-        if i == pivot_index:
-            continue
-
-        if arr[i] <= arr[pivot_index]:
-            left.append(arr[i])
-        else:
-            right.append(arr[i])
+    left = arr[:pivot_index]
+    right = arr[pivot_index + 1 :]
 
     return quick_sort(left) + [arr[pivot_index]] + quick_sort(right)
 
