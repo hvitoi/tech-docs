@@ -8,7 +8,8 @@ num if num % 2 == 0 else -1
 
 # %%
 # Try to access an out of bound index
-# LBYL (look before you leap)
+# LBYL (Look Before You Leap)
+# Contrary to EAFP (Easier to Ask Forgiveness than Permission)
 myList = ["a", "b", "c"]
 i = 3
 

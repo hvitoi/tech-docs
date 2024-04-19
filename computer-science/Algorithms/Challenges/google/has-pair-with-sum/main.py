@@ -53,3 +53,30 @@ for fn in {
     test_case.assertEqual(fn([1, 2, 3, 9], 8), False)
     test_case.assertEqual(fn([1, 2, 4, 4], 8), True)
     test_case.assertEqual(fn([], 8), False)
+
+
+# %%
+# This variation returns the list of pairs that match the target sum
+# Instead of returning if at least one pair matches the target sum
+
+
+def pairs_with_target_sum(arr: list[int], target_sum: int):
+    seenNumbers = set()
+    pairs_with_matching_sum = []
+
+    for number in arr:
+        complement = target_sum - number
+        if complement in seenNumbers:
+            pairs_with_matching_sum.append(tuple(sorted((number, complement))))
+        seenNumbers.add(number)
+
+    return list(map(list, pairs_with_matching_sum))
+
+
+test_case = TestCase()
+
+test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 9, 11], 9), [[3, 6]])
+test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 5, 9, 4], 9), [[3, 6], [4, 5]])
+test_case.assertEqual(pairs_with_target_sum([4], 8), [])
+test_case.assertEqual(pairs_with_target_sum([4, 4], 8), [[4, 4]])
+# test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 3, 6, 9, 11], 9), [[3, 6]])

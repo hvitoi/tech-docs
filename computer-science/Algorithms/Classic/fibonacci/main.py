@@ -95,5 +95,3 @@ for fn in {
     test_case.assertEqual(fn(3), 2)
     test_case.assertEqual(fn(4), 3)
     test_case.assertEqual(fn(5), 5)
-
-# %%
