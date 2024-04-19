@@ -12,12 +12,12 @@ matrix = [
 ]
 
 list(zip(*matrix))
+list(zip([1, 2, 3], [4, 5, 6], [7, 8, 9]))  # same
 
-# same as:
-list(zip([1, 2, 3], [4, 5, 6], [7, 8, 9]))
-
-# put it back in a list
-[*matrix]
+# concatenate arrays
+a = [1, 2, 3]
+b = [4, 5, 6]
+[*a, *b]
 
 # %%
 # Unpack Dict

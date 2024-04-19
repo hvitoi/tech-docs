@@ -1,6 +1,5 @@
 # %%
 from unittest import TestCase
-from functools import wraps
 
 
 def fibonacci_with_array(n):
@@ -48,10 +47,9 @@ def fibonacci_recursive(n):
     """
     Time: O(2^n)
     """
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
+    if n <= 1:
+        return n
+
     return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
 
@@ -68,19 +66,18 @@ def fibonacci_recursive_with_accumulator(n, acc=(0, 1)):
     )
 
 
-def fibonacci_recursive_with_memoization(n, cache={}):
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
+def memoize(fn):
+    memo = {}
 
-    if n - 1 not in cache:  # lookup or miss
-        cache[n - 1] = fibonacci_recursive_with_memoization(n - 1, cache)
+    def lookup_or_miss(*args):
+        if args not in memo:
+            memo[args] = fn(*args)
+        return memo[args]
 
-    if n - 2 not in cache:  # lookup or miss
-        cache[n - 2] = fibonacci_recursive_with_memoization(n - 2, cache)
+    return lookup_or_miss
 
-    return cache[n - 1] + cache[n - 2]
+
+fibonacci_recursive_memoized = memoize(fibonacci_recursive)
 
 
 test_case = TestCase()
@@ -90,7 +87,7 @@ for fn in {
     fibonacci_with_curr_prev,
     fibonacci_recursive,
     fibonacci_recursive_with_accumulator,
-    fibonacci_recursive_with_memoization,
+    fibonacci_recursive_memoized,
 }:
     test_case.assertEqual(fn(0), 0)
     test_case.assertEqual(fn(1), 1)
