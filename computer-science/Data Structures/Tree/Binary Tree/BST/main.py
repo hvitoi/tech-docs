@@ -131,3 +131,25 @@ def traverse_depth_first(tree: BST, node: Node = None):
 
 
 traverse_depth_first(bst)
+
+
+# %%
+def is_valid(tree: BST, node: Node = None, *, min=float("-inf"), max=float("inf")):
+    if not tree.root:
+        return True
+
+    node = node if node else tree.root
+
+    if (node.data < min) or (node.data > max):
+        return False
+
+    if node.left:
+        return is_valid(tree, node.left, min=min, max=node.data)
+
+    if node.right:
+        return is_valid(tree, node.right, min=node.data, max=max)
+
+    return True
+
+
+is_valid(bst)
