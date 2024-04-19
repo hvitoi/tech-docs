@@ -4,6 +4,10 @@
 
 ## Dijkstra
 
+- Only positive weights
+
 ## Bellman-Ford
 
 - Algorithm created by Richard Bellman (same creator of dynamic programming)
+- It can accommodate `negative weights`
+- Runtime $O(n^2)$
