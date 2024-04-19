@@ -5,24 +5,16 @@
 - `Example`: in a Linked List, the traversal stops when the next element points to null
 - Traversals are usually implemented with a `while`/`for` and a defined `stop rule` according to each data structure
 
-## Type
-
-- **Depth-First Search**
-  - `Pre order` traversal
-    - Visit order: node, left, right
-  - `In order` traversal
-    - Visit order: left, node, right
-    - In a BST the output is sorted
-  - `Post order` traversal
-    - Visit order: left, right, node
-  - Can be implemented using:
-    - A `stack` (stack datastructure or the callstack/recursion): to call the nodes starting from the root node
-- **Breadth-First Search**
-  - Visit order: by level, from left to right
-  - Can be implemented using:
-    - A `queue`: to append the element of the next layer into the end of the processing queue
-
 ## Depth-first traverse
+
+- **Pre order** traversal
+  - Visit order: node, left, right
+- **In order** traversal
+  - Visit order: left, node, right
+  - In a BST the output is sorted
+- **Post order** traversal
+  - Visit order: left, right, node
+- Can be implemented using a `stack` (stack data structure or the callstack/recursion) to call the nodes starting from the root node
 
 ```python
 def traverse_depth_first(tree: BST, node: Node = None):
@@ -42,6 +34,10 @@ def traverse_depth_first(tree: BST, node: Node = None):
 ```
 
 ## Breadth-first traverse
+
+- Visit order: by level, from left to right
+- Can be implemented using a `queue` to append the element of the next layer into the end of the processing queue
+- Space complexity is bigger (compared to DFS) since it needs to keep track of all the nodes in the next level
 
 ```python
 def traverse_breath_first(tree: BST):
