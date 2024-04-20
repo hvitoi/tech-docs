@@ -113,3 +113,17 @@ def everything_mixed_up(x, y, z=None, *args, foo, bar=None, baz, **kwargs):
 
 
 everything_mixed_up("x", "y", foo="foo", baz="baz")  # bare minimum
+
+
+# %%
+# The default value is created ONCE at the function definition
+# Do not use mutable data types (references) as default arguments because they are remembers across function calls. This may lead to strange behaviors
+
+
+def append_num(num, nums=[]):
+    nums.append(num)
+    return nums
+
+
+append_num(1)
+append_num(2)

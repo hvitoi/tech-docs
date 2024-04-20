@@ -1,6 +1,6 @@
 # %%
-from typing import Any
 from unittest import TestCase
+from collections import deque
 
 
 class Node:
@@ -32,11 +32,8 @@ class BST:
         return elements
 
 
-test_case = TestCase()
-
-
 # %%
-def insert(tree: BST, data: Any, node: Node = None):
+def insert(tree: BST, data: int, node: Node = None):
     new_node = Node(data)
 
     if not tree.root:
@@ -67,6 +64,7 @@ insert(bst, 10)
 insert(bst, 3)
 insert(bst, 1)
 
+test_case = TestCase()
 test_case.assertEqual({1, 3, 8, 10}, bst.to_set())
 
 
@@ -93,18 +91,24 @@ def lookup(tree: BST, target: int):
     return lookup_(node, target)
 
 
+test_case = TestCase()
 test_case.assertEqual(True, lookup(bst, 3))
 test_case.assertEqual(False, lookup(bst, 99))
 
 
 # %%
-def traverse_breath_first_(node: Node):
-    queue = [node] if node else []
+def traverse_breath_first_(node: Node) -> list[int]:
+    acc = []
+
+    if not node:
+        return acc
+
+    queue = deque([node])
 
     while queue:
         # consume first element in the queue
-        node = queue.pop(0)
-        print(node.data)
+        node = queue.popleft()
+        acc.append(node.data)
 
         # append its children to the end of the queue
         if node.left:
@@ -112,26 +116,31 @@ def traverse_breath_first_(node: Node):
         if node.right:
             queue.append(node.right)
 
+    return acc
+
 
 def traverse_breath_first(tree: BST):
     node = tree.root if tree else None
     return traverse_breath_first_(node)
 
 
-traverse_breath_first(bst)
+test_case = TestCase()
+test_case.assertEqual(traverse_breath_first(bst), [8, 3, 10, 1])
 
 
 # %%
-def traverse_depth_first_(node: Node):
+def traverse_depth_first_(node: Node, acc: list[int] = []) -> list[int]:
     """Depth-First In-Order"""
 
     if node.left:
-        traverse_depth_first_(node.left)
+        traverse_depth_first_(node.left, acc)
 
-    print(node.data)
+    acc.append(node.data)
 
     if node.right:
-        traverse_depth_first_(node.right)
+        traverse_depth_first_(node.right, acc)
+
+    return acc
 
 
 def traverse_depth_first(tree: BST):
@@ -139,7 +148,8 @@ def traverse_depth_first(tree: BST):
     return traverse_depth_first_(node)
 
 
-traverse_depth_first(bst)
+test_case = TestCase()
+test_case.assertEqual(traverse_depth_first(bst), [1, 3, 8, 10])
 
 
 # %%
