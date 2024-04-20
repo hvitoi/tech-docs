@@ -1,20 +1,27 @@
 # %%
 from unittest import TestCase
 
+# SOLUTION 1
 # Tip 1: execute BF traversal on the matrix
-# Tip 2: if one level returns only Zeros, that means the previous island is done (and a new may start)
+# Tip 2: maintain a list of visited cells to avoid revisiting it
+# Tip 3: if one level returns only Zeros, that means the previous island is done (and a new may start)
+
+# SOLUTION 2
+# Tip 1: execute a traversal (BF or DF)
+# Tip 2: maintain a list of visited cells to avoid revisiting it
+# Tip 3: during the traversal visit all the cells until a Zero is found
 
 
-def number_of_islands(
+def number_of_islands_check_barriers(
     matrix: list[list],
     cells: set = None,
-    islands: int = 0,
+    nums_islands: int = 0,
     existing_island: bool = False,
 ) -> int:
     cells = cells if cells is not None else set([(0, 0)])
 
     if not matrix or not cells:
-        return islands
+        return nums_islands
 
     rows = len(matrix)
     cols = len(matrix[0])
@@ -39,17 +46,17 @@ def number_of_islands(
             ):
                 next_level_cells.add(next_pos)
 
-    return number_of_islands(
+    return number_of_islands_check_barriers(
         matrix,
         next_level_cells,
-        islands + 1 if (not existing_island) and level_has_land else islands,
+        nums_islands + 1 if (not existing_island) and level_has_land else nums_islands,
         level_has_land,
     )
 
 
 test_case = TestCase()
 test_case.assertEqual(
-    number_of_islands(
+    number_of_islands_check_barriers(
         [
             ["1", "1", "1", "1", "0"],
             ["1", "1", "0", "1", "0"],
@@ -60,7 +67,7 @@ test_case.assertEqual(
     1,
 )
 test_case.assertEqual(
-    number_of_islands(
+    number_of_islands_check_barriers(
         [
             ["1", "1", "0", "0", "0"],
             ["1", "1", "0", "0", "0"],
@@ -69,4 +76,28 @@ test_case.assertEqual(
         ]
     ),
     3,
+)
+
+test_case.assertEqual(
+    number_of_islands_check_barriers(
+        [
+            ["1", "1", "1", "0", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["1", "0", "1", "1", "0"],
+            ["0", "0", "1", "0", "1"],
+        ]
+    ),
+    3,
+)
+
+test_case.assertEqual(
+    number_of_islands_check_barriers(
+        [
+            ["0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "0"],
+            ["0", "0", "0", "0", "1"],
+        ]
+    ),
+    1,
 )
