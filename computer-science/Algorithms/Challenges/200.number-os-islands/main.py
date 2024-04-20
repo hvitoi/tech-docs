@@ -1,6 +1,4 @@
 # %%
-
-from collections import deque
 from unittest import TestCase
 
 # Tip 1: execute BF traversal on the matrix
@@ -9,25 +7,23 @@ from unittest import TestCase
 
 def number_of_islands(
     matrix: list[list],
-    queue: deque = None,
+    cells: set = None,
     islands: int = 0,
     existing_island: bool = False,
 ) -> int:
-    queue = queue if queue is not None else deque([(0, 0)])
+    cells = cells if cells is not None else set([(0, 0)])
 
-    if not matrix or not queue:
+    if not matrix or not cells:
         return islands
 
     rows = len(matrix)
     cols = len(matrix[0])
 
-    next_level_queue = deque()
-    next_level_items = set()
-
     level_has_land = False
+    next_level_cells = set()
 
-    while queue:
-        pos = queue.popleft()
+    while cells:
+        pos = cells.pop()
 
         if matrix[pos[0]][pos[1]] == "1":
             level_has_land = True
@@ -37,16 +33,15 @@ def number_of_islands(
 
         for next_pos in [pos_right, pos_down]:
             if (
-                (next_pos not in next_level_items)
+                (next_pos not in next_level_cells)
                 and (next_pos[0] < rows)
                 and (next_pos[1] < cols)
             ):
-                next_level_queue.append(next_pos)
-                next_level_items.add(next_pos)
+                next_level_cells.add(next_pos)
 
     return number_of_islands(
         matrix,
-        next_level_queue,
+        next_level_cells,
         islands + 1 if (not existing_island) and level_has_land else islands,
         level_has_land,
     )
