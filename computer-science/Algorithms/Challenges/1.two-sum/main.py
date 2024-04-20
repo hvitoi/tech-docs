@@ -3,7 +3,11 @@ from typing import List
 from unittest import TestCase
 
 
-def hasPairWithSumBruteForce(data: List[int], target_sum: int) -> bool:
+# %%
+# This variation returns a boolean whether at least one pair matches the target sum
+
+
+def two_sum_brute_force(data: List[int], target_sum: int) -> bool:
     # O(n^2)
     n = len(data)
     for i in range(n):
@@ -15,7 +19,7 @@ def hasPairWithSumBruteForce(data: List[int], target_sum: int) -> bool:
     return False
 
 
-def hasPairWithSumFromBothSides(data: List[int], target_sum: int) -> bool:
+def two_sum_from_both_sides(data: List[int], target_sum: int) -> bool:
     # This assumes that the list is sorted
     # O(n)
     low = 0
@@ -32,7 +36,7 @@ def hasPairWithSumFromBothSides(data: List[int], target_sum: int) -> bool:
     return False
 
 
-def hasPairWithSumHasBeenSeen(data: List[int], target_sum: int) -> bool:
+def two_sum_has_been_seen(data: List[int], target_sum: int) -> bool:
     # O(n)
     seen_numbers = set()
     for el in data:
@@ -44,23 +48,16 @@ def hasPairWithSumHasBeenSeen(data: List[int], target_sum: int) -> bool:
 
 
 test_case = TestCase()
-
-for fn in {
-    hasPairWithSumBruteForce,
-    hasPairWithSumFromBothSides,
-    hasPairWithSumHasBeenSeen,
-}:
+for fn in {two_sum_brute_force, two_sum_from_both_sides, two_sum_has_been_seen}:
     test_case.assertEqual(fn([1, 2, 3, 9], 8), False)
     test_case.assertEqual(fn([1, 2, 4, 4], 8), True)
     test_case.assertEqual(fn([], 8), False)
 
-
 # %%
 # This variation returns the list of pairs that match the target sum
-# Instead of returning if at least one pair matches the target sum
 
 
-def pairs_with_target_sum(arr: list[int], target_sum: int):
+def two_sum_every_match(arr: list[int], target_sum: int):
     seenNumbers = set()
     pairs_with_matching_sum = set()
 
@@ -74,9 +71,26 @@ def pairs_with_target_sum(arr: list[int], target_sum: int):
 
 
 test_case = TestCase()
+test_case.assertEqual(two_sum_every_match([2, 6, 3, 9, 11], 9), {(3, 6)})
+test_case.assertEqual(two_sum_every_match([2, 6, 3, 5, 9, 4], 9), {(3, 6), (4, 5)})
+test_case.assertEqual(two_sum_every_match([4], 8), set())
+test_case.assertEqual(two_sum_every_match([4, 4], 8), {(4, 4)})
+test_case.assertEqual(two_sum_every_match([2, 6, 3, 3, 6, 9, 11], 9), {(3, 6)})
 
-test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 9, 11], 9), {(3, 6)})
-test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 5, 9, 4], 9), {(3, 6), (4, 5)})
-test_case.assertEqual(pairs_with_target_sum([4], 8), set())
-test_case.assertEqual(pairs_with_target_sum([4, 4], 8), {(4, 4)})
-test_case.assertEqual(pairs_with_target_sum([2, 6, 3, 3, 6, 9, 11], 9), {(3, 6)})
+# %%
+# This variation returns the indexes of the first pair that matches the target sum
+
+
+def two_sum_return_index_brute_force(nums: List[int], target: int):
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return []
+
+
+test_case = TestCase()
+test_case.assertEqual(two_sum_return_index_brute_force([2, 7, 11, 15], 9), [0, 1])
+test_case.assertEqual(two_sum_return_index_brute_force([3, 2, 4], 6), [1, 2])
+test_case.assertEqual(two_sum_return_index_brute_force([3, 3], 6), [0, 1])
