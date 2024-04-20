@@ -78,38 +78,44 @@ jq '.[] | .a' <<< '[{"a":1}]'
 jq '[ .[] ]' <<< '[{"a":1}]'
 ```
 
-## map
-
-```shell
-echo $foo | jq '.invoices | map(select(.amount > 0))'
-```
-
-## select
-
-```shell
-jq '.[] | select(.foo == false)' <<< '[{"foo":true},{"foo":false}]'
-```
-
-## sort_by
-
-- Sort by can only be used over arrays (not destructured arrays)
-
-```shell
-jq -s '.[] | sort_by(.a)' <<< '[{"a":2},{"a":1}]'
-```
-
 ## reduce
 
 ```shell
-jq 'to_entries | reduce .[] as $i (""; . + "\($i.key): Download \($i.value.NET_DOWN), Upload \($i.value.NET_UP)\n")' <<<'{"a":{"NET_DOWN": 1, "NET_UP": 2},"b":{"NET_DOWN": 1, "NET_UP": 2}}'
+cat '{"a":{"NET_DOWN": 1, "NET_UP": 2},"b":{"NET_DOWN": 1, "NET_UP": 2}}' | jq 'to_entries | reduce .[] as $i (""; . + "\($i.key): Download \($i.value.NET_DOWN), Upload \($i.value.NET_UP)\n")'
 ```
 
-## last
+## Array Operations
+
+## map
+
+```shell
+echo '[1,2,3]' | jq 'map(. * .)'
+```
+
+### sort_by
+
+```shell
+echo '[{"a":2},{"a":1}]' | jq 'sort_by(.a)'
+```
+
+### last
 
 - Take last element of an array
 
 ```shell
-jq -s 'last' <<< '["a", "b", "c"]'
+echo '["a", "b", "c"]' | jq 'last'
+```
+
+## Array Operations (destructured)
+
+### select
+
+```shell
+# select on destructured array
+echo '[{"foo":true},{"foo":false}]' | jq '.[] | select(.foo == false)'
+
+# select on plain array
+echo '[{"foo":true},{"foo":false}]' | jq 'map(select(.foo == false))'
 ```
 
 ## other
