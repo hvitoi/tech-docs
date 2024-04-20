@@ -2,6 +2,7 @@
 
 
 def move_zeroes(nums: list) -> None:
+    """O(n^2)"""
     zeroes_count = nums.count(0)
     for _ in range(zeroes_count):
         nums.remove(0)
