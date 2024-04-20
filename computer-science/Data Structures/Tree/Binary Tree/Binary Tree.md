@@ -31,8 +31,8 @@ class Tree:
 
 > Strictly applies only to perfect binary trees, but can be generalized for any kind of binary tree
 
-$$h = \lfloor log_2(n) \rfloor + 1$$
-
+$$h(n) = \lfloor log_2(n) \rfloor + 1$$
+$$h(n) = 1 + h(n-1)$$
 Where
 
 - $h = number\ of\ levels$
@@ -42,3 +42,5 @@ That means
 
 - The number of total nodes doubles at each level: 1, 2, 4, 8, ...
 - The number of nodes on the last level is equal to the numbers of nodes on all the other level plus one (half of the data is the bottom level)
+
+> Heigh is -1 if there is no Nodes
