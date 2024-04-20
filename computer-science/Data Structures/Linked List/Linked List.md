@@ -6,7 +6,7 @@
   - Insertion does not need to shift the remaining elements (like it is done in Arrays)
 - **Cons**
   - Compared to Arrays, the traversal is slower, given that the sequential read is much more efficient (with caching systems - cache locality)
-- Linked Lists are good for `manipulating elements in the beginning` (while Arrays are good for `manipulating elements in the ending`)
+- Linked Lists are good for `manipulating elements in the beginning` (while Arrays are good for `manipulating elements in the end`)
 
 ## Node
 
