@@ -1,12 +1,15 @@
 # %%
+# Decorator applies a closure to a function
+
+
 def memoize(fn):
-    cache = {}
+    memo = {}
 
     def lookup_or_miss(*args, **kwargs):
         key = str(args) + str(kwargs)
-        if key not in cache:
-            cache[key] = fn(*args, **kwargs)
-        return cache[key]
+        if key not in memo:
+            memo[key] = fn(*args, **kwargs)
+        return memo[key]
 
     return lookup_or_miss
 

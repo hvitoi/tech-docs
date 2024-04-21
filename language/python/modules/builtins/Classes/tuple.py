@@ -19,3 +19,13 @@ my_tuple
 # %%
 my_tuple = ()  # empty tuple
 type(my_tuple)
+
+
+# %
+def foo(*args, **kwargs):
+    print(args, kwargs)
+    return args + kwargs
+
+
+foo(1, 2, a=3, b=4)
+(1, 2) + (3, 4)

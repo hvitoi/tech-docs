@@ -9,6 +9,7 @@ foo[-1:]  # from last index (inclusive)
 foo = ["a", "b", "c", "d", "e"]
 foo[:2]  # until index 2 (exclusive)
 foo[:-1]  # until last index (exclusive)
+foo[:99]  # works, take until the very last
 
 # %%
 foo = ["a", "b", "c", "d", "e"]

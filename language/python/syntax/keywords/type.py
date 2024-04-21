@@ -1,3 +1,0 @@
-# %%
-
-type SetOfIntegers = set(int)

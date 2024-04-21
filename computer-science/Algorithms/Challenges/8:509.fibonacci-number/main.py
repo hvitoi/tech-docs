@@ -43,6 +43,18 @@ def fibonacci_with_curr_prev(n):
     return curr
 
 
+def memoize(fn):
+    memo = {}
+
+    def lookup_or_miss(*args):
+        if args not in memo:
+            memo[args] = fn(*args)
+        return memo[args]
+
+    return lookup_or_miss
+
+
+@memoize
 def fibonacci_recursive(n):
     """
     Time: O(2^n)
@@ -66,20 +78,6 @@ def fibonacci_recursive_with_accumulator(n, acc=(0, 1)):
     )
 
 
-def memoize(fn):
-    memo = {}
-
-    def lookup_or_miss(*args):
-        if args not in memo:
-            memo[args] = fn(*args)
-        return memo[args]
-
-    return lookup_or_miss
-
-
-fibonacci_recursive_memoized = memoize(fibonacci_recursive)
-
-
 test_case = TestCase()
 
 for fn in {
@@ -87,7 +85,6 @@ for fn in {
     fibonacci_with_curr_prev,
     fibonacci_recursive,
     fibonacci_recursive_with_accumulator,
-    fibonacci_recursive_memoized,
 }:
     test_case.assertEqual(fn(0), 0)
     test_case.assertEqual(fn(1), 1)

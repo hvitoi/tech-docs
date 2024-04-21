@@ -1,0 +1,3 @@
+# %%
+
+type SetOfIntegers = set[int]
