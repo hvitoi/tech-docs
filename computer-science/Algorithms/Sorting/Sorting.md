@@ -32,7 +32,7 @@ Compares somehow each elements against each other. These algorithms can mathemat
 
 ## Non-comparison sorts
 
-- Uses the way how data (0s and 1s) is stored on memory
+- Uses the way how data (0s and 1s) is stored in memory
 - Only works with integer numbers in a specific range
 - `Types`
   - Counting Sort

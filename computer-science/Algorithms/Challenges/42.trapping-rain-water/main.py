@@ -4,9 +4,8 @@ from unittest import TestCase
 
 
 def trap(bars: List[int]) -> int:
-    highest_bar = max(bars)
     trapped_water = 0
-    for water_level in range(1, highest_bar + 1):
+    for water_level in range(1, max(bars) + 1):
         bars_above_height = [bar >= water_level for bar in bars]
         left_border = bars_above_height.index(True)
         right_border = len(bars) - 1 - bars_above_height[::-1].index(True)

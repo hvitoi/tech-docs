@@ -14,7 +14,7 @@
 - Divide and conquer!
 - Uses a pivoting technique
 
-1. Elect a pivot (the middle point in the array)
+1. Elect a pivot (first element in the array)
 1. All elements smaller than the pivot are moved to the left, all elements greater than the pivot are moved to the right
 1. Each divided part is called recursively
 1. Concatenate everything together (left + pivot + right)
