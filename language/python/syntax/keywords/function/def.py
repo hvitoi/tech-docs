@@ -127,3 +127,18 @@ def append_num(num, nums=[]):
 
 append_num(1)
 append_num(2)
+
+
+# %%
+# Modifying the arguments received
+def modify_list(ls: list) -> None:
+    ls.append("d")  # works!
+
+
+def try_to_modify_list(ls: list) -> None:
+    ls = ["z"]  # does not work! Reassigns only the local pointer
+
+
+my_list = ["a", "b", "c"]
+modify_list(my_list)
+my_list
