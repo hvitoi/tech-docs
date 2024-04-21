@@ -14,22 +14,23 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def to_set(self, elements=set(), node=None):
+    def to_set(self, node=None, acc=None):
         """Depth-First In-Order Traversal"""
-        if not self.root:
-            return set()
-
         node = node if node else self.root
+        acc = acc if acc is not None else set()
+
+        if not node:
+            return acc
 
         if node.left:
-            elements = self.to_set(elements, node.left)
+            self.to_set(node.left, acc)
 
-        elements.add(node.data)
+        acc.add(node.data)
 
         if node.right:
-            elements = self.to_set(elements, node.right)
+            self.to_set(node.right, acc)
 
-        return elements
+        return acc
 
 
 # %%
@@ -150,28 +151,6 @@ def traverse_depth_first(tree: BST):
 
 test_case = TestCase()
 test_case.assertEqual(traverse_depth_first(bst), [1, 3, 8, 10])
-
-
-# %%
-def is_valid_(node: Node, *, min=float("-inf"), max=float("inf")) -> bool:
-    if (node.data < min) or (node.data > max):
-        return False
-
-    if node.left:
-        return is_valid_(node.left, min=min, max=node.data)
-
-    if node.right:
-        return is_valid_(node.right, min=node.data, max=max)
-
-    return True
-
-
-def is_valid(tree: BST) -> bool:
-    node = tree.root if tree else None
-    return is_valid_(node)
-
-
-test_case.assertEqual(is_valid(bst), True)
 
 
 # %%

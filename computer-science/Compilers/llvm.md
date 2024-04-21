@@ -17,7 +17,7 @@
 
   1. IR code optimization
 
-- `Backend`\*
+- `Backend`
 
   1. IR code
   1. Machine code
