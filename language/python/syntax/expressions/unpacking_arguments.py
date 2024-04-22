@@ -19,6 +19,7 @@ a = [1, 2, 3]
 b = [4, 5, 6]
 [*a, *b]
 
+
 # %%
 # Unpack Dict
 
@@ -26,3 +27,7 @@ from itertools import accumulate
 
 my_map = {"initial": 10}
 list(accumulate([1, 2, 3, 4, 5], **my_map))
+
+# %%
+# Unpack String
+[*"abc"]

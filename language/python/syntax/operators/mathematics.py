@@ -15,6 +15,8 @@ None + 1  # throws!
 # %%
 # multiplication
 1 * 3
+3 * "abc"
+3 * ["a", "b", "c"]
 
 # %%
 # division

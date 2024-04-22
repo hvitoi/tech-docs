@@ -18,6 +18,7 @@ def memoize_from_first_three_letters(fn):
 
 @memoize_from_first_three_letters
 def num_decodings(s: str) -> int:
+    """O(2^n) without memoization, O(n) with memoization"""
     if len(s) >= 1 and int(s[0]) == 0:
         return 0
 
@@ -40,3 +41,4 @@ test_case = TestCase()
 test_case.assertEqual(num_decodings("12"), 2)
 test_case.assertEqual(num_decodings("226"), 3)
 test_case.assertEqual(num_decodings("06"), 0)
+test_case.assertEqual(num_decodings("2263"), 3)
