@@ -5,9 +5,6 @@
 - **Min Heap**
   - A node value will always be smaller than its children values
 
-- A head is always a `complete binary tree`
-- That means it has an order of elements and it can be implemented on top of arrays
-
 ## Restoration
 
 - On every insertion/removal, the heap has to be restored in order to "restore" its datastructure properties (max/min order)
@@ -18,6 +15,16 @@
 - `Restoration on removal`
   - The last item in the complete tree takes place in the removed items
   - Bubble the item downwards, by comparing it with the child nodes
+
+## Implementation from array
+
+- A heap is a `complete binary tree` (has an order for insertion)
+- Because it has an order of insertion, it can be `represented as an array`
+- To fill a binary heap from an array simply add them from left to right and fill the binary tree top-down, left-right
+
+- **Parent** $i_p = \frac{(i-1)}{2}$
+- **Left child** $i_l = 2*i+1$
+- **Right child** $i_r = 2*i+2$
 
 ## Operations (Binary Heap)
 
