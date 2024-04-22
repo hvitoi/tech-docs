@@ -5,16 +5,18 @@
 - **Min Heap**
   - A node value will always be smaller than its children values
 
+- <https://www.youtube.com/watch?v=k72DtCnY4MU>
+
 ## Restoration
 
 - On every insertion/removal, the heap has to be restored in order to "restore" its datastructure properties (max/min order)
 
 - `Restoration on insertion`
-  - Bubble the item upwards, by comparing it with the parent nodes
+  - _Bubble the item upwards_, by comparing it with the parent nodes
 
 - `Restoration on removal`
   - The last item in the complete tree takes place in the removed items
-  - Bubble the item downwards, by comparing it with the child nodes
+  - _Bubble the item downwards_, by comparing it with the child nodes
 
 ## Implementation from array
 
