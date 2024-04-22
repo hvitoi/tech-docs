@@ -1,45 +1,52 @@
 # %%
-#
-class MaxHeap:
-    def __init__(self, elements=None):
-        self.heap: list = elements
-        self.full_restore()
+from unittest import TestCase
 
-    def get_parent(self, child_index: int) -> int:
-        parent_index = (child_index - 1) // 2
-        if parent_index < len(self.heap):
+
+class MaxHeap:
+    def __init__(self, numbers=None):
+        self.heap: list = numbers
+        self.__heapify()
+
+    def __parent(self, i: int) -> int:
+        parent_index = (i - 1) // 2
+        if 0 <= parent_index < len(self.heap):
             return parent_index
 
-    def get_left_child(self, parent_index: int) -> int:
-        left_child_index = 2 * parent_index + 1
-        if left_child_index < len(self.heap):
+    def __left(self, i: int) -> int:
+        left_child_index = 2 * i + 1
+        if 0 <= left_child_index < len(self.heap):
             return left_child_index
 
-    def get_right_child(self, parent_index: int) -> int:
-        right_child_index = 2 * parent_index + 2
-        if right_child_index < len(self.heap):
+    def __right(self, i: int) -> int:
+        right_child_index = 2 * i + 2
+        if 0 <= right_child_index < len(self.heap):
             return right_child_index
 
-    def get_largest_child(self, parent_index: int) -> int:
-        left_child = self.get_left_child(parent_index)
-        right_child = self.get_right_child(parent_index)
+    def __largest_child(self, i: int) -> int:
+        left_child = self.__left(i)
+        right_child = self.__right(i)
         children = list(filter(lambda el: el, [left_child, right_child]))
         return max(children, key=lambda i: self.heap[i]) if children else None
 
-    def bubble_downwards(self, parent_index):
+    def __bubble_downwards(self, i):
         """
         O(log(n))
-        It is a partial restoration of the heap property on a localized area/node
         """
-        child_index = self.get_largest_child(parent_index)
-        if child_index and self.heap[child_index] > self.heap[parent_index]:
-            self.heap[child_index], self.heap[parent_index] = (
-                self.heap[parent_index],
-                self.heap[child_index],
-            )
-            self.bubble_downwards(child_index)
+        child = self.__largest_child(i)
+        if child is not None and self.heap[child] > self.heap[i]:
+            self.heap[child], self.heap[i] = self.heap[i], self.heap[child]
+            self.__bubble_downwards(child)
 
-    def full_restore(self):
+    def __bubble_upwards(self, i):
+        """
+        O(log(n))
+        """
+        parent = self.__parent(i)
+        if parent is not None and self.heap[parent] < self.heap[i]:
+            self.heap[parent], self.heap[i] = self.heap[i], self.heap[parent]
+            self.__bubble_upwards(parent)
+
+    def __heapify(self):
         """
         O(n*log(n))
            O(n) due to the half array iteration
@@ -49,27 +56,49 @@ class MaxHeap:
         """
         mid_index = len(self.heap) // 2
         for i in reversed(range(mid_index + 1)):
-            self.bubble_downwards(i)
+            self.__bubble_downwards(i)
         return self.heap
 
-    def pop_highest(self):
+    def peek(self) -> int:
+        return self.heap[0]
+
+    def pop(self) -> int:
         """
         O(log(n))
-        Due to the bubble downwards restoration
+        Due to the bubble downwards restoration (bubble downwards)
         """
         if not self.heap:
             return
         self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
         highest = self.heap.pop()
-        self.bubble_downwards(0)
+        self.__bubble_downwards(0)
         return highest
 
-    def peek_highest(self):
-        return self.heap[0]
+    def push(self, number: int) -> None:
+        """
+        O(log(n))
+        Due to the bubble upwards restoration (bubble upwards)
+        """
+        i = len(self.heap)
+        self.heap.append(number)
+        self.__bubble_upwards(i)
+        return None
 
-    def insert(self, item):
-        pass
 
+test_case = TestCase()
 
-heap = MaxHeap([10, 6, 7, 5, 15, 17, 12])
-heap.full_restore()
+# Heapify
+heap = MaxHeap([1, 2, 3, 4, 5, 6, 7])
+test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
+
+# Peek
+test_case.assertEqual(heap.peek(), 7)
+test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
+
+# Pop
+test_case.assertEqual(heap.pop(), 7)
+test_case.assertEqual(heap.heap, [6, 5, 3, 4, 2, 1])
+
+# Push
+heap.push(7)
+test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
