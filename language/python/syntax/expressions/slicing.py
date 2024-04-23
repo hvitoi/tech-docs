@@ -19,7 +19,8 @@ foo[3:1]  # empty
 # %%
 foo = ["a", "b", "c", "d", "e"]
 foo[:]  # the whole array
-foo[::1]  # same (step 1)
+foo[:] = [el * 2 for el in foo]  # can be useful to modify an array in-place
+foo[::1]  # same
 
 # %%
 foo = ["a", "b", "c", "d", "e"]
