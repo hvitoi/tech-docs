@@ -17,11 +17,29 @@ def heappop(nums: list) -> int:
 
 
 def find_kth_largest_max_heap(nums: list[int], k: int) -> int:
+    """
+    Time: O(n*log(n)) - to build a heap out of all the elements
+    Space: O(1) - no new array (reuses the same array in-place)
+    """
     heapify(nums)
     num = None
     for _ in range(k):
         num = heappop(nums)
     return num
+
+
+def find_kth_largest_min_heap(nums: list[int], k: int) -> int:
+    """
+    Time: O(n*log(k)) - to build the heap with the k largest elements
+    Space: O(k) - the memory of the heap with the k largest elements
+    """
+    heap = []
+    for num in nums:
+        if len(heap) >= k:
+            heapq.heappushpop(heap, num)
+        else:
+            heapq.heappush(heap, num)
+    return heapq.heappop(heap)
 
 
 def partition(arr: list, *, left: int, right: int) -> int:
@@ -59,6 +77,10 @@ def find_kth_largest_partitioning(
 
 test_case = TestCase()
 
-for fn in {find_kth_largest_max_heap, find_kth_largest_partitioning}:
+for fn in {
+    find_kth_largest_max_heap,
+    find_kth_largest_min_heap,
+    find_kth_largest_partitioning,
+}:
     test_case.assertEqual(fn([3, 2, 1, 5, 6, 4], 2), 5)
     test_case.assertEqual(fn([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
