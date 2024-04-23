@@ -8,14 +8,14 @@ def merge_sort(arr: list):
 
     # sort each part
     mid_index = len(arr) // 2
-    left = merge_sort(arr[:mid_index])
-    right = merge_sort(arr[mid_index:])
+    sorted_left = merge_sort(arr[:mid_index])
+    sorted_right = merge_sort(arr[mid_index:])
 
     # concatenate the two parts in the correct order
-    if left[-1] <= right[0]:
-        return left + right
+    if sorted_left[-1] <= sorted_right[0]:
+        return sorted_left + sorted_right
     else:
-        return right + left
+        return sorted_right + sorted_left
 
 
 test_case = TestCase()
