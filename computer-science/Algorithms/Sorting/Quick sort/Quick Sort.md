@@ -3,11 +3,6 @@
 - Quicksort does all the sorting in place!
 - That's why it has a good space complexity. All the space complexity is due to the callstack
 
-## Partitioning
-
-- In-place partitioning is the key of the quicksort algorithm
-- The partitioning takes a pivot and moves all the lower elements to the left, and all the greater elements to the right
-
 ## Steps
 
 - Divide and conquer!
