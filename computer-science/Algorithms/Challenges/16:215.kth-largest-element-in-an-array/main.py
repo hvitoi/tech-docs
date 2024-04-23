@@ -20,6 +20,7 @@ def find_kth_largest_max_heap(nums: list[int], k: int) -> int:
     """
     Time: O(n*log(n)) - to build a heap out of all the elements
     Space: O(1) - no new array (reuses the same array in-place)
+    Space: O(n) - if creating a new heap array (to do not mess up with the original one)
     """
     heapify(nums)
     num = None
