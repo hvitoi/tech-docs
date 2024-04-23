@@ -2,7 +2,7 @@
 from unittest import TestCase
 
 
-def partition(arr: list) -> int:
+def partition2(arr: list[int]) -> int:
     """
     Rearrange the arr, moving:
        - the elements smaller than the pivot to the left
@@ -33,36 +33,33 @@ def partition(arr: list) -> int:
     return p
 
 
-def partition2(arr):
-    # Here we make the right most element as pivot
-    pivot = arr[-1]
-
-    # We re-arrange the array such that
-    # The elements smaller than the pivot are at left to the pivot
-    # And the elements greater than the pivot are at right to the pivot
-    i = -1  # elements to the left of this index (inclusive) are lower than the pivot
-    for j in range(len(arr) - 1):  # excludes the last element (the pivot)
+def partition(arr: list[int], *, left: int, right: int) -> int:
+    pivot = arr[right]  # pivot is the rightmost el
+    i = left  # elements to the left of this index (exclusive) are lower than the pivot
+    for j in range(left, right):  # excludes the last element (the pivot)
         if arr[j] <= pivot:
-            i += 1
             arr[i], arr[j] = arr[j], arr[i]
-
-    # The pivot comes to its correct position
-    # (i + 1) at this point still contains an item lower than the pivot
-    arr[i + 1], arr[-1] = arr[-1], arr[i + 1]
-
-    # Return the pivot's final resting position
-    return i + 1
+            i += 1
+    arr[i], arr[right] = arr[right], arr[i]  # Bring pivot to the correct position
+    return i  # return the pivot's final resting position
 
 
-def quick_sort(arr: list):
-    if len(arr) <= 1:
+def quick_sort(arr: list[int], *, left: int = None, right: int = None) -> list[int]:
+    if left is None:
+        left = 0
+
+    if right is None:
+        right = len(arr) - 1
+
+    if (right - left) <= 0:
         return arr
 
-    pivot_index = partition2(arr)
-    left = arr[:pivot_index]
-    right = arr[pivot_index + 1 :]
+    pivot_index = partition(arr, left=left, right=right)
 
-    return quick_sort(left) + [arr[pivot_index]] + quick_sort(right)
+    quick_sort(arr, left=left, right=pivot_index - 1)
+    quick_sort(arr, left=pivot_index + 1, right=right)
+
+    return arr
 
 
 test_case = TestCase()

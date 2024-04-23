@@ -17,5 +17,5 @@
   - $O(n)$
     - Each subarray created
 
-- $O(n)$ due to the slice and concatenation of each half
+- $O(n)$ due to the slicing and concatenation of each half
 - $O(log(n))$ due to the recursive sorting of each half
