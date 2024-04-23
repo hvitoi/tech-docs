@@ -34,16 +34,24 @@ def partition(arr: list) -> int:
 
 
 def partition2(arr):
-    begin = 0
-    pivot = begin
+    # Here we make the right most element as pivot
+    pivot = arr[-1]
 
-    for i in range(begin + 1, len(arr)):
-        if arr[i] <= arr[begin]:
-            pivot += 1
-            arr[i], arr[pivot] = arr[pivot], arr[i]
+    # We re-arrange the array such that
+    # The elements smaller than the pivot are at left to the pivot
+    # And the elements greater than the pivot are at right to the pivot
+    i = -1  # elements to the left of this index (inclusive) are lower than the pivot
+    for j in range(len(arr) - 1):  # excludes the last element (the pivot)
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
 
-    arr[pivot], arr[begin] = arr[begin], arr[pivot]
-    return pivot
+    # The pivot comes to its correct position
+    # (i + 1) at this point still contains an item lower than the pivot
+    arr[i + 1], arr[-1] = arr[-1], arr[i + 1]
+
+    # Return the pivot's final resting position
+    return i + 1
 
 
 def quick_sort(arr: list):
