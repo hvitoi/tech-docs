@@ -6,7 +6,7 @@ from unittest import TestCase
 
 def merge_k_lists_with_pointers(lists: list[list[int]]) -> list[int]:
     """
-    O(k*(a+b+c)) where k is the number of arrays
+    O(n*k) where k is the number of arrays and n is size sum of all
     """
     total_items = sum([len(arr) for arr in lists])
     pointers = [0 for _ in range(len(lists))]
@@ -26,7 +26,7 @@ def merge_k_lists_with_pointers(lists: list[list[int]]) -> list[int]:
 
 def merge_k_lists_with_pointers_and_linked_lists(lists: list[list[int]]) -> list[int]:
     """
-    O(k*(a+b+c)) where k is the number of arrays
+    O(n*k) where k is the number of arrays and n is size sum of all
     """
     total_items = sum([len(arr) for arr in lists])
     merged = []
@@ -43,8 +43,14 @@ def merge_k_lists_with_pointers_and_linked_lists(lists: list[list[int]]) -> list
 
 
 def merge_k_lists_with_min_heap(lists: list[list[int]]) -> list[int]:
+    """
+    Time: O(n*log(k)) where k is the number of arrays and n is size sum of all. log(k) is caused by each insertion to the heap
+    Space: O(k): the heap size (disregarding here the merged array)
+    https://www.youtube.com/watch?v=ptYUCjfNhJY
+    """
     merged = []
 
+    # Add all the first items of each array to the heap (ignoring empty arrays)
     heap = list(
         filter(
             lambda el: el,
@@ -54,14 +60,12 @@ def merge_k_lists_with_min_heap(lists: list[list[int]]) -> list[int]:
     heapq.heapify(heap)
 
     while heap:
-        value, arr_index = heap[0]
+        value, arr_index = heapq.heappop(heap)
         merged.append(value)
 
-        arr = lists[arr_index]
-        if arr:
-            heapq.heappushpop(heap, (arr.pop(0), arr_index))
-        else:
-            heapq.heappop(heap)
+        if lists[arr_index]:
+            next_item = lists[arr_index].pop(0)
+            heapq.heappush(heap, (next_item, arr_index))
 
     return merged
 

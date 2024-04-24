@@ -132,7 +132,11 @@ append_num(2)
 # %%
 # Modifying the arguments received
 def modify_list(ls: list) -> None:
-    ls.append("d")  # works!
+    ls.append("d")  # works! (in-place modification)
+
+
+def modify_list_again(ls: list) -> None:
+    ls[:] = ls + ["e"]  # works! (in-place modification)
 
 
 def try_to_modify_list(ls: list) -> None:
@@ -140,5 +144,7 @@ def try_to_modify_list(ls: list) -> None:
 
 
 my_list = ["a", "b", "c"]
+modify_list(my_list)
+modify_list_again(my_list)
 modify_list(my_list)
 my_list
