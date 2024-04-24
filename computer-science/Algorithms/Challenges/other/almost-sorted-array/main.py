@@ -12,7 +12,7 @@ def sort_k_sorted_array_with_heap(arr: list[int], k: int):
         left = i
         right = i + k if i + k <= len(arr) - 1 else len(arr) - 1
 
-        heap: list[tuple[int, int]] = [(arr[i], i) for i in range(left, right + 1)]
+        heap = [(arr[i], i) for i in range(left, right + 1)]
         heapq.heapify(heap)  # heapq uses the first index by default
 
         el = heapq.heappop(heap)
