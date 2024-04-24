@@ -4,7 +4,7 @@ from unittest import TestCase
 
 def insertion_sort(arr):
     for i in range(len(arr)):
-        for j in reversed(range(1, i + 1)):
+        for j in range(i, 0, -1):  # go left (except the first item)
             if arr[j] < arr[j - 1]:
                 arr[j], arr[j - 1] = arr[j - 1], arr[j]  # bubble sort (inverted)
             else:

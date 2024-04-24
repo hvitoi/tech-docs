@@ -21,7 +21,7 @@ def sort_k_sorted_array_with_heap(arr: list[int], k: int):
     return arr
 
 
-def sort_k_sorted_array_with_pointer(arr: list[int], k: int):
+def sort_k_sorted_array_with_pointers(arr: list[int], k: int):
     """
     Time: O(n*k)
     Space: O(1)
@@ -42,7 +42,7 @@ def sort_k_sorted_array_with_pointer(arr: list[int], k: int):
 test_case = TestCase()
 for fn in {
     sort_k_sorted_array_with_heap,
-    sort_k_sorted_array_with_pointer,
+    sort_k_sorted_array_with_pointers,
 }:
     test_case.assertEqual(
         fn([6, 5, 3, 2, 8, 10, 9, 9], 3),

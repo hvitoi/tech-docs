@@ -4,8 +4,8 @@ from unittest import TestCase
 
 
 def rotate_array(nums: list[int], k: int) -> None:
-    """O(n)
-    O(k): where k is the slice size (the complete array)
+    """
+    O(n): due to slicing (the complete array)
     """
     breakpoint = len(nums) - k
     return nums[breakpoint:] + nums[:breakpoint]

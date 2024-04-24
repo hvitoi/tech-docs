@@ -39,3 +39,13 @@ def func4():
 
 
 func4()  # ok (although not recommended). Can modify variable from outer scope with global keyword
+
+
+# %%
+def hello():
+    for _ in range(3):
+        message = "Hello!"
+    print(message)  # accessible! Even though it was created inside of the for loop
+
+
+hello()
