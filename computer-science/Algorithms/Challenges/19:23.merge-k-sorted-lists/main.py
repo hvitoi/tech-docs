@@ -1,4 +1,5 @@
 # %%
+import heapq
 import math
 from unittest import TestCase
 
@@ -41,11 +42,36 @@ def merge_k_lists_with_pointers_and_linked_lists(lists: list[list[int]]) -> list
     return merged
 
 
+def merge_k_lists_with_min_heap(lists: list[list[int]]) -> list[int]:
+    merged = []
+
+    heap = list(
+        filter(
+            lambda el: el,
+            [(arr.pop(0), i) if len(arr) > 0 else None for i, arr in enumerate(lists)],
+        )
+    )
+    heapq.heapify(heap)
+
+    while heap:
+        value, arr_index = heap[0]
+        merged.append(value)
+
+        arr = lists[arr_index]
+        if arr:
+            heapq.heappushpop(heap, (arr.pop(0), arr_index))
+        else:
+            heapq.heappop(heap)
+
+    return merged
+
+
 test_case = TestCase()
 
 for fn in {
     merge_k_lists_with_pointers,
     merge_k_lists_with_pointers_and_linked_lists,
+    merge_k_lists_with_min_heap,
 }:
     test_case.assertEqual(
         fn([[1, 4, 5], [1, 3, 4], [2, 6]]),
