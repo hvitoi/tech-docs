@@ -37,7 +37,8 @@ def find_kth_largest_min_heap(nums: list[int], k: int) -> int:
     heap = []
     for num in nums:
         if len(heap) >= k:
-            heapq.heappushpop(heap, num)
+            if num >= heap[-1]:  # if it's not large enough, don't even put it in
+                heapq.heappushpop(heap, num)
         else:
             heapq.heappush(heap, num)
     return heapq.heappop(heap)
