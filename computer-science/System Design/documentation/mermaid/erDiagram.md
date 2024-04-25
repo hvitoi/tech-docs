@@ -12,12 +12,10 @@ erDiagram
   %% ORDER has 1 or more LINE-ITEM
   ORDER ||--|{ LINE-ITEM : contains
 
-  %%
+  %% -
   CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
 
-
-
-  % Details
+  %% Details
   CUSTOMER {
     String id
     String name
