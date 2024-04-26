@@ -40,7 +40,7 @@ Properties:
   - Does not use locks! It just fails if any item is modified during the transaction
   - You should design your system to handle these `write collisions`
   - Limited to `25 items` per transaction
-  - Transactions lead to `double to the cost`. Given that an additional read have to be done to ensured the item hasn't changed (read + commit)
+  - Transactions lead to `double to the cost`. Given that an additional read have to be done to ensure the item hasn't changed (read + commit)
   - Uses the `TransactGetItems` and `TransactWriteItems` APIs
     ![Transactions](../../../images/dynamodb-transactions.png)
 
@@ -63,11 +63,11 @@ Properties:
 - Creating a GSI clones the table using a new partition key (`GSI Partition Key`) and optionally a new sort key (`LSI Sort Key`)
   - The main table and the GSI tables are kept in-sync
   - The original partition key becomes a conventional attribute in the GSI Table
-- On the `GSI table` you can then `query on attributes` (the GSI partition key) that is not partition key or sort key
+- On the `GSI table` you can then `query on attributes` (the GSI partition key) that is not original partition key or sort key
   - More efficient! Avoids scanning the whole table
 - The RCU / WCU is defined separately for the `GSI table`
 - Allows search across partitions
-- Writes the Main Table leads to writes to GSI, which doubles the cost of writing
+- Writes to the Main Table leads to writes to GSI, which doubles the cost of writing
   - Use the WCU for the GSI equal to the WCU of the main table!
 - There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
 - You can have up to `20 GSIs`
