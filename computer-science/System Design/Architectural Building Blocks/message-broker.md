@@ -16,3 +16,32 @@
 ## Queue pattern
 
 - Guarantees the messages are processed in order
+
+## Delivery semantics
+
+- Delivery semantics means how many times a message can be delivered to the same consumer in a consumer group
+
+- `Exactly Once`
+  - The best option, but the most difficult (in terms of performance)
+- `At Least Once`
+  - It can be implemented by forcing the consumer to "commit" the message once it's processed (if not committed, the messaged will be consumed again)
+  - It's case of duplicate messages being consumed can be overcome by implementing an idempotent consumer
+- `At Most Once`
+  - The easiest but the one with more drawbacks
+  - Consumers do not need to commit the message once processed
+  - Applicable but metrics that could potentially be lost
+
+## Implementations
+
+- Open Source
+  - **Apache Kafka**
+  - **RabbitMQ**
+- Cloud Based
+  - **AWS SQS**: queue
+  - **AWS SNS**: pub/sub
+
+  - **GCP Cloud Tasks**: queue
+  - **GCP Pub/Sub**: pub/sub
+
+  - **Azure Service Bus**: queue & pub/sub
+  - **Azure Event Hub**: for data ingestion

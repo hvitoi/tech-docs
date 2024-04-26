@@ -97,19 +97,16 @@ sequenceDiagram
 
 ## Implementations
 
-- **HAProxy**
-  - Open source
-- **NGINX**
-  - Open source
-  - HTTP server & reverse proxy (load balancer)
-- **AWS Elastic Load Balancing**
-  - Ideal for servers already in AWS
-- **CGP Cloud Load Balancing**
-  - Ideal for servers already in GCP
-- **Azure Load Balancer**
-  - Ideal for servers already in Azure
+- Open Source
+  - **HAProxy**
+  - **NGINX**
+    - HTTP server & reverse proxy (load balancer)
 
-- For GSLB
-  - **AWS Route 53**
-  - **GCP Cloud DNS**
-  - **Azure Traffic Manager**
+- Cloud Based
+  - **AWS Elastic Load Balancing**
+  - **CGP Cloud Load Balancing**
+  - **Azure Load Balancer**
+  - GSLB
+    - **AWS Route 53**
+    - **GCP Cloud DNS**
+    - **Azure Traffic Manager**
