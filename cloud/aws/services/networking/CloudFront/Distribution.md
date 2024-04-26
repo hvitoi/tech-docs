@@ -1,7 +1,7 @@
 # AWS::CloudFront::Distribution
 
 - It's a `Content Delivery Network` (CDN)
-- Cache responses at edge (216 `PoP` around the world)
+- Cache responses at the edges (216 `Points of Presence` (PoP) around the world)
 - Use case: `static content` with a TTL. Bad for dynamic content!
 
 ![CloudFront](../../../images/cloudfront.png)
