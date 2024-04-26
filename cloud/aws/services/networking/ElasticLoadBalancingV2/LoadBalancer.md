@@ -9,10 +9,6 @@
   - Enforce `stickiness` with cookies
 - LB can be **internal** or **external**
 
-- The SG of the EC2 instance now can have inbound rule from the LB SG (instead of allowing from anywhere)
-
-![LB SG](../../../images/lb-security-group.png)
-
 ```yaml
 Type: AWS::ElasticLoadBalancingV2::LoadBalancer
 Properties:
@@ -32,24 +28,30 @@ Properties:
   Type: String
 ```
 
+## Security Group
+
+- The SG of the EC2 instance now can have inbound rule from the LB SG (instead of allowing from anywhere)
+
+![LB SG](../../../images/lb-security-group.png)
+
 ## LoadBalancerAttributes
 
 - **load_balancing.cross_zone.enabled**
   - Balance between instances in different AZs
   - A LB in a region cannot forward load to another region
-  - `With Cross-Zone balacing` load is distributed evenly across all instances (in all AZs)
+  - `With Cross-Zone balancing` load is distributed evenly across all instances (in all AZs)
     - It's always enabled for ALB (cannot be disabled). It's free
     - It's enabled (by default) for CLB. It's free
     - It's disabled (by default) for NLB. It's paid
-  - `Without Cross-Zone balacing` load is distributed for the AZ, and not for the total of instances itself
+  - `Without Cross-Zone balancing` load is distributed for the AZ, and not for the total of instances itself
     ![Cross-Zone Load Balancing](../../../images/cross-zone-balancing.png)
 
 ## Type
 
-- **application** (ALB)
+- **application** (ALB) - Layer 7
 
+  - Ideal for HTTP, HTTPS, Websockets traffic
   - v2 (2016)
-  - HTTP & HTTPS (L7), Websockets
   - Balance to a _target groups_ (applications across machines) -> EC2, ECS, Lambda, IPs,
   - Allow `routing table` to different target groups
     - `Path`. E.g., /users, /posts
@@ -65,8 +67,9 @@ Properties:
 
   ![ALB Client Data](../../../images/alb-client.png)
 
-- **network** (NLB)
+- **network** (NLB) - Layer 4
 
+  - Ideal for TCP and UDP traffic
   - v2 (2017)
   - TCP & SSL (L4), UDP (L4)
   - High performance (millions of requests per second)

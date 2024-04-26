@@ -2,8 +2,7 @@
 
 - A container for the records
 - Define how to traffic to a domain a subdomains
-- `0.50$` per month per hosted zone on Route 53
-
+- `$0.50` per month per hosted zone on Route 53
 - `Public Hosted Zone`: how to route traffic on the internet
 - `Private hosted Zone`: how to route traffic within one or more PVCs (private domain names)
 
