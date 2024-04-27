@@ -2,6 +2,7 @@
 
 - Store all the events related to an entity as a `sequence of events`
 - This way, the information is `append only`
+- These events must be stored in another database in the exact order that they were applied
 
 ## Querying information
 
@@ -12,3 +13,10 @@
 ## Implementations
 
 - `Datomic` is a implementation of append only transaction-driven database
+
+## Change Data Capture (CDC)
+
+- Take events happening in a database and publishes them as an event in an event broker
+- CDC implementation: `Debezium` Kafka Connector
+
+![CDC](images/cdc.png)
