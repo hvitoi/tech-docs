@@ -4,5 +4,5 @@
 - This way, all the information that the service needs to operate is contained in itself and there is no need to perform multiple integrations
 - Materialized View is usually applied in conjunction with CQRS
 
-![Materialized View](images/materialized-view.png)
-![CQRS + Materialized View](images/cqrs+materialized-view.png)
+![Materialized View](.images/materialized-view.png)
+![CQRS + Materialized View](.images/cqrs+materialized-view.png)

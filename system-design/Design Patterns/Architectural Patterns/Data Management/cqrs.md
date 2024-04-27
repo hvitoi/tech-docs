@@ -3,8 +3,8 @@
 - Responsabilities for the data aggregation (`command` and `query`) are segregated
 - It's good for optimizing a database that has both high read and write operations
 
-![CQRS Databases](images/cqrs-databases.png)
-![CQRS](images/cqrs.png)
+![CQRS Databases](.images/cqrs-databases.png)
+![CQRS](.images/cqrs.png)
 
 ## Command Operation
 

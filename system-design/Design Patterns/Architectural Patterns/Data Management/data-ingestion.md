@@ -1,6 +1,6 @@
 # Big data ingestion
 
-![Big Data Ingestion](images/big-data-ingestion.png)
+![Big Data Ingestion](.images/big-data-ingestion.png)
 
 ## Big Data
 
@@ -26,3 +26,5 @@
 ## Real Time Processing
 
 - Each new event is processed immediately from a `stream of events`
+
+![Logging & Metrics Aggregation](.images/logging-metrics-aggregation.png)
