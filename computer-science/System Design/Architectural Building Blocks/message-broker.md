@@ -8,6 +8,7 @@
   - `Decouple senders from receivers`, allowing a system to operate partially whenever an incident occurs\
   - Avoid losing `messages`
 - It's a `internal building block`, it's (usually) not a good practice to expose it externally
+- It's also known as `event bus`
 
 ## Publish/Subscribe pattern
 
@@ -36,6 +37,7 @@
 - Open Source
   - **Apache Kafka**
   - **RabbitMQ**
+  - **NATS**
 - Cloud Based
   - **AWS SQS**: queue
   - **AWS SNS**: pub/sub

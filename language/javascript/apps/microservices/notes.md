@@ -1,25 +1,5 @@
 # Microservices
 
-## Monolith vs Microservices
-
-### Monolith
-
-- A monolith contains:
-  - Routing
-  - Middleware
-  - Business Logic
-  - Database access
-- Implement all features of the app
-
-### Microservice
-
-- Each microservice contains all the elements from monolith systems
-- Implement ONE feature of the app
-- Each service gets its own database (Database-per-service)
-  - Easier to scale only the necessary database, instead of scaling everything
-  - DB schema might change unexpectedly
-  - Some services might function more efficiently with different types of DB's
-
 ## Communication between services
 
 - Sync: direct requests
@@ -29,11 +9,6 @@
   - Services emit and receive events to/from a Event Bus
   - Has data duplication!
   - The Query Service is responsible for the Event Bus (Event Broker)
-
-## Event Bus
-
-- Implementations: RabbitMQ, Kafka, NATS, etc
-- A simple plain event bus can be created with Express
 
 ## Error handling middleware
 
