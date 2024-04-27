@@ -129,7 +129,6 @@ Properties:
   - AWS just use the key to encrypt and discard it
   - Header "x-amz-server-side-encryption":"aws:c"
 - **Client Side Encryption**
-
   - You encrypt the data and send it
   - S3 encryption SDK can help with that
 
@@ -268,7 +267,7 @@ Properties:
 
 - `Access Logs` can be stored in another s3 bucket. Do not store it in the same bucket otherwise it will loop forever
 - `API calls` can be logged in `cloudtrail`
-- Can be activated under `Server Logging Access` in propeties tab
+- Can be activated under `Server Logging Access` in properties tab
 
 ## NotificationConfiguration
 
@@ -278,7 +277,7 @@ Properties:
 - Rules can be applied to monitor only certain objects
 - Example of event notification use: generate thumbnail as soon as a jpg file is created in the bucket
 
-- Events can be sent to `SNS`, `SQS` or `Lambda Funcions` in order for the event to be further processed
+- Events can be sent to `SNS`, `SQS` or `Lambda Functions` in order for the event to be further processed
 - The target broker (SNS, SQS, etc) must have access policies to allow s3 to publish in it
 
 ## ObjectLockConfiguration
@@ -315,7 +314,7 @@ Properties:
 - Copy is asynchronous
 - Versioning must be enabled in order to replicate
 - S3 must have proper `IAM permissions`
-- Uses cases: compliance, lower latency
+- Use cases: compliance, lower latency
 - After activating, only `new objects` are replicated
 - Replication `cannot be chained`! Replica from 1 to 2 won't replicate from 2 to 3
 
