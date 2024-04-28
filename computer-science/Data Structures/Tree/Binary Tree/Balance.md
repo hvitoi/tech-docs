@@ -11,7 +11,9 @@ Where
 - $H_L$: heigh of the child to the left
 - $H_R$: heigh of the child to the right
 
-## AVL tree (Adelson-Velsky and Landis)
+## Self Balancing Tree (B-Tree)
+
+### AVL tree (Adelson-Velsky and Landis)
 
 - An **AVL Tree** is a tree is self balancing tree
 - Balancing happens at each new insertion by applying rotations when necesasry

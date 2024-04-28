@@ -22,11 +22,10 @@
 ## Layers
 
 1. **Batch Layer**
-    - Manage dataset and be a system of records
-    - Data is immutable, append-only
-    - Stored on a distributed filesystem (e.g., hadoop)
-    - The batch layer pre-compute `batch views` (read only db)
-    - Operates o the entire dataset
+    - The historic data is read from a `distributed file system` (or a blob store)
+    - The data is processed in batches in a fixed time frame (e.g., every 1 hour)
+    - The result of the processing (the `batch view`) is saved back to the distributed file system (or blob store)
+    - The batch view is read only
 1. **Speed Layer**
     - Compensates for the high latency (delay) in the Batch Layer
     - Operates on the most recent data
