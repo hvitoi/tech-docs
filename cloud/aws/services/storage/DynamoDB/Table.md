@@ -42,7 +42,7 @@ Properties:
   - Limited to `25 items` per transaction
   - Transactions lead to `double to the cost`. Given that an additional read have to be done to ensure the item hasn't changed (read + commit)
   - Uses the `TransactGetItems` and `TransactWriteItems` APIs
-    ![Transactions](../../../images/dynamodb-transactions.png)
+    ![Transactions](.images/dynamodb-transactions.png)
 
 ## KeySchema
 
@@ -72,7 +72,7 @@ Properties:
 - There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
 - You can have up to `20 GSIs`
 
-![Indexes](../../../images/dynamodb-indexes.png)
+![Indexes](.images/dynamodb-indexes.png)
 
 ## LocalSecondaryIndexes
 
@@ -189,7 +189,7 @@ Properties:
   - Insert into elasticsearch
   - Implement cross-region replication
 
-![Streams](../../../images/dynamodb-streams.png)
+![Streams](.images/dynamodb-streams.png)
 
 - The event
   - Keys
