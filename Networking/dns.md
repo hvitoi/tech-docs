@@ -80,9 +80,9 @@ Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
   - Configured with CNMAE record
   - E.g, api.amazon.com.
 
-![Domain Name](./images/domain-name.png)
+![Domain Name](.images/domain-name.png)
 
-![DNS Flow](./images/dns-flow.png)
+![DNS Flow](.images/dns-flow.png)
 
 - Resolving steps
   1. Hit the local dns server
@@ -90,7 +90,7 @@ Others: `CAA`, `DS`, `MX`, `NAPTR`, `PTR`, `SOA`, `TXT`, `SPF`, `SRV`
   1. Hit the .com dns server
   1. Hit the google dns server: serve you with the IP of the apps subdomain
 
-![Gateway](./images/dns-caching.png)
+![Gateway](.images/dns-caching.png)
 
 ## DNSSEC (DNS Security Extensions)
 

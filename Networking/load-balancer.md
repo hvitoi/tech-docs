@@ -93,7 +93,7 @@ sequenceDiagram
   - CPU load in each region/data center
 - Plays a important role in `failovers` and `disaster recovery` situations
 
-![GSLB](images/gslb.png)
+![GSLB](.images/gslb.png)
 
 ## Implementations
 

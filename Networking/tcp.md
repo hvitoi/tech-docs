@@ -7,4 +7,4 @@
   - **SYN-ACK**
   - **ACK**
 
-![Handshake](images/tcp-handshake.png)
+![Handshake](.images/tcp-handshake.png)

@@ -6,14 +6,14 @@
 - `Router`: connects two or more networks. It gets one IP for each network it joins
 - `Gateway` is a type of router, through which traffic passes from a network to another. A gateway must be specified in the routing table (`ip route add`)
 
-![Gateway](./images/gateway.png)
+![Gateway](.images/gateway.png)
 
 ## Package Forwarding
 
 - By defaults on linux packages cannot be forwarded
 - Package forwarding can be checked on `/proc/sys/net/ipv4/ip_forward`
 
-![Package routing](./images/package-routing.png)
+![Package routing](.images/package-routing.png)
 
 ## Network namespaces
 
@@ -21,7 +21,7 @@
 - This way a container has no network information about the host
 - `ip netns add` to create network namespaces
 
-![Network Namespaces](./images/network-namespaces.png)
+![Network Namespaces](.images/network-namespaces.png)
 
 ### Virtual Ethernet Pair (VETH Pairs)
 
@@ -54,7 +54,7 @@ ip netns exec "red" ping "192.168.15.2"
 ip netns exec "blue" ping "192.168.15.1"
 ```
 
-![Virtual Ethernet Pair](./images/virtual-ethernet-pair.png)
+![Virtual Ethernet Pair](.images/virtual-ethernet-pair.png)
 
 ### Linux Bridge
 
@@ -88,4 +88,4 @@ ip address add "192.168.15.5" dev "v-net-0" # assign an ip to the vnet in the ho
 
 ### Bridge Network in docker
 
-![Network Bridge Docker](./images/network-bridge-docker.png)
+![Network Bridge Docker](.images/network-bridge-docker.png)
