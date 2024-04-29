@@ -4,7 +4,7 @@
 
 - $2^n$
   - O/1 knapsack
-  - Traveling SP
+  - Traveling salesman
   - Sum of subsets
   - Graph coloring
   - Hamiltonian cycle

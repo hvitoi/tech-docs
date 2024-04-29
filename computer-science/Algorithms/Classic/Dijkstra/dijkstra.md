@@ -1,11 +1,11 @@
 # Dijkstra Algorithms
 
-- Find the `shortest path` from one node to every other node
-- Uses a `weighted directed graph`
+- Find the `best path` from one node to every other node
+- It's a brute force solution (applies no heuristic)
+- It uses a `greedy algorithm` approach that makes the local optimal choice at each node
+- It uses a `priority queue` (min heap) to decide which node to visit next
 
 ## Steps
-
-- This solution uses a `greedy algorithm` approach (makes the local optimal choice)
 
 1. Create a map with the distances to every other node starting with infinity for each
 1. Take the origin node and find the distances to the closest adjacent nodes (one level up - BFS)
@@ -15,4 +15,8 @@ Throughout the flow, a set of visited nodes must be keep to avoid revisiting one
 
 ## Complexity
 
-$$O(|E| + |V|log|V|)$$
+$$O(E * log(V))$$
+Where:
+
+- $V$ is the number of vertices
+- $E$ is the total number of edges
