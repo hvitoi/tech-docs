@@ -34,3 +34,5 @@
 
 - Examples
   - Check if a movement in chess is the best one
+  - Traveling salesman problem
+  - Knapsack problem
