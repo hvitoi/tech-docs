@@ -6,7 +6,7 @@
 - It's estimated by counting the number of elementary steps performed by any algorithm to finish execution
 - We use the worst-case time complexity of an algorithm because that is the maximum time taken for any input size
 
-![Runtime Complexity](Big-O%20Complexity%20Chart.png)
+![Runtime Complexity](big-o.png)
 
 <https://www.bigocheatsheet.com/>
 
