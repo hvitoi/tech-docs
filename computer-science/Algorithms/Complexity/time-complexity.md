@@ -10,11 +10,6 @@
 
 <https://www.bigocheatsheet.com/>
 
-- The runtime complexity may differ depending on the input data, leading to
-  - Best case: $\Omega$(n)
-  - Average case: $\Theta(n)$
-  - Worst case: $O(n)$
-
 ## Constant - $O(1)$
 
 $$t = 1$$
