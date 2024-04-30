@@ -2,7 +2,7 @@
 from unittest import TestCase
 
 
-def tsp(graph: dict[str, dict[str, int]], start: str):
+def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
     visited_nodes = set()
     path = []
     total_distance = 0
@@ -38,4 +38,7 @@ graph = {
     "D": {"A": 20, "B": 25, "C": 30, "D": 0},
 }
 # 10 + 25 + 30
-test_case.assertEqual(tsp(graph, "A"), None)
+test_case.assertEqual(
+    tsp_nearest_neighbor(graph, "A"),
+    (["A", "B", "D", "C", "A"], 80),
+)
