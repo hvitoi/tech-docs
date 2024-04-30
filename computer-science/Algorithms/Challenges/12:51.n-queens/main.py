@@ -1,27 +1,23 @@
 # %%
+# WIP
 from unittest import TestCase
 
 
-def can_place_a_queen(board, row, col):
-    n = len(board)
-    for i in range(n):
-        # queen on horizontal
-        if board[row][i] == "Q":
-            return False
-
-        # queen on vertical
-        if board[i][col] == "Q":
-            return False
-
-        # queen on diagonal
-        # if board[(row + i + 1) % n][(col + i + 1) % n] == "Q":
-        #     return False
-
-    return True
-
-
 def solve_n_queens(n):
-    board = [["."] * n for _ in range(n)]
+    def can_place_a_queen(row, col):
+        for i in range(n):
+            # queen on horizontal
+            if board[row][i] == "Q":
+                return False
+
+            # queen on vertical
+            if board[i][col] == "Q":
+                return False
+
+            # queen on diagonal
+            # if board[(row + i) % n][(col + i) % n] == "Q":
+            #     return False
+        return True
 
     def solve(row, col, queens_left):
         # all queens placed successfully
@@ -34,20 +30,23 @@ def solve_n_queens(n):
 
         # end of row
         if col == n:
-            solve(row + 1, 0, queens_left)
+            return solve(row + 1, 0, queens_left)
 
-        # try to place a queen and explore if it's possible
-        if can_place_a_queen(board, row, col):
+        # try to solve with the queen
+        if can_place_a_queen(row, col):
             board[row][col] = "Q"
             if solve(row, col + 1, queens_left - 1):
                 return True
 
-        # if not, rollback and try again (without)
-        board[row][col] = "."
+            # if not possible, rollback
+            else:
+                board[row][col] = "."
+
+        # try to solve without the queen
         return solve(row, col + 1, queens_left)
 
+    board = [["." for _ in range(n)] for _ in range(n)]
     solve(0, 0, n)
-
     return board
 
 
