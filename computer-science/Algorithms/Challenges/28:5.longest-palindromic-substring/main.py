@@ -14,10 +14,6 @@ def longest_palindrome(s: str) -> str:
     return ""
 
 
-def longest_palindrome2(s: str) -> str:
-    pass
-
-
 test_case = TestCase()
 
 for fn in {longest_palindrome}:

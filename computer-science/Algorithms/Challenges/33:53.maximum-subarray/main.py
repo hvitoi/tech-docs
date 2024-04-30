@@ -26,9 +26,10 @@ def maximum_subarray_windows_brute_force_with_current_window_accumulator(
 
 
 def maximum_subarray_kadane(nums: list[int]) -> int:
-    """O(n)"""
-    """Subproblem question: what is the largest sum I can get from a subarray ending at index X
-       At each index, do I want to start a new subarray or extend the previous subarray's highest sum
+    """
+    O(n)
+    Subproblem question: what is the largest sum I can get from a subarray ending at index X
+    At each index, do I want to start a new subarray or extend the previous subarray's highest sum
     """
     for i in range(1, len(nums)):
         if nums[i - 1] > 0:

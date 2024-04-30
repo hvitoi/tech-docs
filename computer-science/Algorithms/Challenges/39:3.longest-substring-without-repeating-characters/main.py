@@ -37,12 +37,26 @@ def length_of_longest_substring3(s: str) -> int:
     return output
 
 
+def length_of_longest_substring_with_seen_chars(s: str) -> int:
+    longest_size = 0
+    seen_letters = set()
+
+    for letter in s:
+        if letter in seen_letters:
+            seen_letters.clear()
+        seen_letters.add(letter)
+        longest_size = max(longest_size, len(seen_letters))
+
+    return longest_size
+
+
 test_case = TestCase()
 
 for fn in {
     length_of_longest_substring,
     length_of_longest_substring2,
     length_of_longest_substring3,
+    length_of_longest_substring_with_seen_chars,
 }:
     test_case.assertEqual(fn("abcabcbb"), 3)
     test_case.assertEqual(fn("bbbbb"), 1)

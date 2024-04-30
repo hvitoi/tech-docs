@@ -5,8 +5,6 @@ from unittest import TestCase
 
 # %%
 # This variation returns a boolean whether at least one pair matches the target sum
-
-
 def two_sum_brute_force(data: List[int], target_sum: int) -> bool:
     # O(n^2)
     n = len(data)
@@ -41,7 +39,7 @@ def two_sum_has_been_seen(data: List[int], target_sum: int) -> bool:
     seen_numbers = set()
     for el in data:
         complement = target_sum - el
-        if complement in seen_numbers:  # lookups on sets is O(1)
+        if complement in seen_numbers:
             return True
         seen_numbers.add(el)
     return False
@@ -53,10 +51,9 @@ for fn in {two_sum_brute_force, two_sum_from_both_sides, two_sum_has_been_seen}:
     test_case.assertEqual(fn([1, 2, 4, 4], 8), True)
     test_case.assertEqual(fn([], 8), False)
 
+
 # %%
 # This variation returns the list of pairs that match the target sum
-
-
 def two_sum_every_match(arr: list[int], target_sum: int):
     seenNumbers = set()
     pairs_with_matching_sum = set()
@@ -77,10 +74,9 @@ test_case.assertEqual(two_sum_every_match([4], 8), set())
 test_case.assertEqual(two_sum_every_match([4, 4], 8), {(4, 4)})
 test_case.assertEqual(two_sum_every_match([2, 6, 3, 3, 6, 9, 11], 9), {(3, 6)})
 
+
 # %%
 # This variation returns the indexes of the first pair that matches the target sum
-
-
 def two_sum_return_index_brute_force(nums: List[int], target: int):
     n = len(nums)
     for i in range(n):

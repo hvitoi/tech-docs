@@ -1,25 +1,24 @@
 # %%
-from typing import List
 from unittest import TestCase
 
 
-def max_profit(prices: List[int]) -> int:
-    highest_gain = 0
-    for i, min_price in enumerate(prices):
-        for max_price in prices[i:]:
-            highest_gain = max(highest_gain, max_price - min_price)
-    return highest_gain
+def max_profit(prices: list[int]) -> int:
+    highest_profit = 0
+    for i, buy_price in enumerate(prices):
+        for sell_price in prices[i:]:
+            highest_profit = max(highest_profit, sell_price - buy_price)
+    return highest_profit
 
 
-def max_profit2(prices: List[int]):
-    min_price = prices[0]
-    max_profit = 0
+def max_profit2(prices: list[int]):
+    buy_price = prices[0]
+    highest_profit = 0
 
-    for price in prices[1:]:
-        max_profit = max(max_profit, price - min_price)
-        min_price = min(min_price, price)
+    for current_price in prices[1:]:
+        highest_profit = max(highest_profit, current_price - buy_price)
+        buy_price = min(buy_price, current_price)
 
-    return max_profit
+    return highest_profit
 
 
 test_case = TestCase()
