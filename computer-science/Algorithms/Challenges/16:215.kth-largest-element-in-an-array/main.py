@@ -41,40 +41,41 @@ def find_kth_largest_min_heap(nums: list[int], k: int) -> int:
                 heapq.heappushpop(heap, num)
         else:
             heapq.heappush(heap, num)
-    return heapq.heappop(heap)
+    return heap[0]  # peek the next one in the heap
 
 
-def partition(arr: list, *, left: int, right: int) -> int:
-    pivot = arr[right]
-    i = left
-    for j in range(left, right):
-        if arr[j] <= pivot:
-            arr[i], arr[j] = arr[j], arr[i]
-            i += 1
-    arr[i], arr[right] = arr[right], arr[i]
-    return i
+def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
+    """
+    This solution considers that you know in which index the kth largest solution will be
+    on a sorted array "len(arr) - k".
+    You can then apply partitioning (same from quicksort) to move all elements smaller than it
+    to the left and all the numbers greater than it to the right
+    """
 
+    def partition(left: int, right: int) -> int:
+        pivot = arr[right]
+        i = left
+        for j in range(left, right):
+            if arr[j] <= pivot:
+                arr[i], arr[j] = arr[j], arr[i]
+                i += 1
+        arr[i], arr[right] = arr[right], arr[i]
+        return i
 
-def find_kth_largest_partitioning(
-    arr: list[int], k: int, *, left: int = None, right: int = None
-) -> int:
-    if left is None:
-        left = 0
+    def kth_largest(left: int, right: int):
+        pivot_index = partition(left, right)
 
-    if right is None:
-        right = len(arr) - 1
+        if target_index == pivot_index:
+            return arr[target_index]
+
+        if target_index < pivot_index:
+            return kth_largest(left, pivot_index - 1)
+
+        if target_index > pivot_index:
+            return kth_largest(pivot_index + 1, right)
 
     target_index = len(arr) - k
-    pivot_index = partition(arr, left=left, right=right)
-
-    if target_index == pivot_index:
-        return arr[target_index]
-
-    if target_index < pivot_index:
-        return find_kth_largest_partitioning(arr, k, left=left, right=pivot_index - 1)
-
-    if target_index > pivot_index:
-        return find_kth_largest_partitioning(arr, k, left=pivot_index + 1, right=right)
+    return kth_largest(0, len(arr) - 1)
 
 
 test_case = TestCase()
@@ -82,7 +83,7 @@ test_case = TestCase()
 for fn in {
     find_kth_largest_max_heap,
     find_kth_largest_min_heap,
-    find_kth_largest_partitioning,
+    find_kth_largest_with_partitioning,
 }:
     test_case.assertEqual(fn([3, 2, 1, 5, 6, 4], 2), 5)
     test_case.assertEqual(fn([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)

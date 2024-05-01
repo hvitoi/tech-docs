@@ -2,8 +2,8 @@
 from unittest import TestCase
 
 type Vertex = int
-type VertexEdges = set(Vertex)
-type Graph = dict(Vertex, VertexEdges)  # Adjacent List
+type VertexEdges = set[Vertex]
+type Graph = dict[Vertex, VertexEdges]  # Adjacent List
 
 
 test_case = TestCase()
