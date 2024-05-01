@@ -34,29 +34,28 @@ class BST:
 
 
 # %%
-def insert(tree: BST, data: int, node: Node = None):
-    new_node = Node(data)
+def insert(tree: BST, value: int):
+    def insert_(node: Node, value: int):
+        if value == node.data:
+            raise Exception("Duplicated value")
+
+        if value < node.data:
+            if node.left:
+                insert_(node.left, value)
+            else:
+                node.left = Node(value)
+
+        if value > node.data:
+            if node.right:
+                insert_(node.right, value)
+            else:
+                node.right = Node(value)
 
     if not tree.root:
-        tree.root = new_node
+        tree.root = Node(value)
         return
 
-    node = node if node else tree.root
-
-    if data == node.data:
-        raise Exception("Duplicated value")
-
-    if data < node.data:
-        if node.left:
-            insert(tree, data, node.left)
-        else:
-            node.left = new_node
-
-    if data > node.data:
-        if node.right:
-            insert(tree, data, node.right)
-        else:
-            node.right = new_node
+    insert_(tree.root, value)
 
 
 bst = BST()
@@ -70,26 +69,24 @@ test_case.assertEqual({1, 3, 8, 10}, bst.to_set())
 
 
 # %%
-def lookup_(node: Node, target: int) -> bool:
-    """Depth-First Pre-Order Traversal"""
-    if not node:
+def lookup(tree: BST, target: int) -> bool:
+    def lookup_(node: Node, target: int) -> bool:
+        """Depth-First Pre-Order Traversal"""
+        if not node:
+            return False
+
+        if target == node.data:
+            return True
+
+        if target < node.data:
+            return lookup_(node.left, target)
+
+        if target > node.data:
+            return lookup_(node.right, target)
+
         return False
 
-    if target == node.data:
-        return True
-
-    if target < node.data and node.left:
-        return lookup_(node.left, target)
-
-    if target > node.data and node.right:
-        return lookup_(node.right, target)
-
-    return False
-
-
-def lookup(tree: BST, target: int):
-    node = tree.root if tree else None
-    return lookup_(node, target)
+    return lookup_(tree.root, target)
 
 
 test_case = TestCase()
@@ -98,31 +95,29 @@ test_case.assertEqual(False, lookup(bst, 99))
 
 
 # %%
-def traverse_breath_first_(node: Node) -> list[int]:
-    acc = []
+def traverse_breath_first(tree: BST) -> list[int]:
+    def bfs(root: Node) -> list[int]:
+        acc = []
 
-    if not node:
+        if not root:
+            return acc
+
+        queue = deque([root])
+
+        while queue:
+            # consume first element in the queue
+            node = queue.popleft()
+            acc.append(node.data)
+
+            # append its children to the end of the queue
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
         return acc
 
-    queue = deque([node])
-
-    while queue:
-        # consume first element in the queue
-        node = queue.popleft()
-        acc.append(node.data)
-
-        # append its children to the end of the queue
-        if node.left:
-            queue.append(node.left)
-        if node.right:
-            queue.append(node.right)
-
-    return acc
-
-
-def traverse_breath_first(tree: BST):
-    node = tree.root if tree else None
-    return traverse_breath_first_(node)
+    return bfs(tree.root)
 
 
 test_case = TestCase()
@@ -130,23 +125,21 @@ test_case.assertEqual(traverse_breath_first(bst), [8, 3, 10, 1])
 
 
 # %%
-def traverse_depth_first_(node: Node, acc: list[int] = []) -> list[int]:
-    """Depth-First In-Order"""
+def traverse_depth_first(tree: BST) -> list[int]:
+    def dfs(node: Node) -> list[int]:
+        """Depth-First In-Order"""
+        acc = []
 
-    if node.left:
-        traverse_depth_first_(node.left, acc)
+        if not node:
+            return acc
 
-    acc.append(node.data)
+        acc.extend(dfs(node.left))
+        acc.append(node.data)
+        acc.extend(dfs(node.right))
 
-    if node.right:
-        traverse_depth_first_(node.right, acc)
+        return acc
 
-    return acc
-
-
-def traverse_depth_first(tree: BST):
-    node = tree.root if tree else None
-    return traverse_depth_first_(node)
+    return dfs(tree.root)
 
 
 test_case = TestCase()
@@ -154,19 +147,17 @@ test_case.assertEqual(traverse_depth_first(bst), [1, 3, 8, 10])
 
 
 # %%
-def height_(node: Node):
-    if not node:
-        return -1
-
-    return max(
-        1 + height_(node.left),
-        1 + height_(node.right),
-    )
-
-
 def height(tree: BST):
-    node = tree.root if tree else None
-    return height_(node)
+    def height_(node: Node):
+        if not node:
+            return -1
+
+        return max(
+            1 + height_(node.left),
+            1 + height_(node.right),
+        )
+
+    return height_(tree.root)
 
 
 test_case.assertEqual(height(bst), 2)
