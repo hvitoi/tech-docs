@@ -9,3 +9,4 @@
 "a" in ("a", 1)  # True
 "a" in (1, "a")  # True
 "a" in {"a"}  # True
+"ab" in "abc"  # True
