@@ -5,10 +5,9 @@ from unittest import TestCase
 def longest_palindrome(s: str) -> str:
     # Brute force
     # O(n^3)
-    N = len(s)
-    for n in reversed(range(1, N + 1)):
-        for i in range(N - n + 1):
-            subs = s[i : i + n]
+    for length in range(len(s), 0, -1):  # n to 1
+        for i in range(len(s) - length + 1):
+            subs = s[i : i + length]
             if subs == "".join(reversed(subs)):
                 return subs
     return ""

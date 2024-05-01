@@ -63,15 +63,16 @@ def min_distance_recursive(word: str, target: str) -> int:
         return min_distance_recursive(word[1:], target[1:])
 
     # insert
-    if word_current == target_next:
+    elif word_current == target_next:
         return 1 + min_distance_recursive(word[1:], target[2:])
 
     # delete
-    if word_next == target_current:
+    elif word_next == target_current:
         return 1 + min_distance_recursive(word[2:], target[1:])
 
     # replace
-    return 1 + min_distance_recursive(word[1:], target[1:])
+    else:
+        return 1 + min_distance_recursive(word[1:], target[1:])
 
 
 test_case = TestCase()
