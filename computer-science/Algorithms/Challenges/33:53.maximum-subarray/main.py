@@ -2,6 +2,8 @@
 from itertools import accumulate
 from unittest import TestCase
 
+# Maximum sum for a subarray in the array
+
 
 def maximum_subarray_windows_brute_force(nums: list[int]) -> int:
     """O(n^3)"""

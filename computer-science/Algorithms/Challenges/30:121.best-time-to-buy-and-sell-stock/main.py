@@ -3,6 +3,7 @@ from unittest import TestCase
 
 
 def max_profit(prices: list[int]) -> int:
+    """O(n^2)"""
     highest_profit = 0
     for i, buy_price in enumerate(prices):
         for sell_price in prices[i:]:
@@ -11,6 +12,7 @@ def max_profit(prices: list[int]) -> int:
 
 
 def max_profit2(prices: list[int]):
+    """O(n)"""
     buy_price = prices[0]
     highest_profit = 0
 
