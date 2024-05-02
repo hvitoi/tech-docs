@@ -1,4 +1,7 @@
 # %%
+from unittest import TestCase
+
+
 class Node:
     def __init__(self, data, next=None):
         self.data = data
@@ -6,60 +9,107 @@ class Node:
 
 
 class SinglyLinkedList:
-    def __init__(self, elements: list = []):
-        self.head = None
-        for el in reversed(elements):
-            self.insert_at_beginning(el)
+    def __init__(self, elements: list = None):
+        self.head: Node = None
 
-    def insert_at_beginning(self, data):
+        if elements is None:
+            elements = []
+
+        for el in reversed(elements):
+            self.push_left(el)
+
+    def push_left(self, data: object) -> None:
         new_node = Node(data, self.head)
         self.head = new_node
 
-    def remove_from_beginning(self):
-        self.head = self.head.next
+    def pop_left(self) -> object:
+        if not self.head:
+            return
 
-    def insert_at_end(self, data):
+        popped = self.head
+        self.head = popped.next
+        return popped.data
+
+    def push_right(self, data: object) -> None:
         new_node = Node(data)
+
+        if not self.head:
+            self.head = new_node
+            return
+
         itr = self.head
         while itr.next:
             itr = itr.next
-        itr.next = new_node
 
-    def remove_from_end(self):
+        itr.nextz = new_node
+
+    def pop_right(self):
+        if not self.head:
+            return
+
         itr = self.head
 
-        while itr:
-            if itr.next.next is None:
+        while itr.next:
+            if not itr.next.next:
                 itr.next = None
-                break
+                return
             itr = itr.next
 
-    def traverse_print(self):
+    def to_list(self):
+        acc = []
         itr = self.head
         while itr:
-            print(itr.data)
+            acc.append(itr.data)
             itr = itr.next
+        return acc
 
-    def traverse_print_recursively(self, curr=None):
-        if curr is None:
-            curr = self.head
-        print(curr.data)
-        if curr.next is not None:
-            self.traverse_print_recursively(curr.next)
+    def to_list_recursively(self):
+        def to_list(node: Node):
+            if not node:
+                return []
+            return [node.data] + to_list(node.next)
+
+        return to_list(self.head)
 
 
-# %%
+test_case = TestCase()
+
 ll = SinglyLinkedList()
+test_case.assertEqual(ll.to_list(), [])
 
-ll.insert_at_beginning(3)
-ll.insert_at_beginning(2)
-ll.insert_at_beginning(1)
+ll.push_left("a")
+test_case.assertEqual(ll.to_list(), ["a"])
 
-ll.insert_at_end(4)
-ll.remove_from_end()
+ll.push_left("b")
+test_case.assertEqual(ll.to_list(), ["b", "a"])
 
-ll.traverse_print()
-ll.traverse_print_recursively()
+test_case.assertEqual(ll.pop_left(), "b")
+test_case.assertEqual(ll.to_list(), ["a"])
+
+test_case.assertEqual(ll.pop_left(), "a")
+test_case.assertEqual(ll.to_list(), [])
+
+test_case.assertEqual(ll.pop_left(), None)
+test_case.assertEqual(ll.to_list(), [])
+
+
+ll.push_right("a")
+test_case.assertEqual(ll.to_list(), ["a"])
+
+ll.push_right("b")
+test_case.assertEqual(ll.to_list(), ["b"])
+
+# ll.push_left("b")
+# test_case.assertEqual(ll.to_list(), ["b", "a"])
+
+# test_case.assertEqual(ll.pop_left(), "b")
+# test_case.assertEqual(ll.to_list(), ["a"])
+
+# test_case.assertEqual(ll.pop_left(), "a")
+# test_case.assertEqual(ll.to_list(), [])
+
+# test_case.assertEqual(ll.pop_left(), None)
+# test_case.assertEqual(ll.to_list(), [])
 
 
 # %%
@@ -67,13 +117,13 @@ def reverse(ll: SinglyLinkedList) -> SinglyLinkedList:
     reversed_list = SinglyLinkedList()
     curr = ll.head
     while curr:
-        reversed_list.insert_at_beginning(curr.data)
+        reversed_list.push_left(curr.data)
         curr = curr.next
     return reversed_list
 
 
 ll = SinglyLinkedList([1, 2, 3])
-reverse(ll).traverse_print()
+reverse(ll).traverse()
 
 
 # %%
@@ -99,7 +149,7 @@ def reverse_in_place(ll: SinglyLinkedList) -> SinglyLinkedList:
 
 ll = SinglyLinkedList([1, 2, 3, 4, 5])
 reverse_in_place(ll)
-ll.traverse_print()
+ll.traverse()
 
 
 # %%
@@ -124,7 +174,7 @@ def reverse_in_place_recursively(ll: SinglyLinkedList, prev=None) -> SinglyLinke
 
 ll = SinglyLinkedList([1, 2, 3, 4, 5])
 reverse_in_place_recursively(ll)
-ll.traverse_print()
+ll.traverse()
 
 
 # %%
@@ -145,4 +195,4 @@ def reverse_in_place_recursively2(ll: SinglyLinkedList):
 
 ll = SinglyLinkedList([1, 2, 3, 4, 5])
 reverse_in_place_recursively2(ll)
-ll.traverse_print()
+ll.traverse()

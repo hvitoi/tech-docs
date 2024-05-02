@@ -8,17 +8,17 @@ def longest_common_subsequence_dp(txt1: str, txt2: str) -> int:
     if len(txt1) == 0 or len(txt2) == 0:
         return 0
 
-    txt1_current = txt1[0] if len(txt1) > 0 else ""
-    txt2_current = txt2[0] if len(txt2) > 0 else ""
+    char1 = txt1[0] if len(txt1) > 0 else ""
+    char2 = txt2[0] if len(txt2) > 0 else ""
 
-    if txt1_current != txt2_current:
-        # backtracking! monitor 2 possible paths
-        return max(
-            longest_common_subsequence_dp(txt1[1:], txt2),
-            longest_common_subsequence_dp(txt1, txt2[1:]),
-        )
-    else:
+    if char1 == char2:
         return 1 + longest_common_subsequence_dp(txt1[1:], txt2[1:])
+    else:
+        # backtrack! Explore 2 possible paths
+        return max(
+            longest_common_subsequence_dp(txt1[1:], txt2),  # remove a char from txt1
+            longest_common_subsequence_dp(txt1, txt2[1:]),  # remove a char from txt2
+        )
 
 
 test_case = TestCase()
