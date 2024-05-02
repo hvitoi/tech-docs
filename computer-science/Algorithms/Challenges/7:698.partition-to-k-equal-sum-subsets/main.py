@@ -4,9 +4,10 @@ from unittest import TestCase
 
 def can_partition_k_subsets(nums: list[int], k: int):
     target_sum = sum(nums) / k
-    buckets = [[]] * k
+    buckets = [[] for _ in range(k)]
 
     for num in nums:
+        # check if the number can be fitted in any bucket
         for bucket in buckets:
             # could be improved by storing the bucket sum (instead of calculating it every time)
             if sum(bucket) + num <= target_sum:
@@ -31,6 +32,7 @@ def can_partition_k_subsets_recursive(nums: list[int], k: int):
     bucket = []
 
     leftover_nums = []
+
     for num in nums:
         if sum(bucket) + num <= target_size:
             bucket.append(num)

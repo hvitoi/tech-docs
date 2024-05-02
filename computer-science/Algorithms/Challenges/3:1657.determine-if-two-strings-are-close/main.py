@@ -1,6 +1,5 @@
 # %%
 import unittest
-import itertools
 import collections
 
 
