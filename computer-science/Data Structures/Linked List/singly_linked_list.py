@@ -1,9 +1,10 @@
 # %%
 from unittest import TestCase
+from typing import Self
 
 
 class Node:
-    def __init__(self, data, next=None):
+    def __init__(self, data: object, next: Self = None):
         self.data = data
         self.next = next
 
@@ -41,18 +42,20 @@ class SinglyLinkedList:
         while itr.next:
             itr = itr.next
 
-        itr.nextz = new_node
+        itr.next = new_node
 
-    def pop_right(self):
+    def pop_right(self) -> object:
+        # def pop_right(node:Node):
+        #     pass
         if not self.head:
             return
 
         itr = self.head
-
         while itr.next:
             if not itr.next.next:
+                popped = itr.next
                 itr.next = None
-                return
+                return popped.data
             itr = itr.next
 
     def to_list(self):
@@ -97,19 +100,16 @@ ll.push_right("a")
 test_case.assertEqual(ll.to_list(), ["a"])
 
 ll.push_right("b")
-test_case.assertEqual(ll.to_list(), ["b"])
+test_case.assertEqual(ll.to_list(), ["a", "b"])
 
-# ll.push_left("b")
-# test_case.assertEqual(ll.to_list(), ["b", "a"])
+test_case.assertEqual(ll.pop_right(), "b")
+test_case.assertEqual(ll.to_list(), ["a"])
 
-# test_case.assertEqual(ll.pop_left(), "b")
-# test_case.assertEqual(ll.to_list(), ["a"])
+test_case.assertEqual(ll.pop_right(), "a")
+test_case.assertEqual(ll.to_list(), [])
 
-# test_case.assertEqual(ll.pop_left(), "a")
-# test_case.assertEqual(ll.to_list(), [])
-
-# test_case.assertEqual(ll.pop_left(), None)
-# test_case.assertEqual(ll.to_list(), [])
+test_case.assertEqual(ll.pop_right(), None)
+test_case.assertEqual(ll.to_list(), [])
 
 
 # %%
