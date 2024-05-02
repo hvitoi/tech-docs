@@ -18,4 +18,9 @@ test('reversing an integer', () => {
   assert.strictEqual(reverseInteger(-15), -51);
   assert.strictEqual(reverseInteger(-90), -9);
   assert.strictEqual(reverseInteger(-2359), -9532);
+
+  assert.strictEqual(reverseInteger(123), 321);
+  assert.strictEqual(reverseInteger(-123), -321);
+  assert.strictEqual(reverseInteger(120), 21);
+
 });

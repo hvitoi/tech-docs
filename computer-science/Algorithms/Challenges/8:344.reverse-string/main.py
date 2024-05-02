@@ -10,8 +10,6 @@ def reverse_string(original_string: str) -> str:
 
 
 test_case = TestCase()
-
-test_case.assertEqual(
-    reverse_string("Hi, my name is Henrique"),
-    "euqirneH si eman ym ,iH",
-)
+test_case.assertEqual(reverse_string("Hi, I'm Henrique"), "euqirneH m'I ,iH")
+test_case.assertEqual(reverse_string("hello"), "olleh")
+test_case.assertEqual(reverse_string("Hannah"), "hannaH")

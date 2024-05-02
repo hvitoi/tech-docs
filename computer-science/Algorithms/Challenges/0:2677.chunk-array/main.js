@@ -131,3 +131,31 @@ test('chunk divides an array of 13 elements with chunk size 5', () => {
   ];
   assert.deepEqual(subChunk3(arr, chunkSize), expected);
 });
+
+test('', () => {
+  const arr = [1, 2, 3, 4, 5];
+  const chunkSize = 1;
+  const expected = [[1], [2], [3], [4], [5]];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('', () => {
+  const arr = [1, 9, 6, 3, 2];
+  const chunkSize = 3;
+  const expected = [[1, 9, 6], [3, 2]];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('', () => {
+  const arr = [8, 5, 3, 2, 6];
+  const chunkSize = 6;
+  const expected = [[8, 5, 3, 2, 6]];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
+
+test('', () => {
+  const arr = [];
+  const chunkSize = 1;
+  const expected = [];
+  assert.deepEqual(subChunk3(arr, chunkSize), expected);
+});
