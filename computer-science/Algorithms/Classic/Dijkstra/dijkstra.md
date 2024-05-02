@@ -20,3 +20,9 @@ Where:
 
 - $V$ is the number of vertices
 - $E$ is the total number of edges
+
+## Bellman-Ford
+
+- Algorithm created by Richard Bellman (same creator of dynamic programming)
+- It can accommodate `negative weights` (that dijkstra does not)
+- Runtime $O(n^2)$

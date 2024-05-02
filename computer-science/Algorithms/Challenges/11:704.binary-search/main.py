@@ -2,7 +2,7 @@
 from unittest import TestCase
 
 
-def binary_search(arr, target):
+def binary_search(arr: list[int], target: int) -> bool:
     """O(log n)"""
     left = 0
     right = len(arr) - 1
@@ -25,27 +25,25 @@ def binary_search(arr, target):
     return False
 
 
-def binary_search_recursive(arr, target, *, left=None, right=None):
+def binary_search_recursive(arr: list[int], target: int) -> bool:
     """O(log n)"""
-    if left is None:
-        left = 0
 
-    if right is None:
-        right = len(arr) - 1
+    def bs(left: int, right: int):
+        if (right - left) < 0:
+            return False
 
-    if (right - left) < 0:
-        return False
+        mid_index = left + (right - left) // 2
 
-    mid_index = left + (right - left) // 2
+        if target == arr[mid_index]:
+            return True
 
-    if target == arr[mid_index]:
-        return True
+        if target < arr[mid_index]:
+            return bs(left, mid_index - 1)
 
-    if target < arr[mid_index]:
-        return binary_search_recursive(arr, target, left=left, right=mid_index - 1)
+        if target > arr[mid_index]:
+            return bs(mid_index + 1, right)
 
-    if target > arr[mid_index]:
-        return binary_search_recursive(arr, target, left=mid_index + 1, right=right)
+    return bs(0, len(arr) - 1)
 
 
 test_case = TestCase()

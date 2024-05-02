@@ -40,3 +40,6 @@ None + 1  # throws!
 # %%
 # quotient
 10 // 3
+
+# %%
+"ab" > "aa"
