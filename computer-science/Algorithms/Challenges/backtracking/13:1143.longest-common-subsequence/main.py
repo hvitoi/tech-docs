@@ -1,5 +1,5 @@
 # %%
-# subsequences do not have to contiguous
+# subsequences do not have to be contiguous
 from unittest import TestCase
 
 
