@@ -1,9 +1,8 @@
 # %%
-from typing import List
 from unittest import TestCase
 
 
-def merge_sorted_arrays(arr1: List[int], arr2: List[int]) -> List[int]:
+def merge_sorted_arrays(arr1: list[int], arr2: list[int]) -> list[int]:
     if len(arr1) == 0:
         return arr2
 
@@ -44,4 +43,8 @@ test_case.assertEqual(
 test_case.assertEqual(
     merge_sorted_arrays([], [4, 6, 30]),
     [4, 6, 30],
+)
+test_case.assertEqual(
+    merge_sorted_arrays([1, 2, 3], [2, 5, 6]),
+    [1, 2, 2, 3, 5, 6],
 )
