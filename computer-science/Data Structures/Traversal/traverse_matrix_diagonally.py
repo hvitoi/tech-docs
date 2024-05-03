@@ -3,7 +3,7 @@ from collections import deque
 from unittest import TestCase
 
 
-def traverse_bf_matrix(matrix: list[list]) -> list:
+def traverse_matrix_diag(matrix: list[list]) -> list:
     acc = []
 
     if not matrix:
@@ -34,7 +34,7 @@ def traverse_bf_matrix(matrix: list[list]) -> list:
     return acc
 
 
-def traverse_bf_matrix_recursive(
+def traverse_matrix_diag_recursive(
     matrix: list[list],
     queue: deque = None,
     acc: list = None,
@@ -69,7 +69,7 @@ def traverse_bf_matrix_recursive(
 
 test_case = TestCase()
 
-for fn in {traverse_bf_matrix, traverse_bf_matrix_recursive}:
+for fn in {traverse_matrix_diag, traverse_matrix_diag_recursive}:
     test_case.assertEqual(
         fn(
             [

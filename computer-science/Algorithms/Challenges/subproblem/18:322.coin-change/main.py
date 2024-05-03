@@ -2,7 +2,7 @@
 from unittest import TestCase
 
 
-def coin_change(coins: list[int], amount: int) -> int:
+def coin_change_pick_highest_coins_first(coins: list[int], amount: int) -> int:
     """
     Priority = higher bills! (less coins returned)
     """
@@ -26,25 +26,12 @@ def coin_change(coins: list[int], amount: int) -> int:
     return -1
 
 
-def coin_change_dp(coins: list[int], amount: int) -> int:
-    if amount == 0:
-        return 0
-
-    if len(coins) == 0:
-        return -1
-
-    higher_bill = coins[-1]
-
-    if amount >= higher_bill:
-        next_coins = coin_change_dp(coins, amount - higher_bill)
-        return 1 + next_coins if next_coins != -1 else -1
-
-    if amount < higher_bill:
-        next_coins = coin_change_dp(coins[:-1], amount)
-        return next_coins if next_coins != -1 else -1
-
-
 def coin_change_backtrack_every_combination(coins: list[int], amount: int) -> int:
+    """
+    Dynamic programming solution
+    It tracks every possible combination at every choice (which bill to pick)
+    This is done until the change amount is 0 or if there is no possible combination
+    """
     if amount == 0:
         return 0
 
@@ -54,7 +41,7 @@ def coin_change_backtrack_every_combination(coins: list[int], amount: int) -> in
         if amount >= coin:
             next_coins = coin_change_backtrack_every_combination(coins, amount - coin)
             if next_coins == -1:
-                return -1
+                return -1  # that means there is no possible combination going this path
             options.append(1 + next_coins)
 
     return min(options) if options else -1
@@ -62,7 +49,10 @@ def coin_change_backtrack_every_combination(coins: list[int], amount: int) -> in
 
 test_case = TestCase()
 
-for fn in {coin_change, coin_change_dp, coin_change_backtrack_every_combination}:
+for fn in {
+    coin_change_pick_highest_coins_first,
+    coin_change_backtrack_every_combination,
+}:
     test_case.assertEqual(fn([1, 2, 5], 11), 3)
     test_case.assertEqual(fn([2], 3), -1)
     test_case.assertEqual(fn([1], 0), 0)

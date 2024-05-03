@@ -12,7 +12,7 @@ class Node:
 
 class BST:
     def __init__(self):
-        self.root = None
+        self.root: Node | None = None
 
     def to_set(self, node=None, acc=None):
         """Depth-First In-Order Traversal"""
@@ -70,7 +70,7 @@ test_case.assertEqual({1, 3, 8, 10}, bst.to_set())
 
 # %%
 def lookup(tree: BST, target: int) -> bool:
-    def lookup_(node: Node, target: int) -> bool:
+    def lookup_(node: Node | None, target: int) -> bool:
         """Depth-First Pre-Order Traversal"""
         if not node:
             return False
@@ -96,7 +96,7 @@ test_case.assertEqual(False, lookup(bst, 99))
 
 # %%
 def traverse_breath_first(tree: BST) -> list[int]:
-    def bfs(root: Node) -> list[int]:
+    def bfs(root: Node | None) -> list[int]:
         acc = []
 
         if not root:
@@ -126,7 +126,7 @@ test_case.assertEqual(traverse_breath_first(bst), [8, 3, 10, 1])
 
 # %%
 def traverse_depth_first(tree: BST) -> list[int]:
-    def dfs(node: Node) -> list[int]:
+    def dfs(node: Node | None) -> list[int]:
         """Depth-First In-Order"""
         acc = []
 
@@ -148,7 +148,7 @@ test_case.assertEqual(traverse_depth_first(bst), [1, 3, 8, 10])
 
 # %%
 def height(tree: BST):
-    def height_(node: Node):
+    def height_(node: Node | None):
         if not node:
             return -1
 
