@@ -3,7 +3,7 @@ from collections import deque
 from unittest import TestCase
 
 
-def traverse_breadth_first_in_matrix(matrix: list[list]) -> list:
+def traverse_bf_matrix(matrix: list[list]) -> list:
     acc = []
 
     if not matrix:
@@ -34,46 +34,42 @@ def traverse_breadth_first_in_matrix(matrix: list[list]) -> list:
     return acc
 
 
-def traverse_breadth_first_matrix_recursive(
+def traverse_bf_matrix_recursive(
     matrix: list[list],
     queue: deque = None,
     acc: list = None,
 ) -> list:
-    """Recursively processing of each level of the matrix"""
-    acc = acc if acc else []
-    queue = queue if queue is not None else deque([(0, 0)])
+    """
+    The quantity of levels is m + n
+    """
 
-    if not matrix or not queue:
-        return acc
+    def first_item_from_level(level):
+        col = level if level < len_cols else len_cols - 1
+        row = 0 if level < len_cols else level - len_cols + 1
+        return row, col
 
-    rows = len(matrix)
-    cols = len(matrix[0])
+    def bfs(level):
+        if level > (len_rows + len_cols):
+            return []
 
-    next_level_queue = deque()
-    next_level_items = set()
+        acc = []
+        row, col = first_item_from_level(level)
 
-    while queue:
-        pos = queue.popleft()
-        acc.append(matrix[pos[0]][pos[1]])
+        while (0 <= row < len_rows) and (0 <= col < len_cols):
+            acc.append(matrix[row][col])
+            row = row + 1
+            col = col - 1
 
-        pos_right = (pos[0], pos[1] + 1)
-        pos_down = (pos[0] + 1, pos[1])
+        return acc + bfs(level + 1)
 
-        for next_pos in [pos_right, pos_down]:
-            if (
-                (next_pos not in next_level_items)
-                and (next_pos[0] < rows)
-                and (next_pos[1] < cols)
-            ):
-                next_level_queue.append(next_pos)
-                next_level_items.add(next_pos)
-
-    return traverse_breadth_first_matrix_recursive(matrix, next_level_queue, acc)
+    len_rows = len(matrix)
+    len_cols = len(matrix[0])
+    return bfs(0)
 
 
 test_case = TestCase()
 
-for fn in {traverse_breadth_first_in_matrix, traverse_breadth_first_matrix_recursive}:
+for fn in {traverse_bf_matrix, traverse_bf_matrix_recursive}:
     test_case.assertEqual(
         fn(
             [
@@ -92,4 +88,15 @@ for fn in {traverse_breadth_first_in_matrix, traverse_breadth_first_matrix_recur
             ]
         ),
         ["a", "b", "d", "c", "e", "g", "f", "h", "i"],
+    )
+    test_case.assertEqual(
+        fn(
+            [
+                ["a", "b", "c"],
+                ["d", "e", "f"],
+                ["g", "h", "i"],
+                ["j", "k", "l"],
+            ]
+        ),
+        ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"],
     )
