@@ -26,12 +26,16 @@ When the load factor is reaching 1, it's necessary to resize the array of bucket
   - It's a collision resolution method
   - Whenever a collision happens, the data in saved on top of the previous data, not overwriting it, but referencing the new data like a `linked list`
   - When there is a collision, the access to the element is then $O(n/k)$ instead of $O(1)$
-  - In order to access (lookup) an element which has suffered colision, each item in the linked list is search until the corresponding key is found
+  - In order to access (lookup) an element which has suffered collision, each item in the linked list is search until the corresponding key is found
 
 ## Tradeoffs
 
 - Hash tables have a good `time complexity` ($O(1)$) for all operation (insert, remove, lookup) when the memory (size of the array of buckets) is infinite and therefore there are no collisions
 - When a smaller array of buckets is used, there is a good `space complexity` at the cost more collisions, this way degrading the lookups $O(n)$
+
+## Ordered Hash Table
+
+- Some hash table implementation do preserve the order of insertion so that it is possible to traverse it in the same order of insertion
 
 ## Other applications
 

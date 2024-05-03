@@ -25,4 +25,4 @@ if not my_list:
 # Extract the keys into a list (values are ignored)
 # Keeps the order of keys on the dict
 
-list({"b": 2, "a": 1})
+list({"b": 2, "a": 1})  # order is preserved
