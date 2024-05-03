@@ -45,10 +45,13 @@ class SinglyLinkedList:
         itr.next = new_node
 
     def pop_right(self) -> object:
-        # def pop_right(node:Node):
-        #     pass
         if not self.head:
             return
+
+        if not self.head.next:
+            popped = self.head
+            self.head = None
+            return popped.data
 
         itr = self.head
         while itr.next:
@@ -95,6 +98,7 @@ test_case.assertEqual(ll.to_list(), [])
 test_case.assertEqual(ll.pop_left(), None)
 test_case.assertEqual(ll.to_list(), [])
 
+##
 
 ll.push_right("a")
 test_case.assertEqual(ll.to_list(), ["a"])
@@ -110,6 +114,18 @@ test_case.assertEqual(ll.to_list(), [])
 
 test_case.assertEqual(ll.pop_right(), None)
 test_case.assertEqual(ll.to_list(), [])
+
+##
+
+ll.push_left("a")
+ll.push_left("b")
+test_case.assertEqual(ll.to_list(), ["b", "a"])
+test_case.assertEqual(ll.to_list_recursively(), ["b", "a"])
+
+ll.pop_left()
+ll.pop_left()
+test_case.assertEqual(ll.to_list(), [])
+test_case.assertEqual(ll.to_list_recursively(), [])
 
 
 # %%
