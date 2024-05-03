@@ -129,21 +129,7 @@ test_case.assertEqual(ll.to_list_recursively(), [])
 
 
 # %%
-def reverse(ll: SinglyLinkedList) -> SinglyLinkedList:
-    reversed_list = SinglyLinkedList()
-    curr = ll.head
-    while curr:
-        reversed_list.push_left(curr.data)
-        curr = curr.next
-    return reversed_list
-
-
-ll = SinglyLinkedList([1, 2, 3])
-reverse(ll).traverse()
-
-
-# %%
-def reverse_in_place(ll: SinglyLinkedList) -> SinglyLinkedList:
+def reverse(ll: SinglyLinkedList) -> None:
     # Time: O(n)
     # Space: O(1)
     curr = ll.head
@@ -163,52 +149,46 @@ def reverse_in_place(ll: SinglyLinkedList) -> SinglyLinkedList:
     ll.head = prev
 
 
-ll = SinglyLinkedList([1, 2, 3, 4, 5])
-reverse_in_place(ll)
-ll.traverse()
+test_case = TestCase()
+
+ll = SinglyLinkedList([1, 2, 3])
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [3, 2, 1])
+
+ll = SinglyLinkedList([1])
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [1])
+
+ll = SinglyLinkedList()
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [])
 
 
 # %%
-def reverse_in_place_recursively(ll: SinglyLinkedList, prev=None) -> SinglyLinkedList:
-    # Time: O(n)
-    # Space: O(n) due to the callstack
+def reverse_in_place_recursively2(ll: SinglyLinkedList) -> None:
+    def reversed_list_head(head: Node) -> Node:
+        """Returns the head of the reversed linked list"""
+        if head is None or head.next is None:
+            return head
 
-    curr = ll.head
+        rest_reversed = reversed_list_head(head.next)
+        head.next.next = head  # modify the tail of the rest_reversed
+        head.next = None  # point the new tail of the rest_reversed to null because we don't know yet if it is the last one
+        return rest_reversed
 
-    next = curr.next
-
-    curr.next = prev
-    prev = curr
-
-    # base case
-    if next:
-        ll.head = next
-        reverse_in_place_recursively(ll, prev)
-    else:
-        curr = prev
-
-
-ll = SinglyLinkedList([1, 2, 3, 4, 5])
-reverse_in_place_recursively(ll)
-ll.traverse()
-
-
-# %%
-def reversed_list_head(head: Node) -> Node:
-    if head is None or head.next is None:
-        return head
-
-    rest_reversed = reversed_list_head(head.next)
-    head.next.next = head  # modify the tail of the rest_reversed
-    head.next = None  # point the new tail of the rest_reversed to null because we don't know yet if it is the last one
-    return rest_reversed
-
-
-def reverse_in_place_recursively2(ll: SinglyLinkedList):
     ll.head = reversed_list_head(ll.head)
-    return ll.head
 
 
-ll = SinglyLinkedList([1, 2, 3, 4, 5])
-reverse_in_place_recursively2(ll)
-ll.traverse()
+test_case = TestCase()
+
+ll = SinglyLinkedList([1, 2, 3])
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [3, 2, 1])
+
+ll = SinglyLinkedList([1])
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [1])
+
+ll = SinglyLinkedList()
+reverse(ll)
+test_case.assertEqual(ll.to_list(), [])

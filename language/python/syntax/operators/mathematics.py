@@ -45,4 +45,5 @@ None + 1  # throws!
 10 // 3
 
 # %%
-"ab" > "aa"
+"ab" > "aa"  # True
+(9, 1) > (1, 9)  # true
