@@ -2,6 +2,9 @@
 from collections import deque
 from unittest import TestCase
 
+# This solution has the same output as running the BF traversal with
+# origin as starting point
+
 
 def traverse_matrix_diag(matrix: list[list]) -> list:
     acc = []
@@ -36,8 +39,8 @@ def traverse_matrix_diag(matrix: list[list]) -> list:
 
 def traverse_matrix_diag_recursive(
     matrix: list[list],
-    queue: deque = None,
-    acc: list = None,
+    queue: deque | None = None,
+    acc: list | None = None,
 ) -> list:
     """
     The quantity of levels is m + n
@@ -68,6 +71,7 @@ def traverse_matrix_diag_recursive(
 
 
 test_case = TestCase()
+
 
 for fn in {traverse_matrix_diag, traverse_matrix_diag_recursive}:
     test_case.assertEqual(

@@ -32,15 +32,16 @@ def traverse_bf(matrix: list[list], start_row: int, start_col: int):
             (row + 1, col),  # down
         ]
 
-        for pos in positions:
-            # could be optimized by not adding elements that are not necessary
-            # instead of filtering them in the base case
-            queue.append(pos)
+        queue.extend(positions)
+        # could be optimized by not adding elements that are not necessary
+        # instead of filtering them in the base case
 
     return acc
 
 
 test_case = TestCase()
+
+# From the middle
 test_case.assertEqual(
     traverse_bf(
         [
@@ -52,4 +53,42 @@ test_case.assertEqual(
         1,
     ),
     ["e", "d", "b", "f", "h", "a", "g", "c", "i"],
+)
+
+# From origin
+test_case.assertEqual(
+    traverse_bf(
+        [
+            ["a", "b"],
+            ["c", "d"],
+        ],
+        0,
+        0,
+    ),
+    ["a", "b", "c", "d"],
+)
+test_case.assertEqual(
+    traverse_bf(
+        [
+            ["a", "b", "c"],
+            ["d", "e", "f"],
+            ["g", "h", "i"],
+        ],
+        0,
+        0,
+    ),
+    ["a", "b", "d", "c", "e", "g", "f", "h", "i"],
+)
+test_case.assertEqual(
+    traverse_bf(
+        [
+            ["a", "b", "c"],
+            ["d", "e", "f"],
+            ["g", "h", "i"],
+            ["j", "k", "l"],
+        ],
+        0,
+        0,
+    ),
+    ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"],
 )

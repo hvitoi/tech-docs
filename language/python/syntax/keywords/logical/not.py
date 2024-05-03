@@ -2,6 +2,7 @@
 # -> False
 not True
 not "a"
+not [[]]  # there is something (an empty list)
 
 # %%
 # -> True
