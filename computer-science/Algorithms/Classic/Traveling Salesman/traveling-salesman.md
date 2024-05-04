@@ -28,8 +28,9 @@ As the optimal solution is sometimes impossible to be defined as benchmark it is
 - It's the minimum distance to visit all nodes starting from a given node
 - It's used as the reasonable `lower bound` for benchmarking purposes
 
-- It's solved using the `prims algorithms`
-  - Similar to dijkstra (implemented with a priority queue)
+- It's solved using the **prims algorithms**
+  - Similar to dijkstra (implemented with a priority queue) and it's also greedy
+  - However, it picks at each iteration the local minimum distance (instead of the distance to the start) - simpler!
 
 - To refine the lower bound even further the `1-tree lower bound` technique is applied
     1. Remove any vertex from and find the MST

@@ -25,7 +25,7 @@ def binary_search(arr: list[int], target: int) -> bool:
     return False
 
 
-def binary_search_recursive(arr: list[int], target: int) -> bool:
+def binary_search_recursive(arr: list[int], target: int):
     """O(log n)"""
 
     def binary_search(left: int, right: int):
