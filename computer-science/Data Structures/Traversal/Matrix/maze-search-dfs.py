@@ -4,6 +4,10 @@
 # With DFS you are guaranteed to find a path faster, but may not be the shortest
 # With DFS you can also apply backtracking, this way you will also guarantee to have the shortest path
 
+# Time: O(|V| + |E|)
+# Space: O(|V|)
+# -- Where |V| is the numbers of vertices (elements in the maze) and |E| is the number of edges (total path length in the maze)
+
 from unittest import TestCase
 
 
