@@ -88,7 +88,30 @@ def is_balanced(tree: BST) -> bool:
     return _is_balanced(tree.root)
 
 
+def is_balanced2(tree: BST) -> bool:
+    def check_balance(node: Node | None) -> tuple[bool, int]:
+        """
+        Returns whether a node is balanced and what is its height
+        """
+        if not node:
+            return (True, -1)
+
+        is_left_balanced, left_height = check_balance(node.left)
+        if not is_left_balanced:
+            return (False, 1 + left_height)
+
+        is_right_balanced, right_height = check_balance(node.right)
+        if not is_right_balanced:
+            return (False, 1 + right_height)
+
+        am_i_balanced = abs(left_height - right_height) <= 1
+        return (am_i_balanced, 1 + max(left_height, right_height))
+
+    return check_balance(tree.root)[0]
+
+
 test_case = TestCase()
 
-test_case.assertEqual(is_balanced(BST([3, 9, 20, None, None, 15, 7])), True)
-test_case.assertEqual(is_balanced(BST([1, 2, 2, 3, 3, None, None, 4, 4])), False)
+for fn in {is_balanced, is_balanced2}:
+    test_case.assertEqual(fn(BST([3, 9, 20, None, None, 15, 7])), True)
+    test_case.assertEqual(fn(BST([1, 2, 2, 3, 3, None, None, 4, 4])), False)
