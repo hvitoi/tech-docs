@@ -1,8 +1,6 @@
 # %%
 my_dict = {"a": 1, "b": 2, "c": 3}
-
-# List of tuples
-my_dict.items()
+my_dict.items()  # List of tuples
 
 # %%
 my_dict = {"a": 1, "b": 2, "c": 3}

@@ -1,5 +1,6 @@
 # %%
-# Shallow copy
 my_list = ["a", "b", "c"]
 
-my_list.copy()
+my_list.clear()
+
+my_list

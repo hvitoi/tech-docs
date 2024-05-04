@@ -6,11 +6,16 @@ def letter_combinations(digits: str, combinations=None) -> list[str]:
     def multiply_combinations(current_combinations, letters):
         if not current_combinations:
             current_combinations = [""]
-        return [
-            combination + letter
-            for combination in current_combinations
-            for letter in letters
-        ]
+        # return [
+        #     combination + letter
+        #     for combination in current_combinations
+        #     for letter in letters
+        # ]
+        combinations = []
+        for current_combination in current_combinations:
+            for letter in letters:
+                combinations.append(current_combination + letter)
+        return combinations
 
     if combinations is None:
         combinations = []
