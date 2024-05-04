@@ -1,19 +1,22 @@
 ## Splat Operator
 ## The elements of a list/map are broken into individual elements
+# Just like the spread operator (...) in javascript
 
 # %%
-# Unpack List
+def transpose(matrix):
+    return list(zip(*matrix))
+    # return list(zip(row1,row2,row3))  # same
 
-# Just like the spread operator (...) in javascript
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-]
 
-list(zip(*matrix))
-list(zip([1, 2, 3], [4, 5, 6], [7, 8, 9]))  # same
+transpose(
+    [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+)
 
+# %%
 # concatenate arrays
 a = [1, 2, 3]
 b = [4, 5, 6]

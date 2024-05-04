@@ -7,6 +7,7 @@ my_list = []
 if my_list:
     print("I won't print")
 
+
 # %%
 # concatenate lists
 ["a", "b"] + ["c", "d"]

@@ -20,40 +20,46 @@ class BST:
         # copy the list do that the original one is not touched
         elements = elements.copy()
 
-        if not elements:
+        def build_next_node() -> Node | None:
+            el = elements.pop(0) if elements else None
+            if el is not None:
+                return Node(el)
+
+        root = build_next_node()
+
+        if root is None:
             return
 
-        root = Node(elements.pop(0))
-        node_queue = deque([root])
+        queue = deque([root])
 
         while elements:
-            node = node_queue.popleft()
+            node = queue.popleft()
 
-            node.left = Node(elements.pop(0)) if elements else None
+            node.left = build_next_node()
             if node.left:
-                node_queue.append(node.left)
+                queue.append(node.left)
 
-            node.right = Node(elements.pop(0)) if elements else None
+            node.right = build_next_node()
             if node.right:
-                node_queue.append(node.right)
+                queue.append(node.right)
 
         return root
 
     def serialize(self) -> list[int | None]:
         acc = []
 
-        node_queue: deque[Node | None] = deque([self.root]) if self.root else deque()
+        queue: deque[Node | None] = deque([self.root]) if self.root else deque()
 
-        while node_queue:
-            node = node_queue.popleft()
+        while queue:
+            node = queue.popleft()
 
             if not node:
                 acc.append(None)
                 continue
 
             acc.append(node.data)
-            node_queue.append(node.left)
-            node_queue.append(node.right)
+            queue.append(node.left)
+            queue.append(node.right)
 
         # trim right Nones
         while acc[-1] is None:
@@ -276,6 +282,7 @@ test_case = TestCase()
 
 # Serialize / Deserialize
 raw = [3, 9, 20, None, None, 15, 7]
+a = BST(raw)
 test_case.assertEqual(BST(raw).serialize(), raw)
 
 # Insert
