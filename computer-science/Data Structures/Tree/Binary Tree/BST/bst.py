@@ -14,10 +14,10 @@ class BST:
     def __init__(self, elements: list | None = None):
         if not elements:
             elements = []
-        self.root = self.__deserialize(elements)
+        self.root = self.__deserialize_from_bf(elements)
 
-    def __deserialize(self, elements: list) -> Node | None:
-        # copy the list do that the original one is not touched
+    def __deserialize_from_bf(self, elements: list) -> Node | None:
+        # copy the list so that the original one is not touched
         elements = elements.copy()
 
         def build_next_node() -> Node | None:
@@ -45,7 +45,7 @@ class BST:
 
         return root
 
-    def serialize(self) -> list[int | None]:
+    def serialize_to_bf(self) -> list[int | None]:
         acc = []
 
         queue: deque[Node | None] = deque([self.root]) if self.root else deque()
@@ -58,6 +58,7 @@ class BST:
                 continue
 
             acc.append(node.data)
+
             queue.append(node.left)
             queue.append(node.right)
 
@@ -283,7 +284,7 @@ test_case = TestCase()
 # Serialize / Deserialize
 raw = [3, 9, 20, None, None, 15, 7]
 a = BST(raw)
-test_case.assertEqual(BST(raw).serialize(), raw)
+test_case.assertEqual(BST(raw).serialize_to_bf(), raw)
 
 # Insert
 bst = BST()
