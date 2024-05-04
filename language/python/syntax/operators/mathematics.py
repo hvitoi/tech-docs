@@ -16,10 +16,7 @@ None + 1  # throws!
 # multiplication
 1 * 3
 2 * "ab"  # "abab"
-2 * ["a", "b"]  # ["a", "b", "a", "b"]
 
-2 * [[]]  # [[], []] watch out! It's reference to the same list
-[[] for _ in range(2)]  # use this instead
 
 # %%
 # division

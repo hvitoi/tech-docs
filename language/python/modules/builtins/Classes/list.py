@@ -1,28 +1,33 @@
 # %%
-# lists accept multiple data types
-foo = ["a", 1, True, ["c", 9]]
-list("abc")  # str -> list
-
-# %%
-# Nested Lists
-matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]]
-
-for row in matrix:
-    for col in row:
-        print(col)
-
-# %%
-# Concatenate lists
-["a", "b"] + ["c", "d"]
-
+my_list = ["a", 1, True, ["c", 9]]
+my_list
 
 # %%
 my_list = []
-if not my_list:
-    print("List is empty")
+if my_list:
+    print("I won't print")
 
 # %%
-# Extract the keys into a list (values are ignored)
-# Keeps the order of keys on the dict
+# concatenate lists
+["a", "b"] + ["c", "d"]
 
-list({"b": 2, "a": 1})  # order is preserved
+# %%
+# multiply scalars
+2 * ["a", "b"]  # ["a", "b", "a", "b"]
+
+# multiply pointers (!!)
+# watch out! It's reference to the same list
+2 * [[]]  # [[], []]
+[[] for _ in range(2)]  # use this instead
+
+# %%
+# from dict
+list({"b": 2, "a": 1})  # order is preserved, vals are discarded
+
+# %%
+# from str
+list("abc")
+
+# %%
+# from tuple
+list(("a", "b"))  # values are flattened

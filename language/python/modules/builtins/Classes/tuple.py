@@ -1,31 +1,25 @@
-# Tuples are constant, they cannot be changed
+# Tuples are immutable
 
 # %%
-coordinate_2d = (1, 2)
-coordinate_3d = (3, 4, 5)
-
-# access
-coordinate_2d[0]  # 1
-coordinate_2d[1]  # 2
-
-# writes (not allowed!)
-# coordinate_2d[0] = 9  # exception!
-
-# %%
-# list -> tuple
-my_tuple = tuple(["a", "b"])
-my_tuple
+my_tuple = ("a", "b", "c")
+my_tuple[0]  # "a"
 
 # %%
 my_tuple = ()  # empty tuple
-type(my_tuple)
+my_tuple
+
+# %%
+# Concatenate tuples
+(1, 2) + (3, 4)
 
 
-# %
+# %%
 def foo(*args, **kwargs):
-    print(args, kwargs)
-    return args + kwargs
+    # args as tuple
+    print(args)
+
+    # kwargs as dict
+    print(kwargs)
 
 
 foo(1, 2, a=3, b=4)
-(1, 2) + (3, 4)
