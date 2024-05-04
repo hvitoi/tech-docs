@@ -71,7 +71,7 @@ class BST:
     def to_set(self, node=None, acc=None):
         """
         Traverse Depth First and add elements to a list
-        Depth-First Pre-Order Traversal
+        Depth-First Pre-Order Traversal (doesn't really matter since it's a set)
         """
 
         node = node if node else self.root
@@ -103,7 +103,7 @@ class BST:
                 return acc
 
             acc.extend(dfs(node.left))
-            acc.append(node.data)
+            acc.append(node.data)  # in-order
             acc.extend(dfs(node.right))
 
             return acc
@@ -115,13 +115,13 @@ class BST:
         Traverse Breadth-First and add elements to a list
         """
 
-        def bfs(node: Node | None) -> list[int]:
+        def bfs(root: Node | None) -> list[int]:
             acc = []
 
-            if not node:
+            if not root:
                 return acc
 
-            queue = deque([node])
+            queue = deque([root])
 
             while queue:
                 # consume first element in the queue
@@ -138,43 +138,136 @@ class BST:
 
         return bfs(self.root)
 
-    def height(self) -> int:
-        def height_(node: Node | None) -> int:
+    def height_df(self, target: int | None = None) -> int:
+        """
+        Height of a node/tree using DFS
+        """
+
+        def total_height(node) -> int:
             if not node:
                 return -1
 
             return max(
-                1 + height_(node.left),
-                1 + height_(node.right),
+                1 + total_height(node.left),
+                1 + total_height(node.right),
             )
 
-        return height_(self.root)
+        def height_for_element(node, target) -> int:
+            if not node:
+                return -1
+
+            if node.data == target:
+                return 0
+
+            # search left
+            search = height_for_element(node.left, target)
+            if search != -1:
+                return 1 + search
+
+            # search right
+            search = height_for_element(node.right, target)
+            if search != -1:
+                return 1 + search
+
+            # if element was not found anywhere
+            return -1
+
+        if target:
+            return height_for_element(self.root, target)
+        else:
+            return total_height(self.root)
+
+    def height_bf(self, target: int | None = None) -> int:
+        """
+        Height of a node/tree using BFS
+        """
+
+        def total_height(root) -> int:
+            if not root:
+                return -1
+
+            queue: deque[tuple[Node, int]] = deque([(root, 0)])
+
+            while queue:
+                node, level = queue.popleft()
+
+                if node.left:
+                    queue.append((node.left, level + 1))
+
+                if node.right:
+                    queue.append((node.right, level + 1))
+
+            return level
+
+        def height_for_element(root, target) -> int:
+            height = -1
+
+            if not root:
+                return height
+
+            queue: deque[tuple[Node, int]] = deque([(root, 0)])
+
+            while queue:
+                node, level = queue.popleft()
+
+                if node.data == target:
+                    height = level
+                    break
+
+                if node.left:
+                    queue.append((node.left, level + 1))
+
+                if node.right:
+                    queue.append((node.right, level + 1))
+
+            return height
+
+        if target:
+            return height_for_element(self.root, target)
+        else:
+            return total_height(self.root)
 
 
 test_case = TestCase()
+
 
 # Insert
 bst = BST()
-bst.insert(8)
-bst.insert(10)
-bst.insert(3)
 bst.insert(1)
-test_case.assertEqual({1, 3, 8, 10}, bst.to_set())
+bst.insert(2)
+test_case.assertEqual(bst.to_set(), {1, 2})
 
 # Search
-bst = BST([8, 10, 3, 1])
-test_case = TestCase()
-test_case.assertEqual(True, bst.search(3))
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(True, bst.search(55))
 test_case.assertEqual(False, bst.search(99))
 
-# DFS
-bst = BST([8, 10, 3, 1])
-test_case.assertEqual(bst.to_list_df(), [1, 3, 8, 10])
+# To Set (DF)
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(bst.to_set(), {30, 40, 45, 50, 55, 60, 70, 80})
 
-# BFS
-bst = BST([8, 10, 3, 1])
-test_case.assertEqual(bst.to_list_bf(), [8, 3, 10, 1])
+# To List (DF)
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(bst.to_list_df(), [30, 40, 45, 50, 55, 60, 70, 80])
 
-# Height
-bst = BST([8, 10, 3, 1])
-test_case.assertEqual(bst.height(), 2)
+# To List (BF)
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(bst.to_list_bf(), [50, 40, 60, 30, 45, 55, 70, 80])
+
+# Height (DF)
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(bst.height_df(), 3)
+test_case.assertEqual(bst.height_df(99), -1)
+test_case.assertEqual(bst.height_df(50), 0)
+test_case.assertEqual(bst.height_df(60), 1)
+test_case.assertEqual(bst.height_df(70), 2)
+test_case.assertEqual(bst.height_df(80), 3)
+
+# Height (BF)
+bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+test_case.assertEqual(bst.height_bf(), 3)
+test_case.assertEqual(bst.height_bf(99), -1)
+test_case.assertEqual(bst.height_bf(50), 0)
+test_case.assertEqual(bst.height_bf(60), 1)
+test_case.assertEqual(bst.height_bf(70), 2)
+test_case.assertEqual(bst.height_bf(80), 3)

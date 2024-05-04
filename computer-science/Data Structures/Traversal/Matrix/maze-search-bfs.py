@@ -74,9 +74,8 @@ test_case.assertEqual(
     False,
 )
 
+
 # %%
-
-
 def search_maze_bfs(
     maze: list[list], start: tuple[int, int], goal: tuple[int, int]
 ) -> int:
@@ -87,23 +86,12 @@ def search_maze_bfs(
     len_rows = len(maze)
     len_cols = len(maze[0])
 
-    queue = deque(
-        [
-            deque([(start[0], start[1])]),  # level 0
-        ]
-    )
+    queue: deque[tuple[tuple[int, int], int]] = deque([((start[0], start[1]), 0)])
     visited = set()
 
-    level = 0
-
     while queue:
-        # if there is nothing more in the current level
-        if not queue[0]:
-            queue.popleft()  # pop the empty level
-            level += 1
-            continue
-
-        row, col = queue[0].popleft()
+        pos, level = queue.popleft()
+        row, col = pos
 
         if (
             (row, col) in visited
@@ -119,12 +107,12 @@ def search_maze_bfs(
         visited.add((row, col))
 
         next_level_positions = [
-            (row - 1, col),  # up
-            (row, col + 1),  # right
-            (row + 1, col),  # down
-            (row, col - 1),  # left
+            ((row - 1, col), level + 1),  # up
+            ((row, col + 1), level + 1),  # right
+            ((row + 1, col), level + 1),  # down
+            ((row, col - 1), level + 1),  # left
         ]
-        queue.append(deque(next_level_positions))
+        queue.extend(next_level_positions)
 
     return -1
 
@@ -141,18 +129,18 @@ test_case.assertEqual(
         (0, 0),
         (2, 0),
     ),
-    None,
+    2,
 )
 
-# test_case.assertEqual(
-#     search_maze_bfs(
-#         [
-#             [0, 0, 0, 0],
-#             [1, 1, 1, 1],
-#             [0, 0, 0, 0],
-#         ],
-#         (0, 0),
-#         (2, 0),
-#     ),
-#     -1,
-# )
+test_case.assertEqual(
+    search_maze_bfs(
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
+    ),
+    -1,
+)

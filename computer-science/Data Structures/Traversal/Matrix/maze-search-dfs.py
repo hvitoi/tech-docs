@@ -77,7 +77,7 @@ test_case.assertEqual(
 
 
 # %%
-def search_maze_dfs(
+def search_maze_dfs_return_length(
     maze: list[list], start: tuple[int, int], goal: tuple[int, int]
 ) -> int:
     def search(row, col):
@@ -117,7 +117,7 @@ def search_maze_dfs(
 test_case = TestCase()
 
 test_case.assertEqual(
-    search_maze_dfs(
+    search_maze_dfs_return_length(
         [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
@@ -130,7 +130,7 @@ test_case.assertEqual(
 )
 
 test_case.assertEqual(
-    search_maze_dfs(
+    search_maze_dfs_return_length(
         [
             [0, 0, 0, 0],
             [1, 1, 1, 1],
@@ -208,4 +208,71 @@ test_case.assertEqual(
         (2, 0),
     ),
     -1,
+)
+
+
+# %%
+def search_maze_dfs_return_path(
+    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+) -> list[tuple[int, int]]:
+    def search(row, col):
+        if (
+            (row, col) in visited
+            or (not 0 <= row < len_rows)
+            or (not 0 <= col < len_cols)
+            or maze[row][col] == 1
+        ):
+            return []
+
+        if (row, col) == goal:
+            return [(row, col)]
+
+        visited.add((row, col))
+
+        next_positions = [
+            (row - 1, col),  # up
+            (row, col + 1),  # right
+            (row + 1, col),  # down
+            (row, col - 1),  # left
+        ]
+
+        for pos in next_positions:
+            path = search(*pos)
+            if path:
+                return [(row, col)] + path
+
+        return []
+
+    len_rows = len(maze)
+    len_cols = len(maze[0])
+    visited = set()
+    return search(*start)
+
+
+test_case = TestCase()
+
+test_case.assertEqual(
+    search_maze_dfs_return_path(
+        [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
+    ),
+    [(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3), (2, 2), (2, 1), (2, 0)],
+)
+
+test_case.assertEqual(
+    search_maze_dfs_return_path(
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
+    ),
+    [],
 )
