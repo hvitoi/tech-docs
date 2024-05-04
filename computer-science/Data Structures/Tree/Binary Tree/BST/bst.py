@@ -12,11 +12,54 @@ class Node:
 
 class BST:
     def __init__(self, elements: list | None = None):
-        self.root: Node | None = None
+        if not elements:
+            elements = []
+        self.root = self.__deserialize(elements)
 
-        if elements:
-            for el in elements:
-                self.insert(el)
+    def __deserialize(self, elements: list) -> Node | None:
+        # copy the list do that the original one is not touched
+        elements = elements.copy()
+
+        if not elements:
+            return
+
+        root = Node(elements.pop(0))
+        node_queue = deque([root])
+
+        while elements:
+            node = node_queue.popleft()
+
+            node.left = Node(elements.pop(0)) if elements else None
+            if node.left:
+                node_queue.append(node.left)
+
+            node.right = Node(elements.pop(0)) if elements else None
+            if node.right:
+                node_queue.append(node.right)
+
+        return root
+
+    def serialize(self) -> list[int | None]:
+        acc = []
+
+        node_queue: deque[Node | None] = deque([self.root]) if self.root else deque()
+
+        while node_queue:
+            node = node_queue.popleft()
+
+            if not node:
+                acc.append(None)
+                continue
+
+            acc.append(node.data)
+            node_queue.append(node.left)
+            node_queue.append(node.right)
+
+        # trim right Nones
+        while acc[-1] is None:
+            acc.pop()
+
+        return acc
 
     def insert(self, value: int) -> None:
         """
@@ -231,6 +274,10 @@ class BST:
 test_case = TestCase()
 
 
+# Serialize / Deserialize
+raw = [3, 9, 20, None, None, 15, 7]
+test_case.assertEqual(BST(raw).serialize(), raw)
+
 # Insert
 bst = BST()
 bst.insert(1)
@@ -238,36 +285,36 @@ bst.insert(2)
 test_case.assertEqual(bst.to_set(), {1, 2})
 
 # Search
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
-test_case.assertEqual(True, bst.search(55))
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(True, bst.search(60))
 test_case.assertEqual(False, bst.search(99))
 
 # To Set (DF)
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
-test_case.assertEqual(bst.to_set(), {30, 40, 45, 50, 55, 60, 70, 80})
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.to_set(), {10, 20, 30, 40, 50, 60, 70, 80})
 
 # To List (DF)
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
-test_case.assertEqual(bst.to_list_df(), [30, 40, 45, 50, 55, 60, 70, 80])
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
 
 # To List (BF)
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
-test_case.assertEqual(bst.to_list_bf(), [50, 40, 60, 30, 45, 55, 70, 80])
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
 
 # Height (DF)
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
 test_case.assertEqual(bst.height_df(), 3)
 test_case.assertEqual(bst.height_df(99), -1)
 test_case.assertEqual(bst.height_df(50), 0)
-test_case.assertEqual(bst.height_df(60), 1)
-test_case.assertEqual(bst.height_df(70), 2)
-test_case.assertEqual(bst.height_df(80), 3)
+test_case.assertEqual(bst.height_df(30), 1)
+test_case.assertEqual(bst.height_df(20), 2)
+test_case.assertEqual(bst.height_df(10), 3)
 
 # Height (BF)
-bst = BST([50, 60, 40, 70, 30, 45, 55, 80])
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
 test_case.assertEqual(bst.height_bf(), 3)
 test_case.assertEqual(bst.height_bf(99), -1)
 test_case.assertEqual(bst.height_bf(50), 0)
-test_case.assertEqual(bst.height_bf(60), 1)
-test_case.assertEqual(bst.height_bf(70), 2)
-test_case.assertEqual(bst.height_bf(80), 3)
+test_case.assertEqual(bst.height_bf(30), 1)
+test_case.assertEqual(bst.height_bf(20), 2)
+test_case.assertEqual(bst.height_bf(10), 3)

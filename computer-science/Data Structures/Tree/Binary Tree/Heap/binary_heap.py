@@ -3,26 +3,26 @@ from unittest import TestCase
 
 
 class MaxHeap:
-    def __init__(self, numbers=None):
-        self.heap: list = numbers
+    def __init__(self, numbers: list | None = None):
+        self.heap: list = numbers if numbers else []
         self.__heapify()
 
-    def __parent(self, i: int) -> int:
+    def __parent(self, i: int) -> int | None:
         parent_index = (i - 1) // 2
         if 0 <= parent_index < len(self.heap):
             return parent_index
 
-    def __left(self, i: int) -> int:
+    def __left(self, i: int) -> int | None:
         left_child_index = 2 * i + 1
         if 0 <= left_child_index < len(self.heap):
             return left_child_index
 
-    def __right(self, i: int) -> int:
+    def __right(self, i: int) -> int | None:
         right_child_index = 2 * i + 2
         if 0 <= right_child_index < len(self.heap):
             return right_child_index
 
-    def __largest_child(self, i: int) -> int:
+    def __largest_child(self, i: int) -> int | None:
         left_child = self.__left(i)
         right_child = self.__right(i)
         children = list(filter(lambda el: el, [left_child, right_child]))
@@ -62,7 +62,7 @@ class MaxHeap:
     def peek(self) -> int:
         return self.heap[0]
 
-    def pop(self) -> int:
+    def pop(self) -> int | None:
         """
         O(log(n))
         Due to the bubble downwards restoration (bubble downwards)
