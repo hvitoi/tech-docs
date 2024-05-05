@@ -3,10 +3,13 @@
 - Divides the data for processing into partitions containing data
   - Data is **mapped** (transformed) with a `mapper function`
   - Data is **shuffled** automatically
+    - The mapped data is categorized and associated with a machine, so that similar values are reduced together in the same machine
   - Data is **reduced** (aggregated) with a `reducer function`
 - Distributes the `processing of data` (mapping, shuffling, reducing) across the hadoop cluster
 - MapReduce is natively Java
 - Streaming (stdin/stdout) allows interacing to other languages (ie Python)
+
+![Map Reduce](mapreduce-flow.png)
 
 ## Map-Shuffle-Reduce Flow
 
@@ -32,7 +35,7 @@
 }
 ```
 
-> ShuffleTask'
+> ShuffleTask
 
 - Merge together values with a same key
 - Sort by key
@@ -70,3 +73,19 @@
 - It's resilient to failure
 - The `Application Manager/Master` monitors `Worker Tasks` and restarts as needed
 - The `Resource Manger` monitors `Application Master` and restarts as needed
+
+## Caracteristics
+
+1. `Distributed File System`
+    - The input data is spread across multiple machines
+    - Each chunk is processed independently
+1. `No Data Movement`
+    - The processing of each data is done local at where is file is stored
+    - For that, the code (the map program) is sent to the machine (instead of pulling the data)
+1. `Key-Val Structure`
+    - The output of the map phase must result in a key-val pair so that the reduce phase can know which data to aggregate
+1. `Machine Failures`
+    - If a machine fails to process the map or reduce, it is simply reprocessed
+    - The central controller will guarantee that the operations were done and retry accordingly
+1. `Idempotent`
+    - Mpa and reduce functions need to be idempotent to that it can be reprocessed on failures
