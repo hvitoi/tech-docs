@@ -58,6 +58,8 @@ Properties:
 - The combination of both is the `Primary Key`
 - Here are defined the partition keys and sort keys
 
+![Indexes](.images/dynamodb-keys.png)
+
 ## GlobalSecondaryIndexes
 
 - Creating a GSI clones the table using a new partition key (`GSI Partition Key`) and optionally a new sort key (`LSI Sort Key`)
@@ -72,14 +74,12 @@ Properties:
 - There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
 - You can have up to `20 GSIs`
 
-![Indexes](.images/dynamodb-indexes.png)
-
 ## LocalSecondaryIndexes
 
-- LSI add a new "sort key" (the `LSI Sort Key`)
-- It's index that has the same partition key as the base table, but a different sort key
+- An LSI adds a new "sort key" (the `LSI Sort Key`)
+- It's an index that has the same partition key as the base table, but a different sort key
 - This way, you can fetch the item directly using the partition key + the LSI sort key
-- Allows search within the same partition (or same partition key)
+- Allows searching within the same partition (or same partition key)
 - You can have up to `5 LSIs`
 - Can only be defined at table creation time
 - No extra cost! (this doesn't clone the table like GSI does)
@@ -157,7 +157,7 @@ Properties:
   - Autoscaling (self adjusting provisioned capacity) can be configured for peak hours. Under the hood, autoscaling in done by cloud watch alarms that trigger a table config update
   - RCU (read capacity unit)
   - WCU (write capacity unit)
-  - The total capacity unit (read or write) is shared (splitted equally) for all partitions
+  - The total capacity unit (read or write) is shared (split equally) for all partitions
   - Therefore it's important the spread the data evenly across the partitions
   - `Adaptive capacity` can also be used. With that, a hot partition can borrow capacity from another idler partition
   - If the capacity is exceeded (`throttling`) dynamo will reject the request
@@ -169,7 +169,7 @@ Properties:
 
 ## StreamSpecification
 
-- `DynamoDB Streams` offers an ordered stream of modifications in a table
+- `DynamoDB Streams` offers an ordered stream of modifications in a table (similar to a Kafka Connector Source)
   - INSERT
   - UPDATE
   - REMOVE
@@ -281,11 +281,12 @@ def lambda_handler(event, context):
   client = boto3.resource('dynamodb')
   table = client.Table('MyTable')
 
+  # filter expression can be any attribute (not only hash or sort key)
   response = table.scan(
     FilterExpression = Attr('MyKey').eq('USA')
   )
 
-    response = table.scan(
+  response = table.scan(
     FilterExpression =
       Attr('MyKey').eq('USA') &
       Attr('MyKey').begins_with('2019')
@@ -300,7 +301,6 @@ def lambda_handler(event, context):
 - It's like a scan but within a partition only
 
 ```python
-import json
 import boto3
 from boto3.dynamodb.conditions import Key
 
@@ -321,7 +321,6 @@ def lambda_handler(event, context):
 - Requires the `hash key` and the `range key` (if any)
 
 ```python
-import json
 import boto3
 from boto3.dynamodb.conditions import Key
 

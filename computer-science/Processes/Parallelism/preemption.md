@@ -1,7 +1,7 @@
 # Preemption
 
 - It's the act of `temporarily interrupting a task`, with the intention of resuming it at a later time
-- This interrupt is done by an `external scheduler` (independent from the task itself)
+- This interruption is done by an `external scheduler` (independent from the task itself)
 
 ## External scheduler
 

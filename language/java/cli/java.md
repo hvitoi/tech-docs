@@ -23,5 +23,6 @@ java -jar "avro-tools-1.10.2.jar"
 java -agentlib:jdwp=transport=dt_socket,server=n,suspend=y,address=localhost:38585 "Main"
 
 # Compile and run source code
+# You must first cd into the directory where the code is located
 java "Main.java"
 ```
