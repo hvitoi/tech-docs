@@ -97,6 +97,9 @@ type Combination = frozenset[int]
 
 
 def gen_combinations(elements: set[int], k: int) -> set[Combination]:
+    """
+    n-choose-k problem
+    """
     if k == 0:
         return {frozenset()}
 

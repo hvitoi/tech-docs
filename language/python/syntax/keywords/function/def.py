@@ -107,6 +107,19 @@ foo_kwargs("a", "b", foo=1, bar=2)
 
 
 # %%
+# %%
+def foo(*args, **kwargs):
+    # args as tuple
+    print(args)
+
+    # kwargs as dict
+    print(kwargs)
+
+
+foo(1, 2, a=3, b=4)
+
+
+# %%
 # args and kwargs, rests and defaults
 def everything_mixed_up(x, y, z=None, *args, foo, bar=None, baz, **kwargs):
     return (x, y, z, args, foo, bar, baz, kwargs)
