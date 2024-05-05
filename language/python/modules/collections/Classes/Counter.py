@@ -17,6 +17,15 @@ def frequency(coll):
     return freq
 
 
+def frequency2(coll):
+    freq = {}
+    for num in coll:
+        if num not in freq:
+            freq[num] = 0
+        freq[num] += 1
+    return freq
+
+
 sentence = "hey there! How are you?"
 frequency(sentence)
 

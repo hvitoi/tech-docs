@@ -70,6 +70,11 @@ let a = 6; // 0000 0110
 println!("{:08b}", a >> 1); // 0000 0011 (3)
 ```
 
+## Carry
+
+- `Generate a carry`: no carry is receiving, but a carry is created
+- `Propagate a carry`: a carry is received and a carry is created
+
 ## Applications of bitwise
 
 - **Sum**
@@ -79,5 +84,7 @@ println!("{:08b}", a >> 1); // 0000 0011 (3)
     1. Add the sum (without carries) + the left shifted carries `&`
 
 ```python
-(a ^ b)&((a & b) << 1)
+carry_lookahead = ((a & b) << 1)
+
+full_adder = (a ^ b) + carry_lookahead
 ```

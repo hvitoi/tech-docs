@@ -4,6 +4,8 @@
   - Each node can have `up to 2 child nodes`
   - Each node must have only one parent
 
+- BST and Heaps are binary trees
+
 ## Node & Tree
 
 ```python

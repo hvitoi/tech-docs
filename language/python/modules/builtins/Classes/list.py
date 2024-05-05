@@ -16,6 +16,7 @@ if my_list:
 # multiply scalars
 2 * ["a", "b"]  # ["a", "b", "a", "b"]
 
+# %%
 # multiply pointers (!!)
 # watch out! It's reference to the same list
 2 * [[]]  # [[], []]
