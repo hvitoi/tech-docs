@@ -18,8 +18,8 @@ thread = threading.Thread(target=do_something, args=[])
 # start the execution in a separate thread
 thread.start()
 
-# synchronize the threads again, so that the main thread is resumed only when the other thread is finished
-# Similar to an "await"
-thread.join()
+# synchronize the threads
+# the "Main Thread" will wait until the "Other Thread" is done
+thread.join()  # awaits
 
 print_thread()
