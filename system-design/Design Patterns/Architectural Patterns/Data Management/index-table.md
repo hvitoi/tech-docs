@@ -18,7 +18,7 @@
 
 ![Index Hash Table Composite](.images/index-hash-table-composite.png)
 
-## B-Tree Indexes
+## Tree Indexes
 
 - `Range of values` can be indexed, the values need to be comparable
 

@@ -30,5 +30,3 @@
 - Use two or more fields as input for the hashing function
 - E.g., use user-creation-year + user-country for sharding
   - All the users from a X country created in a X year go to the same shard
-
-## Range
