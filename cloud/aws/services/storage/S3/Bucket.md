@@ -60,7 +60,7 @@ Properties:
   - The owner will pays for the `storage costs`
   - requester must be authenticated in AWS
 
-  ![Requester Pays](../../../images/s3-requester-pays.png)
+  ![Requester Pays](.images/s3-requester-pays.png)
 
 - **Pre-signed URL**
 
@@ -82,7 +82,7 @@ Properties:
   - `5000` GET/HEAD per second per prefix
 
   - `KMS` limits the performance because KMS has a per-request quota
-    ![S3 KMS Quota](../../../images/s3-kms-quota.png)
+    ![S3 KMS Quota](.images/s3-kms-quota.png)
 
   - `Multi-part upload`
 
@@ -101,14 +101,14 @@ Properties:
     - Avoid unnecessary data filtering by the application
     - Can also search in a csv file
     - Less network traffic!
-      ![S3 Select](../../../images/s3-select.png)
+      ![S3 Select](.images/s3-select.png)
 
 ## AccelerateConfiguration
 
 - `S3 Transfer Acceleration` (S3TA)
 - Increase transfer speed
 - Transfer to `AWS edge location` and forwards to target region
-  ![Transfer Acceleration](../../../images/s3-transfer-acceleration.png)
+  ![Transfer Acceleration](.images/s3-transfer-acceleration.png)
 - With S3TA, you pay only for transfers that are accelerated
 
 ## BucketEncryption
@@ -172,7 +172,7 @@ Properties:
   - `Access-Control-Allow-Origin: http://source-bucket.com/`
   - `Access-Control-Allow-Methods: GET`
 
-![S3 CORS](../../../images/s3-cors.png)
+![S3 CORS](.images/s3-cors.png)
 
 ```html
 <html>
@@ -243,9 +243,9 @@ Properties:
     - Retrieval options: standard (12h), bulk (48h)
     - Minimum storage duration of 180 days
 
-![Storage Classes](../../../images/s3-storage-classes.png)
+![Storage Classes](.images/s3-storage-classes.png)
 
-![Storage Classes Costs](../../../images/s3-storage-classes-cost.png)
+![Storage Classes Costs](.images/s3-storage-classes-cost.png)
 
 - The `storage class` of an object can be set for each file (upon uploading or afterwards)
 
@@ -261,7 +261,7 @@ Properties:
     - `Permanently delete previous versions` of objects
     - `Delete expired delete markers` or incomplete multipart uploads
 
-![Lifecycle Rules](../../../images/s3-lifecycle-rules.png)
+![Lifecycle Rules](.images/s3-lifecycle-rules.png)
 
 ## LoggingConfiguration
 
