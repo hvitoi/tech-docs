@@ -1,6 +1,6 @@
 # caffeinate
 
-- Prevents the system from system
+- Prevents the system from turning off
 
 ```shell
 # idle sleep
