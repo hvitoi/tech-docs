@@ -5,19 +5,44 @@
 
 ## init
 
-- Initialize a git repo with git annex
-- The git annex repository has a description
-
 ```shell
-git annex init "MyFiles"
+git init
+git annex init
+git annex init "My repo" # repo description
 ```
 
 ## add
 
-- Add a large file with git annex
+- Files added with git annex become a symlink to a blob object at `.git/annex/objects` (even before checkout)
+- The symlink is usually called `sidecar file`
 
 ```shell
-git annex add "song.mp3"
+# Add all
+git annex add .
+
+# Add a file
+git annex add "image.png"
+```
+
+```shell
+# automatically annex files which matches the wildcard as part of the conventional git add
+git config annex.largefiles 'include=*.png'
+```
+
+## sync
+
+- Sync all `symlinks` to a remote repo
+- It's a combination of the `git annex pull` and `git annex push` commands
+
+```shell
+# Sync metadata only
+git annex sync
+
+# specify the remote to sync from
+git annex sync "my-remote"
+
+# sync metadata + content
+git annex sync --content
 ```
 
 ## get
@@ -25,15 +50,18 @@ git annex add "song.mp3"
 - Get the file from a symlink
 
 ```shell
+# Get all symlink contents
+git annex get .
+
+# Get specific symlink
 git annex get "song.mp3"
 ```
 
-## sync
+## drop
 
-- Sync files using changes from the remote remote
-- Uses info from the remotes to sync
+- Remove the content of a file from the local repository
+- The file can have been removed from the tree but it is still present in the local repo
 
 ```shell
-git annex sync
-git annex sync --content # sync the big files content too
+git annex drop "file.img"
 ```
