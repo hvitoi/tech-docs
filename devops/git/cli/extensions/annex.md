@@ -11,6 +11,17 @@ git annex init
 git annex init "My repo" # repo description
 ```
 
+## initremote
+
+```shell
+git annex initremote "Google Drive" \
+      type=rclone \
+      encryption=none \
+      rcloneremotename=google-drive \
+      rcloneprefix=my-files
+
+```
+
 ## add
 
 - Files added with git annex become a symlink to a blob object at `.git/annex/objects` (even before checkout)
