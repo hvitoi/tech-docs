@@ -100,7 +100,7 @@ rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 rclone dedupe remote:/
 ```
 
-## Mount
+## mount
 
 - Mount remote to a mount point
 - Requires `fuse2` package
@@ -109,6 +109,12 @@ rclone dedupe remote:/
 # mount
 rclone mount "remote":"/remote/path" "/local/path"
 rclone mount hvitoi:/ /mnt/hvitoi
+```
+
+## serve
+
+```shell
+rclone serve nfs my-remote:
 ```
 
 ## Crypt remote
