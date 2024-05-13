@@ -85,3 +85,10 @@
 - The root node's hash value of the SSV snapshot is called a `seal`
 - The seal of the filesystem can be broken due to being mounted as writable in the past (even if it doesn’t modify any files or metadata). But the only important seal is the snapshot
 - Also referred to as "Sealed System Volume"
+
+## fstab
+
+```conf
+LABEL=Macintosh\040HD none auto noauto
+LABEL=Macintosh\040HD\040-\040Data none auto noauto
+```

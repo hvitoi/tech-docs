@@ -6,6 +6,14 @@ var rl = readline.createInterface({
   terminal: false,
 });
 
-rl.on("line", function (line) {
+rl.on("line", (line) => {
+  if (line === "stop") {
+    rl.close()
+    return
+  }
   console.log(line);
+});
+
+rl.on('close', () => {
+  console.log("I'm closing!")
 });
