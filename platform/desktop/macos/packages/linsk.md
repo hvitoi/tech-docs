@@ -28,7 +28,7 @@ sudo linsk ls dev:/dev/diskX
 sudo linsk run dev:/dev/diskX vdb1
 
 # With luks encryption
-sudo linsk run -l dev:/dev/diskX vdb1
+sudo linsk run dev:/dev/diskX vdb1 -l
 ```
 
 - On MacOS the storage network server is exposed at `afp://127.0.0.1:9000/linsk`
