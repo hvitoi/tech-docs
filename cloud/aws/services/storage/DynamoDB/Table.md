@@ -54,15 +54,14 @@ Properties:
   - This speeds the lookup, given that with the partition key it's possible to know in which partition the data is stored
 - Sort key
   - It's used to tell where dynamo will store the data inside of the partition
-  - This way, the values for the same partition key can be sorted physically on the partition
+  - This way, the values for the same partition key can be sorted physically within a partition
 - The combination of both is the `Primary Key`
-- Here are defined the partition keys and sort keys
 
 ![Indexes](.images/dynamodb-keys.png)
 
 ## GlobalSecondaryIndexes
 
-- Creating a GSI clones the table using a new partition key (`GSI Partition Key`) and optionally a new sort key (`LSI Sort Key`)
+- Creating a GSI clones the table using a new partition key (`GSI Partition Key`) and optionally a new sort key
   - The main table and the GSI tables are kept in-sync
   - The original partition key becomes a conventional attribute in the GSI Table
 - On the `GSI table` you can then `query on attributes` (the GSI partition key) that is not original partition key or sort key

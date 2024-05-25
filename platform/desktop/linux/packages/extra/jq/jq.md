@@ -138,6 +138,15 @@ echo {1..10..1} |
 ## del
 
 ```shell
+# Remove fields
+jq -n \
+  '{
+    "a": "alpha",
+    "b": "beta"
+    } | del(.b)'
+```
+
+```shell
 # Remove nulls and empties
 jq -n \
   '{
