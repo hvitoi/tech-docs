@@ -4,29 +4,23 @@
 - Print lines that match a specified pattern
 
 ```shell
-# Create sample file
-echo "a b c" > "file.txt"
-```
-
-```shell
 # General usage
-grep "keyword" "file"
+grep "pattern" "file.txt"
+cat "file.txt" | grep "keyword"
 
 # Parameters
-grep -q "keyword" "file" # quiet mode
-grep -c "keyword" "file" # Count matching lines
-grep -n "keyword" "file" # Display matching lines and show its number
-grep -i "keyword" "file" # Case insensitive
-grep -v "keyword" "file" # Intersection. Exclude the line that do not contain the keyword
-grep -w "keyword" "file" # Match only whole words
-grep -e "bluez" -e "a2dp_codec" "file" # regex patterns
-grep -iE "installed|upgraded|removed" "/var/log/pacman.log" # extended regex
-grep -A5 "keyword" "file" # print 5 lines underneath the keyword
-grep -B5 "keyword" "file" # print 5 lines above the keyword
+cat "file.txt" | grep -q "pattern" # quiet mode
+cat "file.txt" | grep -c "pattern" # Count matching lines
+cat "file.txt" | grep -n "pattern" # Display matching lines and show its number
+cat "file.txt" | grep -i "pattern" # Case insensitive
+cat "file.txt" | grep -v "pattern" # Intersection. Exclude the line that do not contain the pattern
+cat "file.txt" | grep -w "pattern" # Match only whole words
+cat "file.txt" | grep -f "patterns.txt" # use patterns/keywords from a file
+cat "file.txt" | grep -e "bluez" -e "a2dp_codec" # regex patterns
+cat "file.txt" | grep -iE "installed|upgraded|removed" # extended regex
+cat "file.txt" | grep -A5 "pattern" # print 5 lines underneath the pattern
+cat "file.txt" | grep -B5 "pattern" # print 5 lines above the pattern
 
 # Find in all file contents (excluding binaries and ignoring case)
-grep -RIi "hvitoi" "." # look for the keyword "hvitoi" in all file content inside of the current directory
-
-# Pipe
-ls -l ~/ | grep Desktop
+grep -RIi "hvitoi" "." # look for the pattern "hvitoi" in all file content inside of the current directory
 ```
