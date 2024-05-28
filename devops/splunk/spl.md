@@ -34,7 +34,8 @@ log=<log>
 - Generate a table and specify the fields to be the columns
 
 ```sql
-| table <field>
+| table <field1>,<field2>
+| table "time","data.request{}.policy-number"
 ```
 
 ## timechart
@@ -43,4 +44,16 @@ log=<log>
 
 ```sql
 | timechart count span=60s
+```
+
+## spath
+
+```sql
+| spath "data.request{}.my-field"
+```
+
+## search
+
+```sql
+| search "data.request{}.my-field"=foo
 ```
