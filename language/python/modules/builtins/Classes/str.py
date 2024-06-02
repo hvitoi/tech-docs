@@ -44,6 +44,10 @@ def pprint(text, options):
 pprint("Hello!", (BRIGHT, RED))
 
 # %%
+foo = "ABC"
+f"Bad nvram line: {foo!r}"
+
+# %%
 myStr: str = "Henrique"
 print(myStr[1:])  # strings function like lists
 

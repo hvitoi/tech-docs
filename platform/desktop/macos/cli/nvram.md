@@ -1,0 +1,5 @@
+# nvram
+
+```shell
+nvram -p
+```

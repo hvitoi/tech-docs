@@ -1,6 +1,7 @@
+# %%
+from typing import Iterable
 # It's an Object that can be iterated over, it's not necessarily a List
 
-# %%
 # str
 my_str = "abc"
 for el in my_str:
