@@ -1,0 +1,3 @@
+# %%
+
+Exception("My Exception")

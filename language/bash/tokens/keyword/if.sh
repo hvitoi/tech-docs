@@ -13,7 +13,7 @@ for boot_vga in /sys/bus/pci/devices/*/boot_vga; do
   fi
 done
 
-# "if" with [] (uses the"test" command)
+# "if" with [] (uses the "test" command)
 # POSIX!
 
 foo=10
@@ -21,6 +21,11 @@ if [ $foo -eq 10 ]; then # same as "if test $foo -eq 10; then"
   echo "Is equal"
 else
   echo "Is not equal"
+fi
+
+# Or condition
+if [ "$res" -ne 0 ] || [ -z "$macos_ver" ]; then
+  exit 1
 fi
 
 # "if" with [[]]

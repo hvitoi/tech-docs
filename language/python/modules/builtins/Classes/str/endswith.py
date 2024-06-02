@@ -1,0 +1,2 @@
+# %%
+"abcd".endswith("cd")

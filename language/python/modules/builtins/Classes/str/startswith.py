@@ -1,0 +1,2 @@
+# %%
+"abcd".startswith("ab")
