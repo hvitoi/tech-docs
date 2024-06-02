@@ -1,4 +1,5 @@
 # %%
 # encode to bytes
-b: bytes = "Henrique".encode("ascii")
-b: bytes = "Henrique".encode("utf-8")
+b = "Henrique".encode("ascii")
+b = "Henrique".encode("utf-8")
+b

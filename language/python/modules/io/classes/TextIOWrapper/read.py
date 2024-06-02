@@ -1,6 +1,6 @@
 # %%
 import io
 
-file: io.TextIOWrapper = open("read.py", "r")  # opens itself
+file: io.TextIOWrapper = open("file.txt", "r")
 
 file.read()
