@@ -71,17 +71,17 @@ Properties:
 - Writes to the Main Table leads to writes to GSI, which doubles the cost of writing
   - Use the WCU for the GSI equal to the WCU of the main table!
 - There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
-- You can have up to `20 GSIs`
+- You can have up to `20 GSIs` per table
 
 ## LocalSecondaryIndexes
 
-- An LSI adds a new "sort key" (the `LSI Sort Key`)
+- An LSI adds an additional sort key (the `LSI Sort Key`)
 - It's an index that has the same partition key as the base table, but a different sort key
 - This way, you can fetch the item directly using the partition key + the LSI sort key
 - Allows searching within the same partition (or same partition key)
-- You can have up to `5 LSIs`
 - Can only be defined at table creation time
 - No extra cost! (this doesn't clone the table like GSI does)
+- You can have up to `5 LSIs` per table
 
 ## AttributeDefinitions
 
@@ -151,13 +151,12 @@ Properties:
   - `RCU`: read capacity unit
   - `WCU`: write capacity unit
   - `Consumed Capacity`: RCU + WCU consumed so far
-  - `Provisioned Capacity`: RCU + WCU total provisioned. This is actually what you pay for. This is specified beforehand
+  - `Provisioned Capacity`
+    - RCU + WCU total provisioned
+    - This is actually what you pay for. This is specified beforehand
+    - The total capacity unit (read or write) is shared (split equally) for all partitions. Therefore it's important the spread the data evenly across the partitions
   - `Burst Capacity`: an additional pool of capacity that dynamo saves to avoid throttling when the consumed capacity exceeds the provisioned capacity a bit. Usually for random spikes in usage. It's transparent for the user/developer
   - Autoscaling (self adjusting provisioned capacity) can be configured for peak hours. Under the hood, autoscaling in done by cloud watch alarms that trigger a table config update
-  - RCU (read capacity unit)
-  - WCU (write capacity unit)
-  - The total capacity unit (read or write) is shared (split equally) for all partitions
-  - Therefore it's important the spread the data evenly across the partitions
   - `Adaptive capacity` can also be used. With that, a hot partition can borrow capacity from another idler partition
   - If the capacity is exceeded (`throttling`) dynamo will reject the request
   - There is a hard limit of `3000 RCU` and `1000 WCU` per partition, if you need to go over it you need to use DAX (caching layer)
@@ -266,7 +265,9 @@ Properties:
 
 ## APIs
 
-### Scan
+### Read
+
+#### Scan
 
 - Scan the whole table to find an item
 - Consumes lots of RCU
@@ -292,7 +293,7 @@ def lambda_handler(event, context):
   )
 ```
 
-### Query
+#### Query
 
 - Returns a list of items
 - Query operations require at least a `hash key`
@@ -314,7 +315,7 @@ def lambda_handler(event, context):
   )
 ```
 
-### GetItem
+#### GetItem
 
 - Returns one specific item
 - Requires the `hash key` and the `range key` (if any)
@@ -335,7 +336,13 @@ def lambda_handler(event, context):
   )
 ```
 
-### PutItem
+#### TransactGetItems
+
+- Get multiple items in multiple tables at once. If during this process one items changes, the whole transaction fails
+
+### Write
+
+#### PutItem
 
 ```shell
 aws dynamodb update-item \
@@ -345,14 +352,23 @@ aws dynamodb update-item \
     --expression-attribute-values '{"nextStartTime": { "N": "4"}}'
 ```
 
-### BatchWriteItems
+#### BatchWriteItems
 
 - Allow partial write (if any of the data changes during the operation)
 
-### TransactGetItems
-
-- Get multiple items in multiple tables at once. If during this process one items changes, the whole transaction fails
-
-### TransactWriteItems
+#### TransactWriteItems
 
 - Write to multiple items in multiple tables at once. If any item modifies while the operation is taking place, the whole transaction is aborted
+
+## Other features
+
+- On demand backup
+- PITR recovery
+- SQL developer tools
+- Time to live (TTL)
+- In-memory performance
+- ACID transactions
+
+- Integrations
+  - DynamoDB streams and Kineses Data Streams
+  - CloudWatch

@@ -23,7 +23,7 @@
 
 - Has a `partition key` (hash) and a `sort key` (range)
 - The `partition key` (hash key) is the first strategy for shard allocation
-- The `sort key` (range) sorts the with a same partition key the data is slipt to another shard if the first one gets too full
+- The `sort key` (range) sorts the with a same partition key the data is slipt to another shard if the first one gets too full (hot partition)
 
 ![Range Key](.images/range-key.png)
 
