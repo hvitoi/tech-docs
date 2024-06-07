@@ -171,11 +171,12 @@ Properties:
   - INSERT
   - UPDATE
   - REMOVE
+- It's a change data capture (CDC)
 - Capture item-level changes in the table and push the changes to DynamoDB streams
 - Events are guaranteed in the same order the modification took place
 - The change can be accessed through `DynamoDB Streams API`
 - Streams can be sent to
-  - Kinesis Data Streams
+  - Kinesis Data Streams (does not guarantee ordering of the events or even duplicate events)
   - AWS Lambda
   - Kinesis Client Library applications
 - Data retention `up to 24 hours`
@@ -251,6 +252,7 @@ Properties:
 
 ## TimeToLiveSpecification
 
+- TTL
 - Automatically expire an item using a `timestamp` key that can be configured
   - The timestamp key must be in `epoch seconds` format
   - Stores the time when it will be expired
