@@ -8,7 +8,7 @@
 - Methodologies
   - **Kanban**: issues as cards/post-its in a `kanban board`
   - **Scrum**: issues as items in a `backlog` and an `active sprint`
-- `Workflow` is the set of setps that an issue passes through until its conclusion
+- `Workflow` is the set of steps that an issue passes through until its conclusion
 
 ## /jira
 
