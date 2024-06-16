@@ -4,5 +4,5 @@
 - Requires `fuse2` package
 
 ```shell
-rclone mount "remote:/remote/path" '/local/path'
+rclone mount "remote:/remote/path" "/local/path"
 ```

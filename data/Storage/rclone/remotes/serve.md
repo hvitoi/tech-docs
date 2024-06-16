@@ -1,5 +1,5 @@
 # serve
 
 ```shell
-rclone serve nfs my-remote:
+rclone serve nfs "remote:"
 ```

@@ -27,6 +27,7 @@ rclone sync \
   "remote:/remote/folder" \
   --verbose \
   --progress \
+  --track-renames \
   --exclude "node_modules/" \
   --exclude "target/"
 ```

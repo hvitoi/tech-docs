@@ -1,8 +1,7 @@
 # about
 
-- Get storage info about a remote
+- Get quota information from the remote
 
 ```shell
-rclone about "remote":"path"
-rclone about hvitoi:/
+rclone about "remote:path"
 ```
