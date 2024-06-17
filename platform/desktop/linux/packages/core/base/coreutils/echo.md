@@ -11,8 +11,12 @@ echo {1..10..1} # 1 to 10
 # Don't add line breaks
 echo -n "Hey, there" # ends with a % (identify that it doesn't have a line break at the end)
 
-# Enable interpretation of backslash escapes
+# Enable interpretation of special characters
 echo -e "Hey, there\0"
+
+NO_FORMAT="\033[0m"
+C_GREEN="\033[38;5;2m"
+echo -e "${C_GREEN}Put some color on me${NO_FORMAT}"
 
 # Add Text to Files
 echo "This text replaces everything" > text.txt

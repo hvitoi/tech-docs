@@ -171,13 +171,42 @@ jq -n \
 ## if
 
 ```shell
-jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end' <<< '2'
+echo '2' | jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end'
 ```
 
 ## length
 
 ```shell
 echo '["a","b","c"]' | jq 'length'
+```
+
+## def
+
+```shell
+jq -n -r '
+
+  def colors:
+    {
+      "black": "\u001b[30m",
+      "red": "\u001b[31m",
+      "green": "\u001b[32m",
+      "yellow": "\u001b[33m",
+      "blue": "\u001b[34m",
+      "magenta": "\u001b[35m",
+      "cyan": "\u001b[36m",
+      "white": "\u001b[37m",
+      "reset": "\u001b[0m",
+    };
+
+  colors.red + "red" + colors.green + "green"
+
+  # print $text in the specified color
+  def pc($text; color):
+    (colors | color) + $text + colors.reset;
+
+  # Usage example:
+  pc("red"; .red) + pc("green"; .green)
+'
 ```
 
 ## @sh

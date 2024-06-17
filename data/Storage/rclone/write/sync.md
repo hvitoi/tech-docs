@@ -1,5 +1,7 @@
 # Sync
 
+- Changes the destination only
+
 ```shell
 # dry-run
 rclone sync --dry-run /local/path remote:/remote/path # "test" the sync, but do not perform data transfer
@@ -43,4 +45,26 @@ rclone sync foo remote:foo --log-level NOTICE
 ```shell
 # Shows files and its taken action
 rclone sync foo remote:foo --combined - -P
+```
+
+## Log Formatting
+
+```shell
+rclone sync foo google-drive:foo --track-renames --verbose --use-json-log 2>&1 |
+  jq -r '
+          def colors:
+            {
+              "green": "\u001b[32m",
+              "cyan": "\u001b[36m",
+              "yellow": "\u001b[33m",
+              "red": "\u001b[31m"
+            };
+
+          select(.objectType == "*local.Object" or (.objectType == "*drive.Object" and .msg == "Deleted"))
+            | if (.msg | startswith("Copied (new)")) then colors.green + "U " + .object
+              elif (.msg | startswith("Copied (replaced existing)")) then colors.cyan + "M " + .object
+              elif (.msg | startswith("Renamed")) then colors.yellow + "R " + .object
+              elif (.msg | startswith("Deleted")) then colors.red + "D " + .object
+              else null end
+        '
 ```
