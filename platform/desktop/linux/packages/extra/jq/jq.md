@@ -3,15 +3,15 @@
 - JQ is a command-line JSON processor
 
 ```shell
-jq -c <<< '{"foo":}' # json line (compact)
-jq -M <<< '{"foo":0}' # no color
-jq -S <<< '{"b":2,"a":1}' # sort keys
-jq '[.]' -R <<< 'abc' # raw input (instead of json)
-jq '.foo' -r <<< '{"foo":"bar"}' # raw output (without quotes)
-jq -s '.[]' <<< '[{}]' # dump output into array after filters
-jq -n '{}' # accepts no input
-jq -n --arg MY_VAR "$my_var" '{"foo":$MY_VAR}' # access variable
-jq -n --argjson MY_VAR '{"a":"b"}' '{"foo":$MY_VAR}' # access variable (also accepts null variables)
+echo '{"a":1}' | jq -c # compact json (one-line)
+echo '{"a":1}' | jq -M # no color (with formatting)
+echo '{"b":2,"a":1}' | jq -S # sort keys
+echo 'abc' | jq '[.]' -R # raw input (instead of json)
+echo '{"a":"alpha"}' | jq '.a' -r # raw output (without quotes)
+echo '[{}]' | jq -s '.[]' # dump output into array
+echo '{}' | jq -n # accepts no input
+jq -n --arg foo "1" --arg bar "2" '[$foo, $bar]' # access variable
+jq -n --argjson foo '{"a":"b"}' '[$foo]' # access variable (also accepts null variables)
 ```
 
 ```shell

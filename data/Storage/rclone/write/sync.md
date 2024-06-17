@@ -31,3 +31,16 @@ rclone sync \
   --exclude "node_modules/" \
   --exclude "target/"
 ```
+
+## Log Level
+
+DEBUG > INFO > NOTICE > ERROR
+
+```shell
+rclone sync foo remote:foo --log-level NOTICE
+```
+
+```shell
+# Shows files and its taken action
+rclone sync foo remote:foo --combined - -P
+```
