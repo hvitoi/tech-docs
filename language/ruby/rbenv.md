@@ -4,7 +4,6 @@
 
 ```shell
 brew install rbenv
-
 ```
 
 ## install
