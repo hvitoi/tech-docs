@@ -10,6 +10,10 @@
 profiles list
 ```
 
+```shell
+profiles -P
+```
+
 ## status
 
 ```shell

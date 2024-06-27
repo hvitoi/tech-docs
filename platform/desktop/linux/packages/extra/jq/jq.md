@@ -45,7 +45,7 @@ jq '.[]' <<< '["a", "b", "c"]'
 
 ```shell
 # select keys a and c
-jq -c '{ a, c }' <<< '{"a":"aa","bb":"b","cc":"c"}'
+echo '{"a":"aa","bb":"b","cc":"c"}' | jq '{ a, c }'
 ```
 
 ## .key
@@ -90,6 +90,7 @@ cat '{"a":{"NET_DOWN": 1, "NET_UP": 2},"b":{"NET_DOWN": 1, "NET_UP": 2}}' | jq '
 
 ```shell
 echo '[1,2,3]' | jq 'map(. * .)'
+echo '[{"a":"1","b":"2"},{"a":"3","b":"4"}]' | jq 'map({a, b})'
 ```
 
 ### sort_by
@@ -178,6 +179,12 @@ echo '2' | jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end'
 
 ```shell
 echo '["a","b","c"]' | jq 'length'
+```
+
+## reverse
+
+```shell
+echo '["a","b","c"]' | jq 'reverse'
 ```
 
 ## def
