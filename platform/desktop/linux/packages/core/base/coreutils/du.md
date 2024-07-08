@@ -18,6 +18,7 @@ du -h
 du -s
 du -sh
 du -sh "/var/lib/docker" # docker image folder
+du -sh *
 ```
 
 ## File size

@@ -1,6 +1,7 @@
 # chattr
 
 - Change attribute of a mounted filesystem
+- Low-level alternative to file permissions
 
 ```shell
 readonly sysfs_efi_vars='/sys/firmware/efi/efivars' # mountpoint of efivars
@@ -14,4 +15,9 @@ chattr -i "${sysfs_efi_vars}/${efi_gpu}" 2> /dev/null
 
 # Set NVRAM
 printf "\x07\x00\x00\x00\x1\x00\x00\x00" > "${sysfs_efi_vars}/${efi_gpu}"
+```
+
+```shell
+# protect against accidental file deletion the immutable flag
+sudo chattr +i /critical/directory/or/file
 ```

@@ -22,3 +22,9 @@ setfacl -b "file"
 
 - Files with ACL receives a `+` in the permissions listing (ls)
 - Even with write permission, users cannot delete a file with ACL
+
+```shell
+# save and restore permissions
+getfacl -R /some/path > permissions.txt
+setfacl --restore=permissions.txt
+```

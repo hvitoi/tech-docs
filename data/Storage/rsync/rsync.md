@@ -1,18 +1,11 @@
 # rsync
 
-- Remote Synchronization
 - Utility for transferring and synchronizing files within same computer or to a remote computer
 - Compares the modification time and size of the files
 - Rsync is a lot faster than ftp or scp
 - Used mostly to `backup` files
 - Port `22` (same as SSH)
 - Rsync uses SSH to transfer the files!
-
-```shell
-# Install
-sudo apt install rsync
-sudo yum install rsync
-```
 
 ```shell
 rsync -zvh "/local/source/file.txt" "/local/destination/folder" # Local file sync
