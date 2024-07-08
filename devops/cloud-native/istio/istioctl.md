@@ -9,8 +9,8 @@ curl -L https://istio.io/downloadIstio | sh -
 # Or visit the github
 <https://github.com/istio/istio/releases/>
 
-# Export path (append to .bashrc to be permanent)
-export PATH="$PATH:/home/hvitoi/istio-1.7.1/bin"
+# Export path
+export PATH="$PATH:$HOME/istio-1.7.1/bin"
 
 # Check environment variables
 env | grep istio

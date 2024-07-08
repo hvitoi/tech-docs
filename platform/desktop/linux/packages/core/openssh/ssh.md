@@ -8,8 +8,6 @@
 - `/etc/ssh/sshd_config`: Configuration file for a ssh server
 - `~/.ssh/authorized_keys/`: Stores public keys of the allowed clients
 
-### Install server
-
 ```shell
 # Install ssh-server
 apt install openssh-server
@@ -31,8 +29,6 @@ ssh localhost
 - `id_rsa`: secret file and never share
 - `id_rsa.pub`: share with github, heroku, etc
 
-### Connect to server via SSH
-
 ```shell
 # Test connection
 ssh -T "git@github.com" # Accept 'yes'
@@ -49,4 +45,7 @@ ssh "root@localhost" -p "9090"
 
 # Specify key
 ssh "root@localhost" -i "private_key"
+
+# Port tunnel
+ssh "root@localhost" -L # or -D and -R
 ```

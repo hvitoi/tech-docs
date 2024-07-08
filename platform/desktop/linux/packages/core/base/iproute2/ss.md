@@ -25,4 +25,7 @@ ss -p
 
 # Summary
 ss -s
+
+#
+ss -platu
 ```

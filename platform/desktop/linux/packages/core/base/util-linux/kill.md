@@ -4,11 +4,14 @@
 
 ```shell
 # Kills a process
-kill "pid"
+kill <pid>
 
 # Choose Signal
-kill -9 "pid" # SIGKILL
-kill -s "signal" "pid" # SIGKILL
+kill -9 <pid> # SIGKILL
+kill -s <signal> <pid> # SIGKILL
+
+# Suspend a process
+kill -STOP <pid>
 ```
 
 ## Signals
@@ -16,6 +19,9 @@ kill -s "signal" "pid" # SIGKILL
 - Default signal is 15 (SIGTERM)
 
 ```shell
-#List signals
+# List signals
 kill -l
+
+# Signals
+man 7 signal
 ```

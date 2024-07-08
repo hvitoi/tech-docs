@@ -8,10 +8,14 @@ history # 1000 by default
 history -c # clear history in the current shell
 history -d # delete entry
 history -w # save to history file
+```
 
+```shell
 # Execute the nth command
-!"command_number"
+!<command-number>
 !455 # executes command number 455
+!! # executes last command
+!$ # last argument
 ```
 
 - File the stores the history: `~/.bash_history`

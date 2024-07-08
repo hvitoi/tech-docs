@@ -12,23 +12,19 @@ ls -1 | xargs echo # same
 
 ```shell
 # ask for confirmation
-echo 'one two three' | xargs -p touch
-```
+echo 'one two three' | xargs -p
 
-```shell
-echo "package1 package2 package3" | xargs -ro sudo pacman -S
-```
+# interaction
+echo "package1 package2 package3" | xargs -ro echo
 
-```shell
-# Replace string
-xargs -I "{}" echo 'I am {}!' <<< 'Henrique'
+# substitution
+echo "Henry" | xargs -I "{}" echo 'I am {}!'
 xargs -I "{}" echo Blah {} blabla {} < <(seq 1 5)
-xargs -I "{}" code --install-extension {} --force < "$HOME/.dotfiles/vscode/extensions"
+xargs -I "{}" echo "Item" {} < items.txt
 
-# Multiple substitutions
-cat directories.txt | xargs -I % sh -c 'echo %; mkdir %'
-```
+# multiple substitutions
+xargs -I % sh -c 'echo %; mkdir %' < directories.txt
 
-```shell
+# stdin
 dmenu_path | dmenu | xargs swaymsg exec --
 ```

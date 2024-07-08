@@ -4,4 +4,6 @@
 
 ```shell
 stat "filename/directory"
+
+stat -c '%A %a %n' /etc/timezone
 ```

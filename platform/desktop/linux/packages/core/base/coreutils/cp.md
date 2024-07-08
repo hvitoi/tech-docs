@@ -3,7 +3,6 @@
 ```shell
 # Copy a file
 cp "file" "new-file"
-cp ~/.bashrc bashrc.bak
 
 # Copy to different location
 cp ~/ola.txt ~/novo/novo_ola.txt
