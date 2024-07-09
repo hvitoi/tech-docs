@@ -1,5 +1,7 @@
 # socat
 
+- Socket relay and tcp port forwarder (similar to netcat)
+
 ```shell
 #!/bin/sh
 function handle() {

@@ -1,6 +1,6 @@
 # last
 
-- Log of loggins
+- Log of log-ins
 
 ```shell
 last
