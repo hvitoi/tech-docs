@@ -4,4 +4,6 @@
 
 ```shell
 mdls <keyword>
+mdls "/usr/bin/arch"
+mdls -name kMDItemContentTypeTree "/Applications/Safari.app"
 ```
