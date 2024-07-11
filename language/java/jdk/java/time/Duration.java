@@ -6,6 +6,7 @@ class Main {
     // Static methods
     _ofMillis();
     _ofSeconds();
+    _ofHours();
 
   }
 
@@ -15,6 +16,10 @@ class Main {
   }
 
   static void _ofSeconds() {
-    Duration duration = Duration.ofSeconds(5.1);
+    Duration duration = Duration.ofSeconds(5);
+  }
+
+  static void _ofHours() {
+    Duration duration = Duration.ofHours(1);
   }
 }
