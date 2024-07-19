@@ -1,4 +1,5 @@
-(require '[clojure.string :as str])
+(require '[clojure.string :as string])
 
-(def my-str "ABC")
-(s/lower-case my-str)
+(string/lower-case "ABC")
+(string/lower-case :ABC)
+(string/lower-case nil) ; throws

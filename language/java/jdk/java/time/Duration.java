@@ -7,6 +7,7 @@ class Main {
     _ofMillis();
     _ofSeconds();
     _ofHours();
+    _parse();
 
   }
 
@@ -21,5 +22,9 @@ class Main {
 
   static void _ofHours() {
     Duration duration = Duration.ofHours(1);
+  }
+
+  static void _parse() {
+    Duration duration = Duration.parse("PT24H");
   }
 }
