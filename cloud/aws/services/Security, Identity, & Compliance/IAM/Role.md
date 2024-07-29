@@ -40,7 +40,7 @@ Properties:
   - **AssumeRole API**
     - User will use a role within your account or cross-account
 
-  ![AssumeRole](../../../images/sts-assume-role.png)
+  ![AssumeRole](.images/sts-assume-role.png)
 
   - **AssumeRoleWithSaml API**: return credentials for users logged in SAML
   - **AssumeRoleWitWebIdentity API**: returns credentials for users logged with IdP (fb, google, etc)
@@ -52,7 +52,7 @@ Properties:
 - Define the maximum permissions an entity can get
 - `Permission boundary` (maximum scope) + `permission policies`
 
-![Permission Boundaries](../../../images/iam-permission-boundaries.png)
+![Permission Boundaries](.images/iam-permission-boundaries.png)
 
 - Use cases
   - Deletate responsabilities to non administrators within their permissions boundaries

@@ -26,7 +26,7 @@ Properties:
 - `Password policies` can be set for all users under `Account Settings`
 
 - **Policy Evaluation Logic**
-  ![Policy Evaluation Logic](../../../images/iam-policy-evalation-logic.png)
+  ![Policy Evaluation Logic](.images/iam-policy-evalation-logic.png)
 
 - **Access Analyzer**
   - `IAM Credentials Report` (account-level):report of all users and their statuses

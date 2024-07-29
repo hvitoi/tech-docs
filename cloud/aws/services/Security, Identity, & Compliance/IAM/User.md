@@ -25,7 +25,7 @@ Properties:
 - Define the maximum permissions an entity can get
 - `Permission boundary` (maximum scope) + `permission policies`
 
-![Permission Boundaries](../../../images/iam-permission-boundaries.png)
+![Permission Boundaries](.images/iam-permission-boundaries.png)
 
 - Use cases
   - Deletate responsabilities to non administrators within their permissions boundaries

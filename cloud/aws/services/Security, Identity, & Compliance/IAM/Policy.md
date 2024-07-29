@@ -1,7 +1,5 @@
 # AWS::IAM::Policy
 
-- **Inline policy**!
-
 - An `inline policy` can be created on the fly, so that the policy is created only for that entity and cannot be reused
 
 ```yaml
