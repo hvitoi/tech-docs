@@ -4,7 +4,7 @@
 - Uses `ML` to detect anomaly
 - Events can be setup with `Cloud Watch Events Rules`
 
-![GuardDuty](../../../images/guardduty.png)
+![GuardDuty](.images/guardduty.png)
 
 ```yaml
 Type: AWS::GuardDuty::Detector

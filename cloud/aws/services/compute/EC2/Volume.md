@@ -71,4 +71,4 @@ Properties:
 - Snapshots can be `restored` to any AZ region (not only the original one)
 - A new volume can be then created from a snapshot
 
-![EBS snapshot backup](../../../images/ebs-snapshot.png)
+![EBS snapshot backup](.images/ebs-snapshot.png)

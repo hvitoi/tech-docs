@@ -81,7 +81,7 @@ Properties:
   - Allow each task to have a specific role
   - Task roles are defined in a `task definition`
 
-![IAM Roles](../../../images/ecs-iam-roles.png)
+![IAM Roles](.images/ecs-iam-roles.png)
 
 ## Volumes
 
@@ -89,4 +89,4 @@ Properties:
 - Multi-AZ shared storage
 - The volumes are directly mounted into the container
 
-![Data Volume](../../../images/ecs-data-volume.png)
+![Data Volume](.images/ecs-data-volume.png)

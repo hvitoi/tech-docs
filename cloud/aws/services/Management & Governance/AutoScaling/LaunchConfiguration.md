@@ -14,7 +14,7 @@
   - Min capacity
   - Max capacity
 - `Scaling Policies`
-  ![Predictive Scaling](../../../images/predictive-scaling.png)
+  ![Predictive Scaling](.images/predictive-scaling.png)
 - `Scaling Cooldown`
   - Activate whenever a scaling action is triggered
   - Durinding this period scaling actions won't take effect

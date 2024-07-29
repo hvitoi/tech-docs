@@ -6,4 +6,4 @@
 
 - The **Inspector Agent** must be installed in the EC2 instance
 
-![Inspector](../../../images/inspector.png)
+![Inspector](.images/inspector.png)

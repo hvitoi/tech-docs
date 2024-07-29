@@ -36,10 +36,10 @@ Properties:
 - **Remediations**
 
   - `SSM Documents`: Take actions based on the config status (compliant or noncompliant)
-    ![SSM Documents](../../../images/config-ssm-documents.png)
+    ![SSM Documents](.images/config-ssm-documents.png)
 
   - `Event Bridge`: Trigger actions on resources that are noncompliant
-    ![Event Bridge](../../../images/config-eventbridge.png)
+    ![Event Bridge](.images/config-eventbridge.png)
 
   - `SNS Topic`
     - Send noncompliant resource changes to SNS

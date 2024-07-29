@@ -43,7 +43,7 @@ Properties:
   - A `correlationId` is used to identify the message throughout the flow
   - The implement the `reply-to` pattern automatically, the `SQS Temporary Queue Client` (java client) is used
 
-  ![Request-Response pattern](../../../images/sqs-request-response.png)
+  ![Request-Response pattern](.images/sqs-request-response.png)
 
 ## DelaySeconds
 

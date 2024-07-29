@@ -1,6 +1,6 @@
 # AWS::EC2::VPC
 
-![VPC](../../../images/vpc.png)
+![VPC](.images/vpc.png)
 
 - Specifies a VPC with the specified IPv4 CIDR block
 
@@ -23,7 +23,7 @@ Properties:
   - Define a `src` and `dst` and a port to analyze
   - Just analyze the configuration. Do not send any packet
 
-![Reachability Analyzer](../../../images/vpc-reachability-analyzer.png)
+![Reachability Analyzer](.images/vpc-reachability-analyzer.png)
 
 ## CidrBlock
 

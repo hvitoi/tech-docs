@@ -12,7 +12,7 @@
   - Storage Gateway (volume gateway)
 - Support `cross-region` and `cross-account` backups
 
-![Backup](../../../images/backup.png)
+![Backup](.images/backup.png)
 
 ```yaml
 Type: AWS::Backup::BackupPlan

@@ -4,4 +4,4 @@
 - Allow only outbound traffic to internet
 - Route table must be modified
 
-![Egress-only Internet Gateway](../../../images/vpc-internet-gateway-egress-only.png)
+![Egress-only Internet Gateway](.images/vpc-internet-gateway-egress-only.png)

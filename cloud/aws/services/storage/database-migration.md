@@ -26,4 +26,4 @@
 - Convert the `database schema` from one engine to another
 - If migrating to the same database engine (homogeneous migration) SCT is not needed
 
-![Schema Conversion Tool](../../images/database-migration-sct.png)
+![Schema Conversion Tool](.images/database-migration-sct.png)

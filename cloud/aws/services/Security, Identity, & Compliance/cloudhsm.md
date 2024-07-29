@@ -9,4 +9,4 @@
 - Good option to use with SSE-C
 - Multi-AZ
 
-![CloudHSM](../../images/cloudhsm.png)
+![CloudHSM](cloudhsm.png)

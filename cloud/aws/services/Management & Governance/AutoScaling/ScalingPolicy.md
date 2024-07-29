@@ -20,7 +20,7 @@ Properties:
 - **Scale based on SQS queue length**
   - Scale horizontally the consumers
   - Scaling the ASG can be based on the custom metric `Queue Length` (from CloudWatch)
-    ![SQS with ASG](../../../images/sqs-asg.png)
+    ![SQS with ASG](.images/sqs-asg.png)
 
 ## PolicyType
 

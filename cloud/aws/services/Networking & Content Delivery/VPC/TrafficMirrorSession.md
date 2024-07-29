@@ -8,4 +8,4 @@
   - Troubleshooting
   - ...
 
-![Traffic Mirroring](../../../images/vpc-traffic-mirroring.png)
+![Traffic Mirroring](.images/vpc-traffic-mirroring.png)

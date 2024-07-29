@@ -5,4 +5,4 @@
 - Alert about `Personally Identifiable Information` (PII) being `exposed`
 - Fully managed
 
-![Macie](../../../images/macie.png)
+![Macie](.images/macie.png)

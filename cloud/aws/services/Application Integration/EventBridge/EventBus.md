@@ -3,7 +3,7 @@
 - Listen for event and perform actions based on them
   - E.g., Create Object in S3 invokes a ECS Task
 
-![EventBridge S3](../../../images/eventbridge-s3.png)
+![EventBridge S3](.images/eventbridge-s3.png)
 
 - Events are sent to the **buses**
 

@@ -21,7 +21,7 @@
   - Snowcone
   - Snowball Edge
 
-![Snowball Family](../../images/snowball-family.png)
+![Snowball Family](.images/snowball-family.png)
 
 ## Snowcone
 
@@ -30,7 +30,7 @@
 - Withstands harsh environments
 - Can be sent offline or via network
 
-![Snowcone](../../images/snowcone.png)
+![Snowcone](.images/snowcone.png)
 
 ## Snowball Edge
 
@@ -41,11 +41,11 @@
   - 42TB, 52vCPUs, 208GB RAM, `optional GPU`
   - Can run EC2 instances & aws functions with `IoT Greengrass`
 
-![Snowball Edge](../../images/snowball-edge.png)
+![Snowball Edge](.images/snowball-edge.png)
 
 ## Snowmobile
 
 - An actual truck
 - 100PB
 
-![Snowmobile](../../images/snowmobile.png)
+![Snowmobile](.images/snowmobile.png)

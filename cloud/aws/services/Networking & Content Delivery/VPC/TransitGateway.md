@@ -5,7 +5,7 @@
 - `Route Tables limit` the connection between the VPCs
 - Supports `IP Multicast`
 
-![Transit Gateway](../../../images/vpc-transit-gateway.png)
+![Transit Gateway](.images/vpc-transit-gateway.png)
 
 ```yaml
 Type: AWS::EC2::TransitGateway
@@ -29,7 +29,7 @@ Properties:
 - **Shared services VPC**
   - Share VPCs across accounts
 
-![Transit Gateway](../../../images/vpc-transit-gateway-sharing.png)
+![Transit Gateway](.images/vpc-transit-gateway-sharing.png)
 
 ## VpnEcmpSupport
 

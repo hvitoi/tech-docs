@@ -12,4 +12,4 @@
 
 ## High Availability
 
-![Amazon MQ](../../../images/amazon-mq.png)
+![Amazon MQ](.images/amazon-mq.png)

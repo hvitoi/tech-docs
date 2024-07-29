@@ -17,4 +17,4 @@
   - NAT Gateway receives an Elastic IP
   - Single AZ (but can be deployed to multiple AZs)
 
-![NAT Gateway](../../../images/vpc-nat-gateway.png)
+![NAT Gateway](.images/vpc-nat-gateway.png)

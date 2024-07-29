@@ -8,7 +8,7 @@
 - These sensitive fields are encrypted in the `edge location` with a `public key`
 - The `application` that receives the request will decrypt it with a `private key`
 
-![Field Level Encryption](../../../images/cloudfront-field-level-encryption.png)
+![Field Level Encryption](.images/cloudfront-field-level-encryption.png)
 
 ## Signed URLs and Signed cookies
 
@@ -26,4 +26,4 @@
   - `IP ranges` from client
   - `Trusted Signers`: aws accounts
 
-![Pre-signed URL](../../../images/cloudfront-presigned-url.png)
+![Pre-signed URL](.images/cloudfront-presigned-url.png)

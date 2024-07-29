@@ -10,8 +10,8 @@
 - A DataSync `agent` must be installed in on-premise machines
 - Can setup `bandwidth limit`
 
-![DataSync](../../../images/datasync.png)
+![DataSync](.images/datasync.png)
 
 - Can also be used for `cross-region` `EFS`
 
-![DataSync EFS](../../../images/datasync-efs.png)
+![DataSync EFS](.images/datasync-efs.png)

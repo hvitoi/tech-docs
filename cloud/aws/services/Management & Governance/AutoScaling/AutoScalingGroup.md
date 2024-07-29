@@ -4,7 +4,7 @@
   - `Scale out`: add instances
   - `Scale in`: remove instances
 
-![Auto Scaling](../../../images/auto-scaling.png)
+![Auto Scaling](.images/auto-scaling.png)
 
 - New instances can be `automatically registered` to LB
 - ASG ensures to keep the desired number of replicas

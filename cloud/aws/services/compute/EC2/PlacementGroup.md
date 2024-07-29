@@ -13,12 +13,12 @@ Properties:
 
 - **cluster** (high performance): deploy to same rack (and same AZ). High performance + High risk. Good for HPC. 10 Gbps network
 
-![Cluster Placement Group](../../../images/placement-group-cluster.png)
+![Cluster Placement Group](.images/placement-group-cluster.png)
 
 - **spread** (high availability): deploy to different racks (at most one instance per rack) across different AZ's (in the same region). Limited to 7 instances per AZ
 
-![Spread Placement Group](../../../images/placement-group-spread.png)
+![Spread Placement Group](.images/placement-group-spread.png)
 
 - **partition** (balanced): deploy to the same rack (and same AZ), but they are replicated to other racks (and other AZs) as a backup. The number of partitions define the number of replicas. Use case for HDFS, HBase, Cassandra, Kafka
 
-![Partition Placement Group](../../../images/placement-group-partition.png)
+![Partition Placement Group](.images/placement-group-partition.png)

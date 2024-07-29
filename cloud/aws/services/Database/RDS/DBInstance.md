@@ -85,7 +85,7 @@ Properties:
 - For authentication `user+pass` or `iam-auth` can be used
 - IAM authentication can be used for mysql or postgres only (with a 15min token)
 
-![RDS Authentication](../../../images/rds-auth.png)
+![RDS Authentication](.images/rds-auth.png)
 
 ## Engine
 
@@ -129,8 +129,8 @@ Properties:
 - The standby db is not used for scaling
 - A read replica can also be used as a failover!
 
-![Disaster Recovery](../../../images/disaster-recovery.png)
-![Disaster Recovery Detail](../../../images/disaster-recovery-detail.png)
+![Disaster Recovery](.images/disaster-recovery.png)
+![Disaster Recovery Detail](.images/disaster-recovery-detail.png)
 
 ## SourceDBInstanceIdentifier
 
@@ -140,7 +140,7 @@ Properties:
 - Up to `5 read replicas`
 - Within an AZ, Cross-AZ or Cross-Region
 
-![Read Replicas](../../../images/rds-replication.png)
+![Read Replicas](.images/rds-replication.png)
 
 - A replica can be promoted to be the main database
 
@@ -148,7 +148,7 @@ Properties:
 - The application must update the connection string to include the read replicas
 - There is a network cost over the `data replication` across AZs in `different regions`. Within the same region the replication is free
 
-![Data Replication](../../../images/data-replication-cost.png)
+![Data Replication](.images/data-replication-cost.png)
 
 ## StorageEncrypted
 
@@ -210,12 +210,12 @@ Properties:
 - There is a `writer endpoint` and `reader endpoint` (load balanced)
 - The read replicas can be `auto-scaled` and accessed through a `proxy fleet`
 
-![Aurora Endpoints](../../../images/aurora-endpoints.png)
+![Aurora Endpoints](.images/aurora-endpoints.png)
 
 - Some read instances can also be configured with a custom endpoint (e.g., for special analytical queries)
 - It's a good practice to define many custom endpoints for different workload types (query only a `subset` of the instances)
 
-![Aurora Custom Endpoints](../../../images/aurora-custom-endpoints.png)
+![Aurora Custom Endpoints](.images/aurora-custom-endpoints.png)
 
 ### Machine Learning
 
@@ -229,4 +229,4 @@ Properties:
   - Sentiment analysis
   - Product recommendations
 
-![Aurora ML](../../../images/aurora-ml.png)
+![Aurora ML](.images/aurora-ml.png)

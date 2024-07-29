@@ -5,13 +5,13 @@
 - For that a `VGW` is needed on the VPC
 - Offers a high throughput
 
-![Direct Connect](../../images/direct-connect.png)
+![Direct Connect](.images/direct-connect.png)
 
 ## Direct Connect Gateway
 
 - Connect `VPCs` in different regions to `Direct Connection Location`
 
-![Direct Connect Gateway](../../images/direct-connect-gateway.png)
+![Direct Connect Gateway](.images/direct-connect-gateway.png)
 
 ## Connection Types
 
@@ -27,8 +27,8 @@
 - Data in transit is not encrypted (but it's in a private net)
 - But a VPN connection can be established between Direct Connection Location and the Customer Network to encrpt the data
 
-![Direct Connect Encryption](../../images/direct-connect-encryption.png)
+![Direct Connect Encryption](.images/direct-connect-encryption.png)
 
 ## Resiliency
 
-![Direct Connect Resiliency](../../images/direct-connect-resiliency.png)
+![Direct Connect Resiliency](.images/direct-connect-resiliency.png)

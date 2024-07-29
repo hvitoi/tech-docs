@@ -10,4 +10,4 @@
 
   - Network is shared, anything deployed in the VPC can be accessed by the other accounts resources
 
-  ![Shared VPC](../../../images/ram-shared-vpc.png)
+  ![Shared VPC](.images/ram-shared-vpc.png)

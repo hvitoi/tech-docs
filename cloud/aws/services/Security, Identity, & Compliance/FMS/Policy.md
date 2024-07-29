@@ -62,4 +62,4 @@ Properties:
     - Reimburse over high fees due to the attack
     - Protect against more sophisticated attacks
 
-![WAF - Shield - Firewall](../../../images/waf-shield-firewall.png)
+![WAF - Shield - Firewall](.images/waf-shield-firewall.png)

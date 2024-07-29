@@ -5,7 +5,7 @@
 - `Versioning` of config/secrets
 - Optional encryption with KMS
 
-![SSM](../../../images/ssm.png)
+![SSM](.images/ssm.png)
 
 - **Parameter Store Hierarchy**
   - /mydepartment/

@@ -6,7 +6,7 @@
 
 - Let external users assume `temporary roles` for accessing AWS resources by means of `STS`
 
-![Federated Identity Pools](../../../images/federated-identity-pools.png)
+![Federated Identity Pools](.images/federated-identity-pools.png)
 
 ```yaml
 Type: AWS::Cognito::IdentityPool

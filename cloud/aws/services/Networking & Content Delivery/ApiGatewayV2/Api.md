@@ -2,7 +2,7 @@
 
 - Serverless API Gateway
 
-![API Gateway](../../../images/api-gateway.png)
+![API Gateway](.images/api-gateway.png)
 
 - Handle versioning
 - Handle different environment (dev, test, prod, ...)

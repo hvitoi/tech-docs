@@ -8,4 +8,4 @@
 - Supports `aws lambda` for data processing if necessary
 - Failed data can be sent to S3 bucket
 
-![Data Firehose](../../../images/kinesis-data-firehose.png)
+![Data Firehose](.images/kinesis-data-firehose.png)

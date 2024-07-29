@@ -31,8 +31,8 @@ Properties:
     - `Fifo`
     - `Filtering`
 
-  ![Fan Out](../../../images/sns-sqs-fan-out.png)
-  ![Fan Out Filtering](../../../images/sns-sqs-filtering.png)
+  ![Fan Out](.images/sns-sqs-fan-out.png)
+  ![Fan Out Filtering](.images/sns-sqs-filtering.png)
 
 - **SQS FIFO**
   - Store the messages in the exact order they take place

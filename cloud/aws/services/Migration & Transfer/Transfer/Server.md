@@ -4,7 +4,7 @@
 - File transfer from/to `S3` or `EFS` using FTP-family protocol
 - Pay per `provisioned endpoint`/ hour + data transfer in GB
 
-![Transfer Family](../../../images/transfer-family.png)
+![Transfer Family](.images/transfer-family.png)
 
 ```yaml
 Type: AWS::Transfer::Server

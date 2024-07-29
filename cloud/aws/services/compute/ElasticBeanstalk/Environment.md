@@ -24,7 +24,7 @@ Properties:
 
 ## Tier
 
-![Tiers](../../../images/beanstalk-tiers.png)
+![Tiers](.images/beanstalk-tiers.png)
 
 - `Web Environment`: clients access your server directly
 - `Worker Environment`: server is accessed by internal components only. E.g., SQS

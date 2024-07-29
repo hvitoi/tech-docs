@@ -4,7 +4,7 @@
 - Max 1 year runtime
 - All the flow is represented as a JSON `state machine`
 
-![Step Functions](../../../images/step-functions.png)
+![Step Functions](.images/step-functions.png)
 
 - **Features**
 

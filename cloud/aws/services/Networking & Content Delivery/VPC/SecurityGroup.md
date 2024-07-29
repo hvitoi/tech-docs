@@ -13,7 +13,7 @@
 - By `default` all inbound traffic is blocked and all outbound traffic is authorized
 - Security groups can reference other security groups
 
-![Security Groups](../../../images/security-group.png)
+![Security Groups](.images/security-group.png)
 
 - Common ports
   - 22 (SSH)

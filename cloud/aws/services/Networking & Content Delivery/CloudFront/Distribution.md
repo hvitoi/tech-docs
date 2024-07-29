@@ -4,7 +4,7 @@
 - Cache responses at the edges (216 `Points of Presence` (PoP) around the world)
 - Use case: `static content` with a TTL. Bad for dynamic content!
 
-![CloudFront](../../../images/cloudfront.png)
+![CloudFront](.images/cloudfront.png)
 
 - Integration with `Shield` (`DDoS` protection)
 - AWS Web Application `Firewall`
@@ -17,7 +17,7 @@ Properties:
     - Tag
 ```
 
-![CloudFront Permissions](../../../images/cloudfront-permissions.png)
+![CloudFront Permissions](.images/cloudfront-permissions.png)
 
 - Regional edge cache `bypass`
   - Proxy methods `PUT`/`POST`/`PATCH`/`OPTIONS`/`DELETE`
@@ -64,7 +64,7 @@ WebACLId: String
   - Viewer Response
 - Example: authenticate users at the CloudFront Edge Locations instead of authentication requests go all the way to your origins.
 
-![Resquest Response Change](../../../images/lambda-cloudfront.png)
+![Resquest Response Change](.images/lambda-cloudfront.png)
 
 - Use Cases
   - Website Security & Privacy
@@ -83,9 +83,9 @@ WebACLId: String
 - **Custom HTTP**: ELB, EC2, S3 website, ...
 - **S3 bucket**: s3 bucket!
 - **Multiple Origins**: `Path pattern`: /images/\*, /api/\*, ...
-  ![Multiple Origins](../../../images/cloudfront-multiple-origins.png)
+  ![Multiple Origins](.images/cloudfront-multiple-origins.png)
 - **Origin groups**: One primary + one secondary origins to `failover`
-  ![Origin Groups](../../../images/cloudfront-origin-groups.png)
+  ![Origin Groups](.images/cloudfront-origin-groups.png)
 
 ### PriceClass
 

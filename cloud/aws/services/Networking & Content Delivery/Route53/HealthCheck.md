@@ -12,9 +12,9 @@
 - `Calculated health checks` can combine the results from multiple health checks
   - Conditions can be OR, AND or NOT
 
-![Health Check](../../../images/route53-healthcheck.png)
+![Health Check](.images/route53-healthcheck.png)
 
 - For private resources, a health check to monitor a `cloudwatch alarm` can be used
 - This is necessary because route53 do not have direct access to other aws resources
 
-![Health Check Private](../../../images/route53-healthcheck-private.png)
+![Health Check Private](.images/route53-healthcheck-private.png)

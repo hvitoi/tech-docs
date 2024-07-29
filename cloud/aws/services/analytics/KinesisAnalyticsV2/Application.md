@@ -7,7 +7,7 @@
   - Real-time dashboards
   - Real-time metrics
 
-![Data Analytics](../../../images/kinesis-data-analytics.png)
+![Data Analytics](.images/kinesis-data-analytics.png)
 
 ```yaml
 Type: AWS::KinesisAnalyticsV2::Application

@@ -32,7 +32,7 @@ Properties:
 
 - The SG of the EC2 instance now can have inbound rule from the LB SG (instead of allowing from anywhere)
 
-![LB SG](../../../images/lb-security-group.png)
+![LB SG](.images/lb-security-group.png)
 
 ## LoadBalancerAttributes
 
@@ -44,7 +44,7 @@ Properties:
     - It's enabled (by default) for CLB. It's free
     - It's disabled (by default) for NLB. It's paid
   - `Without Cross-Zone balancing` load is distributed for the AZ, and not for the total of instances itself
-    ![Cross-Zone Load Balancing](../../../images/cross-zone-balancing.png)
+    ![Cross-Zone Load Balancing](.images/cross-zone-balancing.png)
 
 ## Type
 
@@ -59,13 +59,13 @@ Properties:
     - `QueryString` & Headers. E.g., ?id=123&order=false
   - Has `port mapping` feature to redirect to dynamic port in ECS
 
-  ![ALB Routing Path](../../../images/alb-routing-path.png)
-  ![ALB Routing Querystring](../../../images/alb-routing-querystring.png)
+  ![ALB Routing Path](.images/alb-routing-path.png)
+  ![ALB Routing Querystring](.images/alb-routing-querystring.png)
 
   - `Fixed hostname` xxx.region.elb.amazonaws.com
   - The application don't receive the IP of the client directly (receives the internal IP of LB instead). Info about the client goes in the headers `X-Forwarded-For` `X-Forwarded-Port` `X-Forwarded-Proto`
 
-  ![ALB Client Data](../../../images/alb-client.png)
+  ![ALB Client Data](.images/alb-client.png)
 
 - **network** (NLB) - Layer 4
 
@@ -78,7 +78,7 @@ Properties:
   - There is not termination in NLB, the request simply `pass through`
   - There's no SG for NLB. This way, the only network security is the VPC NACL
 
-  ![NLB](../../../images/nlb.png)
+  ![NLB](.images/nlb.png)
 
 - **gateway** (GWLB)
 
@@ -87,3 +87,5 @@ Properties:
   - Allow packet to be inspected first by some other service in a target group
   - A `Route Table` is configured at the VPC
   - Uses `Geneve` protocol (6081 port)
+
+  ![GWLB](.images/gwlb.png)

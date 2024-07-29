@@ -5,13 +5,13 @@
 - With ECS you must provision and maintain the underlying EC2 instances
 - ECS is basically a scheduler! To decide to which instance the container will be provisioned
 
-![Containers](../../../images/containers.png)
+![Containers](.images/containers.png)
 
 - A `ECS Cluster` is a collection of `ECS Container Instances`
 - The `services` run in the ECS cluster. Each service is compose of one or more `tasks`
 - Services can be exposed by a Load Balancer
 
-![ECS Elements](../../../images/ecs-elements.png)
+![ECS Elements](.images/ecs-elements.png)
 
 - Container: Container
 - Task: Pod
@@ -47,13 +47,13 @@ Properties:
   - Registered instances can receive `ECS Tasks`, which are container workloads
   - Charged based on EC2 instances and EBS volumes
 
-  ![EC2 Launch Type](../../../images/ecs-ec2-launch-type.png)
+  ![EC2 Launch Type](.images/ecs-ec2-launch-type.png)
 
-  ![ECS Cluster](../../../images/ecs-cluster.png)
+  ![ECS Cluster](.images/ecs-cluster.png)
 
   - In order to forward requests to the applications, dynamic port mapping is used
 
-  ![Port Mapping](../../../images/ecs-ec2-port-mapping.png)
+  ![Port Mapping](.images/ecs-ec2-port-mapping.png)
 
 - **Fargate Launch Type**
 
@@ -63,4 +63,4 @@ Properties:
 
   - For forwarding traffic, the Load Balancer forwards to each IP (each task has a unique ENI)
 
-  ![Forwarding](../../../images/ecs-fargate-forwarding.png)
+  ![Forwarding](.images/ecs-fargate-forwarding.png)

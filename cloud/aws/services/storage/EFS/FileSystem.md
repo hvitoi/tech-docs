@@ -11,7 +11,7 @@
 
   - `Security group` attached to the EFS is used to control access
   - The SG (for the EFS) must have `inbound rule` TCP 2049 from ec2 instances ip (or ec2 sg)
-    ![NFS](../../../images/nfs.png)
+    ![NFS](.images/nfs.png)
   - `EFS Access Points` can be used to manage application access
 
 - **Capacity**

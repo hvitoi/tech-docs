@@ -5,7 +5,7 @@
 - Needs a `NLB`/`GWLB` to expose the service and an `ENI` on the customer side
 - The `PrivateLink` links the NLB to the ENI
 
-![PrivateLink](../../../images/privatelink.png)
-![PrivateLink ECS](../../../images/privatelink-ecs.png)
+![PrivateLink](.images/privatelink.png)
+![PrivateLink ECS](.images/privatelink-ecs.png)
 
 - After the `Endpoint Service` is created, it must be added as a regular `Endpoint` (find service by name)

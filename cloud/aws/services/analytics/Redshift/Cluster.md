@@ -17,7 +17,7 @@
   GROUP BY ...
   ```
 
-  ![Redshift Spectrum](../../../images/redshift-spectrum.png)
+  ![Redshift Spectrum](.images/redshift-spectrum.png)
 
 ## AvailabilityZone
 

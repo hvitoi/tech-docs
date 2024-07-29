@@ -4,4 +4,4 @@
 - Extracts data from `s3`, `rds` and others
 - Useful to prepare and transform for analytics
 
-![Glue](../../../images/glue.png)
+![Glue](.images/glue.png)

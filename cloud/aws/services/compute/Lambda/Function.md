@@ -42,11 +42,11 @@
 
   - Thumbnail creation
 
-  ![Thumbnail Creation](../../../images/lambda-thumbnail.png)
+  ![Thumbnail Creation](.images/lambda-thumbnail.png)
 
   - Serverless cronjob
 
-  ![Cronjob](../../../images/lambda-cronjob.png)
+  ![Cronjob](.images/lambda-cronjob.png)
 
 ```yaml
 Type: AWS::Lambda::Function

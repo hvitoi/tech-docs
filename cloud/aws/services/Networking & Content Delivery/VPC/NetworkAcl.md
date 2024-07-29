@@ -5,7 +5,7 @@
 - ACLs are evaluated before security groups
 - Supports `ALLOW` AND `DENY` rules (NG only allows)
 
-![NACL](../../../images/vpc-nacl.png)
+![NACL](.images/vpc-nacl.png)
 
 - Both `inbound` and `outbound` rules in NACL are evaluated separately for each request (`stateless`)
 - Rules in `SG` are `stateful`. So what counts is if it's incoming or outgoing origin (regardless if it has a response)
@@ -18,5 +18,5 @@
   - This allows using a different ports for the request and response
   - This way, the NACL outbound rule can allow only the ephemeral ports range (and not everything \*)
 
-![NACL Ports](../../../images/nacl-ephemeral-ports.png)
-![NACL Rules](../../../images/nacl-ephemeral-ports-rules.png)
+![NACL Ports](.images/nacl-ephemeral-ports.png)
+![NACL Rules](.images/nacl-ephemeral-ports-rules.png)

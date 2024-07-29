@@ -4,7 +4,7 @@
 - History of all events and API calls in the account (console, sdk, cli)
 - These logs can be sent to cloudwatch or s3
 
-![CloudTrail](../../../images/cloudtrail.png)
+![CloudTrail](.images/cloudtrail.png)
 
 ```yaml
 Type: AWS::CloudTrail::Trail
@@ -32,7 +32,7 @@ Properties:
 - **Events Retention**
   - Events are stored for `90 days`
   - To keep events beyond this period, log them to S3 using `trails`
-    ![CloudTrail Event Retention](../../../images/cloudtrail-event-retention.png)
+    ![CloudTrail Event Retention](.images/cloudtrail-event-retention.png)
 
 ## EventSelectors
 
@@ -44,7 +44,7 @@ Properties:
 
 - `Cloudtrail Insights` detects unusual activities
 
-![CloudTrail Insights](../../../images/cloudtrail-insights.png)
+![CloudTrail Insights](.images/cloudtrail-insights.png)
 
 ## S3BucketName
 

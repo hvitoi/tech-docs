@@ -6,7 +6,7 @@
 - `Public Hosted Zone`: how to route traffic on the internet
 - `Private hosted Zone`: how to route traffic within one or more PVCs (private domain names)
 
-![DNS Zones](../../../images/dns-zone.png)
+![DNS Zones](.images/dns-zone.png)
 
 - In order to use `private hosted zone`, the VPC must:
   - `enableDnsSupport` set to true

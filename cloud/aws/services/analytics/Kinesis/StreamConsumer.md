@@ -5,7 +5,7 @@
 - `Stream` is made up of `shards` (partitions). The more shrads, the more throughput
 - Provides `ordering of records` and the ability to `read and/or replay records`
 
-![Data Streams](../../../images/kinesis-data-streams.png)
+![Data Streams](.images/kinesis-data-streams.png)
 
 - **Modes**
 

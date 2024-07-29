@@ -6,8 +6,8 @@
 - Centralized auditing with Cloudtrail
 - Allow access to multiple account at once
 
-![SSO](../../../images/sso.png)
+![SSO](.images/sso.png)
 
 - **SSO vs. AssumeRoleWithSAML**
 
-![SSO vs. SAML](../../../images/sso-saml.png)
+![SSO vs. SAML](.images/sso-saml.png)

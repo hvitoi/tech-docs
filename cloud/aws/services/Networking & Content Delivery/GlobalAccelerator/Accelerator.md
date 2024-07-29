@@ -8,6 +8,6 @@
 
 - Global Accelerator uses `2 anycast IPs` for the application
 
-![Global Accelerator](../../../images/globa-accelerator.png)
+![Global Accelerator](.images/global-accelerator.png)
 
 - Global Accelerator is a good fit for non-HTTP use cases, such as `gaming (UDP)`, `IoT (MQTT)`, or `Voice over IP`.

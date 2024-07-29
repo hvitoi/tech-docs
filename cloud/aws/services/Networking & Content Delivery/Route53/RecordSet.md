@@ -1,7 +1,6 @@
 # AWS::Route53::RecordSet
 
 - **Routing Policies**
-
   - _Simple_
     - `Single` or `Multiple` value is responded
     - If multiple values is responded, client will be randonly
@@ -29,11 +28,10 @@
     - The `bias` (like a radius) is how much the traffic is going to a specific resource (1 - 99)
 
 - **Traffic Flow**
-
   - Visual editor to create routing configuration using existing routing types such as `failover` and `geolocation`
   - You save the configuration as a `traffic policy` and then use it to create one or more policy records.
 
-  ![Traffic Flow](../../../images/route53-traffic-flow.png)
+  ![Traffic Flow](.images/route53-traffic-flow.png)
 
 ```yaml
 Type: AWS::Route53::RecordSet
@@ -56,11 +54,13 @@ Properties:
   Weight: Integer
 ```
 
+![Domain Name](.images/domain-name.png)
+
 ## AliasTarget
 
 - `CNAME Record`
   - Cannot be used for top node domains (`zone apex`. e.g., example.com)
-  - E.g., app.hvitoi.com -> www.google.com
+  - E.g., app.hvitoi.com -> <www.google.com>
 - `Alias Record`
   - Points a hostname to a AWS Resource (expect ec2 dns names)
     - ELB

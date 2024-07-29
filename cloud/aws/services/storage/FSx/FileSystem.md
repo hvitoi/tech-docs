@@ -50,7 +50,7 @@ Properties:
   - High burst (6x faster, 200MBps per TiB)
   - Short-term processing
 
-![Scratch File System](../../../images/fsx-scratch-filesystem.png)
+![Scratch File System](.images/fsx-scratch-filesystem.png)
 
 - `Persistent File System`
   - Long-term storage
@@ -58,4 +58,4 @@ Properties:
   - Replace failed files within minutes
   - For sensitive data
 
-![Persistent File System](../../../images/fsx-persistent-filesystem.png)
+![Persistent File System](.images/fsx-persistent-filesystem.png)

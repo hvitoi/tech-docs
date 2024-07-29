@@ -32,4 +32,4 @@ Properties:
   - The client can then access the website through multiple subdomains and receive a different cert for each one of them
   - Only `ALB` and `NLB` support multiple listeners with multiple certs using SNI
 
-![SNI](../../../images/sni.png)
+![SNI](.images/sni.png)

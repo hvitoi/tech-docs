@@ -23,7 +23,7 @@ Properties:
 ## VpcEndpointType
 
 - `Interface`: provisions an ENI (private ip) as entry point to the AWS service
-  ![Interface Endpoint](../../../images/vpc-endpoints-interface.png)
+  ![Interface Endpoint](.images/vpc-endpoints-interface.png)
 
 - `Gateway`: Only for S3 and DynamoDB
-  ![Gateway Endpoint](../../../images/vpc-endpoints-gateway.png)
+  ![Gateway Endpoint](.images/vpc-endpoints-gateway.png)
