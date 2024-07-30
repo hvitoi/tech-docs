@@ -2,3 +2,4 @@
 (name :hey)
 (name ::hey)
 (name :hey/there)
+(name nil) ; throws
