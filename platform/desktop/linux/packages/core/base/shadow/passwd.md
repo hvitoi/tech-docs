@@ -6,6 +6,9 @@ passwd "username" # A prompt will ask for the old and new password
 
 # Change password of the current user
 passwd
+
+# Lock the root account (removes the password)
+sudo passwd -l root
 ```
 
 ```shell
