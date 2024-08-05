@@ -11,3 +11,13 @@
 (def give-me-0 (partial give-me-1a "3rd item"))
 
 (give-me-0)
+
+;;
+(def plus-one
+  (partial + 1))
+(plus-one 10)
+
+;;
+(def with-abc-prefix
+  (partial str "abc"))
+(with-abc-prefix "henry")

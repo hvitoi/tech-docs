@@ -7,9 +7,10 @@ my-exception
 (ex-message my-exception)
 (ex-data my-exception)
 (ex-cause my-exception)
+(.printStackTrace my-exception)
+(prn-str my-exception)
 
-
-(type my-exception) ; => clojure.lang.ExceptionInfo 
+(type my-exception) ; => clojure.lang.ExceptionInfo
 (ex-message (ex-cause my-exception)) ; => java.lang.ArithmeticException (the nested exception)
 
 (ex-message my-exception) ; => "awesome-message" (same as .getMessage)
