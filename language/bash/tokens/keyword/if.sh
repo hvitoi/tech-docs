@@ -43,6 +43,10 @@ if [[ ! " ${folders[*]} " =~ " $1 " ]]; then
   return 1
 fi
 
+if [[ $EXCEPTION_MSG == "foo"* ]]; then
+  echo "it starts with foo"
+fi
+
 ## inline
 if [ ! -z "$foo" ]; then echo "foo"; else echo "bar"; fi
 
