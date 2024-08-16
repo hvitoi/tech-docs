@@ -2,7 +2,7 @@
 
 ## build
 
-- Spin up a linux VM
+- Spin up a Linux VM
 
 ```shell
 linsk build
@@ -11,7 +11,8 @@ linsk build
 ## ls
 
 - Start the VM. passthrough a storage device and run `lsblk` in it
-- It immediately exists
+  - Pass the whole device through! Not only the partition
+- It exits immediately
 
 - The storage device on the VM is usually `/dev/vdb1`
 

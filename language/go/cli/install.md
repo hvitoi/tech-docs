@@ -9,4 +9,5 @@ go install
 
 # Installs by default to $GOPATH
 go install "github.com/go-flutter-desktop/hover@latest"
+go install "github.com/AlexSSD7/linsk@latest"
 ```
