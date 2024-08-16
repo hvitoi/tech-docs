@@ -10,14 +10,12 @@ linsk build
 
 ## ls
 
-- Start the VM. passthrough a storage device and run `lsblk` in it
-  - Pass the whole device through! Not only the partition
-- It exits immediately
-
-- The storage device on the VM is usually `/dev/vdb1`
+- Start the VM, pass a storage device through, run `lsblk` on it & exits
+- Pass only the desired partition (not the whole device, because it's not necessary)
+- The storage device on the VM is usually `/dev/vdb`
 
 ```shell
-sudo linsk ls dev:/dev/diskX
+sudo linsk ls dev:/dev/diskXsY
 ```
 
 ## run
@@ -26,11 +24,11 @@ sudo linsk ls dev:/dev/diskX
 
 ```shell
 # Without encryption
-sudo linsk run dev:/dev/diskX vdb1
+sudo linsk run dev:/dev/diskXsY vdb
 
 # With luks encryption
-sudo linsk run dev:/dev/diskX vdb1 -l
+sudo linsk run dev:/dev/diskXsY vdb -l
 ```
 
 - On MacOS the storage network server is exposed at `afp://127.0.0.1:9000/linsk`
-  - Cmd + K on Finder to open a network storage device
+- `Cmd + K` on Finder to open a network storage device
