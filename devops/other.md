@@ -14,7 +14,6 @@
 ## Application Management
 
 - **Manifests**
-
   - `Helm`
   - `Kustomize`
   - `Carvel ytt`: yamls with functions. Complex
@@ -22,21 +21,19 @@
   - `cdk8s`: allows manifests in any language
 
 - **Self Managed**
-
   - `Knative`: self managed serverless solution
   - `Kubevela`: create new simpler CRDs
   - `Shipa`: wrapper around other tool (bad)
   - `Ketch`: wrapper around other tool (bad)
 
 - **Cloud Managed**
-
-- `Fly`: think about the code only. Very simple
-- `Google Cloud Run`: based on knative
-- `Azure Container Instances`: simple
-- `Azure Container Apps`: newer container instances
-- `AWS Lightsail`: aws alternative. Very simple
-- `AWS ECS`: AWS ECS (with or without Fargate). Competitor of Kubernetes
-- `AWS Lambda`: function runner (also runs container images)
+  - `Fly`: think about the code only. Very simple
+  - `Google Cloud Run`: based on knative
+  - `Azure Container Instances`: simple
+  - `Azure Container Apps`: newer container instances
+  - `AWS Lightsail`: aws alternative. Very simple
+  - `AWS ECS`: AWS ECS (with or without Fargate). Competitor of Kubernetes
+  - `AWS Lambda`: function runner (also runs container images)
 
 ## Development Environment
 
@@ -48,6 +45,7 @@
   - `Tilt`
   - `Codezero`
   - `Skaffold`
+
 - **Local Environment**
   - `Kind`: kubernetes cluster running in docker
   - `K3D`: kubernetes cluster running in docker (K3S lightweight K8S distribution)
