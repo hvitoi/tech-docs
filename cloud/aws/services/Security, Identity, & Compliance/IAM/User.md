@@ -1,6 +1,7 @@
 # AWS::IAM::User
 
 - `User` is an identity intended to be used by a person to access aws
+- Users have `long term credentials`
 
 ```yaml
 Type: AWS::IAM::User
