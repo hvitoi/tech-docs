@@ -21,9 +21,14 @@ minikube start --memory "4g"
 - If not specified, auto detects
 
 ```shell
-minikube start --driver "qemu2"
-minikube start --driver "docker"
-minikube start --driver "ssh"
+# qemu
+minikube start --driver qemu2
+
+# docker
+minikube start --driver docker
+
+# ssh
+minikube start --driver ssh
 
 # podman (rootful)
 podman machine init --rootful
