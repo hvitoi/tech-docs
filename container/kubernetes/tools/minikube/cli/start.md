@@ -23,8 +23,14 @@ minikube start --memory "4g"
 ```shell
 minikube start --driver "qemu2"
 minikube start --driver "docker"
-minikube start --driver "podman"
 minikube start --driver "ssh"
+
+# podman (rootful)
+podman machine init --rootful
+minikube start --driver podman --container-runtime cri-o
+
+# podman (rootless)
+podman machine init
 ```
 
 - Qemu driver: <https://minikube.sigs.k8s.io/docs/drivers/qemu/>
