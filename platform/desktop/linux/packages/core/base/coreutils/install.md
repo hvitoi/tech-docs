@@ -4,9 +4,13 @@
 - Works similarly to `cp` but with additional options
 
 ```shell
-# copy a file
+# copy file to dir
 install /source/file /dest/dir
 install skaffold /usr/local/bin/
+
+# copy file to file
+install /source/file /dest/dir/file
+install minikube-darwin-arm64 /usr/local/bin/minikube
 
 # copy multiple files
 install /source/dir/* -t /dest/dir

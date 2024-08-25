@@ -1,0 +1,5 @@
+# info
+
+```shell
+podman info
+```
