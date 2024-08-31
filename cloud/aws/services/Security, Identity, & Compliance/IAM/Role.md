@@ -26,27 +26,32 @@ Properties:
 
 ## AssumeRolePolicyDocument
 
-- **Security Token Service** (STS)
-  - Service used to endorse the roles and get the short term credentials (temporary credentials)
-
 - Generate token with `limited` and `temporary` access to AWS resources
 - Token is valid up to `1 hour`, must be `refreshed` after this
-- `Identity Providers` (IdP) can be used to authenticate with AWS (by means of STS)
+- When you assume a role (user, application or service) you give up your original permissions and take the permissions assigned to the role
 
-- Identity Providers (`IdP`)
+### Identity Providers (IdP)
+
+- Identity Providers
   - _SAML 2.0_: the client exchange a saml token for an sts token
   - _Custom Identity Broker_: the IdP talks directly to the sts and give the token to the user
   - _Web Identity Federation_: login on fb, google, etc (not recommended! Use Cognito instead)
   - _SSO_
   - _AD_: database of objects (users, files, printers, etc)
 
-- APIs
-  - **AssumeRole API**
-    - User will use a role within your account or cross-account
+- `Identity Providers` can be used to authenticate with AWS (by means of STS)
+
+- **Security Token Service** (STS)
+  - Service used to endorse the roles and get the short term credentials (temporary credentials)
+
+### APIs
+
+- **AssumeRole API**
+  - User will use a role within your account or cross-account
     ![AssumeRole](.images/sts-assume-role.png)
-  - **AssumeRoleWithSaml API**: return credentials for users logged in SAML
-  - **AssumeRoleWitWebIdentity API**: returns credentials for users logged with IdP (fb, google, etc)
-  - **GetSessionToken API**: for MFA
+- **AssumeRoleWithSaml API**: return credentials for users logged in SAML
+- **AssumeRoleWitWebIdentity API**: returns credentials for users logged with IdP (fb, google, etc)
+- **GetSessionToken API**: for MFA
 
 ## PermissionsBoundary
 
