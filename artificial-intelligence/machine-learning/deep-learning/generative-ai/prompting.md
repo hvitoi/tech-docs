@@ -65,3 +65,10 @@ $output_format_instructions$
 
 Assistant:
 ```
+
+## Prompt Templates
+
+- Simplify and standardize the process of generating prompts
+- A template can be used by substituting the placeholders
+- `Ignoring the prompt template attack` may add context to ignore the template and access undue information
+  - This kind of attack can be avoided by adding more context into the template
