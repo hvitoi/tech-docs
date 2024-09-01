@@ -1,8 +1,4 @@
-# Generative AI
-
-- `Generate new data` similar to the data it was trained on
-
-## Foundation Model (Base Model)
+# Foundation Model
 
 - Foundation Models are trained on a wide variety of input data
 - Foundation models may cost tens of millions of dollars to train
@@ -18,10 +14,13 @@
 
 ## Generative modality
 
-- Text
-- Image
-- Vision
-- Embedding
+- Modalities
+  - Text
+  - Image
+  - Vision
+  - Embedding
+
+- Some models are `multimodal`
 
 ## Large Language Models (LLM)
 
@@ -30,6 +29,11 @@
 - Designed to generate coherent **human-like text**
 - We usually interact with LLM via a `prompt`
 - The generated text is `non-deterministic`
+
+- `Context Window`
+  - The number of tokens an LLM can consider when generating text (the "size" of your prompt)
+  - Large context windows require more memory and processing power
+  ![Context Window](.images/context-window.png)
 
 ## Diffusion Models
 
@@ -40,10 +44,3 @@
   - Reverse the `diffusion process`
 
 ![Diffusion](.images/diffusion.png)
-
-## Context Window
-
-- The number of tokens an LLM can consider when generating text (the "size" of your prompt)
-- Large context windows require more memory and processing power
-
-![Context Window](.images/context-window.png)
