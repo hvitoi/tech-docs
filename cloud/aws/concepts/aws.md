@@ -1,4 +1,9 @@
-# Shared Responsibility Model
+# AWS
+
+- `AWS` was launched for public in 2004
+- First services were SQS, S3 and EC2
+
+## Shared Responsibility Model
 
 - `AWS Responsibility`
   - Protect infrastructure
