@@ -1,10 +1,24 @@
 # Deep Learning
 
-- It's a class of Machine Learning models that uses the same training algorithms (`backpropagation`) technique to learn from data
+- It's a class of Machine Learning models that uses the same training algorithm technique to learn from data: `backpropagation`
+- Requires large amount of input data
+- Requires GPUs/NPUs for processing
+
 - Kinds
   - `Multilayer Perceptrons`
   - `Convolucional Neural Networks`
   - `Transformers`
+
+- Use cases
+  - Computer vision
+  - Natural Language Processing (NLP)
+
+## Neural Networks
+
+- Neural networks may have billions of nodes
+- As more input data is added, the connections and weights between the nodes are adjusted
+
+![Layers](.images/layers.png)
 
 ## Tensors
 

@@ -1,6 +1,6 @@
 # Transformer
 
-- It's a kind of `neutral network` (machine learning model) that is used as technique/process to `create AI models`
+- It's a kind of `neutral network` (machine learning model) that is used as technique/process to `Foundation Models`
 - Originally invented by Google 2017 for the google translate
 - Examples
   - `Text-to-Text`
