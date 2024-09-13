@@ -173,3 +173,16 @@
   - Pay for a certain time (1 month, 6 months, etc)
   - Booked Throughput: max. number of input/output tokens processed per minute
   - Works with base, fine-tuned, and custom models
+
+## Observability
+
+- **Model invocation logging**
+  - Send logs of all `model invocations` to CloudWatch and/or S3
+  - Data types to include with logs: text, images, embeddings
+  - Can be later analyzed using CloudWatch Logs Insights
+  - It is enabled under Bedrock settings
+
+- **Metrics**
+  - Publish metrics to CloudWatch
+  - `ContentFilteredCount`: understand how the guardrails are being used
+  - `InvocationLatency`: average time to give an answer

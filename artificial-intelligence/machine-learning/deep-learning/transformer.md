@@ -6,7 +6,6 @@
   - `Text-to-Text`
     - Text generators
     - Next word prediction
-    - E.g., GPT (Generative Pre-trained Transformer)
   - `Voice-to-Text`
     - Transcripts
   - `Text-to-Voice`
