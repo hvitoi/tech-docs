@@ -77,3 +77,28 @@
 ## Semi-supervised Learning
 
 ![Semi-supervised Learning](.images/semi-supervised-learning.png)
+
+## Reinforcement Learning (RL)
+
+- An agent learns to make decisions by trying to maximize a "reward"
+- E.g., the shortest way out of a maze
+
+- `Agent`: learner or decision-maker
+- `Environment`: the external system the agent interacts with
+- `Action`: choices made by the agent
+- `Reward`: the feedback from the environment based on the agent's actions
+- `State`: the current situation of the environment
+- `Policy`: the strategy the agent uses to determine actions based on the state
+
+- It is simulated many times to get the optimal strategy
+- Goal: maximize the cumulative reward over time
+
+### Reinforcement Learning From Human Feedback (RLHF)
+
+- Use human feedback to help ML models to self-learn more efficiently
+- Incorporates human feedback in the reward function
+
+1. Data collection
+1. Supervised fine-tuning of a language model
+1. Build a separate reward model
+1. Optimize the language model with the reward-based model

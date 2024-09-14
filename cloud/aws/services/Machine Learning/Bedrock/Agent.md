@@ -36,4 +36,4 @@ Properties:
 - Agents are configured to perform specific pre-defined `action groups`
 - The action groups restricts have the agent knows to do and therefore limits its actions
 
-![Agend Action Groups](.images/agent-action-groups.png)
+![Agent Action Groups](.images/agent-action-groups.png)
