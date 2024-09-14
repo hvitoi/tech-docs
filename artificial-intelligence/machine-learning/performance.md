@@ -4,6 +4,7 @@
 
 - **Model Fit**
   - `Overfitting`: models performs well on the training data, but not on the evaluation data
+    - Reasons: training data size too small, model trained for too long on a single sample set of data, model complexity is too high (learns from noise)
   - `Underfitting`: model performs poorly on the training data
   - `Balanced`: neither overfitting or underfitting
 

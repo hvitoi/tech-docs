@@ -40,6 +40,7 @@
 ## Feature Engineering
 
 - It's a preprocessing of the training data to better fit the domain knowledge of the model
+- It's also called `ETL` (create, transform, extract) variables from data
 - Enhances the performance of the model
 - It's applied over structured data or ever unstructured data
 
@@ -48,6 +49,22 @@
   - `Feature selection`: e.g., pick only the fields relevant to the model
   - `Feature transform`: e.g., normalize numerical data
   - `TF-IDF`: convert text into numerical features or word embeddings
+
+## Hyperparameter Tuning
+
+- Settings that define the model structure and learning algorithm and process
+- Examples
+  - `Learning rate`
+  - `Batch size`
+  - `Number of epochs`
+  - `Regularization`
+
+- Tuning it is finding the best hyperparameters values to optimize the model performance
+  - Improving it reduces overfitting and enhances generalization
+
+- How?
+  - Grid search, random search
+  - Amazon SageMaker Automatic Model Tuning (AMT)
 
 ## Supervised Learning
 
