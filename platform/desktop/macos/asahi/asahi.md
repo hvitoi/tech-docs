@@ -3,6 +3,12 @@
 - On Apple Silicon systems, external boot is not support on the native boot tooling (`iBoot`)
 - Therefore some tools are necessary to provide a PC-like boot environment
 
+## Installation
+
+```shell
+curl -L https://alx.sh/dev | sh
+```
+
 ## Partition configuration
 
 ```conf
@@ -28,6 +34,9 @@
 
 ## m1n1
 
+- It's a bridge between Apple's boot firmware (iBoot) and the Linux world
+- m1n1 is installed as a `faux macOS kernel` into a `stub macOS installation`.
+
 ### Stage 1
 
 - MacOS stub
@@ -40,4 +49,15 @@
 
 ## U-Boot
 
-- Load and execute a UEFI binary located at `/EFI/BOOT/BOOTAA64.EFI` at the EFI partition
+- U-Boot is loaded by m1n1
+- It's used to set up a standard UEFI environment from which GRUB, systemd-boot, etc can be booted
+- It loads and executes a UEFI binary located at `/EFI/BOOT/BOOTAA64.EFI` at the EFI partition
+- Due to the limitations of the Apple boot picker (iBoot), there must be one EFI system partition per installed OS.
+
+```shell
+# boot from usb
+env set boot_efi_bootmgr ; run bootcmd_usb0
+
+# enter boot menu
+bootmenu # select "usb 0" to boot from usb
+```

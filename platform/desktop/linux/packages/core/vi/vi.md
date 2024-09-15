@@ -205,5 +205,6 @@
 - `:r !command`" paste output from a command
 
 - `:help`
+- `:help rtp`: runtimepath help
 
 - `:e ~/.vimrc`: start editing config file

@@ -52,16 +52,16 @@ diskutil unmountDisk "/dev/diskX"
 diskutil eject "/dev/diskX"
 ```
 
-## deleteVolume
-
-```shell
-diskutil apfs deleteVolume disk1s7
-```
-
 ## listFilesystems
 
 ```shell
 diskutil listFilesystems
+```
+
+## eraseDisk
+
+```shell
+diskutil eraseDisk %noformat% /dev/disk0s0
 ```
 
 ## eraseVolume
@@ -84,6 +84,20 @@ diskutil eraseVolume free free disk0s5
 
 ```shell
 diskutil apfs list
+```
+
+### deleteVolume
+
+```shell
+diskutil apfs deleteVolume disk0s0
+```
+
+### deleteContainer
+
+- Completely remove an APFS container making it `free space`
+
+```shell
+diskutil apfs deleteContainer disk0s0
 ```
 
 ### unlockVolume
