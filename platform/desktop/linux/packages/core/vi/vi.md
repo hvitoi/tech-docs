@@ -1,31 +1,47 @@
 # vi
 
-## Movement
+- 1976: [vi](https://ex-vi.sourceforge.net/) by Bill Joy
+- 1991: [vim](https://github.com/vim/vim) by Bram Moolenaar
+- 2014: [neovim](https://github.com/neovim/neovim)
 
-- Movement commands can be added any number multiplier in front of it
+## Modes
+
+- **Normal Mode**: `Esc`
+- **Insert Mode**: `i`
+- **Visual Mode**: `v`
+- **Command Mode**: `:`
+
+## Movement
 
 - `h`: left
 - `l`: right
 - `k`: up
 - `j`: down
 
-- `^` / `0`: beginning of line
+- `0` or `^`: beginning of line
 - `$`: end of line
 
 - `w`: next word (first char)
-- `b`: previous word (first char)
+- `ge`: previous word (last char)
+- `e`: current word (last char) or next word (last char)
+- `b`: current word (first char) or last word (first char)
 
-- `e`: next word (last char)
+- `f[char]`: next occurrence of a character. E.g., fz (next z)
+- `F[char]`: previous occurrence of a character. E.g., fz (previous z)
 
-- `{`: next empty line
-- `}`: previous empty line
+- `*`: next occurrence of the word under cursor
+- `#`: previous occurrence of the word under cursor
 
-- `%`: alternate between opening and closing characters. E.h., ( and ), [ and ]
+- `%`: alternate between opening and closing characters. E.g., ( and ), [ and ], { and }
 
-- `gg`: top of the document
-- `25%`: a quarter of the document
-- `50%`: half of the document
-- `G`: bottom of the document
+- `gg`: go to first line
+- `25%`: go to the line at 25% of the file
+- `50%`: go to the line at 50% of the file
+- `G`: go to last line
+- `8G`: go to line number 8
+
+- `{`: previous empty line
+- `}`: next empty line
 
 - `''`: return to the previous position
 
@@ -33,30 +49,60 @@
 - `Ctrl` + `u`: half page up
 - `Ctrl` + `d`: half page down
 
+## Visual
+
+- In visual model, you select text using movement keys before you decide what to do with it
+
+- `v` stands for _visual selection_
+- `V`: selects the whole line
+
+- **Select around**
+  - `vaw`: for word
+  - `vap`: for paragraph
+  - `va(`: for parenthesis
+
+- **Select inside**
+  - `viw`: for word
+  - `vip`: for paragraph
+  - `vi(`: for parenthesis
+
+- `Ctrl+v`: block selection
+
+> gg + 0 + v + G: selects the whole file
+
 ## Insert
 
 - `i`: Insert mode at left of current selection
-- `I`: Insert mode at the beginning of line
-
 - `a`: Insert mode at right of current selection
+
+- `I`: Insert mode at the beginning of line
 - `A`: Insert mode at the end of line
 
 - `o`: Insert mode at a new line (after)
 - `O`: Insert mode at a new line (before)
 
+- `S`: clear the current line and enter insert mode
+
 ## Delete
 
-- `d` can be combined with any other movement comand so that it will delete all the way through
-- deleted text is regsitered in vim so that it can be pasted afterwards
+- `x`: delete character under cursor
+- `X`: delete character to the left of cursor
 
-- **Delete character**: `x`
-- **Delete until end of line**: `D`
-- **Delete whole line**: `dd`
+- `D`: delete until end of line
+- `dd`: delete the whole line
+
+- **Delete movement**
+  - `d[movement]`
+  - When combining with movement command it will delete all the way through
+  - Deleted text is registered in VIM (copied) so that it can be pasted afterwards
+  - E.g., dw deletes from cursor to beginning of next word
+  - E.g., d2e deletes from cursor to the end of next word
 
 - **Delete around**: delete around the borders (whitespaces, parenthesis, etc)
   - `daw`: for word
   - `dap`: for paragraph
   - `da(`: for parenthesis
+
 - **Delete inside**: delete only inside the borders
   - `diw`: for word
   - `dip`: for paragraph
@@ -67,33 +113,33 @@
 - Same as delete, but additionally starts insert mode
 - `c`
 
-## Yank
+## Replace
+
+- `r[char]`: replace one character
+- `R`: replace mode (overwrite the text that's already there)
+
+## Number powered
+
+- Commands can be added any number multiplier in front of it
+- `[n][action/movement]`
+
+- Examples
+  - 3w (next 3 words)
+  - 3igo (insert gogogo)
+
+## Yank (Copy)
 
 - `y` copies from a command or visual selection
 - `yy`: yank the whole line
 - `yap`: copies the whole paragraph
 
-## Select
+## Put (Paste)
 
-- `v` stands for _visual selection_
-- `V`: selects the whole line
-- `gg` -> `v` -> `G`: selects the whole document
-- `vap`: visually selects around the paragraph
-
-- `Ctrl+v`: block selection
-
-## Put
-
-- Put (or paste) text in the current selection
-- Text to be pasted must in VIM's register
-- VIM does not have the ability from paste from you system clipboard
+- Paste text in the current selection
+- Text to be pasted must in vim's register
+- vim does not have the ability from paste from you system clipboard
 
 - `p`
-
-## Replace
-
-- `r`: replace one letter
-- `R`: replace mode (overwrite the text that's already there)
 
 ## Period
 
@@ -101,29 +147,32 @@
 
 ## Undo / Redo
 
-- **Undo last operation**: `u`
-- **Undo whole line**: `U`
+- `u`: undo last operation
+- `U`: undo whole line
 
-- **Redo**: `Ctrl` + `r`
+- `ctrl + r`: Redo
 
 ## Focus
 
-- **Focus the current line (middle)**: `z` + `z`
-- **Focus the current line (top)**: `z` + `t`
+- `z` + `z`: Focus the current line (middle)
+- `z` + `t`: Focus the current line (top)
 
 ## Quit
 
-- **Save and Quit**: `Z` + `Z`
-- **Quit without saving**: `Z` + `Q`
+- `Z` + `Z`: Save and Quit
+- `Z` + `Q`: Quit without saving
 
 ## Search
 
-- `/keywordtobesearched`: search forwards
-- `?keywordtobesearched`: search backwards
+- `/keyword`: search forwards
+- `?keyword`: search backwards
+
 - `n`: next occurrence
 - `N`: previous occurrence
 
 ## Commands
+
+- Enter `:` for command mode
 
 - `:w`: save file
 - `:w!`: save file (force)
