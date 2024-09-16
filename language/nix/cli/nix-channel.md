@@ -19,3 +19,10 @@ nix-channel --update
 # remove channel
 nix-channel --remove nixpkgs
 ```
+
+```shell
+# workflow for big updates
+nix-channel --update
+nixos-rebuild switch
+reboot
+```

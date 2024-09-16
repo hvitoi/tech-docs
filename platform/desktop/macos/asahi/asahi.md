@@ -70,3 +70,47 @@ bootmenu # select "usb 0" to boot from usb
 - The Asahi Linux installer grabs these from macOS and stores them on the EFI system partition when it is created
   - `/mnt/boot/asahi/{all_firmware.tar.gz,kernelcache*}`
 - Some distro installers load these drivers from the EFI partition so that all hardware is available during installation
+
+## NixOS
+
+- Pick the `Apple Silicon Support Module` (apple-silicon-support) under <https://github.com/tpwrules/nixos-apple-silicon>
+- Copy it to `/etc/nixos/apple-silicon-support`
+
+```shell
+cp -r ./apple-silicon-support /etc/nixos/
+chmod -R +w /etc/nixos/
+```
+
+and reference it in your configuration file
+
+```nix
+# /etc/nixos/configuration.nix
+imports =
+  [
+    ./hardware-configuration.nix
+    ./apple-silicon-support
+  ];
+```
+
+Any changes to the `Apple Silicon Support Module` require a rebuild and reboot to take effect
+
+You can also add the module as a channel. This way it will be upgraded in tandom with NixOS itself
+
+```shell
+nix-channel --add https://github.com/tpwrules/nixos-apple-silicon/archive/main.tar.gz apple-silicon-support
+```
+
+```nix
+# /etc/nixos/configuration.nix
+imports =
+  [
+    ./hardware-configuration.nix
+    <apple-silicon-support/apple-silicon-support>
+  ];
+```
+
+```shell
+nix-channel --update
+nixos-rebuild switch
+reboot
+```

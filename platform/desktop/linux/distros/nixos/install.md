@@ -109,5 +109,6 @@ nixos-generate-config --root "/mnt"
 
 ```shell
 nixos-install
-reboot
 ```
+
+- After rebooting, log in with root account and change the user password `passwd <user>`

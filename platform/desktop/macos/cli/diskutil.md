@@ -100,6 +100,14 @@ diskutil apfs deleteVolume disk0s0
 diskutil apfs deleteContainer disk0s0
 ```
 
+## resizeContainer
+
+- Expand a partition to use the resulting free space
+
+```shell
+diskutil apfs resizeContainer disk0s0 0
+```
+
 ### unlockVolume
 
 - Unlock and mount a volume
