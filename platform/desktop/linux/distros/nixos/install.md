@@ -14,7 +14,12 @@ iwctl
 [iwd] device list
 [iwd] station "wlan0" get-networks
 [iwd] station "wlan0" connect "ssid"
-ping "nixos.org" # test connection
+
+# test connection
+ping "nixos.org"
+
+# update clocks
+systemctl restart systemd-timesyncd
 ```
 
 ## Partitions
@@ -104,4 +109,5 @@ nixos-generate-config --root "/mnt"
 
 ```shell
 nixos-install
+reboot
 ```

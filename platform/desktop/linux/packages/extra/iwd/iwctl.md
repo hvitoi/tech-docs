@@ -15,5 +15,6 @@ iwctl
 ```shell
 iwctl
 [iwd] station "wlan0" get-networks
-[iwd] station "wlan0" connect "ssid"
+[iwd] station "wlan0" connect "ssid" # asks for passphrase
+[iwd] station "wlan0" show
 ```

@@ -9,7 +9,9 @@ iwctl
 [iwd] device list
 [iwd] station "wlp3s0" get-networks
 [iwd] station "wlp3s0" connect "ssid"
-ping "archlinux.org" # test connection
+
+# test connection
+ping "archlinux.org"
 ```
 
 ## Partitions
