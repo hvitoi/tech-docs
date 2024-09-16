@@ -2,10 +2,9 @@
 
 - Installation image: <https://archlinux.org/download/>
 
-## Connect to Wi-Fi
+## Wi-Fi
 
 ```shell
-# Connect to Wi-Fi
 iwctl
 [iwd] device list
 [iwd] station "wlp3s0" get-networks

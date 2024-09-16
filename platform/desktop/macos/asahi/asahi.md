@@ -35,17 +35,19 @@ curl -L https://alx.sh/dev | sh
 ## m1n1
 
 - It's a bridge between Apple's boot firmware (iBoot) and the Linux world
-- m1n1 is installed as a `faux macOS kernel` into a `stub macOS installation`.
+- m1n1 is installed as a `faux macOS kernel` into a **stub macOS installation**
+- The sub installation is by default created in a new APFS container, separate from your conventional macOS installs
+  - However, it's possible to move this volume into the container with your other macOS installs using the `asr` tool: <https://www.reddit.com/r/AsahiLinux/comments/1fhe5dz/>
+- A `LocalPolicy` needs to be created for the stub install (by using `bless` or `bputil`)
+  - This process is usually done by `Finish Installation.app` which is run in Recovery Mode (1TR) using the file `IAPhysicalMedia.plist` is present in the System volume
 
-### Stage 1
+- **m1n1 Stage 1**
+  - MacOS stub
 
-- MacOS stub
-
-### Stage 2
-
-- Provides a preboot environment
-- Loads to UEFI binary
-- Uses U-Boot by default
+- **m1n1 Stage 2**
+  - Provides a preboot environment
+  - Loads to UEFI binary
+  - Uses U-Boot by default
 
 ## U-Boot
 
