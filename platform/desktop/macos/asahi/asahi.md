@@ -63,3 +63,10 @@ env set boot_efi_bootmgr ; run bootcmd_usb0
 # enter boot menu
 bootmenu # select "usb 0" to boot from usb
 ```
+
+## Firmware
+
+- Non-free non-redistributable peripheral firmware files are required to use system hardware like Wi-Fi
+- The Asahi Linux installer grabs these from macOS and stores them on the EFI system partition when it is created
+  - `/mnt/boot/asahi/{all_firmware.tar.gz,kernelcache*}`
+- Some distro installers load these drivers from the EFI partition so that all hardware is available during installation
