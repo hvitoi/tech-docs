@@ -4,7 +4,6 @@
 - Options namings
   - `Options`
   - `Recovery mode`
-  - `1TR` (One True Recovery)
 - The UI is a prompt to choose:
   - `Restore from Time Machine`
   - `Reinstall macOS`
@@ -17,6 +16,8 @@
   - Press & Hold `Option` key and select "Options" (on Intel Macs: `Command-r Boot`)
   - Default app unlogged: "Recovery Assistant.app"
   - Default app logged user: "Recovery.app"
+- **1TR (One True Recovery)**
+  - .
 - **Apple Diagnostics**
   - `Command-d Boot`
   - Look for hardware issues

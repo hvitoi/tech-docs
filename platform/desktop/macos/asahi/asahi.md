@@ -6,7 +6,14 @@
 ## Installation
 
 ```shell
+# main
+curl -L https://alx.sh | sh
+
+# dev branch
 curl -L https://alx.sh/dev | sh
+
+# Clean up garbage boot policies
+curl -L https://alx.sh/cleanbp | sh
 ```
 
 ## Partition configuration

@@ -1,14 +1,14 @@
 # bputil
 
+- `Boot Policy Utility`
 - Modify security config
 
 ```shell
+# Display local policy. Asks for the VGID of the macos installation
+bputil -d
 
-# -d, --display-policy: Display the local policy. If the system has multiple bootable volumes, an interactive prompt will ask you to specify a volume
-
-#-v, --vuid <AABBCCDD-EEFF-0011-2233-445566778899>: Set the Volume Group UUID value If no option is specified, and there are multiple OS installations detected, an interactive prompt will request the UUID
-
-bputil -d -v
+# Changes security mode to "Reduced Security" (can only be run from Recovery Mode)
+bputil -g -u <admin_user> -v "AABBCCDD-EEFF-0011-2233-445566778899"
 ```
 
 ```shell
