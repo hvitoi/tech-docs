@@ -8,8 +8,12 @@ bless \
   --create-snapshot
 
 # set a system volume as default boot volume
-bless
+bless \
   --setBoot \
   --device /dev/disk0s0 \
   --user <admin_user>
+
+bless \
+  --setBoot \
+  --mount "/Volumes/Foo"
 ```

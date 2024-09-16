@@ -7,8 +7,12 @@
 # Display local policy. Asks for the VGID of the macos installation
 bputil -d
 
-# Changes security mode to "Reduced Security" (can only be run from Recovery Mode)
+# Changes security mode to "Reduced Security"
 bputil -g -u <admin_user> -v "AABBCCDD-EEFF-0011-2233-445566778899"
+
+# Changes security mode to "Permissive Security" (-n)
+# Disables the enforcement of the CTRR (Configurable Text Read-only Region) that protects Kernel code
+bputil -n -c -v "AABBCCDD-EEFF-0011-2233-445566778899"
 ```
 
 ```shell
