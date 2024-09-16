@@ -27,7 +27,7 @@ diskutil apfs unlock
 
 ```shell
 # Clone the sealed snapshot
-# Stub volumes do not have a snpashot
+# Stub volumes do not have a snapshot
 diskutil mount disk0s0
 diskutil apfs listsnapshots disk0s0 # get the snapshot UUID
 ```
