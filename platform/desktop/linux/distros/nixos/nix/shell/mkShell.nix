@@ -1,13 +1,13 @@
 # import nixpkgs package set
-{ pkgs ? import <nixpkgs> {} 
-}:
+{ pkgs ? import <nixpkgs> { } }:
 
-pkgs.mkShell { # mkShell is a helper function
-  name="dev-environment"; 
+pkgs.mkShell {
+  # mkShell is a helper function
+  name = "dev-environment";
 
   # list of pakcages to be installed in the virtual shell
-  buildInputs = [ 
-    pkgs.nodejs 
+  buildInputs = [
+    pkgs.nodejs
     pkgs.python3
   ];
   # Command to run when entering the environment
