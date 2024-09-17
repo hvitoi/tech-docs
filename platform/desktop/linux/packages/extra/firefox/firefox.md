@@ -7,6 +7,10 @@
 - `about:profiles`: all profiles
 - `about:config`: all config for a given profile
 
+### About:config
+
+- `browser.fullscreen.authide`: true
+
 ## Profile
 
 - Stored at `~/.mozilla/firefox/asdf.default/`
