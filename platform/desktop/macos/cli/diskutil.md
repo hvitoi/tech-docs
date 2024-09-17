@@ -61,9 +61,10 @@ diskutil listFilesystems
 ## eraseDisk
 
 - Erase a whole disk (not a partition)
+- Automatically adds a `EFI` partition in a `GPT` partition scheme
 
 ```shell
-diskutil eraseDisk free free /dev/disk0s0
+diskutil eraseDisk free free /dev/diskN
 ```
 
 ## eraseVolume
@@ -78,6 +79,12 @@ diskutil eraseVolume "APFS" "Untitled" "diskXsY"
 
 # Unallocated space
 diskutil eraseVolume free free disk0s5
+```
+
+## addPartition
+
+```shell
+diskutil addPartition diskN  "ExFAT" "MyVol" "10g"
 ```
 
 ## resizeVolume
