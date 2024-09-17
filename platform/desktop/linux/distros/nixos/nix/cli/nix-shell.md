@@ -58,13 +58,14 @@ nix-shell -p cowsay lolcat --run "cowsay Hey! | lolcat"
 - This way, only the provided packages are available inside of the shell
 
 ```shell
-nixshell -p git --pure
+nix-shell -p git --pure
 ```
 
 ## Nix Shell Scripts
 
 - Assure a reproducible script run
 - Leverages `shebang`
+- The `-i` flag indicates the interpreter for the rest of file
 
 ```shell
 #!/usr/bin/env nix-shell
