@@ -60,8 +60,10 @@ diskutil listFilesystems
 
 ## eraseDisk
 
+- Erase a whole disk (not a partition)
+
 ```shell
-diskutil eraseDisk %noformat% /dev/disk0s0
+diskutil eraseDisk free free /dev/disk0s0
 ```
 
 ## eraseVolume
@@ -78,6 +80,13 @@ diskutil eraseVolume "APFS" "Untitled" "diskXsY"
 diskutil eraseVolume free free disk0s5
 ```
 
+## resizeVolume
+
+```shell
+# Expand it to use all the free space ahead
+diskutil resizeVolume disk0s0 0
+```
+
 ## apfs
 
 ### list\*
@@ -92,6 +101,12 @@ diskutil apfs list
 diskutil apfs deleteVolume disk0s0
 ```
 
+### deleteVolumeGroup
+
+```shell
+diskutil apfs deleteVolumeGroup <UUID>
+```
+
 ### deleteContainer
 
 - Completely remove an APFS container making it `free space`
@@ -100,7 +115,7 @@ diskutil apfs deleteVolume disk0s0
 diskutil apfs deleteContainer disk0s0
 ```
 
-## resizeContainer
+### resizeContainer
 
 - Expand a partition to use the resulting free space
 

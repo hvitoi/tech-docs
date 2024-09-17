@@ -33,12 +33,14 @@ diskutil apfs listsnapshots disk0s0 # get the snapshot UUID
 ```
 
 ```shell
-# Clone stub OS without blessing
-# preserve the existing data and volumes inside the destination container and install the clone alongside it
+# Preserve the existing data and volumes inside the destination container and install the clone alongside it
 asr restore \
   --source /dev/disk0s0 \ # volume id (the system volume)
   --target /dev/disk0s0 \ # container id
   --no-personalization
-```
 
-- Right after the clone rename one or the one via `Disk Utility` (both System and Data)
+# Bless the stub volume in order to make it the default boot volume
+bless \
+  --setBoot \
+  --mount "/Volumes/Foo"
+```
