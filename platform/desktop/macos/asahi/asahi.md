@@ -104,7 +104,8 @@ Any changes to the `Apple Silicon Support Module` require a rebuild and reboot t
 You can also add the module as a channel. This way it will be upgraded in tandom with NixOS itself
 
 ```shell
-nix-channel --add https://github.com/tpwrules/nixos-apple-silicon/archive/main.tar.gz apple-silicon-support
+# must run as sudo so that channel is defined as root user
+sudo nix-channel --add https://github.com/tpwrules/nixos-apple-silicon/archive/main.tar.gz apple-silicon-support
 ```
 
 ```nix
@@ -117,7 +118,7 @@ imports =
 ```
 
 ```shell
-nix-channel --update
-nixos-rebuild switch
+sudo nix-channel --update
+sudo nixos-rebuild switch
 reboot
 ```

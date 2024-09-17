@@ -27,3 +27,9 @@ echo '+NUM' | sfdisk --move-data /dev/diskN -N 1
 # Move the 2nd partition by NUM sectors to the left
 echo '-NUM' | sfdisk --move-data /dev/diskN -N 2
 ```
+
+## resize
+
+```shell
+echo ", +" | sfdisk -N 1 /dev/diskN
+```
