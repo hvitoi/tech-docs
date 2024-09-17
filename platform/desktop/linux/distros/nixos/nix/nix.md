@@ -4,8 +4,10 @@
 
 ## Packages
 
-- <https://search.nixos.org/packages>
+- <https://search.nixos.org>
+- <https://status.nixos.org/>
 - <https://github.com/NixOS/nixpkgs>
+
 - Packages are installed at `/nix/store/`
 
 ```txt

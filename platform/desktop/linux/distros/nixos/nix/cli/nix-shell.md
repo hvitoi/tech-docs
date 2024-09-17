@@ -38,6 +38,8 @@ nix-shell -p cowsay lolcat
 ## path
 
 - Determine what to use as source for the packages
+- Pick the revision identifier at <https://status.nixos.org/>
+  - Pick either the latest release (e.g., `nixos-24.05`) or the unstable release (`nixos-unstable`)
 
 ```shell
 # Uses a specific git revision of nixpkgs
@@ -95,6 +97,9 @@ pkgs.mkShellNoCC {
 ```
 
 ```shell
-# picks the nix file from the current folder
+# implies "default.nix" or "shell.nix"
 nix-shell
+
+# explicit shell config
+nix-shell "my-shell.nix"
 ```
