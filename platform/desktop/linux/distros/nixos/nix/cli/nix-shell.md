@@ -42,6 +42,9 @@ nix-shell -p cowsay lolcat
 ```shell
 # Uses a specific git revision of nixpkgs
 nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/2a601aafdc5605a5133a2ca506a34a3a73377247.tar.gz
+
+# Pin to nixpkgs version
+nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/tarball/nixos-24.05
 ```
 
 ## run
@@ -74,4 +77,24 @@ nix-shell -p git --pure
 #! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/2a601aafdc5605a5133a2ca506a34a3a73377247.tar.gz
 
 curl https://github.com/NixOS/nixpkgs/releases.atom | xml2json | jq .
+```
+
+## Declarative Shell Environment
+
+- Define the environment declaratively as `shell.nix` file
+
+```nix
+{ pkgs ? import <nixpkgs> { } }:
+
+pkgs.mkShellNoCC {
+  packages = with pkgs; [
+    cowsay
+    lolcat
+  ];
+}
+```
+
+```shell
+# picks the nix file from the current folder
+nix-shell
 ```
