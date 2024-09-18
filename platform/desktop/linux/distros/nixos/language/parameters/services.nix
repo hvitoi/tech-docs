@@ -11,8 +11,19 @@
       xkb.layout = "us";
       xkb.options = "eurosign:e,caps:escape";
 
-      displayManager.autoLogin.enable = true;
-      displayManager.autoLogin.user = "john";
+      displayManager = {
+        # KDE
+        sddm.enable = true;
+
+        autoLogin.enable = true;
+        autoLogin.user = "john";
+
+      };
+
+      desktopManager = {
+        # KDE
+        plasma5.enable = true;
+      };
 
     };
 
@@ -33,5 +44,8 @@
 
     # Flatpak
     flatpak.enable = true;
+
+    # Plex
+    plex.enable = true;
   };
 }

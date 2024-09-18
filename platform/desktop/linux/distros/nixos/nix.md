@@ -27,6 +27,8 @@
 
 ## NixOS
 
+- Available NixOS options: <https://search.nixos.org/options>
+
 ### Filesystem
 
 - **/bin**

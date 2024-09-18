@@ -4,6 +4,12 @@
   boot = {
     loader = {
       systemd-boot.enable = true;
+
+      grub = {
+        enable = true;
+        device = "/dev/vda";
+        useOSProber = true;
+      };
       efi.canTouchEfiVariables = false;
     };
 
@@ -13,7 +19,10 @@
       kernelModules = [ ];
     };
 
-    kernelModules = [ ];
+    kernelModules = [
+      "kvm-intel"
+    ];
+
     extraModulePackages = [ ];
 
     extraModprobeConfig = ''

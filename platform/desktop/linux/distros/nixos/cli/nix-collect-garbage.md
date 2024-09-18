@@ -1,6 +1,6 @@
 # nix-collect-garbage
 
-- Cleanup stored occupied by packages launched in nix shell
+- Clean up used package versions from nix store
 
 ```shell
 nix-collect-garbage
