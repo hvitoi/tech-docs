@@ -1,12 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  hardware.pulseaudio.enable = true;
-
-  # Asahi Linux
   hardware = {
+    bluetooth = {
+      bluetooth.enable = true;
+      bluetooth.powerOnBoot = true;
+    };
+
+    pulseaudio.enable = true;
+
+    # Asahi Linux
     asahi = {
       enable = true;
       peripheralFirmwareDirectory = ./firmware;
@@ -15,5 +18,4 @@
       setupAsahiSound = true;
     };
   };
-
 }

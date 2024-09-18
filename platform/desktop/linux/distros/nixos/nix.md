@@ -1,5 +1,9 @@
 # Nix Ecosystem
 
+- Written in 2003 by Eelco Dolstra in his PhD thesis
+
+## Pieces
+
 - **Nix**
   - The functional package manager
 
@@ -32,6 +36,7 @@
 ### Nix Store
 
 - Packages are installed at `/nix/store/`
+- Each path has a unique SHA-256 hash
 
 ```txt
 ├── /nix/store/lgr3n0573wi478bj456zggh541wjrbiw-git-2.46.0

@@ -5,7 +5,7 @@
     firefox.enable = true;
     git.enable = true;
     fish.enable = true;
-    programs.gnupg.agent = {
+    gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };

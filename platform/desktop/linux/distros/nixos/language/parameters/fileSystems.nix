@@ -1,7 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  # mount the root filesystem
+  # mount filesystems
   # the device must be already unlocked
   # check boot.initrd.luks options for unlocking
   fileSystems = {
