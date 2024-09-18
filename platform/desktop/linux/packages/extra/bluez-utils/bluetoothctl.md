@@ -79,44 +79,33 @@ bluetoothctl untrust "mac-add"
 
 - Bluetooth info is stored at `/var/lib/bluetooth/<controller-id>/<device-id>/info`
 - This bluetooth connection keys must be the same across the OS's
-- Info
-  - **LinkKey**: conventional bluetooth devices
-  - **IdentityResolvingKey** (Remote IRK): BLE
-  - **PeripheralLongTermKey** (Long-term Key): BLE
-  - **SlaveLongTermKey** (Long-term Key): BLE
 
-### MacOS
+- _Conventional bluetooth devices_
+  - **LinkKey**
+
+- _BLE devices_
+  - **IdentityResolvingKey** (Remote IRK)
+  - **PeripheralLongTermKey** (Long-term Key)
+  - **SlaveLongTermKey** (Long-term Key)
+
+### Alongside MacOS
 
 - Access `Keychain access`
 - Search for "bluetooth"
-- Conventional bluetooth
+
+- _Conventional bluetooth devices_
   - Show up as `MobileBluetooth`
-- BLE bluetooth
+
+- _BLE devices_
   - Show up as an `UUID`
   - These devices generate an increasing UUID on each pairing. In that case, get the exact UUID on MacOS and rename the folder on linux
+  - Long-term Key and Remote IRK are base64 encoded, use the command below to convert it
 
 ```shell
 # Decode keys from base64 into hex
 echo -n "mykeybase64" | base64 -d | od -t x1 -An | tr -d ' ' | tr "[a-z]" "[A-Z]"
 ```
 
-### Windows
+### Alongside Windows
 
 - Get the keys with `chntpw`
-
-## Connecting
-
-```shell
-btmgmt power off
-btmgmt privacy on
-btmgmt power on
-bluetoothctl
-> scan on
-(turn on the device and enter pairing mode, wait for it to be detected)
-> scan off
-> pair <address>
-> connect <address>
-> trust <address>
-(power-cycle the device)
-[agent] Accept pairing (yes/no): yes
-```

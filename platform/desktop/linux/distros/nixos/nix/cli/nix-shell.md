@@ -2,6 +2,7 @@
 
 - Chroot into a virtual environment with the packages your wish
 - Next shells can be nested adding more packages
+- References the package files directly from nix-store
 
 ```shell
 nix-shell

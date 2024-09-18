@@ -1,4 +1,4 @@
-# Nix
+# Nix Ecosystem
 
 - **Nix**
   - The functional package manager
