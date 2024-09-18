@@ -1,5 +1,7 @@
 # nix-env
 
+- A package manager! Packages installed via nix-env are installed for the current user only
+- Not particularly useful on NixOS systems in which you will either install via config file or launch a nix-shell
 - `User environment`: is a view of a set of installed nix applications
 
 ## install
