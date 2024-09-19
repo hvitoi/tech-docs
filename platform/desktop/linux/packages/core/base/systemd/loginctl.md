@@ -27,3 +27,5 @@ HandlePowerKey=lock
 IdleAction=lock
 #IdleActionSec=1min
 ```
+
+- The environment variable `LIBSEAT_BACKEND=logind` can be defined to specify the login manager
