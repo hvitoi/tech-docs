@@ -147,9 +147,9 @@ auth       optional   pam_exec.so expose_authtok /etc/pam_cryptsetup.sh
 ```shell
 #!/usr/bin/env bash
 
-CRYPT_USER="myuser"
+CRYPT_USER="hvitoi"
 PARTITION="/dev/sdx"
-NAME="foo"
+NAME="moon"
 
 if [[ "$PAM_USER" == "$CRYPT_USER" && ! -e "/dev/mapper/$NAME" ]]; then
     /usr/bin/cryptsetup open "$PARTITION" "$NAME" --allow-discards
