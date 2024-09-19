@@ -8,6 +8,7 @@
 tree
 
 # Specific folder
+# The folder also appear in the output
 tree <folder>
 
 # Depth
