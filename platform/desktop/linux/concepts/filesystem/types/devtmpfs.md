@@ -86,3 +86,10 @@ SUBSYSTEM=="drm", ENV{ID_PATH}=="pci-0000:0e:00.0", TAG+="mutter-device-preferre
 # If a env is define then take the run a command
 ENV{SOME_ENV}=="?*" IMPORT{program}="ls -la"
 ```
+
+```conf
+# /etc/udev/rules.d/61-gpu.rules
+KERNEL=="card?", SUBSYSTEM=="drm", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x3e9b", SYMLINK+="dri/by-name/intel-uhd-graphics-630"
+KERNEL=="card?", SUBSYSTEM=="drm", ATTRS{vendor}=="0x1002", ATTRS{device}=="0x7340", SYMLINK+="dri/by-name/amd-radeon-pro-5500m", ATTR{device/power_dpm_force_performance_level}="low"
+KERNEL=="card?", SUBSYSTEM=="drm", ATTRS{vendor}=="0x1002", ATTRS{device}=="0x73ff", SYMLINK+="dri/by-name/amd-radeon-rx-6600-xt", TAG+="mutter-device-preferred-primary"
+```

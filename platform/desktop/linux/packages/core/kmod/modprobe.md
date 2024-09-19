@@ -49,7 +49,7 @@ v4l2loopback
 
 ```conf
 # e.g., /etc/modprobe.d/v4l2loopback.conf
-options v4l2loopback exclusive_caps=1
+options v4l2loopback exclusive_caps=1 foo=bar
 ```
 
 ### udev

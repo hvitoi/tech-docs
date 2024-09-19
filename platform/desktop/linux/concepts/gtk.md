@@ -6,25 +6,24 @@
 
 ## Configuration
 
-- **Dark Mode**
+### GTK3
 
-- For GTK3 apps
-
-```conf
-# Force GTK3 dark mode (not recommended)
-GTK_THEME=Adwaita:dark
+```shell
+# Force GTK3 dark mode using environment variable (not recommended)
+GTK_THEME="Adwaita:dark" nautilus
 ```
 
 ```ini
 # /etc/gtk-3.0/settings.ini
+# ~/.config/gtk-3.0/settings.ini
 [Settings]
 gtk-application-prefer-dark-theme = true
 ```
 
-- For GTK4 apps
+### GTK4
 
 ```shell
 gsettings set \
   org.gnome.desktop.interface \
-  color-scheme prefer-dark # dark mode
+  color-scheme prefer-dark
 ```

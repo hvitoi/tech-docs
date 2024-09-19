@@ -26,6 +26,13 @@ cpupower frequency-set -g "powersave"
 cpupower frequency-set -g "performance"
 ```
 
+## Configuration
+
+```conf
+# /etc/default/cpupower
+max_freq='2.8GHz'
+```
+
 ## /proc/cpuinfo
 
 ```shell

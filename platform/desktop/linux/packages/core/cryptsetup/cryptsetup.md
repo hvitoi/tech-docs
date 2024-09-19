@@ -116,13 +116,16 @@ cryptsetup luksUUID "/dev/sdx"
 blkid "/dev/mapper/my-storage"
 ```
 
-```crypttab
+```conf
+# /etc/crypttab
 moon UUID=692e7b5c-5c92-4fd3-8822-97b0355c0941 none luks
+moon LABEL=MOON_CRYPT /etc/cryptsetup-keys.d/moon.key noauto
 ```
 
 - Suggest to store the key files at `/etc/cryptsetup-keys.d/`
 
-```fstab
+```conf
+# /etc/fstab
 /dev/mapper/moon  /media/hvitoi/moon  exfat defaults,uid=1000  0 2
 ```
 
@@ -130,71 +133,71 @@ moon UUID=692e7b5c-5c92-4fd3-8822-97b0355c0941 none luks
 
 - It is possible to configure `PAM` and `systemd` to automatically mount a dm-crypt encrypted home partition when its owner logs in, and to unmount it when they log out
 
-- **To unlock at login**
+### To unlock at login
 
-  - Edit `/etc/pam.d/system-login`
+- Edit `/etc/pam.d/system-login`
 
-  ```conf
-  auth       include    system-auth
-  auth       optional   pam_exec.so expose_authtok /etc/pam_cryptsetup.sh
-  ```
+```conf
+auth       include    system-auth
+auth       optional   pam_exec.so expose_authtok /etc/pam_cryptsetup.sh
+```
 
-  - Create the script `/etc/pam_cryptsetup.sh` and make it executable `chmod +x script.sh`
+- Create the script `/etc/pam_cryptsetup.sh` and make it executable `chmod +x script.sh`
 
-  ```shell
-  #!/usr/bin/env bash
+```shell
+#!/usr/bin/env bash
 
-  CRYPT_USER="hvitoi"
-  PARTITION="/dev/sdx"
-  NAME="moon"
+CRYPT_USER="myuser"
+PARTITION="/dev/sdx"
+NAME="foo"
 
-  if [[ "$PAM_USER" == "$CRYPT_USER" && ! -e "/dev/mapper/$NAME" ]]; then
-      /usr/bin/cryptsetup open "$PARTITION" "$NAME" --allow-discards
-  fi
-  ```
+if [[ "$PAM_USER" == "$CRYPT_USER" && ! -e "/dev/mapper/$NAME" ]]; then
+    /usr/bin/cryptsetup open "$PARTITION" "$NAME" --allow-discards
+fi
+```
 
-- **To mount/unmount at login/logout**
+### To mount/unmount at login/logout
 
-  - Create file `/etc/systemd/system/media-hvitoi-moon.mount`
-  - Enable it `systemctl enable media-hvitoi-moon.mount`
+- Create file `/etc/systemd/system/media-hvitoi-moon.mount`
+- Enable it `systemctl enable media-hvitoi-moon.mount`
 
-  ```conf
-  [Unit]
-  Requires=user@1000.service
-  Before=user@1000.service
+```conf
+[Unit]
+Requires=user@1000.service
+Before=user@1000.service
 
-  [Mount]
-  Where=/media/hvitoi/moon
-  What=/dev/mapper/moon
-  Type=ext4
-  Options=defaults,relatime
+[Mount]
+Where=/media/hvitoi/moon
+What=/dev/mapper/moon
+Type=ext4
+Options=defaults,relatime
 
-  [Install]
-  RequiredBy=user@1000.service
-  ```
+[Install]
+RequiredBy=user@1000.service
+```
 
-- **To lock at logout**
+### To lock at logout
 
-  - Create file `/etc/systemd/system/cryptsetup-hvitoi.service`
-  - Enable it `systemctl enable cryptsetup-hvitoi.service`
+- Create file `/etc/systemd/system/cryptsetup-hvitoi.service`
+- Enable it `systemctl enable cryptsetup-hvitoi.service`
 
-  ```conf
-  [Unit]
-  DefaultDependencies=no
-  BindsTo=dev-sda.device
-  After=dev-sda.device
-  BindsTo=dev-mapper-moon.device
-  Requires=media-hvitoi-moon.mount
-  Before=media-hvitoi-moon.mount
-  Conflicts=umount.target
-  Before=umount.target
+```conf
+[Unit]
+DefaultDependencies=no
+BindsTo=dev-sda.device
+After=dev-sda.device
+BindsTo=dev-mapper-moon.device
+Requires=media-hvitoi-moon.mount
+Before=media-hvitoi-moon.mount
+Conflicts=umount.target
+Before=umount.target
 
-  [Service]
-  Type=oneshot
-  RemainAfterExit=yes
-  TimeoutSec=0
-  ExecStop=/usr/bin/cryptsetup close moon
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=0
+ExecStop=/usr/bin/cryptsetup close moon
 
-  [Install]
-  RequiredBy=dev-mapper-moon.device
-  ```
+[Install]
+RequiredBy=dev-mapper-moon.device
+```

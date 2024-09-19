@@ -23,6 +23,14 @@ NoDisplay=true
 X-GNOME-Autostart-Phase=DisplayServer
 ```
 
+## SDDM
+
+```conf
+# /etc/sddm/sddm.conf.d/sddm.conf
+[General]
+DisplayServer=wayland
+```
+
 ## LightDM
 
 - Support launching Wayland compositors, but the display manager itself runs on Xorg
@@ -33,4 +41,19 @@ pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 
 ```shell
 systemctl enable lightdm
+```
+
+## Greetd
+
+```conf
+# /etc/greetd/config.toml
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --remember --remember-session"
+
+[initial_session]
+command = "sh -c 'sleep 10 && Hyprland'"
+user = "hv"
 ```
