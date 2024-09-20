@@ -41,6 +41,7 @@ fdisk "/dev/sdx"
 
 # Make the swap
 mkswap "/dev/sdc"
+mkswap -L swap /dev/sda2 # with label
 
 # Activate swap
 swapon "/dev/sdc"

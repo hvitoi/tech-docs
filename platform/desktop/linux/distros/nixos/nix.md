@@ -1,6 +1,10 @@
 # Nix Ecosystem
 
 - Written in 2003 by Eelco Dolstra in his PhD thesis
+- <https://status.nixos.org/>
+- <https://search.nixos.org>
+- <https://nixos.org/manual/nixos/>
+- <https://nix.dev/>
 
 ## Pieces
 
@@ -21,8 +25,7 @@
 ## Nix Package Manager
 
 - Nix configuration at `/etc/nix/nix.conf`
-- <https://search.nixos.org>
-- <https://status.nixos.org/>
+
 - <https://github.com/NixOS/nixpkgs>
 
 ## NixOS

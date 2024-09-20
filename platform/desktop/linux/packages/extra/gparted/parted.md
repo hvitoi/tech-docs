@@ -26,32 +26,39 @@ parted "/dev/sda" resizepart
 
 ```shell
 # GPT
-parted "/dev/sda" -- mklabel "gpt"
+parted "/dev/sda" -- \
+  mklabel "gpt"
 
 # MSDOS (MBR)
-parted "/dev/sda" -- mklabel "msdos"
+parted "/dev/sda" -- \
+  mklabel "msdos"
 ```
 
 ## mkpart
 
 ```shell
-# root partition
-parted "/dev/sda" \
-  -- \
-  mkpart primary 512MB -8GB
+# root partition (GPT)
+parted /dev/sda -- \
+  mkpart root ext4 512MB -8GB
 
-# swap partition
-parted "/dev/sda" \
-  -- \
+# root partition (MBR)
+parted "/dev/sda" -- \
+  mkpart primary 512MB -8GB
+parted /dev/sda -- set 1 boot on
+
+# swap partition (GPT)
+parted /dev/sda -- \
+  mkpart swap linux-swap -8GB 100%
+
+# swap partition (MBR)
+parted "/dev/sda" -- \
   mkpart primary linux-swap -8GB 100%
 
 # boot partition
-parted "/dev/sda"
-  \ -- \
+parted "/dev/sda" -- \
   mkpart ESP fat32 1MB 512MB
 
-parted "/dev/sda" \
-  -- \
+parted "/dev/sda" -- \
   set 3 esp on
 ```
 
@@ -59,12 +66,10 @@ parted "/dev/sda" \
 
 ```shell
 # set partition 1 as the boot partition
-parted "/dev/sda" \
-  -- \
+parted "/dev/sda" -- \
   set 1 boot on
 
 # set partition 3 as the esp partition
-parted "/dev/sda" \
-  -- \
+parted "/dev/sda" -- \
   set 3 esp on
 ```
