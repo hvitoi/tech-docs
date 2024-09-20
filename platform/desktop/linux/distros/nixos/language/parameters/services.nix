@@ -8,23 +8,26 @@
       enable = true;
 
       # Configure keymap in X11
-      xkb.layout = "us";
-      xkb.options = "eurosign:e,caps:escape";
+      # Get all available parameters with cat $(nix-build --no-out-link '<nixpkgs>' -A xkeyboard_config)/etc/X11/xkb/rules/base.lst
+      xkb = {
+        layout = "us,br";
+        variant = "intl";
+        options = "grp:win_space_toggle";
+      };
 
       displayManager = {
-        # KDE
         sddm.enable = true;
-
-        autoLogin.enable = true;
-        autoLogin.user = "john";
-
       };
 
       desktopManager = {
-        # KDE
         plasma5.enable = true;
       };
 
+    };
+
+    displayManager = {
+      autoLogin.enable = true;
+      autoLogin.user = "hv";
     };
 
     # Enable CUPS to print documents
