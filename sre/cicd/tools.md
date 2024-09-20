@@ -1,4 +1,4 @@
-# CI/CD Tools
+# Continuous Integration & Delivery
 
 - `Jenkins`: time-proof pipeline solution. Bottle tested
 - `Tekton`: similar to argo. Cloud native

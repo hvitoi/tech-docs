@@ -70,3 +70,8 @@
   - `AWS Lightsail`: aws alternative. Very simple
   - `AWS ECS`: AWS ECS (with or without Fargate). Competitor of Kubernetes
   - `AWS Lambda`: function runner (also runs container images)
+
+## Infrastructure & Service Management
+
+- `Cluster API`: control plane to manage kubernetes resources
+- `Eksctl`: for kubernetes clusters in AWS EKS only
