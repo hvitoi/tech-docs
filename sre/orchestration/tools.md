@@ -1,11 +1,5 @@
 # Container Tools
 
-- `Docker`: pioneer, but bloated
-- `Buildx`: build images only. Runs as a daemon
-- `Kaniko`: build container images remotely in a cluster as a container
-- `Shipwright`: wrapper around other tools to build container images
-- `Nerdctl`: born out of containerd project. Build container images
-
 ## Kubernetes Cluster
 
 - `EKS`: great, but always behind
@@ -75,3 +69,8 @@
 
 - `Cluster API`: control plane to manage kubernetes resources
 - `Eksctl`: for kubernetes clusters in AWS EKS only
+
+## Image Build
+
+- `Kaniko`: build container images remotely in a cluster as a container
+- `Shipwright`: wrapper around other tools to build container images
