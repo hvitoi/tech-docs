@@ -71,3 +71,11 @@ podman machine stop
 ```shell
 podman machine rm <vm>
 ```
+
+## Multi-arch support
+
+Running container images built for a different CPU architecture
+
+```shell
+podman container run -it --arch=amd64 docker.io/archlinux
+```

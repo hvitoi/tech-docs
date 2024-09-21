@@ -2,7 +2,8 @@
 
 ## connection
 
+- Show connections with the remote APIs or VMs
+
 ```shell
-# Show connections with remote API (or VMs)
 podman system connection list
 ```
