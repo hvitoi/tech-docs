@@ -11,7 +11,7 @@
 - `Volume Name`: the "LABEL"
 - `Volume UUID`: the "UUID"
 
-## Chracteristics
+## Characteristics
 
 - **Space sharing**
 

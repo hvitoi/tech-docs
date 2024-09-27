@@ -43,10 +43,8 @@ curl -L https://alx.sh/cleanbp | sh
 
 - It's a bridge between Apple's boot firmware (iBoot) and the Linux world
 - m1n1 is installed as a `faux macOS kernel` into a **stub macOS installation**
-- The sub installation is by default created in a new APFS container, separate from your conventional macOS installs
-  - However, it's possible to move this volume into the container with your other macOS installs using the `asr` tool: <https://www.reddit.com/r/AsahiLinux/comments/1fhe5dz/>
-- A `LocalPolicy` needs to be created for the stub install (by using `bless` or `bputil`)
-  - This process is usually done by `Finish Installation.app` which is run in Recovery Mode (1TR) using the file `IAPhysicalMedia.plist` is present in the System volume
+- The sub installation is by default created in a new APFS container, separate from your conventional macOS installs. It's also possible to move this volume into the container with your other macOS installs using the `asr` tool: <https://www.reddit.com/r/AsahiLinux/comments/1fhe5dz/>
+- This process is usually done by `Finish Installation.app` which is run in Recovery Mode (1TR) which is automatically run on the first recovery boot
 
 - **m1n1 Stage 1**
   - MacOS stub
