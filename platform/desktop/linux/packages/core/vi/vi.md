@@ -6,10 +6,9 @@
 
 ## Modes
 
-- **Normal Mode**: `Esc`
+- **Command Mode**: `Esc`
 - **Insert Mode**: `i`
 - **Visual Mode**: `v`
-- **Command Mode**: `:`
 
 ## Movement
 

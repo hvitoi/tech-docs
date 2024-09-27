@@ -1,6 +1,8 @@
 # emacs
 
 - GNU Emacs
+- Stands for "Editor Macros"
+- Created by Guy Steele in 1976
 
 ```shell
 # Start emacs as a process (not as a client)
