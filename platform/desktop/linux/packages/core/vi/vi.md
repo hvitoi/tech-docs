@@ -6,9 +6,10 @@
 
 ## Modes
 
-- **Command Mode**: `Esc`
+- **Normal Mode**: `Esc`
 - **Insert Mode**: `i`
 - **Visual Mode**: `v`
+- **Command Mode**: `:`
 
 ## Movement
 
@@ -153,13 +154,18 @@
 
 ## Focus
 
-- `z` + `z`: Focus the current line (middle)
-- `z` + `t`: Focus the current line (top)
+- `z + z`: Focus the current line (middle)
+- `z + t`: Focus the current line (top)
+
+## Macro
+
+- `q + q`: record a macro. `q` again to stop macro recording
+- `@ + q`: use the recorded macro
 
 ## Quit
 
-- `Z` + `Z`: Save and Quit
-- `Z` + `Q`: Quit without saving
+- `Shift + Z + Z`: Save and Quit
+- `Shift + Z + Q`: Quit without saving
 
 ## Search
 
@@ -171,39 +177,68 @@
 
 ## Commands
 
-- Enter `:` for command mode
+### q
+
+- `q`: quit
+
+### w
 
 - `:w`: save file
 - `:w!`: save file (force)
 - `:w !sudo tee %`: save file with sudo
-
-- `:e ~/file.txt`: open a file
-- `:q`: quit
 - `:x`: save and quit
 
-- `:!`: execute any shell command
-- `:!ls`: execute any shell command
-- `:!ps -ef`: execute any shell command
-
-- `:sort`: sort the text selected
-
-- `:earlier 5m`: go to the state 5 minutes before
-- `:later 5m`: go to the state 5 minutes after
+### s
 
 - `:s/old/new`: replace first occurrence (only applicable for the current line)
 - `:s/old/new/c`: prompts the substitute or not
 - `:s/old/new/g`: replace all occurrences within the line
 - `:%s/old/new/g`: replace all occurrences throughout the document
 
+### r
+
+- `:r !command`" paste output from a command
+
+### e
+
+- `:e ~/.vimrc`: start editing config file
+- `:e ~/file.txt`: open a file
+
+### \\
+
+- `:!`: execute any shell command
+- `:!ls`: execute any shell command
+- `:!ps -ef`: execute any shell command
+
+### sort
+
+- `:sort`: sort the text selected
+
+### earlier
+
+- `:earlier 5m`: go to the state 5 minutes before
+
+### later
+
+- `:later 5m`: go to the state 5 minutes after
+
+### norm
+
 - `:norm .`: executes period (last command) for all lines selected
+
+### set
 
 - `:set hls`: set a variable called "hls" (highlight search)
 - `:set ic`: set a variable called "ic" (ignore case)
 - `:set paste`: allow paste from clipboard
 
-- `:r !command`" paste output from a command
+### healthcheck
+
+- `:healthcheck`
+
+### help
 
 - `:help`
+- `:help nvim`
+- `:help news`
 - `:help rtp`: runtimepath help
-
-- `:e ~/.vimrc`: start editing config file

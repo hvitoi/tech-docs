@@ -8,13 +8,6 @@
 brew install neovim
 ```
 
-## Netrw
-
-- Default filetree explorer
-
-- `%`: create new file
-- `d`: create new directory
-
 ## Scripting
 
 - Scripting can be done using `vim script` or `lua`
@@ -29,10 +22,15 @@ require("myfile") -- ~/.config/nvim/lua/myfile
 print("hello")
 ```
 
-## Config
+### Meta-accessors
+
+- Functions that expose vim's low level APIs to the Lua runtime
 
 ```lua
--- Options
+-- Command
+vim.cmd("set tabstop=2")
+
+-- Option
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
@@ -43,18 +41,28 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 ```
 
+## Netrw
+
+- Default filetree explorer
+
+- `%`: create new file
+- `d`: create new directory
+
 ## LSP Client
 
 - It's LSP client is written in Lua
 
 ## Plugin Manager
 
-- `lazy.nvim` is the most common plugin manager for vim
-- <https://github.com/folke/lazy.nvim>
+- `lazy.nvim`
+  - It's the most common plugin manager for vim
+  - <https://github.com/folke/lazy.nvim>
+
+- `packer`
+  - Deprecated
 
 ## Packages
 
-- `packer`: Package Manager
 - `telescope`: fuzzy filesystem finder
 - `navarasu/onedark.nvim`
 - `nvim-tree/nvim-web-devicons`
