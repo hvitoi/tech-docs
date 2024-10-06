@@ -12,7 +12,7 @@ brew install neovim
 
 - **Init Script**
   - `~/.config/nvim/init.vim` (vim script)
-  - `~/.config/nvim/init.lua` (lua - preferred)
+  - `~/.config/nvim/init.lua` (lua)
 
 - From the init script you can require any other packages inside the `lua` directory
 

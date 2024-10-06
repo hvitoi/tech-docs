@@ -6,10 +6,11 @@
 
 ## Modes
 
-- **Normal Mode**: `Esc`
-- **Insert Mode**: `i`
-- **Visual Mode**: `v`
-- **Command Mode**: `:`
+- **Normal Mode**
+- **Insert Mode**
+- **Visual Mode**
+- **Command Mode**
+- **Replace Mode**
 
 ## Movement
 
@@ -49,6 +50,31 @@
 - `Ctrl` + `u`: half page up
 - `Ctrl` + `d`: half page down
 
+- **Movement powered**
+  - Commands can be added any number multiplier in front of it
+  - `<>[n][action/movement]`
+  - Examples
+    - 3w (next 3 words)
+    - 3igo (insert gogogo)
+    - dw deletes from cursor to beginning of next word
+    - d2e deletes from cursor to the end of next word
+
+- **Movement around**
+  - `<>aw`: for word
+  - `<>ap`: for paragraph
+  - `<>a(`: for parenthesis
+
+- **Movement inside**
+  - `<>iw`: for word
+  - `<>ip`: for paragraph
+  - `<>i(`: for parenthesis
+
+- **Movement until**
+  - `<>t/`: until the slash
+  - `<>t.`: until the dot
+
+> gg + 0 + v + G: selects the whole file
+
 ## Visual
 
 - In visual model, you select text using movement keys before you decide what to do with it
@@ -56,23 +82,7 @@
 - `v` stands for _visual selection_
 - `V`: selects the whole line
 
-- **Select around**
-  - `vaw`: for word
-  - `vap`: for paragraph
-  - `va(`: for parenthesis
-
-- **Select inside**
-  - `viw`: for word
-  - `vip`: for paragraph
-  - `vi(`: for parenthesis
-
-- **Select t**
-  - `vt/`: until the slash
-  - `vt.`: until the dot
-
 - `Ctrl+v`: block selection
-
-> gg + 0 + v + G: selects the whole file
 
 ## Insert
 
@@ -89,28 +99,13 @@
 
 ## Delete
 
+- Deleted text is registered in VIM (copied) so that it can be pasted afterwards
+
 - `x`: delete character under cursor
 - `X`: delete character to the left of cursor
 
 - `D`: delete until end of line
 - `dd`: delete the whole line
-
-- **Delete movement**
-  - `d[movement]`
-  - When combining with movement command it will delete all the way through
-  - Deleted text is registered in VIM (copied) so that it can be pasted afterwards
-  - E.g., dw deletes from cursor to beginning of next word
-  - E.g., d2e deletes from cursor to the end of next word
-
-- **Delete around**: delete around the borders (whitespaces, parenthesis, etc)
-  - `daw`: for word
-  - `dap`: for paragraph
-  - `da(`: for parenthesis
-
-- **Delete inside**: delete only inside the borders
-  - `diw`: for word
-  - `dip`: for paragraph
-  - `di(`: for parenthesis
 
 ## Change
 
@@ -121,15 +116,6 @@
 
 - `r[char]`: replace one character
 - `R`: replace mode (overwrite the text that's already there)
-
-## Number powered
-
-- Commands can be added any number multiplier in front of it
-- `[n][action/movement]`
-
-- Examples
-  - 3w (next 3 words)
-  - 3igo (insert gogogo)
 
 ## Yank (Copy)
 
