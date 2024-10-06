@@ -1,17 +1,39 @@
 # bash
 
-- Startup scripts
-  1. `~/.bash_profile`: entrypoint
-  1. `~/.bash_login`: executed only if bash_profile is not found
-  1. `~/.profile`: executed only if bash_login is not found
-  1. `~/.bashrc`: invoked from bash_profile/bash_login/bashrc
+## Startup scripts
+
+### User
+
+- **Generic**
+  - `~/.profile`: executed only if bash_login is not found
+
+- **Bash**
+  - `~/.bash_profile`: entrypoint
+  - `~/.bashrc`: invoked from bash_profile/bash_login/bashrc
+  - `~/.bash_login`: executed only if bash_profile is not found
+
+- **Zsh**
+  - `~/.zprofile`: similar to .bash_profile
+  - `~/.zshrc`: non-login
+  - `~/.zlogin`
+
+### System
+
+- **Generic**
+  - `/etc/environment`: parsed by pam_env module
+  - `/etc/profile`: also loads /etc/profile.d
+  - `/etc/profile.d/`: preferred folder for global variables
+
+- **Bash**
+  - `/etc/bashrc`
 
 ## Interactive Shells
 
-- **Interactive Shell** (Non-login shell)
+- **Interactive Shell** (_Non-login shell_)
   - Executes all the startup scripts
   - Example: a terminal emulator, a ssh
-- **Non-Interactive Shell** (Login shell)
+
+- **Non-Interactive Shell** (_Login shell_)
   - Does not execute any startup script
   - Example: executed from a script, child shells
 
@@ -27,22 +49,3 @@
 - `$PWD`: current directory
 - `$LANG`: system language configuration
 - `$HOME`: home directory
-
-## Environments
-
-### User
-
-- System
-  - `~/.profile`
-- Bash
-  - `~/.bashrc`
-  - `~/.bash_profile`
-
-### Global
-
-- System
-  - `/etc/environment`: parsed by pam_env module
-  - `/etc/profile`: also loads /etc/profile.d
-  - `/etc/profile.d/`: preferred folder for global variables
-- Bash
-  - `/etc/bashrc`

@@ -10,15 +10,16 @@ brew install neovim
 
 ## Scripting
 
-- Scripting can be done using `vim script` or `lua`
+- **Init Script**
+  - `~/.config/nvim/init.vim` (vim script)
+  - `~/.config/nvim/init.lua` (lua - preferred)
 
-- **Init Script**: `~/.config/nvim/init.vim` or `~/.config/nvim/init.lua`
 - From the init script you can require any other packages inside the `lua` directory
 
 ```lua
 -- ~/.config/nvim/init.lua
-require("mydir") -- ~/.config/nvim/lua/mydir/init.lua
-require("myfile") -- ~/.config/nvim/lua/myfile
+require("config.lazy") -- imports ~/.config/nvim/lua/config/lazy.lua
+require("config") -- imports ~/.config/nvim/lua/config/init.lua
 print("hello")
 ```
 
@@ -34,10 +35,13 @@ vim.cmd("set tabstop=2")
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
---
+-- g
 vim.g.mapleader = " "
 
--- Key mapping
+-- Function
+vim.fn.stdpath("data") -- ~/.local/share/nvim
+
+-- Key Mapping
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 ```
 
@@ -48,18 +52,17 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 - `%`: create new file
 - `d`: create new directory
 
+```conf
+:Explore
+```
+
+```conf
+vim.cmd("let g:netrw_liststyle = 3")
+```
+
 ## LSP Client
 
 - It's LSP client is written in Lua
-
-## Plugin Manager
-
-- `lazy.nvim`
-  - It's the most common plugin manager for vim
-  - <https://github.com/folke/lazy.nvim>
-
-- `packer`
-  - Deprecated
 
 ## Packages
 

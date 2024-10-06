@@ -66,6 +66,10 @@
   - `vip`: for paragraph
   - `vi(`: for parenthesis
 
+- **Select t**
+  - `vt/`: until the slash
+  - `vt.`: until the dot
+
 - `Ctrl+v`: block selection
 
 > gg + 0 + v + G: selects the whole file
@@ -139,7 +143,8 @@
 - Text to be pasted must in vim's register
 - vim does not have the ability from paste from you system clipboard
 
-- `p`
+- `p`: paste below the current line
+- `P`: paste above the current line
 
 ## Period
 
@@ -174,6 +179,12 @@
 
 - `n`: next occurrence
 - `N`: previous occurrence
+
+## Splitting
+
+- `<C-w>v`: Split window vertically
+- `<C-w>s`: Split window horizontally
+- `<C-w>=`: Make splits equal size
 
 ## Commands
 
@@ -232,6 +243,12 @@
 - `:set ic`: set a variable called "ic" (ignore case)
 - `:set paste`: allow paste from clipboard
 
+### source
+
+- Useful for loading new config right after changing it
+
+- `:source %`
+
 ### healthcheck
 
 - `:healthcheck`
@@ -242,3 +259,12 @@
 - `:help nvim`
 - `:help news`
 - `:help rtp`: runtimepath help
+
+### close
+
+```conf
+# closes the current window
+close
+```
+
+- `<cmd>close<CR>`: for keybindings
