@@ -1,6 +1,7 @@
 # fmt
 
+- Format all the code contained in the current directory
+
 ```shell
-# Format all the code contained in the current directory
 go fmt
 ```

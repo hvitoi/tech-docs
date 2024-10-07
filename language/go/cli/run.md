@@ -1,7 +1,8 @@
 # run
 
+- `Compiles` and immediately `executes` go code
+
 ```shell
-# Compile & execute go code
-go run "main.go"
-go run "main.go" "deck.go" # run multiple files
+go run main.go
+go run main.go deck.go # run multiple files
 ```

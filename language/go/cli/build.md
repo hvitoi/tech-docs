@@ -1,6 +1,8 @@
 # build
 
+- Just compile go code
+- Outputs a binary in the same directory that can be executed
+
 ```shell
-# Compile go code
-go build "main.go" # "main" executable generated can be run
+go build "main.go"
 ```

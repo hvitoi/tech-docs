@@ -1,9 +1,12 @@
 # Language Server Protocol
 
 - The `Language Server Protocol` (LSP) defines the protocol used between an editor and a language server that provides language features
-  - `Auto complete`
-  - `Go to definition`
+  - `autocomplete`
+  - `goto definition`
+  - `documentation on hover`
   - etc
+- <https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/>
+- Clients (development tools) communicate with the server using the language protocol over `JSON-RPC`
 
 ## Language Server
 

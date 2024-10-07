@@ -1,0 +1,174 @@
+// the launch configuration defines how to run and debug a code
+{
+  "version": "0.2.0",
+  "configurations": [
+    /**
+     * VARIABLES
+
+     * ${file}: absolute path of the currently opened file
+     * ${fileBasename}
+     * ${fileBasenameNoExtension}
+     * ${fileDirname}
+     * ${fileExtname}
+     * ${fileWorkspaceFolderBasename}
+
+     * ${workspaceFolder}: absolute path of the workspace directory
+     * ${workspaceFolderBasename}
+
+     * ${relativeFile}
+     * ${relativeFileDirname}
+
+     * ${cwd}
+     * ${extensionInstallFolder}
+     * ${defaultBuildTask}
+     * ${pathSeparator}
+     * ${lineNumber}
+     * ${selectedText}
+     */
+    {
+      /**
+       * Base options
+       */
+      "name": "Run file", // name as it appears on the debug view
+      "type": "...", // debugger type
+      "request": "launch", // launch or attach the debugger to a running process
+      "cwd": "${workspaceFolder}", // directory to cd into before running. If not specified, the "program" folder is used
+      "env": { // environment variables to pass to the program
+        "MY_ENV_VAR": "some_value"
+      },
+      "envFile": "${workspaceFolder}/.env", // path to a file containing environment variable definitions
+      "args": [ // command-line arguments to pass to the program being debugged
+        "arg1",
+        "arg2"
+      ],
+      "preLaunchTask": "build", // specifies a task (defined in tasks.json) that should be run before launching the program
+      "postDebugTask": "cleanup", // specifies a task to run after the debugging session ends
+      "console": "integratedTerminal", // Console to run the command ("internalConsole", "integratedTerminal", "externalTerminal")
+      "internalConsoleOptions": "openOnSessionStart", // Controls how the internal console is used
+      "windows": {}, // specific launch configs for windows
+      "linux": {}, // specific launch configs for linux
+      "osx": {}, // specific launch configs for macos
+      "presentation": { //how to show this config in the debug configuration dropdown and the command palette
+        "hidden": false,
+        "group": "",
+        "order": 1
+      },
+      "serverReadyAction": {
+        "action": "debugWithEdge"
+      },
+      "debugServer": 4711,
+      "stopOnEntry": false,
+      "suppressMultipleSessionWarning": true
+    },
+    {
+      /**
+       * Java options
+       */
+      "type": "java",
+      "classPaths": [],
+      "encoding": "UTF-8",
+      "javaExec": "",
+      "mainClass": "",
+      "modulePaths": [],
+      "projectName": "",
+      "shortenCommandLine": "argfile",
+      "sourcePaths": [],
+      "stepFilters": {},
+      "vmArgs": ""
+    },
+    {
+      /**
+       * Go options
+       */
+      "type": "go",
+      "mode": "debug",
+      "program": "${workspaceFolder}/main.go", // program to run
+      "output": "${workspaceFolder}/bin/mybinary", // output path for the compiled binary
+      "asRoot": false,
+      "showGlobalVariables": true,
+      "hideSystemGoroutines": false,
+      "substitutePath": [],
+      "showRegisters": false,
+      "stackTraceDepth": 50,
+      "trace": "info",
+      "traceDirPath": "",
+      "coreFilePath": "", // path to core dump file to open (core mode only)
+      "debugAdapter": "dlv-dap",
+      "dlvLoadConfig": {},
+      "host": "127.0.0.1",
+      "port": 9229,
+      "apiVersion": 2, // dlv flag --api-version
+      "showLog": false, // dlv flag --log
+      "logDest": "", // dlv flag --log-dest
+      "logOutput": "dap", // dlv flag --log-output
+      "buildFlags": "-tags=integration", // dlv flag --build-flags
+      "backend": "default", // dlv flag --backend
+      "dlvFlags": [] // additional dlv flags
+    },
+    {
+      /**
+       * Python options
+       */
+      "type": "debugpy",
+      "autoReload": {},
+      "debugAdapterPath": "",
+      "django": false,
+      "gevent": false,
+      "jinja": false,
+      "justMyCode": true,
+      "logToFile": false,
+      "module": "",
+      "pathMappings": [],
+      "purpose": [],
+      "pyramid": false,
+      "python": "${command:python.interpreterPath}",
+      "pythonArgs": [],
+      "redirectOutput": true,
+      "showReturnValue": true,
+      "subProcess": false,
+      "sudo": false,
+      "program": "${workspaceFolder}/main.py",
+      "autoStartBrowser": false,
+      "consoleName": "Python Debug Console",
+      "guiEventLoop": "matplotlib"
+    },
+    {
+      /**
+       * Node options
+       */
+      "type": "node",
+      "program": "${workspaceFolder}/index.js", // program to run
+      "timeout": 10000,
+      "autoAttachChildProcesses": true,
+      "cascadeTerminateToConfigurations": [],
+      "customDescriptionGenerator": "",
+      "trace": true,
+      "enableContentValidation": true,
+      "enableDWARF": true,
+      "localRoot": null,
+      "nodeVersionHint": 12,
+      "outFiles": [],
+      "outputCapture": "console",
+      "pauseForSourceMap": false,
+      "remoteRoot": null,
+      "resolveSourceMapLocations": [],
+      "restart": true,
+      "runtimeSourcemapPausePatterns": [],
+      "showAsyncStacks": true,
+      "skipFiles": [],
+      "smartStep": true,
+      "sourceMapPathOverrides": {},
+      "sourceMapRenames": true,
+      "sourceMaps": true,
+      "timeouts": {},
+      "attachSimplePort": 9229,
+      "experimentalNetworking": "auto",
+      "killBehavior": "forceful",
+      "profileStartup": true,
+      "runtimeArgs": [],
+      "runtimeExecutable": "node",
+      "runtimeVersion": "default",
+      "customPropertiesGenerator": ""
+    }
+  ]
+}

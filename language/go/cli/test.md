@@ -1,6 +1,6 @@
 # test
 
 ```shell
-# Run tests associated with the current project
+# Run tests associated with the project in cwd
 go test
 ```
