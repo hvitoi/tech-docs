@@ -1,21 +1,15 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": "Java: Main Class",
-    //   "type": "java",
-    //   "request": "launch",
-    //   "mainClass": "Main"
-    // },
     {
-      "name": "Run File",
+      "name": "Run file",
       "type": "java",
       "request": "launch",
       "cwd": "${fileDirname}",
+      "mainClass": "${fileBasename}",
       "classPaths": [
         ""
       ],
-      "mainClass": "${fileBasename}"
     }
   ]
 }
