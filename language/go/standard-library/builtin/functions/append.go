@@ -4,9 +4,7 @@ import "fmt"
 
 func main() {
 	letters := []string{"a", "b", "c"}
+	letters = append(letters, "d")
 
-	for i, el := range letters {
-		fmt.Println(i, el)
-	}
-
+	fmt.Println(letters)
 }

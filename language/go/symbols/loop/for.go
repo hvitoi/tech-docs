@@ -5,8 +5,8 @@ import "fmt"
 func main() {
 	letters := []string{"a", "b", "c"}
 
-	for i, el := range letters {
-		fmt.Println(i, el)
+	for i, letter := range letters {
+		fmt.Println(i, letter)
 	}
 
 }
