@@ -10,12 +10,12 @@ func Add(a, b int) int {
 }
 
 func main() {
-	fmt.Println(Add(5, 3))
+	fmt.Println(Add(1, 1))
 }
 
 func TestAdd(t *testing.T) {
-	result := Add(5, 3)
-	if result != 8 {
-		t.Errorf("Expected 8, but got %d", result)
+	result := Add(1, 1)
+	if result != 2 {
+		t.Errorf("Expected 2, but got %d", result)
 	}
 }
