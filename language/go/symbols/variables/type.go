@@ -7,6 +7,11 @@ import "fmt"
 // The type itself can be used to cast other types. E.g., deck([]string{"a", "b", "c"})
 type sliceOfIntegers []int
 
+type person struct {
+	firstName string
+	lastName  string
+}
+
 func main() {
 	numbers := sliceOfIntegers{1, 2, 3}
 	fmt.Println(numbers)
