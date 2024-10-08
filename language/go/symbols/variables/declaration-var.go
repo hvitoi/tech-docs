@@ -29,6 +29,6 @@ func main() {
 //   int    0
 //   float  0
 //   bool   false
-//   map    map[]
+//   nil is a pre-declared identifier representing the zero value for a pointer, channel, func, interface, map, or slice type.
 
 // for structs, each field is created with a zero values according to the data type

@@ -6,6 +6,7 @@ package main
 // An interface cannot be created a value directly out of it
 type bot interface {
 	getGreeting() string
+	// The interface can also "inherit" other interfaces (e.g., ReadCloser)
 }
 
 // There is no need to specify that english/spanish bots are part of the "bot" interface. It's implicitly inferred because they implement the getGreeting function

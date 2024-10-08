@@ -8,4 +8,9 @@ func main() {
 	// var colors map[string]string // same!
 
 	println(colors)
+
+	// an empty byte slice of size 99999
+	bs := make([]byte, 99999)
+	println(bs)
+
 }
