@@ -6,5 +6,6 @@ import (
 
 func main() {
 	letters := []string{"a", "b", "c"}
-	strings.Join(letters, ",")
+	joined := strings.Join(letters, ",")
+	println(joined)
 }

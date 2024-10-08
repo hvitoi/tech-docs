@@ -1,7 +1,10 @@
 package main
 
+import "fmt"
+
 // Create a new type (a slice of string)
 // the new type extends all the behaviors of slice of strings
+// The type itself can be used to cast other types. E.g., deck([]string{"a", "b", "c"})
 type deck []string
 
 func fullDeck() deck {
@@ -20,5 +23,5 @@ func fullDeck() deck {
 }
 
 func main() {
-	print(len(fullDeck())) // a full deck contains 52 cards
+	fmt.Println(fullDeck())
 }
