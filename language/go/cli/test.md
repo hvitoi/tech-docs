@@ -1,8 +1,8 @@
 # test
 
-- Test files are defined with `*_test.go` suffix
-- In order to run tests you need `go.mod` file that defines your module (your project)
-- When running tests, the main functions are ignored. Only the `TestXxx(t *testing.T)` functions are executed
+- Test files are defined with `*_test.go` suffix. Files that do not obey this pattern will not be executed as tests.
+- When running tests, only the `TestXxx(t *testing.T)` functions are executed
+- In order to run module-wide tests you need `go.mod` file that defines your module (your project)
 
 ```shell
 # Run tests for the current module
@@ -11,8 +11,8 @@ go test
 # Run tests for a module
 go test github.com/hvitoi/playground
 
-# Run tests for a file (even if it does not contain the test suffix)
-go test yourfile.go
+# Run tests for a file
+go test file_test.go
 
 # timeout
 go test -timeout 30s
