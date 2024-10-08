@@ -7,6 +7,9 @@ func main() {
 	for i, letter := range letters {
 		println(i, letter)
 	}
+	for i := range letters { // only the index
+		println(i)
+	}
 
 	// traditional for
 	for i := 0; i < len(letters); i++ {

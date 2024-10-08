@@ -45,4 +45,10 @@ func colonEqualSyntax() {
 	println(a)
 	println(b)
 
+	// Swap variables
+	x, y := 1, 2
+	y, x = x, y
+	println(x)
+	println(y)
+
 }
