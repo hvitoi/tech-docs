@@ -29,5 +29,6 @@ func main() {
 //   int    0
 //   float  0
 //   bool   false
+//   map    map[]
 
 // for structs, each field is created with a zero values according to the data type
