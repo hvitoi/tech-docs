@@ -16,4 +16,9 @@ func main() {
 		println(i, letters[i])
 	}
 
+	// infinite loop
+	for {
+		println("Hello!")
+	}
+
 }

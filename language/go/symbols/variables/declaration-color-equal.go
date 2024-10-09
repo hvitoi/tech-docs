@@ -1,5 +1,7 @@
 package main
 
+// Go is a `static typed` language (just like c++ and java)
+
 func main() {
 	// "color-equal" syntax can be used only inside of functions
 	// It always eaves to the compiler to infer the data type (not possible to set it explicitly)

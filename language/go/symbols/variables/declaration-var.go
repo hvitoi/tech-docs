@@ -1,5 +1,7 @@
 package main
 
+// Go is a `static typed` language (just like c++ and java)
+
 func main() {
 	// "var" syntax can be used inside and outside of functions
 
