@@ -57,6 +57,6 @@ func main() {
 	Add(1, 1.5)
 
 	// generics
-	result := MapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // inline function
+	result := MapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // function literal
 	fmt.Println(result)
 }
