@@ -4,6 +4,7 @@
 - `Tekton`: similar to argo. Cloud native
 - `Argo Workflows + Argo Events`: pipelines cloud-native way
 - `Github Actions`: easy and great
+- `Gitlab CI`
 - `Circle CI`: pipeline as a service. Independent of big vendors
 - `Code Fresh`: runs Argo Workflows
 - `Devtron`: collection of tools

@@ -11,3 +11,6 @@
 - `Nerdctl`
   - Docker-compatible CLI for containerd
   - Build images too
+
+- `CRI-o`
+- `Containerd`

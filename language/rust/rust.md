@@ -2,6 +2,7 @@
 
 - No garbage collector (fast runtime)
 - Memory safety
+- Course: <https://www.youtube.com/watch?v=BpPEoZW5IiY>
 
 ## Crate
 

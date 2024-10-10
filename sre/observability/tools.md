@@ -1,6 +1,9 @@
 # Observability Tools
 
 - `Prometheus`: the standard for monitoring and metrics in kubernetes
+  - Prometheus Server
+  - Alertmanager
+  - Grafana
 - `Grafana`: best for visualization
 - `Grafana Loki`: best self hosted logging solution. By grafana
 - `Grafana Tempo`: tracing
