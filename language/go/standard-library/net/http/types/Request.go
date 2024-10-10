@@ -7,10 +7,11 @@ import (
 
 func main() {
 	req, _ := http.NewRequest("GET", "https://httpbin.org/get", nil)
-	Header(req)
+	header(req)
 }
 
-func Header(req *http.Request) {
+func header(req *http.Request) {
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer asdf")
 	fmt.Printf("%+v", req)
 }

@@ -7,13 +7,11 @@ import (
 
 // Implements the Reader interface
 func main() {
-	var file *os.File
-	var err error
-	file, err = os.Open("file.txt")
+	file, _ := os.Open("file.txt")
+	stat(file)
+}
 
-	if err != nil {
-		os.Exit(1)
-	}
-
-	fmt.Println(file)
+func stat(file *os.File) {
+	fileStat, _ := file.Stat()
+	fmt.Println(fileStat.Size())
 }

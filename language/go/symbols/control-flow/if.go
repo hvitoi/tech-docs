@@ -1,12 +1,38 @@
 package main
 
+import "fmt"
+
 func main() {
-	number := 1
-	if number == 1 {
-		println("it's 1")
-	} else if number == 2 {
-		println("it's 2")
+
+	// Basic assertions
+	num := 3
+	if num > 0 {
+		fmt.Println("Number is positive")
+	} else if num < 0 {
+		fmt.Println("Number is negative")
 	} else {
-		println("it's not 1 or 2")
+		fmt.Println("Number is zero")
 	}
+
+	// and && or ||
+	i := 78
+	if i%3 == 0 && i%5 == 0 {
+		fmt.Println("FizzBuzz")
+	} else if i%3 == 0 {
+		fmt.Println("Fizz")
+	} else if i%5 == 0 {
+		fmt.Println("Buzz")
+	} else {
+		fmt.Println(i)
+	}
+
+	// num is accessible only within the if block
+	if foo := 3; foo > 0 {
+		fmt.Println("Number is positive")
+	} else if foo < 0 {
+		fmt.Println("Number is negative")
+	} else {
+		fmt.Println("Number is zero")
+	}
+
 }

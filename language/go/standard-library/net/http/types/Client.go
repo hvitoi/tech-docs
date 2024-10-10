@@ -8,10 +8,10 @@ import (
 
 func main() {
 	client := &http.Client{}
-	Do(client)
+	do(client)
 }
 
-func Do(client *http.Client) {
+func do(client *http.Client) {
 	// Build request
 	req, _ := http.NewRequest("GET", "https://httpbin.org/get", nil)
 

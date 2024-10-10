@@ -8,10 +8,10 @@ import (
 
 func main() {
 	resp, _ := http.Get("https://httpbin.org/get")
-	Body(resp)
+	body(resp)
 }
 
-func Body(resp *http.Response) {
+func body(resp *http.Response) {
 	// Read response body
 	body, _ := io.ReadAll(resp.Body)
 	fmt.Println(string(body))
