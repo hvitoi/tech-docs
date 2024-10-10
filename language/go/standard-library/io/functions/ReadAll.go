@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	resp, _ := http.Get("https://google.com")
-	bodyBinary, _ := io.ReadAll(resp.Body)
-	fmt.Println(string(bodyBinary))
+	resp, _ := http.Get("https://httpbin.org/get")
+	body, _ := io.ReadAll(resp.Body)
+	fmt.Println(string(body))
 }

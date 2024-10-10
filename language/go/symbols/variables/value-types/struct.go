@@ -2,34 +2,36 @@ package main
 
 import "fmt"
 
-type contactInfo struct {
-	email   string
-	zipCode int
+type ContactInfo struct {
+	Email   string
+	ZipCode int
 }
 
-type person struct {
-	firstName string
-	age       int
-	contact   contactInfo
+type Person struct {
+	FirstName string `json:"first_name"` // struct tags (useful for encoding/decoding functions)
+	Age       int
+	Contact   ContactInfo
 }
 
 func main() {
 
-	someone := person{
-		firstName: "Henry",
-		age:       30,
-		contact: contactInfo{
-			email:   "a@example.com",
-			zipCode: 94000,
+	// Initialize Person
+	someone := Person{
+		FirstName: "Henry",
+		Age:       30,
+		Contact: ContactInfo{
+			Email:   "a@example.com",
+			ZipCode: 94000,
 		},
 	}
-
-	someone.firstName = "John" // Modify struct
-
+	someone.FirstName = "John" // Modify struct
 	fmt.Printf("%+v", someone)
 
 	// Alternative way to declare structs
-	someone2 := person{"Henry", 30, contactInfo{"a@example.com", 94000}}
+	someone2 := Person{"Henry", 30, ContactInfo{"a@example.com", 94000}}
 	fmt.Printf("%+v", someone2)
 
+	// Initialize Person (empty)
+	someone3 := Person{}
+	fmt.Printf("%+v", someone3)
 }

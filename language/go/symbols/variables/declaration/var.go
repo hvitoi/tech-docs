@@ -1,6 +1,7 @@
 package main
 
 // Go is a `static typed` language (just like c++ and java)
+// Variables created with "var" are evaluated at compile-time. This means their value must be known at the time the program is compiled.
 
 func main() {
 	// "var" syntax can be used inside and outside of functions

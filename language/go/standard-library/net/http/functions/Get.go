@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
-	"os"
 )
 
 func main() {
-	// The response is a http.Response struct
-	resp, err := http.Get("https://google.com")
+	// Send HTTP request
+	apiURL := "https://httpbin.org/get"
+	resp, _ := http.Get(apiURL)
 
-	if err != nil {
-		os.Exit(1)
-	}
-	fmt.Printf("%+v", resp)
+	// Read response body
+	body, _ := io.ReadAll(resp.Body)
+	fmt.Printf("%+v", string(body))
 }
