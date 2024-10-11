@@ -1,18 +1,7 @@
-# Git pull
-
-- To perform git pull, there must be `local tracking branch`
-- Git pull updates only a `single local currently checked out branch`
-
-- `Steps
-  - The first step is fetch (update git repo), which fetches the new commits from remote. After fetching, `FETCH_HEAD` is created containing hashes of last commits in all tracking branches
-  - The second step is merge (update index + working dir), which can be `fast-forward` or `3-way`. The command is `git merge FETCH_HEAD`
-
-![Git Pull](../images/git-pull.png)
-
-## Pull Request
+# Pull Request
 
 - Pull request is a proposal of potential changes
-- Name this name?
+- Why this name?
   - It's named `pull request` because it's like you are asking the other collaborators to pull your feature and avaliate it, a request to pull your changes from the remote branch and check it out and give feedbacks
   - `Pull request` is also when you want a main repository to `pull` the branch from your fork repository
 - Pull request is a `environment for discussion`, after the discussion the feature branch can be merged into master or not
