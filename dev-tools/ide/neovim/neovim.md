@@ -8,7 +8,7 @@
 brew install neovim
 ```
 
-## Scripting
+## Lua Scripting
 
 - **Init Script**
   - `~/.config/nvim/init.vim` (vim script)
@@ -45,32 +45,7 @@ vim.fn.stdpath("data") -- ~/.local/share/nvim
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 ```
 
-## Netrw
-
-- Default filetree explorer
-
-- `%`: create new file
-- `d`: create new directory
-
-```conf
-:Explore
-```
-
-```conf
-vim.cmd("let g:netrw_liststyle = 3")
-```
-
-## LSP Client
-
-- It's LSP client is written in Lua
-
 ## Packages
 
-- `telescope`: fuzzy filesystem finder
-- `navarasu/onedark.nvim`
-- `nvim-tree/nvim-web-devicons`
-
-## Commands
-
-- `Ex`: go to Netrw explorer in the directory of the currently opened file
-- `so`: source the current vim file
+- `lazy`: plugin manager <https://github.com/folke/lazy.nvim>
+- `telescope`: fuzzy filesystem finder <https://github.com/nvim-telescope/telescope.nvim>

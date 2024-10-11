@@ -254,3 +254,19 @@ close
 ```
 
 - `<cmd>close<CR>`: for keybindings
+
+### Netrw
+
+- Netrw is the default filetree explorer
+
+```conf
+Explore # open netrw in the directory of the currently opened file
+```
+
+- `%`: create new file
+- `d`: create new directory
+
+```conf
+# tree-style explorer
+let g:netrw_liststyle = 3
+```
