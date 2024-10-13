@@ -83,6 +83,12 @@ gpg \
   --keyserver-options "auto-key-retrieve"
 ```
 
+## Encrypt content
+
+```shell
+gpg -c file.txt
+```
+
 ## Decrypt content
 
 - Try to decrypt using your `GPG secret key`

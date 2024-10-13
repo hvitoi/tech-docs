@@ -1,13 +1,14 @@
 # launchctl
 
 - **LaunchAgents**
-  - `/System/Library/LaunchAgents/*.plist` (system)
-  - `/Library/LaunchAgents/*.plist`
-  - `~/Library/LaunchAgents/*.plist` (user)
+  - `/System/Library/LaunchAgents/*.plist` (system built-in apps)
+  - `/Library/LaunchAgents/*.plist` (system apps)
+  - `~/Library/LaunchAgents/*.plist` (user apps)
+
 - **LaunchDaemons**
-  - `/System/Library/LaunchDaemons/*.plist` (system)
-  - `/Library/LaunchDaemons/*.plist`
-  - `~/Library/LaunchDaemons/*.plist` (user)
+  - `/System/Library/LaunchDaemons/*.plist` (system built-in apps)
+  - `/Library/LaunchDaemons/*.plist` (system apps)
+  - `~/Library/LaunchDaemons/*.plist` (user apps)
 
 - These services appear under "Login Items" > "Allow in the Background"
 
