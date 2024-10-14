@@ -1,5 +1,7 @@
 # linsk
 
+- <https://github.com/AlexSSD7/linsk>
+
 ## build
 
 - Spin up a Linux VM

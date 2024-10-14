@@ -1,17 +1,11 @@
 # Copy
 
 ```shell
-# Copy a file
-cp "file" "new-file"
-
 # Copy to different location
-cp ~/ola.txt ~/novo/novo_ola.txt
-cp ~/ola.txt ~/novo # copies as ola.txt in ~/novo dir)
+cp /source/file.txt /source/file2.txt # rename it
+cp /source/file.txt /source # keep same file name
 
 # Copy a directory
-cp -r "dir" "new-dir"
-cp -rv "dir" "new-dir" # verbose
-
-# Create directories as needed
-mkdir -p /foo/bar && cp myfile "$_"
+cp -r /source/dir /dest/dir # -v for verbose
+cp -r /source/dir/ /dest/dir # copy only the contents (not the whole folder)
 ```
