@@ -14,16 +14,25 @@ aws configure
   - `AWS_ACCESS_KEY_ID`
   - `AWS_SECRET_ACCESS_KEY`
 
-## Profiles
+## profile
 
 - Allow multiple logged-in profiles
 - All further commands must be run with `--profile` flag
+- The following prompts will pop up
+  - AWS Access Key ID (saved into `~/aws/credentials`)
+  - AWS Secret Access Key (saved into `~/aws/credentials`)
+  - Default region name (saved into `~/aws/config`)
+  - Default output format (saved into `~/aws/config`)
 
 ```shell
-aws configure --profile "my-root-account"
+# setup wizard
+aws configure --profile "my-profile"
+
+# set only the default region
+aws configure --profile "my-profile" set region us-east-2
 ```
 
-## MFA
+## mfa
 
 - If MFA is activated under IAM, all commands must have the `--mfa` flag
 
@@ -32,7 +41,7 @@ aws configure --profile "my-root-account"
 aws s3 ls --mfa "arn-of-mfa-device mfa-code"
 ```
 
-## Set
+## set
 
 ```shell
 # set the proper signature version in order not to get issues when generating URLs for encrypted files

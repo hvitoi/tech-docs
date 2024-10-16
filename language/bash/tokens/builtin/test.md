@@ -128,6 +128,18 @@ else
 fi
 ```
 
+## -s
+
+```shell
+# -f
+foo=~/file.txt
+if [ -s $foo ]; then
+  echo "File exists and has size greater than 0"
+else
+  echo "File does not exist or it is empty"
+fi
+```
+
 ## -d
 
 ```shell

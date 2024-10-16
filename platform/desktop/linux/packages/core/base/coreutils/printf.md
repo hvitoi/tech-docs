@@ -20,3 +20,8 @@ x=60
 y=-9
 printf "%f\n" $((x/y))
 ```
+
+```shell
+# Multiple lines
+printf "%s\n" "a" "b" "c"
+```
