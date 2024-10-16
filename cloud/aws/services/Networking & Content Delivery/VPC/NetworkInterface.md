@@ -1,10 +1,8 @@
 # AWS::EC2::NetworkInterface
 
 - **Elastic Network Interface** (ENI)
-
   - Represents a `Network Card`
   - It can be attached to an EC2 instance
-
   - ENI can be created independently and attached to EC2 instances on the fly
 
 - IP Types
