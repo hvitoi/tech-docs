@@ -1,44 +1,59 @@
 # configure
 
-- Prompts:
-  - Access key ID
-  - Secret access key
-  - Default region. E.g. sa-east-1
-  - Default output format. E.g, json
+- The following prompts will pop up
+  - **AWS Access Key ID** (saved into `~/aws/credentials`)
+  - **AWS Secret Access Key** (saved into `~/aws/credentials`)
+  - **Default region name** (saved into `~/aws/config`) E.g. sa-east-1
+  - **Default output format** (saved into `~/aws/config`) E.g, json
 
 ```shell
 aws configure
+aws configure --profile "my-profile" # configure another profile other than [default]
 ```
 
-- Optionally you can set the environment variables
-  - `AWS_ACCESS_KEY_ID`
-  - `AWS_SECRET_ACCESS_KEY`
-
-## profile
-
-- Allow multiple logged-in profiles
-- All further commands must be run with `--profile` flag
-- The following prompts will pop up
-  - AWS Access Key ID (saved into `~/aws/credentials`)
-  - AWS Secret Access Key (saved into `~/aws/credentials`)
-  - Default region name (saved into `~/aws/config`)
-  - Default output format (saved into `~/aws/config`)
-
 ```shell
-# setup wizard
-aws configure --profile "my-profile"
-
-# set only the default region
-aws configure --profile "my-profile" set region us-east-2
+# Testing the connection
+aws iam list-users
 ```
 
-## mfa
+## Profiles
 
-- If MFA is activated under IAM, all commands must have the `--mfa` flag
+- Credentials & configs are placed at `~/.aws/`
+- If `--profile` is not specified, uses the `[default]` profile
+- For using a profile, all further aws commands must be run with the `--profile` flag or setting the `AWS_PROFILE` environment variable
+
+### Config
+
+```conf
+# ~/.aws/config
+[default]
+region = us-east-1
+
+[profile staging]
+region = us-east-1
+```
+
+### Credentials
+
+- Okta IdP via SAML
+  - [aws-gimme-creds](https://github.com/Nike-Inc/gimme-aws-creds) can be used to obtain AWS temporary credentials
+
+```conf
+# ~/.aws/credentials
+[default]
+aws_access_key_id = <key-id>
+aws_secret_access_key = <access-key>
+aws_security_token = <security-token-base64>
+aws_session_token = <session-token-base64>
+x_security_token_expires = 2024-10-15T00:55:49+00:00
+```
+
+### Usage
 
 ```shell
-# example
-aws s3 ls --mfa "arn-of-mfa-device mfa-code"
+export AWS_PROFILE=staging
+export AWS_DEFAULT_PROFILE=staging
+eksctl create cluster -f spot-cluster.yaml
 ```
 
 ## set
@@ -46,4 +61,7 @@ aws s3 ls --mfa "arn-of-mfa-device mfa-code"
 ```shell
 # set the proper signature version in order not to get issues when generating URLs for encrypted files
 aws configure set "default.s3.signature_version" "s3v4"
+
+# set default region
+aws configure set "region" "us-east-2"
 ```
