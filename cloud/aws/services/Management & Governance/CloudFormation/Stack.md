@@ -24,38 +24,38 @@ Properties:
   TimeoutInMinutes: Integer
 ```
 
+- **Infrastructure Composer**
+  - Previously known as CloudFormation Designer
+  - Allows you to edit/create cloudformation templates
+  - It's a cloud-based editor with visualization (low-code) features
+
 ## TemplateURL
 
-- **Template Components**
+- A template is a yaml/json file declaring all the configuration for the desired resources
 
-  - `Resources`: AWS resources to be created
+- **Template Components**
+  - `Resources`: AWS resources to be created. It's the only mandatory field
   - `Parameters`: dynamic input variables
   - `Mappings`: static input variables
   - `Outputs`: reference to what has been created
   - `Conditionals`: list of conditions to performe resource creation
   - `Metadata`
+  - `AWSTemplateFormatVersion`
+  - `Description`
 
 - **Template Helpers**
   - References
   - Functions
 
 ```yaml
-# Single EC2 instance
-Resources:
-  MyInstance:
-    Type: AWS::EC2::Instance
-    Properties:
-      AvailabilityZone: us-east-1a
-      ImageId: ami-a4c7edb2
-      InstanceType: t2.micro
-```
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 with Security Group and Elastic IP
 
-```yaml
-# EC2 with Security Group and Elastic IP
 Parameters:
   SecurityGroupDescription:
     Description: Security Group Description
     Type: String
+
 Resources:
   MyInstance:
     Type: AWS::EC2::Instance
@@ -64,15 +64,17 @@ Resources:
       ImageId: ami-a4c7edb2
       InstanceType: t2.micro
       SecurityGroups:
-        - !Ref SSHSecurityGroup
+        - !Ref MySSHSecurityGroup
         - !Ref ServerSecurityGroup
-  # an elastic IP for our instance
+
+  # Elastic IP for our instance
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
       InstanceId: !Ref MyInstance
+
   # EC2 security group
-  SSHSecurityGroup:
+  MySSHSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable SSH access via port 22
@@ -81,6 +83,7 @@ Resources:
           FromPort: 22
           IpProtocol: tcp
           ToPort: 22
+
   # Second EC2 security group
   ServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -95,8 +98,16 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 192.168.1.1/32
+
 Outputs:
   ElasticIP:
     Description: Elastic IP Value
     Value: !Ref MyEIP
 ```
+
+## Resources
+
+- The resources created by a cloudformation template acquire some tags
+  - `aws:cloudformation:logical-id`: value is the resource name defined in the template (E.g., MyResource)
+  - `aws:cloudformation:stack-id`: arn of the cloudformation (E.g., arn:aws:cloudformation:us-east1:123456789012:stack/mystack/uuid)
+  - `aws:cloudformation:stack-name`: name of the cloudformation (E.g., mystack)
