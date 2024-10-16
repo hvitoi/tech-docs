@@ -1,5 +1,7 @@
 # cloudwatch
 
+## put-metric-data
+
 ```shell
 # custom metric
 aws cloudwatch put-metric-data \
@@ -13,6 +15,8 @@ aws cloudwatch put-metric-data \
   --value "23147294" \
   --dimensions "InstanceId=1-12344,InstanceType=m1.small"
 ```
+
+## set-alarm-state
 
 ```shell
 # Trigger alarm

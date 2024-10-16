@@ -1,5 +1,7 @@
 # ssm
 
+## get-parameters
+
 ```shell
 # Get parameters
 aws ssm get-parameters \
@@ -9,7 +11,11 @@ aws ssm get-parameters \
 aws ssm get-parameters \
   --names "/my-app/dev/db-url" "/my-app/dev/db-password" \
   --with-decryption # checks if you have kms permissions to decrypt it
+```
 
+## get-parameters-by-path
+
+```shell
 # Get parameters by path
 aws ssm get-parameters-by-path \
   --path "/my-app/dev/"
@@ -25,6 +31,8 @@ aws ssm get-parameters-by-path \
   --recursive \
   --with-decryption
 ```
+
+## Python
 
 ```python
 import json

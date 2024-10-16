@@ -1,5 +1,7 @@
 # configure
 
+- AWS CLI is based on the Python SDK (boto3)
+
 - The following prompts will pop up
   - **AWS Access Key ID** (saved into `~/aws/credentials`)
   - **AWS Secret Access Key** (saved into `~/aws/credentials`)
@@ -94,3 +96,9 @@ export AWS_PROFILE=staging # bash
 set -x AWS_PROFILE staging # fish
 eksctl create cluster -f spot-cluster.yaml
 ```
+
+## Global flags
+
+- `--profile`
+- `--region`: us-east-1 by default if not specified anywhere
+- `--output`
