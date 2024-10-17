@@ -14,6 +14,38 @@ diskutil list
 diskutil info "/dev/diskX"
 ```
 
+- The `Disk / Partition UUID` information shown for physical partitions (apfs, ext4, btrfs, etc) is the `PARTUUID` (not UUID). For synthesized partition it is the `UUID`
+
+```txt
+/dev/disk4 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *2.0 TB     disk4
+   1:           Linux Filesystem                         1.6 TB     disk4s1
+   2:                 Apple_APFS Container disk5         391.0 GB   disk4s2
+
+/dev/disk5 (synthesized):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      APFS Container Scheme -                      +391.0 GB   disk5
+                                 Physical Store disk4s2
+   1:                APFS Volume chan                    367.2 GB   disk5s1
+   2:                APFS Volume music                   970.8 KB   disk5s2
+```
+
+```shell
+# Get PARTUUID of the btrfs partition
+diskutil info disk4s1
+
+# Get PARTUUID of the apfs partition
+diskutil info disk4s2
+
+# Get UUID of the apfs partition
+diskutil info disk5
+
+# Get UUID of the apfs volume (virtual)
+diskutil info disk5s1
+diskutil info disk5s2
+```
+
 ## mount
 
 - Mount a partition/volume into `/Volumes`
