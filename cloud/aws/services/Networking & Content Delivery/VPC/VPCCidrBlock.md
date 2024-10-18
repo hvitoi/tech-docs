@@ -2,17 +2,25 @@
 
 - Associates a CIDR block with your VPC
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html>
+
 ```yaml
 Type: AWS::EC2::VPCCidrBlock
 Properties:
   AmazonProvidedIpv6CidrBlock: Boolean
   CidrBlock: String
+  Ipv4IpamPoolId: String
+  Ipv4NetmaskLength: Integer
   Ipv6CidrBlock: String
+  Ipv6IpamPoolId: String
+  Ipv6NetmaskLength: Integer
   Ipv6Pool: String
   VpcId: String
 ```
 
-## Ipv6CidrBlock
+### Ipv6CidrBlock
 
 - `xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx` (8 times - Each x is hexadecimal)
 - You can only associate a `single IPv6 CIDR` block with your VPC

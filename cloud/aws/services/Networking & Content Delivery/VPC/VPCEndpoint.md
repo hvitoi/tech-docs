@@ -4,6 +4,10 @@
 - An endpoint enables you to create a `private connection` between your VPC and the service
 - An entry is automatically added to the route table of the corresponding subnet
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html>
+
 ```yaml
 Type: AWS::EC2::VPCEndpoint
 Properties:
@@ -20,7 +24,7 @@ Properties:
   VpcId: String
 ```
 
-## VpcEndpointType
+### VpcEndpointType
 
 - `Interface`: provisions an ENI (private ip) as entry point to the AWS service
   ![Interface Endpoint](.images/vpc-endpoints-interface.png)

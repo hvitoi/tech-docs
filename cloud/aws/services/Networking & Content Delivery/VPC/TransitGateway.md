@@ -7,6 +7,10 @@
 
 ![Transit Gateway](.images/vpc-transit-gateway.png)
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html>
+
 ```yaml
 Type: AWS::EC2::TransitGateway
 Properties:
@@ -19,6 +23,7 @@ Properties:
   DnsSupport: String
   MulticastSupport: String
   PropagationDefaultRouteTableId: String
+  SecurityGroupReferencingSupport: String
   Tags:
     - Tag
   TransitGatewayCidrBlocks:
@@ -31,7 +36,7 @@ Properties:
 
 ![Transit Gateway](.images/vpc-transit-gateway-sharing.png)
 
-## VpnEcmpSupport
+### VpnEcmpSupport
 
 - **Site-To-Site VPN ECMP**
 - Increases the `bandwidth` of the s2s connections using `ECMP` (Equal Cost Multipath routing)

@@ -6,3 +6,14 @@
   - An entry in the `route table` must be added to forward 0.0.0.0/0 to the Internet Gateway
   - Instances must have public IPs
   - NACL must allow traffic out
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html>
+
+```yaml
+Type: AWS::EC2::InternetGateway
+Properties:
+  Tags:
+    - Tag
+```

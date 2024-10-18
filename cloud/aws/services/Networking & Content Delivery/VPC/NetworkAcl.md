@@ -20,3 +20,15 @@
 
 ![NACL Ports](.images/nacl-ephemeral-ports.png)
 ![NACL Rules](.images/nacl-ephemeral-ports-rules.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkacl.html>
+
+```yaml
+Type: AWS::EC2::NetworkAcl
+Properties:
+  Tags:
+    - Tag
+  VpcId: String
+```

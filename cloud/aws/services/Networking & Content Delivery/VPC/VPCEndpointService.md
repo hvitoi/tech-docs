@@ -9,3 +9,19 @@
 ![PrivateLink ECS](.images/privatelink-ecs.png)
 
 - After the `Endpoint Service` is created, it must be added as a regular `Endpoint` (find service by name)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html>
+
+```yaml
+Type: AWS::EC2::VPCEndpointService
+Properties:
+  AcceptanceRequired: Boolean
+  ContributorInsightsEnabled: Boolean
+  GatewayLoadBalancerArns:
+    - String
+  NetworkLoadBalancerArns:
+    - String
+  PayerResponsibility: String
+```

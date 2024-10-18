@@ -10,15 +10,29 @@
 
 - Subnets can have `auto-assign Public IP` to automatically request a public IP for each service within that subnet
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html>
+
 ```yaml
 Type: AWS::EC2::Subnet
 Properties:
   AssignIpv6AddressOnCreation: Boolean
   AvailabilityZone: String
+  AvailabilityZoneId: String
   CidrBlock: String
+  EnableDns64: Boolean
+  EnableLniAtDeviceIndex: Integer
+  Ipv4IpamPoolId: String
+  Ipv4NetmaskLength: Integer
   Ipv6CidrBlock: String
+  Ipv6IpamPoolId: String
+  Ipv6Native: Boolean
+  Ipv6NetmaskLength: Integer
   MapPublicIpOnLaunch: Boolean
   OutpostArn: String
+  PrivateDnsNameOptionsOnLaunch:
+    PrivateDnsNameOptionsOnLaunch
   Tags:
     - Tag
   VpcId: String

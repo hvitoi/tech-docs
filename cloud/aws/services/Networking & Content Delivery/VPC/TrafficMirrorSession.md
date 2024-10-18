@@ -9,3 +9,21 @@
   - ...
 
 ![Traffic Mirroring](.images/vpc-traffic-mirroring.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html>
+
+```yaml
+Type: AWS::EC2::TrafficMirrorSession
+Properties:
+  Description: String
+  NetworkInterfaceId: String
+  PacketLength: Integer
+  SessionNumber: Integer
+  Tags:
+    - Tag
+  TrafficMirrorFilterId: String
+  TrafficMirrorTargetId: String
+  VirtualNetworkId: Integer
+```

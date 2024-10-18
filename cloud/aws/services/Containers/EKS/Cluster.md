@@ -64,7 +64,7 @@ Properties:
     ZonalShiftConfig
 ```
 
-## RoleArn
+### RoleArn
 
 - The role that provides permissions for the `Kubernetes control plane` to make `calls to AWS API operations on your behalf`
 - The `Cluster IAM role` is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed

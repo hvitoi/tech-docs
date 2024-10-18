@@ -3,18 +3,6 @@
 ![VPC](.images/vpc.png)
 
 - Specifies a VPC with the specified IPv4 CIDR block
-
-```yaml
-Type: AWS::EC2::VPC
-Properties:
-  CidrBlock: String
-  EnableDnsHostnames: Boolean
-  EnableDnsSupport: Boolean
-  InstanceTenancy: String
-  Tags:
-    - Tag
-```
-
 - `Default VPC` is automatically created to deploy services if no VPC is specified
 - Each region can have up to `5 VPCs` (soft limit)
 - A **Bastion Host** is used to `SSH` into private instances. It sits in a public subnet. Ideally it must only allow certain IP ranges to access it
@@ -25,7 +13,24 @@ Properties:
 
 ![Reachability Analyzer](.images/vpc-reachability-analyzer.png)
 
-## CidrBlock
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html>
+
+```yaml
+Type: AWS::EC2::VPC
+Properties:
+  CidrBlock: String
+  EnableDnsHostnames: Boolean
+  EnableDnsSupport: Boolean
+  InstanceTenancy: String
+  Ipv4IpamPoolId: String
+  Ipv4NetmaskLength: Integer
+  Tags:
+    - Tag
+```
+
+### CidrBlock
 
 - Classless Inter-Domain Routing (`CIDR`): Base IP + Subnet Mask (/8, /16, /24, ...)
 
@@ -40,13 +45,13 @@ Properties:
   - `172.16.0.0/12`: default aws (16-31)
   - `192.168.0.0/16`: home networks
 
-## EnableDnsHostnames
+### EnableDnsHostnames
 
 - Defaults to true for the default VPC, false for new VPCs
 - If true, automatically assign hostname for EC2 instances (if it has a public IP)
 - With these settings, private dns zone can be set up in Route53
 
-## EnableDnsSupport
+### EnableDnsSupport
 
 - Enables DNS resolution. Defaults to true
 - If true `AWS DNS server` will be queried (`169.254.169.253`)

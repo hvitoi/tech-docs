@@ -22,3 +22,21 @@
   - 80 (HTTP)
   - 443 (HTTPS)
   - 3389 (RDP)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroup.html>
+
+```yaml
+Type: AWS::EC2::SecurityGroup
+Properties:
+  GroupDescription: String
+  GroupName: String
+  SecurityGroupEgress:
+    - Egress
+  SecurityGroupIngress:
+    - Ingress
+  Tags:
+    - Tag
+  VpcId: String
+```
