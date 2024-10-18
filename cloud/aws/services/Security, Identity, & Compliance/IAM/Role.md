@@ -24,34 +24,9 @@
 
 - When you assume a role (user, application or service), you give up your original permissions and take the permissions assigned to the role
   - Differently from `resource based policies` in which the policies add up to your already possessed permissions
-- In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
+- In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
 - An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
 - An assumed role has the arn format `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
-
-## Identity Providers (IdP)
-
-- Generate token with `limited` and `temporary` access to AWS resources
-- Token is valid up to `1 hour`, must be `refreshed` after this
-- Identity Providers authenticate with AWS (by means of STS). Example: Okta via SAML
-
-- Identity Providers
-  - _SAML 2.0_: the client exchange a saml token for an sts token
-  - _Custom Identity Broker_: the IdP talks directly to the sts and give the token to the user
-  - _Web Identity Federation_: login on fb, google, etc (not recommended! Use Cognito instead)
-  - _SSO_
-  - _AD_: database of objects (users, files, printers, etc)
-
-## STS
-
-- `Security Token Service` (STS) is the service used to endorse the roles and get the short term credentials (temporary credentials)
-
-- APIs
-  - **AssumeRole**
-    - User will use a role within your account or cross-account
-    ![AssumeRole](.images/sts-assume-role.png)
-  - **AssumeRoleWithSaml**: return credentials for users logged in SAML
-  - **AssumeRoleWitWebIdentity**: returns credentials for users logged with IdP (fb, google, etc)
-  - **GetSessionToken**: for MFA
 
 ## Properties
 
@@ -100,6 +75,7 @@ Properties:
 
 ```json
 // Allow an IdP (e.g., Okta) to authentication a user via SAML
+// Trusted entities: Identity Provider: arn:aws:iam::000000000000:saml-provider/okta
 {
   "Version": "2012-10-17",
   "Statement": [
