@@ -2,12 +2,11 @@
 
 ## get-caller-identity
 
-- Returns the ARN of the IAM entity that's configured for the AWS CLI
-- Examples
+- Returns the ARN of the `IAM entity` that's configured for the AWS CLI (an assumed role, a user, a role, etc)
 
 ```txt
-arn:aws:sts::01234567890:assumed-role/my-role/my-role
-arn:aws:iam::01234567890:user/ClusterAdmin
+arn:aws:sts::123456789012:assumed-role/my-role/<sub>
+arn:aws:iam::123456789012:user/ClusterAdmin
 ```
 
 ```shell

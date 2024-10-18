@@ -2,45 +2,22 @@
 
 ## cluster
 
-- Use `aws eks update-kubeconfig` beforeto configure the kubeconfig
-- eksctl automatically creates
+- eksctl automatically creates:
   - A `VPC` for the cluster and create public and private endpoints
-  - Cluster roles (arn:aws:iam::my-account:role)
-- Under the hood it creates a cloudformation template to deploy the cluster and all the requires resources. The name of the cloudformation resource is `eksctl-<cluster-name>-cluster`
+  - `IAM roles` (Cluster roles) so that eks can manage itself (e.g., autoscaling)
+- Under the hood some cloudformation templates are created to deploy the cluster and all the requires resources
+  - `eksctl-<cluster-name>-cluster`
+  - `eksctl-<cluster-name>-addon-aws-ebs-csi-driver`
+  - `eksctl-<cluster-name>-addon-iamserviceaccount-kube-system-aws-load-balancer-controller`
+  - `eksctl-<cluster-name>-addon-vpc-cni`
+  - `eksctl-<cluster-name>-nodegroup-node1`
+- Use can follow up the cluster creation on the cloudformation console <https://console.aws.amazon.com/cloudformation>
 
 ```shell
 eksctl create cluster -f eks-cluster.yaml
 ```
 
-```yaml
-# eks-cluster.yaml
-apiVersion: eksctl.io/v1alpha5
-kind: ClusterConfig
-
-metadata:
-  name: my-cluster
-  version: "1.30"
-  region: us-west-2
-
-managedNodeGroups:
-  - name: spot
-    instanceTypes: ["t3.medium"]
-    desiredCapacity: 1
-    volumeSize: 80
-    spot: true
-
-  - name: spot-2
-    instanceTypes: ["t3.small"]
-    desiredCapacity: 1
-    volumeSize: 80
-    spot: true
-
-  # On-Demand instances
-  - name: on-demand
-    instanceTypes: ["t3.small", "t3.medium"]
-    desiredCapacity: 1
-    volumeSize: 80
-```
+- Use `aws eks update-kubeconfig` to generate the kubeconfig
 
 ## iamserviceaccount
 
