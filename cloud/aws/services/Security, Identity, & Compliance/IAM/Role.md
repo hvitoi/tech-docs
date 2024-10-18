@@ -27,6 +27,7 @@
 - In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
 - An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
 - An assumed role has the arn format `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
+  - Where "sub" is the sub/principal/session name
 
 ## Properties
 

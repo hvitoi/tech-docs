@@ -6,6 +6,7 @@
 - eksctl automatically:
   - Creates a `VPC` for the cluster and create public and private endpoints
   - Creates `IAM roles` (Cluster roles) so that eks can manage itself (e.g., autoscaling)
+  - Add `IAM roles` as access entries to the kubernetes cluster, allowing AmazonEKSClusterAdminPolicy to the entity that created the cluster
   - Updates `kubeconfig` with access to your new cluster
 - Under the hood some cloudformation templates are created to deploy the cluster and all the requires resources
   - `eksctl-<cluster-name>-cluster`

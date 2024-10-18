@@ -1,0 +1,5 @@
+# uuidgen
+
+```shell
+uuidgen
+```

@@ -17,6 +17,34 @@ aws eks describe-cluster \
   --name my-cluster
 ```
 
+## list-access-entries
+
+- Describe what iam principals have access to the cluster (including assumable roles)
+
+```shell
+aws eks list-access-entries --cluster-name my-cluster
+```
+
+## list-access-policies
+
+- List all available policies
+
+```shell
+aws eks list-access-policies
+```
+
+```txt
+AmazonEKSAdminPolicy
+AmazonEKSAdminViewPolicy
+AmazonEKSClusterAdminPolicy
+AmazonEKSEditPolicy
+AmazonEKSViewPolicy
+AmazonEMRJobPolicy
+AmazonSagemakerHyperpodClusterPolicy
+AmazonSagemakerHyperpodControllerPolicy
+AmazonSagemakerHyperpodSystemNamespacePolicy
+```
+
 ## update-kubeconfig
 
 ```shell
