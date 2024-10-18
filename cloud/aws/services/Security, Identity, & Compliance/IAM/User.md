@@ -3,12 +3,17 @@
 - `User` is an identity intended to be used by a person to access aws
 - Users have `long term credentials`
 
+## Properties
+
+- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html>
+
 ```yaml
 Type: AWS::IAM::User
 Properties:
   Groups:
     - String
-  LoginProfile: LoginProfile
+  LoginProfile:
+    LoginProfile
   ManagedPolicyArns:
     - String
   Path: String
@@ -20,7 +25,7 @@ Properties:
   UserName: String
 ```
 
-## PermissionsBoundary
+### PermissionsBoundary
 
 - Supported for `users` and `roles` (not groups)
 - Define the maximum permissions an entity can get

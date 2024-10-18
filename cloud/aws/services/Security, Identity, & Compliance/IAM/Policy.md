@@ -1,12 +1,56 @@
 # AWS::IAM::Policy
 
-- An `inline policy` can be created on the fly, so that the policy is created only for that entity and cannot be reused
+- IAM is a global service
+- `Root account` is created by default (though it's not good to use it directly)
+- An account alias can be created in order to access the account (with any IAM user) from custom URI. <https://hvitoi.signin.aws.amazon.com/console>
+- Access to Billing Information is not granted, even with administrator policy. For that, special config must be set up
+- `Password policies` can be set for all users under `Account Settings`
 
-- **Policy types**
-  - `AWS Managed Policy`
-  - `Customer Managed Policy`
-  - `Inline Policy`
-  - `Resource Based Policy`
+![Policy Evaluation Logic](.images/iam-policy-evalation-logic.png)
+
+## Policy types
+
+- `AWS Managed Policy`
+- `Customer Managed Policy`
+- `Inline Policy`: can be created on the fly, so that the policy is created only for that entity and cannot be reused
+- `Resource Based Policy`
+
+### AWS Managed Policy
+
+```json
+// AmazonEKSClusterPolicy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups",
+        "ec2:AttachVolume",
+        "elasticloadbalancing:AddTags",
+        "elasticloadbalancing:SetLoadBalancerPoliciesOfListener",
+        "kms:DescribeKey",
+        "..."
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Condition": {
+        "StringEquals": {
+          "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+```
+
+## Properties
+
+- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html>
 
 ```yaml
 Type: AWS::IAM::Policy
@@ -21,18 +65,10 @@ Properties:
     - String
 ```
 
-- IAM is a global service
-- `Root account` is created by default (though it's not good to use it directly)
-- An account alias can be created in order to access the account (with any IAM user) from custom URI. <https://hvitoi.signin.aws.amazon.com/console>
-- Access to Billing Information is not granted, even with administrator policy. For that, special config must be set up
-- `Password policies` can be set for all users under `Account Settings`
-
-![Policy Evaluation Logic](.images/iam-policy-evalation-logic.png)
-
-## PolicyDocument
+### PolicyDocument
 
 - Most of the policies are `AWS managed`
-- But you can also create your own policy
+- But you can also create your own policy (`Customer Managed`)
 - Always use the `grant least privilege` principle
 
 - <https://awspolicygen.s3.amazonaws.com/policygen.html>

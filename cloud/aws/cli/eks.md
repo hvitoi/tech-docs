@@ -6,6 +6,17 @@
 aws eks list-clusters --query "clusters[*]" --output text
 ```
 
+## describe-cluster
+
+- Important Info
+  - roleArn (cluster role)
+  - vpcId
+
+```shell
+aws eks describe-cluster \
+  --name my-cluster
+```
+
 ## update-kubeconfig
 
 ```shell
