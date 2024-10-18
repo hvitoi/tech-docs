@@ -48,3 +48,11 @@ for cluster in $clusters; do
     --alias "$cluster"
 done
 ```
+
+## get-token
+
+- This CLI is usually triggered via kubeconfig so that a get can be fetched on the fly for kubectl
+
+```shell
+aws eks get-token --cluster-name my-cluster
+```

@@ -45,4 +45,23 @@ users:
         env: null
         interactiveMode: IfAvailable
         provideClusterInfo: false
+
+  # login using aws eks cli
+  - name: my-user
+    user:
+      exec:
+        apiVersion: client.authentication.k8s.io/v1beta1
+        command: aws
+        args:
+        - eks
+        - get-token
+        - --region
+        - us-east-1
+        - --cluster-name
+        - my-cluster
+        - --output
+        - json
+        env:
+          - name: AWS_PROFILE
+            value: br-staging-staging
 ```

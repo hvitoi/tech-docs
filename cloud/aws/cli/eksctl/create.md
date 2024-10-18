@@ -2,9 +2,11 @@
 
 ## cluster
 
-- eksctl automatically creates:
-  - A `VPC` for the cluster and create public and private endpoints
-  - `IAM roles` (Cluster roles) so that eks can manage itself (e.g., autoscaling)
+- <https://docs.aws.amazon.com/eks/latest/userguide/quickstart.html>
+- eksctl automatically:
+  - Creates a `VPC` for the cluster and create public and private endpoints
+  - Creates `IAM roles` (Cluster roles) so that eks can manage itself (e.g., autoscaling)
+  - Updates `kubeconfig` with access to your new cluster
 - Under the hood some cloudformation templates are created to deploy the cluster and all the requires resources
   - `eksctl-<cluster-name>-cluster`
   - `eksctl-<cluster-name>-addon-aws-ebs-csi-driver`
