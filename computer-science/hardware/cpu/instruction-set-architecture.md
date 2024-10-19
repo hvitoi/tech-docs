@@ -15,6 +15,8 @@ void add(){
 - `32-bit` version: aarch32
 
 - In the ARM world, a bunch of hardware reference designs are available. Therefore ARM hardware/cpus are more standardized than x86 counterparts
+- The decoding of instructions on ARM is quite simple and straightforward compared to x86
+- ARM is open license. Therefore anyone can created chips on top of it.
 
 ```assembly
 add:
