@@ -5,6 +5,10 @@
 
 ![Agent Tasks](.images/agent-tasks.png)
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html>
+
 ```yaml
 Type: AWS::Bedrock::Agent
 Properties:
@@ -31,7 +35,7 @@ Properties:
     Key: Value
 ```
 
-## ActionGroups
+### ActionGroups
 
 - Agents are configured to perform specific pre-defined `action groups`
 - The action groups restricts have the agent knows to do and therefore limits its actions

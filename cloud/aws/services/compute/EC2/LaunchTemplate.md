@@ -1,42 +1,67 @@
 # AWS::EC2::LaunchTemplate
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html>
+
 ```yaml
 Type: AWS::EC2::LaunchTemplate
 Properties:
-  LaunchTemplateData: LaunchTemplateData
+  LaunchTemplateData:
+    LaunchTemplateData
   LaunchTemplateName: String
   TagSpecifications:
     - LaunchTemplateTagSpecification
+  VersionDescription: String
 ```
+
+### LaunchTemplateData
 
 ```yaml
 BlockDeviceMappings:
   - BlockDeviceMapping
-CapacityReservationSpecification: CapacityReservationSpecification
-CpuOptions: CpuOptions
-CreditSpecification: CreditSpecification
+CapacityReservationSpecification:
+  CapacityReservationSpecification
+CpuOptions:
+  CpuOptions
+CreditSpecification:
+  CreditSpecification
+DisableApiStop: Boolean
 DisableApiTermination: Boolean
 EbsOptimized: Boolean
 ElasticGpuSpecifications:
   - ElasticGpuSpecification
 ElasticInferenceAccelerators:
   - LaunchTemplateElasticInferenceAccelerator
-EnclaveOptions: EnclaveOptions
-HibernationOptions: HibernationOptions
-IamInstanceProfile: IamInstanceProfile
+EnclaveOptions:
+  EnclaveOptions
+HibernationOptions:
+  HibernationOptions
+IamInstanceProfile:
+  IamInstanceProfile
 ImageId: String
 InstanceInitiatedShutdownBehavior: String
-InstanceMarketOptions: InstanceMarketOptions
+InstanceMarketOptions:
+  InstanceMarketOptions
+InstanceRequirements:
+  InstanceRequirements
 InstanceType: String
 KernelId: String
 KeyName: String
 LicenseSpecifications:
   - LicenseSpecification
-MetadataOptions: MetadataOptions
-Monitoring: Monitoring
+MaintenanceOptions:
+  MaintenanceOptions
+MetadataOptions:
+  MetadataOptions
+Monitoring:
+  Monitoring
 NetworkInterfaces:
   - NetworkInterface
-Placement: Placement
+Placement:
+  Placement
+PrivateDnsNameOptions:
+  PrivateDnsNameOptions
 RamDiskId: String
 SecurityGroupIds:
   - String

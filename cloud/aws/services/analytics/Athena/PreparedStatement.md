@@ -2,6 +2,10 @@
 
 - Specifies a prepared statement for use with SQL queries in Athena.
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html>
+
 ```yaml
 Type: AWS::Athena::PreparedStatement
 Properties:
@@ -11,7 +15,7 @@ Properties:
   WorkGroup: String
 ```
 
-## QueryStatement
+### QueryStatement
 
 ```sql
 -- Select ALL

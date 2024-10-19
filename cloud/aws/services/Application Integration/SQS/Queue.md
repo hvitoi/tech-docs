@@ -3,6 +3,31 @@
 - Queue model
 - Used to `decouple` applications
 
+## Producers
+
+- `Unlimited throughput`
+- `Unlimited number of messages` in queue
+- Can have `out of order messages` (best effort ordering) - except on fifo
+- `SendMessage API` is used to send messages
+
+## Consumers
+
+- Poll messages (can receive up to 10 messages at a time)
+- Applications delete (pop) via`DeleteMessage API`
+- `At least once delivery` (can duplicate processing)
+
+## Request-Response Systems
+
+- Set a `new queue` which will be used to receive the response of the system that processed the original messages
+- A `correlationId` is used to identify the message throughout the flow
+- The implement the `reply-to` pattern automatically, the `SQS Temporary Queue Client` (java client) is used
+
+![Request-Response pattern](.images/sqs-request-response.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html>
+
 ```yaml
 Type: AWS::SQS::Queue
 Properties:
@@ -19,39 +44,19 @@ Properties:
   ReceiveMessageWaitTimeSeconds: Integer
   RedriveAllowPolicy: Json
   RedrivePolicy: Json
+  SqsManagedSseEnabled: Boolean
   Tags:
     - Tag
   VisibilityTimeout: Integer
 ```
 
-- **Producers**
-
-  - `Unlimited throughput`
-  - `Unlimited number of messages` in queue
-  - Can have `out of order messages` (best effort ordering) - except on fifo
-  - `SendMessage API` is used to send messages
-
-- **Consumers**
-
-  - Poll messages (can receive up to 10 messages at a time)
-  - Applications delete (pop) via`DeleteMessage API`
-  - `At least once delivery` (can duplicate processing)
-
-- **Request-Response Systems**
-
-  - Set a `new queue` which will be used to receive the response of the system that processed the original messages
-  - A `correlationId` is used to identify the message throughout the flow
-  - The implement the `reply-to` pattern automatically, the `SQS Temporary Queue Client` (java client) is used
-
-  ![Request-Response pattern](.images/sqs-request-response.png)
-
-## DelaySeconds
+### DelaySeconds
 
 - Only make the message available to be polled after some time (up to 15min). Default to immediate (0s)
 - Can be manually overridden by the producer (`DelaySeconds`)
 - If only one needs to be postponed, use `message timers`
 
-## FifoQueue
+### FifoQueue
 
 - Ordering preserved, `exactly once` delivery
 - FIFO queues ends with `.fifo` suffix
@@ -63,28 +68,28 @@ Properties:
   - 1 group can only be read by 1 consumer at a time
 - In FIFO, if a message does not proccess, the whole queue is blocked
 
-## KmsMasterKeyId
+### KmsMasterKeyId
 
 - In-flight encryption with HTTPS
 - At-rest encryption with KMS keys
 - Client-side encryption
 
-## MaximumMessageSize
+### MaximumMessageSize
 
 - Max `256KB per message`
 
-## MessageRetentionPeriod
+### MessageRetentionPeriod
 
 - Default retention is `4 days` (max 14 days)
 
-## RedrivePolicy
+### RedrivePolicy
 
 - **Dead Letter Queue**
   - `MaximumReceives` threshold how many times a message wil fail to process before going to a `dlq` using
   - Useful for debugging
   - Good to set the retention of dlq to `14 days`
 
-## VisibilityTimeout
+### VisibilityTimeout
 
 - After a message is polled by a consumer, it becomes `invisible` to other consumers
 - Defaults to `30s`. During this period the consumer has to process and delete the message, otherwise it will be available for other consumers

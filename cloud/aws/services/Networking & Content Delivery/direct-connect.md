@@ -4,6 +4,7 @@
 - Connection is established between your `Corporate Data Center` and `AWS Direct Connect Locations`
 - For that a `VGW` is needed on the VPC
 - Offers a high throughput
+- Currently has no support on CloudFormation <https://stackoverflow.com/questions/57397970>
 
 ![Direct Connect](.images/direct-connect.png)
 

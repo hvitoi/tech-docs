@@ -6,6 +6,21 @@
   Aurora PostgreSQL: 5432
   Aurora MySQL: 3306
 
+## Authentication
+
+- All caches in ElastiCache `do not support IAM authentication`
+- IAM policies are used for api-level security only
+- Redis
+  - `Redis auth` can be used with a `password/token` to connect to the cache
+  - For extra security use security groups
+  - Add SSL encryption
+- Memcached
+  - Support `SASL-based` authentication
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-cachecluster.html>
+
 ```yaml
 Type: AWS::ElastiCache::CacheCluster
 Properties:
@@ -19,8 +34,10 @@ Properties:
   ClusterName: String
   Engine: String
   EngineVersion: String
+  IpDiscovery: String
   LogDeliveryConfigurations:
     - LogDeliveryConfigurationRequest
+  NetworkType: String
   NotificationTopicArn: String
   NumCacheNodes: Integer
   Port: Integer
@@ -35,21 +52,12 @@ Properties:
   SnapshotWindow: String
   Tags:
     - Tag
+  TransitEncryptionEnabled: Boolean
   VpcSecurityGroupIds:
     - String
 ```
 
-- **Authentication**
-  - All caches in ElastiCache `do not support IAM authentication`
-  - IAM policies are used for api-level security only
-  - Redis
-    - `Redis auth` can be used with a `password/token` to connect to the cache
-    - For extra security use security groups
-    - Add SSL encryption
-  - Memcached
-    - Support `SASL-based` authentication
-
-## Engine
+### Engine
 
 - `Redis`
   - Multi-AZ with auto-failover

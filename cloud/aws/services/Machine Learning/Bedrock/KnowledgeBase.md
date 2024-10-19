@@ -1,19 +1,5 @@
 # AWS::Bedrock::KnowledgeBase
 
-```yaml
-Type: AWS::Bedrock::KnowledgeBase
-Properties:
-  Description: String
-  KnowledgeBaseConfiguration:
-    KnowledgeBaseConfiguration
-  Name: String
-  RoleArn: String
-  StorageConfiguration:
-    StorageConfiguration
-  Tags:
-    Key: Value
-```
-
 ## RAG (Retrieval-Augmented Generation)
 
 - Allows the model to reference a `knowledge base` (data source) outside of its training data
@@ -73,3 +59,21 @@ Assistant:
   - Customer Service Chatbot
   - Legal Research and Analysis
   - Healthcare Question-Answering
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-knowledgebase.html>
+
+```yaml
+Type: AWS::Bedrock::KnowledgeBase
+Properties:
+  Description: String
+  KnowledgeBaseConfiguration:
+    KnowledgeBaseConfiguration
+  Name: String
+  RoleArn: String
+  StorageConfiguration:
+    StorageConfiguration
+  Tags:
+    Key: Value
+```

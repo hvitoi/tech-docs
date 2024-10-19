@@ -2,13 +2,18 @@
 
 - Describes the `container` and `volume` definitions
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html>
+
 ```yaml
 Type: AWS::ECS::TaskDefinition
 Properties:
   ContainerDefinitions:
     - ContainerDefinition
   Cpu: String
-  EphemeralStorage: EphemeralStorage
+  EphemeralStorage:
+    EphemeralStorage
   ExecutionRoleArn: String
   Family: String
   InferenceAccelerators:
@@ -19,9 +24,12 @@ Properties:
   PidMode: String
   PlacementConstraints:
     - TaskDefinitionPlacementConstraint
-  ProxyConfiguration: ProxyConfiguration
+  ProxyConfiguration:
+    ProxyConfiguration
   RequiresCompatibilities:
     - String
+  RuntimePlatform:
+    RuntimePlatform
   Tags:
     - Tag
   TaskRoleArn: String
@@ -29,7 +37,7 @@ Properties:
     - Volume
 ```
 
-## ContainerDefinitions
+### ContainerDefinitions
 
 ```json
 {
@@ -69,7 +77,7 @@ Properties:
 }
 ```
 
-## TaskRoleArn
+### TaskRoleArn
 
 - **EC2 Instance Profile** are attached to the `agent` in order to:
 
@@ -83,7 +91,7 @@ Properties:
 
 ![IAM Roles](.images/ecs-iam-roles.png)
 
-## Volumes
+### Volumes
 
 - ECS has integration with `EFS`
 - Multi-AZ shared storage

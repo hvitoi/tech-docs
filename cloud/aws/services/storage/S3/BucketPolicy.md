@@ -9,6 +9,10 @@
   - Object `Access Control List` (ACL): per object
   - Bucket `Access Control List` (ACL): less common
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucketpolicy.html>
+
 ```yaml
 Type: AWS::S3::BucketPolicy
 Properties:
@@ -16,7 +20,7 @@ Properties:
   PolicyDocument: Json
 ```
 
-## PolicyDocument
+### PolicyDocument
 
 ```json
 // bucket policy

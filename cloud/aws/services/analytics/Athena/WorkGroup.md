@@ -6,6 +6,10 @@
 - Charge per query
 - The query results are stored as a database in S3
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html>
+
 ```yaml
 Type: AWS::Athena::WorkGroup
 Properties:
@@ -15,11 +19,11 @@ Properties:
   State: String
   Tags:
     - Tag
-  WorkGroupConfiguration: WorkGroupConfiguration
-  WorkGroupConfigurationUpdates: WorkGroupConfigurationUpdates
+  WorkGroupConfiguration:
+    WorkGroupConfiguration
 ```
 
-## WorkGroupConfiguration
+### WorkGroupConfiguration
 
 - **Athena Database** defines the `query result location` is the s3 bucket to store the databases
 

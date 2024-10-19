@@ -12,11 +12,18 @@
   - When you cancel the spot request, the associated instances are not terminated
   - If a request is pesistent, it's opened again after the instance is interrupted
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html>
+
 ```yaml
 Type: AWS::EC2::SpotFleet
 Properties:
-  SpotFleetRequestConfigData: SpotFleetRequestConfigData
+  SpotFleetRequestConfigData:
+    SpotFleetRequestConfigData
 ```
+
+### SpotFleetRequestConfigData
 
 ```yaml
 AllocationStrategy: String
@@ -29,35 +36,39 @@ LaunchSpecifications:
   - SpotFleetLaunchSpecification
 LaunchTemplateConfigs:
   - LaunchTemplateConfig
-LoadBalancersConfig: LoadBalancersConfig
+LoadBalancersConfig:
+  LoadBalancersConfig
 OnDemandAllocationStrategy: String
 OnDemandMaxTotalPrice: String
 OnDemandTargetCapacity: Integer
 ReplaceUnhealthyInstances: Boolean
-SpotMaintenanceStrategies: SpotMaintenanceStrategies
+SpotMaintenanceStrategies:
+  SpotMaintenanceStrategies
 SpotMaxTotalPrice: String
 SpotPrice: String
+TagSpecifications:
+  - SpotFleetTagSpecification
 TargetCapacity: Integer
+TargetCapacityUnitType: String
 TerminateInstancesWithExpiration: Boolean
 Type: String
 ValidFrom: String
 ValidUntil: String
+
 ```
 
-## SpotFleetRequestConfigData
-
-### AllocationStrategy
+#### AllocationStrategy
 
 - **lowestPrice**: launches instances from the `Spot Instance pools` with the lowest price
 - **diversified**: launches instances from all the `Spot Instance pools` that you specify
 - **capacityOptimized**: launches instances from `Spot Instance pools` with optimal capacity for the number of instances that are launching
 
-### TargetCapacity
+#### TargetCapacity
 
 - Define `number` of instances and `max cost per spot instance`
 - When the price is higher you get 2min grace period to stop or terminate the instance
 
-### Type
+#### Type
 
 - `request`: once interrupted won't launch again
 - `maintain`: once interrupted will claim again

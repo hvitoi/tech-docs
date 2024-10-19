@@ -18,6 +18,16 @@
 - Service: Deployment
 - Cluster: Cluster
 
+## Scaling
+
+- A `CloudWatch` alarm can be set in order to emit events based on the `service metrics`
+- `Autoscaling` can be enabled based on the metrics
+- For EC2 Launch Type, `Scale ECS Capacity Providers` to scale the ec2 instances
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html>
+
 ```yaml
 Type: AWS::ECS::Cluster
 Properties:
@@ -26,19 +36,17 @@ Properties:
   ClusterName: String
   ClusterSettings:
     - ClusterSettings
-  Configuration: ClusterConfiguration
+  Configuration:
+    ClusterConfiguration
   DefaultCapacityProviderStrategy:
     - CapacityProviderStrategyItem
+  ServiceConnectDefaults:
+    ServiceConnectDefaults
   Tags:
     - Tag
 ```
 
-- **Scaling**
-  - A `CloudWatch` alarm can be set in order to emit events based on the `service metrics`
-  - `Autoscaling` can be enabled based on the metrics
-  - For EC2 Launch Type, `Scale ECS Capacity Providers` to scale the ec2 instances
-
-## CapacityProviders
+### CapacityProviders
 
 - **EC2 Launch Type**
 

@@ -5,16 +5,21 @@
 - `Source`: Elastic Beanstalk, EC2, VPC, SDK, ...
 - `Sink`: S3, ElasticSearch, ...
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-insightrule.html>
+
 ```yaml
 Type: AWS::CloudWatch::InsightRule
 Properties:
   RuleBody: String
   RuleName: String
   RuleState: String
-  Tags: Tags
+  Tags:
+    - Tag
 ```
 
-## RuleBody
+### RuleBody
 
 - Define and send your own custom metrics to CloudWatch
 - Use API `PutMetricData` to send values

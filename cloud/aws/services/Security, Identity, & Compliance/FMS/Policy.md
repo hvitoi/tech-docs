@@ -9,28 +9,39 @@
   - AWS Network Firewall rules
   - Amazon Route 53 Resolver DNS Firewall rules.
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html>
+
 ```yaml
 Type: AWS::FMS::Policy
 Properties:
   DeleteAllPolicyResources: Boolean
-  ExcludeMap: IEMap
+  ExcludeMap:
+    IEMap
   ExcludeResourceTags: Boolean
-  IncludeMap: IEMap
+  IncludeMap:
+    IEMap
+  PolicyDescription: String
   PolicyName: String
   RemediationEnabled: Boolean
+  ResourcesCleanUp: Boolean
+  ResourceSetIds:
+    - String
   ResourceTags:
     - ResourceTag
   ResourceType: String
   ResourceTypeList:
     - String
-  SecurityServicePolicyData: Json
+  SecurityServicePolicyData:
+    SecurityServicePolicyData
   Tags:
     - PolicyTag
 ```
 
-## SecurityServicePolicyData
+### SecurityServicePolicyData
 
-### WAFV2
+#### WAFV2
 
 - **Web Application Firewall**
 - Protect `webapps` from common exploits (`Layer 7`)
@@ -48,7 +59,7 @@ Properties:
     - URI strings
   - Size constraints, geo-match, etc
 
-### SHIELD_ADVANCED
+#### SHIELD_ADVANCED
 
 - Protect against DDoS (`Distributed Denial of Service`) attacks
 

@@ -5,23 +5,30 @@
 
 - Producer can use `Kinesis Agent`, `AWS SDK` or `Kinesis Producer Library (KPL)`
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html>
+
 ```yaml
 Type: AWS::Kinesis::Stream
 Properties:
   Name: String
   RetentionPeriodHours: Integer
   ShardCount: Integer
-  StreamEncryption: StreamEncryption
+  StreamEncryption:
+    StreamEncryption
+  StreamModeDetails:
+    StreamModeDetails
   Tags:
     - Tag
 ```
 
-## RetentionPeriodHours
+### RetentionPeriodHours
 
 - Retention between `1 to 365 days`
 - Data cannot be deleted before this period
 
-## ShardCount
+### ShardCount
 
 - Billing is per `shard` provisioned
 - The **partition key** within each record tells to which shard the record will go

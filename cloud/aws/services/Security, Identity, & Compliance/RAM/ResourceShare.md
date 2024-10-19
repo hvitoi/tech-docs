@@ -11,3 +11,24 @@
   - Network is shared, anything deployed in the VPC can be accessed by the other accounts resources
 
   ![Shared VPC](.images/ram-shared-vpc.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html>
+
+```yaml
+Type: AWS::RAM::ResourceShare
+Properties:
+  AllowExternalPrincipals: Boolean
+  Name: String
+  PermissionArns:
+    - String
+  Principals:
+    - String
+  ResourceArns:
+    - String
+  Sources:
+    - String
+  Tags:
+    - Tag
+```

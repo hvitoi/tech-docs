@@ -14,15 +14,20 @@
 
 ![Backup](.images/backup.png)
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html>
+
 ```yaml
 Type: AWS::Backup::BackupPlan
 Properties:
-  BackupPlan: BackupPlanResourceType
+  BackupPlan:
+    BackupPlanResourceType
   BackupPlanTags:
     Key: Value
 ```
 
-## BackupPlan
+### BackupPlan
 
 - Backup `frequency`
 - Backup `window`

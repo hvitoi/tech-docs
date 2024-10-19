@@ -9,21 +9,26 @@
 - Integration with `Shield` (`DDoS` protection)
 - AWS Web Application `Firewall`
 
-```yaml
-Type: AWS::CloudFront::Distribution
-Properties:
-  DistributionConfig: DistributionConfig
-  Tags:
-    - Tag
-```
-
 ![CloudFront Permissions](.images/cloudfront-permissions.png)
 
 - Regional edge cache `bypass`
   - Proxy methods `PUT`/`POST`/`PATCH`/`OPTIONS`/`DELETE`
   - Dynamic content (cache-behavior configured to forward all headers)
 
-## DistributionConfig
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html>
+
+```yaml
+Type: AWS::CloudFront::Distribution
+Properties:
+  DistributionConfig:
+    DistributionConfig
+  Tags:
+    - Tag
+```
+
+### DistributionConfig
 
 ```yaml
 Aliases:
@@ -33,26 +38,35 @@ CacheBehaviors:
 CNAMEs:
   - String
 Comment: String
+ContinuousDeploymentPolicyId: String
 CustomErrorResponses:
   - CustomErrorResponse
-CustomOrigin: LegacyCustomOrigin
-DefaultCacheBehavior: DefaultCacheBehavior
+CustomOrigin:
+  LegacyCustomOrigin
+DefaultCacheBehavior:
+  DefaultCacheBehavior
 DefaultRootObject: String
 Enabled: Boolean
 HttpVersion: String
 IPV6Enabled: Boolean
-Logging: Logging
-OriginGroups: OriginGroups
+Logging:
+  Logging
+OriginGroups:
+  OriginGroups
 Origins:
   - Origin
 PriceClass: String
-Restrictions: Restrictions
-S3Origin: LegacyS3Origin
-ViewerCertificate: ViewerCertificate
+Restrictions:
+  Restrictions
+S3Origin:
+  LegacyS3Origin
+Staging: Boolean
+ViewerCertificate:
+  ViewerCertificate
 WebACLId: String
 ```
 
-### CacheBehaviors
+#### CacheBehaviors
 
 - **LambdaFunctionAssociations**
 
@@ -64,7 +78,7 @@ WebACLId: String
   - Viewer Response
 - Example: authenticate users at the CloudFront Edge Locations instead of authentication requests go all the way to your origins.
 
-![Resquest Response Change](.images/lambda-cloudfront.png)
+![Request Response Change](.images/lambda-cloudfront.png)
 
 - Use Cases
   - Website Security & Privacy
@@ -78,7 +92,7 @@ WebACLId: String
   - User Prioritization
   - User Tracking and Analytics
 
-### Origins
+#### Origins
 
 - **Custom HTTP**: ELB, EC2, S3 website, ...
 - **S3 bucket**: s3 bucket!
@@ -87,7 +101,7 @@ WebACLId: String
 - **Origin groups**: One primary + one secondary origins to `failover`
   ![Origin Groups](.images/cloudfront-origin-groups.png)
 
-### PriceClass
+#### PriceClass
 
 - Cost of data per edge location varies
 - `Price Classes`
@@ -95,13 +109,13 @@ WebACLId: String
   - `200`: 200 cheaper regions
   - `100`: 100 cheaper regions
 
-### Restrictions
+#### Restrictions
 
 - **Geo Restriction** restricts which locations can access your server
 - Whitelist or Blacklist
 - Country is determined by the IP address
 
-### S3Origin
+#### S3Origin
 
 - Support for `Origin Access Identity` (OAI): The S3 is accessed by a new IAM identity and this identity is added to the bucket policy
 - You can then update S3 Bucket Policy to only accept requests from OAI user

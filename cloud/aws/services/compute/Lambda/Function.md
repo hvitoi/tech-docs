@@ -5,80 +5,97 @@
 - Run `on demand` with `autoscaling`
 - `Lambda Container Image`: it's an specify kind of container that is meant to be run on Lambda. It's different from the conventional docker image
 
-- **Limits**
+## Limits
 
-  - `Execution`
-    - Memory: 128 MB - 10 GB
-    - Max duration: 15 min
-    - Environment variables: 4 KB
-    - Disk capacity (/tmp): 512 MB
-    - Concurrent executions: _1000_ (can be increased)
-  - `Deployment`
-    - Size (compressed .zip): 50 MB
-    - Size (code + dependencies): 250 MB
+- `Execution`
+  - Memory: 128 MB - 10 GB
+  - Max duration: 15 min
+  - Environment variables: 4 KB
+  - Disk capacity (/tmp): 512 MB
+  - Concurrent executions: _1000_ (can be increased)
+- `Deployment`
+  - Size (compressed .zip): 50 MB
+  - Size (code + dependencies): 250 MB
 
-- **Pricing**
+## Pricing
 
-  - `Pay per call`
-    - First 1M is free
-    - After that, $0.20 per 1M
-  - `Pay per duration`
-    - First 400000 seconds / month is free (for 1GB RAM)
+- `Pay per call`
+  - First 1M is free
+  - After that, $0.20 per 1M
+- `Pay per duration`
+  - First 400000 seconds / month is free (for 1GB RAM)
 
-- **Integrations**
+## Integrations
 
-  - API Gateway
-  - Kineses
-  - DynamoDB
-  - S3
-  - Cloudfront
-  - CloudWatch Events
-  - CloudWatch Logs
-  - SNS
-  - SQS
-  - Cognito
+- API Gateway
+- Kineses
+- DynamoDB
+- S3
+- Cloudfront
+- CloudWatch Events
+- CloudWatch Logs
+- SNS
+- SQS
+- Cognito
 
-- **Use cases**
+## Use cases
 
-  - Thumbnail creation
+- Thumbnail creation
+![Thumbnail Creation](.images/lambda-thumbnail.png)
 
-  ![Thumbnail Creation](.images/lambda-thumbnail.png)
+- Serverless cronjob
+![Cronjob](.images/lambda-cronjob.png)
 
-  - Serverless cronjob
+## Properties
 
-  ![Cronjob](.images/lambda-cronjob.png)
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html>
 
 ```yaml
 Type: AWS::Lambda::Function
 Properties:
   Architectures:
     - String
-  Code: Code
+  Code:
+    Code
   CodeSigningConfigArn: String
-  DeadLetterConfig: DeadLetterConfig
+  DeadLetterConfig:
+    DeadLetterConfig
   Description: String
-  Environment: Environment
+  Environment:
+    Environment
+  EphemeralStorage:
+    EphemeralStorage
   FileSystemConfigs:
     - FileSystemConfig
   FunctionName: String
   Handler: String
-  ImageConfig: ImageConfig
+  ImageConfig:
+    ImageConfig
   KmsKeyArn: String
   Layers:
     - String
+  LoggingConfig:
+    LoggingConfig
   MemorySize: Integer
   PackageType: String
+  RecursiveLoop: String
   ReservedConcurrentExecutions: Integer
   Role: String
   Runtime: String
+  RuntimeManagementConfig:
+    RuntimeManagementConfig
+  SnapStart:
+    SnapStart
   Tags:
     - Tag
   Timeout: Integer
-  TracingConfig: TracingConfig
-  VpcConfig: VpcConfig
+  TracingConfig:
+    TracingConfig
+  VpcConfig:
+    VpcConfig
 ```
 
-## Code
+### Code
 
 ```python
 import json
@@ -95,11 +112,11 @@ def lambda_handler(event, context):
     }
 ```
 
-## Role
+### Role
 
 - By default, lambda functions has a `role` with policy able to write to `CloudWatch`
 
-## Runtime
+### Runtime
 
 - Node.js
 - Python

@@ -4,6 +4,10 @@
 - Rules are defined in JSON documents
 - Rules can be constructed based on a `event pattern` or `scheduled`
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html>
+
 ```yaml
 Type: AWS::Events::Rule
 Properties:

@@ -12,3 +12,17 @@ sudo mount "fs-a7fe24dc.efs.us-east-2.amazonaws.com:/" "./my-shared-dir" \
   -t "nfs4" \
   -o "nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport"
 ```
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html>
+
+```yaml
+Type: AWS::EFS::MountTarget
+Properties:
+  FileSystemId: String
+  IpAddress: String
+  SecurityGroups:
+    - String
+  SubnetId: String
+```

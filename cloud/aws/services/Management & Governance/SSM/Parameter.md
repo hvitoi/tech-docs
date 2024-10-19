@@ -19,6 +19,10 @@
     - secondapp/
       - ...
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html>
+
 ```yaml
 Type: AWS::SSM::Parameter
 Properties:
@@ -27,13 +31,14 @@ Properties:
   Description: String
   Name: String
   Policies: String
-  Tags: Json
+  Tags:
+    Key: Value
   Tier: String
   Type: String
   Value: String
 ```
 
-## Policies
+### Policies
 
 - Allow `TTL`s to force updating or deleting sensitive data
 
@@ -48,12 +53,12 @@ Properties:
 }
 ```
 
-## Tier
+### Tier
 
 - `Standard`: up to 10k parameters, no policies
 - `Advanced`: up to 100k parameters
 
-## Type
+### Type
 
 - `String`
 - `StringList`

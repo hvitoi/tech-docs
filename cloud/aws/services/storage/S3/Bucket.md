@@ -3,107 +3,122 @@
 - Store `objects` (files) in `buckets` (directories)
 - Buckets have a globally unique name
 - All operations are `strong consistent`: after write/delete in an object (PUT/DELETE), a subsequent read (GET) will have the latest version of the object
-- **Objects**
-  - `key`: the unique identification for the object is its `full path`. E.g., s3://my-bucket/my-folder/my-file.txt
-  - `size`: Max object `size` is 5TB (but upload must happen with 5GB chunks)
-  - `metadata`: list of key-value pairs
-  - `tags`: up to 10
-  - `version`: version id
-- By default, S3 objects are `owned` by the `AWS account` that `uploaded` it!
+- By default, S3 objects are `owned` by the `AWS account` that `uploaded` it
+
+## Objects
+
+- `key`: the unique identification for the object is its `full path`. E.g., s3://my-bucket/my-folder/my-file.txt
+- `size`: Max object `size` is 5TB (but upload must happen with 5GB chunks)
+- `metadata`: list of key-value pairs
+- `tags`: up to 10
+- `version`: version id
+
+## MFA Delete
+
+- Multiple confirmations required for deleting
+- To permanently delete a version, to suspend the versioning, etc
+- Only root account can enable/disable this option through the CLI
+
+```shell
+# enable MFA delete (must be root account)
+aws s3api put-bucket-versioning \
+  --bucket "my-bucket" \
+  --versioning-configuration "Status=Enabled,MFADelete=Enabled"
+```
+
+## Requester Pays
+
+- Charger the `3rd party` who is willing to request data to your bucket for the `network costs` only
+- The owner will pays for the `storage costs`
+- requester must be authenticated in AWS
+
+![Requester Pays](.images/s3-requester-pays.png)
+
+## Pre-signed URL
+
+- `Pre-Signed URL`: URLs valid for a limited time (3600s by default)
+- For downloads, CLI can be used
+- For uploads, SDK can be used
+
+- Access multiple operations GET, PUT, POST, ...
+
+```shell
+# generate pre-signed URL for an object
+aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1"
+aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1" --expires-in "300" # 3600 by default
+  ```
+
+## Performance
+
+- `3500` PUT/COPY/POST/DELETE per second per prefix
+- `5000` GET/HEAD per second per prefix
+
+- `KMS` limits the performance because KMS has a per-request quota
+  ![S3 KMS Quota](.images/s3-kms-quota.png)
+
+- `Multi-part upload`
+  - It is recommended for files > 100MB and required for files > 5GB
+  - It parallelize the upload and achieve higher throughput
+
+- `S3 Byte-Range Fetches`
+  - Optimizes READ
+  - Parallelize GET requests
+  - Can also be used to retrieve only a part of the file (e.g., only the header)
+
+- `S3 Select & Glacier Select`
+  - Allow queries to the S3 using `SQL language` (server-side filtering)
+  - Avoid unnecessary data filtering by the application
+  - Can also search in a csv file
+  - Less network traffic!
+    ![S3 Select](.images/s3-select.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html>
 
 ```yaml
 Type: AWS::S3::Bucket
 Properties:
-  AccelerateConfiguration: AccelerateConfiguration
+  AccelerateConfiguration:
+    AccelerateConfiguration
   AccessControl: String
   AnalyticsConfigurations:
     - AnalyticsConfiguration
-  BucketEncryption: BucketEncryption
+  BucketEncryption:
+    BucketEncryption
   BucketName: String
-  CorsConfiguration: CorsConfiguration
+  CorsConfiguration:
+    CorsConfiguration
   IntelligentTieringConfigurations:
     - IntelligentTieringConfiguration
   InventoryConfigurations:
     - InventoryConfiguration
-  LifecycleConfiguration: LifecycleConfiguration
-  LoggingConfiguration: LoggingConfiguration
+  LifecycleConfiguration:
+    LifecycleConfiguration
+  LoggingConfiguration:
+    LoggingConfiguration
   MetricsConfigurations:
     - MetricsConfiguration
-  NotificationConfiguration: NotificationConfiguration
-  ObjectLockConfiguration: ObjectLockConfiguration
+  NotificationConfiguration:
+    NotificationConfiguration
+  ObjectLockConfiguration:
+    ObjectLockConfiguration
   ObjectLockEnabled: Boolean
-  OwnershipControls: OwnershipControls
-  PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
-  ReplicationConfiguration: ReplicationConfiguration
+  OwnershipControls:
+    OwnershipControls
+  PublicAccessBlockConfiguration:
+    PublicAccessBlockConfiguration
+  ReplicationConfiguration:
+    ReplicationConfiguration
   Tags:
     - Tag
-  VersioningConfiguration: VersioningConfiguration
-  WebsiteConfiguration: WebsiteConfiguration
+  VersioningConfiguration:
+    VersioningConfiguration
+  WebsiteConfiguration:
+    WebsiteConfiguration
 ```
 
-- **MFA Delete**
-
-  - Multiple confirmations required for deleting
-  - To permanently delete a version, to suspend the versioning, etc
-  - Only root account can enable/disable this option through the CLI
-
-  ```shell
-  # enable MFA delete (must be root account)
-  aws s3api put-bucket-versioning \
-    --bucket "my-bucket" \
-    --versioning-configuration "Status=Enabled,MFADelete=Enabled"
-  ```
-
-- **Requester Pays**
-
-  - Charger the `3rd party` who is willing to request data to your bucket for the `network costs` only
-  - The owner will pays for the `storage costs`
-  - requester must be authenticated in AWS
-
-  ![Requester Pays](.images/s3-requester-pays.png)
-
-- **Pre-signed URL**
-
-  - `Pre-Signed URL`: URLs valid for a limited time (3600s by default)
-  - For downloads, CLI can be used
-  - For uploads, SDK can be used
-
-  - Access multiple operations GET, PUT, POST, ...
-
-  ```shell
-  # generate pre-signed URL for an object
-  aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1"
-  aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1" --expires-in "300" # 3600 by default
-  ```
-
-- **Performance**
-
-  - `3500` PUT/COPY/POST/DELETE per second per prefix
-  - `5000` GET/HEAD per second per prefix
-
-  - `KMS` limits the performance because KMS has a per-request quota
-    ![S3 KMS Quota](.images/s3-kms-quota.png)
-
-  - `Multi-part upload`
-
-    - It is recommended for files > 100MB and required for files > 5GB
-    - It parallelize the upload and achieve higher throughput
-
-  - `S3 Byte-Range Fetches`
-
-    - Optimizes READ
-    - Parallelize GET requests
-    - Can also be used to retrieve only a part of the file (e.g., only the header)
-
-  - `S3 Select & Glacier Select`
-
-    - Allow queries to the S3 using `SQL language` (server-side filtering)
-    - Avoid unnecessary data filtering by the application
-    - Can also search in a csv file
-    - Less network traffic!
-      ![S3 Select](.images/s3-select.png)
-
-## AccelerateConfiguration
+### AccelerateConfiguration
 
 - `S3 Transfer Acceleration` (S3TA)
 - Increase transfer speed
@@ -111,7 +126,7 @@ Properties:
   ![Transfer Acceleration](.images/s3-transfer-acceleration.png)
 - With S3TA, you pay only for transfers that are accelerated
 
-## BucketEncryption
+### BucketEncryption
 
 - **SSE-S3**
   - Keys managed by AWS
@@ -134,7 +149,7 @@ Properties:
 
 - A `default encryption method` can be set for all files. Also, different methods can override the default encryption for each single file and version
 
-## CorsConfiguration
+### CorsConfiguration
 
 - CORS (`Cross-Origin Resource Sharing`): get resource from another origin
 - `Web Browser Policy`: allow requests to other origins only if this origin being requested allows CORS
@@ -213,7 +228,7 @@ Properties:
 </html>
 ```
 
-## LifecycleConfiguration
+### LifecycleConfiguration
 
 - StorageClass
   - **Standard - General Purpose**
@@ -263,13 +278,13 @@ Properties:
 
 ![Lifecycle Rules](.images/s3-lifecycle-rules.png)
 
-## LoggingConfiguration
+### LoggingConfiguration
 
 - `Access Logs` can be stored in another s3 bucket. Do not store it in the same bucket otherwise it will loop forever
 - `API calls` can be logged in `cloudtrail`
 - Can be activated under `Server Logging Access` in properties tab
 
-## NotificationConfiguration
+### NotificationConfiguration
 
 - **S3 Event Notifications**
 - `S3:ObjectCreated`, `S3:ObjectRemoved`, ...
@@ -280,7 +295,7 @@ Properties:
 - Events can be sent to `SNS`, `SQS` or `Lambda Functions` in order for the event to be further processed
 - The target broker (SNS, SQS, etc) must have access policies to allow s3 to publish in it
 
-## ObjectLockConfiguration
+### ObjectLockConfiguration
 
 - Places an `Object Lock` configuration on the specified bucket.
 - The default retention can also be override when you `explicitly` apply a `retention period` to an object version (**Retain Until Date**)
@@ -300,13 +315,13 @@ Properties:
 - For `archives` you can add **Vault Lock** and adopt `WORM` (write once read many)
 - This way your archive cannot be modified/deleted. Good for compliance & audit!
 
-## PublicAccessBlockConfiguration
+### PublicAccessBlockConfiguration
 
 - Configuration to block `public access` to objects
 - This is used to prevent `data leaks`
 - This configuration can also be applied at the `account level` (for all buckets)
 
-## ReplicationConfiguration
+### ReplicationConfiguration
 
 - `CRR`: Cross Region Replication
 - `SRR`: Same Region Replication
@@ -323,7 +338,7 @@ Properties:
   - Replication can be activated for all objects or specific objects with filter
   - For `DELETE` operations, you can choose whether the delete markers will be replicated
 
-## VersioningConfiguration
+### VersioningConfiguration
 
 - Once you version-enable a bucket, it can `never return to an unversioned state`
 - Versioning can only be `suspended` once it has been enabled. `Suspending` the versioning won't remove the versions already created
@@ -332,7 +347,7 @@ Properties:
 - Objects with `version id null` means they were created when versioning was not activated
 - Deleted objects receive a `delete marker`. And the previous versions of it are preserved. To delete an object completely, all the versions must be deleted
 
-## WebsiteConfiguration
+### WebsiteConfiguration
 
 - S3 can host static websites and have them accessible on the www
 - <my-bucket.s3-website.sa-east.amazonaws.com>

@@ -7,45 +7,65 @@
 
 - Gets a JWT as return
 
+- Can be integrated with API Gateway for authentication
+- Integrate with Facebook to provide authenticated logins for your application users.
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html>
+
 ```yaml
 Type: AWS::Cognito::UserPool
 Properties:
-  AccountRecoverySetting: AccountRecoverySetting
-  AdminCreateUserConfig: AdminCreateUserConfig
+  AccountRecoverySetting:
+    AccountRecoverySetting
+  AdminCreateUserConfig:
+    AdminCreateUserConfig
   AliasAttributes:
     - String
   AutoVerifiedAttributes:
     - String
-  DeviceConfiguration: DeviceConfiguration
-  EmailConfiguration: EmailConfiguration
+  DeletionProtection: String
+  DeviceConfiguration:
+    DeviceConfiguration
+  EmailAuthenticationMessage: String
+  EmailAuthenticationSubject: String
+  EmailConfiguration:
+    EmailConfiguration
   EmailVerificationMessage: String
   EmailVerificationSubject: String
   EnabledMfas:
     - String
-  LambdaConfig: LambdaConfig
+  LambdaConfig:
+    LambdaConfig
   MfaConfiguration: String
-  Policies: Policies
+  Policies:
+    Policies
   Schema:
     - SchemaAttribute
   SmsAuthenticationMessage: String
-  SmsConfiguration: SmsConfiguration
+  SmsConfiguration:
+    SmsConfiguration
   SmsVerificationMessage: String
+  UserAttributeUpdateSettings:
+    UserAttributeUpdateSettings
   UsernameAttributes:
     - String
-  UsernameConfiguration: UsernameConfiguration
-  UserPoolAddOns: UserPoolAddOns
+  UsernameConfiguration:
+    UsernameConfiguration
+  UserPoolAddOns:
+    UserPoolAddOns
   UserPoolName: String
-  UserPoolTags: Json
-  VerificationMessageTemplate: VerificationMessageTemplate
+  UserPoolTags:
+    Key: Value
+  VerificationMessageTemplate:
+    VerificationMessageTemplate
 ```
 
-- Can be integrated with API Gateway for authentication
-- Integrate with Facebook to provide authenticated logins for your application users.
-
-## EmailConfiguration
+### EmailConfiguration
 
 - Support for email verifying
 
-## MfaConfiguration
+### MfaConfiguration
 
 - Support for MFA

@@ -2,6 +2,10 @@
 
 - `SQS Access policies`: for Cross Account Access
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queuepolicy.html>
+
 ```yaml
 Type: AWS::SQS::QueuePolicy
 Properties:
@@ -10,7 +14,7 @@ Properties:
     - String
 ```
 
-## PolicyDocument
+### PolicyDocument
 
 ```json
 // S3 - SQS integration

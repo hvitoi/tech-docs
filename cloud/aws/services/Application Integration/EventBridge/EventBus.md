@@ -15,3 +15,21 @@
   - Analyze the events in the bus and `infer` its `schema`
   - `Schema Registry` generates code for the application so that it knows how to structure the event before sending
   - Schemas can be versioned
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html>
+
+```yaml
+Type: AWS::Events::EventBus
+Properties:
+  DeadLetterConfig:
+    DeadLetterConfig
+  Description: String
+  EventSourceName: String
+  KmsKeyIdentifier: String
+  Name: String
+  Policy: Json
+  Tags:
+    - Tag
+```

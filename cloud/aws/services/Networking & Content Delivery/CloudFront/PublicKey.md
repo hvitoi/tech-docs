@@ -27,3 +27,23 @@
   - `Trusted Signers`: aws accounts
 
 ![Pre-signed URL](.images/cloudfront-presigned-url.png)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html>
+
+```yaml
+Type: AWS::CloudFront::PublicKey
+Properties:
+  PublicKeyConfig:
+    PublicKeyConfig
+```
+
+### PublicKeyConfig
+
+```yaml
+CallerReference: String
+Comment: String
+EncodedKey: String
+Name: String
+```

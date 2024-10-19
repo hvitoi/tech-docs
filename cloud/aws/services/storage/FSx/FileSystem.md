@@ -1,12 +1,22 @@
 # AWS::FSx::FileSystem
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html>
+
 ```yaml
 Type: AWS::FSx::FileSystem
 Properties:
   BackupId: String
   FileSystemType: String
+  FileSystemTypeVersion: String
   KmsKeyId: String
-  LustreConfiguration: LustreConfiguration
+  LustreConfiguration:
+    LustreConfiguration
+  OntapConfiguration:
+    OntapConfiguration
+  OpenZFSConfiguration:
+    OpenZFSConfiguration
   SecurityGroupIds:
     - String
   StorageCapacity: Integer
@@ -15,19 +25,20 @@ Properties:
     - String
   Tags:
     - Tag
-  WindowsConfiguration: WindowsConfiguration
+  WindowsConfiguration:
+    WindowsConfiguration
 ```
 
-## FileSystemType
+### FileSystemType
 
-### WINDOWS
+#### WINDOWS
 
 - `FSx for Windows`: windows file system shared drive
 - Supports `SMB` and `NTFS` protocols
 - Supports `AD` integration, `ACL` and `user quotas`
 - Supports `Multi-AZ`
 
-### LUSTRE
+#### LUSTRE
 
 - Lustre is a `parallel distributed file system`
 - For large-scale computing
@@ -42,7 +53,7 @@ Properties:
 
 - Seamless `integration with S3` (read, write, ...)
 
-## StorageCapacity
+### StorageCapacity
 
 - `Scratch File System`
   - Temporary storage

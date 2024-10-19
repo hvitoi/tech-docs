@@ -2,6 +2,15 @@
 
 - Specifies an `Elastic Block Store` (EBS)
 - `Network drive` (not physical) that can be attached to instances on the fly
+- EBS volume can be configured to `Delete on Termination`
+- **Volume Behavior**
+  - `Stop`: data on disk (EBS) is kept intact
+  - `Terminate`: root EBS volumes is destroyed
+  - `Hibernate`: RAM is dumped into a file in the encrypted EBS volume. Faster boot
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html>
 
 ```yaml
 Type: AWS::EC2::Volume
@@ -11,7 +20,7 @@ Properties:
   Encrypted: Boolean
   Iops: Integer
   KmsKeyId: String
-  : Boolean
+  MultiAttachEnabled: Boolean
   OutpostArn: String
   Size: Integer
   SnapshotId: String
@@ -21,30 +30,24 @@ Properties:
   VolumeType: String
 ```
 
-- EBS volume can be configured to `Delete on Termination`
-- **Volume Behavior**
-  - `Stop`: data on disk (EBS) is kept intact
-  - `Terminate`: root EBS volumes is destroyed
-  - `Hibernate`: RAM is dumped into a file in the encrypted EBS volume. Faster boot
-
-## AvailabilityZone
+### AvailabilityZone
 
 - Belongs to an `AZ` and cannot be bound to ec2 instances in other AZ's. To attach the volume to an instance use `AWS::EC2::VolumeAttachment`
 
-## Encrypted
+### Encrypted
 
 - Encryption has minimal impact on latency
 - To encryption a volume at later time, you can create a snapshot, copy & encrypt, and then restore it
 
-## Iops
+### Iops
 
 - `Capacity` and `IOPS` must be defined in advance
 
-## MultiAttachEnabled
+### MultiAttachEnabled
 
 - If not enabled, the EBS volume can only be attached to one instance at a time
 
-## VolumeType
+### VolumeType
 
 - `General Purpose SSD` (gp2/gp3)
   - Can be used as boot volume
@@ -65,7 +68,7 @@ Properties:
 - `Magnetic` (standard)
   - Can be used as boot volume
 
-## SnapshotId
+### SnapshotId
 
 - Backup the EBS volume
 - Snapshots can be `restored` to any AZ region (not only the original one)

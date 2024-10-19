@@ -11,25 +11,57 @@
   - `Manual`: edit templates in CloudFormation Designer
   - `Automatic`: edit templates in yaml and deploy with CLI
 
+## Infrastructure Composer
+
+- Previously known as CloudFormation Designer
+- Allows you to edit/create cloudformation templates
+- It's a cloud-based editor with visualization (low-code) features
+
+## Resources
+
+- The resources created by a cloudformation template acquire some tags
+  - `aws:cloudformation:logical-id`: value is the resource name defined in the template (E.g., MyResource)
+  - `aws:cloudformation:stack-id`: arn of the cloudformation (E.g., arn:aws:cloudformation:us-east1:123456789012:stack/mystack/uuid)
+  - `aws:cloudformation:stack-name`: name of the cloudformation (E.g., mystack)
+
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stack.html>
+
 ```yaml
 Type: AWS::CloudFormation::Stack
 Properties:
+  Capabilities:
+    - String
+  ChangeSetId: String
+  CreationTime: String
+  Description: String
+  DisableRollback: Boolean
+  EnableTerminationProtection: Boolean
+  LastUpdateTime: String
   NotificationARNs:
     - String
+  Outputs:
+    - Output
   Parameters:
     Key: Value
+  ParentId: String
+  RoleARN: String
+  RootId: String
+  StackId: String
+  StackName: String
+  StackPolicyBody: Json
+  StackPolicyURL: String
+  StackStatus: String
+  StackStatusReason: String
   Tags:
     - Tag
+  TemplateBody: Json
   TemplateURL: String
   TimeoutInMinutes: Integer
 ```
 
-- **Infrastructure Composer**
-  - Previously known as CloudFormation Designer
-  - Allows you to edit/create cloudformation templates
-  - It's a cloud-based editor with visualization (low-code) features
-
-## TemplateURL
+### TemplateURL
 
 - A template is a yaml/json file declaring all the configuration for the desired resources
 
@@ -48,7 +80,7 @@ Properties:
   - Functions
 
 ```yaml
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: EC2 with Security Group and Elastic IP
 
 Parameters:
@@ -104,10 +136,3 @@ Outputs:
     Description: Elastic IP Value
     Value: !Ref MyEIP
 ```
-
-## Resources
-
-- The resources created by a cloudformation template acquire some tags
-  - `aws:cloudformation:logical-id`: value is the resource name defined in the template (E.g., MyResource)
-  - `aws:cloudformation:stack-id`: arn of the cloudformation (E.g., arn:aws:cloudformation:us-east1:123456789012:stack/mystack/uuid)
-  - `aws:cloudformation:stack-name`: name of the cloudformation (E.g., mystack)

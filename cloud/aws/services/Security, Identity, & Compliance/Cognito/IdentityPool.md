@@ -8,6 +8,10 @@
 
 ![Federated Identity Pools](.images/federated-identity-pools.png)
 
+## Properties
+
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html>
+
 ```yaml
 Type: AWS::Cognito::IdentityPool
 Properties:
@@ -16,18 +20,22 @@ Properties:
   CognitoEvents: Json
   CognitoIdentityProviders:
     - CognitoIdentityProvider
-  CognitoStreams: CognitoStreams
+  CognitoStreams:
+    CognitoStreams
   DeveloperProviderName: String
   IdentityPoolName: String
+  IdentityPoolTags:
+    - Tag
   OpenIdConnectProviderARNs:
     - String
-  PushSync: PushSync
+  PushSync:
+    PushSync
   SamlProviderARNs:
     - String
   SupportedLoginProviders: Json
 ```
 
-## CognitoIdentityProviders
+### CognitoIdentityProviders
 
 - _SAML 2.0_: the client exchange a saml token for an sts token
 - _Custom Identity Broker_: the IdP talks directly to the sts and give the token to the user

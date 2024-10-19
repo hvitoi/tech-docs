@@ -27,7 +27,7 @@ Properties:
     Key: Value
 ```
 
-## Targets
+### Targets
 
 ```yaml
 Filters:
@@ -50,7 +50,7 @@ SelectionMode: String
 - Can be matched by tags
 - Can be defined a population (percentage or count)
 
-## Actions
+### Actions
 
 ```yaml
 ActionId: String
@@ -80,7 +80,7 @@ Targets:
   - RDS
   - SSM
 
-## StopConditions
+### StopConditions
 
 ```yaml
 Source: String
@@ -90,14 +90,14 @@ Value: String
 - When to stop the experiment
 - Can be based on CloudWatch alarms
 
-## ExperimentOptions
+### ExperimentOptions
 
 ```yaml
 AccountTargeting: String
 EmptyTargetResolutionMode: String
 ```
 
-## LogConfiguration
+### LogConfiguration
 
 - Specifies the configuration for experiment logging.
 
