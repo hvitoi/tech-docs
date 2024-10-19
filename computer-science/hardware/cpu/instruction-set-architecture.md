@@ -1,4 +1,4 @@
-# CPU architectures
+# Instruction Set Architecture (ISA)
 
 ```c
 void add(){
@@ -13,8 +13,8 @@ void add(){
 
 - `64-bit` version: aarch64
 - `32-bit` version: aarch32
-- Apple M1 processors
-- Require less transistors, therefore it's good for battery life
+
+- In the ARM world, a bunch of hardware reference designs are available. Therefore ARM hardware/cpus are more standardized than x86 counterparts
 
 ```assembly
 add:
@@ -35,7 +35,6 @@ add:
 
 ## Intel x86 Family
 
-- Intel & AMD processors
 - `64-bit` version: x86-64, x64, x86_64, AMD64, Intel 64
 - `32-bit` version: A-32 (Intel Architecture, 32-bit), i386
 
