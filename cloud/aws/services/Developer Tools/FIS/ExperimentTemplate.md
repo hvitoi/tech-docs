@@ -29,6 +29,19 @@ Properties:
 
 ## Targets
 
+```yaml
+Filters:
+  - ExperimentTemplateTargetFilter
+Parameters:
+  Key: Value
+ResourceArns:
+  - String
+ResourceTags:
+  Key: Value
+ResourceType: String
+SelectionMode: String
+```
+
 - A target is a specific resource in your AWS environment
   - EC2
   - Databases
@@ -68,6 +81,11 @@ Targets:
   - SSM
 
 ## StopConditions
+
+```yaml
+Source: String
+Value: String
+```
 
 - When to stop the experiment
 - Can be based on CloudWatch alarms

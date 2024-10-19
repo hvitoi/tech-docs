@@ -29,6 +29,8 @@ aws ec2 describe-instances \
 
 ## update-stack
 
+- It's not possible to update stack in "ROLLBACK_COMPLETE" status
+
 ```shell
 aws cloudformation update-stack \
   --stack-name my-stack \
