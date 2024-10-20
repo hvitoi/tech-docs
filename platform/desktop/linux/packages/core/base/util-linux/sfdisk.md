@@ -1,5 +1,7 @@
 # sfdisk
 
+- Scripting version of fdisk
+
 ## --list
 
 - List partition

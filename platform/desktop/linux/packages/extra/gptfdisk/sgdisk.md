@@ -1,5 +1,7 @@
 # sgdisk
 
+- Scripting version of gdisk
+
 ```shell
 # print partition table (linux fs is typically 8300 code)
 sgdisk /dev/disk0 -p

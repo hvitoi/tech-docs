@@ -1,5 +1,7 @@
 # gdisk
 
+- Only applicable to GPT partition tables
+
 ```shell
 gdisk /dev/disk0
 ```

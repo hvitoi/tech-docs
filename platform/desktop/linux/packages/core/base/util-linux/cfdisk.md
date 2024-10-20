@@ -1,7 +1,6 @@
 # cfdisk
 
-- Improved fdisk!
-- Supports partition resizing
+- TUI version of fdisk
 
 ```shell
 cfdisk "/dev/sda"
