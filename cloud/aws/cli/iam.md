@@ -31,7 +31,11 @@ aws iam list-policies
 aws iam get-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
 # get a customer managed policy
-aws iam get-policy --policy-arn arn:aws:iam::$aws_account:policy/casual-dev
+aws iam get-policy --policy-arn arn:aws:iam::000000000000:policy/casual-dev
+
+# With aws account
+set AWS_ACCOUNT $(aws sts get-caller-identity --query 'Account' --output text)
+aws iam get-policy --policy-arn arn:aws:iam::$AWS_ACCOUNT:policy/my-policy
 ```
 
 ## Roles

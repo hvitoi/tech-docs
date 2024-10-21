@@ -14,7 +14,7 @@ arn:aws:iam::123456789012:user/ClusterAdmin
 aws sts get-caller-identity
 
 # The AWS Account Id
-aws sts get-caller-identity | jq -r '.Account'
+aws sts get-caller-identity --query 'Account' --output text
 ```
 
 ## get-session-token
