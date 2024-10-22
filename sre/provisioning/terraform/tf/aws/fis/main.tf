@@ -10,7 +10,7 @@ resource "aws_fis_experiment_template" "cpu_stress" {
     selection_mode = "ALL"
 
     parameters = {
-      clusterIdentifier   = "arn:aws:eks:${var.aws_region}:${data.aws_caller_identity.current.account_id}:cluster/${var.eks_cluster_name}"
+      clusterIdentifier   = "arn:aws:eks:${var.region}:${data.aws_caller_identity.current.account_id}:cluster/${var.eks_cluster_name}"
       namespace           = var.k8s_namespace
       selectorType        = "deploymentName"
       selectorValue       = var.k8s_deployment
@@ -55,7 +55,7 @@ resource "aws_fis_experiment_template" "cpu_stress" {
 
   log_configuration {
     cloudwatch_logs_configuration {
-      log_group_arn = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/eks/${var.eks_cluster_name}/cluster:*"
+      log_group_arn = "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/eks/${var.eks_cluster_name}/cluster:*"
     }
     log_schema_version = 2
   }
