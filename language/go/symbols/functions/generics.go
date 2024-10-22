@@ -6,7 +6,7 @@ type Num interface {
 	int | float64 | ~uint8
 }
 
-func MapValues[T Num](values []T, mapFunc func(T) T) []T {
+func mapSomething[T Num](values []T, mapFunc func(T) T) []T {
 	var mappedValues []T
 	for _, v := range values {
 		mappedValues = append(mappedValues, mapFunc(v))
@@ -24,7 +24,7 @@ type CustomMap[T comparable, V int | string] map[T]V // comparable is any type t
 
 func main() {
 	// function
-	result := MapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // inline function
+	result := mapSomething([]int{1, 2, 3}, func(n int) int { return n * 2 }) // inline function
 	fmt.Println(result)
 
 	// struct

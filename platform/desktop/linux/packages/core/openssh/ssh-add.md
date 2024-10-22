@@ -1,17 +1,18 @@
 # ssh-add
 
 - Add keys to client
+- Example: add old private key to a new computer
 
 ```shell
-# Start the SSH authentication agent (and print the process id)
-eval "$(ssh-agent -s)"
+# If no args are provided, adds ~/.ssh/id_rsa, ~/.ssh/id_dsa, ~/.ssh/id_ecdsa. ~/ssh/id_ed25519, and ~/.ssh/identity, if they exist.
+ssh-add
 
-# Add old private key to a new computer
-ssh-add # Without arguments (adds ~/.ssh/id_rsa, ~/.ssh/id_dsa, ~/.ssh/id_ecdsa. ~/ssh/id_ed25519, and ~/.ssh/identity, if they exist.)
-ssh-add "/path/to/private_key" # Specific private key
+# Add a specific private key
 ssh-add ~/.ssh/id_rsa
-ssh-add -L # Print ssh public keys
-```
 
-- Private key `~/.ssh/id_rsa` must have permission 400 (or 600)
-- Public key `~/.ssh/id_rsa.pub` must have permission 644
+# MacOS (if you are getting the error: failed to retrieve git folder: failed to clone ref 'refs/heads/main': ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain)
+ssh-add --apple-use-keychain ~/.ssh/id_rsa
+
+ # Print ssh public keys
+ssh-add -L
+```

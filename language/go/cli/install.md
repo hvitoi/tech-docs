@@ -3,7 +3,8 @@
 - `$GOROOT`: sdk directory
 - `$GOPATH`: workspace directory
 
-- By default the package is installed into `$GOPATH`
+- Packages are installed at the `local go module cache`
+  - The default module cache path is `$GOPATH/pkg/mod`
 
 ```shell
 # Compile and install a package in cwd
