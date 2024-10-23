@@ -86,7 +86,7 @@ epoch=1 # force the package to be seen as new (avoid modifying it)
 pkgdesc="My awesome package" # description of the package (less than 80 characters)
 arch=("x86_64") # system architecture
 url="https://github.com/a/b" # url of the official website application
-license=('GPL') # license
+license=('GPL') # SPDX license identifiers (/usr/share/licenses/spdx provided by the "licenses" package)
 groups=() # group to which this package belongs to
 depends=("foobar>=1.8.0" "foobar<2.0.0" "pcre") # runtime dependencies
 makedepends=("git") # build dependencies

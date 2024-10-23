@@ -1,4 +1,4 @@
-# create
+# gh create
 
 ```shell
 # Interactive
