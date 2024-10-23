@@ -1,6 +1,7 @@
-# login
+# pulumi login
 
 - Pulumi offers a PaaS to manage the stacks
+- Login info is stored at `~/.pulumi/credentials.json`
 
 ```shell
 # Log in to pulumi cloud

@@ -16,6 +16,10 @@ func main() {
 		FirstName: "Henry",
 		LastName:  "Vitoi",
 	})
+	// jsonBody2, _ := json.Marshal(map[string]interface{}{
+	// 	"FirstName": "Henry",
+	// 	"LastName":  "Vitoi",
+	// })
 	fmt.Println(string(jsonBody))
 
 	jsonBody2, _ := json.Marshal(map[string]string{

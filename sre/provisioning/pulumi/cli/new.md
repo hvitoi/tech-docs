@@ -1,7 +1,9 @@
-# new
+# pulumi new
 
 - Creates a project from a template
+- By default this command creates `stacks` at `~/.pulumi/stacks`
 - Make sure to `pulumi login` first
+- Cached templates are stored at `~/.pulumi/templates`
 
 ```shell
 # Show available templates

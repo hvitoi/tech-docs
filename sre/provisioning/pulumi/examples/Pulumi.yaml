@@ -1,0 +1,7 @@
+name: foo
+description: A project example
+runtime: go
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-go
