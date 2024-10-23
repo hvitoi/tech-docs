@@ -22,6 +22,12 @@ my-project
 
 ## Stacks
 
-- A stack is a `named update target`, and a single project may have many of them.
+- A stack is a `named update target`, and a single project may have many of them
 - It's usually used for managing environments (dev, prod, etc) with it's own overrides
 - Each stack has a `configuration` and `update history` associated with it, stored in the workspace (~/.pulumi/workspaces)
+
+## State
+
+- The "current state" stores information about the last deployed infrastructure
+- With the `current state`, pulumi knows what to create, change or delete in order to achieve the `desired state`
+- The state is stored at `~/.pulumi/stacks/<your-project>`

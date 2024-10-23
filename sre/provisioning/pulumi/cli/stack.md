@@ -23,3 +23,11 @@ pulumi stack select "dev"
 ```shell
 pulumi stack init "prod"
 ```
+
+## output
+
+- Get an output property of the execution of a stack
+
+```shell
+pulumi stack output "url"
+```

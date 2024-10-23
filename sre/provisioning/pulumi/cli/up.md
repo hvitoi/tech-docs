@@ -1,7 +1,7 @@
 # pulumi up
 
 - This command creates the infrastructure based on the pulumi program
-- Uses your local provider credentials and profiles (e.g., ~/.aws)
+- Uses your local provider credentials and profiles (e.g., `~/.aws`)
 
 ```shell
 # creates resources
