@@ -12,11 +12,6 @@
   - `~/.bashrc`: invoked from bash_profile/bash_login/bashrc
   - `~/.bash_login`: executed only if bash_profile is not found
 
-- **Zsh**
-  - `~/.zprofile`: similar to .bash_profile
-  - `~/.zshrc`: non-login
-  - `~/.zlogin`
-
 ### System
 
 - **Generic**
@@ -30,12 +25,9 @@
 ## Interactive Shells
 
 - **Interactive Shell** (_Non-login shell_)
-  - Executes all the startup scripts
-  - Example: a terminal emulator, a ssh
 
 - **Non-Interactive Shell** (_Login shell_)
-  - Does not execute any startup script
-  - Example: executed from a script, child shells
+  - When you log into the system, either via a terminal or SSH
 
 ## Useful environment variables
 
