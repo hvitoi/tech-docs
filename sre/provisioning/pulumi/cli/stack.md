@@ -16,6 +16,14 @@ pulumi stack ls
 pulumi stack select "dev"
 ```
 
+## output
+
+- Get an output property of the execution of a stack
+
+```shell
+pulumi stack output "url"
+```
+
 ## init
 
 - Create a new empty stack
@@ -24,10 +32,8 @@ pulumi stack select "dev"
 pulumi stack init "prod"
 ```
 
-## output
-
-- Get an output property of the execution of a stack
+## rm
 
 ```shell
-pulumi stack output "url"
+pulumi stack rm "prod"
 ```

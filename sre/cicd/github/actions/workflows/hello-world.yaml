@@ -21,6 +21,7 @@ concurrency:
 
 # multiple triggers with overrides
 on:
+  # Uses the github event names: https://docs.github.com/en/webhooks/webhook-events-and-payloads
   push:
     branches: # Triggers when code is pushed to these branches
       - main
