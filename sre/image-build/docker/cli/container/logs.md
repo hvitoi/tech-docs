@@ -1,4 +1,4 @@
-# logs
+# docker container logs
 
 - Show all logs from a container (even if it's exited)
 

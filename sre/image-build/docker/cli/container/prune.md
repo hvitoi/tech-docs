@@ -1,4 +1,4 @@
-# prune
+# docker container prune
 
 - Remove all stopped containers
 

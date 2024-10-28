@@ -1,4 +1,4 @@
-# rm
+# docker container rm
 
 ```shell
 ## Remove container

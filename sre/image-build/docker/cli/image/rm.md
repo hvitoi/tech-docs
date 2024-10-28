@@ -1,4 +1,4 @@
-# rm
+# docker image rm
 
 ```shell
 # Remove image

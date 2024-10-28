@@ -1,4 +1,4 @@
-# inspect
+# docker container inspect
 
 ```shell
 ## Inspect container (JSON)

@@ -1,4 +1,4 @@
-# inspect
+# docker image inspect
 
 ```shell
 # Inspect image

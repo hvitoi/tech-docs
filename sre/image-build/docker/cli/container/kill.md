@@ -1,4 +1,4 @@
-# kill
+# docker container kill
 
 - Force container stop (`SIGKILL`)
 

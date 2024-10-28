@@ -1,60 +1,51 @@
-# Swarm
+# docker swarm
 
+## init
+
+```shell
 ## Check if swarm is active
-
-`docker info`
+docker info
 
 ## Enable swarm
-
-`docker swarm init`
-
-`docker swarm init --advertise-addr <ip>`
-
-- specify an ip for the node
+docker swarm init
+docker swarm init --advertise-addr <ip>
+# specify an ip for the node
 
 ## Leaves a swarm
+docker swarm leave
+```
 
-`docker swarm leave`
+## node
 
-<!-- ------------------------- -->
+- The node is the physical machine
 
-# Nodes
-
+```shell
 ## List all nodes
-
-`docker node ls`
-
-- Node is the physical machine!
+docker node ls
 
 ## Processes in the node
-
-`docker node ps <node>`
+docker node ps <node>
 
 ## Create a token for a manager node
-
-`docker swarm join-token manager`
+docker swarm join-token manager
 
 ## Join an existing swarm
-
-`docker swarm join --token <token> <ip>:<port>`
-
-- As a worker. Wokers can't run swarm commands
+docker swarm join --token <token> <ip>:<port>
+#- As a worker. Wokers can't run swarm commands
 
 ## Update role of a node
+docker node update --role manager <node>
+```
 
-`docker node update --role manager <node>`
+## Services
 
-<!-- ------------------------- -->
-
-# Services
-
+```shell
 ## List services
-
-`docker service ls`
+docker service ls
 
 ## Create a service
-
-`docker service create <image>`
+docker service create <image>
+```
 
 ```shell
 docker service create --replicas 3 alpine ping 8.8.8.8
@@ -64,7 +55,7 @@ docker service create --name search --replicas 3 -p 9200:9200 elasticsearch:2   
 docker service create --name db --network backend -e POSTGRES_PASSWORD=mypass --mount type=volume,source=db-data,target=/var/lib/postgresql/data postgres:9.4   # Named volume
 ```
 
-## Service with secret
+### Service with secret
 
 ```shell
 docker service create \
@@ -76,29 +67,31 @@ docker service create \
     postgres
 ```
 
-## Remove service
+### Remove service
 
-`docker service rm <service>`
+```shell
+docker service rm <service>
+```
 
-<!-- ------------------------- -->
+### Inspecting services
 
-# Inspecting services
-
+```shell
 ## Show tasks for the service
 
-`docker service ps <service>`
+docker service ps <service>
 
 - The tasks show in which node they are run. In this case in callisto! If a task fails, swarm will automatically create a new one
 
 ## Inspect a service
 
-`docker service inspect <service>`
+docker service inspect <service>
 
 ## Logs from service
 
-`docker service logs <service>`
+docker service logs <service>
+```
 
-## Update the service
+### Update the service
 
 ```shell
 docker service update --replicas <number> <service>
@@ -109,6 +102,8 @@ docker service update --env-add <var> <service>
 docker service update --force <service>     # Replace the tasks!
 ```
 
-## Scale up multiple services
+### Scale up multiple services
 
-`docker service scale <service1>=<replicas1> <service2>=<replicas2>`
+```shell
+docker service scale <service1>=<replicas1> <service2>=<replicas2>
+```

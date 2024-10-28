@@ -1,4 +1,4 @@
-# stop
+# docker container stop
 
 - Gracefully stops the container (`SIGTERM`)
 

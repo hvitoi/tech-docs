@@ -1,4 +1,4 @@
-# ssm
+# aws ssm
 
 ## get-parameters
 

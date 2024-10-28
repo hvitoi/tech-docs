@@ -1,4 +1,4 @@
-# kinesis
+# aws kinesis
 
 ## put-record
 

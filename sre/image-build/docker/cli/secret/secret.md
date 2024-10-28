@@ -1,4 +1,4 @@
-# Secrets
+# docker secret
 
 - Secrets are stored at `/run/secrets/`
 

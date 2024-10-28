@@ -1,4 +1,4 @@
-# ls
+# docker container ls
 
 ```shell
 # List containers

@@ -1,4 +1,4 @@
-# save
+# docker image save
 
 - Save one or more images to a `tar archive` (streamed to STDOUT by default)
 

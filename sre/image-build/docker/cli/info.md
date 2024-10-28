@@ -1,4 +1,4 @@
-# info
+# docker info
 
 ```shell
 docker info

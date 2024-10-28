@@ -1,4 +1,4 @@
-# configure
+# aws configure
 
 - AWS CLI is based on the Python SDK (boto3)
 

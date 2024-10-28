@@ -1,4 +1,4 @@
-# eks
+# aws eks
 
 ## list-clusters
 

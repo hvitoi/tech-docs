@@ -1,4 +1,4 @@
-# cp
+# docker container cp
 
 - Copy a file into the container
 

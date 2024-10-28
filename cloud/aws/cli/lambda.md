@@ -1,4 +1,4 @@
-# lambda
+# aws lambda
 
 ## create-function
 

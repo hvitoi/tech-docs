@@ -1,4 +1,4 @@
-# prune
+# docker system prune
 
 ```shell
 # Soft cleanup

@@ -1,4 +1,4 @@
-# ls
+# docker image ls
 
 ```shell
 # List images

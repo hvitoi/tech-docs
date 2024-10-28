@@ -1,4 +1,4 @@
-# ls
+# docker stack ls
 
 ```shell
 # List stacks

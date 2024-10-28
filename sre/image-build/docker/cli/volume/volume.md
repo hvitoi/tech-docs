@@ -1,4 +1,4 @@
-# Volumes
+# docker volume
 
 - Volumes are stored in the host OS at `/var/lib/docker/volumes`
 

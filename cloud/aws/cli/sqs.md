@@ -1,4 +1,4 @@
-# sqs
+# aws sqs
 
 ## list-queues
 

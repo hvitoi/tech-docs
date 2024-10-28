@@ -1,4 +1,4 @@
-# Networks
+# docker network
 
 - `bridge`: virtual bridge network with private addresses (172.17.0.0). `docker0` is the bridge network on the host (ip link add docker0 type bridge). A namespace for each container is created and attached to the bridge net
 - `host`: container shares the host network (192.168.0.0)

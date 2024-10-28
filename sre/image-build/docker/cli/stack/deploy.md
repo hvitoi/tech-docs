@@ -1,4 +1,4 @@
-# deploy
+# docker stack deploy
 
 ```shell
 # Deploy a stack

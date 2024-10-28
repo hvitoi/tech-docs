@@ -1,4 +1,4 @@
-# services
+# docker stack services
 
 ```shell
 # Show the services in the stack

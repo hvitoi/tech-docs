@@ -1,4 +1,4 @@
-# dynamodb
+# aws dynamodb
 
 - Follow [this](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html) to run dynamo locally
 

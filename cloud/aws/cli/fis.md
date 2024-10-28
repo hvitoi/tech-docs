@@ -1,4 +1,4 @@
-# fis
+# aws fis
 
 ## list-experiment-templates
 

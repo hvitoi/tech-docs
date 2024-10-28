@@ -1,4 +1,4 @@
-# ps
+# docker stack ps
 
 ```shell
 # Show the tasks in the stack

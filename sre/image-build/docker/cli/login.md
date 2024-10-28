@@ -1,11 +1,14 @@
-# login
+# docker login
 
 ```shell
-# Login
+# Login to docker.io
 docker login
 
+# Login to a custom registry
+docker login "000000000000.dkr.ecr.us-east-1.amazonaws.com"
+
 # Login with password
-docker login -u "user" -p "password"
+docker login -u "<user>" -p "<password>"
 echo "password" | docker login -u "user" --password-stdin # legacy
 ```
 

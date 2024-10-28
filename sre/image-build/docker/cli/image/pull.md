@@ -1,4 +1,4 @@
-# pull
+# docker image pull
 
 ```shell
 # Pull image

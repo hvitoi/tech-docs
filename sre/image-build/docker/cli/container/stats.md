@@ -1,4 +1,4 @@
-# stats
+# docker container stats
 
 - Show stats about containers
 - Memory, CPU, etc
