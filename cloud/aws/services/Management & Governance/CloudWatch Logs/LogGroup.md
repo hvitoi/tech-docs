@@ -2,6 +2,7 @@
 
 - A log group defines common `properties` for `log streams`
 - Each log stream must belong to one log group
+- Log groups are created in `CloudWatch`
 
 ## Properties
 

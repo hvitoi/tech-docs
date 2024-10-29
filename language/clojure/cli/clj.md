@@ -35,6 +35,22 @@ clojure \
   --middleware "[cider.nrepl/cider-middleware]"
 ```
 
+## Init Ops
+
+```shell
+clj -i file.clj
+clj -e '(println "hello")'
+
+clj -Sdeps '{:deps {org.clojure/data.json {:mvn/version "2.4.0"}}}' -M \
+    -e '(require \'[clojure.data.json :as json]
+                 \'[clojure.edn :as edn])
+        (->> "foo.edn"
+              slurp
+              edn/read-string
+              json/write-str
+              println)'
+```
+
 ## Main Opts
 
 ```shell
