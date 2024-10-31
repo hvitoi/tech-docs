@@ -4,7 +4,8 @@
 
 ```shell
 # Temporary file
+temp_file=$(mktemp)
 
 # Temporary directory
-mktemp -d
+temp_dir=$(mktemp -d)
 ```
