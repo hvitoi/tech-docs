@@ -26,10 +26,12 @@ pulumi stack output "url"
 
 ## init
 
-- Create a new empty stack
-
 ```shell
+# Create a new empty stack
 pulumi stack init "prod"
+
+# Create a stack based on an existing yaml config (in this case Pulumi.foo.yaml)
+pulumi stack init --copy-config-from foo --stack foo
 ```
 
 ## rm

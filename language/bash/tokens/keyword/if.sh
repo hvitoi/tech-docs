@@ -6,6 +6,12 @@ else
   echo "Command not available"
 fi
 
+if cat file.txt; then
+  echo "File exists"
+else
+  echo "File does not exist"
+fi
+
 # Input to if as output of a command
 for boot_vga in /sys/bus/pci/devices/*/boot_vga; do
   if [ $(<"${boot_vga}") -eq 0 ]; then

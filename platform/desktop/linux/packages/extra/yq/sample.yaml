@@ -1,0 +1,9 @@
+experiments:
+  - name: my-experiment9
+    type: cpu-stress
+    percent: 70
+    duration: 5
+  - name: my-experiment2
+    type: cpu-stress
+    percent: 90
+    duration: 5

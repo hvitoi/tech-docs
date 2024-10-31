@@ -61,7 +61,6 @@ done
 ## -ne
 
 ```shell
-# -ne
 foo=10
 if [ $foo -ne 5 ]; then
   echo "Is not equal"
@@ -73,7 +72,6 @@ fi
 ## -gt
 
 ```shell
-# -gt
 foo=10
 if [ $foo -gt 5 ]; then
   echo "Is greater"
@@ -85,7 +83,6 @@ fi
 ## -ge
 
 ```shell
-# -gt
 foo=10
 if [ $foo -ge 5 ]; then
   echo "Is greater or equal"
@@ -119,7 +116,6 @@ fi
 ## -f
 
 ```shell
-# -f
 foo=~/file.txt
 if [ -f $foo ]; then
   echo "File exists"
@@ -131,7 +127,6 @@ fi
 ## -s
 
 ```shell
-# -f
 foo=~/file.txt
 if [ -s $foo ]; then
   echo "File exists and has size greater than 0"
@@ -143,7 +138,6 @@ fi
 ## -d
 
 ```shell
-# -d
 foo=~/.config
 if [ -d $foo ]; then
   echo "Directory exists"
@@ -155,7 +149,6 @@ fi
 ## -e
 
 ```shell
-# -e
 foo=~/file.txt
 if [ -e $foo ]; then
   echo "Exists"
@@ -203,7 +196,6 @@ fi
 ## ! (not)
 
 ```shell
-# !
 # negates the condition (not)
 foo=10
 if [ ! $foo -eq 5 ]; then
