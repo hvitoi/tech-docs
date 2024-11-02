@@ -1,6 +1,13 @@
 # fzf
 
 ```shell
+# simple select
+options=("Option 1" "Option 2" "Option 3")
+selected=$(printf "%s\n" "${options[@]}" | fzf)
+echo "You selected: $selected"
+```
+
+```shell
 # Search in the arch repositories and preview/install the selected package
 pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S
 ```

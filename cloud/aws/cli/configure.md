@@ -9,7 +9,7 @@
   - **Default output format** (saved into `~/aws/config`) E.g, json
 
 ```shell
-aws configure
+aws configure # configure the [default] profile
 aws configure --profile "my-profile" # configure another profile other than [default]
 ```
 
@@ -26,6 +26,12 @@ aws s3 ls
 ```shell
 aws configure list
 aws configure list --profile staging
+```
+
+## list-profiles
+
+```shell
+aws configure list-profiles
 ```
 
 ## set
