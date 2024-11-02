@@ -6,10 +6,14 @@ set PATH /usr/local/bin /usr/sbin $PATH
 # Remove element from list
 set PATH (string match -v /usr/local/bin $PATH)
 
-# Export variables to child processes
-set -x key value
-set -xg key value # global (global within a shell session)
-set -xl key value # local (erased when the block ends)
+# Export variables so that it's available to child processes
+set -x "<key>" "<val>"
+
+# Global variable (within a shell session)
+set -g "<key>" "<val>"
+
+# Local variables (within a function/block)
+set -l "<key>" "<val>"
 
 # Erase variables
 set -e key
@@ -18,4 +22,7 @@ set -e key
 set -q key
 
 key=value echo $key
-begin; set -lx key value; echo $key; end
+begin
+    set -lx key value
+    echo $key
+end

@@ -1,3 +1,9 @@
-# encryptionsalt: ...
+encryptionsalt: asdf
 config:
-  aws:region: us-east-1
+  # aws:* options are passed to aws sdk
+  aws:region: us-east-1 # where pulumi will deploy teh resources for this stack. Overrides AWS_REGION env or profile settings at (~/.aws)
+  aws:assumeRole: # The role to use to deploy resources to aws, otherwise uses the local credentials (~/.aws)
+    roleArn: arn:aws:iam::012345678912:role/my-role
+
+  # foo:* options belong to the own project (internal)
+  foo:something: bla

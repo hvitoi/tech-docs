@@ -1,6 +1,7 @@
 name: foo
 description: A project example
 runtime: go
+stackConfigDir: stacks/ # stacks are stored in project root by default
 config:
   pulumi:tags:
     value:

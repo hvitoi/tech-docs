@@ -1,11 +1,21 @@
 # fzf
 
 ```shell
-# simple select
 options=("Option 1" "Option 2" "Option 3")
 selected=$(printf "%s\n" "${options[@]}" | fzf)
 echo "You selected: $selected"
 ```
+
+## --multi
+
+- allow multiple selection
+- Tab to select multiple
+
+```shell
+echo "one two three" | xargs printf '%s\n' | fzf --multi | echo
+```
+
+## --preview
 
 ```shell
 # Search in the arch repositories and preview/install the selected package

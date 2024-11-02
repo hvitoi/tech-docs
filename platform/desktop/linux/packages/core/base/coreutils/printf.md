@@ -15,7 +15,7 @@ printf /sys/class/drm/card?-eDP-?
 ```
 
 ```shell
-# Mathemtical expressions support only integers
+# Mathematical expressions support only integers
 x=60
 y=-9
 printf "%f\n" $((x/y))
