@@ -10,6 +10,9 @@ softwareupdate -ia --verbose
 
 # update the software you named
 softwareupdate --install "product name"
+
+# Rosetta 2
+softwareupdate --install-rosetta --agree-to-license
 ```
 
 ## Servers

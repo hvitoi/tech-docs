@@ -1,9 +1,13 @@
 # nohup
 
-- Similar to bg
 - Send a process to the background
+- It's not like the `bg/&` command that ties the process to a terminal session. With nohup the command is executed like a system daemon
 
 ```shell
-nohup <process> & # Creates a file nohup.out and logs there everything
-nohup <process> > /dev/null 2>&1 &  # Shows no junk message
+# Stores the execution logs at "./nohup.out"
+nohup sleep 9999
+nohup sleep 9999 & # also detach the nohup from stdin
+
+# do not save logs
+nohup sleep 9999 &> /dev/null &
 ```

@@ -17,6 +17,7 @@ kill -STOP <pid>
 ## Signals
 
 - Default signal is 15 (SIGTERM)
+- 9 is SIGKILL
 
 ```shell
 # List signals
