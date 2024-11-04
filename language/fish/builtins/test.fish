@@ -1,16 +1,15 @@
-# =
+# = (equals to)
 test (hostname) = foo
 test "$fish" = flounder
 
-# -gt
+# -gt (greater than)
 test 10 -gt 5
 
-# -e
-test -e /etc/hosts # file, directory or symlink
+# -e (file, dir or symlink exists)
+test -e /etc/hosts
 
-# -d directory
-if test -d /Volumes/music
-    echo "The drive is mounted at /Volumes/music."
-else
-    echo "The drive is not mounted."
-end
+# -d (directory exists)
+test -d /Volumes/music
+
+# -n (var is defined)
+test -n $argv[1]

@@ -34,4 +34,11 @@ launchctl disable system/com.apple.devicemanagementclient.teslad
 ```shell
 launchctl unload "/Library/LaunchDaemons/org.nixos.nix-daemon.plist"
 launchctl unload "~/Library/LaunchAgents/com.koekeishiya.yabai.plist."
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
+```
+
+## load
+
+```shell
+launchctl load -w /System/Library/LaunchAgents/com.apple.rcd.plist
 ```
