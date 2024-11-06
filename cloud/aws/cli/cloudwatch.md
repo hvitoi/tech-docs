@@ -1,5 +1,12 @@
 # aws cloudwatch
 
+## list-metrics
+
+```shell
+aws cloudwatch list-metrics --namespace fis
+aws cloudwatch list-metrics --namespace AWS/EC2 --metric-name "StatusCheckFailed_Instance"
+```
+
 ## put-metric-data
 
 ```shell
