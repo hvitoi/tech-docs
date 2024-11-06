@@ -3,6 +3,7 @@
 - **Fault Injection Simulator** is a managed `chaos engineering service`
 - It's about injecting faults in a controlled environment (with guardrails)
 - FIS provides templates that `generate disruptions`
+- To run experiments, you first create an experiment template, which is a blueprint of the experiment.
 
 ## Properties
 
@@ -26,6 +27,11 @@ Properties:
   Targets:
     Key: Value
 ```
+
+### RoleArn
+
+- It's the IAM role that grants AWS FIS the permissions required so that it can run experiments on your behalf
+- E.g., permissions to stress pods on EKS cluster
 
 ### Targets
 
@@ -96,6 +102,10 @@ Value: String
 AccountTargeting: String
 EmptyTargetResolutionMode: String
 ```
+
+- `AccountTargeting`
+  - _single-account_: the target lives in the same aws account as the template
+  - _multi-account_: the target lives in another aws account other
 
 ### LogConfiguration
 

@@ -6,6 +6,8 @@
 aws fis list-experiment-templates
 ```
 
+## get-experiment-template
+
 ## create-experiment-template
 
 ```shell
@@ -57,4 +59,16 @@ aws fis create-experiment-template --cli-input-json file://fis-template.json
     "Name": "network-loss"
   }
 }
+```
+
+## update-experiment-template
+
+- Updating an experiment template do not affect any running experiments that use the template
+
+## start-experiment
+
+```shell
+aws fis start-experiment \
+    --experiment-options "actionsMode=skip-all" \
+    --experiment-template-id "EXTxxxxxxxxx"
 ```
