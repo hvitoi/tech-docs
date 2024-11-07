@@ -7,6 +7,10 @@
 
 ```shell
 pulumi config get "foo"
+
+# get namespaced config key
+pulumi config get "my-project:my-field"
+pulumi config get "aws:region"
 ```
 
 ## set
@@ -19,6 +23,9 @@ pulumi config set instanceCount 5
 
 # secrets
 pulumi config set dbPassword asdf --secret
+
+# from stdin
+cat pass.txt | pulumi config set dbPassword --secret
 
 # specify the stack
 pulumi config set a 1 -s dev

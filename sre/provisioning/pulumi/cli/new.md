@@ -19,4 +19,7 @@ pulumi new "aws-go" --force # force creating the files when the directory is not
 
 # Use a remote template
 pulumi new git@github.com:foo/pulumi-templates.git/aws-go
+
+# with config
+pulumi new "aws-go" --config="aws:region=us-west-2"
 ```
