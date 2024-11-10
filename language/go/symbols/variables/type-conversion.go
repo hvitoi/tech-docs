@@ -3,8 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	data := "Hello!"
-	serialized_data := []byte(data) // cast a string into an slice of bytes (ascii character code)
 
+	// to slice of bytes
+	serialized_data := []byte("Hello") // cast a string into an slice of bytes (ascii character code)
 	fmt.Println(serialized_data)
+
+	// to string
+	serialized_data2 := string(99) // produces "c", since 99 is the unicode code for "c"
+	fmt.Println(serialized_data2)
 }
