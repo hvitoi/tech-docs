@@ -5,5 +5,6 @@
 
 ```shell
 git clone "repo"
-git clone --mirror "repo"
+git clone "repo" --mirror
+git clone "repo" --depth 1 # shallow clone
 ```
