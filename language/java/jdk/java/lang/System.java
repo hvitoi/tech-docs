@@ -1,4 +1,5 @@
 import java.util.Optional;
+import java.util.Properties;
 
 class Main {
   public static void main(String[] args) {
@@ -6,6 +7,7 @@ class Main {
     _println();
     _currentTimeMillis();
     _getenv();
+    _getProperties();
   }
 
   static void _println() {
@@ -28,6 +30,15 @@ class Main {
           () -> new IllegalArgumentException("ENV_VAR1 is not set in the environment"));
     } catch (IllegalArgumentException e) {
     }
+
+  }
+
+  static void _getProperties() {
+    // Get JVM properties
+
+    var properties = System.getProperties();
+
+    System.out.println(properties);
 
   }
 }

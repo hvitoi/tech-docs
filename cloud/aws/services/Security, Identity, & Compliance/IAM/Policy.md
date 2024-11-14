@@ -74,6 +74,8 @@ Properties:
 - <https://awspolicygen.s3.amazonaws.com/policygen.html>
 - <https://policysim.aws.amazon.com/>
 
+- All the available actions can be found at <https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsfaultinjectionservice.html>
+
 - A policy is a JSON document with the following elements
   - **Effect**
   - **Resource**
