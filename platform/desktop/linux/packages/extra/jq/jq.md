@@ -25,8 +25,9 @@ CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))
 - If no other modifier is passed, returns the unchanged input
 
 ```shell
-jq '.' <<< $json
-jq <<< $json
+set json '{"a":1}'
+echo $json | jq '.'
+echo $json | jq # same
 ```
 
 ## .[]
@@ -34,18 +35,21 @@ jq <<< $json
 - Extract values from a json array
 
 ```shell
+set json '["a","b","c"]'
+
 # first element in array
-jq '.[0]' <<< '["a", "b", "c"]'
+echo $json | jq '.[0]'
 
 # all elements
-jq '.[]' <<< '["a", "b", "c"]'
+echo $json | jq '.[]'
 ```
 
 ## {}
 
 ```shell
 # select keys a and c
-echo '{"a":"aa","bb":"b","cc":"c"}' | jq '{ a, c }'
+set json '{"a":1,"b":2,"c":3}'
+echo $json | jq '{ a, c }'
 ```
 
 ## .key
@@ -78,75 +82,6 @@ jq '.[] | .a' <<< '[{"a":1}]'
 jq '[ .[] ]' <<< '[{"a":1}]'
 ```
 
-## reduce
-
-```shell
-cat '{"a":{"NET_DOWN": 1, "NET_UP": 2},"b":{"NET_DOWN": 1, "NET_UP": 2}}' | jq 'to_entries | reduce .[] as $i (""; . + "\($i.key): Download \($i.value.NET_DOWN), Upload \($i.value.NET_UP)\n")'
-```
-
-## Array Operations
-
-## map
-
-```shell
-echo '[1,2,3]' | jq 'map(. * .)'
-echo '[{"a":"1","b":"2"},{"a":"3","b":"4"}]' | jq 'map({a, b})'
-```
-
-### sort_by
-
-```shell
-echo '[{"a":2},{"a":1}]' | jq 'sort_by(.a)'
-```
-
-### last
-
-- Take last element of an array
-
-```shell
-echo '["a", "b", "c"]' | jq 'last'
-```
-
-## Array Operations (destructured)
-
-### select
-
-```shell
-# select on destructured array
-echo '[{"foo":true},{"foo":false}]' | jq '.[] | select(.foo == false)'
-
-# select on plain array
-echo '[{"foo":true},{"foo":false}]' | jq 'map(select(.foo == false))'
-```
-
-## other
-
-```shell
-echo {1..10..1} |
- jq -Rn '(input | split(" ")) as $nums
-        | $nums[]
-        | . as $num
-        | [
-            {
-              key: ($num | tostring),
-              value:($num | tonumber)
-            }
-          ]
-        | from_entries' |
-  jq -cs 'add'
-```
-
-## del
-
-```shell
-# Remove fields
-jq -n \
-  '{
-    "a": "alpha",
-    "b": "beta"
-    } | del(.b)'
-```
-
 ```shell
 # Remove nulls and empties
 jq -n \
@@ -175,16 +110,21 @@ jq -n \
 echo '2' | jq 'if . == 0 then "zero" elif . == 1 then "one" else "many" end'
 ```
 
-## length
+## other
 
 ```shell
-echo '["a","b","c"]' | jq 'length'
-```
-
-## reverse
-
-```shell
-echo '["a","b","c"]' | jq 'reverse'
+echo {1..10..1} |
+ jq -Rn '(input | split(" ")) as $nums
+        | $nums[]
+        | . as $num
+        | [
+            {
+              key: ($num | tostring),
+              value:($num | tonumber)
+            }
+          ]
+        | from_entries' |
+  jq -cs 'add'
 ```
 
 ## def
@@ -220,4 +160,92 @@ jq -n -r '
 
 ```shell
 msgids=($(<test.json jq -r '.logs[]._id | @sh'))
+```
+
+## try catch
+
+```shell
+set json '{"a":1}'
+set json 'foo'
+echo $json | jq 'try . catch .'
+```
+
+## Array Operations
+
+### reverse
+
+```shell
+set json '["a", "b", "c"]'
+echo $json | jq 'reverse'
+```
+
+### length
+
+```shell
+echo '["a","b","c"]' | jq 'length'
+```
+
+### reduce
+
+```shell
+set json '[1, 2, 3, 4, 5]'
+echo $json | jq 'reduce .[] as $el (0; . + $el)'
+
+```
+
+### map
+
+```shell
+echo '[1,2,3]' | jq 'map(. * .)'
+echo '[{"a":"1","b":"2"},{"a":"3","b":"4"}]' | jq 'map({a, b})'
+```
+
+### sort_by
+
+```shell
+echo '[{"a":2},{"a":1}]' | jq 'sort_by(.a)'
+```
+
+### last
+
+- Take last element of an array
+
+```shell
+echo '["a", "b", "c"]' | jq 'last'
+```
+
+## Array Operations (destructured)
+
+### select
+
+```shell
+# select on destructured array
+echo '[{"foo":true},{"foo":false}]' | jq '.[] | select(.foo == false)'
+
+# select on plain array
+echo '[{"foo":true},{"foo":false}]' | jq 'map(select(.foo == false))'
+```
+
+## Map Operations
+
+### to_entries
+
+- Transform a map into an array
+- Each key of the map turns in an entry in the array
+
+```shell
+set json '{
+            "a": {"alpha": 1},
+            "b": {"beta": 1}
+          }'
+echo $json | jq 'to_entries'
+```
+
+### del
+
+- Remove keys
+
+```shell
+set json '{"a":"alpha","b":"beta"}'
+echo $json | jq 'del(.b)'
 ```
