@@ -193,15 +193,6 @@ jq -n -r '
 msgids=($(<test.json jq -r '.logs[]._id | @sh'))
 ```
 
-## try-catch
-
-```shell
-set json '{"a":1}'
-set json 'foo'
-
-echo $json | jq -r 'try . catch ". is not an object"'
-```
-
 ## Array Operations
 
 ### reverse
