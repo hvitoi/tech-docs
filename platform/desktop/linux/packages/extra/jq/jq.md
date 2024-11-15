@@ -3,20 +3,51 @@
 - JQ is a command-line JSON processor
 
 ```shell
-echo '{"a":1}' | jq -c # compact json (one-line)
-echo '{"a":1}' | jq -M # no color (with formatting)
-echo '{"b":2,"a":1}' | jq -S # sort keys
-echo 'abc' | jq '[.]' -R # raw input (instead of json)
-echo '{"a":"alpha"}' | jq '.a' -r # raw output (without quotes)
-echo '[{}]' | jq -s '.[]' # dump output into array
-echo '{}' | jq -n # accepts no input
-jq -n --arg foo "1" --arg bar "2" '[$foo, $bar]' # access variable
-jq -n --argjson foo '{"a":"b"}' '[$foo]' # access variable (also accepts null variables)
+set json '{"a":"alpha"}'
+
+# --compact-output
+echo $json | jq -c
+
+# --monochrome-output
+echo $json | jq -M
+
+# --sort-keys
+echo $json | jq -S
+
+# --raw-input
+set input 'abc'
+echo $input | jq -R
+
+# --raw-output
+echo $json | jq -r '.a' # no "quotes"
+
+# --slurp
+echo $json | jq -s # dump output into array
+
+# --null-input
+echo '{}' | jq -n # empty map is treated as null
+echo '[]' | jq -n # empty array is treated as null
+echo '' | jq -n # empty input is treated as null
+echo 'foo' | jq -n # invalid input is treated as null
+
+# --arg
+jq -n \
+   --arg foo "1" \
+   --arg bar "2" \
+   '[$foo, $bar]'
+
+# --argjson
+jq -n \
+   --argjson foo '{"a":1}' \
+   '$foo'
 ```
 
 ```shell
-# JQ to array
-CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))
+json='["a","b","c"]'
+arr=($(echo $json | jq -r '.[]'))
+echo ${arr[0]}
+echo ${arr[1]}
+echo ${arr[2]}
 ```
 
 ## . (identity)
@@ -162,12 +193,13 @@ jq -n -r '
 msgids=($(<test.json jq -r '.logs[]._id | @sh'))
 ```
 
-## try catch
+## try-catch
 
 ```shell
 set json '{"a":1}'
 set json 'foo'
-echo $json | jq 'try . catch .'
+
+echo $json | jq -r 'try . catch ". is not an object"'
 ```
 
 ## Array Operations
