@@ -23,3 +23,16 @@ aws ec2 describe-availability-zones \
     --query "AvailabilityZones[*].[ZoneId]" \
     --output text
 ```
+
+## create-key-pair
+
+- Creates a `ssh key pair` to access the ec2 instances
+- By default creates an `rsa` key-pair (public + private)
+- It returns only the private key in the response (`BEGIN RSA PRIVATE KEY`)
+
+```shell
+aws ec2 create-key-pair \
+  --key-name "my-key-pair" \
+  --query 'KeyMaterial' \
+  --output text > private-key.pem
+```

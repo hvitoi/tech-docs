@@ -35,7 +35,8 @@ aws sts get-session-token --duration-seconds 3600
 aws sts assume-role-with-saml \
   --role-arn "arn:aws:iam::123456789012:role/YourRoleName" \
   --principal-arn "arn:aws:iam::123456789012:saml-provider/YourOktaProviderName" \
-  --saml-assertion "$(cat saml-assertion.txt)" > temp-credentials.json
+  --saml-assertion "$(cat saml-assertion.txt)" \
+  --duration-seconds 43200 > temp-credentials.json
 ```
 
 ```json

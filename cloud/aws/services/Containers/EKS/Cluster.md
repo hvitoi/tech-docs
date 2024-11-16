@@ -15,7 +15,7 @@
 - **Control Plane**
   - Contains the `master components` (etcd, kube-apiserver, kube-controller, etc)
     - 2 API servers & 3 etc nodes that run across 3 AZs
-  - It's managed by AWS
+  - It's managed by AWS. The control plane nodes are not shown in `kubectl get node`
 
 - **Node Groups**
   - These are the `worker nodes`
@@ -25,9 +25,11 @@
 
 - **Fargate Profiles**
   - Run workloads on `Serverless Fargate Profiles` (instead of EC2 instances)
+  - With fargate, it's not necessary to configure and manage node groups (and auto scaling groups)
 
 - **VPC**
-  - Networking
+  - Restrict networking traffic between control plane components
+  - Control plane components cannot communicate with other aws resources except as authorized via RBAC
 
 ## Node Types
 

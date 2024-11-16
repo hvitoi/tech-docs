@@ -12,8 +12,8 @@
 ```txt
 tree a8a1a18475a2f51b278b7a384e91152a7e4a1302
 parent 0fda841818ae2217bb22f37fe758877e9a8291ff
-author Henrique Vitoi <hvitoi@gmail.com> 1610246726 -0300
-committer Henrique Vitoi <hvitoi@gmail.com> 1610246726 -0300
+author Henrique Vitoi <user@example.com> 1610246726 -0300
+committer Henrique Vitoi <user@example.com> 1610246726 -0300
 
 Second commit
 ```

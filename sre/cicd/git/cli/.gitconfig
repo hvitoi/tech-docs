@@ -1,5 +1,5 @@
 [user]
-	email = hvitoi@gmail.com
+	email = user@example.com
 	name = Henrique Vitoi
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f

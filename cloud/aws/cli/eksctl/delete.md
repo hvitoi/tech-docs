@@ -1,4 +1,4 @@
-# delete
+# eksctl delete
 
 ```shell
 # delete by resource

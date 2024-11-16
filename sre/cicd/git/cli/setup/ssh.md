@@ -5,7 +5,7 @@
 ls ~/.ssh
 
 # Create the SSD key-pair
-ssh-keygen -t rsa -b 4096 -C "hvitoi@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "user@example.com"
 # -t (type): rsa protocol
 # -b (bits): bits fr the key
 # -C: label/comment
