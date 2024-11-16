@@ -8,15 +8,15 @@
   - **Default region name** (saved into `~/aws/config`) E.g. sa-east-1
   - **Default output format** (saved into `~/aws/config`) E.g, json
 
+- To get the `security credentials`, go to IAM -> Users -> User -> Security credentials
+  - If it's an assumed role via SAML, check `aws sts assume-role-with-saml` command
+
 ```shell
 aws configure # configure the [default] profile
 aws configure --profile "my-profile" # configure another profile other than [default]
-```
 
-```shell
 # Testing the connection
-aws iam list-users
-aws s3 ls
+aws sts get-caller-identity
 ```
 
 ## list
