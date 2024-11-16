@@ -1,6 +1,5 @@
 # AWS::AutoScaling::ScheduledAction
 
-- **Scheduled Actions**
 - Anticipate scaling based on known usage patterns
 
 ## Properties

@@ -10,6 +10,11 @@
 - ASG ensures to keep the desired number of replicas
 - ASG terminates unhealthy instances can relaunch it
 
+- Reasons to not terminate an unhealthy instance:
+  - Instance on `impaired status`
+  - Healthcheck `grace period` has not yet expired
+  - Instance has failed ELB health check
+
 ## Properties
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-autoscalinggroup.html>
@@ -59,11 +64,6 @@ Properties:
   VPCZoneIdentifier:
     - String
 ```
-
-- Reasons to not terminate an unhealthy instance:
-  - Instance on `impaired status`
-  - Healthcheck `grace period` has not yet expired
-  - Instance has failed ELB health check
 
 ### LaunchTemplate
 

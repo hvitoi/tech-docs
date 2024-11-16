@@ -10,6 +10,25 @@
   - `EC2 Launch Mode`: you deploy the worker nodes yourself (with ec2 instances)
   - `Fargate Mode`: fully managed and serverless
 
+## Core Components
+
+- **Control Plane**
+  - Contains the `master components` (etcd, kube-apiserver, kube-controller, etc)
+    - 2 API servers & 3 etc nodes that run across 3 AZs
+  - It's managed by AWS
+
+- **Node Groups**
+  - These are the `worker nodes`
+  - It's provisioned by `node groups`, which is a group of EC2 instances deployed in an `autoscaling group`
+  - All instances in a node group must `be the same instance type`, `run the same AMI` and `use the same IAM role (for thw woker node)`
+  - Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint
+
+- **Fargate Profiles**
+  - Run workloads on `Serverless Fargate Profiles` (instead of EC2 instances)
+
+- **VPC**
+  - Networking
+
 ## Node Types
 
 - `Managed Node Groups`

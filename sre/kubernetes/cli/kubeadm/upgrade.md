@@ -15,7 +15,7 @@
 
 ## Master nodes
 
-- **Control Plan**
+- **Control Plane**
 
   ```shell
   # upgrade kubeadm cli
