@@ -11,10 +11,10 @@
 
 - Under the hood some cloudformation templates are created to deploy the cluster and all the requires resources
   - `eksctl-<cluster-name>-cluster`
+  - `eksctl-<cluster-name>-nodegroup-<nodegroup-name>`
   - `eksctl-<cluster-name>-addon-aws-ebs-csi-driver`
   - `eksctl-<cluster-name>-addon-iamserviceaccount-kube-system-aws-load-balancer-controller`
   - `eksctl-<cluster-name>-addon-vpc-cni`
-  - `eksctl-<cluster-name>-nodegroup-node1`
 - Use can follow up the cluster creation on the cloudformation console <https://console.aws.amazon.com/cloudformation>
 
 ```shell
@@ -29,6 +29,7 @@ eksctl create cluster \
 ```
 
 - Use `aws eks update-kubeconfig` to generate the kubeconfig
+- The cluster creation may take around 15 minutes
 
 ## nodegroup
 
@@ -44,22 +45,26 @@ aws ec2 create-key-pair \
 ```shell
 eksctl create nodegroup \
   --cluster "my-cluster" \
-  --name "my-nodegroup" \
+  --name "my-node-group" \
   --node-type "t3.medium" \
   --nodes "2" \
   --nodes-min "2" \
   --nodes-max "4" \
-  --node-volume-size "20" \
+  --node-volume-size "20" \ # 20 GiB HDD per node
   --ssh-access \
   --ssh-public-key "my-key-pair" \
-  --managed \
+  --managed \ # Make it managed worker nodes (aws patches and upgrades it)
+
+  # addon flags
   --asg-access \
   --external-dns-access \
   --full-ecr-access \
   --appmesh-access \
-  --alb-ingress-access \
-
+  --alb-ingress-access
 ```
+
+- The nodegroup creation may take around 5 minutes
+- You are able to see the newly created nodes using `kubectl get node`
 
 ## iamserviceaccount
 

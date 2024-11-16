@@ -1,48 +1,34 @@
 # AWS::EKS::Cluster
 
-- `Elastic Kubernetes Service`
-- Container orchestration
+- `Elastic Kubernetes Service` is a container orchestration service
 - It's an alternative to ECS
 
 ![EKS](.images/eks.png)
 
-- **Modes**
-  - `EC2 Launch Mode`: you deploy the worker nodes yourself (with ec2 instances)
-  - `Fargate Mode`: fully managed and serverless
+## Control Plane
 
-## Core Components
+- Created by the resource AWS::EKS::Cluster (this resource)
+- Contains the `master components` (etcd, kube-apiserver, kube-controller, etc)
+  - 2 API servers & 3 etc nodes that run across 3 AZs
+- It's managed by AWS. The control plane nodes are not shown in `kubectl get node`
 
-- **Control Plane**
-  - Contains the `master components` (etcd, kube-apiserver, kube-controller, etc)
-    - 2 API servers & 3 etc nodes that run across 3 AZs
-  - It's managed by AWS. The control plane nodes are not shown in `kubectl get node`
-
-- **Node Groups**
-  - These are the `worker nodes`
-  - It's provisioned by `node groups`, which is a group of EC2 instances deployed in an `autoscaling group`
-  - All instances in a node group must `be the same instance type`, `run the same AMI` and `use the same IAM role (for thw woker node)`
-  - Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint
-
-- **Fargate Profiles**
-  - Run workloads on `Serverless Fargate Profiles` (instead of EC2 instances)
-  - With fargate, it's not necessary to configure and manage node groups (and auto scaling groups)
-
-- **VPC**
+- As part of the creation of the cluster a set of network components are created, including a `VPC`
   - Restrict networking traffic between control plane components
   - Control plane components cannot communicate with other aws resources except as authorized via RBAC
 
-## Node Types
+## Worker Nodes
 
-- `Managed Node Groups`
-  - AWS  will create and manage EC2 instances for you
-  - Nodes are part of an Auto Scaling Group (ASG) managed by EKS
-  - Support `On-demand instances` or `Spot instances`
-- `Self-managed Nodes`
+- **Node Groups** (EC2 Launch Mode)
+  - Created by the resource AWS::EKS::Nodegroup
+  - Worker nodes baked by EC2 instances
+
+- **Fargate Profiles** (Fargate Mode)
+  - Created by the resource AWS::EKS::FargateProfile
+
+- **Self-managed Nodes**
   - Nodes created by you and registered to EKS
-- `AWS Fargate`
-  - No maintenance required.
-  - No EC2, no managed nodes. All abstracted away
-- `Karpenter`
+
+- **Karpenter**
 
 ## AWS Load Balancer Controller (LBC)
 

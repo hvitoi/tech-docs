@@ -1,10 +1,9 @@
 # AWS::EC2::RouteTable
 
-- Defines how subnets get access to other `ip ranges`
-- The `route table` is associated with `subnets`
-- A subnet can have `multiple route tables`
+- N `route tables` can be associated to N `subnets` (a subnet can have multiple route tables)
 
-- E.g., access to internet (0.0.0.0/0 dest) passes through a `gateway`
+- A `route table` defines how subnets get access to other `ip ranges`
+  - E.g., Default route (0.0.0.0/0 dest) representing access to the outside world (internet) should pass through an `internet gateway (igw)` (AWS::EC2::InternetGateway)
 
 ## Properties
 

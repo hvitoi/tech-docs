@@ -40,7 +40,7 @@ Properties:
 - The CIDR `should not overlap` CIDR from other VPCs
 
 - **IP ranges**
-  - `IANA`: define IPv4 that will e used for private networking (LAN)
+  - `IANA`: define IPv4 that will be used for private networking (LAN)
   - `10.0.0.0/8`: big networks
   - `172.16.0.0/12`: default aws (16-31)
   - `192.168.0.0/16`: home networks
