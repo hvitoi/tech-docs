@@ -2,6 +2,10 @@
 
 - Volumes are stored in the host OS at `/var/lib/docker/volumes`
 
+```shell
+docker volume create "volume-name"
+```
+
 ## Storage drivers
 
 - Attributions
@@ -17,14 +21,27 @@
   - `Overlay2`
 - Docker will choose the best storage driver available based on the host OS
 
-## Manage volumes
+## Volume drivers
+
+- Volumes are managed by `volume driver plugins`
+- Volume drivers
+  - `Local`: creates a volume on the host machine (/var/lib/docker/volumes)
+  - `Azure File Storage`
+  - `Convoy`
+  - `DigitalOcean Block Storage`
+  - `Flocker`
+  - `gce-dock`
+  - `GlusterFs`
+  - `NetApp`
+  - `RexRay`
+  - `PortWorx`
+  - `VMware vSphere Storage`
 
 ```shell
-# List volumes
-docker volume ls
-
-# Create volume
-docker volume create "volume-name"
+docker container run \
+  --volume-driver "rexray/ebs"
+  --mount "type=bind,source=/data/mysql,target=/varlib/mysql"
+  "mysql"
 ```
 
 ## Mount volumes
@@ -49,27 +66,4 @@ docker container run \
 docker container run \
     --mount "type=bind,source=/data/mysql,target=/varlib/mysql"
     "mysql"
-```
-
-## Volume drivers
-
-- Volumes are managed by `volume driver plugins`
-- Volume drivers
-  - `Local`: creates a volume on the host machine (/var/lib/docker/volumes)
-  - `Azure File Storage`
-  - `Convoy`
-  - `DigitalOcean Block Storage`
-  - `Flocker`
-  - `gce-dock`
-  - `GlusterFs`
-  - `NetApp`
-  - `RexRay`
-  - `PortWorx`
-  - `VMware vSphere Storage`
-
-```shell
-docker container run \
-  --volume-driver "rexray/ebs"
-  --mount "type=bind,source=/data/mysql,target=/varlib/mysql"
-  "mysql"
 ```
