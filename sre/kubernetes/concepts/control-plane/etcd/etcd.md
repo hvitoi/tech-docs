@@ -1,7 +1,8 @@
 # etcd
 
 - It's a distributed `key-value database`
-- Stores the `desired state`
+- It is the `backing store` for all the Kubernetes cluster data
+- It stores the `desired state`
 - Maintain information about the worker nodes
   - E.g., what containers were deployed at what time
 - Stores information regarding the cluster such as

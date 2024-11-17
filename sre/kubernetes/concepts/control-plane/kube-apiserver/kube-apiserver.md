@@ -1,6 +1,6 @@
 # kube-apiserver
 
-- It's the primary management component of the kubernetes cluster
+- It's the `front end` for the Kubernetes control plane and it exposes the Kubernetes API
 - Orchestrate all operations within the cluster
 - Can be accessed via `kubectl` or via `rest`
 

@@ -1,55 +1,14 @@
 # kube-controller-manager
 
-- Manages various controllers in kubernetes
+- Manages various controllers in Kubernetes
+- Controllers are responsible for verifying and responding when nodes, containers or endpoints go down. They make decisions to bring up new resources in such cases.
+
 - The `controllers` are continuously watching the `status` of the pod (**watch status**)
 - The `controllers` act to solve a failure situation (**remediate situation**)
 
-## Setup
-
-### From scratch
-
-- `kube-controller-manager.service` must be configured manually if running a kubernetes cluster from scratch
-
-```shell
-# Download kube-controller-manager binary
-wget "https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-controller-manager"
-```
-
-```conf
-ExecStart=/usr/local/bin/kube-controller-manager \\
-  --address=0.0.0.0 \\
-  --cluster-cidr=10.200.0.0/16 \\
-  --cluster-name=kubernetes \\
-  --cluster-signing-cert-file=/var/lib/kubernetes/ca.pem \\
-  --cluster-signing-key-file=/var/lib/kubernetes/ca-key.pem \\
-  --kubeconfig=/var/lib/kubernetes/kube-controller-manager.kubeconfig \\
-  --leader-elect=true \\
-  --root-ca-file=/var/lib/kubernetes/ca.pem \\
-  --service-account-private-key-file=/var/lib/kubernetes/service-account-key.pem \\
-  --service-cluster-ip-range=10.32.0.0/24 \\
-  --use-service-account-credentials=true \\
-  --v=2 \\
-  --node-monitor-period=5s \\
-  --node-monitor-grace-period=40s \\
-  --pod-eviction-timeout=5m0s \\
-  --controllers=*
-```
-
-- The options can be viewed at `/etc/systemd/system/kube-controller-manager.service`
-- Or see the running options `ps -aux | grep kube-controller-manager`
-
-### Via kubeadm
-
-- `kubeadm` install the service automatically as a pod `kube-controller-manager-master` inside of the `kube-system` namespace
-- The pod is deployed on the master node
-
-![kube-controller-manager POD](.images/kube-manager-controller-pod.png)
-
-- The options can be viewed at `/etc/kubernetes/manifests/kube-controller-manager.yaml`
-
 ## Controllers
 
-### node-controller
+### Node Controller
 
 - Monitors the state of `nodes`
 - _Node Monitor Period = 5s_: Check status of nodes every 5s
@@ -58,7 +17,7 @@ ExecStart=/usr/local/bin/kube-controller-manager \\
 
 ![Node Controller](.images/node-controller.png)
 
-### replication-controller
+### Replication Controller
 
 - It's an older technology and has been replaced by `replicaset`
 - Assure the desired number of containers are running
@@ -66,7 +25,15 @@ ExecStart=/usr/local/bin/kube-controller-manager \\
 
 ![Replication Controller](.images/replication-controller.png)
 
-### cloud-controller
+### Endpoints Controller
+
+- Populates the endpoints objects (joins services & pods)
+
+### Service Account & Token Controller
+
+- Creates default accounts and API Access for new namespaces
+
+### Cloud Controller
 
 - Cloud-specific control logic
 - On-Premise Kubernetes clusters won't have this component

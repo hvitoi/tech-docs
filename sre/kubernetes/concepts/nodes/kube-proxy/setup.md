@@ -1,19 +1,6 @@
-# kube-proxy
+# Setup
 
-- Process that runs on each node
-- Looks for new `services` and create rules on each node to forward traffic to these services to the backend pods
-- Kube proxy is deployed as `DaemonSet` (one replica for each node)
-
-## IP tables
-
-- Kube-proxy creates an `IP table` rule on each node to forward traffic
-  - IP of the service -> IP of the pod
-
-![IP tables](.images/kube-proxy.png)
-
-## Setup
-
-### From scratch
+## From scratch
 
 - `kube-proxy.service` must be configured
 
@@ -32,7 +19,7 @@ RestartSec=5
 - The options can be viewed at `/etc/systemd/system/kube-proxy.service`
 - Or see the running options `px -aux | grep kube-proxy`
 
-### Via kubeadm
+## Via kubeadm
 
 - `kubeadm` install the service automatically as a pod `kube-proxy` inside of the `kube-system` namespace
 - In fact it is a `daemonset`
