@@ -30,6 +30,15 @@
 
 - **Karpenter**
 
+## Pricing
+
+- Control Plane
+  - `$0.10 / hour`, `$2.40 / day`, `$72 / month`
+
+- Node Groups
+  - Depends on the types and number of EC2 instances used
+  - E.g., t3.medium: `$30 / month`
+
 ## AWS Load Balancer Controller (LBC)
 
 - AWS Load Balancer Controller (`LBC`) leverages a Kubernetes CRD to manage AWS Elastic Load Balancers (ELBs).
