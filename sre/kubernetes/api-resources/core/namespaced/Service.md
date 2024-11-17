@@ -3,6 +3,7 @@
 - Kubernetes services work as `layer 4 load-balancers`
 - They provide a stable `DNS address`
 - They forward the connections to one of the pods which are backing the service
+- Services use `selectors` (just like deployments and replicasets) to match the target pods by label
 
 ## ClusterIP
 
