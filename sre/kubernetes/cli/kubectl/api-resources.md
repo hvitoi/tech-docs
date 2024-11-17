@@ -1,9 +1,7 @@
 # api-resources
 
 ```shell
-# In a namespace
+kubectl api-resources # all resources
 kubectl api-resources --namespaced=true
-
-# Not in a namespace
 kubectl api-resources --namespaced=false
 ```
