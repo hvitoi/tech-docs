@@ -1,7 +1,8 @@
 # docker image push
 
+- Push image into an registry
+
 ```shell
-# Push image
 docker image push "image"
-docker image push "myregistrydomain.com:5000/myimage:latest"
+docker image push 'myregistry.com:5000/myuser/myimage:latest"
 ```

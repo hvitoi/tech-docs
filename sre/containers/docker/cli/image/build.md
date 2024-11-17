@@ -1,12 +1,18 @@
 # docker image build
 
+## --tag (-t)
+
+- Define the image name and optionally a tag
+
 ```shell
-# Build image
-docker image build -t "image-name" . # . is the context to dockerfile
+docker image build -t "my-image" . # . is the context to dockerfile
+docker image build -t "myregistry.com:5000/myuser/myimage:latest" .
+```
 
-# Build from custom file
-docker image build -f "dockerfile" .
+## --file (-f)
 
-# Example
-docker image build -t "myregistrydomain.com:5000/myimage:latest" .
+- Build from custom docker file (default is `Dockerfile`)
+
+```shell
+docker image build -f "MyDockerfile" .
 ```
