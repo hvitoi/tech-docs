@@ -1,4 +1,4 @@
-# Deployment
+# Deployment (deploy)
 
 - `Deployment` objects encapsulate `ReplicaSet` which encapsulates `Pod`
 - Deployment objects create replicasets, which create pods automatically

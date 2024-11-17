@@ -1,4 +1,4 @@
-# CronJob
+# CronJob (cj)
 
 ```yaml
 apiVersion: batch/v1

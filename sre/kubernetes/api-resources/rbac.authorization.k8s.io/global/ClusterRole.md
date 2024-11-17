@@ -1,4 +1,4 @@
-# ClusterRole
+# ClusterRole (clusterrole)
 
 - Set of permission for the entire cluster
 

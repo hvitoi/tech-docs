@@ -1,4 +1,4 @@
-# RoleBinding
+# RoleBinding (rolebinding)
 
 - Grants permissions within a specific namespace
 

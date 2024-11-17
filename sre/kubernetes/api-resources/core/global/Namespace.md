@@ -1,4 +1,4 @@
-# Namespace
+# Namespace (ns)
 
 - How to reach into another namespace's service from a pod
 - <http://nginx.dev.svc.cluster.local/route/>

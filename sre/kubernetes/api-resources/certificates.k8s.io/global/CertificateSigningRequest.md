@@ -1,4 +1,4 @@
-# CertificateSigningRequest
+# CertificateSigningRequest (csr)
 
 ```yaml
 apiVersion: certificates.k8s.io/v1

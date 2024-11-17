@@ -1,4 +1,4 @@
-# Binding
+# Binding (binding)
 
 - Binding object configures a `pod` scheduling options
 - Tells to which node a pod must go

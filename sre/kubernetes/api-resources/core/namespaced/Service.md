@@ -1,4 +1,4 @@
-# Service
+# Service (svc)
 
 - Kubernetes services work as `layer 4 load-balancers`
 - They provide a stable `DNS address`

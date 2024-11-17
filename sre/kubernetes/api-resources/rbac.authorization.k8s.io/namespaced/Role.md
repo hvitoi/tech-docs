@@ -1,4 +1,4 @@
-# Role
+# Role (role)
 
 - Set of permission within a namespace
 - Additive rules (there are no "deny" rules)

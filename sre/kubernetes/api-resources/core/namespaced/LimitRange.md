@@ -1,4 +1,4 @@
-# LimitRange
+# LimitRange (limits)
 
 - Enforce min or max `resource usage` or `storage usage` per container
 - Enforce ratio between request and limit

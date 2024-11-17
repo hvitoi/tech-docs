@@ -1,4 +1,4 @@
-# HorizontalPodAutoscaler
+# HorizontalPodAutoscaler (hpa)
 
 - Automatically scales a resource based on `CPU` utilization
   - Deployment

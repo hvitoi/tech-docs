@@ -1,4 +1,4 @@
-# Config Map
+# Config Map (cm)
 
 ```yaml
 apiVersion: v1

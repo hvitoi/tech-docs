@@ -1,4 +1,4 @@
-# ResourceQuota
+# ResourceQuota (quota)
 
 - Limit total resources in a namespace
 

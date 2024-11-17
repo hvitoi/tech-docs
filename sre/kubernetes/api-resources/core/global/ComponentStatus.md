@@ -1,4 +1,4 @@
-# ComponentStatus
+# ComponentStatus (cs)
 
 ```yaml
 apiVersion: v1

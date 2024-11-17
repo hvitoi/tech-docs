@@ -1,4 +1,4 @@
-# Event
+# Event (ev)
 
 - Events for of non-namespaced resources (node, etc) are non-namespaced
 - Events for of namespaced resources (pod, deployments, etc) are namespaced

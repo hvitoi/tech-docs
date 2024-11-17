@@ -1,4 +1,4 @@
-# Pod
+# Pod (po)
 
 - Kubernetes does not deploy containers directly on the worker nodes, instead it encapsulates it as an object named "Pod"
 - A pod runs one of more containers (usually a main container and optionally side-car containers)

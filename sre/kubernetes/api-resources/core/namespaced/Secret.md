@@ -1,4 +1,4 @@
-# Secret
+# Secret (secret)
 
 - A secret is only sent to a node if a pod on that node requires it.
 - Kubelet stores the secret into a `tmpfs` so that the secret is `not written to disk storage`.

@@ -1,4 +1,4 @@
-# Storageclass
+# Storageclass (sc)
 
 - `Storage Class` provisions volumes dynamically when a PVC claims it
 

@@ -1,4 +1,4 @@
-# Ingress
+# Ingress (ing)
 
 - It's a `Layer 7 Load Balancer` for HTTP(S) traffic
 - Defines `rules for routing traffic` to different services and pods

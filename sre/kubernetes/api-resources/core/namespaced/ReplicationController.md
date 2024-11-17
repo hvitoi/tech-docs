@@ -1,4 +1,4 @@
-# ReplicationController
+# ReplicationController (rc)
 
 - ReplicationController is deprecated! It has been replaced by ReplicaSet
 

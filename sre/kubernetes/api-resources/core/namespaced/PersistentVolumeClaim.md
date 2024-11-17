@@ -1,4 +1,4 @@
-# Persistent Volume Claim
+# PersistentVolumeClaim (pvc)
 
 - It's the action of `finding a PV that satifies the claim` and `use it`
 - If there are multiple matches for the claim, you can use labels to bind to the desired volume

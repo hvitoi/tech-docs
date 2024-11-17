@@ -1,4 +1,4 @@
-# ClusterRoleBinding
+# ClusterRoleBinding (clusterrolebinding)
 
 - ClusterRoleBinding grants that access cluster-wide
 

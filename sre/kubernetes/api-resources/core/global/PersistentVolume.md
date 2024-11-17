@@ -1,4 +1,4 @@
-# Persistent Volume
+# PersistentVolume (pv)
 
 - `Storage Requirements`
   - Storage doesn't depend on the pod lifecycle

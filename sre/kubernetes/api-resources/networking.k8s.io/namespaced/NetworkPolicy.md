@@ -1,4 +1,4 @@
-# NetworkPolicy
+# NetworkPolicy (netpol)
 
 - **Ingress** is the incoming traffic
 - **Egress** is the outgoing traffic
