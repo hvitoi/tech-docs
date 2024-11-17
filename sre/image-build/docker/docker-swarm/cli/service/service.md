@@ -1,63 +1,31 @@
-# docker swarm
+# docker service
 
-## init
-
-```shell
-## Check if swarm is active
-docker info
-
-## Enable swarm
-docker swarm init
-docker swarm init --advertise-addr <ip>
-# specify an ip for the node
-
-## Leaves a swarm
-docker swarm leave
-```
-
-## node
-
-- The node is the physical machine
+## ls
 
 ```shell
-## List all nodes
-docker node ls
-
-## Processes in the node
-docker node ps <node>
-
-## Create a token for a manager node
-docker swarm join-token manager
-
-## Join an existing swarm
-docker swarm join --token <token> <ip>:<port>
-#- As a worker. Wokers can't run swarm commands
-
-## Update role of a node
-docker node update --role manager <node>
-```
-
-## Services
-
-```shell
-## List services
 docker service ls
-
-## Create a service
-docker service create <image>
 ```
 
+## create
+
 ```shell
+# Create a service
+docker service create <image>
+
 docker service create --replicas 3 alpine ping 8.8.8.8
 docker service create --name psql --network mydrupal -e POSTGRES_PASSWORD=mypass postgres
 docker service create --name drupal --network mydrupal -p 80:80 drupal
 docker service create --name search --replicas 3 -p 9200:9200 elasticsearch:2   # If ping on localhost, each time it will fall to a different node. It's the load balances
-docker service create --name db --network backend -e POSTGRES_PASSWORD=mypass --mount type=volume,source=db-data,target=/var/lib/postgresql/data postgres:9.4   # Named volume
-```
 
-### Service with secret
+# Named volume
+docker service create \
+  --name db \
+  --network backend \
+  -e POSTGRES_PASSWORD=mypass \
+  --mount type=volume,source=db-data,target=/var/lib/postgresql/data \
+  postgres:9.4
 
-```shell
+# Service with secret
 docker service create \
     --name psql \
     --secret psql_user \
@@ -67,31 +35,34 @@ docker service create \
     postgres
 ```
 
-### Remove service
+## rm
 
 ```shell
 docker service rm <service>
 ```
 
-### Inspecting services
+## ps
+
+- Show tasks for the service
+- The tasks show in which node they are run. If a task fails, swarm will automatically create a new one
 
 ```shell
-## Show tasks for the service
-
 docker service ps <service>
+```
 
-- The tasks show in which node they are run. In this case in callisto! If a task fails, swarm will automatically create a new one
+## inspect
 
-## Inspect a service
-
+```shell
 docker service inspect <service>
+```
 
-## Logs from service
+## logs
 
+```shell
 docker service logs <service>
 ```
 
-### Update the service
+## update
 
 ```shell
 docker service update --replicas <number> <service>
@@ -102,7 +73,9 @@ docker service update --env-add <var> <service>
 docker service update --force <service>     # Replace the tasks!
 ```
 
-### Scale up multiple services
+## scale
+
+- Scale up multiple services
 
 ```shell
 docker service scale <service1>=<replicas1> <service2>=<replicas2>
