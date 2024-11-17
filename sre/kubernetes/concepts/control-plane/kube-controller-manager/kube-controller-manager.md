@@ -1,4 +1,4 @@
-# Controller Manager
+# kube-controller-manager
 
 - Manages various controllers in kubernetes
 - The `controllers` are continuously watching the `status` of the pod (**watch status**)

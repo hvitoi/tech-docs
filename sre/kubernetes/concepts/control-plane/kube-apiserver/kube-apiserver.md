@@ -1,4 +1,4 @@
-# API Server
+# kube-apiserver
 
 - It's the primary management component of the kubernetes cluster
 - Orchestrate all operations within the cluster

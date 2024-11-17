@@ -1,4 +1,4 @@
-# Scheduler
+# kube-scheduler
 
 - Identifies the right node to place a new container
 - The `kube-scheduler` does not deploy the container, but only takes the decision. The deploy itself is performed by the kubelet
