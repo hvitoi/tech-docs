@@ -3,10 +3,8 @@
 - Execute a command on the fly in a running container
 
 ```shell
-docker container exec "container-name" "command"
-docker container exec -it --user "root" "container-name" "sh" # tty into container as root user
-```
+docker container exec <container> <command>
 
-- STDIN
-- STDOUT
-- STDERR
+# tty into container as root user
+docker container exec -it --user "root" <container> "bash"
+```

@@ -1,11 +1,31 @@
 # docker container ls
 
 ```shell
-# List containers
 docker container ls
-docker container ls --all # -a
-docker ps # Legacy
+docker ps # legacy
+```
 
-docker container ls -q # only the container ids
-docker image rm $(docker container ls -a -q)
+## --all
+
+- Lists all containers, including those already exited
+
+```shell
+docker container ls --all # -a
+```
+
+## --quiet
+
+- Shows only the container ids
+
+```shell
+docker container ls -q
+docker container rm $(docker container ls -a -q) # remove all containers
+```
+
+## --filter
+
+- Filter containers matching a criteria
+
+```shell
+docker container ls --all --quiet --filter 'name=^arch$'
 ```

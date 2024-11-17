@@ -1,20 +1,15 @@
-# docker registry login
+# docker login
 
 ```shell
 # Login to docker.io
-docker registry login
+docker login
 
 # Login to a custom registry
-docker registry login "000000000000.dkr.ecr.us-east-1.amazonaws.com"
+docker login "000000000000.dkr.ecr.us-east-1.amazonaws.com"
 
 # Login with password
-docker registry login -u "<user>" -p "<password>"
-echo "password" | docker registry login -u "user" --password-stdin # legacy
-```
-
-```shell
-# Logout
-docker logout
+docker login -u "<user>" -p "<password>"
+echo "password" | docker login -u "user" --password-stdin # legacy
 ```
 
 ## Add insecure registry
@@ -24,12 +19,12 @@ docker logout
 
 ```json
 {
-  "insecure-registries": ["myregistrydomain.com:5000"]
+  "insecure-registries": [ "myregistrydomain.com:5000" ]
 }
 ```
 
 ```shell
-docker registry login "myregistrydomain.com:5000"
+docker login "myregistrydomain.com:5000"
 docker image build -t "myregistrydomain.com:5000/myimage:latest" .
 docker image push "myregistrydomain.com:5000/myimage:latest"
 ```

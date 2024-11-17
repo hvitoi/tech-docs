@@ -5,4 +5,5 @@
 
 ```shell
 sleep 10 # sleep 10 seconds
+sleep infinity # sleep forever
 ```
