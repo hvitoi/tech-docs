@@ -4,7 +4,6 @@
 - All authentication configuration can be stored in `kubeconfig` file
 
 - **User authentication**
-
   - `basic-auth-file`: Username + Password
   - `token-auth-file`: Username + Token
   - `Certificates`

@@ -1,17 +1,6 @@
-# ETCD on Kubernetes
+# Setup
 
-- It's a highly available `key-value` `distributed` database
-- Stores the `desired state`
-- Maintain information about the worker nodes
-  - E.g., what containers were deployed at what time
-- Stores informations regarding the cluster such as
-  - Nodes, pods, configs, secrets, accounts, roles, binding, others
-- Every information got from kubectl comes from etcd
-- You must specify the path to certificate files so that etcdctl can authenticate to `etcd API Server`
-
-## Setup
-
-### From scratch
+## From scratch
 
 - `etcd.service` must be configured manually if running a kubernetes cluster from scratch
 
@@ -42,7 +31,7 @@ ExecStart=/usr/local/bin/etcd \\
   --data-dir=/var/lib/etcd
 ```
 
-### Via kubeadm
+## Via kubeadm
 
 - `kubeadm` install the service automatically as a pod `etcd-master` inside of the `kube-system` namespace
 - The pod is deployed on the master node

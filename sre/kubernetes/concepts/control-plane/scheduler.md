@@ -1,7 +1,6 @@
-# kube-scheduler
+# Scheduler
 
-- Identify the right node to place a container
-
+- Identifies the right node to place a new container
 - The `kube-scheduler` does not deploy the container, but only takes the decision. The deploy itself is performed by the kubelet
 - Decision making
   1. `Filter Nodes`: filter nodes which do not match the criteria

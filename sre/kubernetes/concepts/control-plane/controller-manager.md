@@ -1,6 +1,6 @@
-# kube-controller-manager
+# Controller Manager
 
-- Manages various controller in kubernetes
+- Manages various controllers in kubernetes
 - The `controllers` are continuously watching the `status` of the pod (**watch status**)
 - The `controllers` act to solve a failure situation (**remediate situation**)
 

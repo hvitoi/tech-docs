@@ -1,16 +1,15 @@
 # Authorization
 
-- Authorization Modes
+- The authorization mode is defined in the `kube-apiserver`
+- If multiple authorization modes are defined, user tries to authorize in each one of them until it of one them passes
 
+- Authorization Modes
   - `ABAC Authorization`
   - `RBAC Authorization`
   - `Node Authorization`
   - `WebHook Mode`
   - `AlwaysAllow`
   - `AlwaysDeny`
-
-- The authorization mode is defined in the `kube-apiserver`
-- If multiple authorization modes are defined, user tries to authorize in each one of them until it of one them passes
 
 ```conf
 ExecStart=/usr/local/bin/kube-apiserver \\
