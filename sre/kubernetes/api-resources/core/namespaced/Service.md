@@ -6,6 +6,7 @@
 
 ## ClusterIP
 
+- Only accessible within the cluster
 - Creates a `virtual IP` inside of the cluster to expose a pod or set of pods
 - The reason for a virtual IP is that you cannot rely on the internal IP of the pod (it may change frequently)
 - Also, provides a single interface for a group of pods
@@ -29,12 +30,15 @@ spec:
 
 ## NodePort
 
-- Listen to a port on the `node` and forward to a port on the `pod`
+- Expose the service on `each node`. This port is forwarded to the port on the `pod`
+- With NodePort, even if the pod is hosted on only one node, the port is open for all the nodes
+- The app is then accessible from all nodes (even if the app is not deployed in that specific node)
+- The port range on the node is from `30000-32767`
+
 - A random algorithm is used to forward request to multiple pods
 - NodePorts span **across nodes**
   - Therefore reaching the IP-Port of any node forwards the traffic to the correct pod (even if it is not in that node)
   - <http://192.169.1.2:30008>, <http://192.169.1.3:30008>, <http://192.169.1.2:40008>
-- With NodePort, even if the pod is hosted on only one node, the port is open for all the nodes
 
 ```yaml
 apiVersion: v1
@@ -48,9 +52,9 @@ spec:
   ports:
     - name: my-node-port
       protocol: TCP
-      port: 3050 # port of the service
+      port: 3050 # port of the service (the one other pods will reach to)
       targetPort: 3000 # port of the application (port if not provided)
-      nodePort: 31515 # port to the outside world (30000-32767 if not provided)
+      nodePort: 31515 # port to the outside world (random 30000-32767 port if not provided)
 ```
 
 ## LoadBalancer

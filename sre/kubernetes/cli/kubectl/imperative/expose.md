@@ -5,17 +5,14 @@
 - Take a `replication controller`, `service`, `deployment` or `pod` and expose it as a new Kubernetes Service
 
 ```shell
-kubectl expose "deployment" "ingress-nginx-controller" \
-  -namespace "kube-system" \
-  --type="ClusterIP" \
-  --target-port="80"
-```
+kubectl expose "deploy" "foo" \
+  --type "ClusterIP" \
+  --port="80"
 
-```shell
-kubectl expose "pod" "my-pod" \
-  --name "my-svc"
-  --port "6379" \
+# only generate the yaml
+kubectl expose "deploy" "foo" \
+  --type "NodePort" \
+  --port "80" \
   --dry-run="client" \
-  -o "yaml" \
-  > "service.yaml"
+  -o "yaml"
 ```
