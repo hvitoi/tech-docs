@@ -1,4 +1,4 @@
-# certificate
+# kubectl certificate
 
 ```shell
 # Get all CSR

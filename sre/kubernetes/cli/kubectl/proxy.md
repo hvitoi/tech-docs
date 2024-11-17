@@ -1,4 +1,4 @@
-# proxy
+# kubectl proxy
 
 - Launches a proxy server locally on port `8001`
 - The proxy uses the credentials and certificates from the `kubeconfig`

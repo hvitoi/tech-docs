@@ -1,4 +1,4 @@
-# delete
+# kubectl delete
 
 ```shell
 # Delete object by manifest

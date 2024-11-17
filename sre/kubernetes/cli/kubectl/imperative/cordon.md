@@ -1,4 +1,4 @@
-# cordon
+# kubectl cordon
 
 - Allow resources to be deployed in a node
 

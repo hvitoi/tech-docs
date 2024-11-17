@@ -1,4 +1,4 @@
-# apply
+# kubectl apply
 
 - The declarative approach to create/update kubernetes objects
 - If the config file is `new`, the object gets created

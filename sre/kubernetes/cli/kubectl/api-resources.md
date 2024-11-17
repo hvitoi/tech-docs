@@ -1,4 +1,4 @@
-# api-resources
+# kubectl api-resources
 
 ```shell
 kubectl api-resources # all resources

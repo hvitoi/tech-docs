@@ -1,4 +1,4 @@
-# version
+# kubectl version
 
 - `Server Version`
 - `Client Version`

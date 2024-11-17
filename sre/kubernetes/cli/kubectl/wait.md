@@ -1,4 +1,4 @@
-# wait
+# kubectl wait
 
 ```shell
 kubectl wait "kafka/my-cluster" \

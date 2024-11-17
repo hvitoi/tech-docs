@@ -1,4 +1,4 @@
-# expose
+# kubectl expose
 
 - Creates a **Service Resource**
 - Expose by means of a ClusterIP, NodePort, LoadBalancer, etc

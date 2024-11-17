@@ -1,4 +1,4 @@
-# label
+# kubectl label
 
 ```shell
 # Set up a label for a namespace

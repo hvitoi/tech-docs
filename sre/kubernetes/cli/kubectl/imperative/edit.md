@@ -1,4 +1,4 @@
-# edit
+# kubectl edit
 
 - Opens a prompt to edit a yaml manifest
 

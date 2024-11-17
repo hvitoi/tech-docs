@@ -1,4 +1,4 @@
-# auth
+# kubectl auth
 
 - Check if a user has permission to do something
 

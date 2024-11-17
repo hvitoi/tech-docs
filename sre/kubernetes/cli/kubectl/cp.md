@@ -1,4 +1,4 @@
-# cp
+# kubectl cp
 
 ```shell
 # Copy from local to remote pod

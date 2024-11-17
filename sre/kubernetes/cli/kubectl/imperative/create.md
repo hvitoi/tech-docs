@@ -1,4 +1,4 @@
-# create
+# kubectl create
 
 - Create a **Kubernetes Resource** from a file or from stdin
 

@@ -1,4 +1,4 @@
-# port-forward
+# kubectl port-forward
 
 - Expose a pod/svc to your localhost in a simple manner
 - Good for quick tests in development mode

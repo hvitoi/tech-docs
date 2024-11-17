@@ -1,4 +1,4 @@
-# top
+# kubectl top
 
 - The `top` command allows you to see the resource consumption for `nodes` or `pods`.
 - This command requires `Metrics Server` to be correctly configured and working on the server.

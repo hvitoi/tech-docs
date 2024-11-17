@@ -1,4 +1,4 @@
-# autoscale
+# kubectl autoscale
 
 - Scales automatically based on load
 - `Horizontal Pod Autoscaler` (HPA)

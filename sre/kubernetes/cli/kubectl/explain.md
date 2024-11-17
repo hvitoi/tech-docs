@@ -1,4 +1,4 @@
-# explain
+# kubectl explain
 
 - Detailed explanation about every possible field in a resource
 

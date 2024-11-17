@@ -1,4 +1,4 @@
-# drain
+# kubectl drain
 
 - With drain all the pods in a node are gracefully terminated in the node and moved to another node
 - It's used in a preparation for maintenance when a node will go down

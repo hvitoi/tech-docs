@@ -1,4 +1,4 @@
-# describe
+# kubectl describe
 
 - Information about an object
 

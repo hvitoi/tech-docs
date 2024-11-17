@@ -1,4 +1,4 @@
-# patch
+# kubectl patch
 
 ```shell
 # partially update node

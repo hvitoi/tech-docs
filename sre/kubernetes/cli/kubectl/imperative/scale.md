@@ -1,4 +1,4 @@
-# scale
+# kubectl scale
 
 - Used to scale a `ReplicaSet`, `Deployment` or a `Replication Controller`
 

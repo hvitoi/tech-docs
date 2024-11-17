@@ -1,4 +1,4 @@
-# set
+# kubectl set
 
 - Update attribute of a manifest file
   - env

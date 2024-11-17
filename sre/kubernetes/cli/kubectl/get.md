@@ -1,4 +1,4 @@
-# get
+# kubectl get
 
 ```shell
 # Options

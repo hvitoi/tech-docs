@@ -1,4 +1,4 @@
-# run
+# kubectl run
 
 - Creates a **Pod Resource**
 - Set the container images via command line

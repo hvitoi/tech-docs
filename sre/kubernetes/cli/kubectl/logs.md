@@ -1,4 +1,4 @@
-# logs
+# kubectl logs
 
 ```shell
 # Logs from pod (single container)

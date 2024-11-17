@@ -1,4 +1,4 @@
-# replace
+# kubectl replace
 
 - Replace completely an object
 - The selection of the object to be replaced is by its "name"

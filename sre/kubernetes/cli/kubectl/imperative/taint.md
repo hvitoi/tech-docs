@@ -1,4 +1,4 @@
-# taint
+# kubectl taint
 
 - Offer restrictions to what pods can be scheduled on which node
 - The `master` nodes are automatically tainted! That prevents any pods to be scheduled there

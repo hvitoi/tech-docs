@@ -1,4 +1,4 @@
-# uncordon
+# kubectl uncordon
 
 - Remove restriction of deploying pods to a node
 
