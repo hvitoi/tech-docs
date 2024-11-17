@@ -14,3 +14,7 @@
 ## Service Controller
 
 - Creates, updates and deletes cloud provider load balancers
+
+## AWS Controllers
+
+- Fargate Controller Manager

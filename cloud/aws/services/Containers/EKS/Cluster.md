@@ -4,6 +4,7 @@
 - It's an alternative to ECS
 
 ![EKS](.images/eks.png)
+![EKS Components](.images/eks-components.png)
 
 ## Control Plane
 

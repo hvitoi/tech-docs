@@ -2,7 +2,8 @@
 
 - `Deployment` objects encapsulate `ReplicaSet` which encapsulates `Pod`
 - Deployment objects create replicasets, which create pods automatically
-- Enables rolling updates of pods
+- Enables `rollout`, `rollbacks`, `rolling updates` of pods
+- Deployments are suited for `stateless applications`
 
 ```yaml
 apiVersion: apps/v1
@@ -27,13 +28,11 @@ spec:
 ## Deployment Strategy
 
 - **Recreate**
-
   - Destroy all replicas immediately and create new ones
   - The `old ReplicaSet` is scaled down to 0 and the `new ReplicaSet` is scaled up to n
   - It's good for databases that cannot have more than 1 replica at a time
 
 - **Rolling Update**
-
   - Take down old version and bring up newer version one by one
   - The `old ReplicaSet` is scaled down one at a time, simultaneously scaling up the `new ReplicaSet` one by one
 

@@ -1,6 +1,7 @@
 # ReplicaSet
 
 - It's a newer version of ReplicationController
+- `ReplicaSet` will maintain a stable set of instances of a pod. It guarantees the availability of pods
 - `ReplicaSet` can also manage pods which were not created as part of its creation
   - Therefore it requires the `selector` field
 - ReplicaSet is a process that monitors the pods by their labels
