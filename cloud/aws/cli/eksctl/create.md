@@ -56,11 +56,11 @@ eksctl create nodegroup \
   --managed \ # Make it managed worker nodes (aws patches and upgrades it)
 
   # addon flags
-  --asg-access \
-  --external-dns-access \
-  --full-ecr-access \
-  --appmesh-access \
-  --alb-ingress-access
+  --asg-access \ # adds inline policy PolicyAutoScaling to the role of the ec2 instances
+  --external-dns-access \ # adds inline policies PolicyExternalDNSHostedZones and PolicyExternalDNSChangeSet to the role of the ec2 instances
+  --appmesh-access \ # adds inline policy PolicyAppMesh to the role of the ec2 instances
+  --alb-ingress-access \ # adds inline policy PolicyAWSLoadBalancerController to the role of the ec2 instances
+  --full-ecr-access # adds managed policies AmazonEC2ContainerRegistryPowerUser and AmazonEC2ContainerRegistryReadOnly to the role of the ec2 instances
 ```
 
 - The nodegroup creation may take around 5 minutes

@@ -10,10 +10,13 @@
 
 ## SSH
 
+- In order to ssh into a running ec2 instance, you need the public ipv4 address and the private key of the ssh key-pair associated with the machine
 - Private SSH key must have `400` permission (or yourself as owner of the file on windows)
+- `ec2-user` is the default user of EC2 instances
+- In order to ssh into an EC2 instance, the EC2 instance needs to have an attached security group (AWS::EC2::SecurityGroup) that allows inbound TCP port 22 traffic from any location (remote access)
 
 ```shell
-ssh "ec2-user@0.0.0.0" -i "ec2demo.pem"
+ssh "ec2-user@44.204.164.92" -i "ec2demo.pem"
 ```
 
 ## EC2 Instance Connect

@@ -1,6 +1,56 @@
 # ssh
 
 - Secure connection between computers
+- Key-pairs are generated at user level (`~/.ssh`)
+  - `id_rsa`: secret file and never share
+  - `id_rsa.pub`: share with github, heroku, etc
+- Private key files should have 400 permissions
+
+```shell
+ssh "user@hostname"
+ssh "root@192.168.1.10"
+```
+
+## -T
+
+- Test connection
+
+```shell
+ssh -T "git@github.com" # Accept 'yes'
+```
+
+## -l (Login name / User)
+
+- Specify user
+- You can also use the syntax `user@host`
+
+```shell
+ssh "192.168.1.10" -l "root"
+```
+
+## -p (Port)
+
+- Specify port
+
+```shell
+ssh "root@localhost" -p "9090"
+```
+
+## -i (Identity file)
+
+- Specify the private key
+
+```shell
+ssh "root@localhost" -i "private_key"
+```
+
+## -L
+
+- Port tunnel
+
+```shell
+ssh "root@localhost" -L # or -D and -R
+```
 
 ## SSH server
 
@@ -21,31 +71,4 @@ ip addr # enp0s3 (192.168.0.109)
 
 # Test connection to itself
 ssh localhost
-```
-
-## SSH client
-
-- Keys are generated at user level (`~/.ssh`)
-- `id_rsa`: secret file and never share
-- `id_rsa.pub`: share with github, heroku, etc
-
-```shell
-# Test connection
-ssh -T "git@github.com" # Accept 'yes'
-
-# Conventional ssh
-ssh "user@hostname"
-ssh "root@192.168.1.10"
-
-# Specify user
-ssh "192.168.1.10" -l "root"
-
-# Specify port
-ssh "root@localhost" -p "9090"
-
-# Specify key
-ssh "root@localhost" -i "private_key"
-
-# Port tunnel
-ssh "root@localhost" -L # or -D and -R
 ```

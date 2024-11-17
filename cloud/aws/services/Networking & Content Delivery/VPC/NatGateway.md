@@ -1,7 +1,11 @@
 # AWS::EC2::NatGateway
 
 - `Network Address Translation` (NAT)
+- It allows private subnets to access public subnets
+- The NAT gateway is associated with a public subnet
 - IPv4 only
+
+![NAT Gateway](.images/vpc-nat-gateway.png)
 
 - **NAT Instances** (deprecated)
   - It's a `service` (deployed in `EC2`). It must be deployed in a `public subnet` with inbound rule on port 80 allowing traffic from the `private subnet`
@@ -14,8 +18,6 @@
   - `5 Gbps` bandwidth with automatic scaling up to 45 Gbps
   - NAT Gateway receives an Elastic IP
   - Single AZ (but can be deployed to multiple AZs)
-
-![NAT Gateway](.images/vpc-nat-gateway.png)
 
 ## Properties
 

@@ -1,6 +1,7 @@
 # AWS::EC2::SecurityGroup
 
-- A `security group` is a set of firewall rules that control the traffic for your instance
+- A `security group` is a set of firewall rules that control the traffic for your EC2 instance.
+- It's instance-level (not subnet level)
 - It's attached to an ENI
 - **Rules** can be added to allow specific traffic to reach your instance
   - Rules are `allow only`

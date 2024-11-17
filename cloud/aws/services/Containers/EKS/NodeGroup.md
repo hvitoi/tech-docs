@@ -45,3 +45,9 @@ Properties:
 - `ON_DEMAND`
 - `SPOT`
 - `CAPACITY_BLOCK`
+
+### NodeRole
+
+- It's the role to be assumed by the EC2 instance
+- All the pods running in these worker nodes will have the permissions/policies of this role
+- This role is automatically created when creating a nodegroup via `eksctl create nodegroup` and the more permissions can be added to the role using the "addon flags"
