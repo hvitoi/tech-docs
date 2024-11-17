@@ -1,6 +1,7 @@
 # docker container port
 
+- Show exposed ports
+
 ```shell
-# Show exposed ports
-docker container port "container"
+docker container port <container>
 ```

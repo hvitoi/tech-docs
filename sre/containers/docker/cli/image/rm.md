@@ -1,7 +1,8 @@
 # docker image rm
 
+- Remove image
+
 ```shell
-# Remove image
 docker image rm "image"
 docker rmi "image" # Legacy
 ```

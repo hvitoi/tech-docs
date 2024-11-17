@@ -1,6 +1,7 @@
 # docker image pull
 
+- Pull image without running it
+
 ```shell
-# Pull image
-docker image pull "image"
+docker image pull "amazon/aws-cli:latest"
 ```

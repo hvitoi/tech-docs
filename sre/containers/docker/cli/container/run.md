@@ -51,5 +51,8 @@ docker container run \
 docker container run --rm -it alpine
 
 # Mount the whole host filesystem into the container (unsafe)
-docker run -it -v /:/mnt alpine
+docker container run -it -v /:/mnt alpine
+
+# command
+docker container run amazon/aws-cli:latest --version
 ```

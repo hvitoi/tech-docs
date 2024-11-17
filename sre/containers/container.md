@@ -1,6 +1,6 @@
 # Container
 
-- Container reuses the `same kernel as the host`. Therefore it's an isolated environment
+- Container reuses the `same kernel as the host` but running in an isolated environment
 - Container is not a new term, it does already exist in linux as `namespaces` and `chroot`
 - The host kernel uses `cgroups` and `capabilities` to limit the resources and capabilities available to the processes running in the container
 - It's hidden from the container
@@ -14,13 +14,14 @@
 ## Container vs. VM
 
 - **Process visibility**
-  - Container: processes run inside of the container will also appear on the host mixed together
-  - VM: processes processes run inside of the container will not appear on the host
-- **Virtualization**
-  - Container: does not make use of `not virtualization`. There is `no hypervisor`. Because it reuses the same kernel of the host
-  - VM: uses virtualization to boot a new kernel
+  - _Container_: processes run inside of the container will also appear on the host mixed together
+  - _VM_: processes processes run inside of the container will not appear on the host
 
-## Container runtimes
+- **Virtualization**
+  - _Container_: does not make use of `virtualization`. There is `no hypervisor`. Because it reuses the same kernel of the host
+  - _VM_: uses virtualization to boot a new kernel
+
+## Container runtime
 
 ### runc
 

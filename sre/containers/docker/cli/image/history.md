@@ -1,6 +1,7 @@
 # docker image history
 
+- Shows the image history (steps to create the image)
+
 ```shell
-# Image history (steps to create the image)
-docker image history "image"
+docker image history <image>
 ```
