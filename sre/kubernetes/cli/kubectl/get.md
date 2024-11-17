@@ -1,49 +1,79 @@
 # kubectl get
 
 ```shell
-# Options
 kubectl get "po"
-kubectl get "po" -o "wide" # additional info
-kubectl get "po" -o "yaml" # output as yaml
-kubectl get "po" -w # watch mode
-watch -n2 kubectl get "po" # watch every 2s
-kubectl get "po" -n "namespace" # specific namespace
-kubectl get "po" -A # --all-namespaces
-kubectl get "po" --context "context" # use a context
-kubectl get "po" --no-headers | wc -l # count number of pods
-kubectl get "po" --show-labels # show labels
-
-# Filter by label
-kubectl get "po" -l "app=myapp" # same as --selector
-kubectl get "po" -l "app=myapp,component=web" # multiple labels
-
-# sorte
-kubectl get "event" --sort-by ".metadata.creationTimestamp"
-
-# Other objects
-kubectl get "all" # all resources
-kubectl get "po,svc" # pod + service
-kubectl get "no"
-kubectl get "svc"
-kubectl get "deploy"
-kubectl get "ing"
-kubectl get "pvc"
-kubectl get "pv"
-kubectl get "secret"
-kubectl get "cm"
-kubectl get "ns"
-kubectl get "crd"
-
-# Store a backup of all resources
-kubectl get "all" \
-  --all-namespaces \
-  -o "yaml" \
-  > "all-resources.yaml"
+kubectl get "po,svc"
+kubectl get "all"
 ```
 
-## jsonpath
+```shell
+# Backup all resources
+kubectl get "all" --all-namespaces -o yaml > "all-resources.yaml"
+```
+
+## --selector (-l)
+
+- Filter by label
 
 ```shell
+kubectl get "po" -l "app=myapp"
+kubectl get "po" -l "app=myapp,component=web" # multiple labels
+```
+
+## --watch (-w)
+
+```shell
+kubectl get "po" -w
+watch -n2 kubectl get "po" # gnu watch
+```
+
+## --sort-by
+
+```shell
+kubectl get "event" --sort-by ".metadata.creationTimestamp"
+```
+
+## --no-headers
+
+```shell
+kubectl get "po" --no-headers | wc -l # count number of pods
+```
+
+## --show-labels
+
+```shell
+kubectl get "po" --show-labels
+```
+
+## --all-namespaces (-A)
+
+```shell
+kubectl get "po" -A
+```
+
+## --namespace (-n)
+
+- If not provided, use the default namespace
+
+```shell
+kubectl get "po" -n "namespace"
+```
+
+## --context
+
+```shell
+kubectl get "po" --context <context>
+```
+
+## --output (-o)
+
+```shell
+kubectl get "po" -o "wide" # additional info
+kubectl get "po" -o "yaml" # output as yaml
+```
+
+```shell
+# jsonpath
 kubectl get "po" \
   -o=jsonpath='{​range .items[*]}​{​"\n"}​{​.metadata.name}​{​":\t"}​{​range .spec.containers[*]}​{​.image}​{​", "}​{​end}​{​end}​'
 
@@ -69,4 +99,19 @@ kubectl get po \
 ```shell
 kubectl get po \
   --kubeconfig "kubeconfig.yaml"
+```
+
+## Object shortnames
+
+```shell
+kubectl get "no"
+kubectl get "svc"
+kubectl get "deploy"
+kubectl get "ing"
+kubectl get "pvc"
+kubectl get "pv"
+kubectl get "secret"
+kubectl get "cm"
+kubectl get "ns"
+kubectl get "crd"
 ```

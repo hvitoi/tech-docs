@@ -6,14 +6,16 @@ kubectl logs <pod>
 
 # Logs from umbrella objects
 kubectl logs "job/hello"
-kubectl logs "deployment/mydeployment"
+kubectl logs "deploy/mydeployment"
 ```
 
 ## --container (-c)
 
+- This flag is mandatory if the pod has more than more container
+
 ```shell
-# Logs from pod (single container)
-kubectl logs "pod-name" --container "container-name" # -c
+# Logs from a specific container
+kubectl logs <object> --container <container> # -c
 ```
 
 ## --all-containers
@@ -45,19 +47,19 @@ kubectl logs <pod> -c <container> -p
 - Stream logs
 
 ```shell
-kubectl logs "pod-name" -f
+kubectl logs <object> -f
 ```
 
 ## --tail
 
 ```shell
 # Last 20 lines
-kubectl logs "pod-name" --tail=20
+kubectl logs <object> --tail=20
 ```
 
 ## --since
 
 ```shell
-kubectl logs "pod-name" --since=1h
-kubectl logs "pod-name" --since=10m
+kubectl logs <object> --since=1h
+kubectl logs <object> --since=10m
 ```
