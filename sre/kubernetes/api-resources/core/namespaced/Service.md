@@ -71,7 +71,7 @@ spec:
   - One `Public IP` is created on the Cloud Provider `for each LoadBalancer` Service (which is not good! - use ingress whenever possible)
   - Also, there is no SSL termination (It's L4 LB, just redirect traffic)
 
-![Load Balancer Problem](../../concepts/images/loadbalancer-problem.png)
+![Load Balancer Problem](../../../concepts/.images/loadbalancer-problem.png)
 
 ```yaml
 apiVersion: v1
