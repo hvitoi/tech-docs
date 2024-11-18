@@ -51,7 +51,7 @@ AmazonSagemakerHyperpodSystemNamespacePolicy
 # by cluster name (in the account & region defined in the profile)
 aws eks update-kubeconfig --name my-cluster
 
-# Specific another kubeconfig location (other than ~/.kube/config)
+# Specify another kubeconfig location (other than ~/.kube/config)
 aws eks update-kubeconfig \
   --name my-cluster \
   --kubeconfig ~/kubeconfig

@@ -1,5 +1,13 @@
 # aws iam
 
+## Account
+
+### list-account-aliases
+
+```shell
+aws iam list-account-aliases --query "AccountAliases[0]" --output text
+```
+
 ## Users
 
 ### list-users
