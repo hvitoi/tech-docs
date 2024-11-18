@@ -8,6 +8,8 @@
   - selector
   - subject
 
+## image
+
 ```shell
 # Update image
 kubectl set image "object-kind/object-name" \
@@ -17,6 +19,8 @@ kubectl set image "object-kind/object-name" \
 kubectl set image "deployment/client-deployment" \
   "myapp"="nginx:1.18"
 ```
+
+## resources
 
 ```shell
 kubectl set resources "deployment/my-depl" \

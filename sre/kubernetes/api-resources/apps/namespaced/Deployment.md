@@ -3,7 +3,7 @@
 - `Deployment` objects encapsulate `ReplicaSet` which encapsulates `Pod`
 - Deployment objects create replicasets, which create pods automatically
 - Enables `rollout`, `rollbacks`, `rolling updates` of pods
-- Deployments are suited for `stateless applications`
+- Each new revision of the deployment creates a new replicaset, this way it is possible to rollback to previous versions
 
 ```yaml
 apiVersion: apps/v1
@@ -32,7 +32,7 @@ spec:
   - The `old ReplicaSet` is scaled down to 0 and the `new ReplicaSet` is scaled up to n
   - It's good for databases that cannot have more than 1 replica at a time
 
-- **Rolling Update**
+- **Rolling Update** (default)
   - Take down old version and bring up newer version one by one
   - The `old ReplicaSet` is scaled down one at a time, simultaneously scaling up the `new ReplicaSet` one by one
 
@@ -48,11 +48,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-deploy
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-deploy
+        app: nginx
     spec:
       containers:
         - name: nginx
@@ -75,14 +75,39 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-deploy
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-deploy
+        app: nginx
     spec:
       containers:
         - name: nginx
           image: nginx
   minReadySeconds: 15
+```
+
+## Revision History
+
+- My default, a deployment maintains the history of the last 10 revisions
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+  revisionHistoryLimit: 15
 ```
