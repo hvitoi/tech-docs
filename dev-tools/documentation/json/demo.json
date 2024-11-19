@@ -1,0 +1,88 @@
+{
+  "string": "Hello, JSON!", // A string value
+  "number": 42, // A number value
+  "float": 3.14, // A floating-point number
+  "boolean_true": true, // A boolean true value
+  "boolean_false": false, // A boolean false value
+  "null_value": null, // A null value
+  // Arrays (ordered lists)
+  "simple_array": [
+    "Item 1",
+    "Item 2",
+    "Item 3"
+  ],
+  // Array of objects
+  "array_of_objects": [
+    {
+      "name": "Alice",
+      "age": 30
+    },
+    {
+      "name": "Bob",
+      "age": 25
+    }
+  ],
+  // Objects (key-value pairs)
+  "nested_object": {
+    "name": "John Doe",
+    "address": {
+      "city": "New York",
+      "zip": "10001"
+    },
+    "contacts": [
+      {
+        "type": "email",
+        "value": "john.doe@example.com"
+      },
+      {
+        "type": "phone",
+        "value": "+123456789"
+      }
+    ]
+  },
+  // Mixing arrays and objects
+  "complex_structure": {
+    "countries": [
+      {
+        "name": "Brazil",
+        "cities": [
+          "São Paulo",
+          "Rio de Janeiro"
+        ]
+      },
+      {
+        "name": "Japan",
+        "cities": [
+          "Tokyo",
+          "Osaka"
+        ]
+      }
+    ]
+  },
+  // String escape sequences
+  "string_with_escapes": "Line 1\nLine 2\tTabbed\\Backslash\"Quote",
+  // Dates as strings (JSON lacks a native Date type)
+  "timestamp": "2024-11-18T15:00:00Z",
+  // Unicode characters
+  "unicode_string": "Hello, 🌍! 日本語のテキスト",
+  // Nesting depth example
+  "deep_nested": {
+    "level1": {
+      "level2": {
+        "level3": {
+          "value": "Deep value"
+        }
+      }
+    }
+  },
+  // Mixed types in an array
+  "mixed_array": [
+    true,
+    null,
+    123,
+    "text",
+    {
+      "key": "value"
+    }
+  ]
+}

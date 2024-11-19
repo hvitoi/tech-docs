@@ -1,0 +1,83 @@
+# Scalars (basic types)
+string: "Hello, YAML!"
+integer: 42
+float: 3.14
+boolean_true: true
+boolean_false: false
+null_value: null # Can also be written as ~ or just left empty
+
+# Sequences (lists)
+simple_list:
+  - Item 1
+  - Item 2
+  - Item 3
+
+list_of_objects:
+  - name: Alice
+    age: 30
+  - name: Bob
+    age: 25
+
+# Mappings (dictionaries)
+person:
+  name: John Doe
+  age: 29
+  contact:
+    email: john.doe@example.com
+    phone: "+123456789"
+
+# Nested structures
+complex_structure:
+  countries:
+    - name: Brazil
+      cities:
+        - São Paulo
+        - Rio de Janeiro
+    - name: Japan
+      cities:
+        - Tokyo
+        - Osaka
+
+# Anchors and aliases
+defaults: &defaults
+  retries: 3
+  timeout: 30s
+
+service1:
+  <<: *defaults
+  endpoint: "https://service1.example.com"
+
+service2:
+  <<: *defaults
+  endpoint: "https://service2.example.com"
+
+# Multi-line strings
+multiline_block: |
+  This is a multi-line
+  string block. It preserves
+  line breaks.
+
+folded_block: >
+  This is a folded block
+  that combines lines into
+  a single paragraph.
+
+# Inline syntax
+inline_list: [1, 2, 3]
+inline_map: { key1: value1, key2: value2 }
+
+# Booleans, nulls, and more in flow style
+misc_flow: [true, false, null, 123, "text"]
+
+# Timestamps
+timestamp: 2024-11-18T15:00:00Z
+
+# Custom tags (advanced usage)
+custom_tag: !!str 12345 # Forces the scalar to be a string
+
+# Comments
+# YAML supports inline comments, like this!
+
+--- # YAML Document Separator
+# another document
+foo: bar

@@ -45,6 +45,9 @@ spec:
 
 ## Ports
 
+- This information is primarily informational, it does not expose the port outside the Pod (for that a service is needed)
+- It tells Kubernetes and other tools (e.g., monitoring systems) that the application inside the container listens on the specified port.
+
 ```yaml
 apiVersion: v1
 kind: Pod

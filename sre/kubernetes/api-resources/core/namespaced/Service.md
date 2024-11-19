@@ -53,9 +53,9 @@ spec:
   ports:
     - name: my-node-port
       protocol: TCP
-      port: 3050 # port of the service (the one other pods will reach to)
-      targetPort: 3000 # port of the application (port if not provided)
-      nodePort: 31515 # port to the outside world (random 30000-32767 port if not provided)
+      port: 3050 # Service Port (the one that will be available for other apps inside the cluster)
+      targetPort: 3000 # Container Port (port if not provided)
+      nodePort: 31515 # Node Port (port to the outside world), random 30000-32767 port if not provided
 ```
 
 ## LoadBalancer
