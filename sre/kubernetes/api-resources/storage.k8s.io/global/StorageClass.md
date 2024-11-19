@@ -1,22 +1,19 @@
-# Storageclass (sc)
+# StorageClass (sc)
 
 - `Storage Class` provisions volumes dynamically when a PVC claims it
 
 - **Dynamic Provisioning**
-
   - Automatically creates the storage needed (locally or on cloud providers)
   - Differently from `Static Provisioning` where the storage must be in place beforehand
   - With `StorageClasses` a provisioner is defined (E.g., google storage) that automatically provisions storage
   - When claiming a storage (with PVC associated with a SC), the PV is created automatically
 
 - **Reclaim Policy**
-
   - `Retain` (default): Cloud storage resource is kept when pvc is deleted
   - `Delete`: Cloud storage resource is deleted when pvc is deleted
   - `Recycle`: Cloud storage resource can be reused by other pvcs
 
 - **Volume Binding Mode**
-
   - `Immediate` (default): SC creates a PV after PVC is created
   - `WaitForFirstConsumer`: SC creates a PV after PVC is created AND the pod initializes. Until then the PVC remains in Pending state. This way the PV is provisioned in the same region of the pod
 

@@ -1,12 +1,4 @@
-# Interfaces
-
-[Interfaces](.images/interfaces.png)
-
-## Container Runtime Interface (CRI)
-
-- CRI allows multiple container runtimes be compatible with Kubernetes
-
-## Container Network Interface (CNI)
+# Container Network Interface (CNI)
 
 - CNI allows multiple network solutions be compatible with Kubernetes
 - CNI is configured in the `kubelet`
@@ -31,13 +23,3 @@
     - Support parameters container id, network ns, etc
     - Manage IP address assignment to pods
     - Return results in a specific format
-
-## Container Storage Interface (CSI)
-
-- CNI allows multiple storage solutions be compatible with Kubernetes
-- Allows any container orchestration tool to work with any storage vendor with supported plugin
-- It defines a set of RPCs called by the container orchestrator and must be implemented by the storage drivers
-
-- `CreateVolume`: Call (provision new volume) -> Should (provision new volume on the storage)
-- `DeleteVolume`: Call (delete volume) -> Should (decommission a volume)
-- `ControllerPublishVolume`: Call (place workload that uses volume onto a node) -> Should (make volume available on a node)

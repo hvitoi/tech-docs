@@ -1,8 +1,13 @@
 # AWS::EC2::Volume
 
 - Specifies an `Elastic Block Store` (EBS)
-- `Network drive` (not physical) that can be attached to instances on the fly
+- `Network drive` (not physical) that can be attached to instances on the fly. The drive can then be mounted as volume devices on EC2 instances.
+- The volume can persist independently from the life of the EC2 instance and be attached to any instance
 - EBS volume can be configured to `Delete on Termination`
+- The configuration of a volume can be dynamically changed
+- It is recommended for data that must be `quickly accessible` and requires `long-term persistence`
+  - E.g., database-style applications (random read/writes), throughput-intensive applications that perform long, continuous reads/writes
+
 - **Volume Behavior**
   - `Stop`: data on disk (EBS) is kept intact
   - `Terminate`: root EBS volumes is destroyed
