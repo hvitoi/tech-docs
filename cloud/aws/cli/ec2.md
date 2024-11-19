@@ -10,6 +10,13 @@ aws ec2 describe-instances
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId, State.Name]' --output table
 ```
 
+## describe-spot-instance-requests
+
+```shell
+aws ec2 describe-spot-instance-requests \
+  --filters Name=launched-availability-zone,Values=us-west-1c
+```
+
 ## describe-availability-zones
 
 ```shell
