@@ -7,13 +7,9 @@
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
 - It allows EKS Cluster to `manage lifecycle` of EBS volumes
+
 - Need to specify a `StorageClass` manifest on your EKS cluster
 - This make it possible to Create a `Persistent Volume Claim (PVC)` managed by k8s itself
-- Storage Support
-  - EBS
-  - EFS
-  - FSx for Lustre
-  - FSx for NetApp ONTAP
 
 - With eksctl, it's created as an addon
 
@@ -37,6 +33,8 @@ spec:
     requests:
       storage: 10Gi
 ```
+
+- It's necessary to create a `IAM role` for the worker nodes, so that they can access the EBS volumes
 
 ### EFS CSI Driver
 
