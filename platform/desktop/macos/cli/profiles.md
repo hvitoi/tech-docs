@@ -26,8 +26,10 @@ profiles status --type enrollment
 
 ## show
 
+- Lists MDM Enrollment Profiles (fetched from server DEP configuration)
+- Uses the host `iprofiles.apple.com` (which can be blocked via hosts)
+
 ```shell
-# Lists MDM Enrollment Profiles (fetched from server DEP configuration)
 profiles show -type enrollment
 ```
 
@@ -37,8 +39,9 @@ profiles show -type enrollment
 profiles remove -all
 ```
 
-## Mobile Device Management (MDM)
+## MDM Hosts
 
+- `Mobile Device Management` (MDM)
 - It's a way to manage apple computers remotely
 
 ```conf
@@ -55,10 +58,12 @@ profiles remove -all
 0.0.0.0 gdmf.apple.com # system updates
 ```
 
-- Daemons
+## MDM Services
+
+- **Daemons**
   - `/System/Library/LaunchDaemons/com.apple.ManagedClient*`
   - `/System/Library/LaunchDaemons/com.apple.mdmclient*`
-- Agents
+- **Agents**
   - `/System/Library/LaunchAgents/com.apple.ManagedClient*`
   - `/System/Library/LaunchAgents/com.apple.mdmclient*`
 
