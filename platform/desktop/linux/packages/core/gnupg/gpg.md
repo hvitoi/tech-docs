@@ -49,7 +49,7 @@ gpg --delete-secret-keys "key-id"
 gpg --delete-keys "key-id"
 ```
 
-## Import/Export
+## Import
 
 ```shell
 # import public key (to encrypt messages to others and verify their signatures)
