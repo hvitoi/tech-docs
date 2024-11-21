@@ -14,15 +14,5 @@
 ## Uninstalling apps
 
 1. `Via launchpad`: only for apps installed via App Store
-1. `Via Applications folder`
+1. `Via Applications folder` (Finder)
 1. `Via Storage settings`
-
-## Applications Folder
-
-The application shortcut at finder compiles all the apps in your computer, including the folders:
-
-- **/Applications**
-  - Applications installed by the user
-
-- **/System/Applications**
-  - MacOS built-in applications
