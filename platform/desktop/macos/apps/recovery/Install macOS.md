@@ -26,12 +26,17 @@
 ### Recovery
 
 ```shell
+# Block MDM server connection
+echo "0.0.0.0 iprofiles.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+```
+
+```shell
 # Skip the user setup
 touch '/Volumes/Vaporwave - Data/private/var/db/.AppleSetupDone'
 ```
 
 ```shell
-# Change the root password so that you can log in with it
+# Enable the root user and define a password for it
 node_database='/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default'
 dscl -f "$node_database" localhost -passwd "/Local/Default/Users/root"
 ```
@@ -40,16 +45,11 @@ dscl -f "$node_database" localhost -passwd "/Local/Default/Users/root"
 
 - Start the system and log in with the root account
 
-```conf
-# /etc/hosts
-0.0.0.0 iprofiles.apple.com
-```
-
 ```shell
 # Create your user
 sysadminctl -addUser myself -admin -password - -adminUser root -adminPassword -
 
-# Enable secure token for the new user (necessary for filevault)
+# Enable secure token for the new user (necessary for FileVault)
 sysadminctl -secureTokenOn myself -password - -adminUser root -adminPassword -
 ```
 
