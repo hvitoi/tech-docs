@@ -26,11 +26,9 @@
 
 ## Properties
 
-### spec.accessModes
+### spec.volumeMode
 
-- `ReadOnlyMany`: multiple nodes can read-only the volume
-- `ReadWriteOnce`: can read and write by only one node
-- `ReadWriteMany`: multiple nodes can read and write to the volume
+- `Filesystem` (default)
 
 ```yaml
 apiVersion: v1
@@ -41,11 +39,10 @@ spec:
   capacity:
     storage: 50Mi
   accessModes:
-    - ReadOnlyMany
     - ReadWriteOnce
-    - ReadWriteMany
   hostPath:
     path: /tmp/data
+  volumeMode: Filesystem
 ```
 
 ### spec.persistentVolumeReclaimPolicy
@@ -74,9 +71,11 @@ spec:
   persistentVolumeReclaimPolicy: Retain
 ```
 
-### spec.volumeMode
+### spec.accessModes
 
-- `Filesystem` (default)
+- `ReadOnlyMany`: multiple nodes can read-only the volume
+- `ReadWriteOnce`: can read and write by only one node
+- `ReadWriteMany`: multiple nodes can read and write to the volume
 
 ```yaml
 apiVersion: v1
@@ -87,10 +86,11 @@ spec:
   capacity:
     storage: 50Mi
   accessModes:
+    - ReadOnlyMany
     - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
     path: /tmp/data
-  volumeMode: Filesystem
 ```
 
 ### spec.nodeAffinity

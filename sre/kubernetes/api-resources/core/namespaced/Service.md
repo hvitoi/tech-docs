@@ -5,7 +5,11 @@
 - They forward the connections to one of the pods which are backing the service
 - Services use `selectors` (just like deployments and replicasets) to match the target pods by label
 
-## ClusterIP
+## Properties
+
+## spec.type
+
+### ClusterIP
 
 - Only accessible within the cluster
 - Creates a `virtual IP` inside of the cluster to expose a pod or set of pods
@@ -29,7 +33,7 @@ spec:
   clusterIP: None # None: Use the own Pod IP. Blank: automatically set a random IP
 ```
 
-## NodePort
+### NodePort
 
 - Expose the service on `each node`. This port is forwarded to the port on the `pod`
 - With NodePort, even if the pod is hosted on only one node, the port is open for all the nodes
@@ -58,7 +62,7 @@ spec:
       nodePort: 31515 # Node Port (port to the outside world), random 30000-32767 port if not provided
 ```
 
-## LoadBalancer
+### LoadBalancer
 
 - Provides a single `URL` for the end user
 - The end-user now reaches a LB (not the node directly as with NodePort)
@@ -89,7 +93,7 @@ spec:
       targetPort: 3000 # port of the application (port if not provided)
 ```
 
-## ExternalName
+### ExternalName
 
 - Proxies the connection to an external URL
 - Uses the default port for the service

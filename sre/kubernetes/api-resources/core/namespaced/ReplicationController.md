@@ -1,6 +1,6 @@
 # ReplicationController (rc)
 
-- ReplicationController is deprecated! It has been replaced by ReplicaSet
+- ReplicationController is deprecated! It has been replaced by `ReplicaSet`
 
 ```yaml
 apiVersion: v1

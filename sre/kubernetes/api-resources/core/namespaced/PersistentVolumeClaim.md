@@ -7,8 +7,10 @@
 
 ## PVC Phases
 
-- `Pending`: no match to any PV or the SC has not created the PV yet (the case of WaitForFirstConsumer)
-- `Bound`: bound to a PV
+- **Pending**
+  - No match to any PV or the SC has not created the PV yet (the case of WaitForFirstConsumer)
+- **Bound**
+  - A PV has been created it is bound to this PVC
 
 ## Claim from PV
 

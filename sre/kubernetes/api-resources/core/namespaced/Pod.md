@@ -3,7 +3,34 @@
 - Kubernetes does not deploy containers directly on the worker nodes, instead it encapsulates it as an object named "Pod"
 - A pod runs one of more containers (usually a main container and optionally side-car containers)
 
-## Environment Variables
+## Properties
+
+### spec.containers[]
+
+- If any of the container fails, the POD restarts
+- Multi-container PODs **Design Patterns**
+  - `Sidecar`
+  - `Adapter`
+  - `Ambassador`
+
+```yaml
+apiVersion: v1 # access to predefined set of object types
+kind: Pod # kind of object to be created
+metadata: # metadata to identify the object
+  name: myapp
+  labels:
+    app: myapp
+spec: # specification about the object
+  containers:
+    - name: nginx-container
+      image: nginx:1.20
+    - name: log-agent
+      image: log-agent
+```
+
+### spec.containers[].env
+
+- Environment Variables
 
 ```yaml
 apiVersion: v1
@@ -35,6 +62,21 @@ spec:
         - name: MY_FAVORITE_ANIMAL
           fieldRef:
             fieldPath: metadata.labels # map labels into envs
+```
+
+### spec.containers[].envFrom
+
+- Environment Variables
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+spec:
+  containers:
+    - name: postgres
+      image: postgres:12
       # set all envs from a resource
       envFrom:
         - configMapRef:
@@ -43,7 +85,7 @@ spec:
             name: simplesecret
 ```
 
-## Ports
+### spec.containers[].ports
 
 - This information is primarily informational, it does not expose the port outside the Pod (for that a service is needed)
 - It tells Kubernetes and other tools (e.g., monitoring systems) that the application inside the container listens on the specified port.
@@ -61,7 +103,7 @@ spec:
         - containerPort: 5432
 ```
 
-## Command & Arguments
+### spec.containers[].command & spec.containers[].args
 
 ```yaml
 apiVersion: v1
@@ -76,7 +118,7 @@ spec:
       args: ["10"] # override the cmd from dockerfile
 ```
 
-## Resources
+### spec.containers[].resources
 
 - Kube scheduler uses the resource information to decide which node to place the pod
 - The default resource requests and resource limits are defined in the `LimitRange` object
@@ -111,7 +153,7 @@ spec:
           cpu: 2
 ```
 
-## Volumes & VolumeMounts
+### spec.containers[].volumeMounts & spec.volumes
 
 ```yaml
 apiVersion: v1
@@ -172,7 +214,34 @@ spec:
         defaultMode: 420
 ```
 
-## RestartPolicy
+### spec.containers[].readinessProbe & spec.containers[].livenessProbe
+
+- If `readiness probe` is not successful, traffic is not sent
+- If `liveness probe` is not successful, pod is restarted
+- Springboot Actuator provides built-in readiness and liveness probes
+
+- Old pods will be deleted only when the new pods are ready the receive traffic
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      readinessProbe:
+        httpGet:
+          port: 8000
+          path: /actuator/health/readiness
+      livenessProbe:
+        httpGet:
+          port: 8000
+          path: /actuator/health/liveness
+```
+
+### spec.restartPolicy
 
 ```yaml
 apiVersion: v1
@@ -186,7 +255,7 @@ spec:
   restartPolicy: Never
 ```
 
-## Image Pull Secrets
+### spec.imagePullSecrets
 
 - In order to authenticate against a private container registry, a secret must be created
 
@@ -211,7 +280,7 @@ spec:
     - name: regcred
 ```
 
-## Node Name
+### spec.nodeName
 
 - Every pod has a field called `spec.nodeName`
 - It is a responsability of the `scheduler` to fill this field and schedule the pod. But you can do that manually too
@@ -235,7 +304,7 @@ spec:
   nodeName: node01
 ```
 
-## Node Selector
+### spec.NodeSelector
 
 ```yaml
 apiVersion: v1
@@ -250,7 +319,7 @@ spec:
     size: large
 ```
 
-## Node Affinity
+### spec.affinity.nodeAffinity
 
 - `Scheduling`: the state in which the pod does not exist yet
 - `Execution`: the state in which a pod is running and has already been scheduled
@@ -287,7 +356,7 @@ spec:
                 operator: Exists
 ```
 
-## Scheduler Name
+### spec.schedulerName
 
 - A pod can be instructed to use a specific scheduler other than the default
 
@@ -303,7 +372,7 @@ spec:
   schedulerName: my-custom-scheduler
 ```
 
-## Tolerations
+### spec.tolerations
 
 - `Toleration`: tolerance that a `pod` has to a specific node taint. If not specified, pods have no tolerations. Toleration does not guarantee that a pod will be scheduled to the tolerated pod
 
@@ -323,30 +392,7 @@ spec:
       effect: "NoSchedule"
 ```
 
-## Multiple Containers
-
-- If any of the container fails, the POD restarts
-- Multi-container PODs **Design Patterns**
-  - `Sidecar`
-  - `Adapter`
-  - `Ambassador`
-
-```yaml
-apiVersion: v1 # access to predefined set of object types
-kind: Pod # kind of object to be created
-metadata: # metadata to identify the object
-  name: myapp
-  labels:
-    app: myapp
-spec: # specification about the object
-  containers:
-    - name: nginx-container
-      image: nginx:1.20
-    - name: log-agent
-      image: log-agent
-```
-
-## Init Containers
+### spec.initContainers
 
 - **initContainer**: a container that will runs a `initial setup` task until completion and then terminates
 
@@ -401,7 +447,7 @@ spec:
 - Each init container is run one at a time in sequential order (`Init:0/3`)
 - If any of the initContainers fail to complete, Kubernetes restarts the Pod repeatedly until the Init Container succeeds
 
-## Security Context
+### spec.securityContext
 
 - Can be configured for at `Container level` or `Pod level`
 - Container settings will override the Pod settings
@@ -425,31 +471,4 @@ spec:
           add: ["MAC_ADMIN"]
   securityContext:
     runAsUser: 1000 # will be overridden
-```
-
-## ReadinessProbe & LivenessProbe
-
-- If `readiness probe` is not successful, traffic is not sent
-- If `liveness probe` is not successful, pod is restarted
-- Springboot Actuator provides built-in readiness and liveness probes
-
-- Old pods will be deleted only when the new pods are ready the receive traffic
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp
-spec:
-  containers:
-    - name: nginx
-      image: nginx:latest
-      readinessProbe:
-        httpGet:
-          port: 8000
-          path: /actuator/health/readiness
-      livenessProbe:
-        httpGet:
-          port: 8000
-          path: /actuator/health/liveness
 ```

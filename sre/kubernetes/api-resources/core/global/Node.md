@@ -1,6 +1,8 @@
 # Node (no)
 
-## Labels
+## Properties
+
+### metadata.labels
 
 - Labels are useful for node selecting
 
@@ -23,7 +25,7 @@ spec:
     - 10.200.0.0/24
 ```
 
-## Taints
+### spec.taints
 
 - `master` nodes are automatically tainted! That prevents any pods to be scheduled there
 
