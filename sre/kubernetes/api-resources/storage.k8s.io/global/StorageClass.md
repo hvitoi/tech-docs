@@ -1,6 +1,6 @@
 # StorageClass (sc)
 
-- `Storage Class` provisions volumes dynamically when a PVC claims it
+- Storage Class (`SC`) provisions volumes dynamically (represented by a `PV`) whenever a `PVC` is created
 
 - **Dynamic Provisioning**
   - Automatically creates the storage needed (locally or on cloud providers)
@@ -8,50 +8,72 @@
   - With `StorageClasses` a provisioner is defined (E.g., google storage) that automatically provisions storage
   - When claiming a storage (with PVC associated with a SC), the PV is created automatically
 
-- **Reclaim Policy**
-  - `Retain` (default): Cloud storage resource is kept when pvc is deleted
-  - `Delete`: Cloud storage resource is deleted when pvc is deleted
-  - `Recycle`: Cloud storage resource can be reused by other pvcs
+## Properties
 
-- **Volume Binding Mode**
-  - `Immediate` (default): SC creates a PV after PVC is created
-  - `WaitForFirstConsumer`: SC creates a PV after PVC is created AND the pod initializes. Until then the PVC remains in Pending state. This way the PV is provisioned in the same region of the pod
+### allowVolumeExpansion
 
-- **Allow Volume Expansion**
-  - ... expands the storage automatically
-
-## Local
+- Expands the storage automatically
 
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storage-class-name
+  name: my-sc
 provisioner: kubernetes.io/no-provisioner
-reclaimPolicy: Retain
+allowVolumeExpansion: true
+```
+
+### volumeBindingMode
+
+- **Immediate** (default)
+  - SC creates a PV as soon as the PVC is created
+
+- **WaitForFirstConsumer**
+  - SC creates a PV as soon as the PVC is created AND the pod initializes
+  - Before the pod initializes the PVC remains in `Pending` state
+  - This way the PV is provisioned in the same region of the pod
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-sc
+provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ```
 
-## GCP
+### provisioner
+
+#### kubernetes.io/no-provisioner
 
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storage-class-name
+  name: my-sc
+provisioner: kubernetes.io/no-provisioner
+```
+
+#### kubernetes.io/gce-pd
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-sc
 provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-standard # pd-ssd
   replication-type: none # regional-pd
 ```
 
-## AWS
+#### kubernetes.io/aws-ebs
 
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storage-class-name
+  name: my-sc
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: io1
@@ -59,7 +81,7 @@ parameters:
   fsType: ext4
 ```
 
-## Azure
+#### kubernetes.io/azure-disk
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -75,6 +97,8 @@ parameters:
   storageaccounttype: StandardSSD_LRS # Premium_LRS, Standard_LRS
   cachingmode: ReadOnly
 ```
+
+#### kubernetes.io/azure-file
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -95,4 +119,31 @@ mountOptions:
   - mfsymlinks
   - cache=strict
   - actimeo=30
+```
+
+#### ebs.csi.aws.com
+
+- Requires the [EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) installed on the cluster
+- By default when creating an EKS cluster only a `kubernetes.io/aws-ebs` storage class is created
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+```
+
+### reclaimPolicy (bypass)
+
+- Bypassed to `pv.spec.persistentVolumeReclaimPolicy`
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-sc
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
 ```

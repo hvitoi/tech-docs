@@ -9,7 +9,6 @@
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
 - It allows EKS Cluster to `manage lifecycle` of EBS volumes (AWS::EC2::Volume)
-- Need to specify a `StorageClass` manifest on your EKS cluster
 - <https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>
 
 ### IAM role
@@ -61,6 +60,60 @@ kubectl get po -n kube-system
 
 ```shell
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
+```
+
+### StorageClass
+
+- After the driver is deployed you need to apply a `StorageClass` with the provisioner `kubernetes.io/aws-ebs` on the cluster
+- Then claim the volume (PVC) via the SC, this way a PV will be created automatically
+- The EBS volume is created with the name `my-cluster-dynamic-pvc-34bc1e7b-c864-4667-92bd-1141e114297c`
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer # waits for the pod to attach the volume for creating it
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  storageClassName: ebs-sc
+  resources:
+    requests:
+      storage: 4Gi # It's the AWS EBS Volume
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: foo
+  template:
+    metadata:
+      labels:
+        app: foo
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-container
+          volumeMounts:
+            - name: my-storage
+              mountPath: /mnt
+      volumes:
+        - name: my-storage
+          persistentVolumeClaim:
+            claimName: my-pvc
 ```
 
 ## AWS Load Balancer Controller (LBC)

@@ -1,27 +1,32 @@
 # PersistentVolume (pv)
 
 - `Storage Requirements`
-  - Storage doesn't depend on the pod lifecycle
-  - Storage must be available on all nodes! (the pod can restarted and be scheduled to another node)
-  - Storage needs to survive even if the cluster crashes
-- It takes a space from the actual physical storage
+  - Storage does not depend on the pod lifecycle
+  - Storage does not depend on a node (it must be available on all nodes, pods can restart and spawn in another node)
+  - Storage must be independent from the cluster (it needs to survive even if the cluster crashes)
+
+- A PV represents a space from the actual physical storage
   - E.g., Local Disk, NFS server, cloud storage
 - The `PV` is an `interface` with the actual storage
-- Persistent Volumes are not namespaced
 
-- **Local Volumes**
-  - Violates the 2nd and 3rd requirements for data persistence: it's tied to 1 node, does not survive in cluster crashes
-  - For DB persistence, it's not recommended to use local Volume!
-- **Remote Volumes**
-  - Remote storage server
+- **Local Volumes** violates the 2nd and 3rd requirements for data persistence: it's tied to 1 node, does not survive in cluster crashes. It's bad for DB persistence.
 
-## PV phases
+## PV Phases
 
-- `Available`: not yet bound to any PVC
-- `Bound`: bound to a PVC
-- `Released`: data still intact, but cannot be bound to any other PVC.
+- PV phases are not affected by the pods/deployments. It is affected by PVCs
+  - If a pod is deleted or recreated, the PV does not transition to other phase (it is independent from the pod lifecycle)
 
-## Access Modes
+- **Available**
+  - Not yet claimed by any PVC
+- **Bound**
+  - Claimed and bound to a PVC
+- **Released**
+  - Claimed by a PVC, but already released
+  - Data still intact, but cannot be bound to any other PVC
+
+## Properties
+
+### spec.accessModes
 
 - `ReadOnlyMany`: multiple nodes can read-only the volume
 - `ReadWriteOnce`: can read and write by only one node
@@ -43,11 +48,16 @@ spec:
     path: /tmp/data
 ```
 
-## PV Reclaim Policy
+### spec.persistentVolumeReclaimPolicy
 
-- `Retain` (default): PV cannot be reused by any other PVC. It will remain until manually deleted
-- `Delete`: Delete automatically as soon as the claim is deleted
-- `Recycle`: Data will be scrubbed before making it available to other PVC
+- **Delete** (default)
+  - Cloud storage resource (and the PV) is deleted as soon as the PVC is deleted
+- **Retain**
+  - Cloud storage resource (and the PV) is kept when PVC is deleted
+  - The PV cannot be reused by any other PVC
+- **Recycle**
+  - Cloud storage resource (and the PV) is kept when PVC is deleted
+  - The PV can be reused by other PVCs
 
 ```yaml
 apiVersion: v1
@@ -64,7 +74,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
 ```
 
-## Volume Mode
+### spec.volumeMode
 
 - `Filesystem` (default)
 
@@ -83,7 +93,7 @@ spec:
   volumeMode: Filesystem
 ```
 
-## Node Affinity
+### spec.nodeAffinity
 
 ```yaml
 apiVersion: v1
@@ -107,9 +117,9 @@ spec:
                 - node01
 ```
 
-## Storage Sources
+### Storage Sources
 
-### local
+#### spec.local
 
 - Local storage devices mounted on nodes.
 
@@ -128,7 +138,7 @@ spec:
   #storageClassName: local-storage
 ```
 
-### hostPath
+#### spec.hostPath
 
 - Take a slice of the host HDD and make it a PV
 - For single node testing only; will not work in a multi-node cluster (consider using local volume instead)
@@ -147,7 +157,7 @@ spec:
     path: /tmp/data # path in the host machine
 ```
 
-### nfs
+#### spec.nfs
 
 - Network File System (NFS) storage
 
@@ -170,7 +180,7 @@ spec:
   #storageClassName: slow
 ```
 
-### awsElasticBlockStore
+#### spec.awsElasticBlockStore
 
 - AWS Elastic Block Store (EBS)
 
@@ -189,7 +199,7 @@ spec:
     fsType: ext4
 ```
 
-### gcePersistentDisk
+#### spec.gcePersistentDisk
 
 ```yaml
 apiVersion: v1

@@ -16,11 +16,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-svc
+  name: my-svc
 spec:
   type: ClusterIP # Optional line. Services are ClusterIP by default
   selector:
-    app: myapp
+    app: my-app
   ports:
     - name: my-cluster-ip
       protocol: TCP
@@ -45,11 +45,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-svc
+  name: my-svc
 spec:
   type: NodePort
   selector: # selects every pod with matching key-value pairs
-    app: myapp
+    app: my-app
   ports:
     - name: my-node-port
       protocol: TCP
@@ -77,11 +77,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-svc
+  name: my-svc
 spec:
   type: LoadBalancer
   selector: # selects every pod with matching key-value pairs
-    app: myapp
+    app: my-app
   ports:
     - name: my-load-balancer
       protocol: TCP

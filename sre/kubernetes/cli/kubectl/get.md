@@ -1,9 +1,13 @@
 # kubectl get
 
 ```shell
+# Get summary
 kubectl get "po"
 kubectl get "po,svc"
 kubectl get "all"
+
+# Get the yaml manifest
+kubectl get po/my-pod -o yaml
 ```
 
 ```shell
