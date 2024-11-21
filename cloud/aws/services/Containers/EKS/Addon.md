@@ -1,44 +1,67 @@
 # AWS::EKS::Addon
 
-## CSI
+- EBS CSI Driver
+- EFS CSI Driver
+- FSx for Luster CSI Driver
 
-### EBS CSI Driver
+## EBS CSI Driver
 
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
-- It allows EKS Cluster to `manage lifecycle` of EBS volumes
-
+- It allows EKS Cluster to `manage lifecycle` of EBS volumes (AWS::EC2::Volume)
 - Need to specify a `StorageClass` manifest on your EKS cluster
+- <https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>
+
+### IAM role
+
+- This addon requires permissions to make calls to the AWS API. Otherwise it will fail to create the PVC
 - This make it possible to Create a `Persistent Volume Claim (PVC)` managed by k8s itself
+- For that the AWS managed policy [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html) needs to be attached to a new role that will be assumed by the ec2 instance
 
-- With eksctl, it's created as an addon
-
-```yaml
-addons:
-  - name: aws-ebs-csi-driver
-    wellKnownPolicies:
-      ebsCSIController: true
+```shell
+# this approach creates a new role (AmazonEKS_EBS_CSI_DriverRole) with the ebs policy (AmazonEBSCSIDriverPolicy) that is assumable by the ec2 instances in the node group
+eksctl create iamserviceaccount \
+  --name ebs-csi-controller-sa \
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --cluster my-cluster \
+  --namespace kube-system \
+  --role-only \
+  --approve
 ```
 
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: game-data-pvc
-spec:
-  storageClassName: ebs-sc
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
+- Another option (not recommended) is to attach the ebs policy directly to the ec2 default role (created as part of the node group)
+
+```shell
+# Get the ARN policy of the worker nodes
+kubectl describe cm/aws-auth -n kube-system
+
+# Attach the ebs policy to the worker node role
+aws iam attach-role-policy \
+  --role-name "eksctl-henry-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
+  --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 ```
 
-- It's necessary to create a `IAM role` for the worker nodes, so that they can access the EBS volumes
+### Deploy
 
-### EFS CSI Driver
+```shell
+set account_id (aws sts get-caller-identity --query Account --output text)
+eksctl create addon \
+  --name aws-ebs-csi-driver \
+  --cluster my-cluster \
+  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
+```
 
-### FSx for Luster CSI Driver
+```shell
+# Verify ebs-csi pods running
+kubectl get po -n kube-system
+```
+
+- Another option (not recommended) is to deploy the csi objects directly
+
+```shell
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
+```
 
 ## AWS Load Balancer Controller (LBC)
 

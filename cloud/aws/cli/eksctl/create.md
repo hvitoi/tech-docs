@@ -70,25 +70,25 @@ eksctl create nodegroup \
 
 ```shell
 eksctl create iamserviceaccount \
-  --region us-west-2 \
+  --name ebs-csi-controller-sa \
+  --role-name AmazonEKS_EBS_CSI_DriverRole \ # can be any name
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
   --cluster my-cluster \
   --namespace kube-system \
-  --name ebs-csi-controller-sa \
-  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
-  --approve \
   --role-only \
-  --role-name AmazonEKS_EBS_CSI_DriverRole
+  --approve
 ```
 
 ## addon
 
-```shell
-account_id=$(aws sts get-caller-identity --query Account --output text --profile=dev-prod)
+### aws-ebs-csi-driver
 
+- This requires the AmazonEKS_EBS_CSI_DriverRole to be created beforehand
+
+```shell
+set account_id (aws sts get-caller-identity --query Account --output text)
 eksctl create addon \
-  --region us-west-2 \
-  --cluster my-cluster \
   --name aws-ebs-csi-driver \
-  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole \
-  --force
+  --cluster my-cluster \
+  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
 ```

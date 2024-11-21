@@ -1,14 +1,19 @@
 # eksctl get
 
-## clusters
+## cluster
 
 ```shell
-eksctl get clusters
+eksctl get cluster
 ```
 
 ## nodegroup
 
 ```shell
-eksctl get nodegroup \
-  --cluster my-cluster
+eksctl get nodegroup --cluster my-cluster
+```
+
+## iamserviceaccount
+
+```shell
+eksctl get iamserviceaccount --cluster my-cluster
 ```

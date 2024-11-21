@@ -76,33 +76,9 @@ Properties:
 - The IAM role that provides permissions for the `Kubernetes control plane` to make `calls to AWS API operations on your behalf`
 - This role is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed
 - The cluster role must be associated with a policy that allow managing several aspects of aws
+- ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
+- It's different from the nodegroup role, which is attached to the worker nodes
 
-```json
-// AmazonEKSClusterPolicy
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "autoscaling:DescribeAutoScalingGroups",
-        "ec2:AttachVolume",
-        "elasticloadbalancing:AddTags",
-        "kms:DescribeKey",
-        ...
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iam:CreateServiceLinkedRole",
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
-        }
-      }
-    }
-  ]
-}
-```
+- Managed Policies
+  - [AmazonEKSClusterPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSClusterPolicy.html)
+  - [AmazonEKSVPCResourceController](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSVPCResourceController.html)

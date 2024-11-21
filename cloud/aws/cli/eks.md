@@ -13,8 +13,7 @@ aws eks list-clusters --query "clusters[*]" --output text
   - vpcId
 
 ```shell
-aws eks describe-cluster \
-  --name my-cluster
+aws eks describe-cluster --name my-cluster
 ```
 
 ## list-access-entries
@@ -75,6 +74,14 @@ for cluster in $clusters; do
     --name "$cluster" \
     --alias "$cluster"
 done
+```
+
+## describe-addon-versions
+
+- Describe an addon (not necessarily installed in the cluster)
+
+```shell
+aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
 ```
 
 ## get-token
