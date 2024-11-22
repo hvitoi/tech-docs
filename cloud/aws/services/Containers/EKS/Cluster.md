@@ -2,9 +2,15 @@
 
 - `Elastic Kubernetes Service` is a container orchestration service
 - It's an alternative to ECS
+- ARN example: `arn:aws:eks:us-east-1:123456789012:cluster/henry`
 
 ![EKS](.images/eks.png)
 ![EKS Components](.images/eks-components.png)
+
+- EKS Cluster outputs:
+  - API server endpoint `https://0123456789ABCDEF0123456789ABCDEF.gr7.us-east-1.eks.amazonaws.com`
+  - OpenID Connect provider URL `https://oidc.eks.us-east-1.amazonaws.com/id/0123456789ABCDEF0123456789ABCDEF`
+  - Cluster IAM role ARN `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
 
 ## Control Plane
 
@@ -78,7 +84,7 @@ Properties:
 - This role is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed
 - The cluster role must be associated with a policy that allow managing several aspects of aws
 - ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
-- It's different from the nodegroup role, which is attached to the worker nodes
+- It's different from the node group role, which is attached to the worker nodes
 
 - Managed Policies
   - [AmazonEKSClusterPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSClusterPolicy.html)

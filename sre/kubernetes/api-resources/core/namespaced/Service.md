@@ -30,7 +30,7 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
-  clusterIP: None # None: Use the own Pod IP. Blank: automatically set a random IP
+  clusterIP: None # None: Use the same IP of the pod. If not provided it will automatically set a random IP
 ```
 
 ### NodePort
