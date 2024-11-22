@@ -1,7 +1,9 @@
 # AWS::ElasticLoadBalancing::LoadBalancer
 
+- It's a deprecated LB. Use `AWS::ElasticLoadBalancingV2::LoadBalancer` instead
+
 - **Classic LB** (CLB)
-  - v1 (2009) - Deprecated
+  - v1 (2009)
   - TCP & SSL (L4), HTTP & HTTPS (L7)
   - Health checks TCP-based or HTTP-based
   - `Fixed hostname` xxx.region.elb.amazonaws.com

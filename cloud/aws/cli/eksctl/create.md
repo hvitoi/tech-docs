@@ -53,7 +53,8 @@ eksctl create nodegroup \
   --node-volume-size "20" \ # 20 GiB HDD per node
   --ssh-access \
   --ssh-public-key "my-key-pair" \
-  --managed \ # Make it managed worker nodes (aws patches and upgrades it)
+  --managed \ # Make it managed worker nodes (aws patches and upgrades it) \
+  --node-private-networking \ # deploy the node-group into the private subnet of the EKS cluster
 
   # addon flags
   --asg-access \ # adds inline policy PolicyAutoScaling to the role of the ec2 instances
@@ -67,6 +68,8 @@ eksctl create nodegroup \
 - You are able to see the newly created nodes using `kubectl get node`
 
 ## iamserviceaccount
+
+- Create an `IRSA` (IAM role for service account)
 
 ```shell
 eksctl create iamserviceaccount \

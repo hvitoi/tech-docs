@@ -68,9 +68,6 @@ spec:
 - The end-user now reaches a LB (not the node directly as with NodePort)
 - The LB then routes the traffic to the correct node
 - Usually the LB from a cloud platform is used. Kubernetes integrates with the following LB:
-  - Google Cloud Platform
-  - AWS
-  - Azure
 - **LB Drawbacks**
   - One `Public IP` is created on the Cloud Provider `for each LoadBalancer` Service (which is not good! - use ingress whenever possible)
   - Also, there is no SSL termination (It's L4 LB, just redirect traffic)
@@ -87,7 +84,7 @@ spec:
   selector: # selects every pod with matching key-value pairs
     app: my-app
   ports:
-    - name: my-load-balancer
+    - name: my-lb
       protocol: TCP
       port: 3050 # port of the service
       targetPort: 3000 # port of the application (port if not provided)

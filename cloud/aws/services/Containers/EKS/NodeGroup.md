@@ -4,9 +4,6 @@
 - You deploy the worker nodes yourself (with ec2 instances)
 - `Node Groups` provision nodes as EC2 that are part of an `Auto Scaling Group (ASG)`
 - All instances in a node group must `be the same instance type`, `run the same AMI` and `use the same IAM role (for thw woker node)`
-- Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint
-- By default the node group is deployed on the public subnets of the EKS cluster
-- The Cluster SG is attached to the Node Group
 
 ## Resources
 
@@ -84,3 +81,9 @@ Properties:
 # describes the config that contains the references to the worker nodes iam role
 kubectl describe cm/aws-auth -n kube-system
 ```
+
+### Subnets
+
+- Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint
+- It's a good practice to deploy the node group in a `private subnet` (`--node-private-networking` flag in eksctl)
+  - For private workers, it should show no `External IP` when running `kubectl get no -o wide`

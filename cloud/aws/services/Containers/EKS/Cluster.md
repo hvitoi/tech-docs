@@ -31,9 +31,8 @@
 - Networking
   - 1 **VPC** (AWS::EC2::VPC) is created for the entire cluster
   - 1 per AZ **Public Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPublicUSEAST1A`)
-    - It's attached to an InternetGateway
+    - It's attached to an InternetGateway (to allow traffic to internet) and to a NATGateway (to allow traffic from private subnets)
   - 1 per AZ **Private Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPrivateUSEAST1A`)
-    - It's attached to a NatGateway
   - 1 **EIP** (AWS::EC2::EIP)
 
 - Security
