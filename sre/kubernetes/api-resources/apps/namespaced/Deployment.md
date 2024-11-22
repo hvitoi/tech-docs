@@ -25,7 +25,11 @@ spec:
           image: nginx
 ```
 
-## Deployment Strategy
+## Properties
+
+### spec.strategy
+
+- Deployment Strategy
 
 - **Recreate**
   - Destroy all replicas immediately and create new ones
@@ -64,7 +68,9 @@ spec:
       maxUnavailable: 25% # max 25% will go down at once to upgrade
 ```
 
-## Readiness
+### spec.minReadySeconds
+
+- Readiness
 
 ```yaml
 apiVersion: apps/v1
@@ -87,7 +93,7 @@ spec:
   minReadySeconds: 15
 ```
 
-## Revision History
+### spec.revisionHistoryLimit
 
 - My default, a deployment maintains the history of the last 10 revisions
 
@@ -111,3 +117,15 @@ spec:
           image: nginx
   revisionHistoryLimit: 15
 ```
+
+### spec.replicas (bypass)
+
+- Bypass to `rs.spec.replicas`
+
+### spec.selector (bypass)
+
+- Bypass to `rs.spec.selector`
+
+### spec.template (bypass)
+
+- Bypass to `rs.spec.template`
