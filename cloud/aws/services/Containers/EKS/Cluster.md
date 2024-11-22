@@ -6,11 +6,11 @@
 
 ![EKS](.images/eks.png)
 ![EKS Components](.images/eks-components.png)
+![EKS Components High Level](.images/eks-components-high-level.png)
 
 - EKS Cluster outputs:
   - API server endpoint `https://0123456789ABCDEF0123456789ABCDEF.gr7.us-east-1.eks.amazonaws.com`
   - OpenID Connect provider URL `https://oidc.eks.us-east-1.amazonaws.com/id/0123456789ABCDEF0123456789ABCDEF`
-  - Cluster IAM role ARN `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
 
 ## Control Plane
 
@@ -22,6 +22,29 @@
 - As part of the creation of the cluster a set of network components are created, including a `VPC`
   - Restrict networking traffic between control plane components
   - Control plane components cannot communicate with other aws resources except as authorized via RBAC
+
+## Resources
+
+- Cluster
+  - 1 **EKS Cluster** (AWS::EKS::Cluster) (`eksctl-foo-cluster/VPC`)
+
+- Networking
+  - 1 **VPC** (AWS::EC2::VPC) is created for the entire cluster
+  - 1 per AZ **Public Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPublicUSEAST1A`)
+    - It's attached to an InternetGateway
+  - 1 per AZ **Private Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPrivateUSEAST1A`)
+    - It's attached to a NatGateway
+  - 1 **EIP** (AWS::EC2::EIP)
+
+- Security
+  - 1 **SG** (AWS::EC2::SecurityGroup)(ControlPlaneSecurityGroup: `eks-foo-sg-henry-12345678`) (Cluster SG)
+    - Attached to the ENI all nodes (masters and workers)
+  - 1 **SG** (AWS::EC2::SecurityGroup) (ClusterSharedNodeSecurityGroup: `eksctl-foo-cluster/ControlPlaneSecurityGroup`) (Additional SGs)
+    - Attached to the ENI of the master nodes only
+
+- Permissions
+  - 1 **IAM Role** (AWS::IAM::Role) (`eksctl-foo-cluster-ServiceRole-abcdefghijkl`)
+    - Attached to the EKS Cluster
 
 ## Worker Nodes
 

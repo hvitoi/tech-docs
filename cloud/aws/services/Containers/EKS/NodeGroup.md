@@ -5,6 +5,25 @@
 - `Node Groups` provision nodes as EC2 that are part of an `Auto Scaling Group (ASG)`
 - All instances in a node group must `be the same instance type`, `run the same AMI` and `use the same IAM role (for thw woker node)`
 - Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint
+- By default the node group is deployed on the public subnets of the EKS cluster
+- The Cluster SG is attached to the Node Group
+
+## Resources
+
+- Node Group
+  - 1 **Node Group** (AWS::EKS::Nodegroup)
+
+- Template
+  - 1 **Launch Template** (AWS::EC2::LaunchTemplate) (`eksctl-foo-nodegroup-bar`)
+  - 1 **Autoscaling Group** (AWS::AutoScaling::AutoScalingGroup) (`eks-bar-9ec99b34-480c-d2ac-fca9-68b923c3ecc7`)
+
+- Security
+  - 1 **Security Group** (AWS::EC2::SecurityGroup) (SSH: `eksctl-foo-nodegroup-bar/SSH`)
+    - For SSH access
+
+- Permissions
+  - 1 **IAM Role** (AWS::IAM::Role) (`eksctl-foo-nodegroup-bar-NodeInstanceRole-abcdefghijkl`)
+    - To be assumed by the worker nodes (EC2 instances)
 
 ## Properties
 

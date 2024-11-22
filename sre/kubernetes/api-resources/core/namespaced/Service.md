@@ -97,6 +97,7 @@ spec:
 
 - Proxies the connection to an external URL
 - Uses the default port for the service
+- A common use-case for `ExternalName` is for database connections with cloud providers
 
 ```yaml
 apiVersion: v1
