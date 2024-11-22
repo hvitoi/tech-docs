@@ -43,3 +43,43 @@ aws ec2 create-key-pair \
   --query 'KeyMaterial' \
   --output text > private-key.pem
 ```
+
+## Security Group
+
+### create-security-group
+
+- Newly created security group has `no inbound rules` and a default `outbound rule allowing all traffic`
+- Use `authorize-security-group-ingress` and `authorize-security-group-egress` commands to customize the rules
+
+```shell
+aws ec2 create-security-group \
+    --group-name MySecurityGroup \
+    --description "My security group description" \
+    --vpc-id vpc-123abc456def789gh
+```
+
+### authorize-security-group-ingress
+
+```shell
+aws ec2 authorize-security-group-ingress \
+    --group-id sg-123abc456def789gh \
+    --protocol tcp \
+    --port 22 \
+    --cidr 0.0.0.0/0
+```
+
+### authorize-security-group-egress
+
+```shell
+aws ec2 authorize-security-group-egress \
+    --group-id sg-123abc456def789gh \
+    --protocol tcp \
+    --port 80 \
+    --cidr 0.0.0.0/0
+```
+
+### describe-security-groups
+
+```shell
+aws ec2 describe-security-groups --group-ids sg-123abc456def789gh
+```

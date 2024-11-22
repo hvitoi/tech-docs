@@ -107,4 +107,5 @@ metadata:
 spec:
   type: ExternalName
   externalName: mydb.mysql.database.azure.com
+  externalName: mydb.abcdefghijkl.us-east-1.amazonaws.c0om
 ```
