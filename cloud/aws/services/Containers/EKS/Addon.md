@@ -4,15 +4,36 @@
 - EFS CSI Driver
 - FSx for Luster CSI Driver
 
-## EBS CSI Driver
+## Properties
+
+```yaml
+Type: AWS::EKS::Addon
+Properties:
+  AddonName: String
+  AddonVersion: String
+  ClusterName: String
+  ConfigurationValues: String
+  PodIdentityAssociations:
+    - PodIdentityAssociation
+  PreserveOnDelete: Boolean
+  ResolveConflicts: String
+  ServiceAccountRoleArn: String
+  Tags:
+    - Tag
+```
+
+### AddonName
+
+#### EBS CSI Driver
 
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
 - It allows EKS Cluster to `manage lifecycle` of EBS volumes (AWS::EC2::Volume)
 - <https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>
 
-### IAM role
+##### IRSA
 
+- `IAM role for service account` (**IRSA**)
 - This addon requires permissions to make calls to the AWS API. Otherwise it will fail to create the PVC
 - This make it possible to Create a `Persistent Volume Claim (PVC)` managed by k8s itself
 - For that the AWS managed policy [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html) needs to be attached to a new role that will be assumed by the ec2 instance
@@ -41,7 +62,7 @@ aws iam attach-role-policy \
   --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 ```
 
-### Deploy
+##### Deploy
 
 ```shell
 set account_id (aws sts get-caller-identity --query Account --output text)
@@ -62,7 +83,7 @@ kubectl get po -n kube-system
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
 ```
 
-### StorageClass
+##### StorageClass
 
 - After the driver is deployed you need to apply a `StorageClass` with the provisioner `kubernetes.io/aws-ebs` on the cluster
 - Then claim the volume (PVC) via the SC, this way a PV will be created automatically
@@ -116,7 +137,7 @@ spec:
             claimName: my-pvc
 ```
 
-## AWS Load Balancer Controller (LBC)
+#### AWS Load Balancer Controller (LBC)
 
 - AWS Load Balancer Controller (`LBC`) leverages a Kubernetes CRD to manage AWS Elastic Load Balancers (ELBs).
 - LBC is composed of kubernetes objects such as `load balancers` and `TargetGroupBindings` that are able to manage `aws resources` (for instance for dynamically creating an ALB)
@@ -138,20 +159,6 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
     --set serviceAccount.name=aws-load-balancer-controller # the IAM Roles for Service Accounts (IRSA) created beforehand
 ```
 
-## Properties
+### ServiceAccountRoleArn
 
-```yaml
-Type: AWS::EKS::Addon
-Properties:
-  AddonName: String
-  AddonVersion: String
-  ClusterName: String
-  ConfigurationValues: String
-  PodIdentityAssociations:
-    - PodIdentityAssociation
-  PreserveOnDelete: Boolean
-  ResolveConflicts: String
-  ServiceAccountRoleArn: String
-  Tags:
-    - Tag
-```
+- It's the `IAM role for service account` (**IRSA**)

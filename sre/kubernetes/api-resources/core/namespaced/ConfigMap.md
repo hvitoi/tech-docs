@@ -1,10 +1,14 @@
 # Config Map (cm)
 
+## Properties
+
+### data
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: simpleconfig
+  name: my-cm
 data:
   FOO_KEY: foo-value
   BAR_KEY: bar-value

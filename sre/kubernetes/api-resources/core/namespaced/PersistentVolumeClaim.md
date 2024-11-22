@@ -65,21 +65,6 @@ spec:
 
 ## Properties
 
-### spec.resources
-
-- Represents the minimum resources the volume should have
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  resources:
-    requests:
-      storage: 30Mi
-```
-
 ### spec.storageClassName
 
 - Defines `dynamic provisioning` of volumes by means of an StorageClass (SC)
@@ -97,9 +82,42 @@ spec:
       storage: 4Gi
 ```
 
-### spec.accessModes (bypass)
+### spec.volumeName
 
-- Bypass to `pv.spec.accessModes`
+- Explicitly define the PV that should bind this PVC (is the other criteria also match)
+
+```shell
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  volumeName: my-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+```
+
+### spec.resources
+
+- It represents the minimum storage resources (e.g., size) the `PV` should have
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  resources:
+    requests:
+      storage: 30Mi
+```
+
+### spec.accessModes
+
+- It represents the desired access modes the `PV` should have
 
 ```yaml
 apiVersion: v1
@@ -112,4 +130,23 @@ spec:
       storage: 30Mi
   accessModes:
     - ReadWriteOnce
+```
+
+### spec.volumeMode
+
+- It represents the volume mode that the `PV` should have
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: block-claim
+spec:
+  storageClassName: ebs-sc
+  volumeMode: Block
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
 ```

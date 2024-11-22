@@ -1,10 +1,10 @@
 # StorageClass (sc)
 
-- Storage Class (`SC`) provisions volumes dynamically (represented by a `PV`) whenever a `PVC` is created
+- Storage Class (`SC`) **provisions volumes dynamically** (represented by a `PV`) whenever a `PVC` is created
 
-- **Dynamic Provisioning**
+- What is **Dynamic Provisioning**?
   - Automatically creates the storage needed (locally or on cloud providers)
-  - Differently from `Static Provisioning` where the storage must be in place beforehand
+  - Differently from `Static Provisioning` (with static PVs) where the storage must be in place beforehand
   - With `StorageClasses` a provisioner is defined (E.g., google storage) that automatically provisions storage
   - When claiming a storage (with PVC associated with a SC), the PV is created automatically
 
@@ -40,6 +40,27 @@ metadata:
   name: my-sc
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
+```
+
+### spec.allowedTopologies
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  csi.storage.k8s.io/fstype: xfs
+  type: io1
+  iopsPerGB: "50"
+  encrypted: "true"
+allowedTopologies:
+  - matchLabelExpressions:
+    - key: topology.kubernetes.io/zone
+      values:
+        - us-east-2c
 ```
 
 ### provisioner
@@ -133,6 +154,17 @@ metadata:
   name: ebs-sc
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
+parameters:
+  csi.storage.k8s.io/fstype: xfs
+  type: io1
+  iopsPerGB: "50"
+  encrypted: "true"
+  # fstype: ntfs # for windows
+allowedTopologies:
+  - matchLabelExpressions:
+    - key: topology.kubernetes.io/zone
+      values:
+        - us-east-2c
 ```
 
 ### reclaimPolicy (bypass)

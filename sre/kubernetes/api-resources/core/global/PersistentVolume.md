@@ -1,13 +1,14 @@
 # PersistentVolume (pv)
 
+- PersistentVolume (`SV`) **provisions volumes statically** which can be claimed by PVCs
+  - On the other hand StorageClass (SC) provisions volumes dynamically
+- A PV represents a space from the actual physical storage (e.g., local disk, NFS server, cloud storage)
+- The `PV` is an `interface` with the actual storage
+
 - `Storage Requirements`
   - Storage does not depend on the pod lifecycle
   - Storage does not depend on a node (it must be available on all nodes, pods can restart and spawn in another node)
   - Storage must be independent from the cluster (it needs to survive even if the cluster crashes)
-
-- A PV represents a space from the actual physical storage
-  - E.g., Local Disk, NFS server, cloud storage
-- The `PV` is an `interface` with the actual storage
 
 - **Local Volumes** violates the 2nd and 3rd requirements for data persistence: it's tied to 1 node, does not survive in cluster crashes. It's bad for DB persistence.
 
@@ -26,15 +27,13 @@
 
 ## Properties
 
-### spec.volumeMode
-
-- `Filesystem` (default)
+### spec.capacity
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 50Mi
@@ -60,7 +59,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 50Mi
@@ -81,7 +80,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 50Mi
@@ -93,13 +92,37 @@ spec:
     path: /tmp/data
 ```
 
+### spec.volumeMode
+
+- **Filesystem** (default)
+  - The underlying volume is formatted with a filesystem (e.g., ext4, xfs, etc)
+  - Useful for scenarios in which you want to read/write files
+- **Block**
+  - Storage is exposed as a raw block device
+  - Does not have any filesystem formatting (which the application can create)
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 50Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data
+  volumeMode: Filesystem
+```
+
 ### spec.nodeAffinity
 
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 50Mi
@@ -127,7 +150,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 100Gi
@@ -147,7 +170,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 50Mi
@@ -165,7 +188,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 5Gi
@@ -188,7 +211,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
 spec:
   capacity:
     storage: 1Gi
@@ -205,7 +228,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-name
+  name: my-pv
   labels:
     failure-domain.beta.kubernetes.io/zone: us-central1-a__us-central1-b
 spec:
@@ -216,4 +239,33 @@ spec:
   gcePersistentDisk:
     pdName: my-data-disk
     fsType: ext4
+```
+
+#### csi
+
+- Use a `Container Storage Interface` (CSI) as a backend
+- Static provisioning
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 5Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-02813386e90b6186c # EBS volume must be created beforehand
+  accessModes:
+    - ReadWriteOnce
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - us-east-1a
 ```

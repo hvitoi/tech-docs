@@ -73,7 +73,8 @@ Properties:
 
 ### RoleArn
 
-- The IAM role that provides permissions for the `Kubernetes control plane` to make `calls to AWS API operations on your behalf`
+- It's the `Cluster IAM role`
+- This role that provides permissions for the `Kubernetes control plane` to make `calls to AWS API operations on your behalf`
 - This role is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed
 - The cluster role must be associated with a policy that allow managing several aspects of aws
 - ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
