@@ -13,6 +13,8 @@
 - <https://github.com/kubernetes-csi/external-snapshotter>
 - The `CSI snapshotter` is part of Kubernetes implementation of `Container Storage Interface` (CSI) and implements both the `volume snapshot` and the `volume group snapshot` feature.
 
+- Example: <https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes/snapshot>
+
 ```yaml
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass

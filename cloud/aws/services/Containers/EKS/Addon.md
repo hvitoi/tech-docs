@@ -75,6 +75,9 @@ eksctl create addon \
 ```shell
 # Verify ebs-csi pods running
 kubectl get po -n kube-system
+
+# A "csidrivers" object is created
+kubectl get csidrivers
 ```
 
 - Another option (not recommended) is to deploy the csi objects directly

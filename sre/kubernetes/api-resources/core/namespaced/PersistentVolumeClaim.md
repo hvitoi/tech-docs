@@ -4,6 +4,7 @@
 - The PVC can request a volume from
   - A preexisting **PV** that satisfies the matching criteria
   - A defined **SC**, so that it dynamically creates the PV under the hood
+- A PVC can be mounted to multiple pods at the same time, but be careful
 
 ## PVC Phases
 
