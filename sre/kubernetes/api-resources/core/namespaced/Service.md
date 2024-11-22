@@ -64,30 +64,57 @@ spec:
 
 ### LoadBalancer
 
-- Provides a single `URL` for the end user
+- Creates a cloud-provided LoadBalancer resource that will balance between the nodes of the cluster and route the traffic to the correct pod
+- The LB can be accessed by its IP or a DNS A Record
 - The end-user now reaches a LB (not the node directly as with NodePort)
-- The LB then routes the traffic to the correct node
-- Usually the LB from a cloud platform is used. Kubernetes integrates with the following LB:
-- **LB Drawbacks**
-  - One `Public IP` is created on the Cloud Provider `for each LoadBalancer` Service (which is not good! - use ingress whenever possible)
-  - Also, there is no SSL termination (It's L4 LB, just redirect traffic)
 
-![Load Balancer Problem](../../../concepts/.images/loadbalancer-problem.png)
+- **LB Lifecycle**
+  - When a `LoadBalancer` k8s manifest is created, a LB resource is automatically created in the cloud
+  - The LB has as `target group` all the nodes (e.g., EC2 instances) in the cluster and it can be accessed by its DNS name A Record
+  - When a `LoadBalancer` k8s manifest is deleted, the LB resource is automatically removed from the cloud
+
+- **LB Drawbacks**
+  - One `Public IP` (or DNS A Record) is created on the Cloud Provider for each Service in the Cluster
+  - To overcome it, use ingress whenever possible
+  - Also, there is no SSL termination (It's L4 LB, just redirect traffic)
+  ![Load Balancer Problem](../../../concepts/.images/loadbalancer-problem.png)
+
+#### AWS CLB
+
+- DNS A Record: `0123456789abcdef0123456789abcdef-123456789.us-east-1.elb.amazonaws.com`
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-svc
+  name: my-lb
 spec:
-  type: LoadBalancer
-  selector: # selects every pod with matching key-value pairs
+  type: LoadBalancer # CLB L4
+  selector:
     app: my-app
   ports:
-    - name: my-lb
-      protocol: TCP
-      port: 3050 # port of the service
-      targetPort: 3000 # port of the application (port if not provided)
+    - protocol: TCP
+      port: 80
+```
+
+#### AWS NLB
+
+- DNS A Record: `0123456789abcdef0123456789abcdef-0123456789abcdef.elb.us-east-1.amazonaws.com`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-lb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
 ```
 
 ### ExternalName
