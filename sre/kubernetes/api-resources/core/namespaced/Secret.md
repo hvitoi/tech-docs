@@ -2,7 +2,7 @@
 
 - A secret is only sent to a node if a pod on that node requires it.
 - Kubelet stores the secret into a `tmpfs` so that the secret is `not written to disk storage`.
-- Once the Pod that depends on the secret is deleted, kubelet will delete its local copy of the secret data as well.
+- When no pods requires a secret anymore, kubelet will clear it from tmpfs
 - If trying to reference a secret that doesn't exist, the pod won't start
 
 - **Good practices**
@@ -19,7 +19,11 @@ echo -n "my-top-secret" | base64
 echo -n "bXktdG9wLXNlY3JldA==" | base64 -d
 ```
 
-## Opaque secret
+## Properties
+
+### type
+
+#### Opaque
 
 - Default kind of secret
 
@@ -29,13 +33,13 @@ kind: Secret
 metadata:
   name: mysecret
 type: Opaque
-data: # data here must be base64 encoded!
+data: # data must be base64 encoded!
   DB_HOST: bXlzcWw= # mysql
   DB_USER: cm9vdA== # root
   DB_PASSWORD: cGFzcw== # pass
 ```
 
-## Dockerconfigjson secret
+#### kubernetes.io/dockerconfigjson
 
 ```yaml
 apiVersion: v1

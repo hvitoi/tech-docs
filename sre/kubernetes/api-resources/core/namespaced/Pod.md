@@ -214,12 +214,24 @@ spec:
         defaultMode: 420
 ```
 
-### spec.containers[].readinessProbe & spec.containers[].livenessProbe
+### spec.containers[].livenessProbe & spec.containers[].readinessProbe
 
-- If `readiness probe` is not successful, traffic is not sent
-- If `liveness probe` is not successful, pod is restarted
+- Probes
+  - **Liveness Probe**
+    - Signals that a pod is in a failure state
+    - If it fails, pod is restarted
+  - **Readiness Probe**
+    - Signals that the pod is ready to accept traffic
+    - If it fails, traffic is not accepted
+    - Traffic is blocked by removing the pod from the service LBs
+  - **Startup Probe**
+    - Signals that a pod has been started
+    - Liveness or readiness probes start only after the startup probe is received
+    - Specially useful for slow starting containers (to avoid them getting killed by the kubelet)
+
+- `Kubelet` periodically fetches the probes of each pod in the node
+
 - Springboot Actuator provides built-in readiness and liveness probes
-
 - Old pods will be deleted only when the new pods are ready the receive traffic
 
 ```yaml
@@ -231,14 +243,25 @@ spec:
   containers:
     - name: nginx
       image: nginx:latest
+
+      livenessProbe:
+        initialDelaySeconds: 60 # start performing the probe (by kubelet) N seconds after the container has started
+        periodSeconds: 1 # how often to perform the probe (by kubelet)
+        httpGet: # Option 1
+          port: 8000
+          path: /actuator/health/liveness
+        exec: # Option 2
+          command:
+            - /bin/shz
+            - -c
+            - nc -z localhost 8095
+
       readinessProbe:
         httpGet:
           port: 8000
           path: /actuator/health/readiness
-      livenessProbe:
-        httpGet:
-          port: 8000
-          path: /actuator/health/liveness
+
+
 ```
 
 ### spec.restartPolicy
@@ -410,6 +433,9 @@ spec:
       image: busybox:1.28
       command: ["sh", "-c", "echo 'The app is running!' && sleep 3600"]
   initContainers:
+    # each initContainer is executed in sequence
+    # if any container execution fails, the whole pod is restarted (and start the init containers all over)
+    # While init containers are running, the pod shows the status "Init:0/1"
     - name: init-myservice-pullcode
       image: busybox
       command:
