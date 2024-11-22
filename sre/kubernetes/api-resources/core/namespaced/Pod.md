@@ -85,6 +85,21 @@ spec:
             name: simplesecret
 ```
 
+### spec.containers[].command & spec.containers[].args
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+spec:
+  containers:
+    - name: nginx
+      image: nginx:l.20
+      command: ["sleep"] # override the entrypoint from dockerfile
+      args: ["10"] # override the cmd from dockerfile
+```
+
 ### spec.containers[].ports
 
 - This information is primarily informational, it does not expose the port outside the Pod (for that a service is needed)
@@ -101,56 +116,6 @@ spec:
       image: postgres:12
       ports:
         - containerPort: 5432
-```
-
-### spec.containers[].command & spec.containers[].args
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp
-spec:
-  containers:
-    - name: nginx
-      image: nginx:l.20
-      command: ["sleep"] # override the entrypoint from dockerfile
-      args: ["10"] # override the cmd from dockerfile
-```
-
-### spec.containers[].resources
-
-- Kube scheduler uses the resource information to decide which node to place the pod
-- The default resource requests and resource limits are defined in the `LimitRange` object
-
-- **Resource Requests** defaults
-  - `0.5 vCPU` (500m)
-  - `256 Mi RAM`
-- 1 CPU is equals to: 1 AWS vCPU, 1 GCP Core, 1 Azure Core, 1 Hyperthread
-- 1m is the minimum amount of CPU, it is 0.001 vCPU
-
-- **Resource Limits** defaults
-  - `1 vCPU` (1000m)
-  - `512 Mi RAM`
-- If CPU usage exceeds the limit, the container is **throttled**
-- If Memory usage exceeds the limit constantly, the container is **terminated** (OOMKilled)
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp-pod
-spec:
-  containers:
-    - name: nginx-container
-      image: nginx
-      resources:
-        requests: # reserves at least the request resources
-          memory: 1Gi
-          cpu: 1
-        limits: # max resource usage
-          memory: 2Gi
-          cpu: 2
 ```
 
 ### spec.containers[].volumeMounts & spec.volumes
@@ -224,10 +189,12 @@ spec:
     - Signals that the pod is ready to accept traffic
     - If it fails, traffic is not accepted
     - Traffic is blocked by removing the pod from the service LBs
-  - **Startup Probe**
-    - Signals that a pod has been started
-    - Liveness or readiness probes start only after the startup probe is received
-    - Specially useful for slow starting containers (to avoid them getting killed by the kubelet)
+
+- When to start probing? (Startup Probe)
+  - It is defined by the `initialDelaySeconds` property
+  - Signals that a pod has been started
+  - Liveness or readiness probes start only after the startup probe is received
+  - Specially useful for slow starting containers (to avoid them getting killed by the kubelet)
 
 - `Kubelet` periodically fetches the probes of each pod in the node
 
@@ -262,6 +229,39 @@ spec:
           path: /actuator/health/readiness
 
 
+```
+
+### spec.containers[].resources
+
+- Kube scheduler uses the resource information to decide which node to place the pod
+- The default resource requests and resource limits are defined in the `LimitRange` object
+
+- **Resource Requests**
+  - Defaults:`0.5 vCPU` (500m), `256 Mi RAM`  (if no LimitRange is defined)
+  - 1 CPU is equals to: 1 AWS vCPU, 1 GCP Core, 1 Azure Core, 1 Hyperthread
+  - 1m (milicpu) is the minimum amount of CPU, it is 0.001 vCPU
+
+- **Resource Limits**
+  - Defaults: `1 vCPU` (1000m), `512 Mi RAM` (if no LimitRange is defined)
+  - If CPU usage exceeds the limit, the container is **throttled**
+  - If memory usage exceeds the limit constantly, the container is **terminated** (OOMKilled)
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      resources:
+        requests: # This is the minimum resources that k8s will allocated to the container
+          memory: 1Gi
+          cpu: 1
+        limits: # max resource usage
+          memory: 2Gi
+          cpu: 1200m # same as 1.2 cpu
 ```
 
 ### spec.restartPolicy

@@ -1,7 +1,7 @@
 # DaemonSet (ds)
 
 - `DaemonSet` assures that one replica of the pod runs on each node
-- DeamonSets are not scheduled by kube-scheduler, because it must be in all of the nodes
+- DaemonSets are not scheduled by kube-scheduler, because it must be in all of the nodes
 - **Use cases**
   - Monitoring Solution: monitoring agent for each node
   - Logs Viewer
