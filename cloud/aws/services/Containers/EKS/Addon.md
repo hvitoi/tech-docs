@@ -24,7 +24,7 @@ Properties:
 
 ### AddonName
 
-#### EBS CSI Driver
+#### aws-ebs-csi-driver (EBS CSI Driver)
 
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
@@ -161,6 +161,18 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
     --set vpcId=${CLUSTER_VPC} \
     --set serviceAccount.name=aws-load-balancer-controller # the IAM Roles for Service Accounts (IRSA) created beforehand
 ```
+
+#### vpc-cni
+
+- WIP
+
+#### coredns
+
+- WIP
+
+#### kube-proxy
+
+- WIP
 
 ### ServiceAccountRoleArn
 
