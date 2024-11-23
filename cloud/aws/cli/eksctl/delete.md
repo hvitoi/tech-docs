@@ -23,3 +23,14 @@ eksctl delete nodegroup \
   --cluster "my-cluster" \
   --name "my-node-group"
 ```
+
+## addon
+
+- This will automatically remove any Kubernetes `SA` associated with the addon
+- This won't remove IAM roles manually created
+
+```shell
+eksctl delete addon \
+  --cluster "my-cluster" \
+  --name "aws-ebs-csi-driver"
+```

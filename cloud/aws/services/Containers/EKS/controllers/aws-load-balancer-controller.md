@@ -2,29 +2,87 @@
 
 > This controller is necessary for ALBs only. For CLBs and NLBs this controller is not necessary and the LBs can be created directly from the Service Object
 
-- <https://github.com/kubernetes-sigs/aws-load-balancer-controller>
+- <https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.10/>
+  - This was previously named "aws-alb-ingress-controller"
 
 - AWS Load Balancer Controller (`LBC`) leverages a Kubernetes CRD to manage AWS Elastic Load Balancers (ELBs).
 - LBC is composed of kubernetes objects such as `load balancers` and `TargetGroupBindings` that are able to manage `aws resources` (for instance for dynamically creating an ALB)
 
+![LB Controller](.images/lb-controller.png)
+
 ## IRSA
 
-- LBC requires `IAM Roles for Service Accounts` (IRSA)
-- This role is automatically created via eksctl
+- The controller runs on the worker nodes, so it needs access to the `AWS ALB/NLB` APIs with IAM permissions
+- The IAM permissions can either be setup using `IAM roles for service accounts (IRSA)` (preferred) or can be attached directly to the `worker node IAM roles`
 
-## Deploy
+- You can define the required IRSA with eksctl manifest
+
+```yaml
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true
+```
+
+- Or create it manually
 
 ```shell
-set CLUSTER_REGION us-east-1
+# Create an OIDC provider
+eksctl utils associate-iam-oidc-provider --cluster=attractive-gopher --approve
+
+# Download Policy
+curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.10.0/docs/install/iam_policy.json
+
+# Create IAM policy
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://iam-policy.json
+
+# Create IRSA
+set account_id (aws sts get-caller-identity --query Account --output text)
+eksctl create iamserviceaccount \
+  --name aws-load-balancer-controller \
+  --cluster my-cluster \
+  --namespace kube-system \
+  --attach-policy-arn=arn:aws:iam::$account_id:policy/AWSLoadBalancerControllerIAMPolicy \
+  --override-existing-serviceaccounts \
+  --approve
+```
+
+## Installation
+
+```shell
 set CLUSTER_VPC (aws eks describe-cluster --name my-cluster --region $CLUSTER_REGION --query "cluster.resourcesVpcConfig.vpcId" --output text)
 
 helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
     --namespace kube-system \
-    --set clusterName=my-cluster \
-    --set serviceAccount.create=false \
-    --set region=${CLUSTER_REGION} \
+    --set "clusterName=my-cluster" \
+    # do not create SA because it has already been created when creating the IRSA
+    --set "serviceAccount.create=false" \
+    # SA that was created as part of the IRSA creation
+    --set "serviceAccount.name=aws-load-balancer-controller"
     --set vpcId=${CLUSTER_VPC} \
-    --set serviceAccount.name=aws-load-balancer-controller # the IAM Roles for Service Accounts (IRSA) created beforehand
 ```
+
+## Ingress Traffic
+
+- AWS Load Balancer controller supports two traffic modes
+- It's configured with the annotation `alb.ingress.kubernetes.io/target-type`
+
+### Instance Mode (default)
+
+- `alb.ingress.kubernetes.io/target-type: instance`
+- Register the nodes as targets for the ALB
+- Traffic is routed to the `NodePort` of each node
+
+### IP Mode
+
+- `alb.ingress.kubernetes.io/target-type: ip`
+- Register pods as targets (instead of the nodes)
+- This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services

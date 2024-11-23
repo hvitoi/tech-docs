@@ -8,24 +8,26 @@
 
 ## IRSA
 
-- `IAM role for service account` (**IRSA**)
-- This addon requires permissions to make calls to the AWS API. Otherwise it will fail to create the PVC
-- This make it possible to Create a `Persistent Volume Claim (PVC)` managed by k8s itself
-- For that the AWS managed policy [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html) needs to be attached to a new role that will be assumed by the ec2 instance
+- The controller runs on the worker nodes, so it needs access to the `AWS EBS` APIs with IAM permissions
+- The IAM permissions can either be setup using `IAM roles for service accounts (IRSA)` (preferred) or can be attached directly to the `worker node IAM roles`
+
+- AWS managed policy: [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html)
 
 ```shell
-# this approach creates a new role (AmazonEKS_EBS_CSI_DriverRole) with the ebs policy (AmazonEBSCSIDriverPolicy) that is assumable by the ec2 instances in the node group
+# Create an OIDC provider
+eksctl utils associate-iam-oidc-provider --cluster=attractive-gopher --approve
+
+# Create IRSA
 eksctl create iamserviceaccount \
   --name ebs-csi-controller-sa \
-  --role-name AmazonEKS_EBS_CSI_DriverRole \
-  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
   --cluster my-cluster \
   --namespace kube-system \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
   --role-only \
   --approve
 ```
 
-- Another option (not recommended) is to attach the ebs policy directly to the ec2 default role (created as part of the node group)
+- Another option (not recommended) is to attach the ebs policy directly to the role of the ec2 instances of the worker nodes
 
 ```shell
 # Get the ARN policy of the worker nodes
@@ -37,7 +39,7 @@ aws iam attach-role-policy \
   --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 ```
 
-## Deploy
+## Installation
 
 ```shell
 set account_id (aws sts get-caller-identity --query Account --output text)

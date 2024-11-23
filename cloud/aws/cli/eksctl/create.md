@@ -70,18 +70,23 @@ eksctl create nodegroup \
 ## iamserviceaccount
 
 - Create an `IRSA` (IAM role for service account)
+- IRSAs allow Kubernetes resources to manage AWS resources
 
 ```shell
-# Allow the EBS CSI driver to create EBS volumes on AWS
-# A SA named "ebs-csi-controller-sa" (in the kube-system namespace) is created on the cluster
-# AN IAM role named "AmazonEKS_EBS_CSI_DriverRole" is created on AWS, which has a policy attached to it
 eksctl create iamserviceaccount \
-  --name ebs-csi-controller-sa \ # SA Kubernetes Object name (kubectl get sa/...)
+  # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa)
+  --name ebs-csi-controller-sa \
   --cluster my-cluster \
+  # namespace to create the SA
   --namespace kube-system \
-  --role-name AmazonEKS_EBS_CSI_DriverRole \ # IAM role name (can be any)
+  # IAM role name to be created on AWS (can be any name) - If omitted, uses an auto-generated name: eksctl-foo-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  # policy to attach to the role
   --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
-  --role-only \ # do not create the SA (usually when another step will do it)
+  # do not create the SA (usually when another step will do it)
+  --role-only \
+  # recreate Kubernetes SAs if they exist already
+  --override-existing-serviceaccounts \
   --approve
 ```
 
