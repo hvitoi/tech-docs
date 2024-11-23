@@ -1,5 +1,6 @@
 # aws-ebs-csi-driver
 
+- <https://github.com/kubernetes-sigs/aws-ebs-csi-driver>
 - Leverages the `Container Storage Interface (CSI)` compliant driver
 - Replaces the legacy `In-Tree EBS Provisioner`
 - It allows EKS Cluster to `manage lifecycle` of EBS volumes (AWS::EC2::Volume)
@@ -60,7 +61,7 @@ kubectl get csidrivers
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
 ```
 
-## StorageClass
+## Kubernetes Objects
 
 - After the driver is deployed you need to apply a `StorageClass` with the provisioner `kubernetes.io/aws-ebs` on the cluster
 - Then claim the volume (PVC) via the SC, this way a PV will be created automatically
