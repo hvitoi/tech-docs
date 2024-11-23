@@ -1,14 +1,16 @@
 # aws-load-balancer-controller
 
-> This controller is necessary for ALBs only. For CLBs and NLBs this controller is not necessary and the LBs can be created directly from the Service Object
+> This controller is required for Ingress objects only. It creates ALB resources on AWS based on Ingress Objects
+> For Service objects this controller is not required (although it can also be used). Service Objects (type LoadBalancer) support is built-in and creates CLBs or NLBs resources on AWS.
 
-- <https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.10/>
-  - This was previously named "aws-alb-ingress-controller"
+- Automatically created ALBs or NLBs based on Ingress Kubernetes Objects
+  - `K8S Ingress Object` -> `AWS ALB`
+  - `K8S Service Object` -> `AWS NLB`
+- <https://kubernetes-sigs.github.io/aws-load-balancer-controller>
+- This controller was previously named "aws-alb-ingress-controller"
 
-- AWS Load Balancer Controller (`LBC`) leverages a Kubernetes CRD to manage AWS Elastic Load Balancers (ELBs).
-- LBC is composed of kubernetes objects such as `load balancers` and `TargetGroupBindings` that are able to manage `aws resources` (for instance for dynamically creating an ALB)
-
-![LB Controller](.images/lb-controller.png)
+![LB Controller](.images/lb-controller-architecture1.png)
+![LB Controller](.images/lb-controller-architecture2.png)
 
 ## IRSA
 
@@ -39,8 +41,8 @@ curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-lo
 
 # Create IAM policy
 aws iam create-policy \
-    --policy-name AWSLoadBalancerControllerIAMPolicy \
-    --policy-document file://iam-policy.json
+  --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-document file://iam-policy.json
 
 # Create IRSA
 set account_id (aws sts get-caller-identity --query Account --output text)
@@ -78,7 +80,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 ### Instance Mode (default)
 
 - `alb.ingress.kubernetes.io/target-type: instance`
-- Register the nodes as targets for the ALB
+- Register the nodes (ec2 instances) as targets for the ALB
 - Traffic is routed to the `NodePort` of each node
 
 ### IP Mode
