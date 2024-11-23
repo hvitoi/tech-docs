@@ -1,5 +1,6 @@
 # Software licensing
 
+- <https://opensource.org/licenses>
 - `SPDX license identifiers`
   - Identifiers provided by the `licenses` package (/usr/share/licenses/spdx)
 
@@ -64,3 +65,8 @@
 
 - `ISC License`
 - similar to MIT/BSD
+
+## 0BSD
+
+- `Zero-Clause BSD`
+- <https://opensource.org/license/0bsd>

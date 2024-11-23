@@ -1,37 +1,78 @@
 # Find
 
-- Find uses the "hard way". It iterates over the filesystem
-- `find` searches files or directories iterating over the filesystem (slow)
+## -print
 
-## Search files and directories
+- Just print the filename
+- This is the default action when none is provided
 
 ```shell
-# Search by file name
-find "." -name "notes.txt"
-find "." -iname "notes.txt" # include name
-
-# Search by file type and file name
-file "/" -type f # f for file
-file "/" -type d # d for directory
-
-# REgex
-find "/" -regex ".*\(aaa\|bbb\).*\.so" -exec cp {} {}.bak \;
-
-# node_modules
-find "." -name "node_modules" -type d -prune # list
-find "." -name "node_modules" -type d -prune -exec rm -rf "{}" + # delete
-
-# Files without group (group has been removed)
-sudo find / -nogroup -ls
-
-# Find empty directories
-find . -type d -empty -print
-find . -type d -empty -delete
-
-# Print files recursively
 find . -print
+find . # same!
+```
 
-# Exclude a path from search
-find / -not -path "/home/*" # find everything that is not in the home folder
-find / ! -path "/home/*" ! -path "/proc/*" # exclude multiple folders
+## -type
+
+- Search by file type
+
+```shell
+file . -type f # file
+file . -type d # directory
+```
+
+## -name
+
+- Search by file name
+
+```shell
+find . -name notes.txt
+find . -iname notes # include name
+```
+
+## -delete
+
+```shell
+# delete files with a name
+find . -name "package-lock.json" -type f -delete
+
+# delete empty directories
+find . -type d -empty -delete
+```
+
+## -prune
+
+```shell
+find . -name "node_modules" -type d -prune # list
+find . -name "node_modules" -type d -prune -exec rm -rf "{}" + # delete
+```
+
+## -empty
+
+- Find empty
+
+```shell
+# Find empty directories
+find . -type d -empty
+```
+
+## -path
+
+- Exclude a path from search
+
+```shell
+find . -not -path "/home/*" # find everything that is not in the home folder
+find . ! -path "/home/*" ! -path "/proc/*" # exclude multiple folders
+```
+
+## -nogroup
+
+- Files without group (group has been removed)
+
+```shell
+find . -nogroup -ls
+```
+
+## -regex
+
+```shell
+find . -regex ".*\(aaa\|bbb\).*\.so" -exec cp {} {}.bak \;
 ```
