@@ -22,7 +22,7 @@ eksctl utils associate-iam-oidc-provider --cluster=attractive-gopher --approve
 # Create IRSA
 eksctl create iamserviceaccount \
   --name ebs-csi-controller-sa \
-  --cluster my-cluster \
+  --cluster foo \
   --namespace kube-system \
   --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
   --approve
@@ -48,7 +48,7 @@ aws iam attach-role-policy \
 set account_id (aws sts get-caller-identity --query Account --output text)
 eksctl create addon \
   --name aws-ebs-csi-driver \
-  --cluster my-cluster \
+  --cluster foo \
   --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
 ```
 
@@ -70,7 +70,7 @@ kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernete
 
 - After the driver is deployed you need to apply a `StorageClass` with the provisioner `kubernetes.io/aws-ebs` on the cluster
 - Then claim the volume (PVC) via the SC, this way a PV will be created automatically
-- The EBS volume is created with the name `my-cluster-dynamic-pvc-34bc1e7b-c864-4667-92bd-1141e114297c`
+- The EBS volume is created with the name `foo-dynamic-pvc-34bc1e7b-c864-4667-92bd-1141e114297c`
 
 ```yaml
 apiVersion: storage.k8s.io/v1

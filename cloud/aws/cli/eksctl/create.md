@@ -13,8 +13,8 @@
   - `eksctl-<cluster-name>-cluster`
   - `eksctl-<cluster-name>-nodegroup-<nodegroup-name>`
   - `eksctl-<cluster-name>-addon-aws-ebs-csi-driver`
-  - `eksctl-<cluster-name>-addon-iamserviceaccount-kube-system-aws-load-balancer-controller`
   - `eksctl-<cluster-name>-addon-vpc-cni`
+  - `eksctl-<cluster-name>-addon-iamserviceaccount-kube-system-aws-load-balancer-controller`
 - Use can follow up the cluster creation on the cloudformation console <https://console.aws.amazon.com/cloudformation>
 
 ```shell
@@ -23,7 +23,7 @@ eksctl create cluster -f eks-cluster.yaml
 
 # From params
 eksctl create cluster \
-  --name "my-cluster" \
+  --name foo \
   --zones "us-east-1a,us-east-1b" \ # auto-select if unspecified
   --without-nodegroup # no worker nodes (in this case create it manually with eksctl create nodegroup)
 ```
@@ -44,24 +44,33 @@ aws ec2 create-key-pair \
 
 ```shell
 eksctl create nodegroup \
-  --cluster "my-cluster" \
-  --name "my-node-group" \
-  --node-type "t3.medium" \
+  --cluster foo \
+  --name my-node-group \
+
+  # node group
+  --node-type t3.medium \
   --nodes "2" \
   --nodes-min "2" \
   --nodes-max "4" \
-  --node-volume-size "20" \ # 20 GiB HDD per node
+  # 20 GiB HDD per node
+  --node-volume-size "20" \
   --ssh-access \
   --ssh-public-key "my-key-pair" \
-  --managed \ # Make it managed worker nodes (aws patches and upgrades it) \
-  --node-private-networking \ # deploy the node-group into the private subnet of the EKS cluster
+  # Make it managed worker nodes (aws patches and upgrades it) \
+  --managed \
+  # deploy the node-group into the private subnet of the EKS cluster
+  --node-private-networking \
 
-  # addon flags
-  --asg-access \ # adds inline policy PolicyAutoScaling to the role of the ec2 instances
-  --external-dns-access \ # adds inline policies PolicyExternalDNSHostedZones and PolicyExternalDNSChangeSet to the role of the ec2 instances
-  --appmesh-access \ # adds inline policy PolicyAppMesh to the role of the ec2 instances
-  --alb-ingress-access \ # adds inline policy PolicyAWSLoadBalancerController to the role of the ec2 instances
-  --full-ecr-access # adds managed policies AmazonEC2ContainerRegistryPowerUser and AmazonEC2ContainerRegistryReadOnly to the role of the ec2 instances
+  # adds inline policy PolicyAutoScaling to the role of the ec2 instances
+  --asg-access \
+  # adds inline policies PolicyExternalDNSHostedZones and PolicyExternalDNSChangeSet to the role of the ec2 instances
+  --external-dns-access \
+  # adds inline policy PolicyAppMesh to the role of the ec2 instances
+  --appmesh-access \
+  # adds inline policy PolicyAWSLoadBalancerController to the role of the ec2 instances
+  --alb-ingress-access \
+  # adds managed policies AmazonEC2ContainerRegistryPowerUser and AmazonEC2ContainerRegistryReadOnly to the role of the ec2 instances
+  --full-ecr-access
 ```
 
 - The nodegroup creation may take around 5 minutes
@@ -78,7 +87,7 @@ eksctl create addon --config-file=cluster.yaml
 set account_id (aws sts get-caller-identity --query Account --output text)
 eksctl create addon \
   --name aws-ebs-csi-driver \
-  --cluster my-cluster \
+  --cluster foo \
   --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
 
 eksctl create addon \
@@ -88,17 +97,16 @@ eksctl create addon \
 
 ## iamserviceaccount
 
-> This creates a CloudFormation stack with the name like "eksctl-henry-addon-iamserviceaccount-<namespace>-<sa-name>"
-
 - Create an `IRSA` (IAM role for service account)
 - IRSAs allow Kubernetes resources to manage AWS resources
+- This creates a CloudFormation stack with the name like `eksctl-henry-addon-iamserviceaccount-<namespace>-<sa-name>`
 
 ```shell
 eksctl create iamserviceaccount \
   # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa -n kube-system) to be created
   --name ebs-csi-controller-sa \
   # EKS cluster
-  --cluster my-cluster \
+  --cluster foo \
   # namespace to create the SA
   --namespace kube-system \
   # IAM role name to be created on AWS (can be any name) - If omitted, uses an auto-generated name: eksctl-foo-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
@@ -120,7 +128,8 @@ eksctl create iamserviceaccount \
 
 ```shell
 eksctl create podidentityassociation \
-  --cluster my-cluster \
+  # cluster name
+  --cluster foo \
   # Namespace where the SA will be created (the app must be deployed in this same namespace)
   --namespace default \
   # SA to be created (it will be used by pods to access AWS resources)

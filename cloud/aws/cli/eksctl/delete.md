@@ -6,12 +6,10 @@
 
 ```shell
 # delete by resource
-eksctl delete cluster -f ./eks-cluster.yaml
+eksctl delete cluster -f eks-cluster.yaml
 
 # delete by cluster name
-eksctl delete cluster \
-  --region us-west-2 \
-  --name my-cluster
+eksctl delete cluster --name foo
 ```
 
 ## nodegroup
@@ -20,8 +18,8 @@ eksctl delete cluster \
 
 ```shell
 eksctl delete nodegroup \
-  --cluster "my-cluster" \
-  --name "my-node-group"
+  --cluster foo \
+  --name my-node-group
 ```
 
 ## addon
@@ -31,8 +29,8 @@ eksctl delete nodegroup \
 
 ```shell
 eksctl delete addon \
-  --cluster "my-cluster" \
-  --name "aws-ebs-csi-driver"
+  --cluster foo \
+  --name aws-ebs-csi-driver
 ```
 
 ## iamserviceaccount
@@ -56,7 +54,7 @@ eksctl delete iamserviceaccount \
 
 ```shell
 eksctl delete podidentityassociation \
-  --service-account-name aws-load-balancer-controller \
   --cluster henry \
   --namespace kube-system
+  --service-account-name aws-load-balancer-controller \
 ```

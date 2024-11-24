@@ -7,6 +7,6 @@
 
 ```shell
 eksctl utils associate-iam-oidc-provider \
-  --cluster "my-cluster" \
+  --cluster "foo" \
   --approve
 ```

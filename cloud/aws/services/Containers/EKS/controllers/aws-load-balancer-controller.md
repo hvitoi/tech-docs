@@ -65,7 +65,7 @@ iam:
 
 ```shell
 # Create an OIDC provider
-eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
+eksctl utils associate-iam-oidc-provider --cluster foo --approve
 
 # Download Policy
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.10.0/docs/install/iam_policy.json
@@ -79,7 +79,7 @@ aws iam create-policy \
 set account_id (aws sts get-caller-identity --query Account --output text)
 eksctl create iamserviceaccount \
   --name aws-load-balancer-controller \
-  --cluster my-cluster \
+  --cluster foo \
   --namespace kube-system \
   --attach-policy-arn=arn:aws:iam::$account_id:policy/AWSLoadBalancerControllerIAMPolicy \
   --override-existing-serviceaccounts \
@@ -93,7 +93,7 @@ helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --namespace kube-system \
-  --set "clusterName=my-cluster" \
+  --set "clusterName=foo" \
   # do not create SA because it has already been created when creating the IRSA
   --set "serviceAccount.create=false" \
   # SA that was created as part of the IRSA creation

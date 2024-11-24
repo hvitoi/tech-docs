@@ -13,7 +13,7 @@ aws eks list-clusters --query "clusters[*]" --output text
   - vpcId
 
 ```shell
-aws eks describe-cluster --name my-cluster
+aws eks describe-cluster --name foo
 ```
 
 ## list-access-entries
@@ -21,7 +21,7 @@ aws eks describe-cluster --name my-cluster
 - Describe what iam principals have access to the cluster (including assumable roles)
 
 ```shell
-aws eks list-access-entries --cluster-name my-cluster
+aws eks list-access-entries --cluster-name foo
 ```
 
 ## list-access-policies
@@ -48,21 +48,21 @@ AmazonSagemakerHyperpodSystemNamespacePolicy
 
 ```shell
 # by cluster name (in the account & region defined in the profile)
-aws eks update-kubeconfig --name my-cluster
+aws eks update-kubeconfig --name foo
 
 # Specify another kubeconfig location (other than ~/.kube/config)
 aws eks update-kubeconfig \
-  --name my-cluster \
+  --name foo \
   --kubeconfig ~/kubeconfig
 
 # Alias for the context (the cluster remains as the arn)
 aws eks update-kubeconfig \
-  --name my-cluster \
+  --name foo \
   --alias my-context
 
 # Alias for the user (the cluster remains as the arn)
 aws eks update-kubeconfig \
-  --name my-cluster \
+  --name foo \
   --user-alias john
 ```
 
@@ -89,5 +89,5 @@ aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
 - This CLI is usually triggered via kubeconfig so that a get can be fetched on the fly for kubectl
 
 ```shell
-aws eks get-token --cluster-name my-cluster
+aws eks get-token --cluster-name foo
 ```

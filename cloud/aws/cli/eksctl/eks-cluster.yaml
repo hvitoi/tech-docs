@@ -2,9 +2,9 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: henry
-  region: us-east-1
-  version: "1.31"
+  name: foo
+  # region: us-east-1
+  # version: "1.31"
 
 managedNodeGroups:
   - name: my-node-group
@@ -13,29 +13,28 @@ managedNodeGroups:
     minSize: 2
     desiredCapacity: 2
     maxSize: 4
+    volumeSize: 20
     privateNetworking: true
-    volumeSize: 5
     spot: true
+# iam:
+#   withOIDC: true
+#   serviceAccounts:
+#     - metadata:
+#         name: aws-load-balancer-controller
+#         namespace: kube-system
+#       wellKnownPolicies:
+#         awsLoadBalancerController: true
 
-iam:
-  withOIDC: true
-  serviceAccounts:
-    - metadata:
-        name: aws-load-balancer-controller
-        namespace: kube-system
-      wellKnownPolicies:
-        awsLoadBalancerController: true
+# addons:
+#   - name: vpc-cni
+#   - name: coredns
+#   - name: kube-proxy
+#   - name: eks-pod-identity-agent
+#   - name: aws-ebs-csi-driver
+#     wellKnownPolicies: # Adds an IAM service account
+#       ebsCSIController: true
 
-addons:
-  - name: vpc-cni
-  - name: coredns
-  - name: kube-proxy
-  - name: eks-pod-identity-agent
-  - name: aws-ebs-csi-driver
-    wellKnownPolicies: # Adds an IAM service account
-      ebsCSIController: true
-
-cloudWatch:
-  clusterLogging:
-    enableTypes: ["*"]
-    logRetentionInDays: 30
+# cloudWatch:
+#   clusterLogging:
+#     enableTypes: ["*"]
+#     logRetentionInDays: 30

@@ -24,7 +24,7 @@ aws fis create-experiment-template --cli-input-json file://fis-template.json
       "resourceType": "aws:eks:pod",
       "selectionMode": "ALL",
       "parameters": {
-        "clusterIdentifier": "arn:aws:eks:us-east-1:000000000000:cluster/my-cluster",
+        "clusterIdentifier": "arn:aws:eks:us-east-1:000000000000:cluster/foo",
         "namespace": "default",
         "selectorType": "deploymentName",
         "selectorValue": "my-deployment",

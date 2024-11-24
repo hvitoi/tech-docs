@@ -9,7 +9,7 @@ eksctl get cluster
 ## nodegroup
 
 ```shell
-eksctl get nodegroup --cluster my-cluster
+eksctl get nodegroup --cluster foo
 ```
 
 ## iamserviceaccount
@@ -17,7 +17,7 @@ eksctl get nodegroup --cluster my-cluster
 - Get all SAs em the cluster that are associated with an IAM role
 
 ```shell
-eksctl get iamserviceaccount --cluster my-cluster
+eksctl get iamserviceaccount --cluster foo
 ```
 
 ## addon
@@ -30,5 +30,5 @@ eksctl get iamserviceaccount --cluster my-cluster
   - aws-ebs-csi-driver
 
 ```shell
-eksctl get addon --cluster my-cluster
+eksctl get addon --cluster foo
 ```
