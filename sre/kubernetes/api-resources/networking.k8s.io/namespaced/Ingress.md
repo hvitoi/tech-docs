@@ -24,15 +24,53 @@
 
 ## Properties
 
+### spec.ingressClassName
+
+- Overrides the default ingress class (defined by the IngressClass)
+- This can be omitted if a default ingress class is defined
+- It's a deference to an `IngressClass` object
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-app-svc
+      port:
+        number: 80
+```
+
+### spec.defaultBackend
+
+- Send traffic to a Service Object
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-nodeport-svc
+      port:
+        number: 80
+```
+
 ### spec.rules[]
 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
+  name: my-ing
   annotations:
-    kubernetes.io/ingress.class: nginx # overrides the default ingress class
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - host: api.hvitoi.com # Only consider requests to api.hvitoi.com. When developing locally, "localhost" must be tricked into this host in /etc/hosts
@@ -95,7 +133,7 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-ssl
+  name: my-ing
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: letsencrypt

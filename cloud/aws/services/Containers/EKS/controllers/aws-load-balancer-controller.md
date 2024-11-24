@@ -75,19 +75,73 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   - `deplyo/aws-load-balancer-controller`: uses the above SA and mounts the above secret
   - `svc/eks-extension-metrics-api`: exposes port 443 (that targets port 9443 on the container)
 
-## Ingress Traffic
+## Annotations
 
+### alb.ingress.kubernetes.io/target-type
+
+- Defines the Ingress Traffic
 - AWS Load Balancer controller supports two traffic modes
-- It's configured with the annotation `alb.ingress.kubernetes.io/target-type`
 
-### Instance Mode (default)
+- **Instance Mode** (default)
+  - `alb.ingress.kubernetes.io/target-type: instance`
+  - Register the nodes (ec2 instances) as targets for the ALB
+  - Traffic is routed to the `NodePort` of each node
 
-- `alb.ingress.kubernetes.io/target-type: instance`
-- Register the nodes (ec2 instances) as targets for the ALB
-- Traffic is routed to the `NodePort` of each node
+- **IP Mode**
+  - `alb.ingress.kubernetes.io/target-type: ip`
+  - Register pods as targets (instead of the nodes)
+  - This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services
 
-### IP Mode
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-app-svc
+      port:
+        number: 80
+```
 
-- `alb.ingress.kubernetes.io/target-type: ip`
-- Register pods as targets (instead of the nodes)
-- This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services
+### alb.ingress.kubernetes.io/load-balancer-name
+
+- Name of the LB resource to be created at AWS
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: my-awesome-lb
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-app-svc
+      port:
+        number: 80
+```
+
+### alb.ingress.kubernetes.io/scheme
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-app-svc
+      port:
+        number: 80
+```

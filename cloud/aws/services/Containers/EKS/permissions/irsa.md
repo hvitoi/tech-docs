@@ -12,6 +12,7 @@
 ## OIDC Provider
 
 - In order to use IRSAs, you need an `IAM Open ID Connect provider`
+- This is what makes your EKS CLuster as an Identity Provider that is able to tell (based on the `identity information` contained in the SA and its association with pods) what pods can access certain AWS resources
 - Use the command `eksctl utils associate-iam-oidc-provider` to create it
 
 ## Association

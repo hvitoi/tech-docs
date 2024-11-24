@@ -43,7 +43,7 @@ helm install "ingress-controller" "ingress-nginx/ingress-nginx" \
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
+  name: my-ing
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1 # Everything that gets routed is written in the form /$1 - $1 is to be specified as ?(.*)
@@ -74,37 +74,19 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: my-ing
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: posts.com
+    - host: posts.hvitoi.com
       http:
         paths:
           - path: /posts/create
             backend:
               service:
                 name: posts-svc
-                port:
-                  number: 3000
-          - path: /posts
-            backend:
-              service:
-                name: query-svc
-                port:
-                  number: 3000
-          - path: /posts/?(.*)/comments
-            backend:
-              service:
-                name: comments-svc
-                port:
-                  number: 3000
-          - path: /?(.*)
-            backend:
-              service:
-                name: client-svc
                 port:
                   number: 3000
 ```
