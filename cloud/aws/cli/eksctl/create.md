@@ -67,6 +67,25 @@ eksctl create nodegroup \
 - The nodegroup creation may take around 5 minutes
 - You are able to see the newly created nodes using `kubectl get node`
 
+## addon
+
+```yaml
+# Create addons after a cluster has been created
+eksctl create addon --config-file=cluster.yaml
+```
+
+```shell
+set account_id (aws sts get-caller-identity --query Account --output text)
+eksctl create addon \
+  --name aws-ebs-csi-driver \
+  --cluster my-cluster \
+  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
+
+eksctl create addon \
+  --name eks-pod-identity-agent \
+  --version 1.0.0
+```
+
 ## iamserviceaccount
 
 - Create an `IRSA` (IAM role for service account)
@@ -74,8 +93,9 @@ eksctl create nodegroup \
 
 ```shell
 eksctl create iamserviceaccount \
-  # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa)
+  # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa -n kube-system)
   --name ebs-csi-controller-sa \
+  # EKS cluster
   --cluster my-cluster \
   # namespace to create the SA
   --namespace kube-system \
@@ -87,19 +107,21 @@ eksctl create iamserviceaccount \
   --role-only \
   # recreate Kubernetes SAs if they exist already
   --override-existing-serviceaccounts \
+  # apply the changes
   --approve
 ```
 
-## addon
-
-### aws-ebs-csi-driver
-
-- This requires the AmazonEKS_EBS_CSI_DriverRole to be created beforehand
+## podidentityassociation
 
 ```shell
-set account_id (aws sts get-caller-identity --query Account --output text)
-eksctl create addon \
-  --name aws-ebs-csi-driver \
+eksctl create podidentityassociation \
   --cluster my-cluster \
-  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
+  # Namespace where the SA will be created (the app must be deployed in this same namespace)
+  --namespace default \
+  # SA that will be used for pods to access S3
+  --service-account-name s3-app-sa \
+  #
+  --role-name s3-app-eks-pod-identity-role \
+  #
+  --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 ```

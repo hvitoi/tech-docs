@@ -39,11 +39,19 @@ aws iam list-policies
 aws iam get-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
 # get a customer managed policy
-aws iam get-policy --policy-arn arn:aws:iam::000000000000:policy/casual-dev
+aws iam get-policy --policy-arn arn:aws:iam::123456789012:policy/casual-dev
 
 # With aws account
-set AWS_ACCOUNT $(aws sts get-caller-identity --query 'Account' --output text)
+set AWS_ACCOUNT (aws sts get-caller-identity --query 'Account' --output text)
 aws iam get-policy --policy-arn arn:aws:iam::$AWS_ACCOUNT:policy/my-policy
+```
+
+### create-policy
+
+```shell
+aws iam create-policy \
+  --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-document file://iam_policy.json
 ```
 
 ## Roles
@@ -93,26 +101,4 @@ aws iam attach-role-policy \
 aws iam create-role \
   --role-name AmazonEKS_EBS_CSI_DriverRole \
   --assume-role-policy-document "file://aws-ebs-csi-driver-trust-policy.json"
-```
-
-```json
-// aws-ebs-csi-driver-trust-policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com",
-          "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:kube-system:ebs-csi-controller-sa"
-        }
-      }
-    }
-  ]
-}
 ```

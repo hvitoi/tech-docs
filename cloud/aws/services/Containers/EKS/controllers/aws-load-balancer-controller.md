@@ -37,12 +37,12 @@ iam:
 eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
 
 # Download Policy
-curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.10.0/docs/install/iam_policy.json
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.10.0/docs/install/iam_policy.json
 
 # Create IAM policy
 aws iam create-policy \
   --policy-name AWSLoadBalancerControllerIAMPolicy \
-  --policy-document file://iam-policy.json
+  --policy-document file://iam_policy.json
 
 # Create IRSA
 set account_id (aws sts get-caller-identity --query Account --output text)

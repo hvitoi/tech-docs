@@ -34,3 +34,12 @@ eksctl delete addon \
   --cluster "my-cluster" \
   --name "aws-ebs-csi-driver"
 ```
+
+## iamserviceaccount
+
+```shell
+eksctl delete iamserviceaccount \
+  --name ebs-csi-controller-sa \
+  --cluster henry \
+  --namespace kube-system
+```

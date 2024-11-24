@@ -34,7 +34,7 @@ metadata:
   namespace: kube-system
 ```
 
-### Assume Role Policy Document
+### IAM Trust Policy
 
 - The `IAM Role` has a Trust Policy document so that the role can be used only by the corresponding SA
 
@@ -44,10 +44,10 @@ metadata:
   "Statement": [
     {
       "Effect": "Allow",
+      "Action": "sts:AssumeRoleWithWebIdentity",
       "Principal": {
         "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0123456789ABCDEF0123456789ABCDEF"
       },
-      "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
           "oidc.eks.us-east-1.amazonaws.com/id/7B4887CC1B7841B1BAEB98263BC64B9C:aud": "sts.amazonaws.com",

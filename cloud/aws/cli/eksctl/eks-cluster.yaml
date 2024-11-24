@@ -2,17 +2,20 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: henry-sandbox
+  name: henry
   region: us-east-1
   version: "1.31"
 
 managedNodeGroups:
   - name: my-node-group
-    instanceType: t3.medium
+    instanceType: t3.small
     # instanceTypes: ["t3.small", "t3.medium"]
+    minSize: 2
     desiredCapacity: 2
-    # volumeSize: 80
-    # spot: true
+    maxSize: 4
+    privateNetworking: true
+    volumeSize: 5
+    spot: true
 
 iam:
   withOIDC: true
@@ -24,6 +27,10 @@ iam:
         awsLoadBalancerController: true
 
 addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
+  - name: eks-pod-identity-agent
   - name: aws-ebs-csi-driver
     wellKnownPolicies: # Adds an IAM service account
       ebsCSIController: true
