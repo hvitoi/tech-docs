@@ -69,6 +69,12 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set "serviceAccount.name=aws-load-balancer-controller"
 ```
 
+- This creates in the kube-system namespace:
+  - `sa/aws-load-balancer-controller`: created as part of creating the IRSA
+  - `secret/aws-load-balancer-tls`: contains the tls.key, tls.crt and ca.crt
+  - `deplyo/aws-load-balancer-controller`: uses the above SA and mounts the above secret
+  - `svc/eks-extension-metrics-api`: exposes port 443 (that targets port 9443 on the container)
+
 ## Ingress Traffic
 
 - AWS Load Balancer controller supports two traffic modes

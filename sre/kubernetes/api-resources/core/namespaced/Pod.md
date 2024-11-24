@@ -100,7 +100,7 @@ spec:
       args: ["10"] # override the cmd from dockerfile
 ```
 
-### spec.containers[].ports
+### spec.containers[].ports[]
 
 - This information is primarily informational, it does not expose the port outside the Pod (for that a service is needed)
 - It tells Kubernetes and other tools (e.g., monitoring systems) that the application inside the container listens on the specified port.

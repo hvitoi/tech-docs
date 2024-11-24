@@ -9,22 +9,16 @@
 - `CreatePodIdentityAssociation`: To create the connection between IAM role and SA
 - `AssumeRoleForPodIdentity`: For a pod (via SDK) to assume a role
 
-## Connection
+## Association
 
 - This connection is done using eksctl
 - The API `CreatePodIdentityAssociation` is used under the hood to perform the association of an IAM role with a SA
 - The same IAM role can be reused to associate with `multiple SAs` across namespaces within a cluster, or across EKS clusters within an AWS Account.
-
-```shell
-eksctl create podidentityassociation \
-  --cluster my-cluster \
-  --namespace s3-app-ns \
-  --service-account-name s3-app-sa \
-  --role-name s3-app-eks-pod-identity-role \
-  --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-```
+- Use the command `eksctl create podidentityassociation` to create the association between `IAM Role` and `Service Account`
 
 ### IAM Trust Policy
+
+> The IAM role with this trust policy is automatically created with "eksctl create iamserviceaccount"
 
 ```json
 {

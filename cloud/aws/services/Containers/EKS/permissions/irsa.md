@@ -12,29 +12,15 @@
 ## OIDC Provider
 
 - In order to use IRSAs, you need an `IAM Open ID Connect provider`
+- Use the command `eksctl utils associate-iam-oidc-provider` to create it
 
-```shell
-eksctl utils associate-iam-oidc-provider --cluster "my-cluster" --approve
-```
+## Association
 
-## Connection
+- Use the command `eksctl create iamserviceaccount` to create the association between `IAM Role` and `Service Account`
 
-### SA annotation
+### IAM Role - Trust Policy
 
-- `SA` are annotated so that they are associated with the IAM role
-- The `SA` is "empty" and all the permissions are described in the IAM role
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::307096125112:role/eksctl-henry-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
-  name: aws-load-balancer-controller
-  namespace: kube-system
-```
-
-### IAM Trust Policy
+> The IAM role with this trust policy is automatically created with "eksctl create iamserviceaccount"
 
 - The `IAM Role` has a Trust Policy document so that the role can be used only by the corresponding SA
 
@@ -57,4 +43,21 @@ metadata:
     }
   ]
 }
+```
+
+### Service Account - Annotation
+
+> The Service Account with this annotation is automatically created with "eksctl create iamserviceaccount"
+
+- `SA` are annotated so that they are associated with the IAM role
+- The `SA` is "empty" and all the permissions are described in the IAM role
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::307096125112:role/eksctl-henry-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
+  name: aws-load-balancer-controller
+  namespace: kube-system
 ```

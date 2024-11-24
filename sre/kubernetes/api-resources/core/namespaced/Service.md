@@ -29,7 +29,7 @@ spec:
     - name: my-cluster-ip
       protocol: TCP
       port: 3000
-      targetPort: 3000
+      targetPort: 3000 # it's also possible to define an alias here (that matches with the name defined at po.spec.containers[].ports[].name)
   clusterIP: None # None: Use the same IP of the pod. If not provided it will automatically set a random IP
 ```
 

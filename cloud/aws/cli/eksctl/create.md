@@ -88,12 +88,14 @@ eksctl create addon \
 
 ## iamserviceaccount
 
+> This creates a CloudFormation stack with the name like "eksctl-henry-addon-iamserviceaccount-<namespace>-<sa-name>"
+
 - Create an `IRSA` (IAM role for service account)
 - IRSAs allow Kubernetes resources to manage AWS resources
 
 ```shell
 eksctl create iamserviceaccount \
-  # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa -n kube-system)
+  # SA Kubernetes Object name (kubectl get sa/ebs-csi-controller-sa -n kube-system) to be created
   --name ebs-csi-controller-sa \
   # EKS cluster
   --cluster my-cluster \
