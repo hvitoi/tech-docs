@@ -37,9 +37,26 @@ eksctl delete addon \
 
 ## iamserviceaccount
 
+- Deletes:
+  - The `ServiceAccount`
+  - The `IAM Role`
+
 ```shell
 eksctl delete iamserviceaccount \
   --name ebs-csi-controller-sa \
+  --cluster henry \
+  --namespace kube-system
+```
+
+## podidentityassociation
+
+- Deletes:
+  - The `ServiceAccount`
+  - The `IAM Role`
+
+```shell
+eksctl delete podidentityassociation \
+  --service-account-name aws-load-balancer-controller \
   --cluster henry \
   --namespace kube-system
 ```

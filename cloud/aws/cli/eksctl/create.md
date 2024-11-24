@@ -115,15 +115,20 @@ eksctl create iamserviceaccount \
 
 ## podidentityassociation
 
+- Creates a CloudFormation stack `eksctl-<cluster>-podidentityrole-<namespace>-<sa-name>`
+- Uses the API `CreatePodIdentityAssociation`
+
 ```shell
 eksctl create podidentityassociation \
   --cluster my-cluster \
   # Namespace where the SA will be created (the app must be deployed in this same namespace)
   --namespace default \
-  # SA that will be used for pods to access S3
+  # SA to be created (it will be used by pods to access AWS resources)
   --service-account-name s3-app-sa \
-  #
+  # Create SA in the cluster (not created by default)
+  --create-service-account \
+  # IAM role to be created (if omitted uses an auto-generated name)
   --role-name s3-app-eks-pod-identity-role \
-  #
+  # The policy to attach to the role
   --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 ```

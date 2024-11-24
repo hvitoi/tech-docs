@@ -9,6 +9,31 @@
 - `CreatePodIdentityAssociation`: To create the connection between IAM role and SA
 - `AssumeRoleForPodIdentity`: For a pod (via SDK) to assume a role
 
+## EKS Pod Identity webhook
+
+- This webhook runs on the Amazon EKS cluster’s control plane,
+- It intercepts any pods running with a given SA (that is associated with a IAM role) mutates the pod spec by adding some envs
+  - `AWS_CONTAINER_CREDENTIALS_FULL_URI`
+  - `AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE`
+- Theses envs are used by AWS SDK in order to authenticate with AWS. This search for the credentials is called `credential provider chain`
+- Given the envs, the SDK calls the AWS_CONTAINER_CREDENTIALS_FULL_URI which runing on the `Amazon EKS Pod Identity Agent` to get the temporary credentials
+
+## EKS Pod Identity Agent
+
+- It is an addon **Amazon EKS Pod Identity Agent**, which runs a `eks-pod-identity-agent` as DaemonSet in every node
+- This agent is exposed on the URI `AWS_CONTAINER_CREDENTIALS_FULL_URI`
+- It calls the EKS Auth API `AssumeRoleForPodIdentity` to exchange the projected token for temporary IAM credentials, which are then made available to the pod.
+- EKS Auth API (AssumeRoleForPodIdentity) decodes the JWT token and validates the role associations with the service account.
+- If valid, it will also set `session tags` such as
+  - kubernetes-namespace
+  - kubernetes-service-account
+  - eks-cluster-arn
+  - eks-cluster-name
+  - kubernetes-pod-name
+  - kubernetes-pod-uid
+
+> The agent runs in host network mode and gets its permissions from the "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" managed policy that is attached to the worker roles
+
 ## Association
 
 - This connection is done using eksctl
@@ -18,7 +43,7 @@
 
 ### IAM Trust Policy
 
-> The IAM role with this trust policy is automatically created with "eksctl create iamserviceaccount"
+> The IAM role with this trust policy is automatically created with "eksctl create podidentityassociation"
 
 ```json
 {
@@ -35,38 +60,13 @@
       },
       "Condition": {
         "StringEquals": {
-          "aws:SourceAccount": "my-account-number"
+          "aws:SourceAccount": "my-account-number" // optional
         },
         "ArnEquals": {
-          "aws:SourceArn": "arn-of-my-eks-cluster"
+          "aws:SourceArn": "arn-of-my-eks-cluster" // optional
         }
       }
     }
   ]
 }
 ```
-
-## EKS Pod Identity webhook
-
-- This webhook runs on the Amazon EKS cluster’s control plane,
-- It intercepts any pods running with a given SA (that is associated with a IAM role) mutates the pod spec by adding some envs
-  - `AWS_CONTAINER_CREDENTIALS_FULL_URI`
-  - `AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE`
-- Theses envs are used by AWS SDK in order to authenticate with AWS. This search for the credentials is called `credential provider chain`
-- Given the envs, the SDK calls the AWS_CONTAINER_CREDENTIALS_FULL_URI which runing on the `Amazon EKS Pod Identity Agent` to get the temporary credentials
-
-## Amazon EKS Pod Identity Agent
-
-- It is an addon **Amazon EKS Pod Identity Agent**, which runs a `eks-pod-identity-agent` as DaemonSet in every node
-- This agent is exposed on the URI `AWS_CONTAINER_CREDENTIALS_FULL_URI`
-- It calls the EKS Auth API `AssumeRoleForPodIdentity` to exchange the projected token for temporary IAM credentials, which are then made available to the pod.
-- EKS Auth API (AssumeRoleForPodIdentity) decodes the JWT token and validates the role associations with the service account.
-- If valid, it will also set `session tags` such as
-  - kubernetes-namespace
-  - kubernetes-service-account
-  - eks-cluster-arn
-  - eks-cluster-name
-  - kubernetes-pod-name
-  - kubernetes-pod-uid
-
-> The agent runs in host network mode and gets its permissions from the "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" managed policy that is attached to the worker roles

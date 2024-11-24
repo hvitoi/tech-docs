@@ -15,15 +15,40 @@
 ![LB Controller](.images/lb-controller-architecture2.png)
 
 > With CLB (not managed by this controller) the target group is always each pod of the app
->
+
 ## Permissions
+
+- The controller runs on the worker nodes, so it needs access to the `AWS ALB/NLB` APIs with IAM permissions
+- The IAM permissions can either be setup using:
+  - `Pod Identity` (preferred)
+  - `IAM roles for service accounts (IRSA)`
+  - Policies attached directly to the `worker node IAM roles`
+
+### Pod Identity
+
+- It is necessary to have the `Amazon EKS Pod Identity Agent Addon` installed in the cluster
+
+```shell
+# Download Policy
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.10.0/docs/install/iam_policy.json
+
+# Create IAM policy
+aws iam create-policy \
+  --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-document file://iam_policy.json
+
+set account_id (aws sts get-caller-identity --query Account --output text)
+eksctl create podidentityassociation \
+  --cluster henry \
+  --namespace kube-system \
+  --service-account-name aws-load-balancer-controller \
+  --create-service-account \
+  --permission-policy-arns arn:aws:iam::$account_id:policy/MyAWSLoadBalancerControllerIAMPolicy
+```
 
 ### IRSA
 
-- The controller runs on the worker nodes, so it needs access to the `AWS ALB/NLB` APIs with IAM permissions
-- The IAM permissions can either be setup using `IAM roles for service accounts (IRSA)` (preferred) or can be attached directly to the `worker node IAM roles`
-
-- You can define the required IRSA with eksctl manifest
+- You can define the required IRSA with eksctl manifest:
 
 ```yaml
 iam:
