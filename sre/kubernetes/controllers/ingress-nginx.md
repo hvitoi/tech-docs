@@ -34,3 +34,77 @@ helm install "ingress-controller" "ingress-nginx/ingress-nginx" \
   --set "controller.extraArgs.enable-ssl-passthrough=""" \
   --set "controller.extraArgs.default-ssl-certificate=ingress/ingress-tls"
 ```
+
+## Annotations
+
+### rewrite-target
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1 # Everything that gets routed is written in the form /$1 - $1 is to be specified as ?(.*)
+spec:
+  rules:
+    - host: foo.hvitoi.com
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service-svc
+                port:
+                  number: 3000
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service-svc
+                port:
+                  number: 5000
+```
+
+### use-regex
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: posts.com
+      http:
+        paths:
+          - path: /posts/create
+            backend:
+              service:
+                name: posts-svc
+                port:
+                  number: 3000
+          - path: /posts
+            backend:
+              service:
+                name: query-svc
+                port:
+                  number: 3000
+          - path: /posts/?(.*)/comments
+            backend:
+              service:
+                name: comments-svc
+                port:
+                  number: 3000
+          - path: /?(.*)
+            backend:
+              service:
+                name: client-svc
+                port:
+                  number: 3000
+```

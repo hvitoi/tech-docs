@@ -56,36 +56,50 @@ Properties:
 - It specifies the conditions under which an entity (like an AWS service, another IAM role, or a user) can take on the permissions associated with the role.
 - It specifies the `principal` (the AWS service or account) that is allowed to assume the role
 
+```shell
+# Creating an assumable role via cli
+aws iam create-role \
+  --role-name MyRole \
+  --assume-role-policy-document "file://trust-policy.json"
+```
+
+#### sts:AssumeRole
+
+- Allow an AWS service (e.g, EKS cluster) to assume the role
+
 ```json
-// Allow EKS clusters to assume the role
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
+      "Action": "sts:AssumeRole",
       "Principal": {
         "Service": [
           "eks.amazonaws.com"
         ]
-      },
-      "Action": "sts:AssumeRole"
+      }
     }
   ]
 }
 ```
 
+#### sts:AssumeRoleWithSAML
+
+- Allow an `IdP` (e.g., Okta) to authentication a user via SAML
+- The trusted entity is an `Identity Provider` (e.g., `arn:aws:iam::123456789012:saml-provider/okta`)
+
 ```json
-// Allow an IdP (e.g., Okta) to authentication a user via SAML
-// Trusted entities: Identity Provider: arn:aws:iam::000000000000:saml-provider/okta
+
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::307096125112:saml-provider/okta"
-      },
       "Action": "sts:AssumeRoleWithSAML",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:saml-provider/okta"
+      },
       "Condition": {
         "StringEquals": {
           "SAML:sub": "henrique.vitoi",
@@ -97,28 +111,22 @@ Properties:
 }
 ```
 
-```shell
-# Creating an assumable role via cli
-aws iam create-role \
-  --role-name AmazonEKS_EBS_CSI_DriverRole \
-  --assume-role-policy-document "file://aws-ebs-csi-driver-trust-policy.json"
-```
+#### sts:AssumeRoleWithWebIdentity
 
 ```json
-// aws-ebs-csi-driver-trust-policy.json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
-      },
       "Action": "sts:AssumeRoleWithWebIdentity",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0123456789ABCDEF0123456789ABCDEF"
+      },
       "Condition": {
         "StringEquals": {
-          "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com",
-          "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:kube-system:ebs-csi-controller-sa"
+          "oidc.eks.us-east-1.amazonaws.com/id/7B4887CC1B7841B1BAEB98263BC64B9C:aud": "sts.amazonaws.com",
+          "oidc.eks.us-east-1.amazonaws.com/id/7B4887CC1B7841B1BAEB98263BC64B9C:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
         }
       }
     }
