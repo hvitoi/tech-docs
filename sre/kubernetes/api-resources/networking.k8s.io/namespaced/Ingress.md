@@ -29,6 +29,7 @@
 - Overrides the default ingress class (defined by the IngressClass)
 - This can be omitted if a default ingress class is defined
 - It's a deference to an `IngressClass` object
+- This deprecates an old annotation `kubernetes.io/ingress.class`
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -44,7 +45,9 @@ spec:
         number: 80
 ```
 
-### spec.defaultBackend
+### Target Types
+
+#### spec.defaultBackend
 
 - Send traffic to a Service Object
 
@@ -62,21 +65,20 @@ spec:
         number: 80
 ```
 
-### spec.rules[]
+#### spec.rules[].http.paths[]
 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ing
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - host: api.hvitoi.com # Only consider requests to api.hvitoi.com. When developing locally, "localhost" must be tricked into this host in /etc/hosts
       http:
         paths:
           - path: /posts/create
+            pathType: Prefix
             backend:
               service:
                 name: posts-svc
@@ -135,7 +137,6 @@ kind: Ingress
 metadata:
   name: my-ing
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   rules:

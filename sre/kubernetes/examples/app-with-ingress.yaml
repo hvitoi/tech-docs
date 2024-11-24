@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-container
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-svc-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: my-svc-nodeport
+  ports:
+    - port: 80
+# ---
+# # This IngressClass should already be applied as part of the Ingress Controller installation
+# apiVersion: networking.k8s.io/v1
+# kind: IngressClass
+# metadata:
+#   name: alb
+#   annotations:
+#     ingressclass.kubernetes.io/is-default-class: "true"
+# spec:
+#   controller: ingress.k8s.aws/alb
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: my-awesome-lb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
+spec:
+  ingressClassName: alb
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
+      port:
+        number: 80

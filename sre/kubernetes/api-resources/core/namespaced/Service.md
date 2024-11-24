@@ -20,7 +20,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-svc
+  name: my-svc-clusterip
 spec:
   type: ClusterIP # Optional line. Services are ClusterIP by default
   selector:
@@ -49,7 +49,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-svc
+  name: my-svc-nodeport
 spec:
   type: NodePort
   selector: # selects every pod with matching key-value pairs
@@ -87,7 +87,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-lb
+  name: my-svc-loadbalancer
 spec:
   type: LoadBalancer # CLB L4
   selector:
@@ -105,7 +105,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-lb
+  name: my-svc-loadbalancer
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:

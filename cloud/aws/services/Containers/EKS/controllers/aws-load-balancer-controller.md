@@ -9,8 +9,12 @@
 - <https://kubernetes-sigs.github.io/aws-load-balancer-controller>
 - This controller was previously named "aws-alb-ingress-controller"
 
+## Architecture
+
 ![LB Controller](.images/lb-controller-architecture1.png)
 ![LB Controller](.images/lb-controller-architecture2.png)
+
+> With CLB (not managed by this controller) the target group is always each pod of the app
 
 ## IRSA
 
@@ -74,39 +78,11 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   - `secret/aws-load-balancer-tls`: contains the tls.key, tls.crt and ca.crt
   - `deplyo/aws-load-balancer-controller`: uses the above SA and mounts the above secret
   - `svc/eks-extension-metrics-api`: exposes port 443 (that targets port 9443 on the container)
+  - `ingressclasses/alb`: IngressClass to be used by Ingress objects
 
 ## Annotations
 
-### alb.ingress.kubernetes.io/target-type
-
-- Defines the Ingress Traffic
-- AWS Load Balancer controller supports two traffic modes
-
-- **Instance Mode** (default)
-  - `alb.ingress.kubernetes.io/target-type: instance`
-  - Register the nodes (ec2 instances) as targets for the ALB
-  - Traffic is routed to the `NodePort` of each node
-
-- **IP Mode**
-  - `alb.ingress.kubernetes.io/target-type: ip`
-  - Register pods as targets (instead of the nodes)
-  - This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: my-ing
-  annotations:
-    alb.ingress.kubernetes.io/target-type: instance
-spec:
-  ingressClassName: my-aws-ingress-class
-  defaultBackend:
-    service:
-      name: my-app-svc
-      port:
-        number: 80
-```
+- <https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/>
 
 ### alb.ingress.kubernetes.io/load-balancer-name
 
@@ -123,12 +99,49 @@ spec:
   ingressClassName: my-aws-ingress-class
   defaultBackend:
     service:
-      name: my-app-svc
+      name: my-svc-nodeport
+      port:
+        number: 80
+```
+
+### alb.ingress.kubernetes.io/target-type
+
+- Defines the Ingress Traffic
+- AWS Load Balancer controller supports two traffic modes
+
+- **Instance Mode** (default)
+  - `alb.ingress.kubernetes.io/target-type: instance`
+  - The target group is the NodePort of each node
+  - Register the nodes (ec2 instances) as targets for the ALB
+  - Traffic is routed to the `NodePort` of each node
+  - This requires NodePorts to be previously created
+
+- **IP Mode**
+  - `alb.ingress.kubernetes.io/target-type: ip`
+  - The target group is each pod of the application
+  - Register pods as targets (instead of the nodes)
+  - This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
       port:
         number: 80
 ```
 
 ### alb.ingress.kubernetes.io/scheme
+
+- `internet-facing`
+- `internal`
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -141,7 +154,32 @@ spec:
   ingressClassName: my-aws-ingress-class
   defaultBackend:
     service:
-      name: my-app-svc
+      name: my-svc-nodeport
+      port:
+        number: 80
+```
+
+### alb.ingress.kubernetes.io/healthcheck-*
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port # "traffic-port" uses the same port as the target container
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
       port:
         number: 80
 ```
