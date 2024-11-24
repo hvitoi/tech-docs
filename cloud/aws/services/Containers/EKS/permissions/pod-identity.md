@@ -32,6 +32,11 @@
   - kubernetes-pod-name
   - kubernetes-pod-uid
 
+```shell
+# Install the agent via addons
+eksctl create addon --name eks-pod-identity-agent --cluster foo
+```
+
 > The agent runs in host network mode and gets its permissions from the "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" managed policy that is attached to the worker roles
 
 ## Association

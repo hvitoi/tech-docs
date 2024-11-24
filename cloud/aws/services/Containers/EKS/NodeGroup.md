@@ -67,7 +67,7 @@ Properties:
 - It's the role to be assumed by the EC2 instance
 - All the pods running in these worker nodes will have the permissions/policies of this role
 - This role is automatically created when creating a nodegroup via `eksctl create nodegroup` and the more permissions can be added to the role using the "addon" flags
-- ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm`
+- ARN example: `arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm`
 - It's different from the cluster role, which is associated with the control plane
 
 - [AmazonEKSWorkerNodePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSWorkerNodePolicy.html)

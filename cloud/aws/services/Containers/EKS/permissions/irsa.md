@@ -58,7 +58,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::307096125112:role/eksctl-henry-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
+    eks.amazonaws.com/role-arn: arn:aws:iam::307096125112:role/eksctl-foo-addon-iamserviceaccount-kube-sys-Role1-9Op08UsCQjpo
   name: aws-load-balancer-controller
   namespace: kube-system
 ```

@@ -42,7 +42,7 @@ eksctl delete addon \
 ```shell
 eksctl delete iamserviceaccount \
   --name ebs-csi-controller-sa \
-  --cluster henry \
+  --cluster foo \
   --namespace kube-system
 ```
 
@@ -54,7 +54,7 @@ eksctl delete iamserviceaccount \
 
 ```shell
 eksctl delete podidentityassociation \
-  --cluster henry \
+  --cluster foo \
   --namespace kube-system
   --service-account-name aws-load-balancer-controller \
 ```

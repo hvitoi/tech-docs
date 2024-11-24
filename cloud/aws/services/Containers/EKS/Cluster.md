@@ -36,7 +36,7 @@
   - 1 **EIP** (AWS::EC2::EIP)
 
 - Security
-  - 1 **SG** (AWS::EC2::SecurityGroup)(ControlPlaneSecurityGroup: `eks-foo-sg-henry-12345678`) (Cluster SG)
+  - 1 **SG** (AWS::EC2::SecurityGroup)(ControlPlaneSecurityGroup: `eks-foo-sg-foo-12345678`) (Cluster SG)
     - Attached to the ENI all nodes (masters and workers)
   - 1 **SG** (AWS::EC2::SecurityGroup) (ClusterSharedNodeSecurityGroup: `eksctl-foo-cluster/ControlPlaneSecurityGroup`) (Additional SGs)
     - Attached to the ENI of the master nodes only
@@ -105,7 +105,7 @@ Properties:
 - This role that provides permissions for the `Kubernetes control plane` to make `calls to AWS API operations on your behalf`
 - This role is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed
 - The cluster role must be associated with a policy that allow managing several aspects of aws
-- ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-cluster-ServiceRole-VBrrsaRBhVBQ`
+- ARN example: `arn:aws:iam::123456789012:role/eksctl-foo-cluster-ServiceRole-VBrrsaRBhVBQ`
 - It's different from the node group role, which is attached to the worker nodes
 
 - Managed Policies

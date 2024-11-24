@@ -91,7 +91,7 @@ aws iam list-role-policies --role-name henrique.vitoi-dev-role
 
 ```shell
 aws iam attach-role-policy \
-  --role-name "eksctl-henry-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
+  --role-name "eksctl-foo-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
   --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 ```
 

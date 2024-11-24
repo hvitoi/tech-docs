@@ -69,9 +69,9 @@ eksctl create nodegroup \
 
 ## addon
 
-```yaml
+```shell
 # Create addons after a cluster has been created
-eksctl create addon --config-file=cluster.yaml
+eksctl create addon --config-file cluster.yaml
 ```
 
 ```shell
@@ -83,6 +83,7 @@ eksctl create addon \
 
 eksctl create addon \
   --name eks-pod-identity-agent \
+  --cluster foo \
   --version 1.0.0
 ```
 
@@ -90,7 +91,7 @@ eksctl create addon \
 
 - Create an `IRSA` (IAM role for service account)
 - IRSAs allow Kubernetes resources to manage AWS resources
-- This creates a CloudFormation stack with the name like `eksctl-henry-addon-iamserviceaccount-<namespace>-<sa-name>`
+- This creates a CloudFormation stack with the name like `eksctl-foo-addon-iamserviceaccount-<namespace>-<sa-name>`
 
 ```shell
 eksctl create iamserviceaccount \

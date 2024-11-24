@@ -34,12 +34,12 @@ curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-cont
 
 # Create IAM policy
 aws iam create-policy \
-  --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-name MyAWSLoadBalancerControllerIAMPolicy \
   --policy-document file://iam_policy.json
 
 set account_id (aws sts get-caller-identity --query Account --output text)
 eksctl create podidentityassociation \
-  --cluster henry \
+  --cluster foo \
   --namespace kube-system \
   --service-account-name aws-load-balancer-controller \
   --create-service-account \

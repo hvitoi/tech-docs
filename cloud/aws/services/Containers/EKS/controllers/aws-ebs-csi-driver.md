@@ -38,7 +38,7 @@ kubectl describe cm/aws-auth -n kube-system
 
 # Attach the ebs policy to the worker node role
 aws iam attach-role-policy \
-  --role-name "eksctl-henry-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
+  --role-name "eksctl-foo-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
   --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 ```
 
