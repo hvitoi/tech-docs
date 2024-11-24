@@ -3,19 +3,11 @@
 ## cluster
 
 - <https://docs.aws.amazon.com/eks/latest/userguide/quickstart.html>
-- eksctl automatically:
-  - Creates a `VPC` for the cluster and create public and private endpoints
-  - Creates `IAM roles` (Cluster roles) so that eks can manage itself (e.g., autoscaling)
-  - Add `IAM roles` as access entries to the kubernetes cluster, allowing AmazonEKSClusterAdminPolicy to the entity that created the cluster
-  - Updates `kubeconfig` with access to your new cluster
-
+- Use can follow up the cluster creation on the cloudformation console <https://console.aws.amazon.com/cloudformation>
 - Under the hood some cloudformation templates are created to deploy the cluster and all the requires resources
   - `eksctl-<cluster-name>-cluster`
   - `eksctl-<cluster-name>-nodegroup-<nodegroup-name>`
-  - `eksctl-<cluster-name>-addon-aws-ebs-csi-driver`
-  - `eksctl-<cluster-name>-addon-vpc-cni`
-  - `eksctl-<cluster-name>-addon-iamserviceaccount-kube-system-aws-load-balancer-controller`
-- Use can follow up the cluster creation on the cloudformation console <https://console.aws.amazon.com/cloudformation>
+  - `eksctl-<cluster-name>-addon-<addon-name>`
 
 ```shell
 # From file
@@ -24,12 +16,11 @@ eksctl create cluster -f eks-cluster.yaml
 # From params
 eksctl create cluster \
   --name foo \
-  --zones "us-east-1a,us-east-1b" \ # auto-select if unspecified
   --without-nodegroup # no worker nodes (in this case create it manually with eksctl create nodegroup)
 ```
 
-- Use `aws eks update-kubeconfig` to generate the kubeconfig
-- The cluster creation may take around 15 minutes
+- This automatically adds your role (that created the cluster) as a `AmazonEKSClusterAdminPolicy`
+- The kubeconfig should be configured by eksctl but you can also run `aws eks update-kubeconfig`
 
 ## nodegroup
 

@@ -3,11 +3,11 @@ kind: ClusterConfig
 
 metadata:
   name: foo
-  # region: us-east-1
-  # version: "1.31"
+  region: us-east-1
+  version: "1.31" # latest if not provided
 
 managedNodeGroups:
-  - name: my-node-group
+  - name: bar
     instanceType: t3.small
     # instanceTypes: ["t3.small", "t3.medium"]
     minSize: 2
@@ -16,25 +16,25 @@ managedNodeGroups:
     volumeSize: 20
     privateNetworking: true
     spot: true
-# iam:
-#   withOIDC: true
-#   serviceAccounts:
-#     - metadata:
-#         name: aws-load-balancer-controller
-#         namespace: kube-system
-#       wellKnownPolicies:
-#         awsLoadBalancerController: true
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true
 
-# addons:
-#   - name: vpc-cni
-#   - name: coredns
-#   - name: kube-proxy
-#   - name: eks-pod-identity-agent
-#   - name: aws-ebs-csi-driver
-#     wellKnownPolicies: # Adds an IAM service account
-#       ebsCSIController: true
+addons:
+  - name: kube-proxy # enabled by default
+  - name: coredns # enabled by default
+  - name: vpc-cni # enabled by default
+  - name: eks-pod-identity-agent
+  - name: aws-ebs-csi-driver
+    wellKnownPolicies: # Adds an IAM service account
+      ebsCSIController: true
 
-# cloudWatch:
-#   clusterLogging:
-#     enableTypes: ["*"]
-#     logRetentionInDays: 30
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+    logRetentionInDays: 30

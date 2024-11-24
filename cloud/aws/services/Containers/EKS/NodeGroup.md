@@ -70,12 +70,21 @@ Properties:
 - ARN example: `arn:aws:iam::123456789012:role/eksctl-henry-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm`
 - It's different from the cluster role, which is associated with the control plane
 
-- AWS Managed Policies
-  - [AmazonEKSWorkerNodePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSWorkerNodePolicy.html): allow workers to connect to the EKS cluster
-  - [AmazonSSMManagedInstanceCore](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSSMManagedInstanceCore.html): SSM core functionality
-  - [AmazonEC2ContainerRegistryReadOnly](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ContainerRegistryReadOnly.html): read access to ECR
-  - [AmazonEC2ContainerRegistryPowerUser](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ContainerRegistryPowerUser.html): write access to ECR
-  - [AmazonEKS_CNI_Policy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKS_CNI_Policy.html): used by the addon "Amazon VPC CNI"
+- [AmazonEKSWorkerNodePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSWorkerNodePolicy.html)
+  - Added by default
+  - Allow workers to connect to the EKS cluster
+
+- [AmazonEC2ContainerRegistryReadOnly](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ContainerRegistryReadOnly.html)
+  - Added by default
+  - read access to ECR
+
+- [AmazonSSMManagedInstanceCore](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonSSMManagedInstanceCore.html)
+  - Added by default
+  - SSM core functionality
+
+- [AmazonEKS_CNI_Policy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKS_CNI_Policy.html)
+  - Added by default
+  - Used by the addon "Amazon VPC CNI"
 
 ```shell
 # describes the config that contains the references to the worker nodes iam role

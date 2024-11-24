@@ -2,7 +2,7 @@
 
 - `Elastic Kubernetes Service` is a container orchestration service
 - It's an alternative to ECS
-- ARN example: `arn:aws:eks:us-east-1:123456789012:cluster/henry`
+- ARN example: `arn:aws:eks:us-east-1:123456789012:cluster/foo`
 
 ![EKS](.images/eks.png)
 ![EKS Components](.images/eks-components.png)
