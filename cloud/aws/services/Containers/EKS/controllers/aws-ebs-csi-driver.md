@@ -6,7 +6,9 @@
 - It allows EKS Cluster to `manage lifecycle` of EBS volumes (AWS::EC2::Volume)
 - <https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>
 
-## IRSA
+## Permissions
+
+### IRSA
 
 - The controller runs on the worker nodes, so it needs access to the `AWS EBS` APIs with IAM permissions
 - The IAM permissions can either be setup using `IAM roles for service accounts (IRSA)` (preferred) or can be attached directly to the `worker node IAM roles`
@@ -25,6 +27,8 @@ eksctl create iamserviceaccount \
   --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
   --approve
 ```
+
+### Node Role
 
 - Another option (not recommended) is to attach the ebs policy directly to the role of the ec2 instances of the worker nodes
 

@@ -45,7 +45,6 @@ kind: Ingress
 metadata:
   name: my-ing
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1 # Everything that gets routed is written in the form /$1 - $1 is to be specified as ?(.*)
 spec:
   rules:
@@ -76,11 +75,10 @@ kind: Ingress
 metadata:
   name: my-ing
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: posts.hvitoi.com
+    - host: api.hvitoi.com
       http:
         paths:
           - path: /posts/create

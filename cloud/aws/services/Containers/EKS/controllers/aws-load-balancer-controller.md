@@ -15,8 +15,10 @@
 ![LB Controller](.images/lb-controller-architecture2.png)
 
 > With CLB (not managed by this controller) the target group is always each pod of the app
+>
+## Permissions
 
-## IRSA
+### IRSA
 
 - The controller runs on the worker nodes, so it needs access to the `AWS ALB/NLB` APIs with IAM permissions
 - The IAM permissions can either be setup using `IAM roles for service accounts (IRSA)` (preferred) or can be attached directly to the `worker node IAM roles`
@@ -160,6 +162,8 @@ spec:
 ```
 
 ### alb.ingress.kubernetes.io/healthcheck-*
+
+- If no healthcheck is defined, uses `HTTP` on `/`
 
 ```yaml
 apiVersion: networking.k8s.io/v1

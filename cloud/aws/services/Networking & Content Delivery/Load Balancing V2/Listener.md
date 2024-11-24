@@ -1,5 +1,9 @@
 # AWS::ElasticLoadBalancingV2::Listener
 
+- A listener checks for connection requests using the protocol and port that you configure
+- The `default action` are defined here. It determines how the Application Load Balancer routes requests when not rule is matched
+- The conventional rules are defined at AWS::ElasticLoadBalancingV2::ListenerRule
+
 ## Properties
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html>

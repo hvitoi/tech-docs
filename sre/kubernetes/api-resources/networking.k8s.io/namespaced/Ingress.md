@@ -45,11 +45,9 @@ spec:
         number: 80
 ```
 
-### Target Types
+### spec.defaultBackend
 
-#### spec.defaultBackend
-
-- Send traffic to a Service Object
+- It's a "catch-all" for traffic that has not matched any rule or that has not defined any rule
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -59,13 +57,19 @@ metadata:
 spec:
   ingressClassName: my-aws-ingress-class
   defaultBackend:
-    service:
-      name: my-nodeport-svc
+    service: # service & resource are mutually exclusive
+      name: my-default-nodeport-svc
       port:
         number: 80
+    resource:
+      apiGroup: k8s.example.com
+      kind: StorageBucket
+      name: static-assets
 ```
 
-#### spec.rules[].http.paths[]
+### spec.rules[]
+
+- <https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules>
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -74,57 +78,28 @@ metadata:
   name: my-ing
 spec:
   rules:
-    - host: api.hvitoi.com # Only consider requests to api.hvitoi.com. When developing locally, "localhost" must be tricked into this host in /etc/hosts
+    - host: api.hvitoi.com # Only consider requests to api.hvitoi.com (if not specified, accept all the incoming traffic for any host)
       http:
         paths:
-          - path: /posts/create
+          - path: /posts/?(.*)/comments
+            pathType: Prefix
+            backend:
+              service:
+                name: comments-svc
+                port:
+                  number: 3000
+          - path: /posts
             pathType: Prefix
             backend:
               service:
                 name: posts-svc
                 port:
                   number: 3000
-          - path: /posts
-            backend:
-              service:
-                name: query-svc
-                port:
-                  number: 3000
-          - path: /posts/?(.*)/comments # ?(.*) means anything
-            backend:
-              service:
-                name: comments-svc
-                port:
-                  number: 3000
-          - path: /?(.*) # Catch-all. It has to be at the very end.
-            backend:
-              service:
-                name: client-svc
-                port:
-                  number: 3000
-    - host: foo.hvitoi.com # domain name (if not specified, accept all the incoming traffic for any host)
-      http:
-        paths:
-          - path: /?(.*) # Requests coming to /
+          - path: /?(.*) # Catch-all. It has to be at the very end (you can also simply define it as a defaultBackend)
             pathType: Prefix
-            backend: # Go to ...
+            backend:
               service:
-                name: web-service-svc
-                port:
-                  number: 3000
-          - path: /api/?(.*) # Requests coming to /api
-            pathType: Prefix
-            backend: # Go to ...
-              service:
-                name: api-service-svc
-                port:
-                  number: 5000
-    - host: bar.hvitoi.com
-      http:
-        paths:
-          - backend: # all the traffic for that domain goes here
-              service:
-                name: web-service-svc
+                name: default-svc
                 port:
                   number: 3000
 ```
@@ -144,6 +119,7 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               serviceName: foo-svc
               servicePort: 80
@@ -151,6 +127,7 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
               serviceName: bar-svc
               servicePort: 80

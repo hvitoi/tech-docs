@@ -4,6 +4,6 @@
 - Good for quick tests in development mode
 
 ```shell
-kubectl port-forward "pod" "host-port:pod-port"
-kubectl port-forward "nats-depl-69c8746f74-hds9f" "4222:4222"
+kubectl port-forward "pod" "host-port:container-port"
+kubectl port-forward "po/my-deploy-bf89bdb5-dwxzk" "8080:80"
 ```
