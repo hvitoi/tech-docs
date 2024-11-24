@@ -4,73 +4,101 @@
 - Mostly used for REST request
 
 ```shell
-## Fetch the content of the URL and display immediately
-curl "url"
-curl www.google.com
-
-## Save the page to a file
-curl "url" -o "out-file"
-curl www.google.com -o ./google.html
-
-## Save file directly with original file
-curl -O "url"
-curl -O http://mirror.bytemark.co.uk/ubuntu-releases/18.04.4/ubuntu-18.04.4-desktop-amd64.iso
-
-## Redirecting pages. The http page is redirecting to the https page, so nothing is displayed!
-curl -l "url" # -l saves the redirected page
-curl -l http://hsploit.com/
-
-## Querying response
-curl -I "url"
-
-## TLS handshake - Additional information regarding the connection
-curl -v "url"
-
-## Test credentials - HTTP POST data
-curl --data "key1=value1&key2=value2" "url"
-curl -d "key1=value1&key2=value2" "url"
-curl --data "log=admin&pwd=password" https://wordpress.com/wp.login.php
-
-
-# Silent mode
-curl -s "url"
-
-# Curl and pipe to bash
-curl -sL https://deb.nodesource.com/setup_14.x | bash -
-sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose # L for location
-
-# Add headers to the request
- curl -H "key:value" "url"
+curl example.com
 ```
 
-## HTTP methods
+## --request (-X)
+
+- By default `GET` is used
 
 ```shell
-curl \
+curl https://httpbin.org/get -X GET
+```
+
+## --data (-d)
+
+```shell
+# json
+curl https://httpbin.org/post \
+  -X POST \
   -H "Content-Type: application/json" \
-  -X GET "localhost:9200/shakespeare/_search?pretty" \
-  -d '{
-        "query": {
-          "match_phrase": {
-            "text_entry": "to be or not to be"
-          }
-        }
-      }'
-```
+  -d '{"key": "value"}'
 
-```shell
-curl -s "localhost:9200/movies/_search" \
-  --request GET \
+# url-encoded
+curl https://wordpress.com/wp.login.php \
+  --data "log=admin&pwd=password"
+
+# from file
+curl https://httpbin.org/post \
+  --request POST \
   --header "Content-Type: application/json" \
-  --data @search.json \
-| jq .
+  --data @search.json
 ```
 
-## Script for testing requests
+## --header (-H)
+
+- Add headers to the request
 
 ```shell
-while true;
-do curl -s fleetman.dev:31380/ | grep title;
-  sleep 0.5;
-done;
+curl https://httpbin.org/post \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"key": "value"}'
+```
+
+## --silent (-s)
+
+- Silent mode
+
+```shell
+curl -s https://httpbin.org/get
+```
+
+## --remote-name (-O)
+
+- Save file with its original filename
+
+```shell
+curl http://mirror.bytemark.co.uk/ubuntu-releases/18.04.4/ubuntu-18.04.4-desktop-amd64.iso -O
+```
+
+## --output (-o)
+
+- Save file with a provided filename
+
+```shell
+curl example.com -o example.html
+```
+
+## --head (-I)
+
+- Show response headers only
+
+```shell
+curl -I example.com
+```
+
+## --list-only (-l)
+
+- Saves the redirected page
+- The http page is redirecting to the https page, so nothing is displayed
+
+```shell
+curl -l example.com
+```
+
+## --location (-L)
+
+- Follow redirects
+
+```shell
+curl -L https://deb.nodesource.com/setup_14.x | bash -
+```
+
+## --verbose (-v)
+
+- TLS handshake - Additional information regarding the connection
+
+```shell
+curl -v <url>
 ```

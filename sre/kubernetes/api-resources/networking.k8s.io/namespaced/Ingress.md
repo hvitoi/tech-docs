@@ -24,7 +24,7 @@
 
 ## Properties
 
-### rules
+### spec.rules[]
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -89,7 +89,7 @@ spec:
                   number: 3000
 ```
 
-### tls
+### spec.tls[]
 
 ```yaml
 apiVersion: networking.k8s.io/v1beta1

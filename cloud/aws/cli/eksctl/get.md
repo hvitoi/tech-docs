@@ -14,6 +14,8 @@ eksctl get nodegroup --cluster my-cluster
 
 ## iamserviceaccount
 
+- Get all SAs em the cluster that are associated with an IAM role
+
 ```shell
 eksctl get iamserviceaccount --cluster my-cluster
 ```
