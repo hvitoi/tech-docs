@@ -128,6 +128,7 @@ eksctl create podidentityassociation \
   --service-account-name s3-app-sa \
   # Create SA in the cluster (not created by default)
   --create-service-account \
+
   # IAM role to be created (if omitted uses an auto-generated name)
   --role-name s3-app-eks-pod-identity-role \
   # The policy to attach to the role

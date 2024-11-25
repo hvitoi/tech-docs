@@ -81,6 +81,7 @@ spec:
     - host: api.hvitoi.com # Only consider requests to api.hvitoi.com (if not specified, accept all the incoming traffic for any host)
       http:
         paths:
+          # the order of the paths matter. The first matching path is the one to be picked
           - path: /posts/?(.*)/comments
             pathType: Prefix
             backend:
@@ -95,7 +96,7 @@ spec:
                 name: posts-svc
                 port:
                   number: 3000
-          - path: /?(.*) # Catch-all. It has to be at the very end (you can also simply define it as a defaultBackend)
+          - path: /?(.*) # Catch-all (not recommended! Use spec.defaultBackend instead)
             pathType: Prefix
             backend:
               service:

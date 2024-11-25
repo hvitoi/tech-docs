@@ -189,6 +189,8 @@ spec:
 ### alb.ingress.kubernetes.io/healthcheck-*
 
 - If no healthcheck is defined, uses `HTTP` on `/`
+- If your ingress is redirecting to multiple backends you should **NOT** define healthchecks here, but instead define it per route at the `Service` object
+  - The annotations names are exactly the same when defining it at the `Service` object
 
 ```yaml
 apiVersion: networking.k8s.io/v1
