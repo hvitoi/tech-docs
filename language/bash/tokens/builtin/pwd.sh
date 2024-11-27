@@ -1,0 +1,2 @@
+# shows current directory
+pwd

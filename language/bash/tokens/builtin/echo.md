@@ -1,5 +1,0 @@
-# echo
-
-```shell
-echo "abc"
-```
