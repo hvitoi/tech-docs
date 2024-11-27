@@ -2,6 +2,8 @@
 
 - Check if a user has permission to do something
 
+## can-i
+
 ```shell
 # Current user
 kubectl auth can-i "create" "deployments" -n "development"

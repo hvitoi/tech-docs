@@ -32,6 +32,8 @@ Properties:
 
 - It's the IAM role that grants AWS FIS the permissions required so that it can run experiments on your behalf
 - E.g., permissions to stress pods on EKS cluster
+- For a `single-account experiment`, the IAM policy for the experiment role must grant permission to modify the resources that you specify as targets in your experiment template
+- For a `multi-account experiment`, the experiment role must grant the orchestrator role permission to assume the IAM role for each target account.
 
 ### Targets
 
