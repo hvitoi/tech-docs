@@ -4,7 +4,7 @@
 - It is based on the original PGP (`Pretty Good Privacy`) software
 - GnuPG (also known as `GPG`) is a command line tool with features for easy integration with other applications
 
-## Create
+## --full-generate-key
 
 ```shell
 # generate gpg key (secret + public)
@@ -21,16 +21,24 @@ gpg --full-generate-key --pinentry-mode=loopback
 
 - In order to use the gpg key for git commit signature (without having to specify the id manually), the real name and email must match exactly.
 
-## List
+## --list-keys
+
+- Publics keys
 
 ```shell
-# list keys
-gpg --list-keys # public keys
+gpg --list-keys
+```
+
+## --list-secret-keys
+
+- Private keys
+
+```shell
 gpg --list-secret-keys # secret keys
 gpg --list-secret-keys --keyid-format "LONG" # GPG key id are the last 16 hex digits (sec)
 ```
 
-## Edit
+## --edit-key
 
 ```shell
 # edit key
@@ -42,14 +50,19 @@ gpg --edit-key "0123456789ABCDEF"
   # gpg> save --> save and quit
 ```
 
-## Remove
+## --delete-keys
 
 ```shell
-gpg --delete-secret-keys "key-id"
 gpg --delete-keys "key-id"
 ```
 
-## Import
+## --delete-secret-keys
+
+```shell
+gpg --delete-secret-keys "key-id"
+```
+
+## --import
 
 ```shell
 # import public key (to encrypt messages to others and verify their signatures)
@@ -62,7 +75,7 @@ gpg \
   --keyserver keyserver.ubuntu.com
 ```
 
-## Export
+## --export
 
 - You can export the following files to another machine:
   - `~/.gnupg/private-keys-v1.d/*`: dir 700 permission, files 600 permission
@@ -74,7 +87,9 @@ gpg --armor --export "0123456789ABCDEF" # print public key
 gpg --armor --export-secret-key "0123456789ABCDEF" # print secret key
 ```
 
-## Verify signature
+## --verify
+
+- Verify signature
 
 ```shell
 # verify signature
@@ -83,14 +98,18 @@ gpg \
   --keyserver-options "auto-key-retrieve"
 ```
 
-## Encrypt content
+## --symmetric (-c)
+
+- Encrypt content
+- Encryption only with symmetric cipher
 
 ```shell
 gpg -c file.txt
 ```
 
-## Decrypt content
+## --decrypt (-d)
 
+- Decrypt content
 - Try to decrypt using your `GPG secret key`
 - A prompt will open to ask for the password
 

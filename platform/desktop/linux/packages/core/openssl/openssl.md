@@ -1,6 +1,8 @@
 # openssl
 
-## Generate key
+## genrsa
+
+- Generate key
 
 ```shell
 # Generate RSA private key
@@ -16,7 +18,9 @@ openssl genrsa -des3
 openssl genrsa -aes256 -out "private.key" # PEM is the extension for keys
 ```
 
-## Extract public from a private key
+## rsa
+
+- Extract public from a private key
 
 ```shell
 # Retrieve public key from a private key
@@ -27,7 +31,9 @@ openssl rsa \
   -out "public.key"
 ```
 
-## Certificate Signing Request (CSR)
+## req
+
+- Certificate Signing Request (CSR)
 
 - `CN`: Common name. Can be anything
 - `C`: Contry
@@ -71,7 +77,9 @@ IP.1 = 10.96.0.1
 IP.2 = 172.17.0.87
 ```
 
-## Sign Certificates
+## x509
+
+- Sign Certificates
 
 ```shell
 # Sign CSR
@@ -82,25 +90,25 @@ openssl x509 \
   -out "cert.crt"
 ```
 
-## Inspect Certificate
-
 ```shell
+# Inspect Certificate
 openssl x509 \
   -text \
   -noout \
   -in "cert.crt"
 ```
 
-## Test Connectivity
+```shell
+# Get the system CA certificates
+awk -v cmd='openssl x509 -noout -subject' '
+    /BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt
+```
+
+## s_client
+
+- Test Connectivity
 
 ```shell
 # Test connectivity
 openssl s_client -connect "20.244.9.3:9093"
-```
-
-## System CA certificates
-
-```shell
-awk -v cmd='openssl x509 -noout -subject' '
-    /BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt
 ```
