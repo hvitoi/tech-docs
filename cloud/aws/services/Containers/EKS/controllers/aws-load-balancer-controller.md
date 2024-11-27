@@ -111,9 +111,11 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 
 - <https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/>
 
-### alb.ingress.kubernetes.io/load-balancer-name
+### Traffic Routing
 
 - Name of the LB resource to be created at AWS
+
+#### load-balancer-name
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -131,7 +133,7 @@ spec:
         number: 80
 ```
 
-### alb.ingress.kubernetes.io/target-type
+#### target-type
 
 - Defines the Ingress Traffic
 - AWS Load Balancer controller supports two traffic modes
@@ -165,7 +167,9 @@ spec:
         number: 80
 ```
 
-### alb.ingress.kubernetes.io/scheme
+### Access control
+
+#### scheme
 
 - `internet-facing`
 - `internal`
@@ -186,7 +190,7 @@ spec:
         number: 80
 ```
 
-### alb.ingress.kubernetes.io/healthcheck-*
+### Health Check
 
 - If no healthcheck is defined, uses `HTTP` on `/`
 - If your ingress is redirecting to multiple backends you should **NOT** define healthchecks here, but instead define it per route at the `Service` object
@@ -206,6 +210,71 @@ metadata:
     alb.ingress.kubernetes.io/success-codes: "200"
     alb.ingress.kubernetes.io/healthy-threshold-count: "2"
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
+      port:
+        number: 80
+```
+
+### Traffic Listening
+
+#### listen-ports
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/listen-port: '[{"HTTP":80}]' # this is already the default
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
+      port:
+        number: 80
+```
+
+#### ssl-redirect
+
+- Automatically redirect traffic (e.g., port 80) to port 443
+- This redirect is done by the LB
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
+      port:
+        number: 80
+```
+
+### TLS
+
+- Establishes a HTTPS connection between the client and the loadbalancer
+- If your certificate is for your own domain (e.g., *.example.com), you need to add a `CNAME record` that targets your LB address or a `A record` that targets your LB IPv4
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/listen-port: '[{"HTTPS":443},{"HTTP":80}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:123456789012:certificate/foo # uses this certificate for TLS encryption
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01 # this is already the default ssl policy
 spec:
   ingressClassName: my-aws-ingress-class
   defaultBackend:
