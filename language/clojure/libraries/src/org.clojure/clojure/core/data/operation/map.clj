@@ -7,7 +7,9 @@
 (map inc #{10 20 30}) ; [11 21 31]
 
 ;; map
-(map println {:a 1, :b 2}) ; each element is treated as a vector [key value]
+(map
+ (fn [[k v]] (str k v))
+ {:a 1 :b 2}) ; each element is treated as a vector [key value]
 
 ;; sequence
 (map println (range 50))
