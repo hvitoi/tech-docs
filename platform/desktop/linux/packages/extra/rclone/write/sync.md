@@ -31,7 +31,9 @@ rclone sync \
   --progress \
   --track-renames \
   --exclude "node_modules/" \
-  --exclude "target/"
+  --exclude "target/" \
+  --exclude ".DS_Store" \
+  --exclude ".localized"
 ```
 
 ## Log Level

@@ -3,18 +3,16 @@
 - Prevents the system from turning off
 
 ```shell
-# system idle sleep
+# prevent the system from idle sleeping
 caffeinate
+caffeinate -i # same
 
-# system idle sleep
-caffeinate -i
-
-# system idle sleep (when running on AC only)
+# prevent the system from idle sleeping (only when connected to power)
 caffeinate -s
 
-# disk idle sleep
+# prevent the disk from idle sleeping
 caffeinate -m
 
-# when connected to power
+# system idle sleep (when running on AC only)
 caffeinate -s
 ```
