@@ -107,7 +107,7 @@ spec:
 
 ### spec.tls[]
 
-- Here you can set TLS encryption with your own managed certificates (from a a secret)
+- Here you can set TLS encryption with your own managed certificates (from a a secret, usually generated with openssl)
 - Another option is to use a `certificate management service` (e.g., AWS Certificate Manager), in this case the certificate is generated on their cloud and is set up via annotations depending on the ingress controller (e.g., alb.ingress.kubernetes.io/certificate-arn)
 
 ```yaml

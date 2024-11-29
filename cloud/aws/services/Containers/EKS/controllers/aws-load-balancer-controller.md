@@ -264,6 +264,7 @@ spec:
 
 - Establishes a HTTPS connection between the client and the loadbalancer
 - If your certificate is for your own domain (e.g., *.example.com), you need to add a `CNAME record` that targets your LB address or a `A record` that targets your LB IPv4
+- The certificate arn has to be manually created at AWS beforehand! For a more automated process, check `external-dns`
 
 ```yaml
 apiVersion: networking.k8s.io/v1
