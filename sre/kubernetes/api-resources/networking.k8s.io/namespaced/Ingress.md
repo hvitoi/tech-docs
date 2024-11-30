@@ -11,6 +11,12 @@
 1. `Hostname-based routing`: app1.hvitoi.com, app2.hvitoi.com
 1. `TLS/SSL termination`
 
+## Ingress Groups
+
+- Usually there is a single Ingress Manifest for all the routing rules. This manifest may get messy if you have 50 apps managed by a single ingress manifest (and a single ALB).
+- With `Ingress Groups` we can create multiple Ingresses that are associated with a `single Load Balancer`
+- Its usage depends on the `ingress controller`, for example with AWS you can use the annotation `alb.ingress.kubernetes.io/group.name`
+
 ## Ingress Controller
 
 - <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers>

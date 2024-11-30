@@ -265,6 +265,37 @@ spec:
         number: 80
 ```
 
+### Ingress Groups
+
+- Usually there is a single Ingress Manifest for all the routing rules. This manifest may get messy if you have 50 apps managed by a single ingress manifest (and a single ALB).
+- With `Ingress Groups` we can create multiple Ingresses that are associated with a `single Load Balancer`
+- The controller will `merge all the ingress rules` and support them in a single ALB
+- The other annotations within an ingress are applied to the paths in that ingress only! (not to all paths defined in all ingresses in that group)
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: awesome-lb # the next ingress using this same ALB won't get an error (lb already exists) because it's part of an ingress group
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/group.name: myapps.web # all ingresses with this group name are associated with the same ALB
+    alb.ingress.kubernetes.io/group.order: "10" # define among the ingresses within this group which has priority (if the configurations conflict with each other)
+spec:
+  ingressClassName: my-aws-ingress-class
+  rules:
+    - http:
+        paths:
+          - path: /app1
+            pathType: Prefix
+            backend:
+              service:
+                name: my-svc-nodeport
+                port:
+                  number: 80
+```
+
 ### TLS
 
 - Establishes a HTTPS connection between the client and the loadbalancer
@@ -300,13 +331,6 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: awesome-lb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
-    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
-    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
-    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
-    alb.ingress.kubernetes.io/success-codes: "200"
-    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
-    alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     external-dns.alpha.kubernetes.io/hostname: foo.hvitoi.com
