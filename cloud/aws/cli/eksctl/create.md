@@ -67,6 +67,15 @@ eksctl create nodegroup \
 - The nodegroup creation may take around 5 minutes
 - You are able to see the newly created nodes using `kubectl get node`
 
+## fargateprofile
+
+```shell
+eksctl create fargateprofile \
+  --cluster foo \
+  --name my-fargate-profile \
+  --namespace my-fargate-ns # all pods deployed to this ns will be scheduled to this fargate profiles
+```
+
 ## addon
 
 ```shell

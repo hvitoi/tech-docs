@@ -16,6 +16,19 @@ managedNodeGroups:
     volumeSize: 20
     privateNetworking: true
     spot: true
+
+fargateProfiles:
+  - name: my-fargate-profile1
+    selectors:
+      # All workloads in the "my-fargate-ns1" Kubernetes namespace will be scheduled onto Fargate
+      - namespace: my-fargate-ns1
+  - name: my-fargate-profile2
+    selectors:
+      # All workloads in the "my-fargate-ns2" Kubernetes namespace matching the following label selectors will be scheduled onto Fargate
+      - namespace: my-fargate-ns2
+        labels:
+          foo: bar
+
 iam:
   withOIDC: true
   serviceAccounts:

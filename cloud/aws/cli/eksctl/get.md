@@ -12,6 +12,12 @@ eksctl get cluster
 eksctl get nodegroup --cluster foo
 ```
 
+## fargateprofile
+
+```shell
+eksctl get fargateprofile --cluster foo
+```
+
 ## iamserviceaccount
 
 - Get all SAs em the cluster that are associated with an IAM role

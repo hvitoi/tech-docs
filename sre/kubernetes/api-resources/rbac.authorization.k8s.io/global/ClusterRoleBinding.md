@@ -3,6 +3,11 @@
 - ClusterRoleBinding grants `permissions cluster-wide`
 - Binds a `ClusterRole` to a `ServiceAccount` or `Group`
 
+## Examples
+
+- `cluster-admin`: ClusterRole/cluster-admin
+- `system:basic-user`: ClusterRole/system:basic-user
+
 ## Properties
 
 ### subjects[].kind
