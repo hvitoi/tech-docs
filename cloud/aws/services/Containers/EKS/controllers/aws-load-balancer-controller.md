@@ -146,16 +146,19 @@ spec:
   - `alb.ingress.kubernetes.io/target-type: instance`
   - The target group is the NodePort of each node
   - Register the nodes (ec2 instances) as targets for the ALB
-  - Traffic is routed to the `NodePort` of each node
-  - This requires NodePorts to be previously created
+  - This requires a `Service NodePort` object to be manually created (and referenced as a backend in the Ingress Object)
 
 - **IP Mode**
   - `alb.ingress.kubernetes.io/target-type: ip`
   - The target group is each pod of the application
-  - Register pods as targets (instead of the nodes)
+  - Register pods as targets. Traffic is routed directly to the pods.
+  - This requires a `Service ClusterIP` object to be manually created (and referenced as a backend in the Ingress Object)
+  - IP mode is required for `sticky sessions` (when same user session needs to talk with the same pod)
   - This option is mandatory for Fargate profiles because fargate nodes do not support NodePort services
+  - If the Pod IP is directly used, why is there a need for a ClusterIP? Because the ClusterIP is used by the ALB target group to know what are the Pod IPs. The ClusterIP has the information of all Pod IPs
 
 ```yaml
+# INSTANCE MODE
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -171,12 +174,29 @@ spec:
         number: 80
 ```
 
+```yaml
+# IP MODE
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-clusterip
+      port:
+        number: 80
+```
+
 ### Access control
 
 #### scheme
 
-- `internet-facing`
-- `internal`
+- **internet-facing**: to be exposed to the www
+- **internal**: to be used by other aws services
 
 ```yaml
 apiVersion: networking.k8s.io/v1
