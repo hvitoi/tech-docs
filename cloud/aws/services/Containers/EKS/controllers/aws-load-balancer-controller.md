@@ -1,13 +1,11 @@
 # aws-load-balancer-controller
 
-> This controller is required for Ingress objects only. It creates ALB resources on AWS based on Ingress Objects
-> For Service objects this controller is not required (although it can also be used). Service Objects (type LoadBalancer) support is built-in and creates CLBs or NLBs resources on AWS.
-
-- Automatically create ALBs or NLBs based on Ingress Kubernetes Objects
+- Automatically create ALBs or NLBs
   - `K8S Ingress Object` -> `AWS ALB`
   - `K8S Service Object` -> `AWS NLB`
 - <https://kubernetes-sigs.github.io/aws-load-balancer-controller>
-- This controller was previously named "aws-alb-ingress-controller"
+
+> There is also the legacy in-tree controller (kube-controller-manager / cloud-controller-manager) built-in into Kubernetes. With this controller it is possible to create only CLBs and NLBs with basic functionality. This built-in controller is legacy and should be avoided in favor of aws-load-balancer-controller.
 
 ## Architecture
 
@@ -17,8 +15,6 @@
 - The target group can either be
   - 1. Each node in the cluster (instance mode)
   - 1. Each individual pod (IP mode)
-
-> With CLB (not managed by this controller) the target group is always each pod of the app
 
 ## Permissions
 
@@ -111,7 +107,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   - `svc/eks-extension-metrics-api`: exposes port 443 (that targets port 9443 on the container)
   - `ingressclasses/alb`: IngressClass to be used by Ingress objects
 
-## Annotations
+## Annotations (ALB)
 
 - <https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/>
 
@@ -386,4 +382,46 @@ spec:
         # tries to find in the cloud a certificate with the same CN
         # The Ingress controller must have permissions to access ACM
         - "*.hvitoi.com"
+```
+
+## Annotation (NLB)
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-svc-lb
+  annotations:
+    # Traffic Routing
+    service.beta.kubernetes.io/aws-load-balancer-name: awesome-lb
+    service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree controller). You can also use loadBalancerClass: service.k8s.aws/nlb instead
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance # instance (default) or ip
+
+    # Subnets
+    #service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet # Subnets are auto-discovered if this annotation is not specified
+
+    # Health Check Settings
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: traffic-port
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /index.html
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10" # The controller currently ignores the timeout configuration due to the limitations on the AWS NLB. The default timeout for TCP is 10s and HTTP is 6s.
+
+    # Access Control
+    service.beta.kubernetes.io/load-balancer-source-ranges: 0.0.0.0/0  # specifies the CIDRs that are allowed to access the NLB.
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # specifies whether the NLB will be internet-facing or internal
+
+    # AWS Resource Tags
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: Environment=dev,Team=test
+spec:
+  type: LoadBalancer
+  loadBalancerClass: service.k8s.aws/nlb
+  selector:
+    app: my-app
+  ports:
+    - port: 80 # creates "listener" 80 in NLB
+      targetPort: 80 # creates "target group" in NLB
+    - port: 443
+      targetPort: 80
 ```

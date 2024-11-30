@@ -79,8 +79,9 @@ spec:
   - Also, there is no SSL termination (It's L4 LB, just redirect traffic)
   ![Load Balancer Problem](../../../concepts/.images/loadbalancer-problem.png)
 
-#### AWS CLB
+#### AWS CLB (legacy)
 
+- Uses the legacy `in-tree controller`
 - DNS A Record: `0123456789abcdef0123456789abcdef-123456789.us-east-1.elb.amazonaws.com`
 
 ```yaml
@@ -97,8 +98,9 @@ spec:
       port: 80
 ```
 
-#### AWS NLB
+#### AWS NLB (legacy)
 
+- Uses the legacy `in-tree controller`
 - DNS A Record: `0123456789abcdef0123456789abcdef-0123456789abcdef.elb.us-east-1.amazonaws.com`
 
 ```yaml
@@ -110,6 +112,27 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+```
+
+#### AWS NLB (new)
+
+- Uses the new `aws-load-balancer-controller`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-svc-loadbalancer
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance # this is already the default for aws-load-balancer-controller
+spec:
+  type: LoadBalancer
+  loadBalancerClass: service.k8s.aws/nlb # this is already the default LB class for aws-load-balancer-controller
   selector:
     app: my-app
   ports:
