@@ -10,7 +10,7 @@ metadata:
   namespace: default # only for resources in this namespace
 roleRef: # refer to a role in the current namespace
   apiGroup: rbac.authorization.k8s.io
-  kind: Role # Role or ClusterRole
+  kind: Role
   name: developer # developer Role must be created in the same namespace
 subjects:
   - apiGroup: rbac.authorization.k8s.io
@@ -19,10 +19,10 @@ subjects:
     name: henry # this name comes from the client certificate (CN field)
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
-    namespace: default # default namespace if not specified
+    namespace: default
     name: my-group # this name comes from the client certificate (O field)
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
-    namespace: default # default namespace if not specified
+    namespace: default
     name: e6dsad-2392-ksaj2-92933 # Object ID of the Azure AD Group
 ```

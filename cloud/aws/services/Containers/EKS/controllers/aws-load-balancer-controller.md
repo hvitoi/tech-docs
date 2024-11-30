@@ -3,7 +3,7 @@
 > This controller is required for Ingress objects only. It creates ALB resources on AWS based on Ingress Objects
 > For Service objects this controller is not required (although it can also be used). Service Objects (type LoadBalancer) support is built-in and creates CLBs or NLBs resources on AWS.
 
-- Automatically created ALBs or NLBs based on Ingress Kubernetes Objects
+- Automatically create ALBs or NLBs based on Ingress Kubernetes Objects
   - `K8S Ingress Object` -> `AWS ALB`
   - `K8S Service Object` -> `AWS NLB`
 - <https://kubernetes-sigs.github.io/aws-load-balancer-controller>
@@ -13,6 +13,10 @@
 
 ![LB Controller](.images/lb-controller-architecture1.png)
 ![LB Controller](.images/lb-controller-architecture2.png)
+
+- The target group can either be
+  - 1. Each node in the cluster (instance mode)
+  - 1. Each individual pod (IP mode)
 
 > With CLB (not managed by this controller) the target group is always each pod of the app
 
@@ -243,6 +247,7 @@ spec:
 
 - Automatically redirect traffic (e.g., port 80) to port 443
 - This redirect is done by the LB
+- This requires the HTTPS (port 443) to be set up (see TLS section)
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -263,8 +268,8 @@ spec:
 ### TLS
 
 - Establishes a HTTPS connection between the client and the loadbalancer
-- If your certificate is for your own domain (e.g., *.example.com), you need to add a `CNAME record` that targets your LB address or a `A record` that targets your LB IPv4
-- The certificate arn has to be manually created at AWS beforehand! For a more automated process, check `external-dns`
+- If your certificate is for your own domain (e.g., *.example.com), you need to add a `CNAME record` that targets your LB address or a `A record` that targets your LB IPv4. To automatically add the DNS records check `external-dns`
+- The certificate arn has to be manually created at AWS beforehand! For a more automated process
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -273,8 +278,8 @@ metadata:
   name: my-ing
   annotations:
     alb.ingress.kubernetes.io/listen-port: '[{"HTTPS":443},{"HTTP":80}]'
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:123456789012:certificate/foo # uses this certificate for TLS encryption
+    alb.ingress.kubernetes.io/ssl-redirect: '443' # automatically redirect to https
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:123456789012:certificate/foo # uses this certificate for TLS encryption. To avoid having to hard-coding it here you can also use
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01 # this is already the default ssl policy
 spec:
   ingressClassName: my-aws-ingress-class
@@ -283,4 +288,58 @@ spec:
       name: my-svc-nodeport
       port:
         number: 80
+```
+
+- With `SSL Certificate Discovery using Host` the ingress controller will attempt to discover the `TLS certificate ARN` from the configured in `spec.tls[].hosts[]` in the Ingress Object. There is no additional annotation required for this certificate discovery (just `spec.tls[].hosts[]` by itself)
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ing
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: awesome-lb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: "2"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    external-dns.alpha.kubernetes.io/hostname: foo.hvitoi.com
+spec:
+  ingressClassName: my-aws-ingress-class
+  defaultBackend:
+    service:
+      name: my-svc-nodeport
+      port:
+        number: 80
+  rules:
+    - http:
+        paths:
+          - path: /app1
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app1-svc-nodeport
+                port:
+                  number: 80
+    - http:
+        paths:
+          - path: /app2
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app2-svc-nodeport
+                port:
+                  number: 80
+    tls:
+    - hosts:
+        # automatically try to pick the certificate from the cloud provider (in this case it's not necessary to define the certificate-arn)
+        # tries to find in the cloud a certificate with the same CN
+        # The Ingress controller must have permissions to access ACM
+        - "*.hvitoi.com"
 ```

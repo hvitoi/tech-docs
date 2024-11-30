@@ -78,6 +78,7 @@ metadata:
   name: my-ing
 spec:
   rules:
+    # Name Based Virtual Host / Host Header Routing
     - host: api.hvitoi.com # Only consider requests to api.hvitoi.com (if not specified, accept all the incoming traffic for any host)
       http:
         paths:
@@ -108,7 +109,8 @@ spec:
 ### spec.tls[]
 
 - Here you can set TLS encryption with your own managed certificates (from a a secret, usually generated with openssl)
-- Another option is to use a `certificate management service` (e.g., AWS Certificate Manager), in this case the certificate is generated on their cloud and is set up via annotations depending on the ingress controller (e.g., alb.ingress.kubernetes.io/certificate-arn)
+- Another option is to use a `certificate management service` (e.g., AWS Certificate Manager), in this case the certificate need to be created beforehand in the cloud provider and set up via annotations depending on the ingress controller (e.g., `alb.ingress.kubernetes.io/certificate-arn`)
+- Depending on the controller `SSL Certificate Discovery using Host` may also be supported. In this case you do not have to explicitly mention the `certificate ARN`, but instead the ingress controller will try to discover it automatically based on the `spec.tls[].hosts[]` field
 
 ```yaml
 apiVersion: networking.k8s.io/v1beta1
@@ -142,4 +144,7 @@ spec:
     - hosts:
         - bar.hvitoi.com
       secretName: bar-secret
+    # If "secretName" is not specified it tries to automatically try to pick the certificate from the cloud provider
+    - hosts:
+        - baz.hvitoi.com # tries to find in the cloud a certificate with the same CN
 ```
