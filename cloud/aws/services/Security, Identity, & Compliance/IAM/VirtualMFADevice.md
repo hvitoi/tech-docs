@@ -1,11 +1,6 @@
 # AWS::IAM::VirtualMFADevice
 
-- **MFA** (Multi Factor Authentication)
-
-  - `Virtual MFA device` (google authenticator app, authy web app, etc)
-  - `Universal 2nd Factor (U2F) security key` (YubiKey physical device)
-  - `Hardware MFA Device` (Gemalto Key Fob)
-
+- Enables `MFA` (Multi Factor Authentication)
 - MFA for the root user is activated under `My Security Credentials` at the account upper tab
 - MFA for IAM users is activated under `My Security Credentials` at user in IAM
 
@@ -23,3 +18,9 @@ Properties:
     - String
   VirtualMfaDeviceName: String
 ```
+
+### VirtualMfaDeviceName
+
+- `Virtual MFA device` (google authenticator app, authy web app, etc)
+- `Universal 2nd Factor (U2F) security key` (YubiKey physical device)
+- `Hardware MFA Device` (Gemalto Key Fob)

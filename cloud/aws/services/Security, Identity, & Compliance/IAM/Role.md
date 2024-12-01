@@ -3,7 +3,7 @@
 - `Role` is an identity intended to be used/assumed by another entity
   - E.g., give an EC2 instance permission to access an S3 bucket
 - Roles have `short term credentials` (differently from users that have long term credentials)
-- A role is associated with a `policy`
+- A role is associated with `policies`
 
 - <arn:aws:iam:123456789012:role:my-role>
 
@@ -90,7 +90,6 @@ aws iam create-role \
 - The trusted entity is an `Identity Provider` (e.g., `arn:aws:iam::123456789012:saml-provider/okta`)
 
 ```json
-
 {
   "Version": "2012-10-17",
   "Statement": [

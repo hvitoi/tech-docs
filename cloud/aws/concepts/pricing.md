@@ -1,5 +1,7 @@
 # Pricing
 
+- <https://calculator.aws>
+
 ## Compute
 
 - Pay for compute time

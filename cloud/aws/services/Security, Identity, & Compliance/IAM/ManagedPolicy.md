@@ -1,13 +1,42 @@
 # AWS::IAM::ManagedPolicy
 
-- `Permission Policy` is a JSON document that define a set permissions for making requests to AWS services
-- Policies can be applied to `Users`, `Groups` and `Roles`
+- A policy that can be reused. In contract to inline policies (AWS::IAM::Policy) that cannot eb reused
 
-## Examples
+## Types
+
+- **Customer Managed**
+  - This are the policies in fact created with the AWS::IAM::ManagedPolicy resource
+  - These are policies defined by the user (you) that can be reused
+
+- **AWS Managed**
+  - This are "built-in" policies created by aws
+  - Example: `arn:aws:iam::aws:policy/AdministratorAccess`
+
+> "Inline Policy" and "Resource Based Policy" are not managed policies
+
+## Properties
+
+- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html>
+
+```yaml
+Type: AWS::IAM::ManagedPolicy
+Properties:
+  Description: String
+  Groups:
+    - String
+  ManagedPolicyName: String
+  Path: String
+  PolicyDocument: Json
+  Roles:
+    - String
+  Users:
+    - String
+```
+
+### PolicyDocument
 
 ```json
-// AdministratorAccess
-// Provides full access to AWS services and resources
+// AdministratorAccess (AWS Managed)
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -21,7 +50,38 @@
 ```
 
 ```json
-// PowerUserAccess
+// AmazonEKSClusterPolicy (AWS Managed)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups",
+        "ec2:AttachVolume",
+        "elasticloadbalancing:AddTags",
+        "elasticloadbalancing:SetLoadBalancerPoliciesOfListener",
+        "kms:DescribeKey",
+        "..."
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Condition": {
+        "StringEquals": {
+          "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+```
+
+```json
+// PowerUserAccess (AWS Managed)
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -47,23 +107,4 @@
     }
   ]
 }
-```
-
-## Properties
-
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html>
-
-```yaml
-Type: AWS::IAM::ManagedPolicy
-Properties:
-  Description: String
-  Groups:
-    - String
-  ManagedPolicyName: String
-  Path: String
-  PolicyDocument: Json
-  Roles:
-    - String
-  Users:
-    - String
 ```

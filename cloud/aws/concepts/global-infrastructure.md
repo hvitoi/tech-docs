@@ -1,6 +1,8 @@
 # Infrastructure
 
 - <https://aws.amazon.com/about-aws/global-infrastructure/regions_az/>
+- `AWS` was launched for public in 2004
+- First services were SQS, S3 and EC2
 
 ## Regions
 

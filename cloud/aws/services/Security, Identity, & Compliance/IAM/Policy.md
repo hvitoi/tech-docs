@@ -1,10 +1,8 @@
 # AWS::IAM::Policy
 
 - IAM is a global service
-- `Root account` is created by default (though it's not good to use it directly)
-- An account alias can be created in order to access the account (with any IAM user) from custom URI. <https://hvitoi.signin.aws.amazon.com/console>
-- Access to Billing Information is not granted, even with administrator policy. For that, special config must be set up
-- `Password policies` can be set for all users under `Account Settings`
+
+## Policy Evaluation
 
 ![Policy Evaluation Logic](.images/iam-policy-evalation-logic.png)
 
@@ -14,39 +12,6 @@
 - `Customer Managed Policy`
 - `Inline Policy`: can be created on the fly, so that the policy is created only for that entity and cannot be reused
 - `Resource Based Policy`
-
-### AWS Managed Policy
-
-```json
-// AmazonEKSClusterPolicy
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": "*",
-      "Action": [
-        "autoscaling:DescribeAutoScalingGroups",
-        "ec2:AttachVolume",
-        "elasticloadbalancing:AddTags",
-        "elasticloadbalancing:SetLoadBalancerPoliciesOfListener",
-        "kms:DescribeKey",
-        "..."
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Resource": "*",
-      "Action": "iam:CreateServiceLinkedRole",
-      "Condition": {
-        "StringEquals": {
-          "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
-        }
-      }
-    }
-  ]
-}
-```
 
 ## Properties
 

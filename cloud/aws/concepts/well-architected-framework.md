@@ -1,9 +1,6 @@
 # Well Architected Framework
 
-- Define a `workload` to help following the well architected framework
-- Helps reviewing the 5 pillars
-- Generate a report with actions
-- <https://aws.amazon.com/pt/architecture/well-architected/>
+- <https://aws.amazon.com/architecture/well-architected/>
 
 ## 5 Pillars
 
@@ -78,3 +75,61 @@
   - `Use managed and application level services to reduce cost of ownership`: prefer serverless
 
 ![Cost Optimization](.images/well-architected-tool-cost-optimization.png)
+
+## Architecture Use Cases
+
+### Stateless Web App
+
+![Stateless Web App](.images/architecture-statelessapp.png)
+
+### Stateful (E-commerce)
+
+![Stateful E-commerce](.images/architecture-ecommerce.png)
+
+### Stateful (Blog)
+
+![Stateful Blog](.images/architecture-blog.png)
+
+### To Do List Mobile App
+
+![Todo List](.images/architecture-todolist.png)
+
+### Serverless Blogs
+
+![Serverless Blog](.images/architecture-serverless-blog.png)
+
+### Microservices
+
+![Microservices](.images/architecture-microservices.png)
+
+### Distributing paid content
+
+![Distributing Paid Content](.images/architecture-paid-content.png)
+
+### Software Updates Offloading
+
+![Software Updates Offloading](.images/software-updates-offloading.png)
+
+### Big Data Ingestion Pipeline
+
+![Big Data Ingestion Pipeline](.images/big-data-ingestion-pipeline.png)
+
+### Lambda, SNS, SQS
+
+![Lambda, SNS, SQS](.images/architecture-lambda-sns-sqs.png)
+
+### S3 Events
+
+![S3 Events](.images/architecture-s3-events.png)
+
+### Caching Strategies
+
+![Caching Strategies](.images/architecture-caching-strategies.png)
+
+### Network Security
+
+![Network ALB](.images/architecture-network-alb.png)
+![Network NLB](.images/architecture-network-nlb.png)
+![Network NLB](.images/architecture-network-cloudfront.png)
+
+### High Performance Computing (HPC)

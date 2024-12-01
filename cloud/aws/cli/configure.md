@@ -19,6 +19,16 @@ aws configure --profile "my-profile" # configure another profile other than [def
 aws sts get-caller-identity
 ```
 
+- Autocomplete: <https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-completion.html>
+
+```fish
+# Autocomplete on fish
+complete \
+    --command aws \
+    --arguments '(begin; set -lx COMP_SHELL fish; set -lx COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)' \
+    --no-files
+```
+
 ## list
 
 - Shows the current active profile
