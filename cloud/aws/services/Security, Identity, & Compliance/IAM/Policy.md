@@ -1,6 +1,7 @@
 # AWS::IAM::Policy
 
 - IAM is a global service
+- Defines an `identity-based inline policy`
 
 ## Policy Evaluation
 
@@ -8,10 +9,17 @@
 
 ## Policy types
 
-- `AWS Managed Policy`
-- `Customer Managed Policy`
-- `Inline Policy`: can be created on the fly, so that the policy is created only for that entity and cannot be reused
-- `Resource Based Policy`
+- **Identity-Based Policies**
+  - These policies are attached to IAM identities (user, group, or role)
+  - `Managed Policy`: AWS Managed or Customer Managed
+  - `Inline Policy`: can be created on the fly, so that the policy is created only for that entity and cannot be reused
+
+- **Resource-Based Policies**
+  - These policies are attached to AWS resources (e.g., s3)
+  - This not that this  AWS::IAM::Policy creates
+  - `S3 Bucket Policies`
+  - `IAM Role Trust Policies`
+  - `AWS KMS Key Policies`
 
 ## Properties
 

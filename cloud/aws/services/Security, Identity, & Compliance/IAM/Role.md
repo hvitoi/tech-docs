@@ -9,24 +9,29 @@
 
 ## Trusted Entity Type
 
-- `AWS service`
-  - Allow AWS services like EC2, Lambda, or others to perform actions in this account.
-- `AWS account`
-  - Allow entities in other AWS accounts belonging to you or a 3rd party to perform actions in this account.
-- `Web identity`
-  - Allows users federated by the specified external web identity provider to assume this role to perform actions in this account.
-- `SAML 2.0 federation`
-  - Allow users federated with SAML 2.0 from a corporate directory to perform actions in this account.
-- `Custom trust policy`
-  - Create a custom trust policy to enable others to perform actions in this account.
+- **AWS service**
+  - Allow AWS services like EC2, Lambda, or others to perform actions in this account
+
+- **AWS account**
+  - Allow entities in other AWS accounts belonging to you or a 3rd party to perform actions in this account
+
+- **Web identity**
+  - Allows users federated by the specified external web identity provider to assume this role to perform actions in this account
+
+- **SAML 2.0 federation**
+  - Allow users federated with SAML 2.0 from a corporate directory to perform actions in this account
+  - See AWS::IAM::SAMLProvider
+
+- **Custom trust policy**
+  - Create a custom trust policy to enable others to perform actions in this account
 
 ## Assuming a role
 
-- When you assume a role (user, application or service), you give up your original permissions and take the permissions assigned to the role
-  - Differently from `resource based policies` in which the policies add up to your already possessed permissions
+- When a role is assumed, the entity assuming the role gives up the original permissions and take the permissions assigned to the assumed role
 - In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
 - An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
-- An assumed role has the arn format `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
+
+- The assumed role is represented by the ARN `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
   - Where "sub" is the sub/principal/session name
 
 ## Properties

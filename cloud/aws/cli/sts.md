@@ -26,10 +26,23 @@ aws sts get-caller-identity --query 'Account' --output text
 aws sts get-session-token --duration-seconds 3600
 ```
 
+## assume-role
+
+```shell
+aws sts assume-role \
+  --role-arn arn:aws:iam::123456789012:role/MyRole \
+  --role-session-name MySession
+```
+
 ## assume-role-with-saml
 
-- To get the `saml-assertion`, go to the IdP dashboard (e.g., Okta) and click on the AWS app. This will perform a POST request to `https://signin.aws.amazon.com/saml` with the saml assertion. Pick the `SAMLResponse` from the request body, this is the base64 encoded saml assertion.
+- In order to get the `Saml Assertion`, go to the IdP dashboard (e.g., Okta) and click on the AWS app. This will perform a POST request to `https://signin.aws.amazon.com/saml` with the saml assertion. Pick the `SAMLResponse` from the request body. this is the base64 encoded saml assertion.
 - The token from the saml assertion must be redeemed within 5 minutes of issuance
+- STS then generates `Temporary Credentials`
+  - Access Key ID
+  - Secret Access Key
+  - Session Token
+- Along with these credentials, the `assumed-role ARN` is returned
 
 ```shell
 aws sts assume-role-with-saml \
