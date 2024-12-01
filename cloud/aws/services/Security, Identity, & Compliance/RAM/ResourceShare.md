@@ -6,11 +6,11 @@
 - Accounts with access to the shared resource cannot view, modify or delete
 - E.g., subnets, transit gateway, etc
 
-- **VPC Sharing**
+## VPC Sharing
 
-  - Network is shared, anything deployed in the VPC can be accessed by the other accounts resources
+- Network is shared, anything deployed in the VPC can be accessed by the other accounts resources
 
-  ![Shared VPC](.images/ram-shared-vpc.png)
+![Shared VPC](.images/ram-shared-vpc.png)
 
 ## Properties
 
