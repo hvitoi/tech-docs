@@ -83,3 +83,43 @@ aws ec2 authorize-security-group-egress \
 ```shell
 aws ec2 describe-security-groups --group-ids sg-123abc456def789gh
 ```
+
+## EIP
+
+### allocate-address
+
+- `Allocates` an Elastic IP Address
+
+```shell
+aws ec2 allocate-address # uses by default the vpc domain
+aws ec2 allocate-address --domain vpc # same
+```
+
+### associate-address
+
+- Associate an IP with a ENI
+
+```shell
+aws ec2 associate-address \
+  --allocation-id <AllocationId> \
+  --network-interface-id <NetworkInterfaceId>
+```
+
+### describe-addresses
+
+- Describe EIPs
+- Show what ENIs they are associated with
+
+```shell
+aws ec2 describe-addresses --allocation-ids <AllocationId>
+```
+
+## ENI
+
+### describe-network-interfaces
+
+- Describe Network Interfaces from all Load Balancers
+
+```shell
+aws ec2 describe-network-interfaces --filters Name=description,Values="ELB net/*"
+```

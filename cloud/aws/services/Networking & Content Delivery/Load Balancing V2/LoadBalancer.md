@@ -3,11 +3,18 @@
 - Forwards traffic to multiple servers (or EC2 instances)
 - **Benefits**
   - `Spread load` evenly across multiple downstream instances
-  - Expose a single `DNS`
+  - Expose a single hostname that balances between of the backends in the target groups
   - Handle failure of downstream instances (regular `health check`)
   - `SSL` termination (HTTPS)
   - Enforce `stickiness` with cookies
-- LB can be **internal** or **external**
+
+## Static IPs
+
+- By default the LB is exposed as a hostname that balances between of the backends in the target groups
+- Optionally it's also possible to assign an EIP to the Load Balancer and access it via an Static IP
+- It's necessary 1 EIP for each AZ in which the LB is deployed
+- ALBs do not support EIPs because they operate at Layer 7 and they manage dynamically their networking resources (including Network Interfaces)
+- NLBs on the other hand operate at Layer 4 and allow for specific EIP and ENI associations
 
 ## Properties
 
@@ -50,6 +57,10 @@ Properties:
     - It's disabled (by default) for NLB. It's paid
   - `Without Cross-Zone balancing` load is distributed for the AZ, and not for the total of instances itself
     ![Cross-Zone Load Balancing](.images/cross-zone-balancing.png)
+
+### Scheme
+
+- LB can be **internal** or **internet-facing**
 
 ### Type
 

@@ -21,9 +21,10 @@ kind: Service
 metadata:
   name: my-lb
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing # expose it to the internet
 spec:
   type: LoadBalancer
+  loadBalancerClass: service.k8s.aws/nlb # requires the aws-load-balancer-controller
   selector:
     app: my-app
   ports:

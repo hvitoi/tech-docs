@@ -3,7 +3,8 @@
 - Layer 7
 - Ideal for HTTP, HTTPS, Websockets traffic
 - v2 (2016)
-- ALB provides a fixed DNS `xxx.region.elb.amazonaws.com`
+- ALB provides a fixed hostname `xxx.region.elb.amazonaws.com`
+  - ALBs do not provide static IPs for access! If you need it check NLBs
 
 ## Target Groups
 

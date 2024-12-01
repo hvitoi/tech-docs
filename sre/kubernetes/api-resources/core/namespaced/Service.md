@@ -82,7 +82,6 @@ spec:
 #### AWS CLB (legacy)
 
 - Uses the legacy `in-tree controller`
-- DNS A Record: `0123456789abcdef0123456789abcdef-123456789.us-east-1.elb.amazonaws.com`
 
 ```yaml
 apiVersion: v1
@@ -101,7 +100,6 @@ spec:
 #### AWS NLB (legacy)
 
 - Uses the legacy `in-tree controller`
-- DNS A Record: `0123456789abcdef0123456789abcdef-0123456789abcdef.elb.us-east-1.amazonaws.com`
 
 ```yaml
 apiVersion: v1

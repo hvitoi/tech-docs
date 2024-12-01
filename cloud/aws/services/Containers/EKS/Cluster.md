@@ -33,7 +33,8 @@
   - 1 per AZ **Public Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPublicUSEAST1A`)
     - It's attached to an InternetGateway (to allow traffic to internet) and to a NATGateway (to allow traffic from private subnets)
   - 1 per AZ **Private Subnet** (AWS::EC2::Subnet) (`eksctl-foo-cluster/SubnetPrivateUSEAST1A`)
-  - 1 **EIP** (AWS::EC2::EIP)
+  - 1 **EIP** (AWS::EC2::EIP) (`eksctl-foo-cluster/NATIP`)
+    - It's the public IP of the NAT Gateway (in the public subnet) used for the worker nodes (in the private subnet) to communicate with the EKS Control Plane
 
 - Security
   - 1 **SG** (AWS::EC2::SecurityGroup)(ControlPlaneSecurityGroup: `eks-foo-sg-foo-12345678`) (Cluster SG)

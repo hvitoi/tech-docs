@@ -2,7 +2,7 @@
 
 - <https://github.com/kubernetes-sigs/external-dns>
 - ExternalDNS allows you to manage `DNS records` dynamically via Kubernetes Resources (DNS-provider-agnostic).
-- When an `Ingress` or a `Service` object with a DNS annotation (`external-dns.alpha.kubernetes.io/hostname`) is created, it is automatically registered in the `Zone File` of the name service managing that domain in the cloud provider
+- When an `Ingress` or a `Service` object with a DNS annotation (`external-dns.alpha.kubernetes.io/hostname`) is created, DNS records are automatically registered in the `Zone File` of the name server managing that domain in the cloud provider
 - The `External DNS Controller` sync your Ingress/Service resource with the cloud provider
 
 ## External DNS Service Account (SA)

@@ -394,7 +394,7 @@ metadata:
   annotations:
     # Traffic Routing
     service.beta.kubernetes.io/aws-load-balancer-name: awesome-lb
-    service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree controller). You can also use loadBalancerClass: service.k8s.aws/nlb instead
+    service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree controller). You can also use loadBalancerClass: service.k8s.aws/nlb instead and omit this annotation
     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance # instance (default) or ip
     service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet # Subnets are auto-discovered if this annotation is not specified
 
@@ -408,7 +408,7 @@ metadata:
 
     # Access Control
     service.beta.kubernetes.io/load-balancer-source-ranges: 0.0.0.0/0  # specifies the CIDRs that are allowed to access the NLB.
-    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # specifies whether the NLB will be internet-facing or internal
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # specifies whether the NLB will be internet-facing or internal (internal by default)
 
     # AWS Resource Tags
     service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: Environment=dev,Team=test
@@ -421,6 +421,12 @@ metadata:
 
     # External DNS
     external-dns.alpha.kubernetes.io/hostname: nlbdns101.stacksimplify.com # For creating autormatically a Record Set (DNS Records) in Route53
+
+    # Static IPs
+    # You must specify one EIP for each subnet (each AZ) in which the LB is deployed (use `aws ec2 allocate-address` to create them)
+    # The controller does the job of associating the EIP to the ENIs of the LB in each AZ. It's like it's executing `aws ec2 associate-address`
+    service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-068b65c8e0df2b53e, eipalloc-022d66b51f98706c6
+
 spec:
   type: LoadBalancer
   loadBalancerClass: service.k8s.aws/nlb
