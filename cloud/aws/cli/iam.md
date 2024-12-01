@@ -85,20 +85,31 @@ aws iam list-attached-role-policies --role-name henrique.vitoi-dev-role
 aws iam list-role-policies --role-name henrique.vitoi-dev-role
 ```
 
-### attach-role-policy
-
-- Attach a managed policy to a role
-
-```shell
-aws iam attach-role-policy \
-  --role-name "eksctl-foo-nodegroup-my-node-gro-NodeInstanceRole-tZDjAGAMF9gm" \
-  --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-```
-
 ### create-role
 
 ```shell
 aws iam create-role \
   --role-name AmazonEKS_EBS_CSI_DriverRole \
   --assume-role-policy-document "file://aws-ebs-csi-driver-trust-policy.json"
+```
+
+### attach-role-policy
+
+- Attach a `managed policy` to a role
+
+```shell
+aws iam attach-role-policy \
+  --role-name "MyRole" \
+  --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+```
+
+### put-role-policy
+
+- Attach an `inline policy` to a role
+
+```shell
+aws iam put-role-policy \
+  --role-name MyRole \
+  --policy-name MyInlinePolicy \
+  --policy-document file://policy.json
 ```

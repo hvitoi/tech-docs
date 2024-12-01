@@ -7,24 +7,6 @@
 
 - <arn:aws:iam:123456789012:role:my-role>
 
-## Trusted Entity Type
-
-- **AWS service**
-  - Allow AWS services like EC2, Lambda, or others to perform actions in this account
-
-- **AWS account**
-  - Allow entities in other AWS accounts belonging to you or a 3rd party to perform actions in this account
-
-- **Web identity**
-  - Allows users federated by the specified external web identity provider to assume this role to perform actions in this account
-
-- **SAML 2.0 federation**
-  - Allow users federated with SAML 2.0 from a corporate directory to perform actions in this account
-  - See AWS::IAM::SAMLProvider
-
-- **Custom trust policy**
-  - Create a custom trust policy to enable others to perform actions in this account
-
 ## Assuming a role
 
 - When a role is assumed, the entity assuming the role gives up the original permissions and take the permissions assigned to the assumed role
@@ -55,6 +37,35 @@ Properties:
     - Tag
 ```
 
+### PermissionsBoundary
+
+- Supported for `users` and `roles` (not groups)
+- Define the maximum permissions an entity can get
+- `Permission boundary` (maximum scope) + `permission policies`
+
+![Permission Boundaries](.images/iam-permission-boundaries.png)
+
+- Use cases
+  - Delete responsibilities to non administrators within their permissions boundaries
+  - Allow self-assign policies and manage their own permissions
+
+### ManagedPolicyArns (Permission policies)
+
+- This is where you attach `managed policies` to the role (by its arn)
+
+```shell
+aws iam list-attached-role-policies --role-name henrique.vitoi-dev-role
+```
+
+### Policies
+
+- This is where you define `inline policies` directly attached to the role
+- These inline policies cannot be reused in other roles
+
+```shell
+aws iam list-role-policies --role-name henrique.vitoi-dev-role
+```
+
 ### AssumeRolePolicyDocument (Trust Policy)
 
 - It's the document that describes what/how entities that can assume this role
@@ -68,7 +79,9 @@ aws iam create-role \
   --assume-role-policy-document "file://trust-policy.json"
 ```
 
-#### sts:AssumeRole
+#### Action
+
+##### sts:AssumeRole
 
 - Allow an AWS service (e.g, EKS cluster) to assume the role
 
@@ -89,7 +102,7 @@ aws iam create-role \
 }
 ```
 
-#### sts:AssumeRoleWithSAML
+##### sts:AssumeRoleWithSAML
 
 - Allow an `IdP` (e.g., Okta) to authentication a user via SAML
 - The trusted entity is an `Identity Provider` (e.g., `arn:aws:iam::123456789012:saml-provider/okta`)
@@ -115,7 +128,7 @@ aws iam create-role \
 }
 ```
 
-#### sts:AssumeRoleWithWebIdentity
+##### sts:AssumeRoleWithWebIdentity
 
 ```json
 {
@@ -138,31 +151,96 @@ aws iam create-role \
 }
 ```
 
-### ManagedPolicyArns (Permission policies)
+#### Principal
 
-- This is where you attach `managed policies` to the role (by its arn)
+##### Service
 
-```shell
-aws iam list-attached-role-policies --role-name henrique.vitoi-dev-role
+- Allow AWS services like EC2, Lambda, or others to perform actions in this account
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": [
+          "eks.amazonaws.com"
+        ]
+      }
+    }
+  ]
+}
 ```
 
-### Policies
+##### Federated
 
-- This is where you define `inline policies` directly attached to the role
-- These inline policies cannot be reused in other roles
+- **SAML 2.0 federation** or **Web identity**
 
-```shell
-aws iam list-role-policies --role-name henrique.vitoi-dev-role
+```json
+// SAML 2.0 federation (AWS::IAM::SAMLProvider)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRoleWithSAML",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:saml-provider/okta"
+      },
+      "Condition": {
+        "StringEquals": {
+          "SAML:sub": "henrique.vitoi",
+          "SAML:aud": "https://signin.aws.amazon.com/saml"
+        }
+      }
+    }
+  ]
+}
 ```
 
-### PermissionsBoundary
+```json
+// Web identity (OIDC Provider)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/0123456789ABCDEF0123456789ABCDEF"
+      },
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.us-east-1.amazonaws.com/id/7B4887CC1B7841B1BAEB98263BC64B9C:aud": "sts.amazonaws.com",
+          "oidc.eks.us-east-1.amazonaws.com/id/7B4887CC1B7841B1BAEB98263BC64B9C:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
+        }
+      }
+    }
+  ]
+}
+```
 
-- Supported for `users` and `roles` (not groups)
-- Define the maximum permissions an entity can get
-- `Permission boundary` (maximum scope) + `permission policies`
+##### AWS
 
-![Permission Boundaries](.images/iam-permission-boundaries.png)
+- Allow entities in `other AWS accounts` belonging to you or a 3rd party to perform actions in this account
 
-- Use cases
-  - Delete responsibilities to non administrators within their permissions boundaries
-  - Allow self-assign policies and manage their own permissions
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": [
+          "edgelambda.amazonaws.com",
+          "lambda.amazonaws.com"
+        ],
+        "AWS": "arn:aws:iam::123456789012:root" // ID of the other AWS account
+      }
+    }
+  ]
+}
+```
