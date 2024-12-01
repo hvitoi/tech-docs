@@ -327,7 +327,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-port: '[{"HTTPS":443},{"HTTP":80}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443' # automatically redirect to https
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:123456789012:certificate/foo # uses this certificate for TLS encryption. To avoid having to hard-coding it here you can also use
-    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01 # this is already the default ssl policy
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01 # SSL Negotiation Policy. By default uses the latest
 spec:
   ingressClassName: my-aws-ingress-class
   defaultBackend:
@@ -396,11 +396,9 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-name: awesome-lb
     service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree controller). You can also use loadBalancerClass: service.k8s.aws/nlb instead
     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance # instance (default) or ip
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet # Subnets are auto-discovered if this annotation is not specified
 
-    # Subnets
-    #service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet # Subnets are auto-discovered if this annotation is not specified
-
-    # Health Check Settings
+     # Health Check Settings
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: traffic-port
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /index.html
@@ -414,6 +412,15 @@ metadata:
 
     # AWS Resource Tags
     service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: Environment=dev,Team=test
+
+    # TLS
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:123456789012:certificate/d86de939-8ffd-410f-adce-0ce1f5be6e0d # specifies the ARN of one or more certificates managed by the AWS Certificate Manager.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: 443, # Specify this annotation if you need both TLS and non-TLS listeners on the same load balancer
+    service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # specifies the Security Policy for NLB frontend connections, allowing you to control the protocol and ciphers.
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp # specifies whether to use TLS or TCP for the backend traffic between the load balancer and the kubernetes pods.
+
+    # External DNS
+    external-dns.alpha.kubernetes.io/hostname: nlbdns101.stacksimplify.com # For creating autormatically a Record Set (DNS Records) in Route53
 spec:
   type: LoadBalancer
   loadBalancerClass: service.k8s.aws/nlb
@@ -423,5 +430,5 @@ spec:
     - port: 80 # creates "listener" 80 in NLB
       targetPort: 80 # creates "target group" in NLB
     - port: 443
-      targetPort: 80
+      targetPort: 80 # create a new "target group" (even though there is already a target group with port 80)
 ```

@@ -26,3 +26,5 @@ subjects:
     namespace: default
     name: e6dsad-2392-ksaj2-92933 # Object ID of the Azure AD Group
 ```
+
+> Remember: Kubernetes does not handle Identity Management. Therefore "Users" and "Groups" are not Kubernetes native objects
