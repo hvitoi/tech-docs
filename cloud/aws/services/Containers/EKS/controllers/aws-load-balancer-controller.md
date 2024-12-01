@@ -407,7 +407,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10" # The controller currently ignores the timeout configuration due to the limitations on the AWS NLB. The default timeout for TCP is 10s and HTTP is 6s.
 
     # Access Control
-    service.beta.kubernetes.io/load-balancer-source-ranges: 0.0.0.0/0  # specifies the CIDRs that are allowed to access the NLB.
+    service.beta.kubernetes.io/load-balancer-source-ranges: 0.0.0.0/0  # specifies the CIDRs that are allowed to access the NLB. This should be omitted for internal load balancers
     service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # specifies whether the NLB will be internet-facing or internal (internal by default)
 
     # AWS Resource Tags
