@@ -86,11 +86,6 @@ Properties:
   - Added by default
   - Used by the addon "Amazon VPC CNI"
 
-```shell
-# describes the config that contains the references to the worker nodes iam role
-kubectl describe cm/aws-auth -n kube-system
-```
-
 ### Subnets
 
 - Worker nodes connect to the master nodes (control plane) via the cluster API server endpoint

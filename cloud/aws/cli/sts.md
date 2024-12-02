@@ -31,7 +31,8 @@ aws sts get-session-token --duration-seconds 3600
 ```shell
 aws sts assume-role \
   --role-arn arn:aws:iam::123456789012:role/MyRole \
-  --role-session-name MySession
+  --role-session-name MySession \
+  --duration-seconds 900
 ```
 
 ## assume-role-with-saml

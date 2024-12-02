@@ -1,5 +1,6 @@
 # AWS::IAM::Role
 
+- <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html>
 - `Role` is an identity intended to be used/assumed by another entity
   - E.g., give an EC2 instance permission to access an S3 bucket
 - Roles have `short term credentials` (differently from users that have long term credentials)
@@ -15,6 +16,42 @@
 
 - The assumed role is represented by the ARN `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
   - Where "sub" is the sub/principal/session name
+
+- When assuming a role (e.g., via `aws sts assume-role` or `aws sts assume-role-with-saml`) temporary credentials are returned. These credentials can be used to access aws resources
+
+```json
+// temp-credentials.json
+{
+  "Credentials": {
+    "AccessKeyId": "...",
+    "SecretAccessKey": "...",
+    "SessionToken": "...",
+    "Expiration": "2024-11-16T16:57:39+00:00"
+  },
+  "AssumedRoleUser": {
+    "AssumedRoleId": "1234:henrique.vitoi",
+    "Arn": "arn:aws:sts::123456789012:assumed-role/my-role/henrique.vitoi"
+  },
+  "Subject": "henrique.vitoi",
+  "SubjectType": "urn:oasis:names:tc:SAML:1.1:nameid-format:x509SubjectName",
+  "Issuer": "http://www.okta.com/asdf",
+  "Audience": "https://signin.aws.amazon.com/saml",
+  "NameQualifier": "..."
+}
+```
+
+```shell
+export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' temp-credentials.json)
+export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' temp-credentials.json)
+export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' temp-credentials.json)
+
+cat >> ~/.aws/credentials <<EOL
+[default]
+aws_access_key_id = $AWS_ACCESS_KEY_ID
+aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
+aws_session_token = $AWS_SESSION_TOKEN
+EOL
+```
 
 ## Properties
 
@@ -224,7 +261,22 @@ aws iam create-role \
 
 ##### AWS
 
-- Allow entities in `other AWS accounts` belonging to you or a 3rd party to perform actions in this account
+- Allow entities in `AWS accounts` belonging to you or a 3rd party to perform actions in this account
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root" // if set to the self account id this allows anything in this account to assume this role
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
 
 ```json
 {
@@ -234,11 +286,11 @@ aws iam create-role \
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root", // ID of the other AWS account
         "Service": [
           "edgelambda.amazonaws.com",
           "lambda.amazonaws.com"
-        ],
-        "AWS": "arn:aws:iam::123456789012:root" // ID of the other AWS account
+        ]
       }
     }
   ]
