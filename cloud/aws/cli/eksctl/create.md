@@ -143,3 +143,13 @@ eksctl create podidentityassociation \
   # The policy to attach to the role
   --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 ```
+
+## iamidentitymapping
+
+- Creates a mapping _from_ an IAM principal (user or role) _to_ a Kubernetes entity (user or group)
+- This adds an entry to the `aws-auth` ConfigMap
+- This form of authenticating IAM principals is mostly deprecated, consider using `EKS Access Entries` instead
+
+```shell
+eksctl create iamidentitymapping ...
+```

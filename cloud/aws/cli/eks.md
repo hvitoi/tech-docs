@@ -1,12 +1,14 @@
 # aws eks
 
-## list-clusters
+## Cluster
+
+### list-clusters
 
 ```shell
 aws eks list-clusters --query "clusters[*]" --output text
 ```
 
-## describe-cluster
+### describe-cluster
 
 - Important Info
   - roleArn (cluster role)
@@ -16,17 +18,21 @@ aws eks list-clusters --query "clusters[*]" --output text
 aws eks describe-cluster --name foo
 ```
 
-## list-access-entries
+### update-cluster-config
 
-- Describe what iam principals have access to the cluster (including assumable roles)
+- Enable `eks access entries` or `aws-auth configmap` authentication with the Kubernetes API
 
 ```shell
-aws eks list-access-entries --cluster-name foo
+aws eks update-cluster-config \
+  --name my-cluster \
+  --access-config authenticationMode=API_AND_CONFIG_MAP
 ```
 
-## list-access-policies
+## EKS Access Entries
 
-- List all available policies
+### list-access-policies
+
+- List all available policies for Access Entries
 
 ```shell
 aws eks list-access-policies
@@ -44,7 +50,64 @@ AmazonSagemakerHyperpodControllerPolicy
 AmazonSagemakerHyperpodSystemNamespacePolicy
 ```
 
-## update-kubeconfig
+### list-access-entries
+
+- Describe what iam principals have access to the cluster (including assumable roles)
+
+```shell
+aws eks list-access-entries --cluster-name foo
+```
+
+### create-access-entry
+
+- The Access Entry is empty at first (no associated policies)
+
+```shell
+aws eks create-access-entry \
+  --cluster-name my-cluster \
+  --principal-arn "arn:aws:iam::123456789012:role/my-role" \
+  --type STANDARD \
+  --user Viewers \
+  --kubernetes-groups Viewers
+```
+
+### list-associated-access-policies
+
+- List all policies associated with an Access Entry
+
+```shell
+aws eks list-associated-access-policies \
+  --cluster-name my-cluster \
+  --principal-arn arn:aws:iam::123456789012:role/my-role
+```
+
+### associate-access-policy
+
+- Associate an `access policy` to an `access entry`
+- Run `aws eks list-access-policies` to get all available policies
+
+```shell
+aws eks associate-access-policy \
+  --cluster-name my-cluster \
+  --principal-arn arn:aws:iam::123456789012:role/my-role \
+  --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy \
+  --access-scope type=cluster
+  # --access-scope type=namespace,namespaces=my-namespace1,my-namespace2
+```
+
+## Addons
+
+### describe-addon-versions
+
+- Describe an addon (not necessarily installed in the cluster)
+
+```shell
+aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
+```
+
+## Setup
+
+### update-kubeconfig
 
 ```shell
 # by cluster name (in the account & region defined in the profile)
@@ -76,15 +139,7 @@ for cluster in $clusters; do
 done
 ```
 
-## describe-addon-versions
-
-- Describe an addon (not necessarily installed in the cluster)
-
-```shell
-aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
-```
-
-## get-token
+### get-token
 
 - This CLI is usually triggered via kubeconfig so that a get can be fetched on the fly for kubectl
 
