@@ -10,7 +10,8 @@
 
 ## EKS Permissions
 
-- Give CodeBuild permission to interact with EKS
+- Gives `CodeBuild` permissions to interact with the Kubernetes Cluster
+- In this case, `CodeBuild` authenticates to the Kubernetes API with the `system:masters` group, which allows it to do anything in the cluster
 
 ```json
 // policy.json
@@ -57,8 +58,12 @@ aws iam put-role-policy \
   --policy-document file://policy.json
 ```
 
-- Patch the `cm/aws-auth` in order to attach the new role to the worker nodes (when impersonated by the "build" user)
-- The "build" user is used when running CodeBuild actions on the worker nodes
+- aws-auth ConfigMap
+  - Patch the `cm/aws-auth` in order to attach the new role to the worker nodes (when impersonated by the "build" user)
+  - The "build" user is used when running CodeBuild actions on the worker nodes
+
+- EKS Access Entry
+  - Instead of patching the aws-auth configmap you can also create an access entry in the EKS API
 
 ```yaml
 apiVersion: v1
@@ -68,13 +73,13 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - username: system:node:{{EC2PrivateDNSName}}
-      rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
+    - rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
+      username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
-    - username: build
-      rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+    - rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+      username: build
       groups:
         - system:masters
 ```

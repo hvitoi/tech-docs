@@ -28,15 +28,15 @@ metadata:
 data:
   mapRoles: |
     # IAM roles assumed by the worker nodes
-    - username: system:node:{{EC2PrivateDNSName}} # each nodes's username. E.g., system:node:ip-10-0-0-1.ec2.internal
-      rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
+    - rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
+      username: system:node:{{EC2PrivateDNSName}} # each nodes's username. E.g., system:node:ip-10-0-0-1.ec2.internal
       groups:
         - system:bootstrappers # Allows nodes to bootstrap themselves.
         - system:nodes # Grants worker nodes permissions needed to function properly.
 
     # IAM role assumed by CodeBuild (can be migrated into an Access Entry)
-    - username: build
-      rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+    - rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+      username: build
       groups:
         - system:masters # Grants full administrative access to the Kubernetes cluster. Use this group cautiously as it provides extensive permissions.
 ```
