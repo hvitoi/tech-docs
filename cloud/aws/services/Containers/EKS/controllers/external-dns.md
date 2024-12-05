@@ -135,8 +135,8 @@ kind: Ingress
 metadata:
   name: my-ing
   annotations:
-    # these records are added to the HostedZone
-    # A records that point to the IP of the LoadBalancer (probably created via aws-load-balancer-controller)
+    # The "A Records" are added to the HostedZone
+    # The "A Records" will point to the LoadBalancer's IP (created by the aws-load-balancer-controller)
     # TXT records are also added
     external-dns.alpha.kubernetes.io/hostname: foo.hvitoi.com, bar.hvitoi.com
     external-dns.alpha.kubernetes.io/ttl: 10

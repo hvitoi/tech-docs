@@ -48,13 +48,14 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
 
       # Apply updated Kubernetes Manifest
-      - kubectl apply -f my-deployment.yaml
+      - kubectl apply -f my-deployment.yaml # This is actually a "Deploy" and shouldn't be here in CodeBuild. You can use other tools for deploying (e.g., CodeDeploy)
 
       # Create the build artifacts (to be used in other stages)
       - printf '[{"name":"my-deployment.yaml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 
 artifacts:
-  # these artifacts are saved to S3
+  # these artifacts are saved to a predefined S3 bucket
+  # a new folder is created inside of the bucket location for each new build
   files:
     - build.json
     - my-deployment.yaml
