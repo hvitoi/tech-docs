@@ -4,8 +4,8 @@
 
 - This is the original authentication mode for Amazon EKS clusters.
 - In this mode the cluster will source `authenticated IAM principals` from the `aws-auth` ConfigMap.
-- It is mostly used for IAM roles used by `managed node groups` or `fargate profiles`
-- For other use cases, consider using `access entries`
+
+> This authentication method is currently deprecated, consider using EKS Access Entries
 
 ## Initial user
 

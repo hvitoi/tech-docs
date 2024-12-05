@@ -32,7 +32,7 @@ aws eks update-cluster-config \
 
 ### list-access-policies
 
-- List all available policies for Access Entries
+- List all `available policies` for EKS Access Entries
 
 ```shell
 aws eks list-access-policies
@@ -52,7 +52,7 @@ AmazonSagemakerHyperpodSystemNamespacePolicy
 
 ### list-access-entries
 
-- Describe what iam principals have access to the cluster (including assumable roles)
+- Describe what `iam principals` (user and roles) have access to the cluster
 
 ```shell
 aws eks list-access-entries --cluster-name foo

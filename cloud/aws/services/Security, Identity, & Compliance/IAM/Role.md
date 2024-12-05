@@ -120,7 +120,7 @@ aws iam create-role \
 
 ##### sts:AssumeRole
 
-- Allow an AWS service (e.g, EKS cluster) to assume the role
+- Allow an AWS entity (e.g, an EKS cluster resource, another IAM role) to assume the role
 
 ```json
 {
@@ -134,6 +134,19 @@ aws iam create-role \
           "eks.amazonaws.com"
         ]
       }
+    }
+  ]
+}
+```
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::123456789012s:role/foo"
     }
   ]
 }

@@ -1,8 +1,9 @@
 # https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
 
-# export REPOSITORY_URI=123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app
-# export EKS_KUBECTL_ROLE_ARN=arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
-# export EKS_CLUSTER_NAME=my-cluster
+## ENVIRONMENT VARIABLES (these are defined at the CodeBuild Project Definition)
+# REPOSITORY_URI=123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app
+# EKS_KUBECTL_ROLE_ARN=arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+# EKS_CLUSTER_NAME=my-cluster
 
 version: 0.2
 phases:
@@ -53,6 +54,7 @@ phases:
       - printf '[{"name":"my-deployment.yaml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 
 artifacts:
+  # these artifacts are saved to S3
   files:
     - build.json
     - my-deployment.yaml

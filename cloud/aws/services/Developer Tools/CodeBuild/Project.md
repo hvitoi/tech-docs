@@ -8,82 +8,6 @@
   - Creates artifacts
 - The `actions` executed by CodeBuild is defined by the `buildspec.yaml` file in the root directory of the target git repository
 
-## EKS Permissions
-
-- Gives `CodeBuild` permissions to interact with the Kubernetes Cluster
-- In this case, `CodeBuild` authenticates to the Kubernetes API with the `system:masters` group, which allows it to do anything in the cluster
-
-```json
-// policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "eks:Describe*",
-      "Resource": "*"
-    }
-  ]
-}
-```
-
-```json
-// trust-policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::123456789012:root"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-```shell
-set AWS_ACCOUNT (aws sts get-caller-identity --query 'Account' --output text)
-
-# Create role to be assumed by CodeCommit
-aws iam create-role \
-  --role-name EksCodeBuildKubectlRole \
-  --assume-role-policy-document (cat trust-policy.json)
-
-# Add inline policy to the role
-aws iam put-role-policy \
-  --role-name EksCodeBuildKubectlRole \
-  --policy-name eks-describe \
-  --policy-document file://policy.json
-```
-
-- aws-auth ConfigMap
-  - Patch the `cm/aws-auth` in order to attach the new role to the worker nodes (when impersonated by the "build" user)
-  - The "build" user is used when running CodeBuild actions on the worker nodes
-
-- EKS Access Entry
-  - Instead of patching the aws-auth configmap you can also create an access entry in the EKS API
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: aws-auth
-  namespace: kube-system
-data:
-  mapRoles: |
-    - rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
-      username: system:node:{{EC2PrivateDNSName}}
-      groups:
-        - system:bootstrappers
-        - system:nodes
-    - rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
-      username: build
-      groups:
-        - system:masters
-```
-
 ## Properties
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html>
@@ -161,3 +85,137 @@ Properties:
 ### LogsConfig
 
 - A project can create logs in `CloudWatch Logs`, an `S3 bucket`, or both.
+
+### ServiceRole
+
+- This is the IAM Role that grants permissions to CodeBuild to modify AWS resources
+- This Role is usually automatically created as part of the CodeBuild project creation
+
+```json
+// trust-policy.json
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codebuild.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+#### EKS
+
+- In order to allow CodeBuild to apply manifests to Kubernetes API we will create a separate role just to be assumed by CodeBuild in the deploy step
+
+- This role allows:
+  1. To List EKS clusters directly
+  1. To impersonate as a Kubernetes Entity (the `build` user in the `system:masters` group). The `system:masters` group, which allows it to do anything in the cluster
+
+```json
+// trust-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root" // not a good practice! This is too broad so that anyone can assume this role
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+```shell
+# Create role to be assumed by CodeCommit
+aws iam create-role \
+  --role-name MyEksRole \
+  --assume-role-policy-document (cat trust-policy.json)
+```
+
+```json
+// policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "eks:Describe*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+```shell
+# Add inline policy to the role
+aws iam put-role-policy \
+  --role-name MyEksRole \
+  --policy-name eks-describe \
+  --policy-document file://policy.json
+```
+
+- After creating the role you need to associate the IAM role to the Kubernetes Entity
+  - **aws-auth ConfigMap**
+    - Patch the `cm/aws-auth` in order to attach the new role to the worker nodes (when impersonated by the "build" user)
+    - The "build" user is used when running CodeBuild actions on the worker nodes
+
+  - **EKS Access Entry**
+    - Instead of patching the aws-auth configmap you can also create an access entry in the EKS API
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::123456789012:role/eksctl-foo-nodegroup-bar-NodeInstanceRole-u4CxYVzWNTmG
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+    - rolearn: arn:aws:iam::123456789012:role/EksCodeBuildKubectlRole
+      username: build
+      groups:
+        - system:masters
+```
+
+- And then finally you need to make this role assumable by the CodeBuild's original role by adding a `AssumeRole` policy to the CodeBuild's original role
+
+```json
+// policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::307096125112:role/foo"
+    }
+  ]
+}
+```
+
+```shell
+aws iam put-role-policy \
+  --role-name CodeBuildRole \
+  --policy-name assume-eks-role \
+  --policy-document file://policy.json
+```
+
+#### ECR
+
+- Grant CodeBuild full access to ECR
+
+```shell
+aws iam attach-role-policy \
+  --role-name MyCodeBuildRole \
+  --policy-arn "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerRegistryFullAccess"
+```

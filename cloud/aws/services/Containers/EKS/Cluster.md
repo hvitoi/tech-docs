@@ -107,7 +107,7 @@ Properties:
 - This role is important for the cluster to auto-manage itself. Example: to create more nodes (ec2 instances) when scaling is needed
 - The cluster role must be associated with a policy that allow managing several aspects of aws
 - ARN example: `arn:aws:iam::123456789012:role/eksctl-foo-cluster-ServiceRole-VBrrsaRBhVBQ`
-- It's different from the node group role, which is attached to the worker nodes
+- It's different from the node group role, which is attached to the worker nodes and it is used to allow access to the Kubernetes API (opposite direction)
 
 - Managed Policies
   - [AmazonEKSClusterPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSClusterPolicy.html)
