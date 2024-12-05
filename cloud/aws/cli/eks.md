@@ -69,6 +69,11 @@ aws eks create-access-entry \
   --type STANDARD \
   --user Viewers \
   --kubernetes-groups Viewers
+
+aws eks create-access-entry \
+    --cluster-name my-cluster \
+    --principal-arn arn:aws:iam::123456789012:role/fis-experiment-role \
+    --username fis-experiment
 ```
 
 ### list-associated-access-policies

@@ -9,3 +9,5 @@
 (assoc {:a "a", :b "b"} :c "c") ; add new element
 (assoc {:a "a", :b "b"} :c "c" :d "d") ; add multiple elements
 (assoc {:a "a", :b "b"} :a "z") ; modify existing element
+
+(assoc nil :foo "baz")

@@ -11,3 +11,5 @@
 (assoc-in [0 1 [20 21]] [2 0] 100) ; modify existing element
 
 (assoc-in [[:a :b] [:c :d]] [0 0] :z)
+
+(assoc-in nil [:bar :foo] "baz")
