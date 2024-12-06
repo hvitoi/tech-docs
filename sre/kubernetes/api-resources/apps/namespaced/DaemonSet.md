@@ -1,11 +1,13 @@
 # DaemonSet (ds)
 
-- `DaemonSet` assures that one replica of the pod runs on each node
+- `DaemonSet` assures that one (and only one) replica of the pod runs on each node
 - DaemonSets are not scheduled by kube-scheduler, because it must be in all of the nodes
+
 - **Use cases**
-  - Monitoring Solution: monitoring agent for each node
-  - Logs Viewer
-  - kube-proxy: networking solution for each node
+  - `Logs collection`: e.g., fluentd
+  - `Node monitoring`: e.g., cloudwatchagent
+  - `Application Trace Collection`: e.g., aws x-ray
+  - `Network solutions`: e.g., kube-proxy
 
 ```yaml
 apiVersion: apps/v1
