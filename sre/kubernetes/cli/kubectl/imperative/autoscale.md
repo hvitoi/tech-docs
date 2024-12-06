@@ -1,8 +1,7 @@
 # kubectl autoscale
 
 - Scales automatically based on load
-- `Horizontal Pod Autoscaler` (HPA)
-  - apiVersion: autoscaling/v1
+- Creates a `HorizontalPodAutoscaler` (HPA) resource
 
 ```shell
 # Scales 1 when cpu reaches 70% until 10 max

@@ -19,6 +19,26 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: currency-exchange
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 4
+          periodSeconds: 15
+      selectPolicy: Max
 ```
 
-- Default cooldown period to scale in is 5 minutes
+## Control Loop
+
+- The control loop is executed every `15 seconds`
+- The default cooldown period to scale-in is 5 minutes
