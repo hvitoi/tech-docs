@@ -16,6 +16,44 @@ aws iam list-account-aliases --query "AccountAliases[0]" --output text
 aws iam list-users
 ```
 
+### create-user
+
+```shell
+aws iam create-user \
+  --user-name ses-smtp-user
+```
+
+### attach-user-policy
+
+- Attach a policy to a user
+
+```shell
+aws iam attach-user-policy \
+    --user-name ses-smtp-user \
+    --policy-arn arn:aws:iam::aws:policy/AmazonSESFullAccess
+```
+
+### create-access-key
+
+- Create access keys for a given user
+
+```shell
+aws iam create-access-key \
+  --user-name ses-smtp-user
+```
+
+```json
+{
+  "AccessKey": {
+    "UserName": "ses-smtp-user",
+    "AccessKeyId": "...",
+    "SecretAccessKey": "...",
+    "Status": "Active",
+    "CreateDate": "2024-12-05T12:00:00Z"
+  }
+}
+```
+
 ## Groups
 
 ### list-groups
