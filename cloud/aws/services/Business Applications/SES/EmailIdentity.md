@@ -1,7 +1,6 @@
 # AWS::SES::EmailIdentity
 
 - Before sending emails on one's behalf, you need first verify the address by creating an `Email Identity`
-- The verification is only necessary for using the given email as the sender
 
 ## Properties
 
