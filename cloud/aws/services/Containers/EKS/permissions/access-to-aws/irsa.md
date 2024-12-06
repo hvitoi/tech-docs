@@ -3,17 +3,12 @@
 - <https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html>
 - Associates an `IAM Role` with a `Kubernetes Service Account` and configure your Pods to use the SA.
 - Allow `Pods` to make requests to `AWS services`
+- In order to use IRSAs, you need an `IAM Open ID Connect provider`
 
 - **Benefits**
   - `Least privilege`: It avoids using the IAM role of the EC2 instances (nodes) and instead use a more granular permission for a specific pod/application
   - `Credential isolation`: a pod's containers can only retrieve credentials for the IAM role that's associated with the SA that the container uses
   - `Auditability`: access and event logging is available
-
-## OIDC Provider
-
-- In order to use IRSAs, you need an `IAM Open ID Connect provider`
-- This is what makes your EKS CLuster as an Identity Provider that is able to tell (based on the `identity information` contained in the SA and its association with pods) what pods can access certain AWS resources
-- Use the command `eksctl utils associate-iam-oidc-provider` to create it
 
 ## Association
 
