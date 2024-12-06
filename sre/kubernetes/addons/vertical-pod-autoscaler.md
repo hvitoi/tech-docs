@@ -1,5 +1,6 @@
 # Vertical Pod Autoscaler (VPA)
 
+- <https://github.com/kubernetes/autoscaler>
 - Automatically Adjusts `CPU` and `Memory` reservations to help `right sizing` the application
 - VPA is not natively available in the Kubernetes Cluster like HPA is. It's necessary to install it manually
 - `VPA` needs the `metrics server` installed in order to watch the metrics

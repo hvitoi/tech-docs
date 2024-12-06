@@ -1,17 +1,14 @@
 # external-dns
 
-- <https://github.com/kubernetes-sigs/external-dns>
-- This is not an AWS controller, but it supports aws
-- Check the external-dns docs directly for more details
+> This is a cloud-agnostic controller, for more info check the Kubernetes tech-docs directly
+
 - If your domain has been registered somewhere else you need first to create a HostedZone (`AWS::Route53::HostedZone`) for it in AWS. If the domain has been registered in AWS, the HostedZone has already been created automatically
 
 ![External DNS](.images/external-dns.png)
 
-## Permissions
+## Permissions (IRSA)
 
 - The DNS controller pods need access to `Route 53` in order to manage DNS records
-
-### IRSA
 
 ```json
 // Customer Managed Policy
@@ -123,28 +120,4 @@ spec:
             - --txt-owner-id=my-hostedzone-identifier
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
-```
-
-## Annotations
-
-- Annotations for Ingress and Service objects are exactly the same
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: my-ing
-  annotations:
-    # The "A" Records are added to the HostedZone
-    # The "A" Records will point to the LoadBalancer's IP (created by the aws-load-balancer-controller)
-    # TXT records are also added
-    external-dns.alpha.kubernetes.io/hostname: foo.hvitoi.com, bar.hvitoi.com
-    external-dns.alpha.kubernetes.io/ttl: 10
-spec:
-  ingressClassName: my-aws-ingress-class
-  defaultBackend:
-    service:
-      name: my-svc-nodeport
-      port:
-        number: 80
 ```
