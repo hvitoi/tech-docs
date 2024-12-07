@@ -13,13 +13,13 @@ spec:
         app: my-app
     spec:
       containers:
-        - image: nginx
-          name: nginx-container
+        - name: nginx-container
+          image: nginx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-svc-nodeport
+  name: my-svc
 spec:
   type: NodePort
   selector:

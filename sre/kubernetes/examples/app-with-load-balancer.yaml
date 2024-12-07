@@ -19,9 +19,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-lb
+  name: my-svc-lb
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing # expose it to the internet
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 spec:
   type: LoadBalancer
   loadBalancerClass: service.k8s.aws/nlb # requires the aws-load-balancer-controller

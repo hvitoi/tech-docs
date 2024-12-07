@@ -19,11 +19,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-svc
+  name: my-svc-np
 spec:
   type: NodePort
   selector:
     app: my-app
   ports:
     - port: 80
-      nodePort: 31000
+      nodePort: 31000 # will not be accessible to the internal if the node is deployed in a private subnet
