@@ -4,6 +4,8 @@
 
 ## Types
 
+- Most of the policies are `AWS managed`, but you can also create your own policy (`Customer Managed`)
+
 - **Customer Managed**
   - This are the policies in fact created with the AWS::IAM::ManagedPolicy resource
   - These are policies defined by the user (you) that can be reused
