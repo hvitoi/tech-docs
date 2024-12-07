@@ -22,8 +22,8 @@ eksctl create iamserviceaccount \
 ```
 
 - After creating the required IRSA, you can then install the EKS Addon `amazon-cloudwatch-observability`. It installs:
-  - `cloudwatch-agent`
-  - `fluent-bit`
+  - `cloudwatch-agent` (push metrics)
+  - `fluent-bit` (push logs)
   - `neuron-monitor`
   - `cloudwatch-controller`
 
@@ -36,10 +36,10 @@ aws eks create-addon \
 
 - If you use Fargate profiles, install the EKS Addon `AWS Distro for OpenTelemetry`
 
-## Container Insights Map
+## Container Map
 
-![Container Insights Map](.images/container-insights-map.png)
+![Container Map](.images/container-insights-container-map.png)
 
-## Performance Dashboards
+## Performance Monitoring
 
-![Performance Dashboard](.images/performance-dashboard.png)
+![Performance Monitoring](.images/container-insights-performance-monitoring.png)
