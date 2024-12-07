@@ -21,7 +21,11 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-- After creating the required IRSA, you can then install the EKS Addon `amazon-cloudwatch-observability`
+- After creating the required IRSA, you can then install the EKS Addon `amazon-cloudwatch-observability`. It installs:
+  - `cloudwatch-agent`
+  - `fluent-bit`
+  - `neuron-monitor`
+  - `cloudwatch-controller`
 
 ```shell
 aws eks create-addon \

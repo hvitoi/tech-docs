@@ -16,7 +16,7 @@ eksctl get cluster
   - aws-ebs-csi-driver
 
 ```shell
-eksctl get addon --cluster foo
+eksctl get addon --cluster my-cluster
 ```
 
 ## Nodes
@@ -24,13 +24,13 @@ eksctl get addon --cluster foo
 ### nodegroup
 
 ```shell
-eksctl get nodegroup --cluster foo
+eksctl get nodegroup --cluster my-cluster
 ```
 
 ### fargateprofile
 
 ```shell
-eksctl get fargateprofile --cluster foo
+eksctl get fargateprofile --cluster my-cluster
 ```
 
 ## Access to AWS
@@ -40,13 +40,13 @@ eksctl get fargateprofile --cluster foo
 - Get all SAs em the cluster that are associated with an IAM role
 
 ```shell
-eksctl get iamserviceaccount --cluster foo
+eksctl get iamserviceaccount --cluster my-cluster
 ```
 
 ### podidentityassociation
 
 ```shell
-eksctl get podidentityassociation --cluster foo
+eksctl get podidentityassociation --cluster my-cluster
 ```
 
 ## Access to Kubernetes
@@ -54,19 +54,19 @@ eksctl get podidentityassociation --cluster foo
 ### iamidentitymapping
 
 ```shell
-eksctl get iamidentitymapping --cluster foo
+eksctl get iamidentitymapping --cluster my-cluster
 ```
 
 ### accessentry
 
 ```shell
-eksctl get accessentry --cluster foo
+eksctl get accessentry --cluster my-cluster
 ```
 
 ### identityprovider
 
-- Associate an OIDC provider as an additional method for user authentication to your Kubernetes cluster.
+- The the `external` OIDC providers used as an additional method for user authentication to the cluster
 
 ```shell
-eksctl get identityprovider --cluster foo
+eksctl get identityprovider --cluster my-cluster
 ```

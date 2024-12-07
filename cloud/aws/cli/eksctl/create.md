@@ -175,3 +175,7 @@ eksctl create iamidentitymapping ...
 ### accessentry
 
 - New way to authentication to Kubernetes API
+
+```shell
+eksctl create accessentry ...
+```

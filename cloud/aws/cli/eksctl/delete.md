@@ -9,7 +9,7 @@
 eksctl delete cluster -f eks-cluster.yaml
 
 # delete by cluster name
-eksctl delete cluster --name foo
+eksctl delete cluster --name my-cluster
 ```
 
 ## addon
@@ -19,7 +19,7 @@ eksctl delete cluster --name foo
 
 ```shell
 eksctl delete addon \
-  --cluster foo \
+  --cluster my-cluster \
   --name aws-ebs-csi-driver
 ```
 
@@ -31,7 +31,7 @@ eksctl delete addon \
 
 ```shell
 eksctl delete nodegroup \
-  --cluster foo \
+  --cluster my-cluster \
   --name my-node-group
 ```
 
@@ -39,7 +39,7 @@ eksctl delete nodegroup \
 
 ```shell
 eksctl delete fargateprofile \
-  --cluster foo \
+  --cluster my-cluster \
   --name my-fargate-profile \
   --wait
 ```
@@ -55,7 +55,7 @@ eksctl delete fargateprofile \
 ```shell
 eksctl delete iamserviceaccount \
   --name ebs-csi-controller-sa \
-  --cluster foo \
+  --cluster my-cluster \
   --namespace kube-system
 ```
 
@@ -67,7 +67,25 @@ eksctl delete iamserviceaccount \
 
 ```shell
 eksctl delete podidentityassociation \
-  --cluster foo \
+  --cluster my-cluster \
   --namespace kube-system
   --service-account-name aws-load-balancer-controller \
+```
+
+## Access to Kubernetes
+
+### iamidentitymapping
+
+```shell
+eksctl delete iamidentitymapping \
+  --cluster my-cluster \
+  --arn "arn:aws:iam::123456789012:role/<role>"
+```
+
+### accessentry
+
+```shell
+eksctl delete accessentry \
+  --cluster my-cluster \
+  --principal-arn <arn>
 ```
