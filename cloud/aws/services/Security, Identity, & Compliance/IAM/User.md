@@ -1,7 +1,7 @@
 # AWS::IAM::User
 
 - `User` is an identity intended to be used authenticate to AWS
-- Users have `long term credentials`
+- Users have `long term credentials`. Differently from roles which have temporary credentials
 - `Password policies` can be set for all users under `Account Settings` s to enforce strong password security
 
 > The "root user" provided at the account creation is not actually an IAM user, but rather an different entity that have unrestricted access to the account

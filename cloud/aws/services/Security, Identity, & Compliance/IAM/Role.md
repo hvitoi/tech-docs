@@ -204,6 +204,8 @@ aws iam create-role \
 
 #### Principal
 
+- The principal is the `trusted entity`. It's "who" can assume a role
+
 ##### Service
 
 - Allow AWS services like EC2, Lambda, or others to perform actions in this account

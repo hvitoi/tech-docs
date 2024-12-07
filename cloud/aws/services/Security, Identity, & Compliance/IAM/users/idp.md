@@ -52,7 +52,7 @@ IAM supports IdPs that are compatible with:
 - **Custom Identity Broker**
   - The IdP talks directly to the sts and give the token to the user
 
-- _**AD_**
+- _**AD**
   - Database of objects (users, files, printers, etc)
 
-- _**SSO_**
+- _**SSO** (AWS::SSO::Instance)
