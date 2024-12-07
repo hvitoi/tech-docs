@@ -110,6 +110,17 @@ aws eks associate-access-policy \
 aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
 ```
 
+### create-addon
+
+- Install a new addon into the cluster
+
+```shell
+aws eks create-addon \
+  --addon-name amazon-cloudwatch-observability \
+  --cluster-name my-cluster-name \
+  --service-account-role-arn arn:aws:iam::123456789012:role/<role>
+```
+
 ## Setup
 
 ### update-kubeconfig

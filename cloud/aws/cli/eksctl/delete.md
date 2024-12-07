@@ -12,25 +12,6 @@ eksctl delete cluster -f eks-cluster.yaml
 eksctl delete cluster --name foo
 ```
 
-## nodegroup
-
-- Delete only the node group
-
-```shell
-eksctl delete nodegroup \
-  --cluster foo \
-  --name my-node-group
-```
-
-## fargateprofile
-
-```shell
-eksctl delete fargateprofile \
-  --cluster foo \
-  --name my-fargate-profile \
-  --wait
-```
-
 ## addon
 
 - This will automatically remove any Kubernetes `SA` associated with the addon
@@ -42,7 +23,30 @@ eksctl delete addon \
   --name aws-ebs-csi-driver
 ```
 
-## iamserviceaccount
+## Nodes
+
+### nodegroup
+
+- Delete only the node group
+
+```shell
+eksctl delete nodegroup \
+  --cluster foo \
+  --name my-node-group
+```
+
+### fargateprofile
+
+```shell
+eksctl delete fargateprofile \
+  --cluster foo \
+  --name my-fargate-profile \
+  --wait
+```
+
+## Access to AWS
+
+### iamserviceaccount
 
 - Deletes:
   - The `ServiceAccount`
@@ -55,7 +59,7 @@ eksctl delete iamserviceaccount \
   --namespace kube-system
 ```
 
-## podidentityassociation
+### podidentityassociation
 
 - Deletes:
   - The `ServiceAccount`

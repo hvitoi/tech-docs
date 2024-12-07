@@ -24,6 +24,8 @@ eksctl create cluster \
 
 ## addon
 
+> You can also use aws eks create-addon
+
 ```shell
 # Create addons after a cluster has been created
 eksctl create addon --config-file cluster.yaml
