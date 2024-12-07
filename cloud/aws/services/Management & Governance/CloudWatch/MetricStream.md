@@ -1,6 +1,6 @@
 # AWS::CloudWatch::MetricStream
 
-- Metrics streams can automatically stream CloudWatch metrics to AWS destinations including Amazon S3
+- Metrics streams can automatically stream CloudWatch metrics to AWS destinations including Amazon S3 and to many third-party solutions.
 
 ## Properties
 

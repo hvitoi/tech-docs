@@ -5,6 +5,17 @@
 - `Source`: Elastic Beanstalk, EC2, VPC, SDK, ...
 - `Sink`: S3, ElasticSearch, ...
 
+## Kubernetes CloudWatch Agent
+
+- It's a `DaemonSet` that runs on the EKS cluster and collects metrics from the Pods and send it to CloudWatch
+
+### Container Insights
+
+- Collect & aggregate `metrics` and `logs`
+- Metrics include `resources utilization`
+- Provides `diagnostic information` such as container restart failures, etc
+- Can be coupled with `CloudWatch Alarms`
+
 ## Properties
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-insightrule.html>
