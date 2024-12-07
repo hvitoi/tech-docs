@@ -2,7 +2,7 @@
 
 ## associate-iam-oidc-provider
 
-- This command creates an `IAM Open ID Connect Provider` for the cluster
+- Sets up the `IAM OIDC Provider` as a way to authenticate to the AWS API and associate it with the Kubernetes Cluster
 - It's useful so that you can use `AWS IAM roles` for `Kubernetes Service Accounts` (IRSA)
 
 ```shell

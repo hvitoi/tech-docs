@@ -24,10 +24,21 @@ Properties:
 
 ### AddonName
 
-- `vpc-cni`: automatically installed
-- `coredns`: automatically installed
-- `kube-proxy`: automatically installed
-- `aws-ebs-csi-driver`
+- **vpc-cni**
+  - Automatically installed
+
+- **coredns**
+  - Automatically installed
+
+- **kube-proxy**
+  - Automatically installed
+
+- **aws-ebs-csi-driver**
+  - Allows Ingress functionalities
+
+- **amazon-cloudwatch-observability**
+  - Installs the DaemonSets `cloudwatch-agent`, `fluent-bit` and `neuron-monitor` and the Deploment `cloudwatch-controller`
+  - It is installed in the `amazon-cloudwatch` namespace
 
 ### ServiceAccountRoleArn
 

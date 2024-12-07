@@ -28,7 +28,7 @@ aws eks update-cluster-config \
   --access-config authenticationMode=API_AND_CONFIG_MAP
 ```
 
-## EKS Access Entries
+## Kubernetes Authentication: Access Entries
 
 ### list-access-policies
 

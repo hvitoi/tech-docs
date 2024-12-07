@@ -22,7 +22,29 @@ eksctl create cluster \
 - This automatically adds your role (that created the cluster) as a `AmazonEKSClusterAdminPolicy`
 - The kubeconfig should be configured by eksctl but you can also run `aws eks update-kubeconfig`
 
-## nodegroup
+## addon
+
+```shell
+# Create addons after a cluster has been created
+eksctl create addon --config-file cluster.yaml
+```
+
+```shell
+set account_id (aws sts get-caller-identity --query Account --output text)
+eksctl create addon \
+  --name aws-ebs-csi-driver \
+  --cluster foo \
+  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
+
+eksctl create addon \
+  --name eks-pod-identity-agent \
+  --cluster foo \
+  --version 1.0.0
+```
+
+## Nodes
+
+### nodegroup
 
 - To create the nodegroup, you need to provide it with a `ssh key pair` for the ec2 instances
 
@@ -67,7 +89,7 @@ eksctl create nodegroup \
 - The nodegroup creation may take around 5 minutes
 - You are able to see the newly created nodes using `kubectl get node`
 
-## fargateprofile
+### fargateprofile
 
 ```shell
 eksctl create fargateprofile \
@@ -76,28 +98,11 @@ eksctl create fargateprofile \
   --namespace my-fargate-ns # all pods deployed to this ns will be scheduled to this fargate profiles
 ```
 
-## addon
+## Access to AWS
 
-```shell
-# Create addons after a cluster has been created
-eksctl create addon --config-file cluster.yaml
-```
+### iamserviceaccount
 
-```shell
-set account_id (aws sts get-caller-identity --query Account --output text)
-eksctl create addon \
-  --name aws-ebs-csi-driver \
-  --cluster foo \
-  --service-account-role-arn arn:aws:iam::$account_id:role/AmazonEKS_EBS_CSI_DriverRole
-
-eksctl create addon \
-  --name eks-pod-identity-agent \
-  --cluster foo \
-  --version 1.0.0
-```
-
-## iamserviceaccount
-
+- Legacy way to authenticate to AWS API
 - Create an `IRSA` (IAM role for service account)
 - IRSAs allow Kubernetes resources to manage AWS resources
 - This creates a CloudFormation stack with the name like `eksctl-foo-addon-iamserviceaccount-<namespace>-<sa-name>`
@@ -122,8 +127,9 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-## podidentityassociation
+### podidentityassociation
 
+- New way to authenticate to AWS API
 - Creates a CloudFormation stack `eksctl-<cluster>-podidentityrole-<namespace>-<sa-name>`
 - Uses the API `CreatePodIdentityAssociation`
 
@@ -142,10 +148,20 @@ eksctl create podidentityassociation \
   --role-name s3-app-eks-pod-identity-role \
   # The policy to attach to the role
   --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+eksctl create podidentityassociation \
+  --cluster foo \
+  --namespace default \
+  --service-account-name s3-app-sa \
+  --create-service-account \
+  --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 ```
 
-## iamidentitymapping
+## Access to Kubernetes
 
+### iamidentitymapping
+
+- Legacy way to authentication to Kubernetes API
 - Creates a mapping _from_ an IAM principal (user or role) _to_ a Kubernetes entity (user or group)
 - This adds an entry to the `aws-auth` ConfigMap
 - This form of authenticating IAM principals is mostly deprecated, consider using `EKS Access Entries` instead
@@ -153,3 +169,7 @@ eksctl create podidentityassociation \
 ```shell
 eksctl create iamidentitymapping ...
 ```
+
+### accessentry
+
+- New way to authentication to Kubernetes API
