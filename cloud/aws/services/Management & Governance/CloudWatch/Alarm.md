@@ -1,8 +1,13 @@
 # AWS::CloudWatch::Alarm
 
 - Alarm triggering based on a metric
-- Alarm states: `OK`, `INSUFFICIENT_DATA`, `ALARM`
-- Period: timerange to analyze
+- Use the command `aws cloudwatch put-metric-alarm` to create it
+
+## Alarm states
+
+- `OK`
+- `INSUFFICIENT_DATA`
+- `ALARM`
 
 ## Properties
 
@@ -43,4 +48,13 @@ Properties:
 
 ### AlarmActions
 
-- `Actions`: EC2, auto scaling, SNS
+- `Notification` (SNS)
+- `Lambda action`
+- `Auto Scaling action`
+- `EC2 action`
+- `Systems Manager action`
+- `Investigation action`
+
+### Period
+
+- Time range to analyze

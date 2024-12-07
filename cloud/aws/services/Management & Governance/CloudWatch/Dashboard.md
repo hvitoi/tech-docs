@@ -1,6 +1,6 @@
 # AWS::CloudWatch::Dashboard
 
-- Dashboars are `global`
+- Dashboards are `global`
 - Can include graphs from different accounts and regions
 
 ## Properties
