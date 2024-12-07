@@ -11,13 +11,14 @@
 ## Assuming a role
 
 - When a role is assumed, the entity assuming the role gives up the original permissions and take the permissions assigned to the assumed role
-- In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
+- In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider or AWS::IAM::OIDCProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
 - An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
 
 - The assumed role is represented by the ARN `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
   - Where "sub" is the sub/principal/session name
 
 - When assuming a role (e.g., via `aws sts assume-role` or `aws sts assume-role-with-saml`) temporary credentials are returned. These credentials can be used to access aws resources
+- The AWS `Security Token Service` (STS) is used to assume a role and get the temporary credentials
 
 ```json
 // temp-credentials.json
