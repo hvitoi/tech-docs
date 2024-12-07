@@ -2,13 +2,17 @@
 
 Sign in to AWS account can be done by `user type`
 
-## Root user email + Root user password
+## Root user
+
+> Root user email + Root user password
 
 - Account owner & unrestricted access
 - The "root user" created at the account creation is not actually an IAM user, but rather an different entity that have unrestricted access to the account
 - With the sign-in method the menu shows only the account ID
 
-## Account ID + IAM username + IAM password
+## IAM user
+
+> Account ID + IAM username + IAM password
 
 - Within an account & restricted access
 - Shows the account ID + the `user @ group`
