@@ -32,7 +32,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html>
 
 ```yaml
 Type: AWS::IAM::Role

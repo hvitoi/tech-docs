@@ -28,7 +28,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html>
 
 ```yaml
 Type: AWS::IAM::Policy

@@ -9,7 +9,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-accesskey.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-accesskey.html>
 
 ```yaml
 Type: AWS::IAM::AccessKey

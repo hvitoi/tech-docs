@@ -8,7 +8,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html>
 
 ```yaml
 Type: AWS::IAM::User

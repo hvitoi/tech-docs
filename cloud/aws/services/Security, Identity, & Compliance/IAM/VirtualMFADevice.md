@@ -6,7 +6,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html>
 
 ```yaml
 Type: AWS::IAM::VirtualMFADevice
