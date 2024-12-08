@@ -302,29 +302,14 @@ aws iam create-role \
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::123456789012:root" // if set to the self account id this allows anything in this account to assume this role
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Principal": {
         "AWS": "arn:aws:iam::123456789012:root", // ID of the other AWS account
         "Service": [
-          "edgelambda.amazonaws.com",
+          "edgelambda.amazonaws.com", // narrow down to specific services
           "lambda.amazonaws.com"
         ]
-      }
+      },
     }
   ]
 }

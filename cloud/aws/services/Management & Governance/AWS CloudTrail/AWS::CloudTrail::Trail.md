@@ -1,15 +1,17 @@
 # AWS::CloudTrail::Trail
 
-- Provides `governance`, `compliance` and `audit` for your AWS account
+- Focused on `auditing`, `governance` and `compliance` of AWS account activity
+- Provides a history of `who did what, when, and from where` within your AWS environment.
 - History of all events and API calls in the account (console, sdk, cli)
-- These logs can be sent to cloudwatch or s3
 
 ![CloudTrail](.images/cloudtrail.png)
 
-- **Events Retention**
-  - Events are stored for `90 days`
-  - To keep events beyond this period, log them to S3 using `trails`
-    ![CloudTrail Event Retention](.images/cloudtrail-event-retention.png)
+## Events Retention
+
+- Events are stored for `90 days`
+- To keep events beyond this period, log them to S3 using `trails`
+
+![CloudTrail Event Retention](.images/cloudtrail-event-retention.png)
 
 ## Properties
 
