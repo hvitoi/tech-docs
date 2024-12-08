@@ -2,7 +2,8 @@
 
 - IAM is a global service
 - Defines an `identity-based inline policy`
-- Always use the `grant least privilege principle` when creating policies
+- Always use the `grant least privilege principle` when creating policies.
+  - Use IAM Access Analyzer(AWS::AccessAnalyzer::Analyzer) to help with that
 
 ## Policy Evaluation
 

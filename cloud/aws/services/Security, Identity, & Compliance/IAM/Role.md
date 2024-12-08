@@ -108,7 +108,7 @@ aws iam list-role-policies --role-name henrique.vitoi-dev-role
 
 - It's the document that describes what/how entities that can assume this role
 - It specifies the conditions under which an entity (like an AWS service, another IAM role, or a user) can take on the permissions associated with the role.
-- It specifies the `principal` (the AWS service or account) that is allowed to assume the role
+- It specifies the `principal` (the AWS service or account) that is allowed to assume the role (Access Advisor feature)
 
 ```shell
 # Creating an assumable role via cli
