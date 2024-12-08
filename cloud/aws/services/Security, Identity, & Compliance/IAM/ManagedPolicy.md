@@ -52,6 +52,35 @@ Properties:
 ```
 
 ```json
+// PowerUserAccess (AWS Managed)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "NotAction": [
+        "iam:*",
+        "organizations:*",
+        "account:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateServiceLinkedRole",
+        "iam:DeleteServiceLinkedRole",
+        "iam:ListRoles",
+        "organizations:DescribeOrganizations",
+        "account:ListRegions"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+```json
 // AmazonEKSClusterPolicy (AWS Managed)
 {
   "Version": "2012-10-17",
@@ -77,35 +106,6 @@ Properties:
           "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
         }
       }
-    }
-  ]
-}
-```
-
-```json
-// PowerUserAccess (AWS Managed)
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "NotAction": [
-        "iam:*",
-        "organizations:*",
-        "account:*"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreateServiceLinkedRole",
-        "iam:DeleteServiceLinkedRole",
-        "iam:ListRoles",
-        "organizations:DescribeOrganizations",
-        "account:ListRegions"
-      ],
-      "Resource": "*"
     }
   ]
 }

@@ -23,6 +23,7 @@
   - `SQS Queue Policies`
   - `IAM Role Trust Policies`
   - `AWS KMS Key Policies`
+  ![Resource-based Policy](.images/resource-based-policy.png)
 
 ## Properties
 
@@ -57,12 +58,20 @@ Properties:
       "Sid": "MyStatement",
 
       // Effect (allow or deny)
+      // Explicit `DENY` have precedence over any `ALLOW`
       "Effect": "Allow",
 
       // Actions
       "Action": [
         "s3:Get*",
         "s3:List*"
+      ],
+
+      // "NotAction" is used when you want to allow in a following statement for certain actions. If we used "Deny Action" it would take precedent over any other statement
+      "NotAction": [
+        "iam:*",
+        "organizations:*",
+        "account:*"
       ],
 
       // Resource
@@ -101,44 +110,64 @@ Properties:
 
 ```
 
-#### Statements
-
-##### Effect
-
-- **ALLOW** or **DENY**
-- Explicit `DENY` effects have precedence over any `ALLOW`
-
-##### Action
-
-##### Resource
-
-##### Conditions
+#### Conditions
 
 - StringEquals, StringNotEquals, StringLike
 - NumericEquals, NumericNotEquals, NumericLessThan
 - DateEquals, DateNotEquals, DateLessThan
-- Bool
+- Bool, BoolIfExists
 - IpAddress, NotIpAddress
 - ArnEquals, ArnLike
 - Null
 
-##### Variables
+#### Variables & Tags
 
-- ${aws:username}
-  - `"Resource": "arn:aws:s3:::mybucket/${aws:username}/*"`
+- The variable is replaced by a value depending on the context in which the policy is used
+- Some variables are `tag-based`. The tag is applied to some variables (example: `aws:PrincipalTag/owner`)
 
-- **Tags**
-  - AWS Specific
-    - aws:CurrentTime
-    - aws:TokenIssueTime
-    - aws:principaltype
-    - aws:SecureTransport
-    - aws:SourceIp
-    - aws:userid
-    - ec2:SourceInstanceARN
-  - Service Specific
-    - s3:prefix
-    - s3:max-keys
-    - s3:x-amz-acl
-    - sns:Endpoint
-    - sns:Protocol
+- **AWS Specific**
+  - `aws:CurrentTime`
+  - `aws:TokenIssueTime`
+  - `aws:principaltype`
+  - `aws:PrincipalTag/<tag>`
+  - `aws:SecureTransport`
+  - `aws:MultiFactorAuthPresent`
+  - `aws:SourceIp`
+  - `aws:userid`
+
+- **Service Specific**
+  - `s3:prefix`
+  - `s3:max-keys`
+  - `s3:x-amz-acl`
+  - `sns:Endpoint`
+  - `sns:Protocol`
+  - `ec2:SourceInstanceARN`
+  - `ec2:ResourceTag/<tag>`
+
+- You can use variables for:
+  - _Replacing it for values_. E.g., `"Resource": "arn:aws:s3:::mybucket/${aws:username}/*"`
+  - _Using it as conditions_. E.g., `"Condition":{"StringNotEquals":{"s3:ExistingObjectTag/Team":"${aws:PrincipalTag/Team}"}}}`
+
+##### ${aws:username}
+
+```json
+// Allow users access to their buckets only
+{
+  "Resource": "arn:aws:s3:::mybucket/${aws:username}/*"
+}
+```
+
+##### ${aws:PrincipalTag/tag-key}
+
+```json
+{
+  "Condition": {
+    "StringLike": {
+      "s3:prefix": [ "${aws:PrincipalTag/team}/*" ]
+    },
+    "StringEquals": {
+      "s3:ExistingObjectTag/owner": "${aws:PrincipalTag/owner}"
+    }
+  }
+}
+```
