@@ -10,16 +10,15 @@
 
 ### External access findings
 
-- Verify that external access granted to a resource in your account or organization is required.
-- Find out which resources are shared externally
+- Define a **Zone of Trust** (`AWS Account` or `AWS Organization`)
+- Any access from outside the zone of trust will be reported as findings
+- Monitored resources
   - S3 buckets
   - IAM roles
   - KMS keys
   - Lambda functions and layers
   - SQS queues
   - Secrets Manager secrets
-- Define a `Zone of Trust` (aws account or aws organization)
-- Any access of outside the zone of trust will be reported as findings
 
 ### Unused access findings
 
@@ -31,13 +30,13 @@
 
 - Validate the policies against IAM policy grammar
 - Validate that your policies adhere to your security standards ahead of deployments
-- Give recommendations on actions and best practices
+- Give recommendations on actions and best practices with actionable recommendations
 
 ### Policy generation
 
 - Generate policies directly from AccessAnalyzer
-- Based on access activity (uses CloudTrail logs as access data)
-- Generate a fine-grained policy based on the access activity captured in your CloudTrail logs.
+- Uses `CloudTrail Logs` to get the access activity on the resource and elaborate a `fine-grained policy` based on minimum permissions captured by CloudTrail.
+- Reviews logs for up to 90 days
 
 ## Properties
 

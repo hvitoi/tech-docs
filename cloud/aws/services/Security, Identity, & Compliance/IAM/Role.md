@@ -8,50 +8,26 @@
 
 - <arn:aws:iam:123456789012:role:my-role>
 
-## Assuming a role
+## Revoking active sessions
 
-- When a role is assumed, the entity assuming the role `gives up the original permissions` and take the permissions assigned to the assumed role
-- In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider or AWS::IAM::OIDCProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
-- An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
-
-- The assumed role is represented by the ARN `arn:aws:sts::<aws-account>:assumed-role/<role-name>/<sub>`
-  - Where "sub" is the sub/principal/session name
-
-- When assuming a role (e.g., via `aws sts assume-role` or `aws sts assume-role-with-saml`) temporary credentials are returned. These credentials can be used to access aws resources
-- The AWS `Security Token Service` (STS) is used to assume a role and get the temporary credentials
+- You can all current `revoke active sessions` and void the generated temporary credentials
+- When you do that, IAM attaches an inline policy named `AWSRevokeOlderSessions` to the role that denies all permissions to all actions
+- It includes a condition that applies the restrictions `only if the user assumed the role before the point in time` when you revoke the permissions
+- If the user assumes the role after you revoked the permissions, then the deny policy does not apply to that user.
 
 ```json
-// temp-credentials.json
+// Inline policy to be attached to the role
 {
-  "Credentials": {
-    "AccessKeyId": "...",
-    "SecretAccessKey": "...",
-    "SessionToken": "...",
-    "Expiration": "2024-11-16T16:57:39+00:00"
-  },
-  "AssumedRoleUser": {
-    "AssumedRoleId": "1234:henrique.vitoi",
-    "Arn": "arn:aws:sts::123456789012:assumed-role/my-role/henrique.vitoi"
-  },
-  "Subject": "henrique.vitoi",
-  "SubjectType": "urn:oasis:names:tc:SAML:1.1:nameid-format:x509SubjectName",
-  "Issuer": "http://www.okta.com/asdf",
-  "Audience": "https://signin.aws.amazon.com/saml",
-  "NameQualifier": "..."
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Deny",
+    "Action": "*",
+    "Resource": "*",
+    "Condition": {
+      "DateLessThan": {"aws:TokenIssueTime": "2014-05-07T23:47:00Z"}
+    }
+  }
 }
-```
-
-```shell
-export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' temp-credentials.json)
-export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' temp-credentials.json)
-export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' temp-credentials.json)
-
-cat >> ~/.aws/credentials <<EOL
-[default]
-aws_access_key_id = $AWS_ACCESS_KEY_ID
-aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
-aws_session_token = $AWS_SESSION_TOKEN
-EOL
 ```
 
 ## Properties
@@ -112,7 +88,7 @@ Properties:
 aws iam list-attached-role-policies --role-name henrique.vitoi-dev-role
 ```
 
-### Policies
+### Policies (Permission policies)
 
 - This is where you define `inline policies` directly attached to the role
 - These inline policies cannot be reused in other roles
@@ -294,7 +270,7 @@ aws iam create-role \
 
 ##### AWS
 
-- Allow entities in `AWS accounts` belonging to you or a 3rd party to perform actions in this account
+- Allow entities in other `AWS accounts` to assume the role
 
 ```json
 {
