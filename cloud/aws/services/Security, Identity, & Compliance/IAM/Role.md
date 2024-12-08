@@ -2,7 +2,7 @@
 
 - <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html>
 - `Role` is an identity intended to be used/assumed by another entity
-  - E.g., give an EC2 instance permission to access an S3 bucket
+  - E.g., give an EC2 instance permission to access an S3 bucket (in this case the same could also be achieved with resource-based policies)
 - Roles have `short term credentials` (differently from users that have long term credentials)
 - A role is associated with `policies`
 
@@ -10,7 +10,7 @@
 
 ## Assuming a role
 
-- When a role is assumed, the entity assuming the role gives up the original permissions and take the permissions assigned to the assumed role
+- When a role is assumed, the entity assuming the role `gives up the original permissions` and take the permissions assigned to the assumed role
 - In order to assume a role and get a token with the permissions defined in the role, an `Identity Provider` (see AWS::IAM::SAMLProvider or AWS::IAM::OIDCProvider) is needed to guarantee that whoever is trying to assume a role is indeed the person/entity
 - An assumable role is defined by the `AssumeRolePolicyDocument` property (see below)
 
@@ -78,14 +78,31 @@ Properties:
 ### PermissionsBoundary
 
 - Supported for `users` and `roles` (not groups)
-- Define the maximum permissions an entity can get
-- `Permission boundary` (maximum scope) + `permission policies`
+- Define the `maximum permissions` that an `IAM entity` (role in this case) can get
 
-![Permission Boundaries](.images/iam-permission-boundaries.png)
+```json
+// Permission Boundary
+// This is the maximum permission that this role can get even if other policies define more
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*",
+        "cloudwatch:*",
+        "ec2:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
 
-- Use cases
-  - Delete responsibilities to non administrators within their permissions boundaries
-  - Allow self-assign policies and manage their own permissions
+- **Use cases**
+  - Delete responsibilities to non administrators within their permissions boundaries. For example to create new IAM users
+  - Allow developers to self-assign policies and manage their own permissions, while making sure they can't escalate their privileges
+  - Restrict one specific user (instead of of whole account using Organization Policies & SCP)
 
 ### ManagedPolicyArns (Permission policies)
 

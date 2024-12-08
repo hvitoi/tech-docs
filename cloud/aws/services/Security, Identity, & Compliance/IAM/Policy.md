@@ -23,6 +23,7 @@
   - `SQS Queue Policies`
   - `IAM Role Trust Policies`
   - `AWS KMS Key Policies`
+  - And many others. Refer to the documentation of the resource policy directly
   ![Resource-based Policy](.images/resource-based-policy.png)
 
 ## Properties
@@ -107,7 +108,6 @@ Properties:
     }
   ]
 }
-
 ```
 
 #### Conditions
