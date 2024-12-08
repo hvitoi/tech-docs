@@ -17,6 +17,9 @@
 - When assuming a role (e.g., via `aws sts assume-role` or `aws sts assume-role-with-saml`) temporary credentials are returned. These credentials can be used to access aws resources
 - The AWS `Security Token Service` (STS) is used to assume a role and get the temporary credentials
 
+![AssumeRole](.images/sts-assume-role.png)
+![AssumeRole](.images/sts-assume-role-with-saml.png)
+
 ```json
 // temp-credentials.json
 {
@@ -53,23 +56,20 @@ EOL
 
 - The temporary credentials can be valid between `15 minutes` to `12 hours`
 
-## APIs
+## Session Tags
 
-### AssumeRole
+- Session tags are key-value pair attributes that you pass when you assume an IAM role or federate a user in AWS STS. The session generated has this tag embedded in the request context as a key `aws:PrincipalTag`
+- You can use the `aws:PrincipalTag` key in the `Condition` element of your policies to allow or deny access based on those tags
+- Generate sessions with tags using the `--tags` flag for `aws sts assume-role`
 
-- User will use a role within your account or cross-account
-
-![AssumeRole](.images/sts-assume-role.png)
-
-### AssumeRoleWithSaml
-
-- Exchange a `SAML Assertion` for a `token`
-![AssumeRole](.images/sts-assume-role-with-saml.png)
-
-### AssumeRoleWitWebIdentity
-
-- Returns credentials for users logged with IdP (fb, google, etc)
-
-### GetSessionToken
-
-- For MFA
+```json
+// Your Policy
+{
+  ...
+  "Condition": {
+    "StringEquals": {
+      "aws:PrincipalTag/Department": "HR"
+    }
+  }
+}
+```

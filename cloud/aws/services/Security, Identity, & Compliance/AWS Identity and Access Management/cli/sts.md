@@ -17,22 +17,6 @@ aws sts get-caller-identity
 aws sts get-caller-identity --query 'Account' --output text
 ```
 
-## get-session-token
-
-- Get a new security token
-- Returns temporary security credentials for an AWS CLI session
-- You cannot call `GetSessionToken` with session credentials
-
-```shell
-aws sts get-session-token \
-  --duration-seconds 3600
-
-# With MFA
-aws sts get-session-token \
-  --serial-number arn-of-the-mfa-device \
-  --token-code MFA_CODE
-```
-
 ## assume-role
 
 ```shell
@@ -46,11 +30,13 @@ aws sts assume-role \
   --role-arn arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME \
   --role-session-name SESSION_NAME \
   --serial-number arn-of-the-mfa-device \
-  --token-code MFA_CODE
+  --token-code MFA_CODE \
+  --external-id EXTERNAL_ID
 ```
 
 ## assume-role-with-saml
 
+- Exchange a `SAML Assertion` for a `token`
 - In order to get the `Saml Assertion`, go to the IdP dashboard (e.g., Okta) and click on the AWS app. This will perform a POST request to `https://signin.aws.amazon.com/saml` with the saml assertion. Pick the `SAMLResponse` from the request body. this is the base64 encoded saml assertion.
 - The token from the saml assertion must be redeemed within 5 minutes of issuance
 - STS then generates `Temporary Credentials`
@@ -100,3 +86,28 @@ aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
 aws_session_token = $AWS_SESSION_TOKEN
 EOL
 ```
+
+## assume-role-with-web-identity
+
+- Obtain `temporary credentials` for users logged with IdP
+- Supports any OIDC-compatible IdP (e.g., cognito, login with google, login with facebook)
+
+## get-session-token
+
+- Get a new security token based on a MFA
+- Obtain `temporary credentials`
+- You cannot call `GetSessionToken` with session credentials
+
+```shell
+aws sts get-session-token \
+  --duration-seconds 3600
+
+# With MFA
+aws sts get-session-token \
+  --serial-number arn-of-the-mfa-device \
+  --token-code MFA_CODE
+```
+
+## get-federation-token
+
+- Obtain `temporary credentials` for a federated user

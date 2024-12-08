@@ -88,6 +88,7 @@ Properties:
       // Condition (when this policy is in effect)
       "Condition": {
         "StringEquals": {
+          "aws:PrincipalTag/Department": "HR", // only for entities that have this session tag (that that assumed the role in sts with this tag)
           "aws:RequestedRegion": [
             "eu-central-1",
             "eu-west-1"
@@ -125,49 +126,50 @@ Properties:
 - The variable is replaced by a value depending on the context in which the policy is used
 - Some variables are `tag-based`. The tag is applied to some variables (example: `aws:PrincipalTag/owner`)
 
-- **AWS Specific**
-  - `aws:CurrentTime`
-  - `aws:TokenIssueTime`
-  - `aws:principaltype`
-  - `aws:PrincipalTag/<tag>`
-  - `aws:SecureTransport`
-  - `aws:MultiFactorAuthPresent`
-  - `aws:SourceIp`
-  - `aws:userid`
-
-- **Service Specific**
-  - `s3:prefix`
-  - `s3:max-keys`
-  - `s3:x-amz-acl`
-  - `sns:Endpoint`
-  - `sns:Protocol`
-  - `ec2:SourceInstanceARN`
-  - `ec2:ResourceTag/<tag>`
-
-- You can use variables for:
-  - _Replacing it for values_. E.g., `"Resource": "arn:aws:s3:::mybucket/${aws:username}/*"`
-  - _Using it as conditions_. E.g., `"Condition":{"StringNotEquals":{"s3:ExistingObjectTag/Team":"${aws:PrincipalTag/Team}"}}}`
-
-##### ${aws:username}
-
 ```json
-// Allow users access to their buckets only
+// REPLACING VARIABLES WITH VALUES
 {
-  "Resource": "arn:aws:s3:::mybucket/${aws:username}/*"
+  "Resource": "arn:aws:s3:::mybucket/${aws:username}/*" // Allow users access to their buckets only
 }
 ```
 
-##### ${aws:PrincipalTag/tag-key}
-
 ```json
+// USING VARIABLES AS CONDITIONS
 {
   "Condition": {
     "StringLike": {
-      "s3:prefix": [ "${aws:PrincipalTag/team}/*" ]
+      "s3:prefix": [
+        "${aws:PrincipalTag/team}/*"
+      ]
     },
     "StringEquals": {
       "s3:ExistingObjectTag/owner": "${aws:PrincipalTag/owner}"
+    },
+    "StringNotEquals": {
+      "s3:ExistingObjectTag/Team": "${aws:PrincipalTag/Team}"
     }
   }
 }
 ```
+
+##### AWS-Specific tags
+
+- `aws:PrincipalTag/<tag>`
+  - A session tag received when assuming the role via STS
+- `aws:CurrentTime`
+- `aws:TokenIssueTime`
+- `aws:principaltype`
+- `aws:SecureTransport`
+- `aws:MultiFactorAuthPresent`
+- `aws:SourceIp`
+- `aws:userid`
+
+##### Service-Specific tags
+
+- `s3:prefix`
+- `s3:max-keys`
+- `s3:x-amz-acl`
+- `sns:Endpoint`
+- `sns:Protocol`
+- `ec2:SourceInstanceARN`
+- `ec2:ResourceTag/<tag>`

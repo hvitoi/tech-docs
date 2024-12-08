@@ -10,8 +10,8 @@
 
 ### External access findings
 
-- Define a **Zone of Trust** (`AWS Account` or `AWS Organization`)
-- Any access from outside the zone of trust will be reported as findings
+- Define a **Zone of Trust** within the `AWS Account` and `AWS Organization` that you own
+- Any access from outside the zone of trust (3rd parties) will be reported as `findings`
 - Monitored resources
   - S3 buckets
   - IAM roles
