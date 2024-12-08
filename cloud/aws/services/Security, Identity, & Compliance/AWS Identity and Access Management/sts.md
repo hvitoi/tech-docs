@@ -3,6 +3,7 @@
 - It's the service used to `endorse the roles` and get the `short term credentials` (temporary credentials)
 - By means of STS it is possible to assume a role
 - `STS` is used to create and provide `trusted users` with `temporary security credentials` that can control access to your AWS resources.
+- STS is an essential service to do **identity federation** based on the `Identity Store` of the `Identity Providers` (IdP)
 
 ## Assuming a role
 
@@ -51,11 +52,6 @@ EOL
 ```
 
 - The temporary credentials can be valid between `15 minutes` to `12 hours`
-
-## Identity Providers (IdP)
-
-- Identity Providers authenticate with AWS by means of STS. Example: Okta via SAML
-- STS is an essential service to do identity federation based on the `Identity Store` of the IdPs
 
 ## APIs
 

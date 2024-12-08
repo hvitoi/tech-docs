@@ -21,9 +21,16 @@ aws sts get-caller-identity --query 'Account' --output text
 
 - Get a new security token
 - Returns temporary security credentials for an AWS CLI session
+- You cannot call `GetSessionToken` with session credentials
 
 ```shell
-aws sts get-session-token --duration-seconds 3600
+aws sts get-session-token \
+  --duration-seconds 3600
+
+# With MFA
+aws sts get-session-token \
+  --serial-number arn-of-the-mfa-device \
+  --token-code MFA_CODE
 ```
 
 ## assume-role
@@ -33,6 +40,13 @@ aws sts assume-role \
   --role-arn arn:aws:iam::123456789012:role/MyRole \
   --role-session-name MySession \
   --duration-seconds 900
+
+# With MFA
+aws sts assume-role \
+  --role-arn arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME \
+  --role-session-name SESSION_NAME \
+  --serial-number arn-of-the-mfa-device \
+  --token-code MFA_CODE
 ```
 
 ## assume-role-with-saml

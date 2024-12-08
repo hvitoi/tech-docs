@@ -5,6 +5,7 @@
   - E.g., give an EC2 instance permission to access an S3 bucket (in this case the same could also be achieved with resource-based policies)
 - Roles have `short term credentials` (differently from users that have long term credentials)
 - A role is associated with `policies`
+- It's possible to set up a MFA for assuming a role (see Trust Policy)
 
 - <arn:aws:iam:123456789012:role:my-role>
 
@@ -117,6 +118,7 @@ aws iam create-role \
 - Allow an AWS entity (e.g, an EKS cluster resource, another IAM role) to assume the role
 
 ```json
+// Assumable by an AWS service
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -134,6 +136,7 @@ aws iam create-role \
 ```
 
 ```json
+// Assumable by another role
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -141,6 +144,27 @@ aws iam create-role \
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Resource": "arn:aws:iam::123456789012s:role/foo"
+    }
+  ]
+}
+```
+
+```json
+// Assumable only via MFA code
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::ACCOUNT_ID:user/USERNAME"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "Bool": {
+          "aws:MultiFactorAuthPresent": "true"
+        }
+      }
     }
   ]
 }
