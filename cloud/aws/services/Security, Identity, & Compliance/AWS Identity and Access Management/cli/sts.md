@@ -19,6 +19,8 @@ aws sts get-caller-identity --query 'Account' --output text
 
 ## assume-role
 
+- Obtain `temporary credentials` based on an **assumed role**
+
 ```shell
 aws sts assume-role \
   --role-arn arn:aws:iam::123456789012:role/MyRole \
@@ -36,6 +38,7 @@ aws sts assume-role \
 
 ## assume-role-with-saml
 
+- Obtain `temporary credentials` based on an **assumed role**
 - Exchange a `SAML Assertion` for a `token`
 - In order to get the `Saml Assertion`, go to the IdP dashboard (e.g., Okta) and click on the AWS app. This will perform a POST request to `https://signin.aws.amazon.com/saml` with the saml assertion. Pick the `SAMLResponse` from the request body. this is the base64 encoded saml assertion.
 - The token from the saml assertion must be redeemed within 5 minutes of issuance
@@ -89,14 +92,14 @@ EOL
 
 ## assume-role-with-web-identity
 
-- Obtain `temporary credentials` for users logged with IdP
+- Obtain `temporary credentials` based on an **assumed role**
+- Uses users logged with IdP
 - Supports any OIDC-compatible IdP (e.g., cognito, login with google, login with facebook)
 
 ## get-session-token
 
-- Get a new security token based on a MFA
-- Obtain `temporary credentials`
-- You cannot call `GetSessionToken` with session credentials
+- Obtain `temporary credentials` for an **IAM user** or **root user**
+- You cannot call `GetSessionToken` with session credentials (such as those from a assumed role)
 
 ```shell
 aws sts get-session-token \
@@ -110,4 +113,5 @@ aws sts get-session-token \
 
 ## get-federation-token
 
-- Obtain `temporary credentials` for a federated user
+- Obtain `temporary credentials` for a **federated user**
+- Used to grant temporary security credentials to federated users (external users) who do not have an IAM identity in your AWS account

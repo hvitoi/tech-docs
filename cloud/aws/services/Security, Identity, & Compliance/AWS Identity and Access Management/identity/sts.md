@@ -18,7 +18,6 @@
 - The AWS `Security Token Service` (STS) is used to assume a role and get the temporary credentials
 
 ![AssumeRole](.images/sts-assume-role.png)
-![AssumeRole](.images/sts-assume-role-with-saml.png)
 
 ```json
 // temp-credentials.json
