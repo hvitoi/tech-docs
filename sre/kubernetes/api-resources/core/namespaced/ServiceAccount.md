@@ -12,3 +12,8 @@
 - Every namespace gets a `default SA` upon creation (which has no permissions by default)
 - If you delete the default ServiceAccount object in a namespace, the control plane replaces it with a new one.
 - If you deploy a Pod in a namespace, and you don't manually assign a ServiceAccount to the Pod, Kubernetes assigns the default ServiceAccount for that namespace to the Pod.
+
+## SA as a user
+
+- Each SA when it's used by a pod it's like the pod impersonates a user.
+- The user has the name `system:serviceaccount:my-ns:my-sa`

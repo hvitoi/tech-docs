@@ -7,17 +7,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: developer
+  name: pod-reader
   namespace: default
 rules:
-  - apiGroups: [""] # "" indicates the core API group (po, svc, etc)
+  - apiGroups: [""] # "" indicates the core API group
     resources: ["pods"]
-    verbs: ["list", "get", "create", "update", "delete"]
     resourceNames: ["orange-pod", "blue-pod"] # if not specified, pick all
-  - apiGroups: [""]
-    resources: ["ConfigMaps"]
-    verbs: ["create"]
-  - apiGroups: ["batch"]
-    resources: ["jobs", "cronjobs"]
-    verbs: ["*"]
+    verbs: ["get", "watch", "list"] # * for all verbs
 ```
