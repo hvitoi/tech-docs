@@ -3,14 +3,27 @@
 - A Spot Fleet request contains the configuration information to launch a `fleet of instances`
 - The Spot Fleet `request` can include multiple `launch specifications`
 
-- **Spot Instance**
-  - Cheap (up to 90% discount)
-  - Less reliable
-  - Good for batch jobs, data analysis, image processing, distributed workloads
-- **Spot Block**
-  - Designed not to be interrupted
-  - When you cancel the spot request, the associated instances are not terminated
-  - If a request is pesistent, it's opened again after the instance is interrupted
+## Spot Instance
+
+- It's a type of EC2 instance that uses `spare capacity available` at a significantly reduced cost compared to On-Demand Instances.
+- Good for batch jobs, data analysis, image processing, distributed workloads
+
+### Pricing
+
+- Up to `90% cheaper` than On-Demand Instances
+- The pricing fluctuates based on supply and demand for capacity.
+
+### Interruption
+
+- AWS may interrupt your Spot Instance when the capacity is no longer available or when the Spot price exceeds the price you've set as your maximum (if specified).
+- Spot Instances rely on spare capacity in AWS regions. If the capacity demand increases, `AWS can reclaim Spot Instances` with a `two-minute warning`
+- The 2-minutes warnings is sent via `EventBridge`
+
+## Spot Block
+
+- Designed not to be interrupted
+- When you cancel the spot request, the associated instances are not terminated
+- If a request is pesistent, it's opened again after the instance is interrupted
 
 ## Properties
 
