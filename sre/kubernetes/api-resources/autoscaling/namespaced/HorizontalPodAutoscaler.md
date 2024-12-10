@@ -4,6 +4,7 @@
   - Deployment
   - Replication Controller
   - StatefulSet
+- Uses the `average CPU utilization` of all pods in a given Object (e.g., Deployment)
 - `HPA` needs the `metrics server` installed in order to watch the metrics
 
 ```yaml

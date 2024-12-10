@@ -2,6 +2,7 @@
 
 - <https://github.com/kubernetes/autoscaler>
 - It is a `controller` that runs in the cluster and automatically adjusts the size of the Cluster (number and size of nodes) based on the total resource utilization
+- It uses as trigger to scale out the number of pods "pending" state
 
 ## Scaling Group
 
