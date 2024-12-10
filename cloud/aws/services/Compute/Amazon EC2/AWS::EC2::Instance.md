@@ -163,6 +163,8 @@ Properties:
   - sequential read/write, distributed filesystem
   - `i`, `d`, `h` series
 
+![Instance Types](.images/instance-types.png)
+
 ### Tenancy
 
 - **default**: shared hardware
