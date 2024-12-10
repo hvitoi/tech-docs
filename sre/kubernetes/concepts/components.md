@@ -11,7 +11,7 @@
 
 ![Kubernetes Components](.images/kubernetes-components.svg)
 
-## Control Plane
+## Control Plane (Master Nodes)
 
 - The control plane is deployed in the master nodes
 - Control plane components are deployed as `static pods` on each master node (that means there are 4 manifests in /etc/kubernetes/manifests)
@@ -21,7 +21,7 @@
 - **kube-controller-manager**: k8s.gcr.io/kube-controller-manager:v1.21.2
 - **kube-scheduler**: k8s.gcr.io/kube-scheduler:v1.21.2
 
-## Nodes
+## Data Plane (Worker Nodes)
 
 - These components are deployed in every cluster node (master or worker)
 
