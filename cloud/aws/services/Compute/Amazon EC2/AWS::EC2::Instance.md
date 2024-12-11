@@ -2,6 +2,11 @@
 
 - `Elastic Compute Cloud` (EC2) is a virtual machine instance
 
+## Lifecycle
+
+- `normal`: On demand instances
+- `spot`: Spot instances
+
 ## Metadata
 
 - Allows EC2 instances to "learn about themselves"
