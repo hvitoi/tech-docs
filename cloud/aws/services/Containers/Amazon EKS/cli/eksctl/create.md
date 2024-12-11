@@ -24,7 +24,7 @@ eksctl create cluster \
 
 ## addon
 
-> You can also use aws eks create-addon
+> You can also use "aws eks create-addon"
 
 ```shell
 # Create addons after a cluster has been created
@@ -100,7 +100,7 @@ eksctl create fargateprofile \
   --namespace my-fargate-ns # all pods deployed to this ns will be scheduled to this fargate profiles
 ```
 
-## Access to AWS
+## AWS Authentication
 
 ### iamserviceaccount
 
@@ -131,6 +131,8 @@ eksctl create iamserviceaccount \
 
 ### podidentityassociation
 
+> You can also use "aws eks create-pod-identity-association"
+
 - New way to authenticate to AWS API
 - Creates a CloudFormation stack `eksctl-<cluster>-podidentityrole-<namespace>-<sa-name>`
 - Uses the API `CreatePodIdentityAssociation`
@@ -159,7 +161,7 @@ eksctl create podidentityassociation \
   --permission-policy-arns arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 ```
 
-## Access to Kubernetes
+## Kubernetes Authentication
 
 ### iamidentitymapping
 
@@ -169,7 +171,18 @@ eksctl create podidentityassociation \
 - This form of authenticating IAM principals is mostly deprecated, consider using `EKS Access Entries` instead
 
 ```shell
-eksctl create iamidentitymapping ...
+eksctl create iamidentitymapping \
+  --cluster <cluster-name> \
+  --arn <arn-of-iam-identity> \
+  --username <k8s-username> \
+  --group <k8s-group> \
+  --no-duplicate-arns
+
+eksctl create iamidentitymapping \
+  --cluster my-cluster \
+  --arn "arn:aws:iam::123456789012:role/KarpenterNodeRole-my-cluster" \
+  --username "system:node:{{EC2PrivateDNSName}}" \
+  --group "system:bootstrappers,system:nodes"
 ```
 
 ### accessentry

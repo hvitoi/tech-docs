@@ -28,6 +28,18 @@ aws eks update-cluster-config \
   --access-config authenticationMode=API_AND_CONFIG_MAP
 ```
 
+## AWS Authentication: Pod Identity
+
+### create-pod-identity-association
+
+```shell
+aws eks create-pod-identity-association \
+  --cluster-name my-cluster \
+  --service-account my-sa \
+  --namespace default \
+  --role-arn "arn:aws:iam::123456789012:role/my-role"
+```
+
 ## Kubernetes Authentication: Access Entries
 
 ### list-access-policies

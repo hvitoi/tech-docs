@@ -33,7 +33,7 @@ eksctl get nodegroup --cluster my-cluster
 eksctl get fargateprofile --cluster my-cluster
 ```
 
-## Access to AWS
+## AWS Authentication
 
 ### iamserviceaccount
 
@@ -49,7 +49,7 @@ eksctl get iamserviceaccount --cluster my-cluster
 eksctl get podidentityassociation --cluster my-cluster
 ```
 
-## Access to Kubernetes
+## Kubernetes Authentication
 
 ### iamidentitymapping
 
