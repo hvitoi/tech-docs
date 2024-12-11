@@ -1,4 +1,4 @@
-# EC2NodeClass
+# EC2NodeClass (ec2nc)
 
 - AWS's implementation of the VMs that Karpenter is provisioning (EC2 VM)
 - Specifies AWS-specific information about the EC2 instance
@@ -131,13 +131,22 @@ spec:
 
 ### Selector Terms
 
-- Terms within the same item are treated as `AND`
-- Different items are treated as `OR`
+- Terms within the same item are treated as `OR`
+- Different items are treated as `AND`
 
 #### spec.amiSelectorTerms
 
 - Pick a specific AMI with a seletor
 - In this case the `amiFamily` can be omitted
+- You can use the following query to fetch the exact AMI ID
+
+```shell
+set K8S_VERSION "1.31"
+aws ssm get-parameter \
+  --name /aws/service/eks/optimized-ami/${K8S_VERSION}/amazon-linux-2/recommended/image_id \
+  --query Parameter.Value \
+  --output text
+```
 
 ```yaml
 apiVersion: karpenter.k8s.aws/v1
@@ -146,10 +155,10 @@ metadata:
   name: default
 spec:
   amiSelectorTerms:
-    - id: "${ARM_AMI_ID}"
-    - id: "${AMD_AMI_ID}"
-#   - id: "${GPU_AMI_ID}" # <- GPU Optimized AMD AMI
-#   - name: "amazon-eks-node-${K8S_VERSION}-*" # <- automatically upgrade when a new AL2 EKS Optimized AMI is released. This is unsafe for production workloads. Validate AMIs in lower environments before deploying them to production.
+    # - id: "${ARM_AMI_ID}"
+    # - id: "${AMD_AMI_ID}"
+    # - id: "${GPU_OPTIMIZED_AMI_ID}"
+    - name: "amazon-eks-node-1.30-*" # more flexible
 
   subnetSelectorTerms:
     - tags:

@@ -6,7 +6,7 @@ metadata:
   region: us-east-1
   version: "1.31" # latest if not provided
   tags:
-    foo: bar # EKS cluster tags
+    foo: bar # This tag is applied to all the resources created by eksctl, including the EKS cluster
 
 managedNodeGroups:
   - name: bar

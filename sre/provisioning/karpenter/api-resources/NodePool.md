@@ -1,4 +1,4 @@
-# NodePool
+# NodePool (nodepools)
 
 - Defines what `instance types` Karpenter can create
 - Based on this node pool, Karpenter will decide what is the most appropriate instance type to be created

@@ -151,3 +151,15 @@ aws iam put-role-policy \
   --policy-name MyInlinePolicy \
   --policy-document file://policy.json
 ```
+
+## Service Roles
+
+### create-service-linked-role
+
+- Creates an IAM role that is linked to a specific AWS service
+- The service itself will manage the role (including attaching new policies)
+
+```shell
+aws iam create-service-linked-role \
+  --aws-service-name spot.amazonaws.com
+```

@@ -11,6 +11,12 @@ aws ssm get-parameters \
 aws ssm get-parameters \
   --names "/my-app/dev/db-url" "/my-app/dev/db-password" \
   --with-decryption # checks if you have kms permissions to decrypt it
+
+# Get the AMI for Kubernetes Nodes
+aws ssm get-parameter \
+  --name /aws/service/eks/optimized-ami/1.31/amazon-linux-2/recommended/image_id \
+  --query Parameter.Value \
+  --output text
 ```
 
 ## get-parameters-by-path

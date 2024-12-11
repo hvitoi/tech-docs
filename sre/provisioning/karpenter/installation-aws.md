@@ -32,11 +32,11 @@ eksctl create cluster -f eks-cluster.yaml
 ```shell
 # Create PodIdentity (permission to the Karpenter controller to manage AWS)
 # It creates a new role with the policy defined in Karpenter resources
+# The ServiceAccount itself will be created when deploying Karpenter K8S manifests
 eksctl create podidentityassociation \
   --cluster my-cluster \
   --service-account-name karpenter \
   --namespace kube-system \
-  --create-service-account \
   --role-name my-cluster-karpenter \
   --permission-policy-arns arn:aws:iam::123456789012:policy/KarpenterControllerPolicy-my-cluster
 ```
@@ -51,20 +51,27 @@ eksctl create iamidentitymapping \
   --group "system:bootstrappers,system:nodes"
 ```
 
-## Karpenter Kubernetes Resources
+## Karpenter Kubernetes Controller
 
 ```shell
 helm registry logout public.ecr.aws
 
-helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
-  --version "${KARPENTER_VERSION}" \
-  --namespace "${KARPENTER_NAMESPACE}" \
-  --create-namespace \
+helm upgrade karpenter oci://public.ecr.aws/karpenter/karpenter \
+  --install \
+  --namespace "kube-system" \
   --wait \
-  --set "settings.clusterName=${CLUSTER_NAME}" \
-  --set "settings.interruptionQueue=${CLUSTER_NAME}" \
+  --set "settings.clusterName=my-cluster" \
+  --set "settings.interruptionQueue=my-cluster" \
   --set controller.resources.requests.cpu=1 \
   --set controller.resources.requests.memory=1Gi \
   --set controller.resources.limits.cpu=1 \
   --set controller.resources.limits.memory=1Gi
+```
+
+## Karpenter Kubernetes Resources
+
+```shell
+kubectl apply -f k8s-manifests.yaml
+kubectl describe ec2nc/default
+kubectl describe nodepools/default
 ```

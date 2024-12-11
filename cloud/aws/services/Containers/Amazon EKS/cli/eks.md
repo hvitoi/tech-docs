@@ -28,6 +28,18 @@ aws eks update-cluster-config \
   --access-config authenticationMode=API_AND_CONFIG_MAP
 ```
 
+### tag-resource
+
+- The the EKS Cluster only
+
+```shell
+set EKS_ARN (aws eks describe-cluster --name <cluster-name> --query 'cluster.arn' --output text)
+
+aws eks tag-resource \
+    --resource-arn "$EKS_ARN" \
+    --tags karpenter.sh/discovery=my-cluster
+```
+
 ## AWS Authentication: Pod Identity
 
 ### create-pod-identity-association
