@@ -74,3 +74,13 @@ aws cloudformation get-template --stack-name my-stack
 ```shell
 aws cloudformation list-stack-resources --stack-name my-stack
 ```
+
+## deploy
+
+```shell
+aws cloudformation deploy \
+  --stack-name "Karpenter-my-cluster" \
+  --template-file karpenter-infra.yaml \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameter-overrides "ClusterName=my-cluster"
+```

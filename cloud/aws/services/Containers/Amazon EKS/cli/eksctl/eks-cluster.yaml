@@ -5,6 +5,8 @@ metadata:
   name: foo
   region: us-east-1
   version: "1.31" # latest if not provided
+  tags:
+    foo: bar # EKS cluster tags
 
 managedNodeGroups:
   - name: bar
@@ -14,6 +16,7 @@ managedNodeGroups:
     desiredCapacity: 2
     maxSize: 4
     volumeSize: 20
+    amiFamily: AmazonLinux2
     privateNetworking: true
     spot: true
 
@@ -31,12 +34,28 @@ fargateProfiles:
 
 iam:
   withOIDC: true
+  # Pod Identity
+  podIdentityAssociations:
+    - serviceAccountName: karpenter
+      namespace: kube-system
+      roleName: my-cluster-karpenter
+      permissionPolicyARNs:
+        - arn:aws:iam::123456789012:policy/KarpenterControllerPolicy-my-cluster
+  # IRSA (legacy)
   serviceAccounts:
     - metadata:
         name: aws-load-balancer-controller
         namespace: kube-system
       wellKnownPolicies:
         awsLoadBalancerController: true
+
+# IAM principal authentication to Kuberntes API (via aws-auth ConfigMap)
+iamIdentityMappings:
+  - arn: "arn:aws:iam::123456789012:role/KarpenterNodeRole-my-cluster"
+    username: system:node:{{EC2PrivateDNSName}}
+    groups:
+      - system:bootstrappers
+      - system:nodes
 
 addons:
   - name: kube-proxy # enabled by default

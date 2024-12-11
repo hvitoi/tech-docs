@@ -1,0 +1,34 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: my-cluster
+  region: us-east-1
+  tags:
+    karpenter.sh/discovery: my-cluster
+
+iam:
+  withOIDC: true
+  podIdentityAssociations:
+    - serviceAccountName: karpenter
+      namespace: kube-system
+      roleName: my-cluster-karpenter
+      permissionPolicyARNs:
+        - arn:aws:iam::123456789012:policy/KarpenterControllerPolicy-my-cluster
+
+iamIdentityMappings:
+  - arn: "arn:aws:iam::123456789012:role/KarpenterNodeRole-my-cluster"
+    username: system:node:{{EC2PrivateDNSName}}
+    groups:
+      - system:bootstrappers
+      - system:nodes
+
+managedNodeGroups:
+  - instanceType: m5.large
+    amiFamily: AmazonLinux2
+    name: my-cluster-ng
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 10
+
+addons:
+  - name: eks-pod-identity-agent
