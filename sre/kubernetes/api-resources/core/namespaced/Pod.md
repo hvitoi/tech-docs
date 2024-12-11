@@ -262,6 +262,12 @@ spec:
         limits: # max resource usage
           memory: 2Gi
           cpu: 1200m # same as 1.2 cpu
+
+          # gpu units
+          nvidia.com/gpu: 1
+          amd.com/gpu: 1
+          aws.amazon.com/neuron: 1
+          habana.ai/gaudi: 1
 ```
 
 ### spec.restartPolicy
@@ -306,7 +312,7 @@ spec:
 ### spec.nodeName
 
 - Every pod has a field called `spec.nodeName`
-- It is a responsability of the `scheduler` to fill this field and schedule the pod. But you can do that manually too
+- It is a responsibility of the `scheduler` to fill this field and schedule the pod. But you can do that manually too
 - The nodeName property cannot be modified after the pod has been created
 - If a pod could not be scheduled to any node because a `scheduler` is not present, the pod remains in `pending` state
 - Another way to schedule a pod to a node is creating a `Binding` object
@@ -329,6 +335,8 @@ spec:
 
 ### spec.NodeSelector
 
+- With the node selectors you can `run certain workloads in certain nodes`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -338,8 +346,9 @@ spec:
   containers:
     - name: nginx-container
       image: nginx
-  nodeSelector: # select nodes by labels
-    size: large
+  # select schedulable nodes by labels
+  nodeSelector:
+    a-size: a-large-node
 ```
 
 ### spec.affinity.nodeAffinity
@@ -348,9 +357,8 @@ spec:
 - `Execution`: the state in which a pod is running and has already been scheduled
 
 - Node affinity types
-  - `requiredDuringSchedulingIgnoredDuringExecution`: if affinity rules cannot be matched, pod will not be scheduled
-  - `preferredDuringSchedulingIgnoredDuringExecution`: if affinity rules cannot be matched, pod will be scheduled to another node
-  - `requiredDuringSchedulingRequiredDuringExecution`: node affinity rule will be applied even to the running pods and those not matching the criteria will be evicted and rescheduled
+  - **requiredDuringSchedulingIgnoredDuringExecution**: if affinity rules cannot be matched, pod will not be scheduled
+  - **preferredDuringSchedulingIgnoredDuringExecution**: if affinity rules cannot be matched, pod will be scheduled to another node that "violates less" the rules
 
 ```yaml
 apiVersion: v1
@@ -366,16 +374,15 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions: # select node by labels
-              - key: size
+              - key: karpenter.sh/capacity-type
                 operator: In
                 value:
-                  - large
-                  - medium
-              - key: size
+                  - spot
+              - key: foo
                 operator: NotIn
                 value:
                   - small
-              - key: size
+              - key: bar
                 operator: Exists
 ```
 
@@ -408,8 +415,11 @@ spec:
   containers:
     - name: nginx-container
       image: nginx
-  tolerations: # toleration to a taint applied to a node
-    - key: "app"
+  tolerations:
+    - key: "nvidia.com/gpu" # tolerates the node taint "nvidia.com/gpu"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "foo"
       operator: "Equal"
       value: "blue"
       effect: "NoSchedule"
@@ -489,4 +499,25 @@ spec:
           add: ["MAC_ADMIN"]
   securityContext:
     runAsUser: 1000 # will be overridden
+```
+
+### spec.topologySpreadConstraints
+
+- Describes how a group of pods ought to spread across topology domains (e.g., Availability Zones)
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  topologySpreadConstraints:
+    - topologyKey: "topology.kubernetes.io/zone" # try to use one than one zone (as defined by this label)
+      maxSkew: 1
+      whenUnsatisfiable: ScheduleAnyway
+
+      # only nodes that have this label
+      labelSelector:
+        matchLabels:
+          mylabel: foo
 ```

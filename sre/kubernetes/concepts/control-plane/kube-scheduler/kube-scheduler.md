@@ -6,12 +6,19 @@
   1. `Filter Nodes`: filter nodes which do not match the criteria
   1. `Rank Nodes`: assign a score for the node (from 0 to 10)
 
-## Scheduling
+## Scheduling Queue
 
-- `NodeAffinity`: Schedule a pod to a node based on different criteria
-- `NodeSelector`: A simple node affinity. Schedule based only on a label
-- `Taint`: Mark a node with a taint. Only pods with tolerance to this taint can be scheduled to this node
-- `Tolerance`: Tolerante of a pod to a node taint
+- It's a queue of `pending pods`
+- Represent a queue of pods waiting to be assigned to a node
+
+## Scheduling Rules
+
+- **no.spec.taints**: Mark a node with a taint. Only pods with tolerance to this taint can be scheduled to this node
+- **po.spec.nodeName**: bypasses kube-scheduler completely and selects a node manually
+- **po.spec.NodeSelector**: Schedule a pod to a node based on different criteria
+- **po.spec.affinity.nodeAffinity**: A simple node affinity. Schedule based only on a label
+- **po.spec.tolerations**: Tolerante of a pod to a node taint
+- **po.spec.topologySpreadConstraints**: spread the replicas across AZs
 
 ## Setup
 
@@ -45,8 +52,7 @@ ExecStart=/usr/local/bin/kube-scheduler \\
 ## Multiple Schedulers
 
 - Multiple scheduler services can run in the cluster
-- Modify the `scheduler-name` property for each service
-- A pod can be instructed to use a specific scheduler with the `spec.schedulerName` field
+- Modify the `po.spec.schedulerName` property in order to use any other scheduler other than the default one
 
 ```conf
 ExecStart=/usr/local/bin/kube-scheduler \\
