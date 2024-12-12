@@ -77,6 +77,8 @@ aws cloudformation list-stack-resources --stack-name my-stack
 
 ## deploy
 
+- This command is more high-level and can `create`, `update`, or `delete` stacks
+
 ```shell
 aws cloudformation deploy \
   --stack-name "Karpenter-my-cluster" \
