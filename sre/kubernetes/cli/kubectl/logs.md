@@ -32,6 +32,7 @@ kubectl logs <pod> --all-containers
 
 ```shell
 kubectl logs --selector "app=myapp"
+kubectl logs -n kube-system -l app.kubernetes.io/name=karpenter -f
 ```
 
 ## --previous (-p)
