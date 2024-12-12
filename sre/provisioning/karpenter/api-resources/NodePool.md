@@ -222,7 +222,6 @@ spec:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
         name: default
-
       requirements:
         - key: kubernetes.io/arch
           operator: In
@@ -230,7 +229,6 @@ spec:
         - key: kubernetes.io/os
           operator: In
           values: ["linux"]
-
   limits:
     cpu: 1000
     memory: 10000Gi
@@ -263,4 +261,39 @@ spec:
           values: ["linux"]
 
   weight: 60
+```
+
+### spec.disruption
+
+- Tells Karpenter when/how to disrupt nodes
+- Actions
+  - Remove empty nodes
+  - Remove nodes by moving pods to another underutilized node
+  - Replace nodes with cheaper variants
+
+```yaml
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  template:
+    spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
+      requirements:
+        - key: kubernetes.io/arch
+          operator: In
+          values: ["amd64", "arm64"]
+        - key: kubernetes.io/os
+          operator: In
+          values: ["linux"]
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    # consolidationPolicy: WhenEmpty
+    # consolidationPolicy: WhenUnderutilized
+    consolidateAfter: 1m # how much to wait to scale nodes down due to low utilization
+    expiresAfter: Never
 ```

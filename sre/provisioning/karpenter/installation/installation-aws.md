@@ -4,8 +4,8 @@
 
 - `AWS::IAM::Role`: Role to be used by EC2 instances created by Karpenter
 - `AWS::IAM::ManagedPolicy`: Policy to be used by the Karpenter Controller to manage EC2 instances (The role with this policy is created as part of the PodIdentity resource)
-- `AWS::SQS::Queue`: Queue used by Karpenter to schedule the creation of instance
-- `AWS::SQS::QueuePolicy`: Policy for the queue
+- `AWS::SQS::Queue`: Queue used by Karpenter for interruption
+- `AWS::SQS::QueuePolicy`: Policy for the above queue
 - `AWS::Events::Rule`: Capture aws events (from event bridge) and route it to SQS
 
 ```shell

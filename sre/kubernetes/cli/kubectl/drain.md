@@ -4,6 +4,7 @@
 - It's used in a preparation for maintenance when a node will go down
 - The node is also marked as `unscheduled` until you remove the restriction (`uncordon`)
 - The moved pod will not automatically come back to the original node
+- Draining not only prevents scheduling but also evicts Pods currently running on the node to prepare it for maintenance or decommissioning
 
 ```shell
 kubectl drain "node-name"

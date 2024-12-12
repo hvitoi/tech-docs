@@ -3,7 +3,6 @@
 ## Text-based format
 
 ```conf
-# Prometheus text-based exposition format
 # HELP http_requests_total The total number of HTTP requests
 # TYPE http_requests_total counter
 http_requests_total{method="GET",code="200"} 1027
@@ -40,3 +39,9 @@ db_query_duration_seconds_count 120
 # TYPE custom_metric counter
 custom_metric{label1="value1",label2="value2"} 42
 ```
+
+## Annotations
+
+- **HELP annotation**: Provide a human-readable description of the metric
+
+- **TYPE annotation**: Indicate the metric type: `counter`, `gauge`, `histogram`, or `summary`.
