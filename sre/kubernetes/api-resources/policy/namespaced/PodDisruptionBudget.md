@@ -18,4 +18,5 @@ spec:
     matchLabels:
       app: my-app
   minAvailable: 3
+  maxUnavailable: 5 # mutually exclusive with minAvailable
 ```

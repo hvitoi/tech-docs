@@ -5,6 +5,10 @@ metadata:
 spec:
   template:
     spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
       requirements:
         - key: kubernetes.io/arch
           operator: In
@@ -21,10 +25,6 @@ spec:
         - key: karpenter.k8s.aws/instance-generation
           operator: Gt
           values: ["2"]
-      nodeClassRef:
-        group: karpenter.k8s.aws
-        kind: EC2NodeClass
-        name: default
       expireAfter: 720h
   limits:
     cpu: 1000
@@ -37,13 +37,12 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  amiFamily: AL2
   role: KarpenterNodeRole-my-cluster
+  amiSelectorTerms:
+    - alias: al2@latest
   subnetSelectorTerms:
     - tags:
         alpha.eksctl.io/cluster-name: my-cluster
   securityGroupSelectorTerms:
     - tags:
         alpha.eksctl.io/cluster-name: my-cluster
-  amiSelectorTerms:
-    - name: "amazon-eks-node-1.30-*"

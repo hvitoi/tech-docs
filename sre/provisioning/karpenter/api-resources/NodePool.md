@@ -49,6 +49,7 @@ spec:
     metadata:
       annotations:
         application/name: my-app
+        karpenter.sh/do-not-disrupt: true # prevent voluntary disruptions to all nodes
       labels:
         team: my-team
     spec:
@@ -88,11 +89,6 @@ spec:
         - key: kubernetes.io/os
           operator: In
           values: ["linux"]
-      expireAfter: 720h
-
-  limits:
-    cpu: 1000
-    memory: 10000Gi
 ```
 
 ### spec.template.spec.requirements
@@ -165,7 +161,7 @@ spec:
           operator: NotIn
           values: ["nano","micro","small"]
 
-      expireAfter: 720h # 30 * 24h = 720h
+      expireAfter: 720h
 
   limits:
     cpu: 1000
@@ -204,6 +200,42 @@ spec:
         - key: nvidia.com/gpu
           value: true
           effect: NoSchedule
+```
+
+### spec.template.spec.expireAfter & terminationGracePeriod
+
+- `expireAfter` specifies the period after which the node is voluntarily disrupted
+  - Useful for forcing AMI refresh or recycling nodes for security concerns
+- In contrast, `terminationGracePeriod` specifies how long to wait after the expiration before an involuntary disruption is triggered
+  - Useful in situations in which a PDB is misconfigured and will block Karpenter to voluntarily disrupt a node
+
+```yaml
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  template:
+    spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
+      requirements:
+        - key: kubernetes.io/arch
+          operator: In
+          values: ["amd64", "arm64"]
+        - key: kubernetes.io/os
+          operator: In
+          values: ["linux"]
+
+      # Voluntary Expiration
+      expireAfter: 720h # 30 days (default)
+      expireAfter: 30d # 30 days
+      expireAfter: Never
+
+      # Involuntary Expiration
+      terminationGracePeriod: 1d
 ```
 
 ### spec.limits
@@ -246,12 +278,10 @@ metadata:
 spec:
   template:
     spec:
-
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
         name: default
-
       requirements:
         - key: kubernetes.io/arch
           operator: In
@@ -259,7 +289,6 @@ spec:
         - key: kubernetes.io/os
           operator: In
           values: ["linux"]
-
   weight: 60
 ```
 
@@ -293,6 +322,23 @@ spec:
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     # consolidationPolicy: WhenEmpty
+
     consolidateAfter: 10m # how much to wait to scale nodes down due to low utilization (defaults to 0 - right away, this can result in high node churn)
-    expiresAfter: Never
+
+    # NodePool Disruption Budget
+    # Controls how many nodes can be disrupted at a time
+    # All the items (assertions) must match (AND)
+    budgets:
+      - nodes: 20% # allow up to 20% of the nodes to be disrupted at a time
+      - nodes: 5 # allow up to 5 nodes to be disrupted at a time
+      - nodes: 0 # no disruption at the first 10 minutes of the day
+        schedule: "@daily"
+        duration: 10m
+      - nodes: 0 # no disruption up to 8am from Monday to Friday caused by the reasons
+        schedule: "0 9 * * mon-fri"
+        duration: 8h
+        reasons:
+          - Drifted
+          - Underutilized
+          - Empty
 ```
