@@ -8,7 +8,12 @@
 
 ### spec.amiFamily
 
-- The VM image
+> This field can be omitted if spec.amiSelectorTerms is defined
+
+- The default VM image uses the same image version as the K8S version
+- AWS publishes recommended AMIs for each k8s version in SSM
+- If a new AMI is released there will be a drift and Karpenter will reconcile all the nodes
+- Similarly if you update your cluster, new AMIs will be available and there will be a drift
 
 ```yaml
 apiVersion: karpenter.k8s.aws/v1
@@ -17,14 +22,12 @@ metadata:
   name: default
 spec:
   amiFamily: AL2 # Amazon Linux 2
-
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "my-cluster"
-
+        karpenter.sh/discovery: my-cluster
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "my-cluster"
+        karpenter.sh/discovery: my-cluster
 ```
 
 ### spec.role
@@ -39,11 +42,9 @@ metadata:
 spec:
   amiFamily: AL2
   role: KarpenterNodeRole-my-cluster
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -58,7 +59,6 @@ metadata:
   name: default
 spec:
   amiFamily: AL2
-
   blockDeviceMappings:
     - deviceName: /dev/xvda
       ebs:
@@ -70,11 +70,9 @@ spec:
         deleteOnTermination: true
         throughput: 125
         snapshotID: snap-0123456789
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -90,10 +88,8 @@ metadata:
   name: default
 spec:
   amiFamily: AL2
-
   userData: |
     echo "Hello world"
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -115,14 +111,11 @@ metadata:
   name: default
 spec:
   amiFamily: AL2
-
   tags:
     app: payment
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -159,11 +152,9 @@ spec:
     # - id: "${AMD_AMI_ID}"
     # - id: "${GPU_OPTIMIZED_AMI_ID}"
     - name: "amazon-eks-node-1.30-*" # more flexible
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -178,14 +169,12 @@ metadata:
   name: default
 spec:
   amiFamily: AL2
-
   subnetSelectorTerms:
     # select subnets based on resource tags
     - tags:
         karpenter.sh/discovery: my-cluster
     # select subnets based on resource id
     - id: subnet-09fa4a0a8f233a921
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
@@ -200,11 +189,9 @@ metadata:
   name: default
 spec:
   amiFamily: AL2
-
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster
-
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-cluster

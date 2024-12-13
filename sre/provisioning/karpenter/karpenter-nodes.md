@@ -15,30 +15,52 @@
 - `karpenter.k8s.aws/instance-encryption-in-transit-supported`: E.g., true
 - `karpenter.k8s.aws/instance-category`: E.g., g
 
-## Node Disruption (deletion)
+## Disruption
+
+> A disruption refers to an event or action that causes a Pod to become unavailable or terminate. Disruptions can be voluntary or involuntary, depending on the cause
 
 - **Voluntary disruptions**
-  - `Expiration`: Node expiration target (hours, days) reached
+  - `Expiration`
   - `Drift`
-  - `Consolidation`: move pods around and drain under utilized node
+  - `Consolidation`
 
 - **Involuntary disruptions**
-  - `Spot interruption`: EC2 spot instanced reclaimed by AWS
-  - `EC2 Health events`: E.g., EC2 gone
-  - `Instance spot/termination events`: Someone has shut it down
+  - `Spot Interruption`
+  - `EC2 Health events`
+  - `Instance spot/termination events`
 
 - When a disruption happens Karpenter executes a `scheduling simulation` to check if the running pods can be reallocated and `provisions replacement nodes` if needed
-- Karpenter will `cordon` the nodes disrupted by adding the taint `karpenter.sh/disruption:NoSchedule` to avoid new pods to be scheduled to it
+- Karpenter will `cordon` the nodes disrupted by adding the taint `karpenter.sh/disruption:NoSchedule` and evict pods running in it, draining the whole node
+- Voluntary disruptions respect the Pod Disruption Budget (PDB)
 
-### Pod Disruption Budget (PDB)
+### Expiration
 
-- Voluntary disruptions (by Karpenter) respects the PDB
-- Involuntary disruptions may violate the PDB
+- Node expiration target (hours, days) reached
+
+### Drift
+
+- When Karpenter CRD (NodePool or NodeClass) configuration differs from Node config
+- Then the nodes need to be reconciled to the same state
+- Examples:
+  - New AMIs released by AWS in SSM
+  - Remove existing instance type from a NodePool
+
+### Consolidation
+
+- Move pods around and drain underutilized nodes
 
 ### Spot Interruption
 
 - Spot instance may be reclaimed with a 2-minutes warning
-- Karpenter listens to this warning (e.g., via EventBridge in AWS) and:
+- Karpenter listens to this warning (e.g., via EventBridge AWS::Events::Rule to a target queue AWS::SQS::Queue) and:
   - Evicts pods in the claimed node
   - Provisions new instances (spot or demand)
   - Drains the workloads in the claimed node before the termination
+
+### EC2 Health events
+
+- E.g., EC2 gone
+
+### Instance spot/termination events
+
+- Someone has shut the instance down

@@ -293,7 +293,6 @@ spec:
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     # consolidationPolicy: WhenEmpty
-    # consolidationPolicy: WhenUnderutilized
-    consolidateAfter: 1m # how much to wait to scale nodes down due to low utilization
+    consolidateAfter: 10m # how much to wait to scale nodes down due to low utilization (defaults to 0 - right away, this can result in high node churn)
     expiresAfter: Never
 ```
