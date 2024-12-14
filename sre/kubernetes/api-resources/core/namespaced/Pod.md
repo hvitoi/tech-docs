@@ -386,6 +386,31 @@ spec:
                 operator: Exists
 ```
 
+### spec.affinity.podAntiAffinity
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: karpenter.sh/capacity-type
+                operator: In
+                value:
+                  - spot
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+```
+
 ### spec.schedulerName
 
 - A pod can be instructed to use a specific scheduler other than the default

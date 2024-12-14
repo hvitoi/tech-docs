@@ -51,3 +51,8 @@ Properties:
   SpotPrice: String
   UserData: String
 ```
+
+### ImageId
+
+- The VM image with the OS to run on the EC2 instance
+- For EKS cluster it uses a Kubernetes-optimized AMI

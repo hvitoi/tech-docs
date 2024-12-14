@@ -27,9 +27,9 @@
     - Default cluster-wide configuration
     - Ratio split - Spot/OD, x86/Graviton
 
-- Multi-NodePool strategy gotchas:
-  - The pods do not need to specify the nodepool, it is automatically picked based on the requirements. If the requirements are overlapping and multiple NodePools match, the first one alphabetically is used (if not weight is defined)
-  - However, it is very common that a pod does want to specify a NodePool (e.g., the Team A may only use the NodePool A). In this case it's common to define node labels in the NodePool and use then as `nodeSelector` in the pod workloads
+- _Multi-NodePool strategy gotchas_:
+  - The pods do not need to specify the nodepool, it is automatically picked based on the requirements. If the requirements are overlapping and multiple NodePools match, the first one alphabetically is used (if no weight is defined)
+  - However, it is very common that a pod does want to specify a NodePool (e.g., the Team A may only use the NodePool A). In this case it's common to define node labels in the NodePool and use them as `nodeSelector` in the pod workloads. It's also possible to enforce a specific nodeSelector using `Kyverno` so that each team uses its own namespace which is "tied" to a specific NodePool
   - The limits are isolated per NodePool
 
 ## Properties
