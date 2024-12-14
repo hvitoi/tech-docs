@@ -31,18 +31,14 @@
 ### Spot Interruption
 
 - Spot instance may be reclaimed with a 2-minutes warning
-- Karpenter listens to this warning (e.g., via EventBridge AWS::Events::Rule to a target queue AWS::SQS::Queue) and:
+- Karpenter listens to this warning (e.g., via EventBridge `AWS::Events::Rule` to a target queue `AWS::SQS::Queue`) and
   - Evicts pods in the claimed node
   - Provisions new instances (spot or demand)
   - Drains the workloads in the claimed node before the termination
 
 ### EC2 Health events
 
-- E.g., EC2 gone
-
-### Instance spot/termination events
-
-- Someone has shut the instance down
+- E.g., EC2 gone, shutdown command emitted from the console
 
 ### Forced expiration
 
