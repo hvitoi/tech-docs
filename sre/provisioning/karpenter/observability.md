@@ -2,6 +2,8 @@
 
 ## Logs
 
+- Always export your logs (e.g., to Cloudwatch)
+
 ```shell
 kubectl logs -n kube-system -l app.kubernetes.io/name=karpenter -f
 ```
