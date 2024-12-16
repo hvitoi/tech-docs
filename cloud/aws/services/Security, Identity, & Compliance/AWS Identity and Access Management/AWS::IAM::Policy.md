@@ -4,6 +4,7 @@
 - Defines an `identity-based inline policy`
 - Always use the `grant least privilege principle` when creating policies.
   - Use IAM Access Analyzer(AWS::AccessAnalyzer::Analyzer) to help with that
+- Policy generator: <https://awspolicygen.s3.amazonaws.com/policygen.html>
 
 ## Policy Evaluation
 
