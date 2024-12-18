@@ -1,6 +1,7 @@
 # AWS::SQS::QueuePolicy
 
-- `SQS Access policies`: for Cross Account Access
+- It's a resource-based policy
+- Policy generator: <https://awspolicygen.s3.amazonaws.com/policygen.html>
 
 ## Properties
 
