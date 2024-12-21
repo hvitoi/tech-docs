@@ -12,21 +12,20 @@ rclone sync /local/path remote:/remote/path -i
 # progress mode, with real-time transfer statistics
 rclone sync /local/path remote:/remote/path -P
 
-# verbose
-rclone sync -v /local/path remote:/remote/path # show transferred files
+# verbose (show transferred files)
+rclone sync /local/path remote:/remote/path -v
 
 # bandwidth
-rclone sync -v /local/path remote:/remote/path --bwlimit 1.5M
+rclone sync /local/path remote:/remote/path --bwlimit 1.5M
 
 # filters
 rclone sync "/local/path" "remote":"/remote/path" --exclude "node_modules/"
 ```
 
 ```shell
-# preferred
 rclone sync \
-  "/local/folder" \
-  "remote:/remote/folder" \
+  /local/folder \
+  remote:/remote/folder \
   --verbose \
   --progress \
   --track-renames \
