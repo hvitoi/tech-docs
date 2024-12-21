@@ -4,13 +4,13 @@
 
 ```shell
 # dry-run
-rclone sync --dry-run /local/path remote:/remote/path # "test" the sync, but do not perform data transfer
+rclone sync /local/path remote:/remote/path --dry-run
 
-# interactive mode
-rclone sync -i /local/path remote:/remote/path # prompt for decisions
+# interactive mode (prompt for decisions)
+rclone sync /local/path remote:/remote/path -i
 
-# progress mode
-rclone sync -P /local/path remote:/remote/path # real-time transfer statistics
+# progress mode, with real-time transfer statistics
+rclone sync /local/path remote:/remote/path -P
 
 # verbose
 rclone sync -v /local/path remote:/remote/path # show transferred files
