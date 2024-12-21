@@ -1,4 +1,4 @@
-# Sync
+# rclone sync
 
 - Changes the destination only
 

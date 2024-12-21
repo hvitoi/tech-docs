@@ -1,7 +1,7 @@
-# deletefile
+# rclone deletefile
 
 - Remove a single file
 
 ```shell
-rclone deletefile "remote":"remote/path"
+rclone deletefile "remote:file"
 ```
