@@ -1,4 +1,4 @@
-# cat
+# rclone cat
 
 - Cat a file's content
 
