@@ -2,6 +2,7 @@
 
 > Event Sourcing is a pattern where changes to the application state are stored as a sequence of events. Instead of storing just the current state of data in a domain, Event Sourcing stores a log of all the changes (events) that have occurred over time. This allows the application to reconstruct past states and provides an audit trail of changes. Event Sourcing is beneficial in scenarios requiring complex business transactions, auditability, and the ability to rollback or replay events.
 
+- <https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing>
 - Store all the events related to an entity as a `sequence of events`
 - This way, the information is `append only`
 - These events must be stored in another database in the exact order that they were applied
@@ -15,3 +16,10 @@
 ## Implementations
 
 - `Datomic` is a implementation of append only transaction-driven database
+
+## Change Data Capture (CDC)
+
+- Take events happening in a database and publishes them as an event in an event broker
+- CDC implementation: `Debezium` Kafka Connector
+
+![CDC](.images/event-sourcing-cdc.png)

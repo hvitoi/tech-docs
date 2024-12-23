@@ -2,6 +2,7 @@
 
 > CQRS is an architectural pattern that separates the models for reading and writing data. This means that the data structures used for querying data (reads) are separated from the structures used for updating data (writes). This separation allows for optimization of each operation independently, improving performance, scalability, and security. CQRS can be particularly useful in complex systems where the read and write operations have very different requirements.
 
+- <https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs>
 - Responsabilities for the data aggregation (`command` and `query`) are segregated
 - It's good for optimizing a database that has both high read and write operations
 

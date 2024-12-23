@@ -2,6 +2,7 @@
 
 > Sharding is a data partitioning pattern where data is divided into smaller, more manageable pieces, or "shards", each of which can be stored on different database servers. This pattern is used to distribute the data across multiple machines to improve scalability and performance. Sharding is particularly effective in high-volume applications, as it allows for horizontal scaling, spreading the load across multiple servers to handle more users and transactions.
 
+- <https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding>
 - Slipt the data (not replicate) among several database instances
 
 - **Pros**
