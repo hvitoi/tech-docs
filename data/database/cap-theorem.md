@@ -1,7 +1,9 @@
 # CAP Theorem
 
-- Cannot have always the 3 of them!
-- It's a concern of distributed databases
+- The CAP Theorem is crucial for understanding the trade-offs involved when building `distributed databases`. It explains that no distributed system can guarantee `Consistency`, `Availability`, and `Partition Tolerance` all at once, especially during network partitions.
+- It's a concern of **distributed databases**
+
+## Triade
 
 > In the presence of a Network Partition, a distributed database cannot guarantee both Consistency and Availability and has to choose only one of them
 

@@ -6,16 +6,12 @@
 ## Relational DB
 
 - Rigid structure enforced by table's `schema`
-- Has support for `transactions` (**ACID** compliant)
-  - `Atomicity`: The outcome of a transaction can either be completely successful or completely unsuccessful. The whole transaction must be rolled back if one part of it fails.
-  - `Consistency`: Transactions maintain integrity restrictions by moving the database from one valid state to another valid state. The transaction cannot violate predefined rules or else it will fail.
-  - `Isolation`: Concurrent transactions are isolated from one another, assuring the accuracy of the data. On modern rdbms it has lock-by-row mechanisms
-  - `Durability`: Once a transaction is committed, its modifications remain in effect even in the event of a system failure.
+- Has support for `transactions` (ACID compliant)
 - Difficult to scale
 - Slower read operations
 - On-line Transaction Processing (OLTP)
 
-- Implementations
+- **Implementations**
   - MySQL
   - Postgres
   - SQL Server
@@ -27,7 +23,7 @@
 - Data stored in RAM
 - Perfect use-case for caches and counters
 
-- Implementations
+- **Implementations**
   - Redis
   - Memcached
   - Etcd
@@ -38,7 +34,7 @@
 - No schema
 - Documents are grouped together in collections
 
-- Implementations
+- **Implementations**
   - MongoDB
   - Firestore
   - DynamoDB
@@ -60,7 +56,7 @@
   - Good for fraud detection in finance and recomendation systems
   - Good for recommendation engines
 
-- Implementations
+- **Implementations**
   - Neo4j
   - DGraph
   - AWS Neptune
@@ -71,7 +67,7 @@
 - No schema
 - Good for time-series data, historical records, high-write, low-read
 
-- Implementations
+- **Implementations**
   - Cassandra
   - HBase
 
@@ -81,7 +77,7 @@
 - Search DB analyze all the text in the document and create index of the searchable terms
 - Good for type-ahead search bars
 
-- Implementations
+- **Implementations**
   - Lucene
   - Solr
   - ElasticSearch
@@ -90,5 +86,5 @@
 
 ## Multi Model DB
 
-- Implementations
+- **Implementations**
   - Fauna: describe how to access the data with GraphQL
