@@ -34,6 +34,14 @@
 
 ![Transactions](.images/dynamodb-transactions.png)
 
+## Expressions
+
+- <https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html>
+- Expressions
+  - `Condition expression`: specify which items should be modified
+  - `Filter expression`
+- Those can be used in `PutItem`, `UpdateItem`, and `DeleteItem`
+
 ## APIs
 
 ### Read
