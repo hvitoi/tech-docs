@@ -1,42 +1,44 @@
 # Operators
 
+- <https://prometheus.io/docs/prometheus/latest/querying/operators/>
+
 ## Binary Operator
 
-- **Arithmetic**
+### Arithmetic
 
-  ```promql
-  + #(addition)
-  - #(subtraction)
-  * #(multiplication)
-  / #(division)
-  % #(modulo)
-  ^ #(power/exponentiation)
-  ```
+```promql
++ #(addition)
+- #(subtraction)
+* #(multiplication)
+/ #(division)
+% #(modulo)
+^ #(power/exponentiation)
+```
 
-- **Trigonometric**
+### Trigonometric
 
-  ```promql
-  atan2
-  ```
+```promql
+atan2
+```
 
-- **Comparison**
+### Comparison
 
-  ```promql
-  == (equal)
-  != (not-equal)
-  > (greater-than)
-  < (less-than)
-  >= (greater-or-equal)
-  <= (less-or-equal)
-  ```
+```promql
+== (equal)
+!= (not-equal)
+> (greater-than)
+< (less-than)
+>= (greater-or-equal)
+<= (less-or-equal)
+```
 
-- **Logical**
+### Logical
 
-  ```promql
-  and #(intersection)
-  or #(union)
-  unless #(complement)
-  ```
+```promql
+and #(intersection)
+or #(union)
+unless #(complement)
+```
 
 ## Vector matching
 
