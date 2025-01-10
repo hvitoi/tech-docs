@@ -28,11 +28,6 @@
 
 - OLAP systems are typically `denormalized` (e.g., star schema or snowflake schema) to improve query performance by reducing the need for joins during complex queries.
 
-## ETL (Extract, Transform, Load)
-
-- ETL processes are commonly used to move data `from OLTP` systems `into OLAP` systems
-- For example, transactional data from an OLTP database could be extracted and aggregated into a data warehouse for analytical processing
-
 ## Hybrid Systems
 
 - Some modern systems, such as `HTAP` (Hybrid Transactional/Analytical Processing) databases aim to combine the capabilities of both OLTP and OLAP, allowing real-time analytics on transactional data

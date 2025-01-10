@@ -1,53 +1,33 @@
 # ETL (Extract, Transform, Load)
 
-- Move data `from OLTP into OLAP` systems
+- ETL processes are commonly used to move data **from OLTP** systems **into OLAP** systems
 - It's a system that `extracts` the unstructured data from the production databases, `transforms` the data into structure and meaningful data and `loads` the data into an analytical environment
+- For example, transactional data from an OLTP database could be extracted and aggregated into a data warehouse for analytical processing
 
-- **Extract**
-  - Get the raw data (database log files), divide it in small batches of subtasks and then process each batch in parallel
+## Extract
 
-- **Transform**
-  - Transforms the data as we want
+- Collects data from the transactional environment (OLTP)
+- Get the raw data (e.g., database log files), divide it in small batches of subtasks and then process each batch in parallel
+- This `raw data` (e.g, database logs) are stored in a data lake (e.g., S3 with avro files)
 
-- **Load**
-  - Loads the data into analytical environments
-    - Data Warehouse (Google Big Query)
-    - Databricks
+![Big Data Ingestion](.images/big-data-ingestion.png)
 
-## Workflow
+- `Volume`: TB ~ PB /day
+- `Variety`: mixed data types from multiple sources
+- `Velocity`: high rate
 
-### Data Ingestion
+## Transform
 
-- Collects data from the transactional environment
+- Processes the collected raw data from the `data lake` and outputs data that can be used for analyses
+- The raw data is `converted` into materialized views of datasets
+- These datasets have `contracts` or `schemas` to help on the data analysis
 
-### Data Processing
+## Load
 
-- Processes the collected raw data and outputs data that can be used for analyses
-
-### Data Serving
-
+- Loads the data into analytical environments. E.g., Data Warehouse (Google Big Query), Databricks
+- The data is `served` for access
 - Propagates the computed data to `BI tools` analytical environments (such as Looker, Google Data Studio) and to the production environment
-
-### Data Access
-
 - All the data that was transformed and stored can be accessed through various BI tools
-
-### Data Governance
-
-- Implementing granular access control of data in the analytical environments
-- Managing PII data inventory and data subject rights
-
-## Batch vs. Stream Processing
-
-- The data is processed in two ways
-  - **Batch processing system** (historical data)
-  - **Stream processing system** (real-time data)
-
-### Batch Processing System
-
-- The data is available in the analytical environment `within 1 day`
-
-### Stream Processing System
-
-- It's required by systems that need fresh data, often some kind of monitoring (e.g., fraud, product rollout, operational)
-- The data is available in the analytical environment `within an hour`
+- Data Governance
+  - Implementing granular access control of data in the analytical environments
+  - Managing PII data inventory and data subject rights

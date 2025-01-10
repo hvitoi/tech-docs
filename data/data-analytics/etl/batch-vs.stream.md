@@ -1,20 +1,12 @@
-# Big data ingestion
+# Batch vs. Stream Processing
 
-![Big Data Ingestion](.images/big-data-ingestion.png)
+- The data is processed in two ways
+  - **Batch processing system** (historical data)
+  - **Stream processing system** (real-time data)
 
-## Big Data
+## Batch Processing System
 
-- `Volume`: TB ~ PB /day
-- `Variety`: mixed data types from multiple sources
-- `Velocity`: high rate
-
-## Data Fusion
-
-- Combine data together (similar to materialized view)
-- Helps in finding `hidden patterns` and `insights` for our organizations
-
-## Batch Processing
-
+- The data is available in the analytical environment `within 1 day`
 - Process the data stream on a fixed schedule
 - E.g., for search engines, the reachable websites are indexed in batch jobs (daily web crawler) and stored in a search-optimized database
   - It's done in batch jobs because the web crawler operation takes a long time
@@ -23,8 +15,10 @@
 - In some other cases this simply won't work
   - E.g., event log processing must be instantaneous
 
-## Real Time Processing
+## Stream Processing System
 
+- It's required by systems that need fresh data, often some kind of monitoring (e.g., fraud, product rollout, operational)
+- The data is available in the analytical environment `within an hour`
 - Each new event is processed immediately from a `stream of events`
 
 ![Logging & Metrics Aggregation](.images/logging-metrics-aggregation.png)
