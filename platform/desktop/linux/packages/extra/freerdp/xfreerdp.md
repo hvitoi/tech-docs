@@ -10,3 +10,10 @@
 xfreerdp /v:"hostname/ip" /u:"username"
 xfreerdp /v:"hostname/ip" /d:"domain" /u:"username"
 ```
+
+## Other remote support tools
+
+- `Microsoft Remote Desktop`: requires windows pro edition
+- `Chrome Remote Desktop`
+- `TeamViewer`
+- `Anydesk`
