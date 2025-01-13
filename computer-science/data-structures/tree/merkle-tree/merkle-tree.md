@@ -1,6 +1,6 @@
 # Merkle Tree
 
-> A hash tree or Merkle tree is a tree structure  where each `leaf node` is a hash of a block of data, and each `non-leaf` node is a hash of its child nodes.
+> A hash tree or Merkle tree is a tree structure where each `leaf node` is a hash of a block of data, and each `non-leaf` node is a hash of its child nodes.
 
 - It uses a `hash-based tree structures` to store the children (just like in a trie)
 
