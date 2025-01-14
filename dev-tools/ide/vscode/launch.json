@@ -5,20 +5,20 @@
     /**
      * VARIABLES
 
-     * ${file}: absolute path of the currently opened file
-     * ${fileBasename}
-     * ${fileBasenameNoExtension}
-     * ${fileDirname}
-     * ${fileExtname}
-     * ${fileWorkspaceFolderBasename}
+     * ${file}                          /Users/hv/myproject/src/main.cpp
+     * ${fileDirname}                   /Users/hv/myproject/src/
+     * ${fileBasename}                  main.cpp
+     * ${fileBasenameNoExtension}       main
+     * ${fileExtname}                   .cpp
 
-     * ${workspaceFolder}: absolute path of the workspace directory
-     * ${workspaceFolderBasename}
+     * ${relativeFile}                  src/main.cpp
+     * ${relativeFileDirname}           src
 
-     * ${relativeFile}
-     * ${relativeFileDirname}
+     * ${workspaceFolder}               /Users/hv/myproject
+     * ${workspaceFolderBasename}       myproject
+     * ${fileWorkspaceFolderBasename}   myproject
 
-     * ${cwd}
+     * ${cwd}                           /Users/hv/myproject
      * ${extensionInstallFolder}
      * ${defaultBuildTask}
      * ${pathSeparator}
@@ -169,6 +169,13 @@
       "runtimeExecutable": "node",
       "runtimeVersion": "default",
       "customPropertiesGenerator": ""
+    },
+    {
+      "type": "lldb",
+      "name": "Run File",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${fileDirname}/${fileBasenameNoExtension}"
     }
   ]
 }
