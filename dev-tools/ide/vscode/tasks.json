@@ -2,19 +2,29 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "create build folder",
       "type": "shell",
-      "label": "build",
+      "command": "mkdir",
+      "args": [
+        "-p",
+        "${fileDirname}/build"
+      ]
+    },
+    {
+      "label": "clang build",
+      "type": "shell",
       "command": "clang++",
       "args": [
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/build/${fileBasenameNoExtension}.out"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "dependsOn": "create build folder"
     }
   ]
 }

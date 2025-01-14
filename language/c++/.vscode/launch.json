@@ -5,8 +5,8 @@
       "name": "Run File",
       "type": "lldb",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${fileDirname}/${fileBasenameNoExtension}.out"
+      "preLaunchTask": "clang build",
+      "program": "${fileDirname}/build/${fileBasenameNoExtension}.out"
     }
   ]
 }

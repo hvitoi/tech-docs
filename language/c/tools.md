@@ -14,7 +14,6 @@
 - **CMake**
   - Build-generator tool
   - Generates the file needed by the build tool
-  -
 
 ```shell
 brew install cmake
