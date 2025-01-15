@@ -2,8 +2,20 @@
 #include <list>
 using namespace std;
 
-// A list is a dynamic type of container and it will automatically
-// increase/shrink its size
+// It implements a "doubly-linked list"
+
+// const: prevents it from being modified
+// &: pass it by reference (instead of by value)
+void printList(const list<int> &theList) {
+  for (list<int>::const_iterator it = theList.begin(); it != theList.end();
+       it++) {
+    cout << *it << endl;
+  }
+
+  // for (auto it = theList.begin(); it != theList.end(); it++) {
+  //   cout << *it << endl;
+  // }
+}
 
 int main() {
   // Initialize Empty List
@@ -20,9 +32,7 @@ int main() {
     cout << *it << endl;
   }
 
-  for (auto it = myList2.begin(); it != myList2.end(); it++) {
-    cout << *it << endl;
-  }
+  printList(myList);
 
   return 0;
 }

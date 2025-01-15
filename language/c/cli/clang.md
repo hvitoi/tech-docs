@@ -1,13 +1,27 @@
-# clang++
+# clang
 
 ```shell
-# Compiles into a binary main.out
+# Compiles into a binary "main.out"
 clang++ main.cpp
 ```
 
+## -o
+
+- Output filename
+
 ```shell
 clang \
-  -g \ # Include debugging symbols
-  main.c \ # The source file to compile
-  -o main.out # Output binary
+  -o main.out \
+  main.c # The source file to compile
+```
+
+## -g
+
+- Generate source-level debug information
+- This includes debugging symbols
+
+```shell
+clang \
+  -g \
+  main.c
 ```

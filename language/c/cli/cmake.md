@@ -1,10 +1,37 @@
 # cmake
 
-- Generate the file `compile_commands.json`
-- By default clang tries to read this file from the root of the project
-  - Or manually set it with the flag `--compile-commands-dir=build/debug`
+- CMake configuration `CMakeLists.txt`
+- Upon running `Cmake` a set of `Makefiles` are created in the `build directory`
 
 ```shell
-# Generate the build file into "build/debug" folder
-cmake -H. -B "build/debug" -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+mkdir build
+cd build
+cmake .. # build the previous dir (the project root) in the current dir (the build dir)
+make # run the auto-generated make file
+```
+
+## -S
+
+- Explicitly specify a source directory
+- Usually the project's root
+
+```shell
+cmake -S "." -B "build"
+cmake -B "build" # same, uses the current directory by default
+```
+
+## -B
+
+- Explicitly specify a build directory.
+
+```shell
+cmake -S "." -B "build"
+```
+
+## -D
+
+- Create or update a cmake cache entry
+
+```shell
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 ```
