@@ -5,9 +5,10 @@
       "name": "Run File",
       "type": "lldb",
       "request": "launch",
-      "preLaunchTask": "clang build",
+      "preLaunchTask": "build",
       "postDebugTask": "remove build folder",
       "program": "${fileDirname}/build/${fileBasenameNoExtension}.out",
+      "console": "internalConsole"
     }
   ]
 }

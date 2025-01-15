@@ -25,6 +25,7 @@ pacman -S cmake
 - **clangd**
   - <https://clangd.llvm.org/>
   - It is based on the Clang C++ compiler, and is part of the LLVM project
+  - Uses the configuration defined in the `.clangd` file
   - Installed in vscode via `llvm-vs-code-extensions.vscode-clangd` extension
 - **ccls**
   - <https://github.com/MaskRay/ccls>

@@ -15,14 +15,14 @@
       },
     },
     {
-      "label": "clang build",
+      "label": "build",
       "type": "shell",
       "command": "clang",
       "args": [
-        "-g",
-        "${file}",
+        "-std=c17",
         "-o",
-        "${fileDirname}/build/${fileBasenameNoExtension}.out"
+        "${fileDirname}/build/${fileBasenameNoExtension}.out",
+        "${file}",
       ],
       "group": {
         "kind": "build",
