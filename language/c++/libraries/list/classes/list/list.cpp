@@ -2,11 +2,12 @@
 #include <list>
 using namespace std;
 
-// It implements a "doubly-linked list"
+// Implements a "doubly-linked list"
 
-// const: prevents it from being modified
-// &: pass it by reference (instead of by value)
 void printList(const list<int> &theList) {
+  // const: prevents it from being modified
+  // &: pass it by reference (instead of by value)
+
   for (list<int>::const_iterator it = theList.begin(); it != theList.end();
        it++) {
     cout << *it << endl;
@@ -31,8 +32,8 @@ int main() {
   for (list<int>::iterator it = myList.begin(); it != myList.end(); it++) {
     cout << *it << endl;
   }
-
   printList(myList);
+  printList(myList2);
 
   return 0;
 }
