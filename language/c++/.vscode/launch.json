@@ -6,7 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "preLaunchTask": "clang build",
-      "program": "${fileDirname}/build/${fileBasenameNoExtension}.out"
+      "postDebugTask": "remove build folder",
+      "program": "${fileDirname}/build/${fileBasenameNoExtension}.out",
     }
   ]
 }

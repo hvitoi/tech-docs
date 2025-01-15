@@ -172,10 +172,20 @@
     },
     {
       "type": "lldb",
-      "name": "Run File",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${fileDirname}/${fileBasenameNoExtension}"
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "breakpointMode": "file",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=<name>"
+        ],
+        "filter": {
+          "kind": "bin"
+        }
+      },
+      "initCommands": [],
+      "exitCommands": [], // commands to be executed after the debugging session
+      "expressions": "native",
     }
   ]
 }

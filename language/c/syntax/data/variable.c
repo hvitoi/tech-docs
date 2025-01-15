@@ -28,6 +28,7 @@ int main() {
 
   // Arrays
   char name[] = "Henry";
+  char name2[12] = "Hello World";
 
   // Null (from stdio.h)
   int *pAge = NULL;

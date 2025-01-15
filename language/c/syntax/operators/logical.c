@@ -1,8 +1,10 @@
-// includes a file
-
 #include <stdio.h>
 
 int main() {
-  printf("Hello World!");
+
+  // && (AND)
+  // || (OR)
+  // ! (NOT)
+
   return 0;
 }
