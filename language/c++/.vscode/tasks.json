@@ -19,7 +19,6 @@
       "type": "shell",
       "command": "clang++",
       "args": [
-        "-g",
         "${file}",
         "-o",
         "${fileDirname}/build/${fileBasenameNoExtension}.out"

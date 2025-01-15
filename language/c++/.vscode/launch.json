@@ -8,6 +8,7 @@
       "preLaunchTask": "clang build",
       "postDebugTask": "remove build folder",
       "program": "${fileDirname}/build/${fileBasenameNoExtension}.out",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }

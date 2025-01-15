@@ -3,14 +3,14 @@
 
 // Similar to classes, but has no methods
 
-// Create a struct (reference as struct Player)
+// Create a struct (reference it as struct Player)
 struct Player {
   char name[20];
   int score;
 };
 struct Player maria;
 
-// Create a struct (reference simply as Person)
+// Create a struct (reference it simply as Person)
 // typedef gives a name for the struct
 typedef struct {
   char name[20];
