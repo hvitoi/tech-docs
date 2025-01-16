@@ -2,6 +2,12 @@
 
 - `xcrun <tool name> [tool arguments]`
 
+## -f
+
+```shell
+xcrun -f lldb-dap
+```
+
 ## simctl
 
 - CLI to control the iOS simulator

@@ -7,33 +7,29 @@ using namespace std;
 void printList(const list<int> &theList) {
   // const: prevents it from being modified
   // &: pass it by reference (instead of by value)
-
   for (list<int>::const_iterator it = theList.begin(); it != theList.end();
-       it++) {
+       it++) { // alternatively use "auto"
     cout << *it << endl;
   }
-
-  // for (auto it = theList.begin(); it != theList.end(); it++) {
-  //   cout << *it << endl;
-  // }
 }
 
 int main() {
   // Initialize Empty List
-  list<int> myList;
-  myList.push_back(1);
-  myList.push_back(2);
-  myList.push_back(3);
+  list<int> numbers;
+  numbers.push_back(1);
+  numbers.push_back(2);
+  numbers.push_back(3);
 
   // Initialize Pre-filled List
   list<int> myList2 = {1, 2, 3};
 
   // Iterate
-  for (list<int>::iterator it = myList.begin(); it != myList.end(); it++) {
+  for (auto it = numbers.begin(); it != numbers.end(); it++) {
     cout << *it << endl;
   }
-  printList(myList);
-  printList(myList2);
+  for (int number : numbers) {
+    cout << number << endl;
+  }
 
   return 0;
 }

@@ -7,6 +7,7 @@
 - **Cons**
   - Compared to Arrays, the traversal is slower, given that the sequential read is much more efficient (with caching systems - cache locality)
 - Linked Lists are good for `manipulating elements in the beginning` (while Arrays are good for `manipulating elements in the end`)
+- Some Linked List implementation (e.g., `std::list` in C++) do not support indexing and access by index
 
 ## Node
 

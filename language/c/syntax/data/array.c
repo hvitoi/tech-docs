@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 // Stores more than 1 value of the same type
 // The array size cannot be changed at runtime!
 
@@ -19,6 +21,9 @@ int main() {
       {'a', 'b', 'c'},
       {'d', 'e', 'f'},
   }; // the first dimension size is optional (calculated at compile time)
+
+  // access by index
+  printf("%f", prices[0]);
 
   return 0;
 }
