@@ -21,7 +21,8 @@ int main() {
   numbers.push_back(3);
 
   // Initialize Pre-filled List
-  list<int> myList2 = {1, 2, 3};
+  list<int> myList2 = {1, 2, 3}; // copy-list initialization
+  list<int> myList3{1, 2, 3};    //  direct-list initialization
 
   // Iterate
   for (auto it = numbers.begin(); it != numbers.end(); it++) {

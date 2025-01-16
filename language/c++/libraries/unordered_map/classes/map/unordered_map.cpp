@@ -1,29 +1,20 @@
 #include <iostream>
-#include <list>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
-// Keys are ordered in ascending order
+// Newer elements are appended to the front
 
 int main() {
-  map<string, int> m;
+  unordered_map<string, int> m;
+
   m.insert(pair<string, int>("c", 3));
   m.insert(pair<string, int>("a", 1));
   m.insert(pair<string, int>("b", 2));
+  m.insert(pair<string, int>("z", 99));
 
-  map<string, list<string>> m1;
-  m1.insert(pair<string, list<string>>("z", {"Hello", "World"}));
-
-  // Iterate
   for (auto pair : m) {
     cout << pair.first << " " << pair.second << endl;
   }
-
-  // Write
-  m["b"] = 99;
-
-  // Access
-  cout << m["b"] << endl;
 
   return 0;
 }
