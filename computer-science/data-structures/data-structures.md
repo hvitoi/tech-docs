@@ -13,16 +13,6 @@
 - `Traverse`: cycle over each element in the structure
 - `Sorting`: organize the data in the structure in some way
 
-## Language Support
+## Complexity
 
-- **Python**
-  - `Array`: built-in
-  - `Dynamic Array`: list
-  - `Linked List`: N/A
-  - `Stack`: list as a stack
-  - `Queue`: Queue, deque
-  - `Priority Queue`: PriorityQueue, heapq
-  - `Deque`: deque
-  - `Associative Array`: dict
-  - `Set`: set, frozenset
-  - `Graph`: N/A
+- <https://www.bigocheatsheet.com/>
