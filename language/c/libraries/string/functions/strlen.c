@@ -5,6 +5,5 @@ int main() {
 
   int name_size = strlen(name);
   name[name_size - 1] = '\0'; // remove trailing \n
-
   return 0;
 }

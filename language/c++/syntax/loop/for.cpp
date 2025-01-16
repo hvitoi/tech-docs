@@ -3,39 +3,16 @@
 using namespace std;
 
 int main() {
-  vector<int> numbers = {1, 2, 3};
+  vector<string> colors = {"red", "blue", "green"};
 
   // Traditional for Loop
-  for (size_t i = 0; i < numbers.size(); ++i) {
-    cout << numbers[i] << endl;
+  for (size_t i = 0; i < colors.size(); ++i) {
+    cout << colors[i] << endl;
   }
 
   // Range-Based for Loop
-  for (int number : numbers) {
-    cout << number << endl;
-  }
-
-  // Iterator
-  for (vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++) {
-    cout << *it << endl;
-  }
-
-  // Const Iterator
-  for (std::vector<int>::const_iterator it = numbers.cbegin();
-       it != numbers.cend(); ++it) {
-    std::cout << *it << " ";
-  }
-
-  // Reverse Iterator
-  for (std::vector<int>::reverse_iterator it = numbers.rbegin();
-       it != numbers.rend(); ++it) {
-    std::cout << *it << " ";
-  }
-
-  // Const Reverse Iterator
-  for (std::vector<int>::const_reverse_iterator it = numbers.crbegin();
-       it != numbers.crend(); ++it) {
-    std::cout << *it << " ";
+  for (string color : colors) {
+    cout << color << endl;
   }
 
   return 0;

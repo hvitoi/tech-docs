@@ -3,12 +3,12 @@
 using namespace std;
 
 int main() {
-  vector<int> numbers;
-  numbers.push_back(1);
-  numbers.push_back(2);
-  numbers.push_back(3);
+  vector<string> colors;
+  colors.push_back("red");
+  colors.push_back("green");
+  colors.push_back("blue");
 
-  for (auto it = numbers.begin(); it != numbers.end(); it++) {
-    cout << *it << endl;
+  for (string color : colors) {
+    cout << color << endl;
   }
 }
