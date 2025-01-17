@@ -5,7 +5,7 @@ int main() {
   string name;
 
   cout << "Enter your name." << endl;
-  cin >> name; // does not support spaces. For that use "getline"
+  cin >> name;
 
   cout << "Your name is " << name << endl;
 

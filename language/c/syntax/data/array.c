@@ -8,6 +8,8 @@
 int main() {
   // Array of doubles
   double prices[] = {5.0, 10.0, 15.0, 25.0, 20.0};
+  double prices2[] = {
+      [0] = 5.0, [1] = 10.0, [2] = 15.0, [3] = 25.0, [4] = 20.0};
 
   // Array of chars
   char name[] = "Hello World";
