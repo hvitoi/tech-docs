@@ -18,14 +18,19 @@ int main() {
   // Array of integers
   int numbers[10] = {8, 1, 4, 3}; // fixed size
 
-  // Matrix of chars
+  // Matrix
   char matrix[][3] = {
       {'a', 'b', 'c'},
       {'d', 'e', 'f'},
   }; // the first dimension size is optional (calculated at compile time)
 
-  // access by index
+  // Access/Modify (by index)
+  prices[0] = 42;
   printf("%f", prices[0]);
+
+  // trying to access/modify an out of bounds index does not throw
+  prices[99] = 88;
+  printf("%f", prices[99]);
 
   return 0;
 }
