@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 using namespace std;
 
@@ -14,12 +15,24 @@ Node *createNode(int data) {
   return newNode;
 }
 
+void printTree(Node *root) {
+  // DFS In-Order
+
+  if (root == nullptr)
+    return;
+
+  cout << root->data << endl;
+  printTree(root->left);
+  printTree(root->right);
+}
+
 int main() {
   Node *root = createNode(1);
   root->left = createNode(2);
   root->right = createNode(3);
   root->left->left = createNode(4);
 
-  cout << "Tree created." << endl;
+  assert(root->data == 1);
+
   return 0;
 }

@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "create build folder",
+      "type": "shell",
+      "command": "mkdir",
+      "args": [
+        "${fileDirname}/build"
+      ],
+      "presentation": {
+        "reveal": "never",
+        "showReuseMessage": false,
+      },
+    },
+    {
+      "label": "remove build folder",
+      "type": "shell",
+      "command": "rm",
+      "args": [
+        "-rf",
+        "${fileDirname}/build"
+      ],
+      "presentation": {
+        "reveal": "never",
+        "showReuseMessage": false,
+      }
+    },
+    {
+      "label": "clang build",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+        "-std=c++23",
+        "-o",
+        "${fileDirname}/build/${fileBasenameNoExtension}.out",
+        "${file}",
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never",
+        "showReuseMessage": false,
+      },
+      "dependsOn": "create build folder"
+    }
+  ]
+}

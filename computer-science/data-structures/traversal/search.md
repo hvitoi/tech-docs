@@ -1,9 +1,8 @@
 # Search
 
 - **Traversal**: loop thorough all the elements in a given data structure
-
-- `Example`: in a Linked List, the traversal stops when the next element points to null
-- Traversals are usually implemented with a `while`/`for`/`callstack` and a defined `stop rule` according to each data structure
+  - `Example`: in a Linked List, the traversal stops when the next element points to null
+  - Traversals are usually implemented with a `while`/`for`/`callstack` and a defined `stop rule` according to each data structure
 
 - **Search** is a kind of traversal stops as soon as the target item is found
 
