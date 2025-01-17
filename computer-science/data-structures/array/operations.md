@@ -10,10 +10,10 @@ $$O(n)$$
 
 ## Insert
 
-- $O(1)$ (to end - push)
-- $O(n)$ (to beginning)
+- At end: $O(1)$
+- At beginning: $O(n)$
 
 ## Delete
 
-- $O(1)$ (from end - pop)
-- $O(n)$ (from beginning)
+- From end: $O(1)$
+- From beginning: $O(n)$

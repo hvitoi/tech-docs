@@ -4,6 +4,8 @@
 // * : Dereference operator (value at the address)
 // & : Address-of operator (address of the variable)
 
+// Points can point to objects on the HEAP or STACK memory
+
 typedef struct {
   int height;
   int age;
