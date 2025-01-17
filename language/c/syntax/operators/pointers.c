@@ -9,14 +9,32 @@ typedef struct {
   int age;
 } Person;
 
+typedef struct {
+  int data;
+  struct Node *left;
+  struct Node *right;
+} Node;
+
+Node *createNode(int data) {
+  Node *newNode = (Node *)malloc(sizeof(Node));
+  if (newNode == NULL) {
+    printf("Memory allocation failed!\n");
+    exit(1);
+  }
+  newNode->data = data;
+  newNode->left = NULL;
+  newNode->right = NULL;
+  return newNode;
+}
+
 int main() {
   // Pointer to a "Variable"
-  int age = 29;
-  int *pAge = NULL; // Initialize the pointe with a NULL reference
-  pAge = &age;      // Assign the memory address of the age variable
-  *pAge = 99;       // Assign to the original age variable
-  printf("a = %i\n", age);
-  printf("*b = %i\n", *pAge); // dereferencing
+  int number = 29;
+  int *pNumber = NULL; // Initialize the pointe with a NULL reference
+  pNumber = &number;   // Assign the memory address of the age variable
+  *pNumber = 99;       // Assign to the original age variable
+  printf("number = %i\n", number);
+  printf("*pNumber = %i\n", *pNumber); // dereferencing
 
   // Pointer to a "Struct"
   Person henry;

@@ -4,11 +4,10 @@ typedef struct {
   int height;
 } Person;
 
-Person henry;
-
 typedef char CharWithSizeTen[10];
 
 int main() {
+  Person henry;
   CharWithSizeTen greeting = "Hey!";
   return 0;
 }

@@ -3,32 +3,49 @@
 
 // Similar to classes, but has no methods
 
-// Create a struct (reference it as struct Player)
+// Create a struct (reference it as "struct Player")
 struct Player {
   char name[20];
   int score;
 };
-struct Player maria;
 
-// Create a struct (reference it simply as Person)
-// typedef gives a name for the struct
+struct Node {
+  int data;
+  struct Node *left; // reference itself
+  struct Node *right;
+};
+
+// Create a struct (reference it simply as "Person")
+// typedef gives an alias for the struct
 typedef struct {
   char name[20];
   int age;
 } Person;
-Person henry;
 
 int main() {
 
-  // Creation using name arguments
-  strcpy(henry.name, "Henry");
-  henry.age = 29;
+  // Create
+  struct Player maria;
+  Person henry;                              // empty
+  Person luigi = {"Luigi", 27};              // positional args
+  Person john = {.name = "John", .age = 30}; // name args
 
-  printf("name: %s, age: %d\n", henry.name, henry.age);
-  printf("Memory Address: %p %p\n", &henry, henry);
+  printf("Name: %s, Age: %d\n", henry.name, henry.age);
+  printf("Name: %s, Age: %d\n", luigi.name, luigi.age);
+  printf("Name: %s, Age: %d\n", john.name, john.age);
 
-  // Creation using positional arguments
-  Person luigi = {"Luigi", 27};
+  // Access/Modify
+  strcpy(henry.name, "Henry2");
+  henry.age = 42;
+
+  printf("Name: %s, Age: %d\n", henry.name, henry.age);
+
+  // Access/Modify (via pointers)
+  Person *pHenry = &henry;
+  strcpy(pHenry->name, "Henry3");
+  pHenry->age = 43;
+
+  printf("Name: %s, Age: %d\n", pHenry->name, pHenry->age);
 
   return 0;
 }
