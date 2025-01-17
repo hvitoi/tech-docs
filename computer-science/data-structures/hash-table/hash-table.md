@@ -5,6 +5,9 @@
 - Ideally, the hash function assigns each `key` to a unique `bucket` (within the array of buckets). This is where the `key-value` pair is stored
 - During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored (within the array of buckets)
 - Hash tables are `unordered`
+- It's a `key-value pair`, the key can also be an index
+- The association between a key and a value is often known as a `mapping`
+- The key has to be an `immutable type` (e.g., strings and numbers). You can't use a list as key (since it can be modified in place)
 
 ## Load factor
 
