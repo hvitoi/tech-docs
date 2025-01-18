@@ -19,6 +19,7 @@ clang \
 
 - Generate source-level debug information
 - This includes debugging symbols
+- This is essential for debugging breakpoints
 
 ```shell
 clang \

@@ -43,6 +43,14 @@ public:
   }
 };
 
+// Inheritance
+class EmptyListException : public std::exception {
+public:
+  const char *what() const noexcept override {
+    return "Cannot pop from an empty list.";
+  }
+};
+
 int main() {
   // Instance is created on the STACK (automatically destroyed when it goes out
   // of scope). No need to worry about memory management (freeing it up)

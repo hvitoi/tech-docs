@@ -33,6 +33,12 @@ int main() {
   root2->left = root2->right = nullptr;
   delete root2;
 
+  // Allocate a variable dynamically
+  int *number = new int(42); // Declare and Assign
+  delete number;             // Delete
+  number = new int(43);      // Re-assign
+  delete number;             // Delete
+
   cout << "" << endl;
   return 0;
 }

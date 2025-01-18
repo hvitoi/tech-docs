@@ -14,6 +14,10 @@ int main() {
 
   delete root; // Free up the object from HEAP memory
 
+  // This just frees the memory, but the pointer is still a memory address, not
+  // nullptr. Therefore it's a good practice to explicitly override it
+  root = nullptr;
+
   cout << "" << endl;
   return 0;
 }

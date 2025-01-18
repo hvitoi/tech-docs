@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 using namespace std;
 
@@ -24,6 +25,18 @@ public:
     head = new_node;
   }
 
+  int pop_left() {
+    if (!head) {
+      throw underflow_error("Empty list");
+    }
+
+    Node *new_head = head->next;
+    int popped = head->data;
+    delete head;
+    head = new_head;
+    return popped;
+  }
+
   // Add node to the end of the list
   void push_right(int value) {
     Node *new_node = new Node(value);
@@ -38,6 +51,32 @@ public:
       current = current->next;
     }
     current->next = new_node;
+  }
+
+  int pop_right() {
+    // Case 1: List is empty
+    if (!head) {
+      throw underflow_error("Empty list");
+    }
+
+    // Case 2: List has only one element
+    if (!head->next) {
+      int popped = head->data;
+      delete head;
+      head = nullptr;
+      return popped;
+    }
+
+    // Case 3: List has at least 2 elements
+    auto current = head;
+    while (current->next->next) {
+      // move to second-to-last item
+      current = current->next;
+    }
+    int popped = current->next->data; // pop the last item
+    delete current->next;
+    current->next = nullptr;
+    return popped;
   }
 
   // Convert LinkedList to a vector
@@ -75,17 +114,44 @@ public:
 
 int main() {
   LinkedList ll;
-  ll.push_right(10);
-  ll.push_right(20);
+
+  // Print
+  ll.print();
+
+  // Push Right
   ll.push_right(30);
+  ll.push_right(40);
+
+  // Push Left
+  ll.push_left(20);
+  ll.push_left(10);
 
   // Print
   ll.print();
 
   // To List
-  auto actual = ll.toList();
-  vector<int> expected{10, 20, 30};
-  assert(actual == expected);
+  {
+    auto actual = ll.toList();
+    vector<int> expected{10, 20, 30, 40};
+    assert(actual == expected);
+  }
+
+  // Pop Left
+  {
+    auto actual = ll.pop_left();
+    auto expected = 10;
+    assert(actual == expected);
+  }
+
+  // Pop Right
+  {
+    auto actual = ll.pop_right();
+    auto expected = 40;
+    // assert(actual == expected);
+  }
+
+  // Print
+  ll.print();
 
   return 0;
 }
