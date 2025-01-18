@@ -5,4 +5,4 @@ it.__next__()  # same
 next(it)
 next(it)
 next(it)
-next(it)  # raises StopIteration
+# next(it)  # raises StopIteration
