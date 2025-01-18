@@ -57,6 +57,38 @@ public:
   }
 };
 
+class Chef {
+protected: // allow it to be access by child objects
+  string name;
+
+public:
+  Chef(string name) : name(name) {}
+  virtual ~Chef() {}
+
+  void make_salad() { cout << name << " makes salad" << endl; }
+  virtual void
+  make_special_dish() = 0; // child classes need to implement it. This makes
+                           // this class an abstract class that cannot be
+                           // instantiated directly
+};
+
+class ChineseChef : public Chef {
+public:
+  ChineseChef(string name) : Chef(name) {}
+  void make_special_dish() override {
+    cout << name << " makes orange chicken" << endl;
+  }
+};
+
+class ItalianChef : public Chef {
+public:
+  ItalianChef(string name) : Chef(name) {}
+  void make_special_dish() override {
+    cout << name << " makes pizza" << endl;
+    ;
+  }
+};
+
 int main() {
   // Instance is created on the STACK (automatically destroyed when it goes out
   // of scope). No need to worry about memory management (freeing it up)
@@ -68,6 +100,22 @@ int main() {
   LinkedList *ll2 = new LinkedList();
 
   delete ll2;
+
+  // ---
+
+  Chef *chefs[2];
+
+  chefs[0] = new ChineseChef("Zhang");
+  chefs[0]->make_salad();
+  chefs[0]->make_special_dish();
+
+  chefs[1] = new ItalianChef("Luigi");
+  chefs[1]->make_salad();
+  chefs[1]->make_special_dish();
+
+  for (int i = 0; i < 2; i++) {
+    delete chefs[i]; // Clean up dynamically allocated objects
+  }
 
   return 0;
 }
