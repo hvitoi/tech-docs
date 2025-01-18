@@ -1,9 +1,10 @@
 #include <iostream>
-using namespace std;
+
+// stdout
 
 int main() {
-  // Character Output. Streams the result to stdout
-  cout << "Hello World" << endl;
+  // Character Output
+  std::cout << "Hello World" << std::endl;
 
   return 0;
 }

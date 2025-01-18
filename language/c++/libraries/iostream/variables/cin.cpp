@@ -1,24 +1,24 @@
 #include <iostream>
-using namespace std;
 
+// stdin
 // "cin" stops collection as soon as "enter" is pressed
 
 int main() {
-  string name;
+  std::string name;
 
-  cout << "Enter your name: ";
-  cin >> name; // does not support spaces. For that use "getline"
+  std::cout << "Enter your name: ";
+  std::cin >> name; // does not support spaces. For that use "getline"
 
-  cout << "Hello, " << name << "!" << endl;
+  std::cout << "Hello, " << name << "!" << std::endl;
 
   float sum = 0;
   float el;
   for (int i = 0; i < 3; i++) {
-    cout << "Enter value " << i << ": ";
-    cin >> el;
+    std::cout << "Enter value " << i << ": ";
+    std::cin >> el;
     sum += el;
   }
-  cout << "The sum is: " << sum << endl;
+  std::cout << "The sum is: " << sum << std::endl;
 
   return 0;
 }

@@ -1,6 +1,7 @@
 # Leetcode API
 
 - Fetch most liked problems
+- <https://leetcode.com/problems/two-sum/>
 
 ```shell
 curl -s --request POST \
@@ -11,5 +12,5 @@ curl -s --request POST \
       "operationName": "MyQuery",
       "variables": {"categorySlug":"all-code-essentials","filters":{}}
   }' \
-  | jq '.data.questionList.data | sort_by(.likes) | reverse | map(select(.likes > 3000))' > problems.json
+  | jq '.data.questionList.data | sort_by(.likes) | reverse | map(select(.likes > 10000))' > problems.json
 ```

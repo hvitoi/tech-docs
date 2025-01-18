@@ -1,6 +1,10 @@
 #include <assert.h>
 
 int main() {
-  assert(0 == 0);
+  int actual = 0;
+  int expected = 0;
+
+  assert(expected == actual);
+
   return 0;
 }
