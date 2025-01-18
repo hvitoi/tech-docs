@@ -17,8 +17,25 @@ class LinkedList {
 private:
   Node *head;
 
+  void to_list_recursive_helper(Node *node, vector<int> &result) const {
+    if (!node) {
+      return;
+    }
+    result.push_back(node->data);
+    to_list_recursive_helper(node->next, result);
+  }
+
 public:
   LinkedList() : head(nullptr) {}
+
+  void print() {
+    Node *current = head;
+    while (current) {
+      cout << current->data << " -> ";
+      current = current->next;
+    }
+    cout << "nullptr" << endl;
+  }
 
   void push_left(int value) {
     Node *new_node = new Node(value, head);
@@ -37,7 +54,6 @@ public:
     return popped;
   }
 
-  // Add node to the end of the list
   void push_right(int value) {
     Node *new_node = new Node(value);
 
@@ -79,8 +95,7 @@ public:
     return popped;
   }
 
-  // Convert LinkedList to a vector
-  vector<int> to_list() {
+  vector<int> to_list() const {
     vector<int> list;
 
     Node *current = head;
@@ -92,30 +107,12 @@ public:
     return list;
   }
 
-  void to_list_helper(Node *node, vector<int> &result) const {
-    if (!node) {
-      return;
-    }
-    result.push_back(node->data);
-    to_list_helper(node->next, result);
-  }
-
   vector<int> to_list_recursive() const {
     vector<int> result{};
-    to_list_helper(head, result);
+    to_list_recursive_helper(head, result);
     return result;
   }
 
-  void print() {
-    Node *current = head;
-    while (current) {
-      cout << current->data << " -> ";
-      current = current->next;
-    }
-    cout << "nullptr" << endl;
-  }
-
-  // Destructor to free allocated memory
   ~LinkedList() {
     Node *current = head;
     while (current) {
