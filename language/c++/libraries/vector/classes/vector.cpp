@@ -5,7 +5,11 @@ using namespace std;
 // Vectors are dynamic arrays
 
 int main() {
+  // Create
   vector<string> colors = {"red", "blue", "green"};
+
+  // Create (based on another vector)
+  auto concatenated(colors);
 
   // Access
   cout << colors[0] << endl;

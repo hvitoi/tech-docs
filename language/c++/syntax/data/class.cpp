@@ -19,11 +19,6 @@ private:
 public:
   LinkedList() : head(nullptr) {}
 
-  void push_left(int value) {
-    Node *new_node = new Node(value, head);
-    head = new_node;
-  }
-
   void print() {
     Node *current = head;
     while (current) {
@@ -31,6 +26,17 @@ public:
       current = current->next;
     }
     cout << "nullptr" << endl;
+  }
+
+  // "const" means the instance/object state won't be changed
+  // This means attributes cannot be changed (unless they're marked "mutable")
+  void modifyHead() const {
+    // head = nullptr; // ERROR: Cannot modify member variable in const function
+  }
+
+  void push_left(int value) {
+    Node *new_node = new Node(value, head);
+    head = new_node;
   }
 
   ~LinkedList() {

@@ -80,7 +80,7 @@ public:
   }
 
   // Convert LinkedList to a vector
-  vector<int> toList() {
+  vector<int> to_list() {
     vector<int> list;
 
     Node *current = head;
@@ -90,6 +90,20 @@ public:
     }
 
     return list;
+  }
+
+  void to_list_helper(Node *node, vector<int> &result) const {
+    if (!node) {
+      return;
+    }
+    result.push_back(node->data);
+    to_list_helper(node->next, result);
+  }
+
+  vector<int> to_list_recursive() const {
+    vector<int> result{};
+    to_list_helper(head, result);
+    return result;
   }
 
   void print() {
@@ -131,7 +145,14 @@ int main() {
 
   // To List
   {
-    auto actual = ll.toList();
+    auto actual = ll.to_list();
+    vector<int> expected{10, 20, 30, 40};
+    assert(actual == expected);
+  }
+
+  // To List (Recursive)
+  {
+    auto actual = ll.to_list_recursive();
     vector<int> expected{10, 20, 30, 40};
     assert(actual == expected);
   }

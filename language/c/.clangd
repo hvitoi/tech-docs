@@ -1,3 +1,5 @@
 CompileFlags:
   Add:
     - -std=c17
+InlayHints:
+  Enabled: No

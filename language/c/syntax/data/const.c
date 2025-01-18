@@ -3,9 +3,9 @@
 typedef struct {
   int id;
   char name[50];
-} Object;
+} Something;
 
-void displayObject(const Object *obj) {
+void displayObject(const Something *obj) {
   printf("Object ID: %d\n", obj->id);
   printf("Object Name: %s\n", obj->name);
   // obj->id = 42;  // Compilation Error: assignment of read-only location
@@ -16,7 +16,7 @@ int main() {
   const float PI = 3.14; // cannot change during execution
 
   // Constant function argument
-  Object myObject = {1, "My First Object"};
+  Something myObject = {1, "My First Object"};
   displayObject(&myObject);
 
   return 0;
