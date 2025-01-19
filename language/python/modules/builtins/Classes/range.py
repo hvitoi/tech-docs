@@ -1,6 +1,7 @@
 # %%
 list(range(10))  # 0 to 9
 list(range(0, 10))  # 0 to 9
+list(range(1, 11))  # 1 to 10
 
 # %%
 list(range(0, 10, 2))  # [0, 2, 4, 6, 8]

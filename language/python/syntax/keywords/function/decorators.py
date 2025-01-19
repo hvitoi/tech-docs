@@ -1,7 +1,6 @@
 # %%
 # Decorator applies a closure to a function
 
-
 def memoize(fn):
     memo = {}
 

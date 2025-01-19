@@ -29,6 +29,7 @@ arr = ["a", "b", "c"]
 
 def fn_without_side_effects(arr: list) -> list:
     arr = copy.deepcopy(arr)
+    arr = list(arr) # same
     arr.append("z")
     return arr
 

@@ -33,3 +33,8 @@ list("abc")
 # %%
 # from tuple
 list(("a", "b"))  # values are flattened
+
+# %%
+# from another list
+my_list = ["a", "b"]
+another_list = list(another_list) # useful in functions in which you do not want to modify the original list
