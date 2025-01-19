@@ -1,6 +1,7 @@
 # %%
 from collections import deque
 
+# Queue behavior
 
 foo = deque()
 

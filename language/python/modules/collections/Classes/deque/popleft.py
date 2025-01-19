@@ -1,15 +1,16 @@
 # %%
 from collections import deque
 
+# Queue behavior
 
 foo = deque()
 
-# enqueue
+# Enqueue
 foo.append("a")
 foo.append("b")
 foo.append("c")
 
-# dequeue
+# Dequeue
 foo.popleft()
 foo.popleft()
 foo.popleft()

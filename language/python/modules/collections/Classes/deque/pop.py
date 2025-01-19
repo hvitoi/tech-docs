@@ -3,7 +3,7 @@ from collections import deque
 
 foo = deque()
 
-# Linked List style
+# Linked List behavior
 
 foo.appendleft("c")
 foo.appendleft("b")
