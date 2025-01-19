@@ -60,6 +60,9 @@ class MaxHeap:
         return self.heap
 
     def peek(self) -> int:
+        """
+        O(1)
+        """
         return self.heap[0]
 
     def pop(self) -> int | None:

@@ -1,7 +1,10 @@
-# Leetcode API
+# Leetcode
+
+- <https://leetcode.com/problems/two-sum/>
+
+## API
 
 - Fetch most liked problems
-- <https://leetcode.com/problems/two-sum/>
 
 ```shell
 curl -s --request POST \

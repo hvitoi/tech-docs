@@ -37,8 +37,8 @@ def find_kth_largest_min_heap(nums: list[int], k: int) -> int:
     heap = []
     for num in nums:
         if len(heap) >= k:
-            if num >= heap[-1]:  # if it's not large enough, don't even put it in
-                heapq.heappushpop(heap, num)
+            # if num >= heap[-1]:  # if it's not large enough, don't even put it in (do not influence on the time complexity)
+            heapq.heappushpop(heap, num)
         else:
             heapq.heappush(heap, num)
     return heap[0]  # peek the next one in the heap
@@ -74,7 +74,7 @@ def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
         if target_index > pivot_index:
             return kth_largest(pivot_index + 1, right)
 
-    target_index = len(arr) - k
+    target_index = len(arr) - k # the index of the smallest of the kth largest numbers
     return kth_largest(0, len(arr) - 1)
 
 
