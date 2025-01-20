@@ -1,5 +1,11 @@
 # %%
-from unittest import TestCase
+import unittest
+
+# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+# fib(0) = 0
+# fib(1) = 1
+# fib(2) = 1
+# fib(3) = 2
 
 
 def fibonacci_with_array(n):
@@ -44,12 +50,13 @@ def fibonacci_with_curr_prev(n):
 
 
 def memoize(fn):
-    memo = {}
+    cache = {}
 
-    def lookup_or_miss(*args):
-        if args not in memo:
-            memo[args] = fn(*args)
-        return memo[args]
+    def lookup_or_miss(*args, **kwargs):
+        key = str(args) + str(kwargs)
+        if key not in cache:
+            cache[key] = fn(*args, **kwargs)
+        return cache[key]
 
     return lookup_or_miss
 
@@ -57,7 +64,7 @@ def memoize(fn):
 @memoize
 def fibonacci_recursive(n):
     """
-    Time: O(2^n)
+    Time: O(2^n) (without memoization)
     """
     if n <= 1:
         return n
@@ -78,7 +85,7 @@ def fibonacci_recursive_with_accumulator(n, acc=(0, 1)):
     )
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 for fn in {
     fibonacci_with_array,
