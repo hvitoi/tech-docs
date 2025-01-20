@@ -74,7 +74,7 @@ def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
         if pivot_index < target_index:
             return kth_largest(pivot_index + 1, right, target_index)
 
-    target_index = len(arr) - k # the index of the kth largest number in a sorted array
+    target_index = len(arr) - k  # the index of the kth largest number in a sorted array
     return kth_largest(0, len(arr) - 1, target_index)
 
 
