@@ -62,20 +62,20 @@ def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
         arr[pivot_index], arr[right] = arr[right], arr[pivot_index]
         return pivot_index
 
-    def kth_largest(left: int, right: int):
+    def kth_largest(left: int, right: int, target_index: int) -> int:
         pivot_index = partition(left, right)
 
         if pivot_index == target_index:
             return arr[target_index]
 
         if pivot_index > target_index:
-            return kth_largest(left, pivot_index - 1)
+            return kth_largest(left, pivot_index - 1, target_index)
 
         if pivot_index < target_index:
-            return kth_largest(pivot_index + 1, right)
+            return kth_largest(pivot_index + 1, right, target_index)
 
-    target_index = len(arr) - k # the index of the smallest of the kth largest numbers
-    return kth_largest(0, len(arr) - 1)
+    target_index = len(arr) - k # the index of the kth largest number in a sorted array
+    return kth_largest(0, len(arr) - 1, target_index)
 
 
 test_case = TestCase()

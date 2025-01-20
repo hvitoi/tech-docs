@@ -9,7 +9,7 @@ def merge_k_lists_with_pointers(lists: list[list[int]]) -> list[int]:
     O(n*k) where k is the number of arrays and n is size sum of all
     """
     total_items = sum([len(arr) for arr in lists])
-    pointers = [0 for _ in range(len(lists))]
+    pointers = len(lists) * [0]
     merged = []
 
     while len(merged) != total_items:
