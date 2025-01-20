@@ -9,11 +9,10 @@ def factorial_recursive(n):
     return n * factorial_recursive(n - 1)
 
 
-def factorial_recursive_with_while(n):
+def factorial_with_loop(n):
     fat = 1
-    while n > 0:
-        fat *= n
-        n -= 1
+    for i in range(1, n + 1):
+        fat *= i
     return fat
 
 
@@ -36,7 +35,7 @@ test_case = unittest.TestCase()
 
 for fn in {
     factorial_recursive,
-    factorial_recursive_with_while,
+    factorial_with_loop,
     factorial_recursive_with_accumulator,
     factorial_reduce,
 }:
