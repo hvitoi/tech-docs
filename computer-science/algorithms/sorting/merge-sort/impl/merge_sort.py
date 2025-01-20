@@ -6,7 +6,7 @@ def merge_sort(arr: list):
     if len(arr) <= 1:
         return arr
 
-    # sort each part
+    # sort each part. Recurses a maximum of log(n) levels
     mid_index = len(arr) // 2
     sorted_left = merge_sort(arr[:mid_index])
     sorted_right = merge_sort(arr[mid_index:])

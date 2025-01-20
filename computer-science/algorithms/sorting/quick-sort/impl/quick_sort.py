@@ -34,7 +34,8 @@ def partition2(arr: list[int]) -> int:
 
 
 def quick_sort(arr: list[int]) -> list[int]:
-    """"""
+    """
+    """
 
     def partition(left: int, right: int) -> int:
         pivot = arr[right]  # pivot is the rightmost el
