@@ -26,18 +26,29 @@
 
 ![Graph](graph.png)
 
-- **Edge List**: a list containing each edge connection (order is not important)
+### Edge List
+
+- A list containing each edge connection (order is not important)
 
 ```python
 graph = [
-    [0, 2],
+    [0, 2], # connects node 0 with node 2 (forming an edge)
     [2, 3],
     [2, 1],
     [1, 3],
 ]
+
+graph = [
+    ['A','C'], # connects node A with node C (forming an edge)
+    ['C','D'],
+    ['C','B'],
+    ['B','D']
+]
 ```
 
-- **Adjacent List**: a list containing each node in order. Each node itself is a list containing all its connections (with other nodes)
+### Adjacent List
+
+- A list containing each node in order. Each node itself is a list containing all its connections (with other nodes)
 
 ```python
 # as a list
@@ -65,7 +76,9 @@ graph = {
 }
 ```
 
-- **Adjacent Matrix**: a list containing each node in order. Each node itself is a list containing if it's connected (0 or 1) with each of the other nodes. It can also contain weights (scalar) and directions (sign)
+### Adjacent Matrix
+
+- A list containing each node in order. Each node itself is a list containing if it's connected (0 or 1) with each of the other nodes. It can also contain weights (scalar) and directions (sign)
 
 ```python
 # as a list
