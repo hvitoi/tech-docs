@@ -35,3 +35,6 @@ my_map = {"a": "alpha", "b": "beta"}
 for key in my_map:
     # iterates over the key
     print(key, my_map[key])
+
+for key, val in my_map.items():
+    print(key, val)

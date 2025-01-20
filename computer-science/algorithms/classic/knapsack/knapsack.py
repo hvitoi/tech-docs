@@ -1,5 +1,4 @@
 # %%
-from functools import reduce
 import heapq
 from unittest import TestCase
 
@@ -30,7 +29,9 @@ def knapsack(items: dict[str, dict[str, int]], bag_size: int):
         available_weight = bag_size - current_weight
         item = heappop(profitable_items)
 
+        # either pick to whole item, or break it to fit the bag
         quantity_to_pick = min(item[3], available_weight)
+        # 1 if picking the whole item < 1 if picking a slice
         portion_to_pick = quantity_to_pick / item[3]
 
         bag.add((item[1], portion_to_pick))

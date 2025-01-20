@@ -1,3 +1,4 @@
+# Similar to "del" keyword but returns the popped element
 # %%
 my_dict = {"a": 1, "b": 2, "c": 3}
 
