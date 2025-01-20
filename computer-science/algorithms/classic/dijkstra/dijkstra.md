@@ -1,6 +1,6 @@
 # Dijkstra Algorithms
 
-- Find the `best path` from one node to every other node
+- Find the `best path` from a node to every other node
 - It's a brute force solution (applies no heuristic)
 - It uses a `greedy algorithm` approach that makes the local optimal choice at each node
 - It uses a `priority queue` (min heap) to decide which node to visit next

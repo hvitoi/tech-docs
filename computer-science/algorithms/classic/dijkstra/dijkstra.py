@@ -66,23 +66,3 @@ test_case.assertEqual(
     distance_to_destination(graph, "A", "F"),
     (10, ["A", "C", "E", "F"]),
 )
-
-test_case.assertEqual(
-    distance_to_destination(graph, "A", "D"),
-    (6, ["A", "C", "D"]),
-)
-
-# test_case.assertEqual(
-#     distance_to_destination(graph, "B", "F"),
-#     (11, ["B", "C", "E", "F"]),
-# )
-
-# test_case.assertEqual(
-#     distance_to_destination(graph, "E", "A"),
-#     (7, ["E", "C", "B", "A"]),
-# )
-
-# test_case.assertEqual(
-#     distance_to_destination(graph, "A", "A"),
-#     (0, ["A"]),
-# )

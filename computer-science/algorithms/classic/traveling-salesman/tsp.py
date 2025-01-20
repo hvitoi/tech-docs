@@ -1,5 +1,5 @@
 # %%
-from unittest import TestCase
+import unittest
 
 
 def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
@@ -18,9 +18,8 @@ def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
             if node not in visited_nodes and distance < next_node[1]:
                 next_node = (node, distance)
 
+        total_distance += next_node[1] if next_node[0] else 0
         current_node = next_node[0]
-        if current_node:
-            total_distance += next_node[1]
 
     # close the circuit
     total_distance += graph[path[-1]][start]
@@ -29,7 +28,7 @@ def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
     return path, total_distance
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 graph = {
     "A": {"A": 0, "B": 10, "C": 15, "D": 20},
