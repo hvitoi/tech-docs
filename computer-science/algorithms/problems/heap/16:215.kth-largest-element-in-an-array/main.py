@@ -54,24 +54,24 @@ def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
 
     def partition(left: int, right: int) -> int:
         pivot = arr[right]
-        i = left
-        for j in range(left, right):
-            if arr[j] <= pivot:
-                arr[i], arr[j] = arr[j], arr[i]
-                i += 1
-        arr[i], arr[right] = arr[right], arr[i]
-        return i
+        pivot_index = left
+        for i in range(left, right):
+            if arr[i] <= pivot:
+                arr[pivot_index], arr[i] = arr[i], arr[pivot_index]
+                pivot_index += 1
+        arr[pivot_index], arr[right] = arr[right], arr[pivot_index]
+        return pivot_index
 
     def kth_largest(left: int, right: int):
         pivot_index = partition(left, right)
 
-        if target_index == pivot_index:
+        if pivot_index == target_index:
             return arr[target_index]
 
-        if target_index < pivot_index:
+        if pivot_index > target_index:
             return kth_largest(left, pivot_index - 1)
 
-        if target_index > pivot_index:
+        if pivot_index < target_index:
             return kth_largest(pivot_index + 1, right)
 
     target_index = len(arr) - k # the index of the smallest of the kth largest numbers

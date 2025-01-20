@@ -38,14 +38,14 @@ def quick_sort(arr: list[int]) -> list[int]:
     """
 
     def partition(left: int, right: int) -> int:
-        pivot = arr[right]  # pivot is the rightmost el
-        i = left  # elements to the left of this index (exclusive) are lower than the pivot
-        for j in range(left, right):  # excludes the last element (the pivot)
-            if arr[j] <= pivot:
-                arr[i], arr[j] = arr[j], arr[i]
-                i += 1
-        arr[i], arr[right] = arr[right], arr[i]  # Bring pivot to the correct position
-        return i  # return the pivot's final resting position
+        pivot_value = arr[right]  # pivot is the rightmost el (convention, could be any)
+        pivot_index = left  # initial position of the pivot, elements to the left of this index (exclusive) should be lower than the pivot value
+        for i in range(left, right):  # excludes the last element (the pivot)
+            if arr[i] <= pivot_value:
+                arr[pivot_index], arr[i] = arr[i], arr[pivot_index]
+                pivot_index += 1
+        arr[pivot_index], arr[right] = arr[right], arr[pivot_index]  # Bring pivot to the correct position
+        return pivot_index  # return the pivot's final resting position
 
     def qs(left: int, right: int) -> None:
         if (right - left) <= 0:
