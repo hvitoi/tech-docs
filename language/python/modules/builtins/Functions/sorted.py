@@ -1,2 +1,5 @@
 # %%
-sorted([2, 3, 1])
+arr = [2, 3, 1, 5, 4]
+
+sorted(arr)
+sorted(arr, reverse=True)

@@ -35,6 +35,15 @@ list("abc")
 list(("a", "b"))  # values are flattened
 
 # %%
+l1 = ["a", "b"]
+l2 = ["c", "d"]
+l3 = ["e", "f"]
+
+l1 + l2 + [*l3]
+
+# %%
 # from another list
 my_list = ["a", "b"]
-another_list = list(another_list) # useful in functions in which you do not want to modify the original list
+
+# useful in functions in which you do not want to modify the original list
+another_list = list(my_list)

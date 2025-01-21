@@ -1,9 +1,10 @@
 # %%
-
 # Take each element at same position and put together a a tuple
 # Finishes as the shortest Iterable is exhausted
 
-list(zip("abc", [1, 2, 3, 4]))
+arr1 = "abc"
+arr2 = [1, 2, 3, 4]
+list(zip(arr1, arr2))
 
 # %%
 # Transpose matrix

@@ -1,11 +1,11 @@
 # %%
-from functools import wraps
+import functools
 
 
 def memoize(fn):
     cache = {}
 
-    @wraps(fn)
+    @functools.wraps(fn)
     def lookup_or_miss(*args):
         if args not in cache:
             cache[args] = fn(*args)

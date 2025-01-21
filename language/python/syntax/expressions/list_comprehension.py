@@ -19,3 +19,9 @@ foo = [el for el in range(10) if el % 2 == 0]
     ]
     for y in x
 ]
+
+# %%
+# Remove multiple indexes from an array
+# It's useful because using a traditional for would shift indexes during the execution
+arr = ["a", "b", "c", "d", "e"]
+[item for i, item in enumerate(arr) if i not in {1, 2}]
