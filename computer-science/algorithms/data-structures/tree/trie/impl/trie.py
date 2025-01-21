@@ -1,9 +1,10 @@
 # %%
-from unittest import TestCase
+import unittest
 
 
 class TrieNode:
     def __init__(self):
+        # there is no need to store the "letter" of the node, because it's already implicit in the child key of the upper node
         self.children = {}
         self.end_of_word = False
 
@@ -38,6 +39,6 @@ trie.insert("apple")
 trie.insert("banana")
 trie.insert("cucumber")
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 test_case.assertEqual(trie.search("apple"), True)
 test_case.assertEqual(trie.search("app"), False)
