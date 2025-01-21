@@ -15,12 +15,18 @@ class Student:
     def show(self):
         print(f"{self.name} studies {self.major}")
 
+    # to_string method
+    def __str__(self):
+        return f"[Name: {self.name}; Major: {self.major}"
+
+    # Class Methods receives the class itself
     @classmethod
-    def show_number_of_students(cls):  # receives the class itself
+    def show_number_of_students(cls):
         print(f"There are {cls.number_of_students} matriculated at {cls.school}")
 
+    # Static Methods know nothing about the class or instance
     @staticmethod
-    def say_hello(person):  # knows nothing about the class/instance
+    def say_hello(person):
         print(f"Hello, {person}!")
 
 
@@ -28,6 +34,11 @@ class Student:
 student1 = Student("Jim", "Business")
 student2 = Student("Maria", "Engineering")
 
+# toString method
+print(student1)
+print(student2)
+
+# show method
 student1.show()
 student2.show()
 

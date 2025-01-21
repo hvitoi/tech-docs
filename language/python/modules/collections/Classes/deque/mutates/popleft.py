@@ -14,3 +14,4 @@ foo.append("c")
 foo.popleft()
 foo.popleft()
 foo.popleft()
+# foo.popleft()  # throws if the queue is empty

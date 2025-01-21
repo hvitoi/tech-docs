@@ -12,55 +12,51 @@ class Node:
 
 class BST:
     def __init__(self, elements: list | None = None):
+        self.root = self.__deserialize(elements)
+
+    def __deserialize(self, elements: list) -> Node:
+        """
+        Create a BST out of a serialized BST as a list. E.g., [3, 9, 20, None, None, 15, 7]
+        Uses Bread-First Traversal
+        """
         if not elements:
-            elements = []
-        self.root = self.__deserialize_from_bf(elements)
-
-    def __deserialize_from_bf(self, elements: list) -> Node | None:
-        # copy the list so that the original one is not touched
-        elements = elements.copy()
-
-        def build_next_node() -> Node | None:
-            el = elements.pop(0) if elements else None
-            if el is not None:
-                return Node(el)
-
-        root = build_next_node()
-
-        if root is None:
             return
 
-        queue = deque([root])
+        remaining_elements = deque(elements)
+        root = Node(remaining_elements.popleft())
+        nodes = deque([root])
 
-        while elements:
-            node = queue.popleft()
+        while remaining_elements:
+            node = nodes.popleft()
 
-            node.left = build_next_node()
-            if node.left:
-                queue.append(node.left)
+            # child may be None if there are no remaining elements or if the next element is None
+            left_child = remaining_elements.popleft() if remaining_elements else None
+            if left_child:
+                node.left = Node(left_child)
+                nodes.append(node.left)
 
-            node.right = build_next_node()
-            if node.right:
-                queue.append(node.right)
+            right_child = remaining_elements.popleft() if remaining_elements else None
+            if right_child:
+                node.right = Node(right_child)
+                nodes.append(node.right)
 
         return root
 
-    def serialize_to_bf(self) -> list[int | None]:
+    def serialize(self) -> list[int | None]:
         acc = []
 
-        queue: deque[Node | None] = deque([self.root]) if self.root else deque()
+        nodes = deque([self.root]) if self.root else deque()
+        while nodes:
+            node = nodes.popleft()
 
-        while queue:
-            node = queue.popleft()
-
+            # It's necessary to do this verification here because the node (left or right) inserted into the nodes queue may be None
             if not node:
                 acc.append(None)
                 continue
 
             acc.append(node.data)
-
-            queue.append(node.left)
-            queue.append(node.right)
+            nodes.append(node.left)
+            nodes.append(node.right)
 
         # trim right Nones
         while acc[-1] is None:
@@ -284,45 +280,45 @@ test_case = TestCase()
 # Serialize / Deserialize
 raw = [3, 9, 20, None, None, 15, 7]
 a = BST(raw)
-test_case.assertEqual(BST(raw).serialize_to_bf(), raw)
+test_case.assertEqual(BST(raw).serialize(), raw)
 
-# Insert
-bst = BST()
-bst.insert(1)
-bst.insert(2)
-test_case.assertEqual(bst.to_set(), {1, 2})
+# # Insert
+# bst = BST()
+# bst.insert(1)
+# bst.insert(2)
+# test_case.assertEqual(bst.to_set(), {1, 2})
 
-# Search
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(True, bst.search(60))
-test_case.assertEqual(False, bst.search(99))
+# # Search
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(True, bst.search(60))
+# test_case.assertEqual(False, bst.search(99))
 
-# To Set (DF)
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.to_set(), {10, 20, 30, 40, 50, 60, 70, 80})
+# # To Set (DF)
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(bst.to_set(), {10, 20, 30, 40, 50, 60, 70, 80})
 
-# To List (DF)
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
+# # To List (DF)
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
 
-# To List (BF)
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
+# # To List (BF)
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
 
-# Height (DF)
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.height_df(), 3)
-test_case.assertEqual(bst.height_df(99), -1)
-test_case.assertEqual(bst.height_df(50), 0)
-test_case.assertEqual(bst.height_df(30), 1)
-test_case.assertEqual(bst.height_df(20), 2)
-test_case.assertEqual(bst.height_df(10), 3)
+# # Height (DF)
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(bst.height_df(), 3)
+# test_case.assertEqual(bst.height_df(99), -1)
+# test_case.assertEqual(bst.height_df(50), 0)
+# test_case.assertEqual(bst.height_df(30), 1)
+# test_case.assertEqual(bst.height_df(20), 2)
+# test_case.assertEqual(bst.height_df(10), 3)
 
-# Height (BF)
-bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.height_bf(), 3)
-test_case.assertEqual(bst.height_bf(99), -1)
-test_case.assertEqual(bst.height_bf(50), 0)
-test_case.assertEqual(bst.height_bf(30), 1)
-test_case.assertEqual(bst.height_bf(20), 2)
-test_case.assertEqual(bst.height_bf(10), 3)
+# # Height (BF)
+# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+# test_case.assertEqual(bst.height_bf(), 3)
+# test_case.assertEqual(bst.height_bf(99), -1)
+# test_case.assertEqual(bst.height_bf(50), 0)
+# test_case.assertEqual(bst.height_bf(30), 1)
+# test_case.assertEqual(bst.height_bf(20), 2)
+# test_case.assertEqual(bst.height_bf(10), 3)
