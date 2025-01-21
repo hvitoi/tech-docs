@@ -1,14 +1,12 @@
 # %%
-
-
-from unittest import TestCase
+import unittest
 
 
 def longest_increasing_subsequence(nums: list[int], prev=float("-inf")) -> int:
     """
-    Choice: either pick of not the next element as part of the subsequence
-    Constraint: the element has to be greater than the current
-    Goal: maximize the subsequence length
+    1. Choice: either pick or not the next element as part of the subsequence
+    2. Constraint: the element has to be greater than the current
+    3. Goal: maximize the subsequence length
     """
 
     if len(nums) == 0:
@@ -26,7 +24,7 @@ def longest_increasing_subsequence(nums: list[int], prev=float("-inf")) -> int:
         return longest_increasing_subsequence(nums[1:], prev)  # not pick
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 test_case.assertEqual(longest_increasing_subsequence([]), 0)
 test_case.assertEqual(longest_increasing_subsequence([1]), 1)
 test_case.assertEqual(longest_increasing_subsequence([1, 2]), 2)
