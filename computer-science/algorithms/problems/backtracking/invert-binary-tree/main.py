@@ -1,51 +1,71 @@
 # %%
+# https://leetcode.com/problems/invert-binary-tree/
 
-from unittest import TestCase
+import unittest
+import collections
 
 
-class TreeNode:
-    def __init__(self, val, *, left=None, right=None):
-        self.val = val
+class Node:
+    def __init__(self, data, *, left=None, right=None):
+        self.data = data
         self.left = left
         self.right = right
 
-    def to_list(self, node=None, acc=None) -> list:
-        """Depth-First Pre-Order"""
-        node = node if node else self
-        acc = acc if acc is not None else []
+    def serialize(self) -> list:
+        """
+        Serializes the BST so that the BST structured is represented as a list
+        It's used only for testing purposes
+        """
+        acc = []
 
-        if not node:
-            return acc
+        nodes = collections.deque([self])
+        while nodes:
+            node = nodes.popleft()
 
-        acc.append(node.val)
+            if not node:
+                acc.append(None)
+                continue
 
-        if node.left:
-            self.to_list(node.left, acc)
+            acc.append(node.data)
+            nodes.append(node.left)
+            nodes.append(node.right)
 
-        if node.right:
-            self.to_list(node.right, acc)
+        while acc[-1] is None:
+            acc.pop()
 
         return acc
 
 
-def invert_binary_tree(root: TreeNode) -> TreeNode:
-    if not root:
+def invert_binary_tree(node: Node) -> Node:
+    if not node:
         return
 
-    root.left, root.right = (
-        invert_binary_tree(root.right),
-        invert_binary_tree(root.left),
+    node.left, node.right = (
+        invert_binary_tree(node.right),
+        invert_binary_tree(node.left),
     )
 
-    return root
+    return node
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
-node = TreeNode(2, left=TreeNode(1), right=TreeNode(3))
-test_case.assertEqual(invert_binary_tree(node).to_list(), [2, 3, 1])
-
-node = TreeNode(
-    5, left=TreeNode(1), right=TreeNode(4, left=TreeNode(3), right=TreeNode(6))
+tree_node = Node(
+    2,
+    left=Node(1),
+    right=Node(3),
 )
-test_case.assertEqual(invert_binary_tree(node).to_list(), [5, 4, 6, 3, 1])
+test_case.assertEqual(
+    invert_binary_tree(tree_node).serialize(),
+    [2, 3, 1],
+)
+
+tree_node = Node(
+    5,
+    left=Node(1),
+    right=Node(4, left=Node(3), right=Node(6)),
+)
+test_case.assertEqual(
+    invert_binary_tree(tree_node).serialize(),
+    [5, 4, 1, 6, 3],
+)
