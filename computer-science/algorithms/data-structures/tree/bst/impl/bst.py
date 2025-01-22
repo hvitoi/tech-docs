@@ -206,50 +206,48 @@ class BST:
         Height of a node/tree using BFS
         """
 
-        def total_height(root) -> int:
+        def height_total(root) -> int:
             if not root:
                 return -1
 
-            queue = collections.deque([(root, 0)])
-
-            while queue:
-                node, level = queue.popleft()
+            # the "nodes" queue stores the height of each node
+            nodes = collections.deque([(root, 0)])
+            while nodes:
+                node, level = nodes.popleft()
 
                 if node.left:
-                    queue.append((node.left, level + 1))
+                    nodes.append((node.left, level + 1))
 
                 if node.right:
-                    queue.append((node.right, level + 1))
+                    nodes.append((node.right, level + 1))
 
+            # the level of the last node added via BFS
             return level
 
         def height_for_element(root, target) -> int:
-            height = -1
-
             if not root:
-                return height
+                return -1
 
-            queue = collections.deque([(root, 0)])
-
-            while queue:
-                node, level = queue.popleft()
+            nodes = collections.deque([(root, 0)])
+            while nodes:
+                node, level = nodes.popleft()
 
                 if node.data == target:
-                    height = level
-                    break
+                    return level
 
                 if node.left:
-                    queue.append((node.left, level + 1))
+                    nodes.append((node.left, level + 1))
 
                 if node.right:
-                    queue.append((node.right, level + 1))
+                    nodes.append((node.right, level + 1))
 
-            return height
+            # element not found
+            return -1
 
         if target:
             return height_for_element(self.root, target)
         else:
-            return total_height(self.root)
+            return height_total(self.root)
 
 
 test_case = unittest.TestCase()
