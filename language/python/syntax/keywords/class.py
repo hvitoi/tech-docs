@@ -15,7 +15,16 @@ class Student:
     def show(self):
         print(f"{self.name} studies {self.major}")
 
-    # to_string method
+    # private methods (single underscore): intended to be private to the module or class (a convention only)
+    def _show(self):
+        print(f"{self.name} studies {self.major}")
+
+    # name mangling (double underscore): python rewrites the function/attribute names to avoid naming conflicts in subclasses. It's  renamed to _MyClass__myvar
+    def __show(self):
+        print(f"{self.name} studies {self.major}")
+
+    # "magic methods": reserved for Python's internal use
+    # __init__, __str__, __repr__, __call__
     def __str__(self):
         return f"[Name: {self.name}; Major: {self.major}"
 

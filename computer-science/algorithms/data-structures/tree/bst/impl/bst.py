@@ -1,6 +1,6 @@
 # %%
-from unittest import TestCase
-from collections import deque
+import unittest
+import collections
 
 
 class Node:
@@ -12,19 +12,19 @@ class Node:
 
 class BST:
     def __init__(self, elements: list | None = None):
-        self.root = self.__deserialize(elements)
+        self.root = self._deserialize(elements)
 
-    def __deserialize(self, elements: list) -> Node:
+    def _deserialize(self, elements: list) -> Node:
         """
         Create a BST out of a serialized BST as a list. E.g., [3, 9, 20, None, None, 15, 7]
-        Uses Bread-First Traversal
+        The serialized format uses BFS, therefore this algorithm uses Bread-First Traversal to deserialize it
         """
         if not elements:
             return
 
-        remaining_elements = deque(elements)
+        remaining_elements = collections.deque(elements)
         root = Node(remaining_elements.popleft())
-        nodes = deque([root])
+        nodes = collections.deque([root])
 
         while remaining_elements:
             node = nodes.popleft()
@@ -43,9 +43,12 @@ class BST:
         return root
 
     def serialize(self) -> list[int | None]:
+        """
+        Serialize the BST into a list created via Bread-first Traversal
+        """
         acc = []
 
-        nodes = deque([self.root]) if self.root else deque()
+        nodes = collections.deque([self.root]) if self.root else collections.deque()
         while nodes:
             node = nodes.popleft()
 
@@ -69,19 +72,19 @@ class BST:
         Insert an element to the BST
         """
 
-        def insert_(node: Node, value: int) -> None:
+        def _insert(node: Node, value: int) -> None:
             if value == node.data:
                 raise Exception("Duplicated value")
 
             if value < node.data:
                 if node.left:
-                    insert_(node.left, value)
+                    _insert(node.left, value)
                 else:
                     node.left = Node(value)
 
             if value > node.data:
                 if node.right:
-                    insert_(node.right, value)
+                    _insert(node.right, value)
                 else:
                     node.right = Node(value)
 
@@ -89,7 +92,7 @@ class BST:
             self.root = Node(value)
             return
 
-        insert_(self.root, value)
+        _insert(self.root, value)
 
     def search(self, target: int) -> bool:
         """
@@ -114,35 +117,12 @@ class BST:
 
         return search_(self.root, target)
 
-    def to_set(self, node=None, acc=None):
-        """
-        Traverse Depth First and add elements to a list
-        Depth-First Pre-Order Traversal (doesn't really matter since it's a set)
-        """
-
-        node = node if node else self.root
-        acc = acc if acc is not None else set()
-
-        if not node:
-            return acc
-
-        acc.add(node.data)
-
-        if node.left:
-            self.to_set(node.left, acc)
-
-        if node.right:
-            self.to_set(node.right, acc)
-
-        return acc
-
     def to_list_df(self) -> list[int]:
         """
-        Traverse Depth-First and add elements to a list
+        Depth-First In-Order Traversal
         """
 
         def dfs(node: Node | None) -> list[int]:
-            """Depth-First In-Order"""
             acc = []
 
             if not node:
@@ -158,7 +138,7 @@ class BST:
 
     def to_list_bf(self) -> list[int]:
         """
-        Traverse Breadth-First and add elements to a list
+        Breadth-First Traversal
         """
 
         def bfs(root: Node | None) -> list[int]:
@@ -167,18 +147,16 @@ class BST:
             if not root:
                 return acc
 
-            queue = deque([root])
+            nodes = collections.deque([root])
 
-            while queue:
-                # consume first element in the queue
-                node = queue.popleft()
+            while nodes:
+                node = nodes.popleft()
                 acc.append(node.data)
 
-                # append its children to the end of the queue
                 if node.left:
-                    queue.append(node.left)
+                    nodes.append(node.left)
                 if node.right:
-                    queue.append(node.right)
+                    nodes.append(node.right)
 
             return acc
 
@@ -189,13 +167,13 @@ class BST:
         Height of a node/tree using DFS
         """
 
-        def total_height(node) -> int:
+        def height_total(node) -> int:
             if not node:
                 return -1
 
             return max(
-                1 + total_height(node.left),
-                1 + total_height(node.right),
+                1 + height_total(node.left),
+                1 + height_total(node.right),
             )
 
         def height_for_element(node, target) -> int:
@@ -221,7 +199,7 @@ class BST:
         if target:
             return height_for_element(self.root, target)
         else:
-            return total_height(self.root)
+            return height_total(self.root)
 
     def height_bf(self, target: int | None = None) -> int:
         """
@@ -232,7 +210,7 @@ class BST:
             if not root:
                 return -1
 
-            queue: deque[tuple[Node, int]] = deque([(root, 0)])
+            queue = collections.deque([(root, 0)])
 
             while queue:
                 node, level = queue.popleft()
@@ -251,7 +229,7 @@ class BST:
             if not root:
                 return height
 
-            queue: deque[tuple[Node, int]] = deque([(root, 0)])
+            queue = collections.deque([(root, 0)])
 
             while queue:
                 node, level = queue.popleft()
@@ -274,51 +252,47 @@ class BST:
             return total_height(self.root)
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 
 # Serialize / Deserialize
-raw = [3, 9, 20, None, None, 15, 7]
-a = BST(raw)
-test_case.assertEqual(BST(raw).serialize(), raw)
+serialized_bst = [3, 9, 20, None, None, 15, 7]
+bst = BST(serialized_bst)
+test_case.assertEqual(bst.serialize(), serialized_bst)
 
-# # Insert
-# bst = BST()
-# bst.insert(1)
-# bst.insert(2)
-# test_case.assertEqual(bst.to_set(), {1, 2})
+# Insert
+bst = BST()
+bst.insert(1)
+bst.insert(2)
+test_case.assertEqual(bst.serialize(), [1, None, 2])
 
-# # Search
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(True, bst.search(60))
-# test_case.assertEqual(False, bst.search(99))
+# Search
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(True, bst.search(60))
+test_case.assertEqual(False, bst.search(99))
 
-# # To Set (DF)
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(bst.to_set(), {10, 20, 30, 40, 50, 60, 70, 80})
+# To List (DF)
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
 
-# # To List (DF)
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
+# To List (BF)
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
 
-# # To List (BF)
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
+# Height (DF)
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.height_df(), 3)
+test_case.assertEqual(bst.height_df(99), -1)
+test_case.assertEqual(bst.height_df(50), 0)
+test_case.assertEqual(bst.height_df(30), 1)
+test_case.assertEqual(bst.height_df(20), 2)
+test_case.assertEqual(bst.height_df(10), 3)
 
-# # Height (DF)
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(bst.height_df(), 3)
-# test_case.assertEqual(bst.height_df(99), -1)
-# test_case.assertEqual(bst.height_df(50), 0)
-# test_case.assertEqual(bst.height_df(30), 1)
-# test_case.assertEqual(bst.height_df(20), 2)
-# test_case.assertEqual(bst.height_df(10), 3)
-
-# # Height (BF)
-# bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-# test_case.assertEqual(bst.height_bf(), 3)
-# test_case.assertEqual(bst.height_bf(99), -1)
-# test_case.assertEqual(bst.height_bf(50), 0)
-# test_case.assertEqual(bst.height_bf(30), 1)
-# test_case.assertEqual(bst.height_bf(20), 2)
-# test_case.assertEqual(bst.height_bf(10), 3)
+# Height (BF)
+bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
+test_case.assertEqual(bst.height_bf(), 3)
+test_case.assertEqual(bst.height_bf(99), -1)
+test_case.assertEqual(bst.height_bf(50), 0)
+test_case.assertEqual(bst.height_bf(30), 1)
+test_case.assertEqual(bst.height_bf(20), 2)
+test_case.assertEqual(bst.height_bf(10), 3)
