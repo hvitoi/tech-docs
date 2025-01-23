@@ -1,10 +1,14 @@
 # %%
-from unittest import TestCase
+# https://leetcode.com/problems/decode-ways/
+
+import unittest
 
 
 def memoize_from_first_three_letters(fn):
-    """the input 222222222222222 (15 digits) is reduced
-    from 1973 calculations to 14 calculations with this memoization"""
+    """
+    the input 222222222222222 (15 digits) is reduced
+    from 1973 calculations to 14 calculations with this memoization
+    """
     cache = {}
 
     def look_or_miss(s):
@@ -18,7 +22,10 @@ def memoize_from_first_three_letters(fn):
 
 @memoize_from_first_three_letters
 def num_decodings(s: str) -> int:
-    """O(2^n) without memoization, O(n) with memoization"""
+    """
+    O(2^n) without memoization
+    O(n) with memoization
+    """
     if len(s) >= 1 and int(s[0]) == 0:
         return 0
 
@@ -37,7 +44,7 @@ def num_decodings(s: str) -> int:
         return num_decodings(s[1:])
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 test_case.assertEqual(num_decodings("12"), 2)
 test_case.assertEqual(num_decodings("226"), 3)
 test_case.assertEqual(num_decodings("06"), 0)

@@ -1,6 +1,8 @@
 # %%
+# https://leetcode.com/problems/n-queens/
+
 # WIP
-from unittest import TestCase
+import unittest
 
 
 def solve_n_queens(n):
@@ -50,7 +52,7 @@ def solve_n_queens(n):
     return board
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 # test_case.assertEqual(
 #     solve_n_queens(4),

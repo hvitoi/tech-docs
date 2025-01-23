@@ -1,7 +1,7 @@
 # %%
+# https://leetcode.com/problems/sudoku-solver/
 
-
-from unittest import TestCase
+import unittest
 
 
 def solve_sudoku(board: list[list[str]]) -> None:
@@ -65,7 +65,7 @@ def solve_sudoku(board: list[list[str]]) -> None:
     solve(0, 0)
 
 
-test_case = TestCase()
+test_case = unittest.TestCase()
 
 board = [
     ["5", "3", ".", ".", "7", ".", ".", ".", "."],
