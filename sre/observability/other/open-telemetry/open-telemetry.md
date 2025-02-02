@@ -1,5 +1,9 @@
 # OpenTelemetry
 
+- <https://github.com/grafana/docker-otel-lgtm>
+
+![OTEL LGTM](.images/otel-lgtm.png)
+
 ## Metrics
 
 - Collects application and system metrics and can export them to backends like:
