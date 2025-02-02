@@ -16,3 +16,6 @@ theme:
 plugins:
   - same-dir
   - search
+
+exclude_docs: |
+  !.images
