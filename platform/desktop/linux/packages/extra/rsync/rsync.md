@@ -25,3 +25,11 @@ mkdir /tmp/backups # folder on remote server
 rsync -avz /home/localfile hvitoi@192.168.1.30:/home/hvitoi/remote/folder # sync file to remote server
 rsync -avzh hvitoi@192.168.1.30:/home/hvitoi/serverfile /home/local/folder
 ```
+
+```shell
+rsync -avh \
+  --progress \
+  --exclude=sources/install.wim \
+  /Volumes/CCCOMA_X64FRE_PT-BR_DV9/ \
+  /Volumes/WINDOWS_USB/
+```
