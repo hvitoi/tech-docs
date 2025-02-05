@@ -210,6 +210,8 @@ Properties:
   - Use the WCU for the GSI equal to the WCU of the main table!
 - There we be an inconsistency between the main table and the GSI while it's being sync (`eventual consistency`)
 - You can have up to `20 GSIs` per table
+- It's not possible to write to an GSI directly. It's used only for read operations. The write to a GSI is executed automatically under the hood when you write to the main table
+  - If you need to update by a hash key of the GSI, first you need to get the item by GSI hash key and then use the hash key of the main table to update it
 
 ### LocalSecondaryIndexes
 

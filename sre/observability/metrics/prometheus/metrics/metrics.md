@@ -10,3 +10,9 @@
     - _Counter_: How many times happened
     - _Gauge_: The current value now
     - _Histogram_: how long or how big
+
+## Examples
+
+```shell
+ALERTS{alertname=~"service_is_down.*", service=~".*"}
+```
