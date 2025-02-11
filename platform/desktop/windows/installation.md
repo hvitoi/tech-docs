@@ -4,13 +4,13 @@
 
 ## Bootable Media
 
-- **WinDiskWrite**: <https://github.com/TechUnRestricted/WinDiskWriter> (MacOS)
 - **Rufus**: <https://github.com/pbatard/rufus> (Windows)
+- **WinDiskWrite**: <https://github.com/TechUnRestricted/WinDiskWriter> (MacOS)
 - For older system it has to be formatted in FAT-32 (ExFAT won't be recognized)
 
 - Installation ISO
   - <https://www.microsoft.com/pt-br/software-download/windows11>
-  - If installing in a VM, make sure if can at least 2 cores set up, UEFI and TPM enabled
+  - If installing in a VM, make sure if has at least 2 cores set up, UEFI and TPM enabled
 
 ## Bypass Hardware Check
 
