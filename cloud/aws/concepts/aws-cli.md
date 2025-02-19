@@ -118,3 +118,16 @@ eksctl create cluster -f spot-cluster.yaml
 - `--profile`
 - `--region`: us-east-1 by default if not specified anywhere
 - `--output`
+- `--query`
+
+### query
+
+```shell
+aws logs get-log-events \
+    --log-group-name "foo" \
+    --log-stream-name "/aws/fis/$id" \
+    --no-paginate \
+    --query 'events[].message' \ # returns all elements in the array
+    --query 'events[*].message' \ # returns all elements in the array using a wildcard notation
+    --output text
+```

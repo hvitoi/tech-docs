@@ -27,13 +27,13 @@ aws logs get-log-events \
   --start-time $(date -d '1 hour ago' +%s) \
   --limit 100 \
   --no-paginate \
-  --query 'events[*].message'
+  --query 'events[].message'
 
 aws logs get-log-events \
   --log-group-name "chaos-log-group" \
   --log-stream-name "/aws/fis/EXPGEqpGoPBNU6JdSr" \
   --no-paginate \
-  --query 'events[*].message'
+  --query 'events[].message'
 ```
 
 ```json
