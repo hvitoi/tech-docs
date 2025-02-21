@@ -1,6 +1,6 @@
 # PersistentVolume (pv)
 
-- PersistentVolume (`SV`) **provisions volumes statically** which can be claimed by PVCs
+- PersistentVolume (`PV`) **provisions volumes statically** which can be claimed by PVCs
   - On the other hand StorageClass (SC) provisions volumes dynamically
 - A PV represents a space from the actual physical storage (e.g., local disk, NFS server, cloud storage)
 - The `PV` is an `interface` with the actual storage
