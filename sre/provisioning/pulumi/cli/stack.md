@@ -38,4 +38,5 @@ pulumi stack init --copy-config-from foo --stack foo
 
 ```shell
 pulumi stack rm "prod"
+pulumi stack rm "prod" --force # remove all resources if any
 ```

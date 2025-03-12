@@ -136,14 +136,40 @@ aws iam create-role \
 ```
 
 ```json
-// Assumable by another role
+// Assumable by another role (in the same account)
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
-      "Resource": "arn:aws:iam::123456789012s:role/foo"
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:role/my-role"
+      },
+    }
+  ]
+}
+```
+
+```json
+// Assumable by another role (in another account)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:root" // or simply the id of the other account (123456789012)
+      },
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::123456789012:role/my-role" // role in the other account that will be same to assume this role
+        },
+        "StringLike": {
+          "sts:ExternalId": "..."
+        }
+      }
     }
   ]
 }
@@ -156,10 +182,10 @@ aws iam create-role \
   "Statement": [
     {
       "Effect": "Allow",
+      "Action": "sts:AssumeRole",
       "Principal": {
         "AWS": "arn:aws:iam::ACCOUNT_ID:user/USERNAME"
       },
-      "Action": "sts:AssumeRole",
       "Condition": {
         "Bool": {
           "aws:MultiFactorAuthPresent": "true"
