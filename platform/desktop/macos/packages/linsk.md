@@ -2,6 +2,10 @@
 
 - <https://github.com/AlexSSD7/linsk>
 
+```shell
+mv linsk_darwin_arm64_v0.2.2 /usr/local/bin/linsk
+```
+
 ## build
 
 - Spin up a Linux VM
