@@ -29,6 +29,7 @@ $__timeGroup(timestamp, '1m')
 ## $MY_VAR
 
 - Constant variable defined in the project's settings
+- When multiple variables option is available you can specify how this will be concatenated. E.g., `${MY_VAR:pipe}` -> val1|val2|val3
 
 ## json_value
 
