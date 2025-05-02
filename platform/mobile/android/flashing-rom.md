@@ -1,5 +1,9 @@
 # Android Debug Bridge (ADB)
 
+```shell
+brew install android-platform-tools
+```
+
 ## Connect
 
 ```shell
@@ -17,7 +21,7 @@ fastboot oem unlock
 adb reboot bootloader
 ```
 
-## flash
+## Flash
 
 ```shell
 fastboot flash bootloader "bootloader.img"
@@ -37,7 +41,7 @@ fastboot flash recovery "twrp.img"
 fastboot reboot-bootloader
 ```
 
-## push
+## Push
 
 ```shell
 adb push "elementalx.zip" "/sdcard/"
