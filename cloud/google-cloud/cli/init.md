@@ -1,4 +1,4 @@
-# auth
+# gcloud init
 
 - Initialize GCloud
   - Re-initialize the previous configuration

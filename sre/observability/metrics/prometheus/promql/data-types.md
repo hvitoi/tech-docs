@@ -37,7 +37,7 @@
 
 ## Time Series Selectors
 
-### Instant Vector Selectors**
+### Instant Vector Selectors
 
 - Pick a selection from a a time series
 - Uses the metric name as a function
