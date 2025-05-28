@@ -7,6 +7,9 @@
            :b "b"}]
   (println i)) ; iterate over the [key value]
 
+(doseq [[foo bar] {:foo 1 :bar 2}]
+  (println foo bar))
+
 (doseq [n (range 10)
         :let [i (-> n
                     inc
