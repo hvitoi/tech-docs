@@ -19,7 +19,7 @@ scutil --set HostName "new-hostname"
 # bonjour hostname - usable only on the local network e.g., my-mac.local
 scutil --set LocalHostName "new-hostname"
 
-# computer name
+# computer name - this is the name visible to other apple devices (e.g., on airdrop)
 scutil --set ComputerName "new-name"
 ```
 
