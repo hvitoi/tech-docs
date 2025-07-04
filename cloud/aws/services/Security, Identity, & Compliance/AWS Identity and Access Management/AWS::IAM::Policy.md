@@ -46,9 +46,9 @@ Properties:
 
 ### PolicyDocument
 
-- <https://awspolicygen.s3.amazonaws.com/policygen.html>
-- <https://policysim.aws.amazon.com/>
-- All the available actions can be found at <https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsfaultinjectionservice.html>
+- Create policy documents: <https://awspolicygen.s3.amazonaws.com/policygen.html>
+- Simulate policy permissions: <https://policysim.aws.amazon.com/>
+- All the available actions for each AWS service can be found at <https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html>
 
 ```json
 {

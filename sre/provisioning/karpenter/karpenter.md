@@ -13,6 +13,6 @@
 
 ## Karpenter vs. Cluster Autoscaler
 
-- Karpenter bypasses the flow of creating new nodes by means of the ASG of a Node Group that Cluster Autoscaler uses. Instead Karpenter creates new VMs directly
+- Karpenter bypasses the flow of creating new nodes by means of an ASG attached to a Node Group (the approach Cluster Autoscaler uses). Instead Karpenter creates new VMs directly
 - Also, Node Groups and their ASGs contain identical VMs of the same instance type. This may be not desirable as each pending workload may require different types of hardware (e.g., GPU processes). Karpenter provisions individual VMs of the appropriate type.
 - With Karpenter, `Node Groups are not even necessary`. The VMs are attached directly to the cluster and Karpenter manages it

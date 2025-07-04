@@ -44,6 +44,12 @@ spec:
 
 ```shell
 # Force delete namespace in "terminating" state
-kubectl get ns "dev" -o yaml > "ns.yaml"
-kubectl replace --raw "/api/v1/namespaces/dev/finalize" -f "./ns.yaml" # remove spec.finalizers[0] (kubernetes)
+# This removes the "spec.finalizers[0]" (kubernetes)
+kubectl get namespace <myns> -o json | \
+  jq '.spec.finalizers = []' | \
+  kubectl replace --raw "/api/v1/namespaces/<myns>/finalize" -f -
+
+kubectl patch <resource> \
+  -p '{"metadata":{"finalizers":null}}' \
+  --type=merge
 ```
