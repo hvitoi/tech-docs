@@ -3,5 +3,5 @@
 - Replace characters
 
 ```shell
-tr a b <<< 'ab' # bb
+tr "/" "-" <<< 'foo/bar' # foo-bar
 ```
