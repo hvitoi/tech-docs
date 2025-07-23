@@ -53,5 +53,16 @@ for i in ${!FOO[@]}; do
   echo "value": ${FOO[$i]}
 done
 
+http_request=(
+  curl https://httpbin.org/post
+  -s
+  -X POST
+  -H "Content-Type: application/json"
+  -d '{"key": "value"}'
+)
+response=$("${http_request[@]}")
+echo "$response"
+
 # jq to array
-CLIENTS=($(hyprctl clients -j | jq -r '.[] | .address'))
+clients=($(hyprctl clients -j | jq -r '.[] | .address'))
+echo $clients
