@@ -37,7 +37,7 @@
     - It's the public IP of the NAT Gateway (in the public subnet) used for the worker nodes (in the private subnet) to communicate with the EKS Control Plane
 
 - Security
-  - 1 **SG** (AWS::EC2::SecurityGroup)(ControlPlaneSecurityGroup: `eks-foo-sg-foo-12345678`) (Cluster SG)
+  - 1 **SG** (AWS::EC2::SecurityGroup) (ControlPlaneSecurityGroup: `eks-foo-sg-foo-12345678`) (Cluster SG)
     - Attached to the ENI all nodes (masters and workers)
   - 1 **SG** (AWS::EC2::SecurityGroup) (ClusterSharedNodeSecurityGroup: `eksctl-foo-cluster/ControlPlaneSecurityGroup`) (Additional SGs)
     - Attached to the ENI of the master nodes only
