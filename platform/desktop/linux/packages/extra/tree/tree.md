@@ -4,16 +4,29 @@
 - Display directories and subdirectories as a nesting tree; like ls but recursive
 
 ```shell
-# Current folder
-tree
+tree # current folder
+tree <folder> # specific folder
 
-# Specific folder
-# The folder also appear in the output
-tree <folder>
+# Hidden files
+tree -a
 
 # Depth
-tree <folder> -L "3"
+tree -L "3"
 
 # Directories only
-tree <folder> -d
+tree -d
+
+# File sizes
+tree -s
+tree -h # human readable sizes
+
+# File permissions
+tree -p
+
+# Shows full path
+tree -f # relative path
+tree -f $PWD # absolute path
+
+# Exclude mounted filesystems
+tree -x
 ```
