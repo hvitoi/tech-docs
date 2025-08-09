@@ -26,6 +26,9 @@ Second commit
 git commit -m "description"
 git commit -m "description" --allow-empty # empty commit
 
+# No message
+git commit --allow-empty-message --no-edit
+
 # Commit all files currently in the working directory
 git commit -a -m "description"
 ```
