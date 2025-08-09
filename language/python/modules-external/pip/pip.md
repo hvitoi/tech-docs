@@ -8,6 +8,11 @@
   - pip is not a OS packaging system, but rather meant to be used on `python virtual environments`
 - Python packages: <https://pypi.org/>
 
+```shell
+# Python comes with an ensurepip module, which can install pip in a Python environment.
+python -m ensurepip --upgrade
+```
+
 ## list
 
 ```shell
