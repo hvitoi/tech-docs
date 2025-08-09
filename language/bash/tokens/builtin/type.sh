@@ -1,3 +1,5 @@
-# - Identifies if the command is a `regular command` or `built-in command`
+# Identifies if the command is a `regular command` or `built-in command`
+type "cd"
 
-type "cd" # for bash
+# Get all the locations of a given executable
+type -a pip3

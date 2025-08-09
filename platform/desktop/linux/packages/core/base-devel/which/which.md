@@ -3,6 +3,9 @@
 - There is also the built-in `which` command
 
 ```shell
-# Find where is command is located
-which "cal" # show where the calendar is installed
+# Find where is command is located. First location in PATH
+which "cd"
+
+# Get all the locations of a given executable
+which -a "cd"
 ```

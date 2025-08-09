@@ -1,9 +1,10 @@
 # pip
 
 - Installed modules directory
+  - Root: `/usr/lib/python3.11/site-packages/` and `/usr/bin/`
   - Non-root:`~/.local/lib/python3.11/site-packages/` and `~/.local/bin/`
-  - Root: `/usr/lib/pythonX.X/site-packages/` and `/usr/bin/`
-- It's not advisable to install system-wide packages via pip (its other packaging system's responsability, e.g., brew, pacman, apt)
+  - Venv: `<venv>/lib/python3.11/site-packages/` and `<venv>/bin`
+- It's not advisable to install system-wide packages via pip (its other packaging system's responsibility, e.g., brew, pacman, apt)
   - pip is not a OS packaging system, but rather meant to be used on `python virtual environments`
 - Python packages: <https://pypi.org/>
 
