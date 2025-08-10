@@ -71,4 +71,6 @@ echo $PATH
 - **Vscode extensions**
   - ms-python.python
   - ms-python.debugpy
+  - ms-python.vscode-pylance
+  - charliermarsh.ruff
   - ms-toolsai.jupyter
