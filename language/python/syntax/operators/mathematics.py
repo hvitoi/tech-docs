@@ -16,7 +16,7 @@ None + 1  # throws!
 # multiplication
 1 * 3
 2 * "ab"  # "abab"
-
+4 * 0.25  # 1.0
 
 # %%
 # division

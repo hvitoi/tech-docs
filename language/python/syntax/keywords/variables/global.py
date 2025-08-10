@@ -46,6 +46,8 @@ def hello():
     for _ in range(3):
         message = "Hello!"
     print(message)  # accessible! Even though it was created inside of the for loop
+    # Python has function-level scope — variables created anywhere inside a function are accessible anywhere else inside that function.
+    # Blocks like loops (for, while) and conditionals (if) do NOT create new scopes.
 
 
 hello()

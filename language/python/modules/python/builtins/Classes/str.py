@@ -8,12 +8,15 @@ str(1)
 # double quotes
 "double quotes"
 
+# triple quotes
+"""Trip'le qu"oted
+   Multiple lines"""
+
 # nested quotes
 "wrap lot's of other quotes"
 
-# %%
 # interpolation
-name = "John"
+name = "Henrique"
 age = 21
 f"There once was a man named {name}, he is {age} years old."
 
@@ -56,4 +59,8 @@ assert "abc"
 assert ""  # fails! empty strings are Falsy
 
 # %%
-"12" + str(3)
+"12" + str(3)  # "123"
+
+# %%
+
+"ab" * 2  # "abab"

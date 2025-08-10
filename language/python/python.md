@@ -1,6 +1,14 @@
 # Python
 
-- Keywords: <https://www.w3schools.com/python/python_ref_keywords.asp>
+## Installation
+
+```shell
+# MacOS comes with an old python version preinstalled, you can installed the newest one with brew
+brew install python
+brew ls python -v
+which -a python3
+python3 --version
+```
 
 ## Interpreter
 
@@ -13,6 +21,7 @@
 - Standard Libraries, Native Packages: <https://docs.python.org/3/library/index.html>
 - Types: <https://docs.python.org/3/library/stdtypes.html>
 - Data Structures: <https://docs.python.org/3/tutorial/datastructures.html>
+- Keywords: <https://www.w3schools.com/python/python_ref_keywords.asp>
 
 - Standard Libraries complexity: <https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/>
 
@@ -48,7 +57,6 @@ echo $PATH
 
 - `Jedi`: Community-driven
 - `Pylance`: Developed by Microsoft
-
 - With homebrew, source files are installed at `/opt/homebrew/Cellar/python@3.12/3.12.1_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12`
 
 ## Linter & Formatter
@@ -58,16 +66,9 @@ echo $PATH
 - `Ruff` <https://github.com/astral-sh/ruff-vscode>
 - `Flake8`: By Microsoft
 
-## Expression vs. Statement
+## IDEs
 
-- `Statement`: any unit of code
-- `Expression`: special statement that evaluates to some value
-
-```python
-# Expression
-1 + 2 # evaluates to 3
-"a" if 1 != 1 else "b" # evaluates to "a"
-
-# Statement (assignment)
-foo = 1 + 2 # doesn't return any value
-```
+- **Vscode extensions**
+  - ms-python.python
+  - ms-python.debugpy
+  - ms-toolsai.jupyter
