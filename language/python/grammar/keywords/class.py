@@ -131,3 +131,26 @@ class AmericanChef(Chef):
 
 my_american_chef = AmericanChef("John")
 my_american_chef.make_salad()
+
+# %%
+
+# Composition
+
+
+class Engine:
+    def start(self):
+        print("Vruuumm")
+
+
+class Car:
+    def __init__(self):
+        self.model = "VW Gol"
+        self.engine = Engine()
+
+    def drive(self):
+        self.engine.start()
+        print("Driving around!")
+
+
+my_car = Car()
+my_car.drive()

@@ -1,6 +1,8 @@
 # %%
 # Tests if the two arguments point to the same object
-True is True
+True is True  # True
+True is not False  # True
+False is None  # False
 
 # %%
 l1 = []
