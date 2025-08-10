@@ -52,6 +52,8 @@ echo $VIRTUAL_ENV
 echo $PATH
 ```
 
+- On vscode, to select the venv `Python: Select Interpreter` and select the venv or "Enter interpreter path..." and insert the absolute path of venv
+
 ## Language Server
 
 - `Jedi`: Community-driven
