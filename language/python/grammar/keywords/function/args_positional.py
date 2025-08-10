@@ -25,6 +25,7 @@ sum_nums(10)  # take default values
 # The default value is created ONCE at the function definition
 # Do not use mutable data types (references) as default arguments because they are remembers across function calls. This may lead to strange behaviors
 
+
 def append_num(num, nums=[]):
     nums.append(num)
     return nums
