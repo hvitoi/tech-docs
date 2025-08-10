@@ -1,14 +1,17 @@
-# O(N) for lists
-# %%
-# -> unset/undefine a symbol!
+# unset/undefine a symbol!
 
-# plain variables
+# %%
+
+# Plain variables
 foo = "john"
 del foo
-# foo  # name is not defined
+# foo  # fails! (name 'foo' is not defined)
 
 # %%
-# lists
+
+# Lists
+
+# O(N) for the operation
 
 # Just like pop() but does not return the popped value
 foo = ["a", "b", "c"]
@@ -16,7 +19,8 @@ del foo[1]
 foo  # ["a", "c"]
 
 # %%
-# dict
+
+# Dicts
 foo = {"a": 1, "b": 2, "c": 3}
 
 del foo["a"]

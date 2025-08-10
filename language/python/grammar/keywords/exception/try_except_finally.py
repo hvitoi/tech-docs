@@ -1,3 +1,4 @@
+# %%
 try:
     value = 10 / 0
     number = int("texto nao eh numero")
@@ -8,3 +9,5 @@ except ValueError as err:  # err guarda o erro
 except ZeroDivisionError as err:
     print("Divisao por 0")
     print(err)
+finally:
+    print("Done")
