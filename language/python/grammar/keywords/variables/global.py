@@ -1,31 +1,32 @@
 # %%
-def func1():
+def func():
     a = 1
 
 
-func1()
+func()
 print(a)  # fail! try to access variable from inner scope
+
 
 # %%
 a = 1
 
 
-def func2():
+def func():
     print(a)
 
 
-func2()  # ok. Access variable from outer scope
+func()  # ok. Access variable from outer scope
 
 
 # %%
 a = 1
 
 
-def func3():
+def func():
     a = a + 1  # fail! Cannot modify variable from outer scope
 
 
-func3()
+func()
 
 
 # %%

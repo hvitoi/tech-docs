@@ -19,13 +19,13 @@ for el in "Henrique":
 # %%
 
 # Tuples
-for i, el in [(1, "a"), (2, "b"), (3, "c")]:
+for i, el in [(0, "a"), (1, "b"), (2, "c")]:
     print(i, el)
 
 for i, el in enumerate(["a", "b", "c"]):
     print(i, el)
 
-for k, v in {"a": 1, "b": 2}.items():
+for k, v in {0: "a", 1: "b", 2: "c"}.items():
     print(k, v)
 
 # %%

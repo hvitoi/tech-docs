@@ -4,7 +4,24 @@ while i <= 10:
     print(i)
     i += 1
 
-print("Done with loop")
+# %%
+i = 1
+while i <= 10:
+    print(i)
+    i += 1
+
+# %%
+
+# Continue & Break
+i = 1
+while True:
+    if i == 5:
+        i += 1
+        continue
+    if i == 10:
+        break
+    print(i)
+    i += 1
 
 # %%
 # Else is printed once when the while loop is exhausted

@@ -7,11 +7,20 @@ l1 = []
 l2 = []
 l1 is l2  # False!
 
+d1 = []
+d2 = []
+d1 is d2  # False!
+
 # %%
 l1 = []
 l2 = l1
 
 l1 is l2  # True
+
+d1 = []
+d2 = d1
+
+d1 is d2  # True
 
 # %%
 l1 = []
