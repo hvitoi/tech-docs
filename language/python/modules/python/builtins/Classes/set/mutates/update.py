@@ -1,3 +1,5 @@
+# Adds more than one element at one time
+
 # %%
 my_set = {"a", "b", "c"}
 

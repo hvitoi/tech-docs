@@ -1,3 +1,5 @@
+# same as "discard", but does throw if not found
+
 # %%
 my_set = {"a", "b", "c"}
 

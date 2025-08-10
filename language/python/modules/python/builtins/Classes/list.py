@@ -1,12 +1,21 @@
 # %%
+
+# from literal
 my_list = ["a", 1, True, ["c", 9]]
-my_list
+
+# from dict
+list({"b": 2, "a": 1})  # order is preserved, vals are discarded
+
+# from str
+list("abc")
+
+# from tuple
+list(("a", "b"))
 
 # %%
 my_list = []
 if my_list:
     print("I won't print")
-
 
 # %%
 # concatenate lists
@@ -22,17 +31,6 @@ if my_list:
 2 * [[]]  # [[], []]
 [[] for _ in range(2)]  # use this instead
 
-# %%
-# from dict
-list({"b": 2, "a": 1})  # order is preserved, vals are discarded
-
-# %%
-# from str
-list("abc")
-
-# %%
-# from tuple
-list(("a", "b"))  # values are flattened
 
 # %%
 l1 = ["a", "b"]

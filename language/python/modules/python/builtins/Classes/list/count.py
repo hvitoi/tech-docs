@@ -1,5 +1,5 @@
 # %%
-# count the appearance of the of the value 'a'
+# count the appearance of a certain character
 
 my_list = ["a", "a", "b", "c"]
 
