@@ -1,7 +1,7 @@
 # %%
 from typing import List
 
-my_list: List[int] = [1, 2, 3]
+# Deprecated since Python 3.9! Use instead: list (the class)
 
-# Python 3.9+ (typing is not necessary anymore)
+my_list: List[int] = [1, 2, 3]
 my_list: list[int] = [1, 2, 3]

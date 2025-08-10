@@ -1,9 +1,9 @@
 # pip
 
 - Installed modules directory
-  - Root: `/usr/lib/python3.11/site-packages/` and `/usr/bin/`
-  - Non-root:`~/.local/lib/python3.11/site-packages/` and `~/.local/bin/`
-  - Venv: `<venv>/lib/python3.11/site-packages/` and `<venv>/bin`
+  - Root: `/usr/lib/python3.13/site-packages/` and `/usr/bin/`
+  - Non-root:`~/.local/lib/python3.13/site-packages/` and `~/.local/bin/`
+  - Venv: `<venv>/lib/python3.13/site-packages/` and `<venv>/bin`
 - It's not advisable to install system-wide packages via pip (its other packaging system's responsibility, e.g., brew, pacman, apt)
   - pip is not a OS packaging system, but rather meant to be used on `python virtual environments`
 - Python packages: <https://pypi.org/>
@@ -15,8 +15,20 @@ python -m ensurepip --upgrade
 
 ## list
 
+- The packages shown are coupled to the pip binary ran
+- If you ran the pip binary from your venv you will probably have several project dependencies
+- If you the the pip binary from the system-wide installed you will have few dependencies, usually the packages "pip", "wheel" and "packaging"
+
 ```shell
 pip list
+```
+
+## show
+
+- Show information about a package, including where it is installed and its dependencies
+
+```shell
+pip show "pip"
 ```
 
 ## install
@@ -24,6 +36,7 @@ pip list
 ```shell
 # install a package globally
 pip install numpy
+pip install "numpy[standard]" # specify version
 
 # upgrade package to the newest version
 pip install numpy --upgrade # -U

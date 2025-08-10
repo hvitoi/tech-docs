@@ -1,44 +1,14 @@
 # %%
 from typing import Iterable
-# It's an Object that can be iterated over, it's not necessarily a List
 
-# str
-my_str = "abc"
-for el in my_str:
-    print(el)
+# Deprecated since Python 3.9! Use instead: collections.abc.Iterable
 
 
-# %%
-# list
-my_list = ["a", "b", "c"]
-for el in my_list:
-    print(el)
+def print_iterable(elements: Iterable):
+    for el in elements:
+        print(el)
 
 
-# %%
-# range
-my_range = range(3)
-for el in my_range:
-    print(el)
-
-# %%
-# Access & Slicing
-foo = ["a", "b", "c", "d", ["e", "f"]]
-
-foo[2]  # index 2
-foo[4][0]  # nested index
-foo[1:]  # from index 1 onwards
-foo[:3]  # until index 3 (not inclusive)
-foo[1:3]  # from index 1 until index 3 (not inclusive)
-foo[-1]  # last index
-foo[::-1]  # reverse
-
-# %%
-# Overwriting elements (index must exist)
-foo[0] = "z"  # index 0 is replaced
-foo
-
-# %%
-# Removing elements
-del foo[0]  # remove first element
-foo
+print_iterable(["a", "b", "c"])
+print_iterable("abc")
+print_iterable(range(3))

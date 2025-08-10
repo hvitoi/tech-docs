@@ -1,7 +1,7 @@
 # %%
 from typing import Dict
 
-my_list: Dict[str, int] = {"a": 1}
+# Deprecated since Python 3.9! Use instead: dict (the class)
 
-# Python 3.9+ (typing is not necessary anymore)
+my_list: Dict[str, int] = {"a": 1}
 my_list: dict[str, int] = {"a": 1}
