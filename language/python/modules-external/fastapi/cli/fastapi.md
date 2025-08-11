@@ -7,6 +7,7 @@
 
 ```shell
 fastapi dev main.py
+uvicorn "demo:app" --reload # what is actually run under the hood
 ```
 
 ## run

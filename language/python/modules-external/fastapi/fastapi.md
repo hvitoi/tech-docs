@@ -8,16 +8,17 @@
 pip install "fastapi[standard]"
 ```
 
-- Packages
-  - `fastapi`
-    - `starlette` for the web parts (WebSockets, CORS, Cookie Sessions, etc)
-      - `httpx`: TestClient
-      - `jinja2`: default template configuration
-      - `python-multipart`: support parsing from request.form()
-    - `pydantic` for the data parts
-      - `email-validator`
-  - `fastapi-cli`
-    - `unicorn`: http server that loads and serves the app
+## Dependencies
+
+- `fastapi`
+  - `starlette` for the web parts (WebSockets, CORS, Cookie Sessions, etc)
+    - `httpx`: TestClient
+    - `jinja2`: default template configuration
+    - `python-multipart`: support parsing from request.form()
+  - `pydantic` for the data parts, models, serialization, etc
+    - `email-validator`
+- `fastapi-cli`
+  - `uvicorn`: http server that loads and serves the app
 
 ## Running
 

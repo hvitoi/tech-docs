@@ -47,7 +47,7 @@ python -m ensurepip --upgrade
 
 ```shell
 python -m venv ".venv"
-source ./.venv/bin/activate # for bash. Or activate.fish (for fish)
+source ./.venv/bin/activate
 echo $VIRTUAL_ENV
 echo $PATH
 ```
