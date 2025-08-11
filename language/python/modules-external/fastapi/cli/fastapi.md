@@ -2,8 +2,9 @@
 
 ## dev
 
-- Run the webserver for local development
+- Run the webserver for local development with auto-reload
 - Starts the server using [Uvicorn](https://www.uvicorn.org/)
+- By default server is exposed at <http:127.0.0.1:8000/>
 
 ```shell
 fastapi dev main.py

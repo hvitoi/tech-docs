@@ -39,8 +39,7 @@ pip install numpy
 pip install "numpy[standard]" # specify version
 
 # upgrade package to the newest version
-pip install numpy --upgrade # -U
-pip install pip --upgrade # upgrade pip itself
+pip install --upgrade pip # upgrade pip itself
 
 # install from a directory
 git clone https://github.com/squidfunk/mkdocs-material.git
