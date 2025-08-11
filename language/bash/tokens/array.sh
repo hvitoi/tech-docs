@@ -44,13 +44,13 @@ echo ${FOO[*]}
 # Iteration
 # iterations does not print in the same order of the array elements
 
-for el in ${FOO[@]}; do
-  echo $el
+for el in "${FOO[@]}"; do
+  echo "$el"
 done
 
-for i in ${!FOO[@]}; do
-  echo "index/key": $i
-  echo "value": ${FOO[$i]}
+for i in "${!FOO[@]}"; do
+  echo "index/key": "$i"
+  echo "value": "${FOO[$i]}"
 done
 
 http_request=(

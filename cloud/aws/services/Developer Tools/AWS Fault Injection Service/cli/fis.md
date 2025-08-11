@@ -61,6 +61,15 @@ aws fis create-experiment-template --cli-input-json file://fis-template.json
 }
 ```
 
+## create-target-account-configuration
+
+```shell
+aws fis create-target-account-configuration \
+  --experiment-template-id "abc" \
+  --account-id "<aws-account>" \
+  --role-arn "<role-arn-on-target-account>"
+```
+
 ## update-experiment-template
 
 - Updating an experiment template do not affect any running experiments that use the template
