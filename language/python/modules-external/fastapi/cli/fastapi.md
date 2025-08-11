@@ -3,6 +3,7 @@
 ## dev
 
 - Run the webserver for local development
+- Starts the server using [Uvicorn](https://www.uvicorn.org/)
 
 ```shell
 fastapi dev main.py
