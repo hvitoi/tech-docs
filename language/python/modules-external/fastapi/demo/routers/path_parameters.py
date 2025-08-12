@@ -2,7 +2,7 @@ from enum import Enum
 from fastapi import APIRouter
 
 router = APIRouter(
-    # prefix="/myrouter",
+    # prefix="/foo",
     tags=["Path Parameters"],
 )
 
@@ -11,6 +11,9 @@ class AIModel(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
+
+
+# Path parameters also automatically inferred when its variable name is container in the path
 
 
 @router.get("/models/{model_name}")
