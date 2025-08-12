@@ -1,4 +1,6 @@
+from datetime import datetime, time, timedelta
 from typing import Annotated
+from uuid import UUID
 from fastapi import APIRouter, Body
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -17,6 +19,11 @@ class Image(BaseModel):
 
 
 class Item(BaseModel):
+    item_id: UUID
+    started_at: datetime
+    ended_at: datetime
+    process_after: timedelta
+    repeat_at: time | None
     name: str
     description: str | None = Field(  # Field accepts the same args as Body()
         default=None,  # default values are passed like this when Field validations are necessary
