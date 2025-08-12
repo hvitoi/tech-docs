@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Path
 
 router = APIRouter(
-    # prefix="/foo",
+    prefix="/pathparameters",
     tags=["Path Parameters"],
 )
 
