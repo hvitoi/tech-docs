@@ -1,5 +1,6 @@
 from typing import Annotated
 from fastapi import APIRouter, Header
+from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/headers",
@@ -21,4 +22,29 @@ def read_items(
         list[str], Header()  # The header X-Token can then be sent more than once
     ],
 ):
-    return {"User-Agent": user_agent}
+    return {
+        "User-Agent": user_agent,
+        "X-Token": x_token,
+    }
+
+
+class CommonHeaders(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    host: str
+    save_data: bool
+    if_modified_since: str | None = None
+    traceparent: str | None = None
+    x_tag: list[str] = []
+
+
+@router.get("/items2")
+async def read_items2(
+    headers: Annotated[
+        CommonHeaders,
+        Header(
+            convert_underscores=True,
+        ),
+    ],
+):
+    return headers
