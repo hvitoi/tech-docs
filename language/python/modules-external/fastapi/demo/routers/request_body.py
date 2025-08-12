@@ -1,9 +1,13 @@
-from fastapi import APIRouter
+from typing import Annotated
+from fastapi import APIRouter, Body
 from pydantic import BaseModel
 
 router = APIRouter(
     tags=["Request Body"],
 )
+
+# Request body is the parameter whose type is annotated with Body()
+# Or it can be inferred: the parameter is associated with a Pydantic model
 
 
 class Item(BaseModel):
@@ -14,7 +18,7 @@ class Item(BaseModel):
 
 
 @router.post("/items/")
-def create_item(item: Item):
+def create_item(item: Annotated[Item, Body()]):  # item=Body() <-- deprecated syntax
     return item
 
 

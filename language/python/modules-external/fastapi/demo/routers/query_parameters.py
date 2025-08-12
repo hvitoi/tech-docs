@@ -5,8 +5,8 @@ router = APIRouter(
     tags=["Query Parameters"],
 )
 
-# Query string are parameters whose type is annotated with "Query()"
-# Or it can also be inferred, that is: it's not a path variable (path parameter) and is not associated with a Pydantic Model (reques body)
+# Query parameters are request parameters whose type is annotated with "Query()"
+# Or it can be inferred: it's not a path variable (path parameter) and is not associated with a Pydantic Model (request body)
 
 
 @router.get("/foo")

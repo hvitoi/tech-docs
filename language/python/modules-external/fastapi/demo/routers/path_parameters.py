@@ -6,14 +6,14 @@ router = APIRouter(
     tags=["Path Parameters"],
 )
 
+# Path parameters are the parameter whose type is annotated with Path()
+# Or it can be inferred: its variable name is contained in the path
+
 
 class AIModel(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
-
-
-# Path parameters also automatically inferred when its variable name is container in the path
 
 
 @router.get("/models/{model_name}")
