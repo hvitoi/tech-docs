@@ -1,4 +1,6 @@
 # %%
+# deserialize from json
 import json
 
-my_data = json.load(open("data.json"))
+json_data = open("data.json")
+json.load(json_data)

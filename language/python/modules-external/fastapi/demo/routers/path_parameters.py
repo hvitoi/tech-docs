@@ -1,7 +1,10 @@
 from enum import Enum
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(
+    # prefix="/myrouter",
+    tags=["Path Parameters"],
+)
 
 
 class AIModel(str, Enum):

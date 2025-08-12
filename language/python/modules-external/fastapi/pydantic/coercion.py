@@ -20,3 +20,9 @@ external_data = {
 user = User(**external_data)
 print(user)
 # type(user.id)
+
+# %%
+# Model Dump
+
+user = User(**external_data)
+assert type(user.model_dump()) is dict

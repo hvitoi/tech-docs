@@ -1,13 +1,8 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
 
-router = APIRouter()
-
-
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: bool | None = None
+router = APIRouter(
+    tags=["Query Parameters"],
+)
 
 
 @router.get("/items/{item_id}")
@@ -21,12 +16,4 @@ def read_item(
         "item_id": item_id,
         "q1": q1,
         "q2": q2,
-    }
-
-
-@router.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {
-        "item_name": item.name,
-        "item_id": item_id,
     }

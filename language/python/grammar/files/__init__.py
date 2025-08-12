@@ -5,6 +5,7 @@
 #   - You can define what gets imported when you import routers (via __all__)
 #   - You can run setup code when the package is imported.
 
-# ... import only select files
-# from . import users, items
+from . import submodule1, submodule2
 
+# this variable specifies what is imported with the "*" syntax
+__all__ = ["submodule1", "submodule2"]

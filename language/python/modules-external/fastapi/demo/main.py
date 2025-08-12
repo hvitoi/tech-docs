@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import path_parameters, query_parameters
+from routers import path_parameters, query_parameters, request_body
 
 app = FastAPI()
 
@@ -12,3 +12,4 @@ async def read_root():
 # Include routers
 app.include_router(path_parameters.router)
 app.include_router(query_parameters.router)
+app.include_router(request_body.router)
