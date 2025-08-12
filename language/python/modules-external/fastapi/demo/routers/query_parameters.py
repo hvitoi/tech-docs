@@ -1,7 +1,9 @@
-from typing import Annotated
+from typing import Annotated, Literal
 from fastapi import APIRouter, Query
+from pydantic import BaseModel, Field
 
 router = APIRouter(
+    prefix="/queryparams",
     tags=["Query Parameters"],
 )
 
@@ -37,3 +39,23 @@ def read_items(
         "q3": q3,
         "q4": q4,
     }
+
+
+## ---
+# Declare all the query parameters as a single Pydantic model
+# The validations are then defined in the Pydantic model for each querystring
+
+
+class FilterParams(BaseModel):
+    limit: int = Field(100, gt=0, le=100)
+    offset: int = Field(0, ge=0)  # Sets the validation rules
+    order_by: Literal["created", "updated_at"] = "created_at"  # Sets the default value
+    tags: list[str] = []
+
+    # "model_config" is a special parameter. You can define, for example, if the user is not allowed to pass querstrings not defined here
+    model_config = {"extra": "forbid"}
+
+
+@router.get("/items/")
+def read_items2(filter_query: Annotated[FilterParams, Query()]):
+    return filter_query

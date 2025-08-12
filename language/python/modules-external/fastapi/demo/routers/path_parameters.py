@@ -1,5 +1,6 @@
 from enum import Enum
-from fastapi import APIRouter
+from typing import Annotated
+from fastapi import APIRouter, Path
 
 router = APIRouter(
     # prefix="/foo",
@@ -10,18 +11,26 @@ router = APIRouter(
 # Or it can be inferred: its variable name is contained in the path
 
 
-class AIModel(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
+class Color(int, Enum):
+    red = 1
+    blue = 2
+    green = 3
 
 
-@router.get("/models/{model_name}")
-def read_model(model_name: AIModel):  # Enum
-    if model_name is AIModel.alexnet:
-        return {"model_name": model_name, "message": "Deep Learning FTW!"}
+@router.get("/colors/{color}")
+def read_model(color: Color):
+    return {"color": color}
 
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
 
-    return {"model_name": model_name, "message": "Have some residuals"}
+@router.get("/items/{item_id}")
+def read_items(
+    item_id: Annotated[
+        int,
+        Path(
+            title="The ID of the item to get",
+            ge=1,  # validation
+            le=1000,  # validation
+        ),
+    ],
+):
+    return {"item_id": item_id}
