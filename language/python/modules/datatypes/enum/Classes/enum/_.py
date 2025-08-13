@@ -9,7 +9,7 @@ class Color(Enum):
     GREEN = 3
 
 
-Color.RED
+assert Color.RED.value == 1
 
 # %%
 
@@ -22,7 +22,6 @@ class AIModel(str, Enum):
 
 
 model = AIModel("alexnet")
-AIModel.alexnet
 
 assert model is AIModel.alexnet
 assert model.value == "alexnet"
