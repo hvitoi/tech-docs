@@ -1,16 +1,15 @@
 # %%
 # Import package
 import math
+import math as fancy_math  # with alias
 
 math.cos(0)
 
 # %%
-# Import with alias
-import math as fancy_math
-
-# %%
 # Select specific symbols
 from math import ceil, floor
+from math import ceil as my_ceil
+
 
 # %%
 #  Select all
@@ -19,6 +18,7 @@ from math import ceil, floor
 # If __all__ exists, only the names listed there will be imported.
 
 from math import *
+
 
 # %%
 # Import python file

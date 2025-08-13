@@ -28,4 +28,7 @@ ss -s
 
 #
 ss -platu
+
+# check the process that is using the port 8000
+sudo ss -tulpn | grep :8000
 ```
