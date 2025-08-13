@@ -1,7 +1,8 @@
-
 (with-redefs [repeatedly (fn [_] "a")]
   (repeatedly '_))
 
+
+;; ---
 (ns lol
   (:require user))
 
