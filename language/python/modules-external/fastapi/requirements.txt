@@ -1,3 +1,4 @@
-fastapi[standard]
-httpx
-email-validator
+fastapi[standard-no-fastapi-cloud-cli]
+# httpx
+email-validator # For email validation
+python-multipart # Support forms

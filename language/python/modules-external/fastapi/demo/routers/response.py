@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel, EmailStr
 
 router = APIRouter(
@@ -86,6 +86,25 @@ def get_portal(teleport: bool = False) -> Response:
     return JSONResponse(
         content={"message": "Here's your interdimensional portal."}
     )  # needs to be wrapped in JSONResponse (plain dicts would fail on the return type)
+
+
+# ---
+# HTMLResponse
+@router.get("/htmlresponse")
+async def html_response():
+    content = """
+<body>
+    <form action="/files/" enctype="multipart/form-data" method="post">
+        <input name="files" type="file" multiple>
+        <input type="submit">
+    </form>
+    <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+        <input name="files" type="file" multiple>
+        <input type="submit">
+    </form>
+</body>
+    """
+    return HTMLResponse(content=content)
 
 
 # ---
