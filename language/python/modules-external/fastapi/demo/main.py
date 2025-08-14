@@ -17,6 +17,7 @@ from features import (
 )
 
 app = FastAPI()
+# app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)]) # Add global dependencies
 
 
 @app.get("/")

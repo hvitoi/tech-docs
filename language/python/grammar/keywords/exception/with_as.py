@@ -8,6 +8,7 @@
 
 # %%
 # ---- File open ----
+# open() creates a  an object that is called a "Context Manager"
 with open("file.txt") as file_content:
     for line in file_content:
         print(line)

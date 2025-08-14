@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Cookie, Depends, Query
+from fastapi import APIRouter, Cookie, Depends, HTTPException, Header, Query
 
 
 router = APIRouter(
@@ -50,24 +50,43 @@ def demo_dependencies2(
 
 
 ## --- Database connection
-class Database:
+class DBSession:
     def __init__(self):
-        self.connection_status = "Connected!"
+        print("Starting connection")
+        self.status = "connected"
+
+    def close(self):
+        print("Closing DB connection")
 
 
 def get_db():
-    db = Database()
+    db = DBSession()
     # dependable functions always finish the close execution when using yield
-    # That means that FastAPI injects that value, waits for your endpoint to finish, and then runs whatever code comes after the yield
+    # That means that FastAPI injects that value, waits for your endpoint to finish, and then runs whatever code comes after the yield (calling next())
     try:
         yield db
     finally:
         # Teardown Logic
-        print("Closing DB connection")
+        db.close()
+
+
+# class DBSessionContextManager:
+#     def __init__(self):
+#         self.db = DBSession()
+
+#     def __enter__(self):
+#         return self.db
+
+#     def __exit__(self, exc_type, exc_value, traceback):
+#         self.db.close()
+
+# def get_db():
+#     with DBSessionContextManager() as db:
+#         yield db
 
 
 @router.get("/deps3")
-def dependable_class(db: Annotated[Database, Depends(get_db)]):
+def dependable_class(db: Annotated[DBSession, Depends(get_db)]):
     return {"db_status": db.connection_status}
 
 
@@ -108,3 +127,29 @@ async def deps4(
         "alpha_param": params.alpha_param,
         "beta_param": params.beta_param,
     }
+
+
+## --- Dependencies as path decorators
+# This is used when the return value of that dependency is not important
+
+
+async def verify_token(x_token: Annotated[str, Header()]):
+    if x_token != "fake-super-secret-token":
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
+
+
+async def verify_key(x_key: Annotated[str, Header()]):
+    if x_key != "fake-super-secret-key":
+        raise HTTPException(status_code=400, detail="X-Key header invalid")
+    return x_key  # The value is returned here but never used
+
+
+@router.get(
+    "/deps5",
+    dependencies=[  # Dependencies could also be added at the global level FastAPI()
+        Depends(verify_token),
+        Depends(verify_key),
+    ],
+)
+async def verify_tokens():
+    return "you are allowed"

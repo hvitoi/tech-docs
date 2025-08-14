@@ -39,4 +39,6 @@ def get_db():
 
 
 lazy_db = get_db()
+lazy_db
 next(lazy_db)
+# next(lazy_db) # fails! Because it has already reached the end of the function
