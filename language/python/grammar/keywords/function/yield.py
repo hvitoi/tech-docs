@@ -22,3 +22,21 @@ lazy_columns = get_column(csv)
 next(lazy_columns)  # "col1"
 next(lazy_columns)  # "col2"
 next(lazy_columns)  # "col3"
+
+
+# %%
+class Database:
+    def __init__(self):
+        self.connection = "Connected!"
+
+
+def get_db():
+    db = Database()
+    try:
+        yield db
+    finally:
+        print("Closing DB connection")
+
+
+lazy_db = get_db()
+next(lazy_db)

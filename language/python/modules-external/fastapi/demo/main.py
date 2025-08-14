@@ -13,6 +13,7 @@ from features import (
     exception_handlers,
     path_operation_config,
     encoders,
+    dependencies,
 )
 
 app = FastAPI()
@@ -37,6 +38,7 @@ app.include_router(form_data_file.router)
 app.include_router(exception_handlers.router)
 app.include_router(path_operation_config.router)
 app.include_router(encoders.router)
+app.include_router(dependencies.router)
 
 # Register custom exception handler for a given Exception
 # app.add_exception_handler(
