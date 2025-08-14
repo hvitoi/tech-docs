@@ -49,7 +49,7 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
     )
 
 
-# You can re-use the
+# You can re-use the http_exception_handler
 # @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler_reused(request: Request, exc: StarletteHTTPException):
     print(f"OMG! An HTTP error!: {repr(exc)}")
