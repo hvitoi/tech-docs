@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Cookie, Depends, HTTPException, Header, Query
+from fastapi import APIRouter, Depends, HTTPException, Header, Query
 
 
 router = APIRouter(
