@@ -14,6 +14,10 @@ kubectl patch "po" "my-pod" \
   --type='json' \
   -p='[{"op": "replace", "path": "/spec/containers/0/image", "value":"new image"}]'
 
+kubectl patch deployment <deployment-name> \ # increase memory
+  --type='json' \
+  -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/limits/memory", "value":"1Gi"}]' # or /requests
+
 # disable a deployment livenessProbe using a json patch with positional arrays
 kubectl patch "deploy" "my-deployment" \
   --type json \
