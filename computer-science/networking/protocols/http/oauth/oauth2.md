@@ -1,8 +1,9 @@
-# OAuth 2
+# OAuth 2.0
 
-- `OAuth 2.0` is the industry-standard protocol for authorization (and authentication)
-- `OpenID Connect` is the industry-standard protocol for authentication only
-- Gives permissions to the `application object`
+- `OAuth 2.0` is a specification for authorization (and authentication)
+  - `OpenID Connect` is another specification based on OAuth 2.0 used for authentication only
+
+- It Gives permissions to the `application object`
 
 ## Roles
 
