@@ -64,7 +64,7 @@ def get_db():
     # dependable functions always finish the close execution when using yield
     # That means that FastAPI injects that value, waits for your endpoint to finish, and then runs whatever code comes after the yield (calling next())
     try:
-        yield db
+        yield db  # Code after yield run after the response middlewares!
     finally:
         # Teardown Logic
         db.close()

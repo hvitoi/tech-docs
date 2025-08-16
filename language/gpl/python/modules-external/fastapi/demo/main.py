@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+import time
+from fastapi import FastAPI, Request
 from features import (
     cookies,
     dependencies,
@@ -7,6 +8,7 @@ from features import (
     form_data,
     form_data_file,
     headers,
+    middleware,
     multiple_models,
     oauth,
     path_operation_config,
@@ -44,6 +46,7 @@ app.include_router(dependencies.router)
 app.include_router(oauth.router)
 
 # Register custom exception handler for a given Exception
+
 # app.add_exception_handler(
 #     exception_handlers.MyException,
 #     exception_handlers.my_exception_handler,
@@ -56,3 +59,9 @@ app.include_router(oauth.router)
 #     RequestValidationError,
 #     exception_handlers.request_validation_handler,
 # )
+
+
+# Register middlewares (apply to all routes)
+# app.add_middleware(MyInnermostMiddleware)
+# app.add_middleware(MyOutermostMiddleware)
+app.add_middleware(middleware.ProcessTimeMiddleware)
