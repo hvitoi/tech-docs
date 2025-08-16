@@ -5,7 +5,7 @@
 - The encryption key is generated directly from the password
 - It is not possible to change the password/key of already encrypted content. In this case the data has to be decrypted and encrypted with a different password
 
-## Algorithms
+## Encryption-only algorithms
 
 ### AES (Advanced Encryption Standard)
 
@@ -20,7 +20,21 @@
   - 192 bits
   - 256 bits: `AES256`
 
-### CHACHA
+### ChaCha20
 
 - Uses `stream cipher`
   - encrypt data bit by bit or byte by byte (ChaCha20, RC4)
+
+## Signing-only algorithms
+
+### HMAC (Hash-based Message Authentication Code)
+
+- Used for signing / authentication (integrity + authenticity, but not encryption)
+- Keyed hashing scheme
+- Example algorithms:
+  - HMAC-SHA256 (used in JWT HS256)
+  - HMAC-SHA1
+  - HMAC-SHA512
+
+- Variations
+  - **HS256** (HMAC with SHA-256)

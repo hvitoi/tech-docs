@@ -10,17 +10,7 @@
 - Both keys have the same length
 - Asymmetric keys allow signing and verifying signatures
 
-## Usages
-
-- **Encryption**
-  - public key encrypts
-  - private key decrypts
-
-- **Digital signatures**
-  - private key signs
-  - public key verifies
-
-## Key Types
+## Encryption & Signing Algorithms
 
 ### RSA (Rivest-Shamir-Adleman)
 
@@ -35,9 +25,14 @@
   - 4096 bits
 
 ```shell
-ssh-keygen -t `rsa` # output both keys (private and public)
+ssh-keygen -t "rsa" # output both keys (private and public)
 openssl genrsa # output private key only (public can be extracted from the private)
 ```
+
+- Variations
+  - **RS256** (RSA Signature with SHA-256): for signing only
+
+## Signing-only Algorithms
 
 ### ECDSA (Elliptic Curve Digital Signature Algorithm)
 
@@ -45,3 +40,11 @@ openssl genrsa # output private key only (public can be extracted from the priva
 - Mainly used for digital signatures
 - Provides strong security with much smaller keys than RSA
 - Very common in modern systems (e.g., TLS certificates, Bitcoin, SSH)
+
+- Variations
+  - **ES256** (ECDSA with SHA-256)
+
+### EdDSA (Edwards-curve Digital Signature Algorithm)
+
+- Elliptic curve, but with modern optimizations (Ed25519, Ed448).
+- Used in SSH (newer keys), modern cryptocurrencies, OpenPGP.

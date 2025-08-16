@@ -1,0 +1,1 @@
+pyjwt[crypto] # JWT handling + asymmetric encryption tools

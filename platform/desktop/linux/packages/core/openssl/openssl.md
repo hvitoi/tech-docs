@@ -1,5 +1,14 @@
 # openssl
 
+## rand
+
+- Generate a random string with 16 hexadecimals (256-bit long)
+- This can be used as secret keys
+
+```shell
+openssl rand -hex 16
+```
+
 ## genrsa
 
 - Generate key
