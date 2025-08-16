@@ -1,19 +1,20 @@
 from fastapi import FastAPI
 from features import (
     cookies,
+    dependencies,
+    encoders,
+    exception_handlers,
     form_data,
     form_data_file,
     headers,
     multiple_models,
+    oauth,
+    path_operation_config,
     path_parameters,
     query_parameters,
     request_body,
     response,
     status_codes,
-    exception_handlers,
-    path_operation_config,
-    encoders,
-    dependencies,
 )
 
 app = FastAPI()
@@ -40,6 +41,7 @@ app.include_router(exception_handlers.router)
 app.include_router(path_operation_config.router)
 app.include_router(encoders.router)
 app.include_router(dependencies.router)
+app.include_router(oauth.router)
 
 # Register custom exception handler for a given Exception
 # app.add_exception_handler(

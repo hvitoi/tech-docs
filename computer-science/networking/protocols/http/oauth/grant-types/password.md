@@ -2,8 +2,17 @@
 
 - It's deprecated and unsafe
 - The "resource owner" has a trust relation with the "client"
-- The client gets the user password (through a form, for example)
-- The client uses this password to request a token
+- The client (a web page, for example) gets the user and password (through a form, for example)
+- The client uses this user + password to request a token
+
+## Scopes
+
+- Scopes are are normally used to declare specific security permissions
+- Scopes are passed as form data in the `scope` key. It's a string separated by spaces
+
+- `users:read` or `users:write` are common examples.
+- `instagram_basic` is used by Facebook / Instagram.
+- `https://www.googleapis.com/auth/drive` is used by Google.
 
 ## Get access token
 
@@ -15,6 +24,7 @@ Accept: application/json
 &grant_type=password
 &username=john
 &password=admin
+&scope=users:read users:write
 ```
 
 ```json

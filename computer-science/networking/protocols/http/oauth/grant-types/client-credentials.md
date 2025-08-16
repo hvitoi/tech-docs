@@ -8,7 +8,7 @@
 - `resource` specifies domain for the protected resource (access token will be valid only for this resource)
 
 ```http
-POST https://authorization-server/oauth2/token HTTP/1.1
+POST https://authorization-server.com/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Accept: application/json
 

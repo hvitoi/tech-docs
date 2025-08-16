@@ -1,18 +1,33 @@
 # Asymmetric encryption
 
-- `Public Key`: used for encryption
-- `Private Key`: used for decryption
+- Asymmetric cryptography is also called "public-key cryptography"
+
+- `Public Key`: shared with everyone
+- `Private Key`: kept secret
 
 ![Asymmetric encryption](./images/asymmetric-encryption.png)
 
 - Both keys have the same length
 - Asymmetric keys allow signing and verifying signatures
 
+## Usages
+
+- **Encryption**
+  - public key encrypts
+  - private key decrypts
+
+- **Digital signatures**
+  - private key signs
+  - public key verifies
+
 ## Key Types
 
-### RSA
+### RSA (Rivest-Shamir-Adleman)
 
-- RSA (`Rivest-Shamir-Adleman`) algorithm
+- It's based on the difficulty of factoring large prime numbers
+- Can be used for encryption and digital signature
+- Widely used, but slower and uses large key sizes compared to modern algorithms
+
 - Sizes
   - 1024 bits
   - 2048 bits (default)
@@ -23,3 +38,10 @@
 ssh-keygen -t `rsa` # output both keys (private and public)
 openssl genrsa # output private key only (public can be extracted from the private)
 ```
+
+### ECDSA (Elliptic Curve Digital Signature Algorithm)
+
+- A variant of DSA, but based on the math of elliptic curves
+- Mainly used for digital signatures
+- Provides strong security with much smaller keys than RSA
+- Very common in modern systems (e.g., TLS certificates, Bitcoin, SSH)
