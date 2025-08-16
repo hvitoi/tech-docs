@@ -9,6 +9,8 @@ router = APIRouter(
     tags=["Middleware"],
 )
 
+## ---- Custom Middleware
+
 
 # Add middleware with decorator
 # @app.middleware("http") # you can define middleware as a decorator, or by using app.add_middleware()
@@ -24,3 +26,12 @@ async def add_process_time_header(request: Request, call_next):
 class ProcessTimeMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         return await add_process_time_header(request, call_next)
+
+
+## ---- CORS Middleware
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+]

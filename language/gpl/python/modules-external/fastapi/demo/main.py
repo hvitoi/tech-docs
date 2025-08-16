@@ -18,6 +18,7 @@ from features import (
     response,
     status_codes,
 )
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 # app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)]) # Add global dependencies
@@ -65,3 +66,10 @@ app.include_router(oauth.router)
 # app.add_middleware(MyInnermostMiddleware)
 # app.add_middleware(MyOutermostMiddleware)
 app.add_middleware(middleware.ProcessTimeMiddleware)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=middleware.origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
