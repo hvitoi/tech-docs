@@ -1,20 +1,14 @@
 # %%
 from passlib.context import CryptContext
 
+# password context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+PASSWORD = "secret"
 
+# ----
 
-def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+hashed_password = pwd_context.hash(PASSWORD)
+print(hashed_password)
 
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-hashed = hash_password("my_secret_password")
-
-if verify_password("my_secret_password", hashed):
-    print("Password OK")
-else:
-    print("Invalid password")
+is_password_verified = pwd_context.verify("secret", hashed_password)
+print(is_password_verified)

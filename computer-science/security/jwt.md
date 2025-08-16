@@ -15,3 +15,39 @@
 ## Libraries
 
 - Python: <https://pypi.org/project/PyJWT/>
+
+## Example
+
+```shell
+jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkhlbnJ5IFZpdG9pIiwiYWRtaW4iOnRydWV9.BZgCMGVbZ7HK5ff9wIhR9NiN19T0nMwbiEnXq7eABI8"
+signing_secret="a-string-secret-at-least-256-bits-long"
+
+# Extract each part
+header=$(echo $jwt | cut -d '.' -f1)
+payload=$(echo $jwt | cut -d '.' -f2)
+signature=$(echo $jwt | cut -d '.' -f3)
+
+# Decode each part
+echo "$header" | tr '_-' '/+' | base64 -d
+echo "$payload" | tr '_-' '/+' | base64 -d
+echo "$signature" | tr '_-' '/+' | base64 -d
+
+# Verify signature (HS256)
+echo
+echo -n "${header}.${payload}" | openssl dgst -sha256 -hmac "$signing_secret" -binary | base64 | tr '+/' '-_' | tr -d '='
+```
+
+```json
+// Header
+{
+  "alg": "HS256", // the algorithm used to sign this JWT
+  "typ": "JWT"
+}
+
+// Payload
+{
+  "sub": "1234567890",
+  "name": "Henry Vitoi",
+  "admin": true
+}
+```

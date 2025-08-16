@@ -2,7 +2,7 @@
 import jwt
 
 jwt_str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
-SECRET_KEY = "a-string-secret-at-least-256-bits-long"  # "openssl rand -hex 32" to get a secret key
+SECRET_KEY = "a-string-secret-at-least-256-bits-long"  # "openssl rand -hex 16" to get a secret key
 SIGNING_ALGORITHM = "HS256"
 
 payload = {
