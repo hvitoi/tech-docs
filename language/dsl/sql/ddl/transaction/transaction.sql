@@ -8,4 +8,5 @@ SET TRANSACTION [ READ WRITE | READ ONLY ]; -- optional, (e.g., transaction isol
 DELETE FROM Student WHERE AGE = 20;
 
 COMMIT; -- saves all the transactions to the database since the last COMMIT or ROLLBACK
+-- All transaction need a commit, but some on-line commands have an implicit commit (e.g., insert values)
 ROLLBACK; -- undo transactions since the last COMMIT or ROLLBACK command was issued.

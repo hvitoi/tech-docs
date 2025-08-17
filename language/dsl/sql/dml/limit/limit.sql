@@ -6,18 +6,10 @@ FROM
 LIMIT
   5;
 
--- Take 5 results starting from the 2nd
+-- MYSQL SYNTAX (for a similar behavior in PostgreSQL/SQLite use OFFSET)
 SELECT
   title
 FROM
   books
 LIMIT
-  2, 5;
-
--- Take all starting from the 4th
-SELECT
-  title
-FROM
-  books
-LIMIT
-  4, 18446744073709551615;
+  10, 20; -- rows 11 through 30 (same as LIMIT 20 OFFSET 10)

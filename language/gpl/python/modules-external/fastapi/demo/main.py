@@ -1,5 +1,5 @@
-import time
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from features import (
     cookies,
     dependencies,
@@ -16,9 +16,10 @@ from features import (
     query_parameters,
     request_body,
     response,
+    sqlmodel,
     status_codes,
+    streaming,
 )
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 # app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)]) # Add global dependencies
@@ -45,6 +46,8 @@ app.include_router(path_operation_config.router)
 app.include_router(encoders.router)
 app.include_router(dependencies.router)
 app.include_router(oauth.router)
+app.include_router(sqlmodel.router)
+app.include_router(streaming.router)
 
 # Register custom exception handler for a given Exception
 
@@ -73,3 +76,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Register Events
+sqlmodel.register_startup_events(app)

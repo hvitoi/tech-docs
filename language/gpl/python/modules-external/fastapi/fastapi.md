@@ -1,6 +1,7 @@
 # FastAPI
 
 - It's a web framework for building APIs with Python
+- Fullstack template: <https://github.com/fastapi/full-stack-fastapi-template>
 
 ## Installation
 
