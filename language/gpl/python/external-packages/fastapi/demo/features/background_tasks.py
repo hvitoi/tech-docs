@@ -1,15 +1,19 @@
+import time
 from typing import Annotated
-from fastapi import APIRouter, BackgroundTasks, Depends, Path
 
+from fastapi import APIRouter, BackgroundTasks, Depends, Path
 
 router = APIRouter(
     prefix="/background_tasks",
     tags=["Background Tasks"],
 )
 
+# The BackgroundTasks is a QUEUE of tasks that are executed after the response has been sent and the connection was closed
+# The tasks in this queue are executed serially
+
 
 def write_log(message=""):
-    # This function is executed after the response has been sent and the connection was closed
+    time.sleep(1)
     with open("log.txt", mode="a") as email_file:
         # Creates the file at the cwd where python cmd was invoked
         email_file.write(message)

@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from demo.features import (  # or ".features"
+    background_tasks,
     dependencies,
     dependency_oauth,
     encoders,
@@ -14,18 +16,51 @@ from demo.features import (  # or ".features"
     input_query_parameters,
     middleware,
     models,
-    background_tasks,
-    response_path_operation_config,
     response_htmlresponse,
     response_jsonresponse,
+    response_path_operation_config,
     response_redirectresponse,
     response_status_codes,
     response_streamingresponse,
     sqlmodel,
 )
 
-app = FastAPI()
-# app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)]) # Add global dependencies
+description = """
+My API helps you do awesome stuff.
+
+## Items
+
+You can **read items**.
+
+## Users
+
+You will be able to:
+
+* **Create users** (_not implemented_).
+* **Read users** (_not implemented_).
+"""
+
+app = FastAPI(
+    title="Henry's App",
+    description=description,
+    summary="Deadpool's favorite app. Nuff said.",
+    version="0.0.1",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Deadpoolio the Amazing",
+        "url": "http://x-force.example.com/contact/",
+        "email": "dp@x-force.example.com",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "identifier": "MIT",  # with the identifier, url can be omitted
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+    # openapi_url="/api/v1/openapi.json", # by default it is served under /openapi.json (or disable it completely with None)
+    # docs_url="/documentation", # /docs by default
+    # redoc_url=None, # /redoc by default
+    # dependencies=[Depends(verify_token), Depends(verify_key)] # Add global dependencies
+)
 
 
 @app.get("/")
@@ -85,3 +120,12 @@ app.add_middleware(
 
 # Register Events
 sqlmodel.register_startup_events(app)
+
+
+# Static Files: Navigate to <origin>/myfiles/image.png
+# app.mount(
+#     "/myfiles",
+#     # The relative directory refers to the same where the python command was run
+#     StaticFiles(directory="static"),
+#     name="myawesomefiles",  # name used internally by FastAPI
+# )
