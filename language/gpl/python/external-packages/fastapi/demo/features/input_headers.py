@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/headers",
-    tags=["Headers"],
+    tags=["Input Headers"],
 )
 
 # Headers are the parameter whose type is annotated with Header()

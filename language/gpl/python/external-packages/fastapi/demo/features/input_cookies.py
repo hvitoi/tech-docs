@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/cookies",
-    tags=["Cookies"],
+    tags=["Input Cookies"],
 )
 
 # Cookies are the parameter whose type is annotated with Cookie()

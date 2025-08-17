@@ -19,9 +19,9 @@ class Item(BaseModel):
 @router.post(
     "/items/",
     response_model=Item,
-    tags=["foo"],  # tags are merged with those from the router config
+    # tags=["foo"],
     status_code=status.HTTP_201_CREATED,
-    # this is the documentation of OpenAPI of what is 404 for this endpoint. It is not the json response! (this is inside of the HTTPException details). responses are merged from those from the router config
+    # this is the documentation of OpenAPI of what is 404 for this endpoint. It is not the json response! (this is inside of the HTTPException details).
     responses={404: {"description": "Not found"}},
     summary="Create an item",
     description="This description overrides the function docstring",

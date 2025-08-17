@@ -9,7 +9,7 @@ from passlib.context import CryptContext
 
 router = APIRouter(
     prefix="/oauth",
-    tags=["OAuth"],
+    tags=["Dependency OAuth"],
 )
 
 ## ---- Signing configuration

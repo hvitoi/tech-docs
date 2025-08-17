@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/formdata",
-    tags=["Form Data"],
+    tags=["Input Form Data"],
 )
 
 

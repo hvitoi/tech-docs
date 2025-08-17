@@ -21,7 +21,7 @@ def do_something2(a, b):
 
 # The order of the parameters paramters
 do_something2(1, 2)  # (1, 2)
-do_something2(b=1, a=2)  # (2, 1)
+do_something2(b=2, a=1)  # (1, 2)
 
 # %%
 # rest of args and kwargs

@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 router = APIRouter(
     prefix="/queryparams",
-    tags=["Query Parameters"],
+    tags=["Input Query Parameters"],
 )
 
 # Query parameters are request parameters whose type is annotated with "Query()"

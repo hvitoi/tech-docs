@@ -14,6 +14,7 @@ from demo.features import (  # or ".features"
     input_query_parameters,
     middleware,
     models,
+    background_tasks,
     response_path_operation_config,
     response_htmlresponse,
     response_jsonresponse,
@@ -52,6 +53,7 @@ app.include_router(response_redirectresponse.router)
 app.include_router(response_streamingresponse.router)
 app.include_router(response_status_codes.router)
 app.include_router(sqlmodel.router)
+app.include_router(background_tasks.router)
 
 # Register custom exception handler for a given Exception
 

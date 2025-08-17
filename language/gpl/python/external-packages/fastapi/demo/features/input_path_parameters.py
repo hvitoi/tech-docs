@@ -4,7 +4,7 @@ from fastapi import APIRouter, Path
 
 router = APIRouter(
     prefix="/pathparameters",
-    tags=["Path Parameters"],
+    tags=["Input Path Parameters"],
 )
 
 # Path parameters are the parameter whose type is annotated with Path()

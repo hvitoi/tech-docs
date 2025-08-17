@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel, EmailStr
 
 router = APIRouter(
-    prefix="/multiplemodels",
+    prefix="/models",
     tags=["Multiple Models"],
 )
 

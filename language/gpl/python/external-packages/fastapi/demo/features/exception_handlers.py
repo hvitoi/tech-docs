@@ -7,7 +7,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 router = APIRouter(
     prefix="/exceptionhandlers",
-    tags=["Exception Handlers"],
+    tags=["Exception & Exception Handlers"],
 )
 
 

@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Response, status
 
 router = APIRouter(
     prefix="/statuscodes",
-    tags=["Status Codes"],
+    tags=["Response Status Codes"],
 )
 
 # fastapi.status are just convenience variables to the integer of a status code

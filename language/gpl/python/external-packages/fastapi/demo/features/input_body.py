@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field, HttpUrl
 
 router = APIRouter(
     prefix="/requestbody",
-    tags=["Request Body"],
+    tags=["Input Body"],
 )
 
 # Request body is the parameter whose type is annotated with Body()

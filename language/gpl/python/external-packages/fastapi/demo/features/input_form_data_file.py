@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 
 router = APIRouter(
     prefix="/formdatafile",
-    tags=["Form Data File"],
+    tags=["Input Form Data File"],
 )
 
 # Define files to be uploaded by the client
