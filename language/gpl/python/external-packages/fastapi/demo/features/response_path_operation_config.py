@@ -4,8 +4,6 @@ from pydantic import BaseModel, EmailStr
 router = APIRouter(
     prefix="/response_path_operation_config",
     tags=["Response Path Operation Config"],
-    # dependencies=[Depends(get_token_header)],
-    responses={404: {"description": "Not found"}},
 )
 
 
@@ -21,12 +19,15 @@ class Item(BaseModel):
 @router.post(
     "/items/",
     response_model=Item,
+    tags=["foo"],  # tags are merged with those from the router config
     status_code=status.HTTP_201_CREATED,
-    # tags=["foo"],
+    # this is the documentation of OpenAPI of what is 404 for this endpoint. It is not the json response! (this is inside of the HTTPException details). responses are merged from those from the router config
+    responses={404: {"description": "Not found"}},
     summary="Create an item",
     description="This description overrides the function docstring",
     response_description="The created item",
     deprecated=True,
+    # dependencies=[Depends(get_token_header)], # dependency without a return value
 )
 def create_item(item: Item):
     """
@@ -80,6 +81,9 @@ async def read_items2():
 # Disables it even though you have defined an output model
 
 
-@router.get("/portal2", response_model=None)
+@router.get(
+    "/portal2",
+    response_model=None,
+)
 async def get_portal2() -> Response:
     return {"message": "Here's your interdimensional portal."}

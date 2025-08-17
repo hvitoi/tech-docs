@@ -1,15 +1,16 @@
 # Python Packages
 
 - **Package** is a directory that contains a special file called `__init__.py` (can be empty).
-- The presence of `__init__.py` tells Python that this directory is a package, and can contain `modules` and `subpackages`
+- The presence of `__init__.py` tells Python that this directory is a package, and can contain `modules` (python files) and `subpackages`
+- <https://docs.python.org/3/tutorial/modules.html>
 
 ```shell
 myapp/               # package
 ├── __init__.py
-├── models.py        # module
+├── models.py        # module (myapp.models)
 └── utils/           # subpackage
     ├── __init__.py
-    └── helper.py    # module
+    └── helper.py    # submodule (myapp.utils.helpers)
 ```
 
 ## Native Modules (Standard Library)

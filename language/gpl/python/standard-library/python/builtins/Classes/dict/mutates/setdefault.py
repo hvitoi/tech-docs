@@ -3,6 +3,7 @@
 
 my_dict = {"a": 1, "b": 2, "c": 3}
 my_dict.setdefault("a")  # returns 1
+my_dict.setdefault("z")  # returns None
 my_dict
 
 # %%
