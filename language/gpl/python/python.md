@@ -16,25 +16,6 @@ python3 --version
   - The python binary can also be picked from your chosen virtual environment
 - On vscode, `Python: Select Interpreter`
 
-## Native Packages (Standard Library)
-
-- Standard Libraries, Native Packages: <https://docs.python.org/3/library/index.html>
-- Types: <https://docs.python.org/3/library/stdtypes.html>
-- Data Structures: <https://docs.python.org/3/tutorial/datastructures.html>
-- Keywords: <https://www.w3schools.com/python/python_ref_keywords.asp>
-
-- Standard Libraries complexity: <https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/>
-
-## External Packages
-
-- External Packages/Modules: <https://pypi.org/>
-- `Pip` is the endorsed package manager for python, although it's an external module
-
-```shell
-# Pip can be installed through the built-in module "ensurepip"
-python -m ensurepip --upgrade
-```
-
 ## Virtual Environment
 
 - Each virtual environment is created based on a python interpreter (version)

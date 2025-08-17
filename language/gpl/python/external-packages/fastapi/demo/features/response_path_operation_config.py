@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Response
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi import APIRouter, Response, status
 from pydantic import BaseModel, EmailStr
 
 router = APIRouter(
-    prefix="/responses",
-    tags=["Responses"],
+    prefix="/response_path_operation_config",
+    tags=["Response Path Operation Config"],
+    # dependencies=[Depends(get_token_header)],
+    responses={404: {"description": "Not found"}},
 )
 
 
@@ -14,13 +15,36 @@ class Item(BaseModel):
     price: float
     email: EmailStr | None = None
     tax: float = 10.5
-    tags: list[str] = []
+    tags: set[str] = set()
+
+
+@router.post(
+    "/items/",
+    response_model=Item,
+    status_code=status.HTTP_201_CREATED,
+    # tags=["foo"],
+    summary="Create an item",
+    description="This description overrides the function docstring",
+    response_description="The created item",
+    deprecated=True,
+)
+def create_item(item: Item):
+    """
+    Create an item with all the information:
+
+    - **name**: each item must have a name
+    - **description**: a long description
+    - **price**: required
+    - **tax**: if the item doesn't have tax, you can omit this
+    - **tags**: a set of unique tag strings for this item
+    """
+    return item
 
 
 # ---
 # Output model as return type
 @router.get("/items")
-async def read_items() -> list[Item]:
+def read_items() -> list[Item]:
     return [
         Item(name="Portal Gun", price=42.0),
         Item(name="Plumbus", price=32.0),
@@ -48,63 +72,6 @@ async def read_items2():
         {"name": "Portal Gun", "price": 42.0},
         {"name": "Plumbus", "price": 32.0},
     ]
-
-
-# ---
-
-# Input/Output models
-
-
-class UserIn(BaseModel):
-    username: str
-    password: str
-    email: EmailStr
-    full_name: str | None = None
-
-
-class UserOut(BaseModel):
-    username: str
-    email: EmailStr
-    full_name: str | None = None
-
-
-@router.post("/user/", response_model=UserOut)
-async def create_user(user: UserIn):
-    return user
-
-
-# ---
-# Generic Response
-
-# RedirectResponse and JSONResponse are subclasses of Response
-
-
-@router.get("/portal")
-def get_portal(teleport: bool = False) -> Response:
-    if teleport:
-        return RedirectResponse(url="https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-    return JSONResponse(
-        content={"message": "Here's your interdimensional portal."}
-    )  # needs to be wrapped in JSONResponse (plain dicts would fail on the return type)
-
-
-# ---
-# HTMLResponse
-@router.get("/htmlresponse")
-async def html_response():
-    content = """
-<body>
-    <form action="/files/" enctype="multipart/form-data" method="post">
-        <input name="files" type="file" multiple>
-        <input type="submit">
-    </form>
-    <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
-        <input name="files" type="file" multiple>
-        <input type="submit">
-    </form>
-</body>
-    """
-    return HTMLResponse(content=content)
 
 
 # ---

@@ -1,32 +1,37 @@
 # %%
-# Import package
 import math
 import math as fancy_math  # with alias
 
 math.cos(0)
 
 # %%
-# Select specific symbols
+# Select symbols
 from math import ceil, floor
 from math import ceil as my_ceil
 
 
 # %%
-#  Select all
-
 # Python will look in the package's "__init__.py" for a special variable called __all__.
 # If __all__ exists, only the names listed there will be imported.
-
 from math import *
 
-
 # %%
-# Import python file
+# Absolute import (file/package)
+# If you are absolute importing from within a "python package" (with __init__.py file), you need to specify the full path (e.g., <package>.import_example)
+# If you are absolute importing not within a "python package" (with __init__.py file), you need to specify the file name (e.g., import_example)
 
-# In order to run it you need to run this file using the python commandline
-import import_example  # the filename of the other python file without the ".py" extension
+# "import_example" is the filename of a python file in the same dir as this file without the ".py" extension
+import import_example  # you need to run using the python commandline
 
 import_example.do_something()
 
 # %%
-# Import python folder
+# Relative import (file/package)
+# In order to use relative imports, the file/module must be part of a "python package"
+# In order to do that, the parent directory must contain an __init__.py file
+# "<package>.import_from_as" imports "<package>.import_example"
+
+from .import_example import do_something  # get the package in the same directory
+from ..import_example import do_something  # get the package in the parent directory
+
+do_something()

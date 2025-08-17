@@ -4,8 +4,8 @@ import time
 import json
 
 router = APIRouter(
-    prefix="/streaming",
-    tags=["Streaming"],
+    prefix="/response_streamingresponse",
+    tags=["Response StreamingResponse"],
 )
 
 
