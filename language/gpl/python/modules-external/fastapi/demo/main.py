@@ -1,24 +1,24 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from features import (
-    cookies,
     dependencies,
+    dependency_oauth,
     encoders,
     exception_handlers,
-    form_data,
-    form_data_file,
-    headers,
+    input_body,
+    input_cookies,
+    input_form_data,
+    input_form_data_file,
+    input_headers,
+    input_path_parameters,
+    input_query_parameters,
     middleware,
-    multiple_models,
-    oauth,
+    models,
     path_operation_config,
-    path_parameters,
-    query_parameters,
-    request_body,
     response,
+    response_status_codes,
+    response_streaming,
     sqlmodel,
-    status_codes,
-    streaming,
 )
 
 app = FastAPI()
@@ -31,23 +31,23 @@ async def read_root():  # path operation function
 
 
 # Include routers
-app.include_router(path_parameters.router)
-app.include_router(query_parameters.router)
-app.include_router(request_body.router)
-app.include_router(headers.router)
-app.include_router(cookies.router)
+app.include_router(input_path_parameters.router)
+app.include_router(input_query_parameters.router)
+app.include_router(input_body.router)
+app.include_router(input_headers.router)
+app.include_router(input_cookies.router)
 app.include_router(response.router)
-app.include_router(multiple_models.router)
-app.include_router(status_codes.router)
-app.include_router(form_data.router)
-app.include_router(form_data_file.router)
+app.include_router(models.router)
+app.include_router(response_status_codes.router)
+app.include_router(input_form_data.router)
+app.include_router(input_form_data_file.router)
 app.include_router(exception_handlers.router)
 app.include_router(path_operation_config.router)
 app.include_router(encoders.router)
 app.include_router(dependencies.router)
-app.include_router(oauth.router)
+app.include_router(dependency_oauth.router)
 app.include_router(sqlmodel.router)
-app.include_router(streaming.router)
+app.include_router(response_streaming.router)
 
 # Register custom exception handler for a given Exception
 
