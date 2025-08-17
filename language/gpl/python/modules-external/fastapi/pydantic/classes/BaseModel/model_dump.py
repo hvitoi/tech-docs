@@ -19,5 +19,5 @@ user = User(**external_data)
 user.model_dump()
 
 # %%
-# Do not include "friends" and "signup_ts", since they were not set
+# Do not include "friends" and "signup_ts", since they were not set by the user
 user.model_dump(exclude_unset=True)

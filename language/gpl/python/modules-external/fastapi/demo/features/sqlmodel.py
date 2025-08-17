@@ -35,7 +35,8 @@ class HeroUpdate(HeroBase):
 
 
 ## A SQLModel engine (underneath it's actually a SQLAlchemy engine) is what holds the connections to the database
-sqlite_url = "sqlite:///sqlite_file_name"  # the relative root is where fastapi is the cwd where fastapi has started up
+# sqlite_url = "sqlite:///myfastapi.db"  # relative path to current dir (cwd where fastapi has started up)
+sqlite_url = "sqlite:////tmp/myfastapi.db"  # absolute path
 connect_args = {"check_same_thread": False}  # allow same DB in different threads
 engine = create_engine(sqlite_url, connect_args=connect_args)
 
@@ -133,8 +134,11 @@ def update_hero(
     hero_db = session.get(Hero, hero_id)
     if not hero_db:
         raise HTTPException(status_code=404, detail="Hero not found")
-    hero_data = hero.model_dump(exclude_unset=True)
-    hero_db.sqlmodel_update(hero_data)
+
+    # Update the SQLModel by merging it with a dict
+    update_data = hero.model_dump(exclude_unset=True)  # Exclude default values
+    hero_db.sqlmodel_update(update_data)
+
     session.add(hero_db)
     session.commit()
     session.refresh(hero_db)
