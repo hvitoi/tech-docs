@@ -86,3 +86,23 @@ counter = 0
 fibonacci_memoized = memoize(fibonacci)
 fibonacci_memoized(35)
 counter  # 36 with memoization, 29_860_703 without
+
+
+# %%
+# A closure is a function that "remembers" the environment in which it was created
+# it's a function that has access to variables from its enclosing scope, even after the outer function has finished executing.
+# They capture variables from their enclosing scopes.
+
+
+def outer(x):
+    y = 10  # local variable in the outer function
+
+    def inner(z):  # inner is the closure function
+        return x + y + z  # inner function uses variables from outer
+
+    return inner  # return the inner function
+
+
+f = outer(5)
+print(f(3))  # 5 + 10 + 3 = 18
+# Even though outer has finished executing, inner still remembers x=5 and y=10.
