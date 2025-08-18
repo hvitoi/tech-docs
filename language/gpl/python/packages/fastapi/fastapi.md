@@ -48,3 +48,21 @@ fastapi dev main.py
 │       ├── __init__.py  # makes "internal" a "Python subpackage"
 │       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
 ```
+
+## Debugging
+
+You can run the uvicorn ASGI server directly from the Python file:
+
+```python
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+And run it as a python module:
+
+```shell
+# your cwd needs to be the parent directory of the demo package
+python -m demo.main
+```

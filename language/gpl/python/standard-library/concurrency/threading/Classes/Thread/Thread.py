@@ -14,5 +14,6 @@ def do_something():
     print_thread()
 
 
-thread = threading.Thread(target=do_something, args=[])
+thread = threading.Thread(target=do_something)
+# thread = threading.Thread(target=do_something, args=[])
 thread.start()

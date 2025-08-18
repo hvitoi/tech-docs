@@ -14,6 +14,7 @@ uvicorn "demo:app" --reload # what is actually run under the hood
 ## run
 
 - Run for production
+- Listens on `0.0.0.0` (from everywhere)
 
 ```shell
 fastapi run main.py
