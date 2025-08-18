@@ -4,7 +4,7 @@
 - It's important to always sort first!
 
 ```shell
-sort "file" | uniq # Returns only unique lines (Remote duplicates)
-sort "file" | uniq -c # Display the unique lines and the number of occurrences
-sort "file" | uniq -d # Shows only repeated lines
+sort "file" | uniq    # Display the unique lines
+sort "file" | uniq -c # Display the unique lines and the number of occurrences for each
+sort "file" | uniq -d # Display only the unique lines that had at least 2 occurrences
 ```

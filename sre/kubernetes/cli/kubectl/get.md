@@ -77,6 +77,12 @@ kubectl get "po" -o "yaml" # output as yaml
 ```
 
 ```shell
+# Get the top nodes with the most number of non-running pods
+kubectl get pods -A -o json | jq -r '.items[] | select(.status.phase != "Running") | .spec.nodeName' | sort | uniq -c | sort -nr
+
+```
+
+```shell
 # jsonpath
 kubectl get "po" \
   -o=jsonpath='{​range .items[*]}​{​"\n"}​{​.metadata.name}​{​":\t"}​{​range .spec.containers[*]}​{​.image}​{​", "}​{​end}​{​end}​'
