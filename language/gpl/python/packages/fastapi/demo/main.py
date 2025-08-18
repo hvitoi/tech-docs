@@ -126,3 +126,10 @@ app.add_middleware(
 #     StaticFiles(directory="static"),
 #     name="myawesomefiles",  # name used internally by FastAPI
 # )
+
+# Run unicorn directly from the Python file.
+# This is used to connect to the debugger in your IDE easily
+# import uvicorn
+
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
