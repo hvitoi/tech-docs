@@ -9,5 +9,5 @@
 
 ```shell
 pytest
-pytest -v
+pytest -v # verbose
 ```
