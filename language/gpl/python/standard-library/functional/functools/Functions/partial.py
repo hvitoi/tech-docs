@@ -2,12 +2,10 @@
 import functools
 
 
-def do_something(fn):
-    for el in range(10):
-        fn(el)
+def divide(dividend, divisor):
+    return dividend / divisor
 
 
-my_list = []
-append_to_list = functools.partial(lambda ls, el: ls.append(el), my_list)
-do_something(append_to_list)
-my_list
+# if kwargs is not defined, it will always replace the left-most arg
+divide_by_2 = functools.partial(divide, divisor=2)
+divide_by_2(10)
