@@ -1,14 +1,38 @@
+# A decorator applies a closure to a function
+# It's a function that wraps another function or method
+
 # %%
-# Decorator applies a closure to a function
+def greetings(name):
+    def greeting_decorator(fn):
+        def wrapper():
+            print(f"Hello {name}!")
+            fn()
+            print(f"Bye {name}!")
+
+        return wrapper
+
+    return greeting_decorator
+
+
+@greetings("Henry")
+def give_love():
+    print("I love you!")
+
+
+# Apply decorator manually
+give_love()
+
+# %%
+
 
 def memoize(fn):
-    memo = {}
+    cache = {}
 
     def lookup_or_miss(*args, **kwargs):
         key = str(args) + str(kwargs)
-        if key not in memo:
-            memo[key] = fn(*args, **kwargs)
-        return memo[key]
+        if key not in cache:
+            cache[key] = fn(*args, **kwargs)
+        return cache[key]
 
     return lookup_or_miss
 
@@ -17,12 +41,48 @@ def memoize(fn):
 def fibonacci_memoized(n):
     global counter
     counter += 1
+
     if n <= 1:
         return n
 
+    # the decorator takes care of recursive functions to call the memoized version and not the original version. This doesn't happen when you try to apply a closure function directly
     return fibonacci_memoized(n - 1) + fibonacci_memoized(n - 2)
 
 
 counter = 0
 fibonacci_memoized(35)
-counter  # 36 with memo, 29860703 without
+counter  # 36 with memoization, 29_860_703 without
+
+# %%
+
+
+def memoize(fn):
+    cache = {}
+
+    def lookup_or_miss(*args, **kwargs):
+        key = str(args) + str(kwargs)
+        if key not in cache:
+            cache[key] = fn(lookup_or_miss, *args, **kwargs)
+        return cache[key]
+
+    return lookup_or_miss
+
+
+# In order to use closure functions correctly for recursive calls,
+# it's important to add another argument that represents the wrapped
+# version of the function. Otherwise, the recursive would call the
+# non-wrapped/original version of the function
+def fibonacci(self, n):
+    global counter
+    counter += 1
+
+    if n <= 1:
+        return n
+
+    return self(n - 1) + self(n - 2)
+
+
+counter = 0
+fibonacci_memoized = memoize(fibonacci)
+fibonacci_memoized(35)
+counter  # 36 with memoization, 29_860_703 without
