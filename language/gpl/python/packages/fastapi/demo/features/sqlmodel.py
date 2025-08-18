@@ -1,7 +1,8 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
-from fastapi import APIRouter, Body, Depends, HTTPException, Path, Query
-from sqlmodel import Field, Session, SQLModel, create_engine, select
 
+from fastapi import APIRouter, Body, Depends, FastAPI, HTTPException, Path, Query
+from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 router = APIRouter(
     prefix="/sqlmodel",
@@ -41,12 +42,15 @@ connect_args = {"check_same_thread": False}  # allow same DB in different thread
 engine = create_engine(sqlite_url, connect_args=connect_args)
 
 
-def register_startup_events(app):
-    # On startup of the fastapi application run this function
-    @app.on_event("startup")
-    def on_startup():
-        # create db and tables
-        SQLModel.metadata.create_all(engine)
+# On startup of the fastapi application run this function
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # create db and tables
+    SQLModel.metadata.create_all(engine)
+    yield
+    # Shutdown code (if needed)
+    # ...
+    # e.g., engine.dispose()
 
 
 def get_session():

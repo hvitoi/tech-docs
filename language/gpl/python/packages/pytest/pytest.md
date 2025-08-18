@@ -8,5 +8,6 @@
 - On those files, run the functions that start with `test_`
 
 ```shell
+pytest
 pytest -v
 ```

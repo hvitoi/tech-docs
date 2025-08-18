@@ -60,12 +60,13 @@ app = FastAPI(
     # docs_url="/documentation", # /docs by default
     # redoc_url=None, # /redoc by default
     # dependencies=[Depends(verify_token), Depends(verify_key)] # Add global dependencies
+    lifespan=sqlmodel.lifespan,
 )
 
 
 @app.get("/")
 async def read_root():  # path operation function
-    return {"foo": "bar"}
+    return {"msg": "Hello World"}
 
 
 # Include routers
@@ -117,10 +118,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Register Events
-sqlmodel.register_startup_events(app)
-
 
 # Static Files: Navigate to <origin>/myfiles/image.png
 # app.mount(
