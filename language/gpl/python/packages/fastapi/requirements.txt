@@ -1,5 +1,5 @@
 fastapi[standard-no-fastapi-cloud-cli]
-# httpx
+httpx # http requests
 email-validator # For email validation
 python-multipart # Support forms
 pyjwt[crypto] # JWT handling + asymmetric encryption tools
