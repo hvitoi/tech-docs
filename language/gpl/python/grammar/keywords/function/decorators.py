@@ -1,5 +1,4 @@
-# A decorator applies a closure to a function
-# It's a function that wraps another function or method
+# It's a outer function that wraps and return an inner function
 
 # %%
 def greetings(name):
