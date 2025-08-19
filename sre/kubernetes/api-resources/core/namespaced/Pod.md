@@ -91,13 +91,13 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myapp
+  name: test-curl
 spec:
   containers:
-    - name: nginx
-      image: nginx:l.20
+    - name: curl
+      image: curlimages/curl
       command: ["sleep"] # override the entrypoint from dockerfile
-      args: ["10"] # override the cmd from dockerfile
+      args: ["infinity"] # override the cmd from dockerfile
 ```
 
 ### spec.containers[].ports[]
