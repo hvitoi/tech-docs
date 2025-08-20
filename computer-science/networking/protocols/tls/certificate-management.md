@@ -2,7 +2,6 @@
 
 ## SSL/TLS certificates
 
-- Secure Sockets Layer (`SSL`) / Transport Layer Security (`TLS`) certificates.
 - These certificates are used to secure network communications by enabling HTTPS connections and encrypting data transmitted between users and applications.
 - You can use wildcards to match all the subdomains in a domain. E.g., `*.example.com`
 - The certificate is trusted by a CA
