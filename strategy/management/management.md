@@ -6,27 +6,27 @@
 
 ### Productivity
 
-- Stop writing code
-- Keep the team productive (focus of amplifying the team's work, not yours)
-- Help on design decisions and architecture
-- Listen to your team's decisions
-- Don't steal credit!
+- Fewer/no code writing
+- Keeping the team productive (focus of amplifying the team's work, not yours)
+- Helping on design decisions and architecture
+- Listening to your team's decisions
+- Not stealing credit
 
 ### Lead by example
 
-- team will emulator good and bad behaviors
-- Don't show negative thoughts to your team. Work on it with your upper managers
+- team will emulate good and bad behaviors
+- Not showing negative thoughts to the team. Working with the upper management
 
 ### Time management
 
-- Keep inbox clean
-- Manage your todo list
-- Say no when necessary (tactfully)
+- Keeping inbox clean
+- Managing your todo list
+- Saying no when necessary (tactfully)
   - Are you the right/best person to do it?
-  - Explain what you would need to sacrifice in order to take this task
-- Delegate!
-  - Set clear expectations on the task
-  - You need to trust people to do their jobs even for important tasks
+  - Explaining what you would need to sacrifice in order to take this task
+- Delegating
+  - Setting clear expectations on the task
+  - Trusting people to do their jobs even for important tasks
 
 ## Strategy & Tactics
 
@@ -36,22 +36,22 @@
 
 ## Estimations
 
-- Avoid overcommitment
-- Mind the overhead
+- Avoiding overcommitment
+- Minding the overhead
   - Other stuff engineers need to do
   - Time for alignments when working in a team
   - Documentation
   - Testing
   - Debugging
   - Studying and researching!
-- Listen to your `project manager`
-- Involve your team on the estimations
+- Listening to your `project manager`
+- Involving the team on the estimations
 
 ## Dependencies
 
-- Take a large project and break down into smaller chunks
-- Take in consideration the experience level of each engineer and how quick they can deliver
-- Understand dependencies between tasks (including external dependencies - on other teams)
+- Taking a large project and break down into smaller chunks
+- Taking in consideration the experience level of each engineer and how quick they can deliver
+- Understanding dependencies between tasks (including external dependencies - on other teams)
 - Upper management will find odd that you are mentioning the detailed tasks when estimating
   - Because for them it does not matter (strategics only), but for you it does
 
@@ -136,7 +136,7 @@
 
 ## Working with upper management
 
-- Be honest
+- Honesty
 - A good relationship will make both more effective
 - Have backbone, disagree and commit
   - It's okay to push back something that you are told to do
