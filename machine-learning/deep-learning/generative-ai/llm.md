@@ -1,21 +1,26 @@
 # Large Language Models
 
 - `ChatGPT`
-  - GPT-5, GPT-4, GPT-4o, GPT-3.5
+  - OpenAI GPT (5, 4, 4o, 3.5)
+  - OpenAI Reasoning
+  - OpenAI Image
 - `GitHub Copilot`
   - OpenAI Codex (not GPT!)
 - `DeepSeek`
-  - DeepSeek LLMs (Coder & Chat)
+  - DeepSeek General
+  - DeepSeek Reasoning
 - `Anthropic Claude`
-  - Claude 3.5
+  - Claude Sonnet (3.5, etc)
 - `Gemini`
-  - Gemini 1.5 Pro, Flash, Nano
+  - Gemini Flash
+  - Gemini Reasoning
 - `Microsoft Copilot`
-  - OpenAI GPT-4 / GPT-4 Turbo / GPT-4o
+  - OpenAI GPT
 - `Grok` (Twitter)
-  - Grok-1, Grok-1.5, Grok-2
+  - X Grok (1, 1.5, 2)
 - `Codeium`
-  - Codeium LLMs
   - Open source models (StarCoder, Code LLaMA)
 - `Cursor`
   - Isn't tied to any specific LLM
+- `Meta`
+  - Meta Llama

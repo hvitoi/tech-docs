@@ -20,3 +20,19 @@ python -m ensurepip --upgrade
 - Some packages provide sets of extra packages, examples:
   - fastapi[standard], fastapi[standard-no-fastapi-cloud-cli], etc
 - If you install it this way, pip will additionally install other extra packages for you
+
+## Requirements file
+
+```txt
+# import other requirements file, e.g., requirements.txt imported by requirement-dev.txt
+-r requirements_base.txt
+
+# import the package plus other extra packages
+fastapi[standard-no-fastapi-cloud-cli]
+
+# Pin to specific version
+mkdocs==1.5.2
+
+# Version range
+fastapi>=0.45.0,<0.46.0
+```
