@@ -9,11 +9,17 @@
 - _Script_: List of instructions. pwd, useradd
 
 ```shell
-# List processes running in the system
-ps -ef
-
 # List processes running in the current terminal!
 ps
+
+# List all processes running in the system (not only in the current terminal)
+ps -e
+
+# full format (includes UID, PPID, C, STIME)
+ps -f
+
+# select columns and sort by cpu usage
+ps -eo pid,comm,%cpu,%mem --sort=-%cpu
 
 # List all processes along with additional info
 ps aux

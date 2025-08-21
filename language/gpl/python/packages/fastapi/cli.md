@@ -8,6 +8,8 @@
 
 ```shell
 fastapi dev main.py
+
+# Run uvicorn directly
 uvicorn "demo:app" --reload # what is actually run under the hood
 ```
 
@@ -18,6 +20,9 @@ uvicorn "demo:app" --reload # what is actually run under the hood
 
 ```shell
 fastapi run main.py
+fastapi run --workers 4 main.py # 1 manager process + 4 worker processes
+
+# Run uvicorn directly
 uvicorn "demo:app" --host 0.0.0.0 --port 80
 # demo: the main module
 # the object created in the main module (app = FastAPI())
