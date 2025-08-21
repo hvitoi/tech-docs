@@ -8,10 +8,11 @@
 
 ## Services
 
-- `Traefik` (that can also handle certificate renewals)
-- `Caddy` (that can also handle certificate renewals)
-- `Nginx`
-- `HAProxy`
+- `Traefik` (natively handles certificate renewals)
+- `Caddy` (natively handles certificate renewals)
+- `Nginx` (+ Certbot for certificate renewals)
+- `HAProxy` (+ Certbot for certificate renewals)
+- `Nginx Kubernetes Ingress Controller` (+ cert-manager for certificate renewals)
 
 ## Workflow
 

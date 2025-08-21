@@ -9,7 +9,7 @@
 
 1. `Contextpath-based routing`: hvitoi.com/app1, hvitoi.com/app2
 1. `Hostname-based routing`: app1.hvitoi.com, app2.hvitoi.com
-1. `TLS/SSL termination`
+1. `TLS termination`
 
 ## Ingress Groups
 

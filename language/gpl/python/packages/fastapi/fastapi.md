@@ -21,7 +21,7 @@ pip install "fastapi[standard]"
 - `fastapi-cli`
   - `uvicorn`: http server that loads and serves the app
 
-## Running
+## ASGI Server (Asynchronous Server Gateway Interface)
 
 - <http://localhost:8000/>
 - <http://localhost:8000/docs>: Swagger UI
@@ -29,8 +29,14 @@ pip install "fastapi[standard]"
 - <http://localhost:8000/redoc>: ReDoc
 
 ```shell
-fastapi dev main.py
+fastapi dev main.py # runs with unicorn by default
 ```
+
+- `Uvicorn`: a high performance ASGI server (the default used by fastapi)
+- `Hypercorn`: an ASGI server compatible with HTTP/2 and Trio among other features.
+- `Daphne`: the ASGI server built for Django Channels.
+- `Granian`: A Rust HTTP server for Python applications.
+- `NGINX Unit`: NGINX Unit is a lightweight and versatile web application runtime.
 
 ## Project structure
 

@@ -12,9 +12,26 @@ python3 --version
 
 ## Interpreter
 
+- `CPython` runs a Python code. To do that:
+  - The code is **compiled** to `bytecode` by `CPython`
+  - The compiled code is then **interpreted** by the `Python Virtual Machine (PVM)`.
+- That means that python is both compiled and interpreted
+
 - You can configure your IDE to use a python interpreter (the python binary) with a specific version
   - The python binary can also be picked from your chosen virtual environment
 - On vscode, `Python: Select Interpreter`
+
+### CPython compiler step
+
+- When you run a Python code, CPython first compiles your source code (`.py`) into bytecode (`.pyc`)
+- This bytecode is stored at `__pycache__/`
+- The bytecode is not machine code. It's a lower-level, platform-independent representation of your code
+- Example:`def add(a,b): return a+b` becomes a handful of bytecode instructions like `LOAD_FAST, BINARY_ADD, etc.`
+
+### Python Virtual Machine (PVM) execution step
+
+- CPython then executes that bytecode using the Python Virtual Machine, which is part of the CPython runtime.
+- The PVM reads the bytecode instructions one by one and performs the corresponding machine-level operations.
 
 ## Virtual Environment
 
