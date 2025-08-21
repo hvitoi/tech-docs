@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from demo.features import (  # or ".features"
+from app.features import (  # or ".features"
     background_tasks,
     dependencies,
     dependency_oauth,

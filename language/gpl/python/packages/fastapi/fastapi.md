@@ -70,5 +70,5 @@ And run it as a python module:
 
 ```shell
 # your cwd needs to be the parent directory of the demo package
-python -m demo.main
+python -m app.main # package "app", module "main"
 ```

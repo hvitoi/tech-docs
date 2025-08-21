@@ -26,4 +26,7 @@ EXPOSE 3000
 ENTRYPOINT ["echo"]
 
 # Can be override by the argv "docker container run myimage John"
+# Exec form (recommended) - does not use a command shell
 CMD ["Henry!"]
+# Shell form (not recommended) - uses a command shell
+CMD "Henry!"

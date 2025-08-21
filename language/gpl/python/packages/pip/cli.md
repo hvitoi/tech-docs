@@ -34,6 +34,7 @@ pip install -e mkdocs-material
 
 # install from requirements file
 pip install -r requirements.txt
+pip install --no-cache-dir --upgrade -r /code/requirements.txt # Do not save downloaded packages into pip's local cache directory (usually ~/.cache/pip). Doesn't make sense in production environment, in which you won't reuse the cache. Also also saves disk space
 ```
 
 ## freeze
