@@ -16,9 +16,9 @@ from app.features import (  # or ".features"
     input_query_parameters,
     middleware,
     models,
+    path_operation_config,
     response_htmlresponse,
     response_jsonresponse,
-    response_path_operation_config,
     response_redirectresponse,
     response_status_codes,
     response_streamingresponse,
@@ -82,7 +82,7 @@ app.include_router(encoders.router)
 app.include_router(dependencies.router)
 app.include_router(dependency_oauth.router)
 app.include_router(exception_handlers.router)
-app.include_router(response_path_operation_config.router)
+app.include_router(path_operation_config.router)
 app.include_router(response_htmlresponse.router)
 app.include_router(response_jsonresponse.router)
 app.include_router(response_redirectresponse.router)

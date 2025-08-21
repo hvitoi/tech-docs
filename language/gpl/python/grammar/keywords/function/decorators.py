@@ -1,25 +1,5 @@
 # It's a outer function that wraps and return an inner function
 
-# %%
-def greetings(name):
-    def greeting_decorator(fn):
-        def wrapper():
-            print(f"Hello {name}!")
-            fn()
-            print(f"Bye {name}!")
-
-        return wrapper
-
-    return greeting_decorator
-
-
-@greetings("Henry")
-def give_love():
-    print("I love you!")
-
-
-# Apply decorator manually
-give_love()
 
 # %%
 
@@ -86,6 +66,27 @@ fibonacci_memoized = memoize(fibonacci)
 fibonacci_memoized(35)
 counter  # 36 with memoization, 29_860_703 without
 
+
+# %%
+def greetings(name):
+    def greeting_decorator(fn):
+        def wrapper():
+            print(f"Hello {name}!")
+            fn()
+            print(f"Bye {name}!")
+
+        return wrapper
+
+    return greeting_decorator
+
+
+@greetings("Henry")
+def give_love():
+    print("I love you!")
+
+
+# Apply decorator manually
+give_love()
 
 # %%
 # A closure is a function that "remembers" the environment in which it was created
