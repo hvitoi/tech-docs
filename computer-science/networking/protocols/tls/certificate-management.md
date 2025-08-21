@@ -6,7 +6,7 @@
 - You can use wildcards to match all the subdomains in a domain. E.g., `*.example.com`
 - The certificate is trusted by a CA
 
-## Certificate Authority
+## Certificate Authority (CA)
 
 - `DigiCert`
 - `GlobalSign`
@@ -26,3 +26,11 @@
 - `OpenSSL` (self-managed)
 - `HashiCorp Vault` (self-managed)
 - `Certbot` (self-managed)
+
+### Let's Encrypt
+
+- [Let's Encrypt](https://letsencrypt.org/) is a Linux Foundation project
+- It provides HTTPS certificates for free, in an automated way
+- These certificates use all the standard cryptographic security, and are short-lived (about 3 months)
+- The domains are securely verified and the certificates are generated automatically. This also allows automating the renewal of these certificates.
+- The idea is to automate the acquisition and renewal of these certificates so that you can have secure HTTPS, for free, forever.

@@ -23,7 +23,7 @@ python -m ensurepip --upgrade
 
 ## Requirements file
 
-```txt
+```conf
 # import other requirements file, e.g., requirements.txt imported by requirement-dev.txt
 -r requirements_base.txt
 
@@ -33,6 +33,6 @@ fastapi[standard-no-fastapi-cloud-cli]
 # Pin to specific version
 mkdocs==1.5.2
 
-# Version range
+# Version range (pin to a minor version)
 fastapi>=0.45.0,<0.46.0
 ```

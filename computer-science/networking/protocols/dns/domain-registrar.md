@@ -14,4 +14,4 @@
 - GoDaddy
 - Wix
 - AWS Route53
-- Registo BR (*.br only)
+- Registro BR (*.br only)
