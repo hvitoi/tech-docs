@@ -5,6 +5,7 @@ from fastapi.routing import APIRoute
 from app.features import (  # or ".features"
     background_tasks,
     dependencies,
+    dependency_httpx,
     dependency_oauth,
     encoders,
     exception_handlers,
@@ -26,11 +27,12 @@ from app.features import (  # or ".features"
     response_object,
     response_plaintext,
     response_redirect,
-    websockets,
     response_streaming,
     response_templates,
     sqlmodel,
+    websockets,
 )
+from app.lifespan import lifespan
 
 description = """
 My API helps you do awesome stuff.
@@ -69,7 +71,7 @@ app = FastAPI(
     # docs_url="/documentation", # /docs by default
     # redoc_url=None, # /redoc by default
     # dependencies=[Depends(verify_token), Depends(verify_key)] # Add global dependencies
-    lifespan=sqlmodel.lifespan,
+    lifespan=lifespan,  # you can only attach a single lifespan function
 )
 
 
@@ -90,6 +92,7 @@ app.include_router(models.router)
 app.include_router(encoders.router)
 app.include_router(dependencies.router)
 app.include_router(dependency_oauth.router)
+app.include_router(dependency_httpx.router)
 app.include_router(exception_handlers.router)
 app.include_router(path_operation_config.router)
 app.include_router(response_generic.router)

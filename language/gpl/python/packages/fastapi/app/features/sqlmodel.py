@@ -1,8 +1,15 @@
-from contextlib import asynccontextmanager
 from typing import Annotated
 
-from fastapi import APIRouter, Body, Depends, FastAPI, HTTPException, Path, Query
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from fastapi import (
+    APIRouter,
+    Body,
+    Depends,
+    HTTPException,
+    Path,
+    Query,
+    Request,
+)
+from sqlmodel import Field, Session, SQLModel, select
 
 router = APIRouter(
     prefix="/sqlmodel",
@@ -35,37 +42,20 @@ class HeroUpdate(HeroBase):
     secret_name: str | None = None
 
 
-## A SQLModel engine (underneath it's actually a SQLAlchemy engine) is what holds the connections to the database
-# sqlite_url = "sqlite:///myfastapi.db"  # relative path to current dir (cwd where fastapi has started up)
-sqlite_url = "sqlite:////tmp/myfastapi.db"  # absolute path
-connect_args = {"check_same_thread": False}  # allow same DB in different threads
-engine = create_engine(sqlite_url, connect_args=connect_args)
-
-
-# On startup of the fastapi application run this function
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # create db and tables
-    SQLModel.metadata.create_all(engine)
-    yield
-    # Shutdown code (if needed)
-    # ...
-    # e.g., engine.dispose()
-
-
-def get_session():
+def get_session(request: Request):
     # A "Session" is what stores the objects in memory and keeps track of any changes needed in the data
     # Then it uses the "Engine" to communicate with the database.
+    engine = request.app.state.db_engine  # you need to create a lifespan event
     with Session(engine) as session:
         yield session  # the rest of the function is executed (the close function called by "with" syntax) after the endpoint is done
 
 
-SessionDep = Annotated[Session, Depends(get_session)]
+DBSessionDep = Annotated[Session, Depends(get_session)]
 
 
 @router.post("/heroes/", response_model=HeroPublic)
 def create_hero(
-    session: SessionDep,
+    session: DBSessionDep,
     hero: Annotated[HeroCreate, Body()],
 ):
     # This validation is necessary because on the input it's validated against HeroCreate only
@@ -91,12 +81,12 @@ def create_hero(
     # WHERE id = 1;
     session.refresh(db_hero)
 
-    return hero
+    return db_hero
 
 
 @router.get("/heroes/", response_model=list[HeroPublic])
 def read_heroes(
-    session: SessionDep,
+    session: DBSessionDep,
     offset: Annotated[int, Query()] = 0,
     limit: Annotated[int, Query(le=100)] = 100,
 ):
@@ -116,7 +106,7 @@ def read_heroes(
 
 @router.get("/heroes/{hero_id}", response_model=HeroPublic)
 def read_hero(
-    session: SessionDep,
+    session: DBSessionDep,
     hero_id: Annotated[int, Path()],
 ):
     # SELECT *
@@ -131,7 +121,7 @@ def read_hero(
 
 @router.patch("/heroes/{hero_id}", response_model=HeroPublic)
 def update_hero(
-    session: SessionDep,
+    session: DBSessionDep,
     hero_id: Annotated[int, Path()],
     hero: Annotated[HeroUpdate, Body()],
 ):
@@ -151,7 +141,7 @@ def update_hero(
 
 @router.delete("/heroes/{hero_id}")
 def delete_hero(
-    session: SessionDep,
+    session: DBSessionDep,
     hero_id: Annotated[int, Path()],
 ):
     hero = session.get(Hero, hero_id)

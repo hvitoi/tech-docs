@@ -89,6 +89,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 # WebSocket protocol has its own exceptions. HTTP exceptions are not used here
                 # This closes the websocket connection
                 raise WebSocketException(code=status.WS_1008_POLICY_VIOLATION)
+            # await websocket.close() # manually close the connection
             await websocket.send_text(f"Message text was: {data}")  # send response back
         except WebSocketDisconnect:
             # If the client has closed the connection...

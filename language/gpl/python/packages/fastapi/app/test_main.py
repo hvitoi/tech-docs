@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from .main import app
 
 # Follow the "test_*.py" naming convention
+# "pytest -v to run it"
 
 
 client = TestClient(app)
@@ -59,3 +60,9 @@ def test_create_item():
         "full_name": "Henry Vitoi",
         "email": "henry@example.com",
     }
+
+
+# def test_websocket():
+#     with client.websocket_connect("websockets/ws") as websocket:
+#         data = websocket.receive_json()
+#         assert data == {"msg": "Hello WebSocket"}
