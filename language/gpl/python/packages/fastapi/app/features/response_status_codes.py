@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Response, status
+from fastapi.responses import JSONResponse
 
 router = APIRouter(
     prefix="/statuscodes",
@@ -10,19 +11,20 @@ router = APIRouter(
 
 @router.post(
     "/items/{name}",
-    status_code=status.HTTP_201_CREATED,  # defines the default status code (but can be overridden)
+    status_code=status.HTTP_200_OK,  # defines the default status code (but can be overridden)
 )
 def create_item(
     response: Response,  # The temporal response
     name: str,
-    force_failure: bool = False,
+    foo: bool = False,
 ):
-    if force_failure:
-        response.status_code = (
-            status.HTTP_200_OK  # it's not common to change the http status code like that, you will usually raise an HTTPException
-        )
-        return
-    return {"name": name}
+    if foo:
+        # it's not common to change the http status code like that, you will usually raise an HTTPException
+        response.status_code = status.HTTP_201_CREATED
+        return {"name": name}
+
+    # you can also change the response status code by building a JSONResponse object
+    return JSONResponse(status_code=status.HTTP_202_ACCEPTED, content={"name": name})
 
 
 ## -- Raise HTTPException

@@ -2,12 +2,14 @@ from fastapi import APIRouter, Response
 from fastapi.responses import HTMLResponse
 
 router = APIRouter(
-    prefix="/response_htmlresponse",
-    tags=["Response HTMLResponse"],
+    prefix="/response_html",
+    tags=["HTMLResponse"],
 )
 
 
-@router.get("/")
+# When a response_class is define, you don't need to build the Response object
+# This also sets the Content-Type
+@router.get("/", response_class=HTMLResponse)
 def get_resource() -> Response:
     content = """
 <body>
@@ -21,4 +23,5 @@ def get_resource() -> Response:
     </form>
 </body>
     """
-    return HTMLResponse(content=content)
+    # return HTMLResponse(content=content) # without response_class
+    return content  # simpler with response_class

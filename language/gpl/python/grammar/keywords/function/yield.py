@@ -42,3 +42,15 @@ lazy_db = get_db()
 lazy_db
 next(lazy_db)
 # next(lazy_db) # fails! Because it has already reached the end of the function
+
+
+# %%
+def stream_my_file():
+    with open("large-video-file.mp4", mode="rb") as file:
+        yield from file
+
+
+def stream_my_file2():
+    with open("large-video-file.mp4", mode="rb") as file:
+        for chunk in file:
+            yield chunk  # same

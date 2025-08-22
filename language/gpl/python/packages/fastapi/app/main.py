@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.routing import APIRoute
 
 from app.features import (  # or ".features"
     background_tasks,
@@ -17,11 +19,15 @@ from app.features import (  # or ".features"
     middleware,
     models,
     path_operation_config,
-    response_htmlresponse,
-    response_jsonresponse,
-    response_redirectresponse,
+    response_file,
+    response_generic,
+    response_html,
+    response_json,
+    response_plaintext,
+    response_custom,
+    response_redirect,
     response_status_codes,
-    response_streamingresponse,
+    response_streaming,
     sqlmodel,
 )
 
@@ -56,6 +62,7 @@ app = FastAPI(
         "identifier": "MIT",  # with the identifier, url can be omitted
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
+    default_response_class=JSONResponse,  # Can be changed for example to XML
     # openapi_url="/api/v1/openapi.json", # by default it is served under /openapi.json (or disable it completely with None)
     # docs_url="/documentation", # /docs by default
     # redoc_url=None, # /redoc by default
@@ -83,13 +90,22 @@ app.include_router(dependencies.router)
 app.include_router(dependency_oauth.router)
 app.include_router(exception_handlers.router)
 app.include_router(path_operation_config.router)
-app.include_router(response_htmlresponse.router)
-app.include_router(response_jsonresponse.router)
-app.include_router(response_redirectresponse.router)
-app.include_router(response_streamingresponse.router)
+app.include_router(response_generic.router)
+app.include_router(response_file.router)
+app.include_router(response_html.router)
+app.include_router(response_plaintext.router)
+app.include_router(response_json.router)
+app.include_router(response_redirect.router)
+app.include_router(response_streaming.router)
+app.include_router(response_custom.router)
 app.include_router(response_status_codes.router)
 app.include_router(sqlmodel.router)
 app.include_router(background_tasks.router)
+
+for route in app.routes:
+    if isinstance(route, APIRoute):
+        pass
+        # route.operation_id = "lala" # modify route
 
 # Register custom exception handler for a given Exception
 

@@ -1,4 +1,3 @@
-from datetime import datetime
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -29,4 +28,4 @@ class Item(BaseModel):
 async def update_item(item_id: str, item: Item):
     update_item_encoded = jsonable_encoder(item)
     fake_db[item_id] = update_item_encoded
-    return update_item_encoded
+    return update_item_encoded  # it's only coerced (with jsonable_encoder) to Item if a plain response is sent, e.g., not with JSONResponse

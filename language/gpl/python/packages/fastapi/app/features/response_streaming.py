@@ -4,12 +4,12 @@ import time
 import json
 
 router = APIRouter(
-    prefix="/response_streamingresponse",
-    tags=["Response StreamingResponse"],
+    prefix="/response_streaming",
+    tags=["StreamingResponse"],
 )
 
 
-def ndjson_stream():
+def stream_my_ndjson():
     data = [
         {"id": 1, "name": "Alice"},
         {"id": 2, "name": "Bob"},
@@ -22,4 +22,17 @@ def ndjson_stream():
 
 @router.get("/mystream")
 def stream_ndjson():
-    return StreamingResponse(ndjson_stream(), media_type="application/x-ndjson")
+    return StreamingResponse(stream_my_ndjson(), media_type="application/x-ndjson")
+
+
+# -----
+
+
+def stream_my_file():
+    with open("large-video-file.mp4", mode="rb") as file:
+        yield from file
+
+
+@router.get("/mystream2")
+def stream_file():
+    return StreamingResponse(stream_my_file(), media_type="video/mp4")
