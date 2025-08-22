@@ -5,3 +5,5 @@ pyjwt[crypto] # JWT handling + asymmetric encryption tools
 passlib[bcrypt] # Password hashing
 sqlmodel # SQL ORM
 httpx # http requests
+jinja2 # templates
+websockets

@@ -23,6 +23,7 @@ from app.features import (  # or ".features"
     response_generic,
     response_html,
     response_json,
+    response_templates,
     response_object,
     response_plaintext,
     response_redirect,
@@ -62,6 +63,7 @@ app = FastAPI(
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
     default_response_class=JSONResponse,  # Can be changed for example to XML
+    # root_path="/api/v1", # same as the cli arg --root-path
     # openapi_url="/api/v1/openapi.json", # by default it is served under /openapi.json (or disable it completely with None)
     # docs_url="/documentation", # /docs by default
     # redoc_url=None, # /redoc by default
@@ -96,6 +98,7 @@ app.include_router(response_plaintext.router)
 app.include_router(response_json.router)
 app.include_router(response_redirect.router)
 app.include_router(response_streaming.router)
+app.include_router(response_templates.router)
 app.include_router(response_custom.router)
 app.include_router(response_object.router)
 app.include_router(request_object.router)
@@ -107,17 +110,8 @@ for route in app.routes:
         pass
         # route.operation_id = "lala" # modify route
 
-# Static Files: Navigate to <origin>/myfiles/image.png
-
-# app.mount(
-#     "/myfiles",
-#     # The relative directory refers to the same where the python command was run
-#     StaticFiles(directory="static"),
-#     name="myawesomefiles",  # name used internally by FastAPI
-# )
 
 # Run unicorn directly from the Python file. This is used to connect to the debugger in your IDE easily
-
 # import uvicorn
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)

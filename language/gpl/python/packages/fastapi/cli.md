@@ -20,8 +20,11 @@ uvicorn "main:app" --reload # main: the module/file; app: the object within the 
 
 ```shell
 fastapi run main.py
-fastapi run --workers 4 main.py # 1 manager process + 4 worker processes
-fastapi run app/main.py --proxy-headers --port 80 # used when running behind a TLS Termination Proxy. It tells Uvicorn to trust the headers sent sent by that proxy telling that the application is running behind HTTPS
+fastapi run main.py --workers 4 # 1 manager process + 4 worker processes
+fastapi run main.py --port 80 # port to be exposed
+fastapi run main.py --proxy-headers # used when running behind a TLS Termination Proxy. It tells Uvicorn to trust the headers sent sent by that proxy telling that the application is running behind HTTPS
+fastapi run main.py --root-path /api/v1 # tells the app that it is run behind a proxy and adds the /api/v1 prefix
+
 
 # Run uvicorn directly
 uvicorn "main:app" --host 0.0.0.0 --port 80
