@@ -1,15 +1,18 @@
 import time
-from fastapi import APIRouter, Request
+from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
-## Middleware are like interceptors that can run before and after the path operation function
+# Register middlewares (apply to all routes)
 
-router = APIRouter(
-    prefix="/middleware",
-    tags=["Middleware"],
-)
+# app.add_middleware(MyInnermostMiddleware)
+# app.add_middleware(MyOutermostMiddleware)
+
 
 ## ---- Custom Middleware
+# app.add_middleware(ProcessTimeMiddleware)
+
+
+## Middleware are like interceptors that can run before and after the path operation function
 
 
 # Add middleware with decorator
@@ -28,10 +31,17 @@ class ProcessTimeMiddleware(BaseHTTPMiddleware):
         return await add_process_time_header(request, call_next)
 
 
-## ---- CORS Middleware
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
-]
+## ----- CORS Middleware
+# from fastapi.middleware.cors import CORSMiddleware
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=[
+#         "http://localhost.tiangolo.com",
+#         "https://localhost.tiangolo.com",
+#         "http://localhost",
+#         "http://localhost:8080",
+#     ],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )

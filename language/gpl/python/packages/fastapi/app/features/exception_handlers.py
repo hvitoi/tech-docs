@@ -5,6 +5,23 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+
+# ------------- Register custom exception handler for a given Exception
+
+# app.add_exception_handler(
+#     exception_handlers.MyException,
+#     exception_handlers.my_exception_handler,
+# )
+# app.add_exception_handler(
+#     HTTPException,
+#     exception_handlers.http_exception_handler,
+# )
+# app.add_exception_handler(
+#     RequestValidationError,
+#     exception_handlers.request_validation_handler,
+# )
+
+
 router = APIRouter(
     prefix="/exceptionhandlers",
     tags=["Exception & Exception Handlers"],

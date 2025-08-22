@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
 
@@ -16,16 +15,15 @@ from app.features import (  # or ".features"
     input_headers,
     input_path_parameters,
     input_query_parameters,
-    middleware,
     models,
     path_operation_config,
+    request_object,
     response_custom,
     response_file,
     response_generic,
     response_html,
     response_json,
     response_object,
-    request_object,
     response_plaintext,
     response_redirect,
     response_streaming,
@@ -109,35 +107,8 @@ for route in app.routes:
         pass
         # route.operation_id = "lala" # modify route
 
-# Register custom exception handler for a given Exception
-
-# app.add_exception_handler(
-#     exception_handlers.MyException,
-#     exception_handlers.my_exception_handler,
-# )
-# app.add_exception_handler(
-#     HTTPException,
-#     exception_handlers.http_exception_handler,
-# )
-# app.add_exception_handler(
-#     RequestValidationError,
-#     exception_handlers.request_validation_handler,
-# )
-
-
-# Register middlewares (apply to all routes)
-# app.add_middleware(MyInnermostMiddleware)
-# app.add_middleware(MyOutermostMiddleware)
-app.add_middleware(middleware.ProcessTimeMiddleware)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=middleware.origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Static Files: Navigate to <origin>/myfiles/image.png
+
 # app.mount(
 #     "/myfiles",
 #     # The relative directory refers to the same where the python command was run
@@ -145,9 +116,8 @@ app.add_middleware(
 #     name="myawesomefiles",  # name used internally by FastAPI
 # )
 
-# Run unicorn directly from the Python file.
-# This is used to connect to the debugger in your IDE easily
-# import uvicorn
+# Run unicorn directly from the Python file. This is used to connect to the debugger in your IDE easily
 
+# import uvicorn
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)
