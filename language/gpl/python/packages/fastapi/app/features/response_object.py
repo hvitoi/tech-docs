@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Response, status
 
 router = APIRouter(
-    prefix="/temporalresponseobject",
-    tags=["Temporal REsponse Object"],
+    prefix="/responseobject",
+    tags=["Temporal Response Object"],
 )
 
 

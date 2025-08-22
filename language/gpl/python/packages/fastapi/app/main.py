@@ -24,11 +24,12 @@ from app.features import (  # or ".features"
     response_generic,
     response_html,
     response_json,
+    response_object,
+    request_object,
     response_plaintext,
     response_redirect,
     response_streaming,
     sqlmodel,
-    temporal_response_object,
 )
 
 description = """
@@ -98,7 +99,8 @@ app.include_router(response_json.router)
 app.include_router(response_redirect.router)
 app.include_router(response_streaming.router)
 app.include_router(response_custom.router)
-app.include_router(temporal_response_object.router)
+app.include_router(response_object.router)
+app.include_router(request_object.router)
 app.include_router(sqlmodel.router)
 app.include_router(background_tasks.router)
 
