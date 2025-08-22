@@ -1,30 +1,47 @@
 # %%
-import httpx
 import asyncio
+import json
 
-
-# %%
-# ---- Synchronous example ----
-def sync_example():
-    with httpx.Client() as client:
-        response = client.get("https://httpbin.org/get", params={"q": "hello"})
-        print("Status:", response.status_code)
-        print("Body:", response.json())
-
-
-if __name__ == "__main__":
-    sync_example()
+import httpx
 
 
 # %%
 # ---- Asynchronous example ----
-async def async_example():
+async def do_req_async():
     async with httpx.AsyncClient() as client:
-        response = await client.get("https://httpbin.org/get", params={"q": "hello"})
-        print("Status:", response.status_code)
-        print("Body:", response.json())
+        response = await client.get("https://httpbin.org/get")
+        print("Response Status:", response.status_code)
+        print("Response Body:", json.dumps(response.json(), indent=4))
 
 
 if __name__ == "__main__":
     # Doesn't work from inside a Jupyter notebook
-    asyncio.run(async_example())
+    asyncio.run(do_req_async())
+
+# %%
+# ---- Synchronous example ----
+with httpx.Client() as client:
+    response = client.post(
+        "https://httpbin.org/post",
+        json={"foo": "bar"},  # for application/json
+        # data={"foo": "bar"}, # for application/x-www-form-urlencoded
+        params={"limit": 999},  # query parameters
+        headers={"Foo-Foo": "bar"},
+        cookies={"session": "abc123"},  # Cookie header
+        auth=httpx.BasicAuth("user", "pass"),  # Authorization Basic Header
+        timeout=5.0,
+    )
+
+    print("Response Status:", response.status_code)
+    print("Response Body:", json.dumps(response.json(), indent=4))
+    print("Response Headers:", response.headers)
+
+
+# %%
+
+# Stream response
+with httpx.Client() as client:
+    # client.stream() returns a 'httpx.Response' object
+    with client.stream("GET", "https://httpbin.org/stream/5") as response:
+        for chunk in response.iter_text():
+            print(chunk)

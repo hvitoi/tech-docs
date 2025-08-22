@@ -12,3 +12,4 @@ print(
     )
 )
 # print("a" "b")  # multiple strings
+print("a", "b")  # joined by space
