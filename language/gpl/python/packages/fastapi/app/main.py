@@ -23,11 +23,12 @@ from app.features import (  # or ".features"
     response_generic,
     response_html,
     response_json,
-    response_templates,
     response_object,
     response_plaintext,
     response_redirect,
+    websockets,
     response_streaming,
+    response_templates,
     sqlmodel,
 )
 
@@ -104,6 +105,7 @@ app.include_router(response_object.router)
 app.include_router(request_object.router)
 app.include_router(sqlmodel.router)
 app.include_router(background_tasks.router)
+app.include_router(websockets.router)
 
 for route in app.routes:
     if isinstance(route, APIRoute):
