@@ -19,16 +19,16 @@ from app.features import (  # or ".features"
     middleware,
     models,
     path_operation_config,
+    response_custom,
     response_file,
     response_generic,
     response_html,
     response_json,
     response_plaintext,
-    response_custom,
     response_redirect,
-    response_status_codes,
     response_streaming,
     sqlmodel,
+    temporal_response_object,
 )
 
 description = """
@@ -98,7 +98,7 @@ app.include_router(response_json.router)
 app.include_router(response_redirect.router)
 app.include_router(response_streaming.router)
 app.include_router(response_custom.router)
-app.include_router(response_status_codes.router)
+app.include_router(temporal_response_object.router)
 app.include_router(sqlmodel.router)
 app.include_router(background_tasks.router)
 

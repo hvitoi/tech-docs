@@ -8,6 +8,7 @@ router = APIRouter(
 )
 
 # Cookies are the parameter whose type is annotated with Cookie()
+# In order to set cookies, see "temporal response"
 
 
 @router.get("/items")

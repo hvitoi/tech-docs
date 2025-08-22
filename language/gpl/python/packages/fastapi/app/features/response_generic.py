@@ -18,9 +18,12 @@ def get_resource() -> Response:
     </Body>
     </shampoo>
     """
-    return Response(
+    response = Response(
         content=data,
         media_type="application/xml",
         status_code=status.HTTP_201_CREATED,
         headers={},
     )
+    # You can access the built response just like a temporal response object
+    response.set_cookie(key="fakesession", value="fake-cookie-session-value")
+    return response
