@@ -1,5 +1,8 @@
+from functools import lru_cache
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Header, Query
+
+from app.config import settings, Settings
 
 
 router = APIRouter(
@@ -47,6 +50,19 @@ def demo_dependencies2(
 ):
     print(common_parameters.limit, common_parameters.skip)
     return None
+
+
+## --- App Settings
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return settings
+
+
+@router.get("/settings")
+def settings_endpoints(settings: Annotated[Settings, Depends(get_settings)]):
+    return settings
 
 
 ## --- Database connection

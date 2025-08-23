@@ -7,3 +7,4 @@ sqlmodel # SQL ORM
 httpx # http requests
 jinja2 # templates
 websockets
+pydantic-settings # structuring envs and secrets

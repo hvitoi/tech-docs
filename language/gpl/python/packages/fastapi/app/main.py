@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
 
+from app.config import settings
 from app.features import (  # or ".features"
     background_tasks,
     dependencies,
@@ -50,7 +51,7 @@ You will be able to:
 """
 
 app = FastAPI(
-    title="Henry's App",
+    title=settings.app_name,
     description=description,
     summary="Deadpool's favorite app. Nuff said.",
     version="0.0.1",

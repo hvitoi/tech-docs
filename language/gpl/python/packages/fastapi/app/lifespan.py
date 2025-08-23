@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
 import httpx
+from fastapi import FastAPI
 from sqlmodel import SQLModel, create_engine
+
+from app.config import settings
 
 # Define tasks to be executed at the application startup or shutdown
 
@@ -12,10 +14,8 @@ from sqlmodel import SQLModel, create_engine
 
 def db_setup(app: FastAPI):
     ## A SQLModel engine (underneath it's actually a SQLAlchemy engine) is what holds the connections to the database
-    # DATABASE_URL = "sqlite:///myfastapi.db"  # relative path to current dir (cwd where fastapi has started up)
-    DATABASE_URL = "sqlite:////tmp/myfastapi.db"  # absolute path
     engine = create_engine(
-        DATABASE_URL,
+        settings.database_url,
         connect_args={"check_same_thread": False},  # allow same DB in different threads
     )
     SQLModel.metadata.create_all(engine)
