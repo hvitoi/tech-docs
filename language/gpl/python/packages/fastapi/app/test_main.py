@@ -7,20 +7,20 @@ from app.features.dependency_httpx import get_http_client
 from app.main import app
 
 # Follow the "test_*.py" naming convention
-# "pytest -v to run it"
+# "pytest -vv to run it"
 
 
-client = TestClient(app)
+http_client = TestClient(app)
 
 
 def test_read_root():
-    response = client.get("/")
+    response = http_client.get("/")
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World"}
 
 
 def test_headers():
-    response = client.get(
+    response = http_client.get(
         "/dependencies/deps5",
         headers={
             "X-Token": "fake-super-secret-token",
@@ -32,7 +32,7 @@ def test_headers():
 
 
 def test_headers_bad_token():
-    response = client.get(
+    response = http_client.get(
         "/dependencies/deps5",
         headers={
             "X-Token": "fake-super-secret-token!",
@@ -44,13 +44,13 @@ def test_headers_bad_token():
 
 
 def test_read_nonexistent():
-    response = client.get("/nonexistent-route")
+    response = http_client.get("/nonexistent-route")
     assert response.status_code == 404
     assert response.json() == {"detail": "Not Found"}
 
 
 def test_create_item():
-    response = client.post(
+    response = http_client.post(
         "/models/user",
         json={
             "username": "henry",
@@ -93,9 +93,12 @@ app.dependency_overrides[get_http_client] = fake_get_http_client
 
 
 def test_httpx_request():
-    response = client.get(
+    response = http_client.get(
         "/dependency_httpx/repo_stat",
         params={"repo": "fake/repo"},
     )
     assert response.status_code == 200
     assert response.json() == {"foo": "bar"}
+
+
+app.dependency_overrides = {}  # reset to original functions
