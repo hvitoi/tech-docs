@@ -1,6 +1,7 @@
 # %%
 import asyncio
 import json
+from unittest.mock import Mock
 
 import httpx
 
@@ -45,3 +46,14 @@ with httpx.Client() as client:
     with client.stream("GET", "https://httpbin.org/stream/5") as response:
         for chunk in response.iter_text():
             print(chunk)
+
+# %%
+# Build a response manually
+client = httpx.Client()
+client.get = Mock(
+    return_value=httpx.Response(
+        status_code=200,
+        json={"foo": "bar"},
+    )
+)
+client.get("https://example.com")

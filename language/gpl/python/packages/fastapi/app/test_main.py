@@ -1,5 +1,10 @@
+from unittest.mock import AsyncMock
+
+import httpx
 from fastapi.testclient import TestClient
-from .main import app
+
+from app.features.dependency_httpx import get_http_client
+from app.main import app
 
 # Follow the "test_*.py" naming convention
 # "pytest -v to run it"
@@ -62,7 +67,35 @@ def test_create_item():
     }
 
 
+## --- client.websocket_connect
+
 # def test_websocket():
 #     with client.websocket_connect("websockets/ws") as websocket:
 #         data = websocket.receive_json()
 #         assert data == {"msg": "Hello WebSocket"}
+
+
+## --- dependency_overrides (mocks)
+
+
+async def fake_get_http_client():
+    client = httpx.AsyncClient()
+    client.get = AsyncMock(
+        return_value=httpx.Response(
+            status_code=200,
+            json={"foo": "bar"},
+        )
+    )
+    return client
+
+
+app.dependency_overrides[get_http_client] = fake_get_http_client
+
+
+def test_httpx_request():
+    response = client.get(
+        "/dependency_httpx/repo_stat",
+        params={"repo": "fake/repo"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
