@@ -5,6 +5,7 @@ from fastapi.routing import APIRoute
 from app.config import settings
 from app.features import (  # or ".features"
     background_tasks,
+    callbacks,
     dependencies,
     dependency_httpx,
     dependency_oauth,
@@ -110,6 +111,7 @@ app.include_router(request_object.router)
 app.include_router(sqlmodel.router)
 app.include_router(background_tasks.router)
 app.include_router(websockets.router)
+app.include_router(callbacks.router)
 
 for route in app.routes:
     if isinstance(route, APIRoute):
