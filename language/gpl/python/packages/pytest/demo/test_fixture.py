@@ -1,5 +1,4 @@
 import pytest
-# Reusable setup code
 
 
 class Database:
@@ -13,6 +12,7 @@ class Database:
         self.connected = False
 
 
+# Fixtures allow you to set up something before and after your tests.
 @pytest.fixture
 def db():
     db = Database()

@@ -1,26 +1,8 @@
 # %%
-import asyncio
 import json
-from unittest.mock import Mock
 
 import httpx
 
-
-# %%
-# ---- Asynchronous example ----
-async def do_req_async():
-    async with httpx.AsyncClient() as client:
-        response = await client.get("https://httpbin.org/get")
-        print("Response Status:", response.status_code)
-        print("Response Body:", json.dumps(response.json(), indent=4))
-
-
-if __name__ == "__main__":
-    # Doesn't work from inside a Jupyter notebook
-    asyncio.run(do_req_async())
-
-# %%
-# ---- Synchronous example ----
 with httpx.Client() as client:
     response = client.post(
         "https://httpbin.org/post",
@@ -37,6 +19,13 @@ with httpx.Client() as client:
     print("Response Body:", json.dumps(response.json(), indent=4))
     print("Response Headers:", response.headers)
 
+# %%
+
+# Client Options
+with httpx.Client(base_url="https://httpbin.org/") as client:
+    response = client.get("get")
+    print(response.json())
+
 
 # %%
 
@@ -46,14 +35,3 @@ with httpx.Client() as client:
     with client.stream("GET", "https://httpbin.org/stream/5") as response:
         for chunk in response.iter_text():
             print(chunk)
-
-# %%
-# Build a response manually
-client = httpx.Client()
-client.get = Mock(
-    return_value=httpx.Response(
-        status_code=200,
-        json={"foo": "bar"},
-    )
-)
-client.get("https://example.com")
