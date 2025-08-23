@@ -67,6 +67,7 @@ app = FastAPI(
         "identifier": "MIT",  # with the identifier, url can be omitted
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     },
+    # generate_unique_id_function=custom_generate_unique_id, # specify a function to generate route ids, e.g.,  f"{route.tags[0]}-{route.name}"
     default_response_class=JSONResponse,  # Can be changed for example to XML
     # root_path="/api/v1", # same as the cli arg --root-path
     # openapi_url="/api/v1/openapi.json", # by default it is served under /openapi.json (or disable it completely with None)

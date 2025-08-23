@@ -74,3 +74,26 @@ And run it as a python module:
 # your cwd needs to be the parent directory of the demo package
 python -m app.main # package "app", module "main"
 ```
+
+## Generating SDK
+
+- You can generate Typescript SDK based on your OpenAPI specification using [Hey API](https://heyapi.dev/)
+
+```shell
+# Generate the typescript SDK to ./src/client
+npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
+```
+
+```javascript
+// "Default" is the name of the tag used (when not specified) in FastAPI
+import { DefaultService } from "./client"
+
+async function main() {
+  const response = await DefaultService.createItemPost({
+    name: "Plumbus",
+    Price: 5,
+  });
+  response.message
+}
+
+```
