@@ -9,7 +9,7 @@ from app.features.dependency_httpx import get_http_client
 
 
 router = APIRouter(
-    prefix="/example_callbacks",
+    prefix="/callbacks",
     tags=["Callbacks"],
 )
 

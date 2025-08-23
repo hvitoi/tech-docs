@@ -21,6 +21,23 @@ pip install "fastapi[standard]"
 - `fastapi-cli`
   - `uvicorn`: http server that loads and serves the app
 
+## Project structure
+
+```shell
+.
+├── app                  # "app" is a Python package
+│   ├── __init__.py      # this file makes "app" a "Python package"
+│   ├── main.py          # "main" module, e.g. import app.main
+│   ├── deps.py          # "dependencies" module, e.g. import app.dependencies
+│   └── routers          # "routers" is a "Python subpackage"
+│   │   ├── __init__.py  # makes "routers" a "Python subpackage"
+│   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
+│   │   └── users.py     # "users" submodule, e.g. import app.routers.users
+│   └── internal         # "internal" is a "Python subpackage"
+│       ├── __init__.py  # makes "internal" a "Python subpackage"
+│       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
+```
+
 ## ASGI Server (Asynchronous Server Gateway Interface)
 
 - <http://localhost:8000/>
@@ -38,22 +55,7 @@ fastapi dev main.py # runs with unicorn by default
 - `Granian`: A Rust HTTP server for Python applications.
 - `NGINX Unit`: NGINX Unit is a lightweight and versatile web application runtime.
 
-## Project structure
-
-```shell
-.
-├── app                  # "app" is a Python package
-│   ├── __init__.py      # this file makes "app" a "Python package"
-│   ├── main.py          # "main" module, e.g. import app.main
-│   ├── deps.py          # "dependencies" module, e.g. import app.dependencies
-│   └── routers          # "routers" is a "Python subpackage"
-│   │   ├── __init__.py  # makes "routers" a "Python subpackage"
-│   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
-│   │   └── users.py     # "users" submodule, e.g. import app.routers.users
-│   └── internal         # "internal" is a "Python subpackage"
-│       ├── __init__.py  # makes "internal" a "Python subpackage"
-│       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
-```
+- Other web frameworks like Flask and Django use WDGI (Web Server Gateway Interface)
 
 ## Debugging
 

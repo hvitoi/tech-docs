@@ -1,5 +1,5 @@
+from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.staticfiles import StaticFiles
-
 
 app = None  # Mocked FastAPI app
 
@@ -18,16 +18,22 @@ app.mount(
     name="myawesomefiles",  # name used internally by FastAPI
 )
 
-# -------- Sub App
+# -------- SubApp (FastAPI)
 
 ## Mount a completely independent sub app under a path
 
-subapi = None  # FastAPI()
+subapp = None  # FastAPI()
 
 
-@subapi.get("/sub")
+@subapp.get("/subapp_fastapi")
 def read_sub():
     return {"message": "Hello World from sub API"}
 
 
-app.mount("/subapi", subapi)
+app.mount("/subapi", subapp)
+
+# -------- SubApp (Flask, Django)
+
+subapp_flask = None  # Flask(__name__)
+
+app.mount("/subapp_flask", WSGIMiddleware(subapp_flask))
