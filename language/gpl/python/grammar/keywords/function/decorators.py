@@ -80,7 +80,7 @@ def greetings(name):
     return greeting_decorator
 
 
-@greetings("Henry")
+@greetings("Henry")  # it's a function that returns an decorator
 def give_love():
     print("I love you!")
 

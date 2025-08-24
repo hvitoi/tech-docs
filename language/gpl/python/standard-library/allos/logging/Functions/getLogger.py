@@ -2,4 +2,4 @@
 import logging
 
 # Get the root logger
-logging.getLogger("")
+logger: logging.Logger = logging.getLogger("")
