@@ -13,8 +13,6 @@
 it = iter(("a", "b", "c"))
 next(it)
 
-# %%
-
 # str
 it = iter("abc")
 next(it)

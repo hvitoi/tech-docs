@@ -1,8 +1,9 @@
 # %%
 import asyncio
 
+# Async Functions (Coroutines)
 
-# asynchronous code uses "coroutines", with async and await syntax.
+
 # "coroutine" is the object return by calling an async function
 # Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an await inside of it.
 
@@ -26,6 +27,27 @@ async def main():
     results = await coroutines
 
     print(results)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+# %%
+
+
+# When a async def function uses "yield" it returns no more a coroutine, but rather an AsyncIterator is created
+async def counter(max):
+    n = 0
+    while n < max:
+        await asyncio.sleep(1)
+        yield (n := n + 1)
+
+
+async def main():
+    ait = counter(5)
+    async for el in ait:
+        print(el)
 
 
 if __name__ == "__main__":

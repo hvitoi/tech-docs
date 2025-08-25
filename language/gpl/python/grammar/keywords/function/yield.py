@@ -4,7 +4,11 @@
 # The function's state (local variables and execution point) is saved in the generator, so that when the iteration continues it resumes right after it had stopped before
 
 
-def do_something():
+import asyncio
+from collections.abc import Iterator
+
+
+def do_something() -> Iterator[str]:
     print("Executing the 1st part of the function")
     yield "🟡 1st part executed"
     print("Executing the 2nd part of the function")
@@ -111,3 +115,24 @@ def stream_my_file2():
     with open("large-video-file.mp4", mode="rb") as file:
         for chunk in file:
             yield chunk  # same
+
+
+# %%
+
+
+# When a async def function uses "yield" it returns no more a coroutine, but rather an AsyncIterator is created
+async def counter(max):
+    n = 0
+    while n < max:
+        await asyncio.sleep(1)
+        yield (n := n + 1)
+
+
+async def main():
+    ait = counter(5)
+    async for el in ait:
+        print(el)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
