@@ -8,11 +8,16 @@ async def task(name, delay):
 
 
 async def main():
-    # Run both at the same time
-    await asyncio.gather(
+    # The coroutines are started at this point! (the same wouldn't happen if you just created the 2 coros independently)
+    coroutines = asyncio.gather(
         task("A", 2),
         task("B", 1),
     )
+
+    await asyncio.sleep(10)
+
+    # As the coros were already running in the background, here they will return instantly
+    await coroutines
 
 
 asyncio.run(main())

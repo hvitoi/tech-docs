@@ -16,17 +16,11 @@ async def do_something(name, delay):
 
 
 async def main():
-    # Run both at the same time
-    # At this point the async function is executed, but it does not block the program
-    coroutines = asyncio.gather(
-        do_something("A", 2),
-        do_something("B", 1),
-    )
+    # The coroutine is NOT started yet. It will only start when it is awaited
+    coroutine = do_something("A", 5)
 
-    # Block the program and wait for the result of the coroutines
-    results = await coroutines
-
-    print(results)
+    # Start the coroutine, block the program until it returns the result
+    print(await coroutine)
 
 
 if __name__ == "__main__":
