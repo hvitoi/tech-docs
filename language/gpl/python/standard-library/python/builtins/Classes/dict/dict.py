@@ -1,21 +1,22 @@
 # %%
-my_dict = {"a": 1, "b": 2, "c": 3}
-
-my_dict["b"]  # 2
-# my_dict["z"]  # fails!
-
-# %%
-my_dict = {"a": 1, "b": 2, "c": 3}
-
-my_dict["d"] = 4
-
-my_dict
-
-
-# %%
-# from tuples
+# from list of tuples
 dict([("a", 1), ("b", 2)])
 
-# %%
 # from kwargs
-dict(sape=4139, guido=4127, jack=4098)
+dict(a=1, b=2)
+
+# %%
+my_dict = {"a": 1, "b": 2}
+my_dict["b"]  # 2 # access
+# my_dict["z"]  # fails!
+my_dict["c"] = 3  # write
+my_dict
+
+# %%
+# Merge dicts (Python 3.9+)
+{"a": 1} | {"b": 2}
+
+# Dictionary update
+d1 = {"a": 1}
+d1 |= {"b": 2}  # same as dict1.update(...)
+d1

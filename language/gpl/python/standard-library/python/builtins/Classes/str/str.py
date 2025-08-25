@@ -15,10 +15,10 @@ str(1)
 # nested quotes
 "wrap lot's of other quotes"
 
-# interpolation
+# F-strings
 name = "Henrique"
 age = 21
-f"There once was a man named {name}, he is {age} years old."
+f"There once was a man named {name}, he is {age} years old."  # interpolation
 
 PI = 3.1415926535
 f"The value of π is {PI:.4f}"

@@ -1,5 +1,6 @@
 # %%
 # Shallow copy
-my_list = ["a", "b", "c"]
+list1 = ["a", "b", "c"]
+list2 = list1.copy()
 
-my_list.copy()
+assert list1 is not list2

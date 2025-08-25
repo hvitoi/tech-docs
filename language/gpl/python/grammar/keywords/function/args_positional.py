@@ -33,3 +33,27 @@ def append_num(num, nums=[]):
 
 append_num(1)
 append_num(2)
+
+
+# %%
+# Positional or Keyword arguments
+
+
+def do_something2(a, b):
+    return a, b
+
+
+do_something2(1, 2)  # (1, 2)
+do_something2(b=2, a=1)  # (1, 2)
+
+
+# %%
+# Positional-only parameters
+
+
+def do_something2(a, b, /):
+    return a, b
+
+
+do_something2(1, 2)  # (1, 2)
+# do_something2(b=2, a=1)  # doesn't work here

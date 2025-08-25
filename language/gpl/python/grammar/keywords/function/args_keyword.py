@@ -10,23 +10,9 @@ def args_and_kwargs(x, y=None, *, foo, bar=None):
 args_and_kwargs("a", foo="d", y="b")
 args_and_kwargs("a", "b", "c")
 
-# %%
-
-# You can also define function args without the "*", this way the arguments can be passed positionally or as keywords
-
-
-def do_something2(a, b):
-    return a, b
-
-
-# The order of the parameters paramters
-do_something2(1, 2)  # (1, 2)
-do_something2(b=2, a=1)  # (1, 2)
 
 # %%
 # rest of args and kwargs
-
-
 def args_and_kwargs(x, y, *args, foo, bar, **kwargs):
     # args as tuple
     print(args)

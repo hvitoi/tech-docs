@@ -2,14 +2,10 @@
 
 - A `statement` is any unit of code
 
-```python
-# Statement (assignment)
-foo = 1 + 2 # doesn't return any value
-```
-
 ## Expression
 
 - A special statement that evaluates to some value
+- Expressions in python usually can be wrapped in `()`
 
 ```python
 1 + 2 # evaluates to 3
@@ -18,7 +14,7 @@ foo = 1 + 2 # doesn't return any value
 
 ## Assignment
 
-- Variable assignmentsssss
+- Variable assignments
 
 ```python
 foo = 1 + 2 # doesn't return any value
