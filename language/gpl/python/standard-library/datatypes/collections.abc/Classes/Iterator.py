@@ -15,13 +15,13 @@ for el in it:
 # Iterator from yield syntax
 
 
-def infinite_counter() -> Iterator:
+def infinite_counter() -> Iterator[int]:
     n = 0
     while True:
         yield (n := n + 1)
 
 
-it: Iterator = infinite_counter()
+it = infinite_counter()
 
 next(it)
 next(it)
