@@ -16,16 +16,21 @@
 
 ## Modules
 
-### threading
+### threading (python 1.5+ 1999)
 
 - Uses `threading.Thread`
 - Limited by the GIL: not good for CPU-bound tasks, but fine for I/O-bound tasks
 - Lightweight compared to processes
 
-### multiprocessing
+### multiprocessing (python 2.6+ 2008)
 
 - Uses `multiprocessing.Process`
 - Spawns separate Python processes, each with its own GIL
 - Therefore, each process can run its own thread: Offers `true parallelism` across CPU cores
 
-### asyncio
+### asyncio (python 3.4+ 2014)
+
+- Uses `async-await` syntax
+- Introduces `Coroutines`, which are lightweight "threads" managed by the python runtime (similar to java virtual threads)
+- It's the preferred way to implement I/O-bound parallelism
+- The threading module is now mostly used for compatibility with libraries that are not async-aware

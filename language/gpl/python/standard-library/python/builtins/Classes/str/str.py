@@ -20,6 +20,9 @@ name = "Henrique"
 age = 21
 f"There once was a man named {name}, he is {age} years old."
 
+PI = 3.1415926535
+f"The value of π is {PI:.4f}"
+
 
 # %%
 # Colors
