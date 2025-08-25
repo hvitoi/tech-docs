@@ -2,19 +2,17 @@
 from threading import Thread, current_thread
 import time
 
-# CPU-bound tasks: can't use multiple CPU cores
-# IO-bound tasks: works good
+# Spawn a new OS Thread to run a task
+# Given the GIL limitations, only one thread can be executed by CPython at a time
 
 
 def cpu_task():
-    thread = current_thread()
-    print(f"Running on Thread: {thread.name}")
-    # time.sleep(1)
+    print(f"Running on Thread: {current_thread().name}")
     for _ in range(1_000_000_000):
         pass
 
 
-start = time.time()
+start_time = time.perf_counter()
 
 threads = [Thread(target=cpu_task) for _ in range(4)]
 for t in threads:
@@ -22,6 +20,4 @@ for t in threads:
 for t in threads:
     t.join()
 
-end = time.time()
-
-print("Total execution time:", end - start)
+print(f"Total execution time: {time.perf_counter() - start_time}")
