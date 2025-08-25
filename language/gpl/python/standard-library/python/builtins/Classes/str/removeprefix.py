@@ -1,0 +1,3 @@
+# %%
+
+"HelloWorld".removeprefix("Hello")

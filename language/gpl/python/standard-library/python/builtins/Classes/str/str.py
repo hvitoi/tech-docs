@@ -17,14 +17,27 @@ str(1)
 
 # F-strings
 name = "Henrique"
-age = 21
-f"There once was a man named {name}, he is {age} years old."  # interpolation
-
 PI = 3.1415926535
-f"The value of π is {PI:.4f}"
+f"Hey {name}, the value of π is {PI:.4f}"  # interpolation
 
+foo = "ABC"
+f"Bad nvram line: {foo!r}"
 
 # %%
+
+# Concatenate
+"12" + str(3)  # "123"
+
+# Multiply
+"ab" * 2  # "abab"
+
+# %%
+# String slicing (just like lists)
+my_str = "Henrique"
+print(my_str[1:])
+
+# %%
+
 # Colors
 RESET_ALL = 0
 BRIGHT = 1
@@ -48,22 +61,3 @@ def pprint(text, options):
 
 
 pprint("Hello!", (BRIGHT, RED))
-
-# %%
-foo = "ABC"
-f"Bad nvram line: {foo!r}"
-
-# %%
-myStr: str = "Henrique"
-print(myStr[1:])  # strings function like lists
-
-# %%
-assert "abc"
-assert ""  # fails! empty strings are Falsy
-
-# %%
-"12" + str(3)  # "123"
-
-# %%
-
-"ab" * 2  # "abab"
