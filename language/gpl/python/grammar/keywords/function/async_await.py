@@ -10,7 +10,7 @@ import asyncio
 async def do_something(name, delay):
     print(f"Coroutine {name} started")
     await asyncio.sleep(delay)
-    print(f"Courtine {name} finished")
+    print(f"Coroutine {name} finished")
     return "foo"
 
 

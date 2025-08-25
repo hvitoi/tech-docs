@@ -2,5 +2,7 @@
 # %%
 import time
 
+# Blocks the entire thread
+
 time.sleep(3)
 print("a")
