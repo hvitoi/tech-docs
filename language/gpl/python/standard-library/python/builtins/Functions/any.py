@@ -1,10 +1,7 @@
 # %%
-any([True, 1, "a"])
-
-# %%
-
-# %%
-any([True, False])
+any([True, False])  # True
+any(["foo", False])  # True
+any([False, False])  # False
 
 # %%
 # equivalent to "some"

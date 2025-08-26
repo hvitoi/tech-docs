@@ -1,9 +1,7 @@
 # %%
-all([True, 1, "a"])
-
-# %%
-all([True, False])
-all([True, None])
+all([True, 1, "a"])  # True
+all([True, False])  # False
+all([True, None])  # False
 
 # %%
 # equivalent to "every"
