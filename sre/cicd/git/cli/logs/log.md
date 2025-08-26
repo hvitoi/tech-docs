@@ -27,6 +27,9 @@ git log --pretty=format:"%cd. Hash: %H" # commit date + sha1 hash
 # Merge commits
 git log --merges
 git log --no-merges
+
+# Search for a substring across all commits
+git log -S <substring> -- <file>
 ```
 
 - Format patterns: <https://devhints.io/git-log-format>

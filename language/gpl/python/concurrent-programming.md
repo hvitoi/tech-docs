@@ -22,12 +22,16 @@
 - Limited by the GIL: not good for CPU-bound tasks, but fine for I/O-bound tasks
 - Lightweight compared to processes
 
+- On the OS, it starts only one process with N threads
+
 ### multiprocessing (python 2.6+ 2008)
 
 - Uses `multiprocessing.Process`
 - Spawns separate Python processes, each with its own GIL
 - Therefore, each process can run its own thread: Offers `true parallelism` across CPU cores
 - The drawback is the overhead: it has its own interpreter and its own memory space
+
+- On the OS, it starts multiple processes with one or more threads
 
 ### asyncio (python 3.4+ 2014)
 

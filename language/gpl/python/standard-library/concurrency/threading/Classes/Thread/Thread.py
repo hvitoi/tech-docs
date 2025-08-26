@@ -8,7 +8,7 @@ import time
 
 def cpu_task():
     print(f"Running on Thread: {current_thread().name}")
-    for _ in range(1_000_000_000):
+    for _ in range(1_000_000_000_000):
         pass
 
 
