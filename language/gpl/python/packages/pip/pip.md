@@ -21,18 +21,20 @@ python -m ensurepip --upgrade
   - fastapi[standard], fastapi[standard-no-fastapi-cloud-cli], etc
 - If you install it this way, pip will additionally install other extra packages for you
 
-## Requirements file
+## requirements.txt
 
-```conf
-# import other requirements file, e.g., requirements.txt imported by requirement-dev.txt
--r requirements_base.txt
+- Defines exact versions for your environment needs
+- Pinning exact versions ensures reproducibility
 
-# import the package plus other extra packages
-fastapi[standard-no-fastapi-cloud-cli]
+```shell
+pip install -r requirements.txt
+```
 
-# Pin to specific version
-mkdocs==1.5.2
+## pyproject.toml
 
-# Version range (pin to a minor version)
-fastapi>=0.45.0,<0.46.0
+- Package metadata and lists dependencies that will be installed when other users use your package (when they install it via pip)
+- Does not include dev dependencies (e.g., pytest)
+
+```shell
+pip install .
 ```

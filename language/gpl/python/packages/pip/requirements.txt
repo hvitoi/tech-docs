@@ -1,0 +1,11 @@
+# import other requirements file, e.g., requirements.txt imported by requirement-dev.txt
+-r requirements_base.txt
+
+# import the package plus other extra packages
+fastapi[standard-no-fastapi-cloud-cli]
+
+# Pin to specific version
+mkdocs==1.5.2
+
+# Version range (pin to a minor version)
+fastapi>=0.45.0,<0.46.0
