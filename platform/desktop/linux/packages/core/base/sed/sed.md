@@ -1,4 +1,4 @@
-# sed
+# sed (Stream Editor)
 
 - Replace string with a newstring
 - Find and delete line

@@ -1,4 +1,4 @@
-# grep
+# grep (global regular expression print)
 
 - Global regular expression print
 - Print lines that match a specified pattern

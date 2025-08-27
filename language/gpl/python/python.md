@@ -1,5 +1,7 @@
 # Python
 
+- Designed by `Guido van Rossum` in 1991
+
 ## Installation
 
 ```shell

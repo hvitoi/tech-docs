@@ -1,4 +1,4 @@
-# du
+# du (Disk Usage)
 
 ```shell
 # Size of each folder inside the current folder

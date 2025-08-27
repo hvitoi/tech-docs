@@ -17,7 +17,7 @@ foo[3:1]  # empty
 foo[99:99]  # empty array
 
 # %% STEP
-foo = ["a", "b", "c", "d", "e"]
+foo = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 foo[::2]  # the whole array in step 2
 foo[::-1]  # the whole array in reverse
 

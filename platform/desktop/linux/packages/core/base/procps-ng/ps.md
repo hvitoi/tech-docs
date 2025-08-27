@@ -1,4 +1,4 @@
-# ps
+# ps (Process Status)
 
 - `Application`: It's a service. E.g., firefox, gimp
 - `Process`: A small portion of the application. Application is composed of processes
