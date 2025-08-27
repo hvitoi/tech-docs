@@ -17,6 +17,25 @@ my_list = ["a", "b"]
 list(my_list)
 
 # %%
+
+# Read
+
+my_list = ["a", "b", "c"]
+my_list[0]  # first
+my_list[-1]  # last element
+my_list[-3]  # first element
+
+my_list[3]  # throws! (it does not exist)
+my_list[-4]  # throws! (it does not exist)
+
+# %%
+
+# Write
+
+my_list[-1] = "z"  # ["z", "b", "c"]
+my_list[3] = "d"  # throws! This index does not exist, should be created first
+
+# %%
 # concatenate
 ["a", "b"] + ["c", "d"]  # ["a", "b", "c", "d"]
 
@@ -31,4 +50,6 @@ list(my_list)
 # %%
 # list unpacking
 l1 = ["a", "b"]
-[*l1]
+
+l1 + ["c"]
+[*l1, "c"]  # same

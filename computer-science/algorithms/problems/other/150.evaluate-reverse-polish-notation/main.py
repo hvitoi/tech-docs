@@ -1,42 +1,58 @@
 # %%
-
-
 import unittest
 
 
-def calculate_polish_notation(tokens: str):
-    operator, first_operand, second_operand = tokens[:3]
+def calculate_polish_notation(tokens: str) -> int:
+    def get_parts(tokens: list[str]) -> tuple[list[str], list[str]]:
+        operator = tokens[0]
+        parts = tokens[1:]
+        digits_to_consume = 0
+        for i, el in enumerate(parts):
+            if (el not in {"+", "-", "*", "/"}) and (not el.isdigit()):
+                raise Exception("Invalid Polish Notation")
 
-    if operator not in {"+", "-", "*", "/"}:
-        raise Exception("Invalid Polish Notation")
+            if el in {"+", "-", "*", "/"}:
+                digits_to_consume += 2
+                continue
 
-    if not first_operand.isdigit():
-        raise Exception("Invalid Polish Notation")
+            digits_to_consume -= 1
 
-    match operator:
-        case "+":
-            if second_operand.isdigit():
-                return int(first_operand) + int(second_operand)
-            else:
-                return int(first_operand) + calculate_polish_notation(tokens[2:])
+            if digits_to_consume <= 0:
+                return operator, parts[: i + 1], parts[i + 1 :]
 
-        case "-":
-            if second_operand.isdigit():
-                return int(first_operand) - int(second_operand)
-            else:
-                return int(first_operand) - calculate_polish_notation(tokens[2:])
-        case "*":
-            if second_operand.isdigit():
-                return int(first_operand) * int(second_operand)
-            else:
-                return int(first_operand) * calculate_polish_notation(tokens[2:])
-        case "/":
-            if second_operand.isdigit():
-                return int(first_operand) / int(second_operand)
-            else:
-                return int(first_operand) / calculate_polish_notation(tokens[2:])
+    def calculate(tokens: list[str]):
+        if len(tokens) < 3:
+            raise Exception("Invalid Polish Notation")
+
+        operator, left, right = get_parts(tokens)
+
+        if len(left) == 1:
+            left_operand = int(left[0])
+        else:
+            left_operand = calculate(left)
+
+        if len(right) == 1:
+            right_operand = int(right[0])
+        else:
+            right_operand = calculate(right)
+
+        match operator:
+            case "+":
+                return left_operand + right_operand
+            case "-":
+                return left_operand - right_operand
+            case "*":
+                return left_operand * right_operand
+            case "/":
+                return left_operand / right_operand
+
+    return calculate(tokens.split())
 
 
 test_case = unittest.TestCase()
 
-test_case.assertEqual(calculate_polish_notation(["*", "3", "+", "1", "2"]), 9)
+test_case.assertEqual(calculate_polish_notation("+ 2 3"), 5)
+test_case.assertEqual(calculate_polish_notation("* 3 + 1 2"), 9)
+test_case.assertEqual(calculate_polish_notation("* + 1 2 4"), 12)
+test_case.assertEqual(calculate_polish_notation("- 10 / 8 2"), 6)
+test_case.assertEqual(calculate_polish_notation("/ * 3 5 + 2 3"), 3)
