@@ -6,18 +6,17 @@
 
 - `GPT-4`
 - `GPT-4 Turbo`
-- `GPT-4.1 mini`
 
 - `GPT-4.1`
 - `GPT-4.1 nano`
 - `GPT-4.1 mini`
 
+- `GPT-4o`
+- `GPT-4o mini`
+
 - `GPT-5`
 - `GPT-5 Mini`
 - `GPT-5 Nano`
-
-- `GPT-4o`
-- `GPT-4o mini`
 
 - `o1`
 - `o1-mini`
@@ -70,12 +69,18 @@
 - `GitHub Copilot`
   - OpenAI Codex (not GPT!)
 
-## Groq
+## Groq (Twitter)
 
-- `Grok` (Twitter)
-  - X Grok (1, 1.5, 2)
+- `Grok 4`
 
 ## Llama
 
 - `Meta`
   - Meta Llama
+
+## OpenRouter
+
+- It's not a provider, but behaves like one
+- It's a unified interface for LLMs
+- Adopts a single interface (e.g., for authentication, billing, error, etc)
+- <https://openrouter.ai/>
