@@ -9,29 +9,46 @@ def calculate_polish_notation_ast(tokens: str) -> int:
     @dataclass
     class Node:
         operator: str
-        operand1: Self | int
-        operand2: Self | int
+        left_operand: Self | int
+        right_operand: Self | int
 
-    class AST:
-        def __init__(self, tokens: str):
-            self.root = self.next_node(self, deque(tokens))
+    def build_ast(tokens: deque[str]) -> Node:
+        token = tokens.popleft()
 
-        def next_node(self, tokens: deque[str]):
-            if len(tokens) == 1:
-                return int(tokens[0])
+        if token in {"+", "-", "*", "/"}:
+            return Node(
+                operator=token,
+                left_operand=build_ast(tokens),
+                right_operand=build_ast(tokens),
+            )
 
-            operator, *rest = tokens
-            operand1, *rest = self.next_node(rest)
-            operand2, *rest = self.next_node(rest)
+        if token.isdigit():
+            return int(token)
+        else:
+            raise Exception("Invalid Polish Notation")
 
-            if
+    def eval_ast(node: Node | int):
+        operands = []
 
-            if tokens[0].isdigit():
-                node.operand1 = tokens.popleft()
-            else
+        for operand in (node.left_operand, node.right_operand):
+            if isinstance(operand, Node):
+                operands.append(eval_ast(operand))
+            else:
+                operands.append(operand)
 
-            if tokens[1].isdigit():
-                node.operand1 = tokens.popleft()
+        match node.operator:
+            case "+":
+                return operands[0] + operands[1]
+            case "-":
+                return operands[0] - operands[1]
+            case "*":
+                return operands[0] * operands[1]
+            case "/":
+                return operands[0] / operands[1]
+
+    # an additional validation could be performed to check if tokens have been exhausted and there is no elements there left
+    ast = build_ast(deque(tokens.split()))
+    return eval_ast(ast)
 
 
 def calculate_polish_notation(tokens: str) -> int:
@@ -56,27 +73,24 @@ def calculate_polish_notation(tokens: str) -> int:
         if len(tokens) < 3:
             raise Exception("Invalid Polish Notation")
 
-        operator, left, right = get_parts(tokens)
+        operator, left_operand, right_operand = get_parts(tokens)
 
-        if len(left) == 1:
-            left_operand = int(left[0])
-        else:
-            left_operand = calculate(left)
-
-        if len(right) == 1:
-            right_operand = int(right[0])
-        else:
-            right_operand = calculate(right)
+        operands = []
+        for operand in (left_operand, right_operand):
+            if len(operand) == 1:
+                operands.append(int(operand[0]))
+            else:
+                operands.append(calculate(operand))
 
         match operator:
             case "+":
-                return left_operand + right_operand
+                return operands[0] + operands[1]
             case "-":
-                return left_operand - right_operand
+                return operands[0] - operands[1]
             case "*":
-                return left_operand * right_operand
+                return operands[0] * operands[1]
             case "/":
-                return left_operand / right_operand
+                return operands[0] / operands[1]
 
     return calculate(tokens.split())
 
