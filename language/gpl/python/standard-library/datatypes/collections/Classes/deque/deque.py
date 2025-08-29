@@ -12,6 +12,6 @@ foo.append("b")
 foo.append("c")
 
 # dequeue
-foo.popleft() # a
-foo.popleft() # b
-foo.popleft() # c
+foo.popleft()  # a
+foo.popleft()  # b
+foo.popleft()  # c
