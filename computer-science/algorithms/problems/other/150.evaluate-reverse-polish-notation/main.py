@@ -1,6 +1,6 @@
 # %%
-from collections import deque
 import unittest
+from collections import deque
 from dataclasses import dataclass
 from typing import Self
 
@@ -51,6 +51,33 @@ def calculate_polish_notation_ast(tokens: str) -> int:
     return eval_ast(ast)
 
 
+def calculate_polish_notation_recursive(tokens: str) -> int:
+    def parse(tokens: deque[str]) -> int:
+        operator = tokens.popleft()
+
+        if tokens[0].isdigit():
+            left_operand = int(tokens.popleft())
+        else:
+            left_operand = parse(tokens)
+
+        if tokens[0].isdigit():
+            right_operand = int(tokens.popleft())
+        else:
+            right_operand = parse(tokens)
+
+        match operator:
+            case "+":
+                return left_operand + right_operand
+            case "-":
+                return left_operand - right_operand
+            case "*":
+                return left_operand * right_operand
+            case "/":
+                return left_operand / right_operand
+
+    return parse(deque(tokens.split()))
+
+
 def calculate_polish_notation(tokens: str) -> int:
     def get_parts(tokens: list[str]) -> tuple[list[str], list[str]]:
         operator = tokens[0]
@@ -97,7 +124,11 @@ def calculate_polish_notation(tokens: str) -> int:
 
 test_case = unittest.TestCase()
 
-for fn in {calculate_polish_notation, calculate_polish_notation_ast}:
+for fn in {
+    calculate_polish_notation,
+    calculate_polish_notation_recursive,
+    calculate_polish_notation_ast,
+}:
     test_case.assertEqual(fn("+ 2 3"), 5)
     test_case.assertEqual(fn("* 3 + 1 2"), 9)
     test_case.assertEqual(fn("* + 1 2 4"), 12)
