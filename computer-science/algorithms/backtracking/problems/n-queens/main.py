@@ -1,5 +1,5 @@
-# %%
 # https://leetcode.com/problems/n-queens/
+# %%
 
 # WIP
 import unittest

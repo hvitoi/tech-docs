@@ -1,4 +1,5 @@
 # %%
+from functools import lru_cache
 import unittest
 
 # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
@@ -30,9 +31,7 @@ def fibonacci_with_curr_prev(n):
     Space: O(1)
     """
 
-    prev_prev = 0
-    prev = 1
-    curr = None
+    prev_prev, prev, curr = [0, 1, None]
 
     if n == 0:
         return prev_prev
@@ -46,30 +45,8 @@ def fibonacci_with_curr_prev(n):
         prev_prev = prev
         prev = curr
         i += 1
+
     return curr
-
-
-def memoize(fn):
-    cache = {}
-
-    def lookup_or_miss(*args, **kwargs):
-        key = str(args) + str(kwargs)
-        if key not in cache:
-            cache[key] = fn(*args, **kwargs)
-        return cache[key]
-
-    return lookup_or_miss
-
-
-@memoize
-def fibonacci_recursive(n):
-    """
-    Time: O(2^n) (without memoization)
-    """
-    if n <= 1:
-        return n
-
-    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
 
 def fibonacci_recursive_with_accumulator(n, acc=(0, 1)):
@@ -85,13 +62,24 @@ def fibonacci_recursive_with_accumulator(n, acc=(0, 1)):
     )
 
 
+@lru_cache
+def fibonacci_recursive(n):
+    """
+    Time: O(2^n) (without memoization)
+    """
+    if n <= 1:
+        return n
+
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+
 test_case = unittest.TestCase()
 
 for fn in {
     fibonacci_with_array,
     fibonacci_with_curr_prev,
-    fibonacci_recursive,
     fibonacci_recursive_with_accumulator,
+    fibonacci_recursive,
 }:
     test_case.assertEqual(fn(0), 0)
     test_case.assertEqual(fn(1), 1)

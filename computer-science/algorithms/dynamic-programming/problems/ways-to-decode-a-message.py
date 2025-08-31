@@ -1,5 +1,5 @@
-# %%
 # https://leetcode.com/problems/decode-ways/
+# %%
 
 import unittest
 

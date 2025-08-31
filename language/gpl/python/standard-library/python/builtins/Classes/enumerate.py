@@ -1,18 +1,16 @@
 # %%
-colors = ["red", "green", "blue"]
+my_list = ["a", "b", "c"]
+enumerated_list = enumerate(my_list)  # [(0, "a"), (1, "b"), (2, "c")]
 
-# the enumerated object is a list of tuples [(0, "red"), (1, "green"), (2, "blue")]
-enumerated_colors = enumerate(colors)
-
-for index, color in enumerated_colors:
-    print(index, color)
+for i, el in enumerated_list:
+    print(i, el)
 
 # %%
 # list of tuples do not need to be enumerated
 tuples = [(1, "a"), (2, "b"), (3, "c")]
 
-for index, el in tuples:
-    print(index, el)
+for i, el in tuples:
+    print(i, el)
 
 # %%
 # Remove multiple indexes from an array
