@@ -37,7 +37,8 @@ my_list[3] = "d"  # throws! This index does not exist, should be created first
 
 # %%
 # concatenate
-["a", "b"] + ["c", "d"]  # ["a", "b", "c", "d"]
+["a", "b"] + ["c"]  # ["a", "b", "c"]
+# ["a", "b"] + "c"  # fails!
 
 # mutiply scalars
 2 * ["a", "b"]  # ["a", "b", "a", "b"]
