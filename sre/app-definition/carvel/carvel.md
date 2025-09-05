@@ -1,3 +1,0 @@
-# Carvel
-
-- Similar to helm
