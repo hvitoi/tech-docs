@@ -1,0 +1,11 @@
+# match a file or a directory anywhere in the repository
+node_modules
+
+# match a file or a directory in the root of the repository
+/node_modules
+
+# match only a directory anywhere in the repository
+node_modules/
+
+# match only a directory in the root of the repository
+/node_modules/

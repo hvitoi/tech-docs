@@ -1,1 +1,19 @@
-site
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.calva/
+
+# Java
+target/
+
+# Javascript
+node_modules/
+
+# Python
+.venv/
+__pycache__/
+
+# MkDocs
+/site/
