@@ -3,9 +3,7 @@
  '[io.pedestal.http.route :as route]
  '[io.pedestal.interceptor :as interceptor]
  '[io.pedestal.test :as test]
- '[clojure.data.json :as json]
- #_'[org.clojure.edn :as edn]
- '[clojure.test :refer :all])
+ '[clojure.data.json :as json])
 
 ;; STATE
 (def store (atom {}))
@@ -88,7 +86,7 @@
        ::http/type :jetty
        ::http/join? false ; do not block the thread (good for development)
        }
-      (http/default-interceptors) ; add default interceptors (it's automatically with the conventional service-map) 
+      (http/default-interceptors) ; add default interceptors (it's automatically with the conventional service-map)
       (update ::http/interceptors conj db-interceptor) ; add custom interceptors (applies to all routes)
       ))
 

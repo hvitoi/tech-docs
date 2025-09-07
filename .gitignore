@@ -3,7 +3,6 @@
 
 # IDE
 .vscode/
-.calva/
 
 # Java
 target/
@@ -14,6 +13,12 @@ node_modules/
 # Python
 .venv/
 __pycache__/
+
+# Clojure
+.calva/
+.clj-kondo/
+.lsp/
+.cpcache/
 
 # MkDocs
 /site/
