@@ -4,6 +4,15 @@
 - `AWS` was launched for public in 2004
 - First services were SQS, S3 and EC2
 
+## Partition
+
+- A completely independent aws infrastructure
+
+- aws
+- aws-ch
+- aws-us-gov
+- aws-eu (coming soon)
+
 ## Regions
 
 - A `cluster of data` centers in a `geographic area`
@@ -38,3 +47,18 @@
 - It's like a region, but limited.
 - It offers a way to serve content to the end user with the higher proximity possible (and lower latency)
 - It's used for `caching`
+
+## Service Types
+
+- **Zonal services**
+  - `Control plane`: Regional
+  - `Data plane`: Zonal
+  - RDS, EC2, EBS
+- **Regional services**
+  - `Control plane`: Regional
+  - `Data plane`: Regional
+  - S3, SQS, DybamoDB
+- **Global services**
+  - `Control plane`: Single Region
+  - `Data plane`: Globally Distributed
+  - IAM (cp in us-east-1), CloudFront, Route 53, Global Accelerator
