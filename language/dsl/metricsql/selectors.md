@@ -1,43 +1,4 @@
-# Data types
-
-- Prometheus' is an `expression language`
-
-## Expressions
-
-- The expressions can be evaluated to
-  - **Instant vector**
-  - **Range vector**
-  - **Scalar**
-  - **String**
-
-## Literals
-
-- **String literal**
-
-  - Defined with quotes, double quotes or backticks
-
-  ```shell
-  "this is a string"
-  'these are unescaped: \n \\ \t'
-  `these are not unescaped: \n ' " \t`
-  ```
-
-- **Float literals**
-
-  - Literal integer or floating-point numbers
-
-  ```shell
-  23
-  -2.43
-  3.4e-9
-  0x8f
-  -Inf
-  NaN
-  ```
-
-## Time Series Selectors
-
-### Instant Vector Selectors
+# Time Series Selectors
 
 - Pick a selection from a a time series
 - Uses the metric name as a function
@@ -61,35 +22,12 @@ http_requests_total{status!~"4.."}
 
 # the time series to be used can be picked by a regex
 {__name__=~"http_requests_total.*"}
-```
 
-### Range Vector Selector
-
-- Like instant vector, but it also select a range of samples
-- Specify how far back in time the values should be fetched for each resulting range
-
-```conf
+# Also work for range vectors (selects a range of samples)
 http_requests_total{job="prometheus"}[5m]
 ```
 
-### Time Duration
-
-- Specified by a number, following by a unit
-
-```conf
-ms # milliseconds
-s # seconds
-m # minutes
-h # hours
-d # days - assuming a day has always 24h
-w # weeks - assuming a week has always 7d
-y # years - assuming a year has always 365d
-
-# concatenation
-1h30m
-```
-
-### Offset Modifier
+## Offset Modifier
 
 - Changes the time offset for an instant
 
