@@ -12,20 +12,19 @@
 
 ## Examples
 
+### Stability
+
 - `Availability`: the online store must be available to the users at least 99.9% of the time
-- `Performance`: Response time under 2 seconds for any page load
-  - `Latency`: user must be able to check the account balance within 1 s
-  - `Speed`: download speeds should be at least 50 Mbit/s
-  - `Efficiency`: Optimal use of resources like CPU, memory, and network.
 - `Reliability`: System uptime of 99.9% per month
-  - `Consistency`
-- `Scalability`
-- `Security`: Passwords must be encrypted
-- `Maintainability`: System should allow updates without downtime
-  - `Flexibility`
-  - `Deployability`: the dev must be able to deploy a new version at least twice a week
+- `Performance`: Response time under 2 seconds for any page load
+  - Latency: user must be able to check the account balance within 1 s
+  - Speed: download speeds should be at least 50 Mbit/s
+  - Efficiency: Optimal use of resources like CPU, memory, and network.
+
+### Others
+
 - `Usability`: Interface should be intuitive for first-time users
+- `Scalability`
+- `Maintainability`: System should allow updates without downtime
 - `Portability`: Ability to run the system in different environments or platforms.
-- `Interoperability`: Ability to interact and exchange data with other systems
-- `Testability`
-- `Observability`
+- `Security`: Passwords must be encrypted

@@ -3,6 +3,7 @@
 - <https://github.com/grafana/docker-otel-lgtm>
 
 ![OTEL LGTM](.images/otel-lgtm.png)
+![OTEL](.images/opentelemetry.png)
 
 ## Metrics
 

@@ -2,6 +2,9 @@
 
 ## Collector / Agent
 
+Collects the telemetry data from the target system
+Either through Agent, API/SDK or Scrapping
+
 - Prometheus
 - OTel
 - vmagent
