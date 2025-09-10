@@ -1,4 +1,4 @@
-# OpenTelemetry
+# OpenTelemetry (OTel)
 
 - <https://github.com/grafana/docker-otel-lgtm>
 

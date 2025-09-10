@@ -2,6 +2,7 @@
 
 - Trace the request through multiple services
 - The more `observable` a system is, the more `controllable` it is
+
 - 3 pillars of observability
   - **Metrics**
   - **Logging**
@@ -12,7 +13,6 @@
 - Metrics are `numeric representation of data` measured over intervals of time
 - Analytics Data and Metrics about the running services within an application
 - 4 golden signals
-
   - `latency`: time to serve a request
   - `traffic`: requests/s
   - `error`: error rate of requests

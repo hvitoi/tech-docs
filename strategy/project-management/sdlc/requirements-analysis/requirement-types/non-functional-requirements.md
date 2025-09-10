@@ -12,13 +12,13 @@
 
 ## Examples
 
+- `Availability`: the online store must be available to the users at least 99.9% of the time
 - `Performance`: Response time under 2 seconds for any page load
   - `Latency`: user must be able to check the account balance within 1 s
   - `Speed`: download speeds should be at least 50 Mbit/s
   - `Efficiency`: Optimal use of resources like CPU, memory, and network.
 - `Reliability`: System uptime of 99.9% per month
   - `Consistency`
-- `Availability`: the online store must be available to the users at least 99.9% of the time
 - `Scalability`
 - `Security`: Passwords must be encrypted
 - `Maintainability`: System should allow updates without downtime

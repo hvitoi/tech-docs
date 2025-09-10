@@ -1,4 +1,4 @@
-# Glossary
+# Business Requirements
 
 ## Churn rate
 

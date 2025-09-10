@@ -1,8 +1,10 @@
-# Use Cases & User flows
+# Use Cases / User Flow / User Journey / User Story
 
 - It's a methodology for gathering requirements
 - Explicits the situations/scenarios in which the system would be used
 - A `user flow` is a detailed as a `sequence diagram` (part of the UML standard)
+- Map all the systems that are part of the user journey
+- E.g., Authentication -> Password -> Auth Database -> Fraud -> ...
 
 1. Identify the `actors/users` of the system
 1. Identify and describe all the `possible use cases`
