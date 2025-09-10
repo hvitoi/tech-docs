@@ -2,16 +2,7 @@
 
 - Also know as **Feature Set**
 - Specify `what the system should do`. They describe system behavior, features, and interactions.
-
-- Requirements that define the target feature
-- Results may be triggered by either user actions or events
 - Functional requirements DO NOT influence on the architecture, since a feature can be implemented using any kind of architecture (just it may not be viable)
-
-## Examples
-
-- User must have access to the e-commerce platform
-- User must be able to search an item
-- After a user uploads a file, they will get a unique link that they can share with other users. Any user with that link can download the file.
 
 ```mermaid
 flowchart LR
@@ -20,3 +11,13 @@ A[User Action] --> System
 B[Events] --> System
 System --> C[Outcome/Result]
 ```
+
+## Examples
+
+1. User must `authenticate` to access the platform
+2. user can access the platform via mobile or web app
+3. User must be able to `search` an item
+4. User can `upload` a file
+5. User can generate a link so that he can `share` the file with other users
+6. Other users can download the file from the link
+7. User can see a report of what other users have downloaded his file
