@@ -9,7 +9,9 @@ Either through Agent, API/SDK or Scrapping
 - OTel
 - vmagent
 
-## TSDB / Storage Backend
+## Observability backend (storage)
+
+- TSDB / Storage Backend
 
 - Prometheus TSDB
 - VictoriaMetrics
@@ -18,7 +20,7 @@ Either through Agent, API/SDK or Scrapping
 - InfluxDB
 - Graphite
 
-## Visualization
+## Observability frontend (visualization)
 
 - Grafana
 

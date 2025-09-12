@@ -21,6 +21,11 @@ du -sh "/var/lib/docker" # docker image folder
 du -sh *
 ```
 
+```shell
+# Top heavy folders in your home
+du -h ~ | sort -hr | head -n 10
+```
+
 ## File size
 
 ```shell

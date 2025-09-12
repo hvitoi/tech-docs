@@ -1,8 +1,10 @@
 # OpenTelemetry (OTel)
 
-- <https://github.com/grafana/docker-otel-lgtm>
+- <https://github.com/open-telemetry>
+- Facilitate the `generation`, `export`, `collection` and `management` of telemetry data (`instrumentation`)
+- It's not a observability backend (storage) or frontend(visualization)
+- Avoids vendor lock-in
 
-![OTEL LGTM](.images/otel-lgtm.png)
 ![OTEL](.images/opentelemetry.png)
 
 ## Metrics
