@@ -20,6 +20,7 @@ ls -ltr # Time reverse order
 ls -al / > lsout.txt # List the root dir and saves in the text file
 ls -la /etc/cron.* # List the content of each folder starting with cron.
 ls -latrc # show modification time (instead of creation time)
+ls -lavh #
 ```
 
 ## Listing with wildcards

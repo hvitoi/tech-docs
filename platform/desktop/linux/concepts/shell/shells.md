@@ -6,3 +6,11 @@
 - `sh`
 - `fish`
 - `zsh`
+
+## Interactive Shells
+
+- **Interactive Shell** (`Non-login shell`)
+  - When you open a new terminal window
+
+- **Non-Interactive Shell** (`Login shell`)
+  - When you log into the system, either via a terminal or SSH

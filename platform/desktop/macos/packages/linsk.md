@@ -3,7 +3,11 @@
 - <https://github.com/AlexSSD7/linsk>
 
 ```shell
+# manual
 mv linsk_darwin_arm64_v0.2.2 /usr/local/bin/linsk
+
+# go
+go install "github.com/AlexSSD7/linsk@latest"
 ```
 
 ## build
@@ -11,6 +15,7 @@ mv linsk_darwin_arm64_v0.2.2 /usr/local/bin/linsk
 - Spin up a Linux VM
 
 ```shell
+linsk clean # removes any previous VM
 linsk build
 ```
 

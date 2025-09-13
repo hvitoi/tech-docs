@@ -1,6 +1,7 @@
 # rclone purge
 
 - Remove a path and all of its contents
+- Does NOT obey filtering
 
 ```shell
 rclone purge "remote:path"
