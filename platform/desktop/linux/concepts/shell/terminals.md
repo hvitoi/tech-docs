@@ -21,8 +21,8 @@ cat < /dev/tty1
 - A program you run in user-space that provides a window (GUI) to interact with a shell.
 - It creates a pseudo-terminal (pty) to talk to the kernel's tty interface.
 
-- `Alacritty`
-- `WezTerm`
+- `Alacritty`: has issues with unicode characters
+- `WezTerm`: written in Rust
 - `Ghostty`
 - `Kitty`
 - `xterm`
