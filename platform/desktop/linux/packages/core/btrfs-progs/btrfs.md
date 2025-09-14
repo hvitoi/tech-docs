@@ -41,6 +41,25 @@ btrfs subvolume get-default "."
 btrfs subvolume set-default "/mnt"
 ```
 
+## check
+
+- Only use it if the filesystem cannot be mounted or is behaving very badly.
+
+```shell
+# read-only (do not attempt to fix)
+btrfs check /dev/sdX
+```
+
+## scrub
+
+- Checks for errors
+- Works on a mounted filesystem, not directly on a block device.
+
+```shell
+btrfs scrub start -Bd /mnt
+btrfs scrub status /mnt
+```
+
 ## rescue
 
 ```shell

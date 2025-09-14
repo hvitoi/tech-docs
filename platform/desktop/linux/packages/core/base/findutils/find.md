@@ -36,6 +36,9 @@ find . -name "package-lock.json" -type f -delete
 
 # delete empty directories
 find . -type d -empty -delete
+
+# delete with a custom command
+find . -type d -name ".git" -exec rm -rf {} +
 ```
 
 ## -prune

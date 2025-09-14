@@ -19,6 +19,14 @@ linsk clean # removes any previous VM
 linsk build
 ```
 
+## shell
+
+- SSH into the VM with the drive passthrough
+
+```shell
+linsk shell dev:/dev/diskXsY --vm-mem-alloc 2048
+```
+
 ## ls
 
 - Start the VM, pass a storage device through, run `lsblk` on it & exits
