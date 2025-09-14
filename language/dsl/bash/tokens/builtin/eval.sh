@@ -4,3 +4,4 @@
 eval myenvs.txt
 
 eval "$(minikube docker-env)"
+eval "$(fzf --zsh)"

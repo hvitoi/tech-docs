@@ -7,13 +7,13 @@
 rclone sync /local/path remote:/remote/path --dry-run
 
 # interactive mode (prompt for decisions)
-rclone sync /local/path remote:/remote/path -i
-
-# progress mode, with real-time transfer statistics
-rclone sync /local/path remote:/remote/path -P
+rclone sync /local/path remote:/remote/path --interactive
 
 # verbose (show transferred files)
-rclone sync /local/path remote:/remote/path -v
+rclone sync /local/path remote:/remote/path --verbose
+
+# real-time transfer statistics
+rclone sync /local/path remote:/remote/path --progress
 
 # bandwidth
 rclone sync /local/path remote:/remote/path --bwlimit 1.5M
@@ -69,3 +69,16 @@ rclone sync foo google-drive:foo --track-renames --verbose --use-json-log 2>&1 |
               else null end
         '
 ```
+
+- Copy
+  - `Skipped copy as --dry-run is set (size 0)`
+  - `Copied (new)`
+  - `Copied (replaced existing)`
+
+- Delete
+  - `Skipped delete as --dry-run is set (size 0)`
+  - `Deleted`
+
+- Directory
+  - `Skipped set directory modification time as --dry-run is set`
+  - `Set directory modification time (using DirSetModTime)`

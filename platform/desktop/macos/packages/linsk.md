@@ -7,7 +7,7 @@
 mv linsk_darwin_arm64_v0.2.2 /usr/local/bin/linsk
 
 # go
-go install "github.com/AlexSSD7/linsk@latest"
+go install "github.com/AlexSSD7/linsk@master"
 ```
 
 ## build
@@ -38,8 +38,9 @@ sudo linsk ls dev:/dev/diskXsY
 sudo linsk run dev:/dev/diskXsY vdb
 
 # With luks encryption
-sudo linsk run dev:/dev/diskXsY vdb -l
+sudo linsk run dev:/dev/diskXsY vdb --luks
 ```
 
-- On MacOS the storage network server is exposed at `afp://127.0.0.1:9000/linsk`
-- `Cmd + K` on Finder to open a network storage device
+- Open the storage network server (Cmd+K on Finder): `afp://linsk:<pass>@localhost:9000/linsk`
+- By opening it, you are automatically mounting it to `/Volumes/linsk`
+- You can also manually mount it `sudo mount_afp "afp://user:password@hostname/ShareName" /Volumes/ShareName`

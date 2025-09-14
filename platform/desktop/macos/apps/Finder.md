@@ -24,7 +24,20 @@ The application shortcut at finder compiles all the apps in your computer, inclu
 
 - `Cmd + Shift + G`: go to location
 - `Cmd + Shift + .`: show hidden files
+- `Cmd + K`: open network destionation. E..g, "afp://linsk:pass@127.0.0.1:9000/linsk"
 
 ```shell
 defaults write com.apple.Finder AppleShowAllFiles true
+```
+
+## Osascript
+
+```shell
+osascript -e '
+    tell application "Finder"
+        try
+            mount volume "http://127.0.0.1:8080/sanskrit"
+        end try
+    end tell
+'
 ```
