@@ -22,8 +22,8 @@ FOO=("alpha" "beta" "gamma") # can contain different data types
 echo $FOO # array itself (prints first)
 
 echo ${FOO[@]} # @ refers to all elements
-echo ${FOO[*]} # * refers to all elements
-echo ${FOO[0]} # first element
+echo ${FOO[*]} # Expands the entire array as one single string
+echo ${FOO[0]} # Expands each array element as a separate word
 
 echo ${#FOO[@]} # size
 echo ${!FOO[@]} # indexes (keys)
