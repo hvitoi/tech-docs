@@ -1,28 +1,55 @@
 # Java CLI
 
+## -version
+
 ```shell
 # Java version
 java -version
+```
+
+## -
+
+- You must be in the directory of the file/class which you want to run in order to run it
+- It sets the current directory as the `classpath`
+
+```shell
+# Compile and run source code
+cd ./Documents; java "Main.java"
 
 # Run a compiled code
-java "Main" # set the current folder as the classpath
-cd "~/Documents"; java "Main" # if the compiled binary is in another folder
+cd "~/Documents"; java "Main"
+```
 
-# Set system property
+## -D
+
+- Set system property
+
+```shell
 java -D"key"="value" "Main"
 java -Dfile.encoding=UTF-8 "Main"
 java -Dserver.port "Main"
+```
 
-# Set classpath
-java -cp "~/Documents" -D"name"="value" "Main"
+## -cp
 
-# Run jar file
+- Set classpath
+
+```shell
+java -cp "~/Documents" "Main"
+```
+
+## -jar
+
+- Run jar file
+
+```shell
 java -jar "avro-tools-1.10.2.jar"
+```
 
-# Debug mode
+## -agentlib
+
+- Debug mode
+
+```shell
 java -agentlib:jdwp=transport=dt_socket,server=n,suspend=y,address=localhost:38585 "Main"
-
-# Compile and run source code
-# You must first cd into the directory where the code is located
-java "Main.java"
 ```

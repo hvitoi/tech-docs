@@ -4,13 +4,13 @@ import java.util.Properties;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _println();
+    _out_println();
     _currentTimeMillis();
     _getenv();
     _getProperties();
   }
 
-  static void _println() {
+  static void _out_println() {
     // "out" is a static attribute
     // "println" is a non-static method
     System.out.println("Hello World!");
@@ -23,11 +23,11 @@ class Main {
   }
 
   static void _getenv() {
-    System.getenv("JAVA_HOME"); // environment variable
+    System.getenv("HOME"); // environment variable
 
     try {
-      String ENV_VAR1 = Optional.ofNullable(System.getenv("ENV_VAR1")).orElseThrow(
-          () -> new IllegalArgumentException("ENV_VAR1 is not set in the environment"));
+      String foo = Optional.ofNullable(System.getenv("FOO")).orElseThrow(
+          () -> new IllegalArgumentException("FOO is not set in the environment"));
     } catch (IllegalArgumentException e) {
     }
 
@@ -35,10 +35,6 @@ class Main {
 
   static void _getProperties() {
     // Get JVM properties
-
-    var properties = System.getProperties();
-
-    System.out.println(properties);
-
+    Properties properties = System.getProperties();
   }
 }

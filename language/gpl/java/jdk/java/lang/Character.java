@@ -20,6 +20,5 @@ class Main {
   static void _isLetter() {
     boolean foo = Character.isLetter('a'); // true
     boolean bar = Character.isLetter('2'); // false
-
   }
 }

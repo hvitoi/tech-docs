@@ -34,13 +34,14 @@ class Main {
 
   static void _forName() {
     try {
-      Class.forName("Person"); // FQN: e.g., com.hvitoi.Person
+      // returns the class associated with a given name
+      Class clazz = Class.forName("Person");
+      // System.out.println(clazz.getName());
     } catch (ClassNotFoundException e) {
     }
   }
 
   static void _getName() {
-    // Get class from an instance
     var person = new Person();
     var clazz = person.getClass();
     clazz.getName(); // DQN: e.g., com.hvitoi.Person
