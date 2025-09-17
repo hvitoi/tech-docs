@@ -1,4 +1,4 @@
-# archetype
+# maven-archetype-plugin
 
 - <https://maven.apache.org/archetype/maven-archetype-plugin/>
 - <https://maven.apache.org/plugins/>

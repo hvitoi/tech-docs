@@ -4,13 +4,13 @@
 - <https://maven.apache.org/plugins/>
 
 - It's a built-in plug-in: `Maven Clean Plugin`
+- Deletes the `target/` directory (where compiled classes and built JARs go)
 
 ## Goals
 
-### clean
+### clean (default)
 
 ```shell
-# invokes the goal/task "clean" by default
 mvn clean
 mvn clean:clean # same
 ```

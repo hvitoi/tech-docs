@@ -21,14 +21,21 @@
  </build>
 ```
 
-```shell
-# Build (generate jar)
-mvn package
+## Goals
 
-# Run app
-java -jar "demo-0.0.1-SNAPSHOT.jar"
+### run
+
+```shell
 mvn spring-boot:run
 
+# Or compile & run manually
+mvn package
+java -jar "demo-0.0.1-SNAPSHOT.jar"
+```
+
+### build-image
+
+```shell
 # Build container image for the app
 mvn spring-boot:build-image
 ```

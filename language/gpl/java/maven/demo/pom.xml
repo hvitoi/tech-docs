@@ -6,6 +6,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Metadata -->
   <groupId>com.hvitoi</groupId>
   <artifactId>demo</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -30,8 +31,9 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- Dependencies: list of dependencies to download -->
   <dependencies>
-    <dependency>
+    <dependency> <!-- GAV: GroupID, ArtifactID, Version -->
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
