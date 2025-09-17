@@ -1,4 +1,4 @@
-package com.hvitoi.isthesiteup.controllers;
+package com.hvitoi.demo.controllers;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -27,8 +27,7 @@ public class UrlCheckController {
       int responseCodeCategory = conn.getResponseCode() / 100;
       if (responseCodeCategory != 2) {
         returnMessage = SITE_IS_DOWN;
-      }
-      else {
+      } else {
         returnMessage = SITE_IS_UP;
       }
     } catch (MalformedURLException e) {
@@ -40,5 +39,5 @@ public class UrlCheckController {
     }
     return returnMessage;
   }
-  
+
 }
