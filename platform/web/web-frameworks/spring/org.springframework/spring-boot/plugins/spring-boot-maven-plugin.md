@@ -1,6 +1,4 @@
-# Plugins
-
-## Maven Plugin
+# spring-boot-maven-plugin
 
 ```xml
 <build>

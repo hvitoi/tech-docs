@@ -29,6 +29,7 @@
 │   │   │   └── com/
 │   │   └── resources/
 │   │       ├── static/                 # html, css, js, images, etc
+│   │       ├── templates/              #
 │   │       └── application.properties  # properties and config file
 │   └── test/
 │       └── java/                        # unit tests
