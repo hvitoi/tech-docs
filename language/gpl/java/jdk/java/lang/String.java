@@ -1,11 +1,15 @@
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _new();
     _format();
+    _join();
+    _valueOf();
 
     // Instance methods
     _charAt();
@@ -21,126 +25,147 @@ class Main {
     _toLowerCase();
     _toUpperCase();
     _trim();
+    _getBytes();
   }
 
   static void _new() {
-    var str = "My String"; // with string literal
-    var str2 = new String("My String");
+    // String from literal
+    var str = "Henry";
+    str = str + " Vitoi"; // concatenate (create new, strings are immutable)
+
+    // String Class
+    var str2 = new String("Henry"); // avoid it
+    var str3 = new String("Henry".getBytes(), StandardCharsets.UTF_8); // specify encoding (charset)
+    var str4 = new String(new char[] { 'a', 'b', 'c' }); // from array of chars
+    var str5 = new String(new byte[] { 65, 66, 67 }); // from array of bytes
 
     // Text Block (Java 15)
-    var json = """
+    var str6 = """
         {
           "name": "Alice",
           "email": "alice@example.com"
         }
         """;
 
-    // Concatenate string
-    // In order to modify a string, a new one is created (strings are immutable)
-    str = str + "Append new information";
+    // String Builder: useful when building strings dynamically
+    StringBuilder sb = new StringBuilder();
+    var str7 = sb
+        .append("Henry")
+        .append(" ")
+        .append("Vitoi")
+        .toString();
 
-    // Create string in a specified encoding
-    var englishString = "Develop with pleasure";
-    var englishBytes = englishString.getBytes();
-    var utf8EncondedEnglishString = new String(englishBytes, StandardCharsets.UTF_8);
+    // Stream
+    var str8 = Stream
+        .of("a", "b", "c")
+        .collect(Collectors.joining(","));
+
+    // Array of Strings
+    String[] strArray = { "alpha", "beta", "gamma" };
+    var strArray2 = new String[] { "alpha", "beta", "gamma" };
   }
 
   static void _format() {
-    String name = "Henry";
-    String formatted = String.format("Hello, %s!", name);
+    var name = "Henry";
+    var age = 30;
+    var formatted = String.format("Hello, %s! You are %d years old.", name, age);
+  }
+
+  static void _join() {
+    var items = List.of("alpha", "beta", "gamma");
+    var joined = String.join(",", items);
+  }
+
+  static void _valueOf() {
+    // Create a string out of another type
+    var str = String.valueOf(123);
+    var str2 = String.valueOf('a');
+    var str3 = String.valueOf(new char[] { 'a', 'b', 'c' });
   }
 
   static void _charAt() {
-    String s = "blue";
+    var s = "blue";
     s.charAt(2); // char at index 2
   }
 
   static void _compareTo() {
-    String s1 = "blue";
-    String s2 = "blue";
-    String s3 = "green";
+    var s1 = "blue";
+    var s2 = "blue";
+    var s3 = "green";
 
     s1.compareTo(s2); // zero
     s1.compareTo(s3); // non-zero
   }
 
   static void _concat() {
-    String s = "hey";
+    var s = "hey";
     s.concat("!"); // hey!
   }
 
   static void _contains() {
-    String s = "awesome";
+    var s = "awesome";
     s.contains("esom"); // true
   }
 
   static void _isEmpty() {
-    String s = "";
+    var s = "";
     s.isEmpty(); // true
   }
 
   static void _indexOf() {
-    String s = "blue";
-
+    var s = "blue";
     s.indexOf('u'); // index of character u (first occurrence)
     s.indexOf("lu"); // index of a substring (first occurrence)
-
   }
 
   static void _length() {
-    String s = "blue";
-
+    var s = "blue";
     s.length(); // string length
-
     for (int i = 0; i < s.length(); i++) {
-      s.charAt(i);
+      //
     }
   }
 
   static void _matches() {
-    String email = "mail@mail.com";
+    var email = "mail@mail.com";
     email.matches("^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 
-    String cpf = "000.000.000-00";
+    var cpf = "000.000.000-00";
     cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}");
-
-    // if (ddd == null || numero == null) {
-    // throw new IllegalArgumentException("DDD e Numero sao obrigatorios!");
-    // }
-
-    // String ddd = "32";
-    // String numero = "963400122";
-    // ddd.matches("\\d{2}");
-    // numero.matches("\\d{8}|\\d{9}");
   }
 
   static void _replace() {
-    String s = "blue";
-
-    s.replace("e", "eee"); // original string remains untouched
+    // original string remains untouched
+    var s = "blue";
+    s.replace("e", "eee");
     s.replace('e', 'i');
     s.replace("bl", "Bl");
   }
 
   static void _substring() {
-    String s = "blue";
-
+    var s = "blue";
     // get "blu"
     s.substring(0, 3); // throws StringIndexOutOfBoundsException if out of bounds
   }
 
   static void _toLowerCase() {
-    String s = "BLUE";
+    var s = "BLUE";
     s.toLowerCase(); // original string remains untouched
   }
 
   static void _toUpperCase() {
-    String s = "blue";
+    var s = "blue";
     s.toUpperCase(); // original string remains untouched
   }
 
   static void _trim() {
-    String s = " hey!   ";
+    var s = " hey!   ";
     s.trim(); // hey!
+  }
+
+  static void _getBytes() {
+    // Get an array of bytes
+    var s = "Hey!";
+    s.getBytes();
   }
 }

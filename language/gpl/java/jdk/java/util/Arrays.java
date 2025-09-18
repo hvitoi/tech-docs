@@ -1,33 +1,27 @@
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
-
-    // Instance methods
-    _sort();
+    // Static methods
     _asList();
+    _sort();
     _stream();
-
-  }
-
-  static void _sort() {
-    int[] arr = { 43, 15, 64, 22, 89 };
-    Arrays.sort(arr);
   }
 
   static void _asList() {
-    // Convert an array into a List
-    List list1 = Arrays.asList(new int[] { 43, 15, 64, 22, 89 });
-    List list2 = Arrays.asList(0, 1, 2, 3);
-    List list3 = Arrays.asList("john", "tom", "jane");
+    var list1 = Arrays.asList(new int[] { 1, 2, 3 });
+    var list2 = Arrays.asList(1, 2, 3);
+    var list3 = Arrays.asList("alpha", "beta", "gamma");
+  }
+
+  static void _sort() {
+    int[] arr = { 3, 1, 2 };
+    Arrays.sort(arr);
   }
 
   static void _stream() {
-    String[] arr = { "john", "tom", "jane" };
-
-    // Convert an array into a List
-    Stream stream = Arrays.stream(arr);
+    // Convert an array into a Stream
+    var arr = new String[] { "john", "tom", "jane" };
+    var stream = Arrays.stream(arr);
   }
 }

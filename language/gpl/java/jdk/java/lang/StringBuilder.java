@@ -9,18 +9,21 @@ class Main {
   }
 
   static void _new() {
-    StringBuilder builder = new StringBuilder("hey");
+    var sb = new StringBuilder();
+    var sb2 = new StringBuilder("Hey!"); // define initial value
   }
 
   static void _append() {
-    StringBuilder builder = new StringBuilder("hey");
-    builder.append(" there!");
-    System.out.println(builder.toString());
+    var myStr = new StringBuilder()
+        .append("Hello")
+        .append(" World!")
+        .toString();
   }
 
   static void _toString() {
-    StringBuilder builder = new StringBuilder("hey");
-    builder.append(" there!");
-    System.out.println(builder.toString());
+    var myStr = new StringBuilder()
+        .append("Hello")
+        .append(" World!")
+        .toString();
   }
 }

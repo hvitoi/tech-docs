@@ -19,7 +19,9 @@ class Main {
     _remove();
     _size();
     _stream();
-    // CollectionForEach.run(); // Inherited from Iterable
+
+    // inherited from Iterable
+    // _forEach()
   }
 
   static Collection<String> _new() {

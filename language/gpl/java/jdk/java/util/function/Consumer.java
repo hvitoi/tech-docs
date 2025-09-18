@@ -9,12 +9,13 @@ class Main {
   }
 
   static void _new() {
-    Consumer<String> consumer1 = s -> System.out.println(s); // new syntax
-    Consumer<String> consumer2 = new MyConsumerClass(); // older way to create consumers
+    Consumer<String> consumer1 = System.out::println; // new syntax
+    Consumer<String> consumer2 = (el) -> System.out.println(el); // with lambdas
+    Consumer<String> consumer3 = new MyConsumer(); // older way to create consumers
   }
 }
 
-class MyConsumerClass implements Consumer<String> {
+class MyConsumer implements Consumer<String> {
   @Override
   public void accept(String str) {
     System.out.println(str);

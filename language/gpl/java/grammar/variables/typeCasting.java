@@ -12,7 +12,8 @@ class Main {
     // Cast
     String myStr = (String) myObj; // ClassCastException if it fails to cast
     System.out.println(myStr);
-
+    // Tell me about the main and more modern java data structures . The my common
+    // and idiomatic way of coding in java
     /**
      * IMPLICIT CASTING: Transform a SPECIFIC reference into a GENERIC references
      * needs no casting

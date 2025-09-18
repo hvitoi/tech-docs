@@ -1,19 +1,20 @@
+import java.io.PrintStream;
 import java.util.Optional;
 import java.util.Properties;
 
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _out_println();
+    _out();
     _currentTimeMillis();
     _getenv();
     _getProperties();
   }
 
-  static void _out_println() {
-    // "out" is a static attribute
-    // "println" is a non-static method
-    System.out.println("Hello World!");
+  static void _out() {
+    // Returns the "stdout" PrintStream
+    PrintStream stdout = System.out;
+    stdout.println("");
   }
 
   static void _currentTimeMillis() {

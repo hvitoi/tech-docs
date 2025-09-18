@@ -13,5 +13,7 @@ class Main {
       System.out.println(list.get(i));
     }
 
+    var a = "a";
+    a.
   }
 }

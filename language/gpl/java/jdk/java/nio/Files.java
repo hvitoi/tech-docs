@@ -6,28 +6,41 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 
 class Main {
-  public static void main(String[] args) throws IOException {
-    /**
-     * Static
-     */
-    _copy();
+  public static void main(String[] args) {
+    // Static methods
     _write();
+    _copy();
+    _readString();
   }
 
-  static void _copy() throws IOException {
-
-    File file = new File("file");
-    Path newPath = Path.of("/");
-
-    // copy file from path1 to path2
-    Files.copy(file.toPath(), newPath, StandardCopyOption.REPLACE_EXISTING);
+  static void _write() {
+    var file = new File("/tmp/file.txt");
+    try {
+      Files.write(file.toPath(), "abc".getBytes(), StandardOpenOption.APPEND);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  static void _write() throws IOException {
-
-    File file = new File("file");
-
-    // write to a file
-    Files.write(file.toPath(), "abc".getBytes(), StandardOpenOption.APPEND);
+  static void _copy() {
+    var file = new File("/tmp/file.txt");
+    var newPath = Path.of("/tmp/foo/file.txt");
+    // copy file from file into newPath
+    try {
+      Files.copy(file.toPath(), newPath, StandardCopyOption.REPLACE_EXISTING);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
+
+  static void _readString() {
+    // Read string out of a text file
+    var filePath = Path.of("/tmp/file.txt");
+    try {
+      var s = Files.readString(filePath);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

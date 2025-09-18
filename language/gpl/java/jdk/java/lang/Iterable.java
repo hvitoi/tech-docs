@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 class Main {
@@ -7,23 +7,12 @@ class Main {
   }
 
   static void _forEach() {
-    // inherited from java.lang.Iterable
-    Iterable<String> stringData = Arrays.asList("john", "tom", "jane");
+    var data = List.of("a", "b", "c");
 
     Consumer<String> consumer1 = (el) -> System.out.println(el);
     Consumer<String> consumer2 = System.out::println;
-    Consumer<String> consumer3 = new MyConsumerClass();
 
-    stringData.forEach(consumer1);
-    stringData.forEach(consumer2);
-    stringData.forEach(consumer3);
-
-  }
-}
-
-class MyConsumerClass implements Consumer<String> {
-  @Override
-  public void accept(String str) {
-    System.out.println(str);
+    data.forEach(consumer1);
+    data.forEach(consumer2);
   }
 }
