@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Main {
+class Main {
   public static void main(String[] args) {
     // Static methods
     _new();

@@ -1,3 +1,8 @@
+class Main {
+  public static void main(String[] args) {
+  }
+}
+
 // class cannot be modified
 final class Person {
 

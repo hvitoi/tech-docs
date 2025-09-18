@@ -50,7 +50,7 @@ class Main {
   }
 }
 
-public class Person {
+class Person {
 
   private String name;
   private Integer age;

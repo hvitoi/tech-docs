@@ -28,7 +28,7 @@ class GsonBuilderNew {
 class GsonBuilderRegisterTypeAdapter {
   static void run() {
     // defines a custom adapter to serialize into json
-    GsonBuilder builder = new GsonBuilder().registerTypeAdapter(String.class,);
+    GsonBuilder builder = new GsonBuilder().registerTypeAdapter(String.class, null);
   }
 }
 

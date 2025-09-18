@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-class Main {
+class Gson {
 
   public static void main(String[] args) {
     /**

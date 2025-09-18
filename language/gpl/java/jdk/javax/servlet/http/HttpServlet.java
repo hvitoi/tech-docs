@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// It's a server-side HTTP API
+// Handle incoming HTTP requests
+
 class MyServlet extends HttpServlet {
 
   @Override

@@ -1,3 +1,8 @@
+class Main {
+  public static void main(String[] args) {
+  }
+}
+
 // static attributes or methods belong to the class (and not to the instance)
 class Person {
 

@@ -11,5 +11,3 @@ class Main {
         return s1.compareTo(s2);
       }
     };
-
-  

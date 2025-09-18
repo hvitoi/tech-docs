@@ -1,3 +1,8 @@
+class Main {
+  public static void main(String[] args) {
+  }
+}
+
 class Person {
 
   // private attribute
@@ -14,7 +19,7 @@ class Person {
   }
 
   /**
-   * 
+   *
    * * Encapsulation
    */
 
