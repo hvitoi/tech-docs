@@ -22,7 +22,7 @@ class Main {
      * Instance
      */
     put();
-    get();
+    _get();
     entrySet();
     keySet();
     values();

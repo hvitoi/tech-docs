@@ -4,66 +4,71 @@ import java.util.Optional;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    empty();
-    of();
-    ofNullable();
+    _empty();
+    _of();
+    _ofNullable();
 
     // Instance methods
-    isPresent();
-    isEmpty();
-    ifPresent();
-    orElse();
-    orElseGet();
-    orElseThrow();
-    get();
-    filter();
-    map();
+    _isPresent();
+    _isEmpty();
+    _ifPresent();
+    _orElse();
+    _orElseGet();
+    _orElseThrow();
+    _get();
+    _filter();
+    _map();
 
   }
 
-  static void empty() {
-    Optional<String> opt = Optional.empty(); // opt.isPresent() == false
+  static void _empty() {
+    var opt = Optional.empty(); // opt.isPresent() == false
   }
 
-  static void of() {
-    Optional<String> opt = Optional.of("henry"); // opt.isPresent() == true
+  static void _of() {
+    var opt = Optional.of("henry"); // opt.isPresent() == true
   }
 
-  static void ofNullable() {
-    Optional<String> opt = Optional.ofNullable("henry");
-    Optional<String> opt2 = Optional.ofNullable(null);
+  static void _ofNullable() {
+    var opt = Optional.ofNullable("henry");
+    var opt2 = Optional.ofNullable(null);
   }
 
-  static void isPresent() {
-    Optional<String> opt = Optional.empty();
+  static void _isPresent() {
+    var opt = Optional.empty();
     if (opt.isPresent()) {
       // do something ..
     }
   }
 
-  static void isEmpty() {
-    Optional<String> opt = Optional.empty();
+  static void _isEmpty() {
+    var opt = Optional.empty();
     if (opt.isEmpty()) {
       // do something ..
     }
   }
 
-  static void ifPresent() {
-    Optional<String> opt = Optional.empty();
-    opt.ifPresent(name -> System.out.println(name.length()));
+  static void _ifPresent() {
+    // Execute the lambda only if there is a value
+    var msg1 = Optional.of("Hey!");
+    var msg2 = Optional.empty();
+
+    // msg1.ifPresent(s -> System.out.println(s.length()));
+    msg2.ifPresent(System.out::println); // I won't run
+
   }
 
-  static void orElse() {
+  static void _orElse() {
     Optional<String> opt = Optional.ofNullable(null);
     String name = opt.orElse("john"); // similar to .get() but sets a default value if none is found
   }
 
-  static void orElseGet() {
+  static void _orElseGet() {
     Optional<String> opt = Optional.ofNullable(null);
     String name = opt.orElseGet(() -> "john"); // similar to .orElse() but receives an expression as argument
   }
 
-  static void orElseThrow() {
+  static void _orElseThrow() {
     Optional<String> opt = Optional.ofNullable(null);
 
     try {
@@ -73,7 +78,7 @@ class Main {
     }
   }
 
-  static void get() {
+  static void _get() {
     Optional<String> opt = Optional.of("henry");
 
     try {
@@ -82,14 +87,14 @@ class Main {
     }
   }
 
-  static void filter() {
+  static void _filter() {
     String str = "hi";
 
     // empty string will also be considered as Empty Optional
     Optional<String> opt = Optional.ofNullable(str).filter(s -> !s.isEmpty());
   }
 
-  static void map() {
+  static void _map() {
     String str = Optional.ofNullable("hi")
         .filter(String.class::isInstance) // verify if it's an instance of String
         .map(String.class::cast) // cast to string (redundant here)

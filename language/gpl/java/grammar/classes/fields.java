@@ -1,6 +1,9 @@
 class Main {
+
+  // A field is a variable declared inside a class or interface, but outside any
+  // method or constructor.
   public static void main(String[] args) {
-    Person person = new Person();
+    var person = new Person();
     person.setFirstName("Henrique"); // set private attribute
     person.lastName = "Boss"; // set public attribute
   }

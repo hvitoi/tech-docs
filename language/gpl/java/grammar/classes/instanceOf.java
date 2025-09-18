@@ -7,7 +7,8 @@ class Main {
       System.out.println(s.toUpperCase());
     }
 
-    if (obj instanceof String s) { // check and cast (Java 16)
+    // Pattern Matching (Java 16)
+    if (obj instanceof String s) { // check and cast
       System.out.println("String length: " + s.length());
     } else if (obj instanceof Integer i) {
       System.out.println("Integer value: " + i);

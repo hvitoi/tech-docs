@@ -1,18 +1,12 @@
+import java.util.Optional;
+
 class Main {
   public static void main(String[] args) {
-    LambdaExpressions.run();
 
-  }
-}
+    var msg = Optional.of("Hey!");
 
-class LambdaExpressions {
-  static void run() {
-
-    Object res = () -> {
-      return 9;
-    };
-
-    Object res2 = () -> 9;
+    msg.ifPresent(s -> System.out.println(s.length()));
+    msg.ifPresent(System.out::println);
 
   }
 }

@@ -24,17 +24,25 @@ class Main {
   }
 
   static void _new() {
-    // String initialization with object literal
-    String str = "My String"; // new String("My String")
+    var str = "My String"; // with string literal
+    var str2 = new String("My String");
+
+    // Text Block (Java 15)
+    var json = """
+        {
+          "name": "Alice",
+          "email": "alice@example.com"
+        }
+        """;
 
     // Concatenate string
-    // In order to modify a string, a new one is create (strings are immutable)
+    // In order to modify a string, a new one is created (strings are immutable)
     str = str + "Append new information";
 
     // Create string in a specified encoding
-    String englishString = "Develop with pleasure";
-    byte[] englishBytes = englishString.getBytes();
-    String utf8EncondedEnglishString = new String(englishBytes, StandardCharsets.UTF_8);
+    var englishString = "Develop with pleasure";
+    var englishBytes = englishString.getBytes();
+    var utf8EncondedEnglishString = new String(englishBytes, StandardCharsets.UTF_8);
   }
 
   static void _format() {

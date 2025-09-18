@@ -1,6 +1,12 @@
+class Main {
+  public static void main(String[] args) {
+
+  }
+}
+
 // Interface is an Abstract Class with all methods abstract
-// It's like a contract. And who signs it must implements the abstract methods defined
-// Interfaces do not contain attributes
+// It's like a contract. And who signs it must implements the methods
+// Interfaces do not contain fields
 interface Authenticable {
   void setPassword(int password);
 

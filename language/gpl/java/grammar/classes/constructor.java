@@ -1,8 +1,8 @@
 class Main {
   public static void main(String[] args) {
     // Instantiation
-    Person person1 = new Person();
-    Person person2 = new Person("Henry", "Boss");
+    var person1 = new Person();
+    var person2 = new Person("Henry", "Boss");
   }
 }
 
