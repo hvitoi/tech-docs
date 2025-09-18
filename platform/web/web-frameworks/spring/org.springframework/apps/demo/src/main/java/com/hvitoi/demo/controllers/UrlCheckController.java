@@ -1,9 +1,11 @@
 package com.hvitoi.demo.controllers;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,30 +16,25 @@ public class UrlCheckController {
 
   private final String SITE_IS_UP = "Site is up!";
   private final String SITE_IS_DOWN = "Site is down!";
-  private final String INCORRECT_URL = "URL is incorrect!";
+  private final String INVALID_URL = "URL is incorrect!";
+
+  private final HttpClient httpClient = HttpClient.newHttpClient();
 
   @GetMapping("/check")
   public String getUrlStatusMessage(@RequestParam String url) {
-    String returnMessage = "";
     try {
-      URL urlObj = new URL(url);
-      HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();
-      conn.setRequestMethod("GET");
-      conn.connect();
-      int responseCodeCategory = conn.getResponseCode() / 100;
-      if (responseCodeCategory != 2) {
-        returnMessage = SITE_IS_DOWN;
-      } else {
-        returnMessage = SITE_IS_UP;
-      }
-    } catch (MalformedURLException e) {
-      // e.printStackTrace();
-      returnMessage = INCORRECT_URL;
-    } catch (IOException e) {
-      // e.printStackTrace();
-      returnMessage = SITE_IS_DOWN;
+      var uri = new URI(url);
+      var request = HttpRequest.newBuilder(uri)
+          .GET()
+          .build();
+      var response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+      return response.statusCode() == 200 ? SITE_IS_UP : SITE_IS_DOWN;
+    } catch (URISyntaxException e) {
+      return INVALID_URL;
+    } catch (IOException | InterruptedException e) {
+      Thread.currentThread().interrupt(); // restore interrupted status
+      return SITE_IS_DOWN;
     }
-    return returnMessage;
   }
 
 }

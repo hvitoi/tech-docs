@@ -39,7 +39,7 @@ class Main {
 
   static void _format() {
     String name = "Henry";
-    String formatted = String.format("hello, %s!", name);
+    String formatted = String.format("Hello, %s!", name);
   }
 
   static void _charAt() {

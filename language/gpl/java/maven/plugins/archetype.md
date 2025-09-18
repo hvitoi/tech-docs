@@ -1,7 +1,7 @@
 # maven-archetype-plugin
 
-- <https://maven.apache.org/archetype/maven-archetype-plugin/>
 - <https://maven.apache.org/plugins/>
+- <https://maven.apache.org/archetype/maven-archetype-plugin/>
 
 - Create a Maven project from an existing template
 

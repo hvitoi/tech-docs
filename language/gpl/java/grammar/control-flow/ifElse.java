@@ -1,5 +1,6 @@
-abstract class Main {
+class Main {
 	public static void main(String[] args) {
+
 		boolean isAlien = true; // Good convention to use "is" with boolean variables
 		if (isAlien == true) {
 			System.out.println("It is an alien.");
