@@ -1,38 +1,37 @@
-import java.util.ArrayList; // implementation
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList; // implementation
-import java.util.List; // interface
-import java.util.Vector; // implementation
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 import java.util.function.Consumer;
+
+/**
+ * Lists accept duplicate values
+ * Lists are ordered collections (or sequences)
+ * Lists are indexed
+ * "List Interface" is implemented by ArrayList, LinkedList and Vector
+ * "List Interface" extends the "Collection Interface"
+ */
 
 class Main {
   public static void main(String[] args) {
 
-    // Implementations
-    implementations();
-
     // Static methods
     _new();
+    _of();
 
     // Instance methods
-    add();
-    get();
-    remove();
-    sort();
+    _add();
+    _get();
+    _remove();
+    _sort();
   }
 
-  static void implementations() {
-
-    /**
-     * * Lists accept duplicate values
-     * * Lists are ordered collections (or sequences)
-     * * Lists are indexed
-     * * "List Interface" is implemented by ArrayList, LinkedList and Vector
-     * * "List Interface" extends the "Collection Interface"
-     */
+  static void _new() {
 
     // ArrayList (good to iterate, bad to modify)
     List<String> arrayList = new ArrayList<>();
+    List<String> arrayList2 = new ArrayList<>(List.of("hey", "there")); // out of another list
 
     // LinkedList (good to modify, bad to iterate)
     List<String> linkedList = new LinkedList<>();
@@ -42,31 +41,29 @@ class Main {
 
   }
 
-  static List _new() {
-
-    List<String> list1 = new ArrayList<>(); // empty list
-    List<String> list2 = new ArrayList<>(5, 1, -3); // initial size 1, but it can be expanded
-    List<String> list3 = new ArrayList<>(list2); // new list with initial values from another list
-
-    return list2;
+  static void _of() {
+    // Immutable list
+    List<String> list = List.of("hey", "there");
   }
 
-  static void add() {
-    List list = ListNew.run();
-    list.add("hey");
+  static void _add() {
+    List<String> list = new ArrayList<>();
+    list.add("a");
   }
 
-  static void get() {
-    List list = ListNew.run();
+  static void _get() {
+    List<String> list = new ArrayList<>();
+    list.add("a");
     list.get(0); // get element by index
   }
 
-  static void remove() {
-    List list = ListNew.run();
+  static void _remove() {
+    List<String> list = new ArrayList<>();
+    list.add("a");
     list.remove(0); // remove by index
   }
 
-  static void sort() {
+  static void _sort() {
 
     List<Integer> numberList = new ArrayList<>();
     numberList.add(5);
@@ -93,8 +90,7 @@ class Main {
     /**
      * * Sorting (comparator)
      */
-    personList.sort(new PersonComparator()); // sorts using comparator
-
+    personList.sort(new PersonComparator()); // class comparator
     personList.sort((p1, p2) -> Integer.compare(p1.number, p2.number)); // lambda-expression comparator
     personList.sort((p1, p2) -> p1.name.compareTo(p2.name)); // lambda-expression comparator
 
