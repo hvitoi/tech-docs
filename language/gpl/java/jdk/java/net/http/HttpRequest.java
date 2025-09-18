@@ -16,10 +16,12 @@ class Main {
 
   static void _newBuilder() {
 
+    // No request body
     var getRequest = HttpRequest.newBuilder(URI.create("https://httpbin.org/get"))
         .GET()
         .build();
 
+    // Request body from a string
     var body = """
         {
           "name": "Alice",
@@ -37,7 +39,6 @@ class Main {
   static void _BodyPublishers_ofString() {
 
     // Receive the Request Body as a string
-
     var body = """
         {
           "name": "Alice",

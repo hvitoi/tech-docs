@@ -10,6 +10,7 @@ class Main {
     // Static methods
     _new();
     _BodyHandlers_ofString();
+    _BodyHandlers_discarding();
 
     // Instance methods
     _statusCode();
@@ -41,6 +42,21 @@ class Main {
     try {
       // Treat the response body as a String
       var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  static void _BodyHandlers_discarding() {
+    var httpClient = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder()
+        .uri(URI.create("https://httpbin.org/get"))
+        .GET()
+        .build();
+    try {
+      // Ignore the response body
+      var response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
