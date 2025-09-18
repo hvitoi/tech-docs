@@ -5,14 +5,10 @@ class Main {
 
   public static void main(String[] args) {
 
-    /**
-     * Static
-     */
+    // Static methods
     GsonBuilderNew.run();
 
-    /**
-     * Instance
-     */
+    // Instance methods
     GsonBuilderRegisterTypeAdapter.run();
     GsonBuilderCreate.run();
   }

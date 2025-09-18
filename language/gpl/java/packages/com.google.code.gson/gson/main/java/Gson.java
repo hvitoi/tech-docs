@@ -1,17 +1,13 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-class Gson {
+class Main {
 
   public static void main(String[] args) {
-    /**
-     * Static
-     */
+    // Static methods
     GsonNew.run();
 
-    /**
-     * Instance
-     */
+    // Instance methods
     GsonToJson.run();
   }
 }

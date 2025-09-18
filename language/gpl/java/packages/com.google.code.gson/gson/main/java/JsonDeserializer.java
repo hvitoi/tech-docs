@@ -6,6 +6,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+class Main {
+  public static void main(String[] args) {
+  }
+}
+
 // optionally you can implement JsonSerializer and JsonDeserializer
 class UserAdapter implements JsonDeserializer<User> {
 
