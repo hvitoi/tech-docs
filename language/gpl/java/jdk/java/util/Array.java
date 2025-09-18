@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+class Main {
   public static void main(String[] args) {
 
     // Static Methods
