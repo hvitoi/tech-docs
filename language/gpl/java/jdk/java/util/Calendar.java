@@ -8,8 +8,7 @@ class Main {
     _new();
 
     // Instance methods
-    getTime();
-
+    _getTime();
   }
 
   static Calendar _new() {
@@ -17,8 +16,8 @@ class Main {
     return calendar;
   }
 
-  static void getTime() {
-    Calendar calendar = CalendarNew.run();
+  static void _getTime() {
+    Calendar calendar = _new();
     Date date = calendar.getTime();
   }
 }

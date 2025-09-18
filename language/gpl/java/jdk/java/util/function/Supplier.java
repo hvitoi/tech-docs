@@ -4,26 +4,20 @@ import java.util.function.Supplier;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
-    SupplierNew.run();
+    _new();
 
     // Instance methods
-    SupplierGet.run();
-
+    _get();
   }
-}
 
-class SupplierNew {
-  static void run() {
+  static void _new() {
     // Supplier of results
     Supplier<String> supplier = () -> "Hello";
 
   }
-}
 
-class SupplierGet {
-  static void run() {
+  static void _get() {
     Supplier<String> supplier = () -> "Hello";
     String res = supplier.get(); // hello
   }

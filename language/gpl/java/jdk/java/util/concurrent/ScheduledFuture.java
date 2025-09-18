@@ -11,11 +11,21 @@ class Main {
   public static void main(String[] args) {
     var scheduledFuture = Init.run();
 
-    /**
-     * Instance
-     */
-    _get.run(scheduledFuture);
-    _getDelay.run(scheduledFuture);
+    // Instance methods
+    _get(scheduledFuture);
+    _getDelay(scheduledFuture);
+  }
+
+  static void _get(ScheduledFuture<String> scheduledFuture) {
+    try {
+      scheduledFuture.get();
+    } catch (InterruptedException | ExecutionException e) {
+    }
+  }
+
+  static void _getDelay(ScheduledFuture<String> scheduledFuture) {
+    // how many seconds until it is executed
+    scheduledFuture.getDelay(TimeUnit.MILLISECONDS);
   }
 
 }
@@ -26,21 +36,5 @@ class Init {
     var scheduledFuture = service.schedule(() -> "hey", 2, TimeUnit.SECONDS);
     service.shutdown();
     return scheduledFuture;
-  }
-}
-
-class _get {
-  static void run(ScheduledFuture<String> scheduledFuture) {
-    try {
-      scheduledFuture.get();
-    } catch (InterruptedException | ExecutionException e) {
-    }
-  }
-}
-
-class _getDelay {
-  static void run(ScheduledFuture<String> scheduledFuture) {
-    // how many seconds until it is executed
-    scheduledFuture.getDelay(TimeUnit.MILLISECONDS);
   }
 }

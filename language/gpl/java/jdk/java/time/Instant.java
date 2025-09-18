@@ -1,6 +1,4 @@
-import java.time.Clock;
 import java.time.Instant;
-import java.time.ZoneId;
 
 class Main {
   public static void main(String[] args) {

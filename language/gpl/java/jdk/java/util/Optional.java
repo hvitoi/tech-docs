@@ -18,7 +18,6 @@ class Main {
     _get();
     _filter();
     _map();
-
   }
 
   static void _empty() {

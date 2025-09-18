@@ -1,24 +1,15 @@
-import java.lang.Comparable;
-
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.HashSet;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _new();
     _comparing();
   }
 
   static void _new() {
-    Comparator comparator1 = new PersonComparator(); // old way of creating comparators
-    Comparator comparator2 = (a, b) -> Integer.compare(a, b); // new syntax
+    var comparator1 = new PersonComparator(); // old way of creating comparators
+    var comparator2 = (a, b) -> Integer.compare(a, b); // new syntax
 
   }
 

@@ -4,41 +4,33 @@ import java.util.Queue;
 
 class Main {
   public static void main(String[] args) {
-    // Implementations
-    implementations();
-
     // Static methods
     _new();
 
     // Instance methods
-    add();
-    addAll();
-    peek();
+    _add();
+    _addAll();
+    _peek();
   }
 
-  static void implementations() {
-    Queue<String> queue = new LinkedList<>();
-  }
-
-  static Queue _new() {
+  static Queue<String> _new() {
     Queue<String> queue = new LinkedList<>();
     return queue;
   }
 
-  static void add() {
-    Queue<String> queue = QueueNew.run();
+  static void _add() {
+    Queue<String> queue = _new();
     queue.add("a");
   }
 
-  static void addAll() {
-    Queue<String> queue = QueueNew.run();
+  static void _addAll() {
+    Queue<String> queue = _new();
     queue.addAll(Arrays.asList("a", "b", "c"));
   }
 
-  static void peek() {
-    Queue<String> queue = QueueNew.run();
+  static void _peek() {
+    Queue<String> queue = _new();
     queue.add("a");
-
     String peeked = queue.peek(); // peek first element without poping
   }
 }

@@ -15,5 +15,4 @@ class MyServlet extends HttpServlet {
     // getWriter()
     resp.getWriter().println("I am a GET endpoint");
   }
-
 }

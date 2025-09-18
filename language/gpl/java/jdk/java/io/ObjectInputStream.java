@@ -1,10 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 class Main {
   public static void main(String[] args) {
@@ -30,7 +27,7 @@ class Main {
   }
 
   static void _readObject() {
-    ObjectInputStream objectInputStream = ObjectInputStreamNew.run();
+    ObjectInputStream objectInputStream = _new();
     try {
       Person p2 = (Person) objectInputStream.readObject(); // Person [age=20, height=null, name=Joe]
       objectInputStream.close();
@@ -40,7 +37,7 @@ class Main {
   }
 
   static void _close() {
-    ObjectInputStream objectInputStream = ObjectInputStreamNew.run();
+    ObjectInputStream objectInputStream = _new();
     try {
       Person p2 = (Person) objectInputStream.readObject(); // Person [age=20, height=null, name=Joe]
       objectInputStream.close();

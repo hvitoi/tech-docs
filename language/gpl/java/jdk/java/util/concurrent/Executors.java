@@ -6,26 +6,19 @@ import java.util.concurrent.Executors;
 
 class Main {
   public static void main(String[] args) {
-    /**
-     * Static
-     */
-    _newCachedThreadPool.run();
-    _newFixedThreadPool.run();
-    _newScheduledThreadPool.run();
-    _newSingleThreadScheduledExecutor.run();
+    // Static methods
+    _newCachedThreadPool();
+    _newFixedThreadPool();
+    _newScheduledThreadPool();
+    _newSingleThreadScheduledExecutor();
   }
-}
 
-class _newCachedThreadPool {
-  static void run() {
+  static void _newCachedThreadPool() {
     // This is used for light tasks that can be idle (e.g., http requests)
     Executors.newCachedThreadPool();
-
   }
-}
 
-class _newFixedThreadPool {
-  static void run() {
+  static void _newFixedThreadPool() {
     // If the task is a CPU intensive operations, there is not need to set the
     // number of threads higher than the availableProcessors. Because if all the
     // cores (physical threads) are busy, then the remaining virtual threads would
@@ -41,16 +34,12 @@ class _newFixedThreadPool {
     int coreCount = Runtime.getRuntime().availableProcessors();
     Executors.newFixedThreadPool(coreCount);
   }
-}
 
-class _newScheduledThreadPool {
-  static void run() {
+  static void _newScheduledThreadPool() {
     Executors.newScheduledThreadPool(1);
   }
-}
 
-class _newSingleThreadScheduledExecutor {
-  static void run() {
+  static void _newSingleThreadScheduledExecutor() {
     Executors.newSingleThreadScheduledExecutor();
   }
 }

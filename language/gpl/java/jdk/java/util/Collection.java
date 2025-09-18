@@ -1,44 +1,41 @@
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.function.Consumer;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _new();
 
     // Instance methods
-    add();
-    addAll();
-    clear();
-    contains();
-    isEmpty();
-    iterator();
-    remove();
-    size();
-    stream();
+    _add();
+    _addAll();
+    _clear();
+    _contains();
+    _isEmpty();
+    _iterator();
+    _remove();
+    _size();
+    _stream();
     // CollectionForEach.run(); // Inherited from Iterable
   }
 
-  static Collection _new() {
+  static Collection<String> _new() {
     Collection<String> col = new ArrayList<>();
     col.add("awesome");
     return col;
   }
 
-  static void add() {
+  static void _add() {
     Collection<String> col = _new();
 
     col.add("cool"); // add element to end
     // col.add(0, "great"); // Implemented in Lists only
   }
 
-  static void addAll() {
+  static void _addAll() {
     Collection<String> col1 = _new();
     Collection<String> col2 = _new();
 
@@ -46,12 +43,12 @@ class Main {
     // col1.addAll(col2.stream().map(RespostaDto::new).collect(Collectors.toList()));
   }
 
-  static void clear() {
+  static void _clear() {
     Collection<String> col = _new();
     col.clear(); // clear all the elements
   }
 
-  static void contains() {
+  static void _contains() {
     Collection<String> col = _new();
 
     col.add("abc");
@@ -69,12 +66,12 @@ class Main {
 
   }
 
-  static void isEmpty() {
+  static void _isEmpty() {
     Collection<String> col = _new();
     col.isEmpty(); // true or false
   }
 
-  static void iterator() {
+  static void _iterator() {
 
     Collection<String> col = _new();
     col.add("henry");
@@ -91,18 +88,18 @@ class Main {
 
   }
 
-  static void remove() {
+  static void _remove() {
     Collection<String> col = _new();
 
     col.remove(0); // remove element at index 0
   }
 
-  static void size() {
+  static void _size() {
     Collection<String> col = _new();
     col.size(); // get size
   }
 
-  static void stream() {
+  static void _stream() {
     Collection<String> col = _new();
     col.stream(); // returns a Stream object
   }

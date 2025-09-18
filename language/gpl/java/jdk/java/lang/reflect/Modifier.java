@@ -1,6 +1,4 @@
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.List;
 
 class Main {
   public static void main(String[] args) {
@@ -9,7 +7,6 @@ class Main {
     // Static methods
     _isAbstract();
     _isPublic();
-    ModifierIsPublic.run();
 
   }
 

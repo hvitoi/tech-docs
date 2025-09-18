@@ -23,7 +23,7 @@ class Main {
   }
 
   static void _execute() throws SQLException {
-    Statement statement = StatementNew.run();
+    Statement statement = _new();
     statement.execute("CREATE TABLE user (uuid varchar(200) primary key, email varchar(200))");
   }
 }

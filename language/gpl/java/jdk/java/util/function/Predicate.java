@@ -4,12 +4,10 @@ import java.util.function.Predicate;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    PredicateNew.run();
+    _new();
   }
-}
 
-class PredicateNew {
-  static void run() {
+  static void _new() {
     Predicate<String> startsWithS = str -> str.startsWith("S"); // true or false
   }
 }

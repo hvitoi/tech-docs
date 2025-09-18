@@ -6,22 +6,17 @@ import java.util.function.BiFunction;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    BiFunctionNew.run();
+    _new();
 
     // Instance methods
-    BiFunctionApply.run();
+    _apply();
   }
-}
 
-class BiFunctionNew {
-  static void run() {
-
+  static void _new() {
     BiFunction<String, Integer, String> fn = (num, cha) -> num.toString() + cha;
   }
-}
 
-class BiFunctionApply {
-  static void run() {
+  static void _apply() {
     String myCha = "zz";
     Integer myNum = 99;
 

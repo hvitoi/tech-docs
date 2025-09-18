@@ -23,7 +23,7 @@ class Main {
   }
 
   static void _createStatement() throws SQLException {
-    Connection conn = ConnectionNew.run();
+    Connection conn = _new();
 
     // Statement (empty)
     Statement statement = conn.createStatement();
@@ -32,7 +32,7 @@ class Main {
   }
 
   static void _prepareStatement() throws SQLException {
-    Connection conn = ConnectionNew.run();
+    Connection conn = _new();
 
     // PreparedStatement (with query built)
     PreparedStatement preparedStatement = conn

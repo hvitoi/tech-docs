@@ -27,7 +27,7 @@ class Main {
   }
 
   static void _setString() throws SQLException {
-    PreparedStatement ps = PreparedStatementNew.run();
+    PreparedStatement ps = _new();
 
     // Set the parameters for a query
     ps.setString(1, "000-000-000");
@@ -37,13 +37,13 @@ class Main {
   }
 
   static void _execute() throws SQLException {
-    PreparedStatement ps = PreparedStatementNew.run();
+    PreparedStatement ps = _new();
 
     ps.execute();
   }
 
   static void _executeQuery() throws SQLException {
-    PreparedStatement ps = PreparedStatementNew.run();
+    PreparedStatement ps = _new();
 
     // same as execute(), but returns the resultSet
     ResultSet resultSet = ps.executeQuery();

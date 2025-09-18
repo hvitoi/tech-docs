@@ -6,25 +6,25 @@ class Main {
   public static void main(String[] args) {
 
     // Instance methods
-    sort();
-    asList();
-    stream();
+    _sort();
+    _asList();
+    _stream();
 
   }
 
-  static void sort() {
+  static void _sort() {
     int[] arr = { 43, 15, 64, 22, 89 };
     Arrays.sort(arr);
   }
 
-  static void asList() {
+  static void _asList() {
     // Convert an array into a List
     List list1 = Arrays.asList(new int[] { 43, 15, 64, 22, 89 });
     List list2 = Arrays.asList(0, 1, 2, 3);
     List list3 = Arrays.asList("john", "tom", "jane");
   }
 
-  static void stream() {
+  static void _stream() {
     String[] arr = { "john", "tom", "jane" };
 
     // Convert an array into a List

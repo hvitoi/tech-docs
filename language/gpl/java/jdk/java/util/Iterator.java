@@ -1,26 +1,25 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 
 class Main {
   public static void main(String[] args) {
+    // Static methods
     _new();
 
     // Instance methods
-    hasNext();
-    next();
-    remove();
+    _hasNext();
+    _next();
+    _remove();
   }
 
-  static Iterator _new() {
+  static Iterator<String> _new() {
     Iterable<String> list = Arrays.asList("henry", "john", "albert");
     Iterator<String> it = list.iterator(); // must be reset in order to iterate again
     return it;
   }
 
-  static void hasNext() {
-    Iterator<String> it = ListIterator.run();
+  static void _hasNext() {
+    Iterator<String> it = _new();
 
     // loop the list
     while (it.hasNext()) {
@@ -28,18 +27,16 @@ class Main {
     }
   }
 
-  static void next() {
-    Iterator<String> it = ListIterator.run();
-
+  static void _next() {
+    Iterator<String> it = _new();
     // loop the list
     while (it.hasNext()) {
       String el = it.next(); // the current element in the loop
     }
   }
 
-  static void remove() {
-    Iterator<String> it = ListIterator.run();
-
+  static void _remove() {
+    Iterator<String> it = _new();
     // loop the list
     while (it.hasNext()) {
       String el = it.next();

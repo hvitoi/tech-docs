@@ -7,13 +7,11 @@ class Main {
   public static void main(String[] args) {
 
     // Static methods
-    BinaryOperatorNew.run();
+    _new();
 
   }
-}
 
-class BinaryOperatorNew {
-  static void run() {
+  static void _new() {
     BinaryOperator<Integer> fn = (Integer sum, Integer num) -> sum + num;
     BinaryOperator<Integer> fn2 = (sum, num) -> sum + num; // types can be omitted
 

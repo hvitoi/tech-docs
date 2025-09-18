@@ -14,5 +14,4 @@ class MyServlet extends HttpServlet {
     // getParameter()
     req.getParameter("email"); // query parameter
   }
-
 }

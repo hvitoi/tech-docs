@@ -7,24 +7,14 @@ import java.util.concurrent.Executors;
 
 class Main {
   public static void main(String[] args) {
-    var executorService = Init.run();
-    /**
-     * Instance
-     */
-    _submit.run(executorService);
-    _execute.run(executorService);
+    var executorService = Executors.newCachedThreadPool();
+
+    // Instance methods
+    _submit(executorService);
+    _execute(executorService);
   }
 
-}
-
-class Init {
-  static ExecutorService run() {
-    return Executors.newCachedThreadPool();
-  }
-}
-
-class _submit {
-  static void run(ExecutorService executorService) {
+  static void _submit(ExecutorService executorService) {
     // submit a task to be run in the thread
     // Takes a Runnable task which returns back a value
     // Returns a Future can be used to get the result
@@ -40,12 +30,11 @@ class _submit {
       return null;
     });
   }
-}
 
-class _execute {
-  static void run(ExecutorService executorService) {
+  static void _execute(ExecutorService executorService) {
     // Returns nil so that the result is lost
     // Takes a Callable task which does not return a value
     executorService.execute(() -> System.out.println("lol!"));
   }
+
 }

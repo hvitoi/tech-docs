@@ -4,33 +4,25 @@ import java.util.function.Function;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
-    FunctionNew.run();
+    _new();
 
     // Instance methods
-    FunctionApply.run();
-    FunctionAndThen.run();
-
+    _apply();
+    _andThen();
   }
-}
 
-class FunctionNew {
-  static void run() {
+  static void _new() {
     Function<String, Integer> fn = (word) -> word.length();
   }
-}
 
-class FunctionApply {
-  static void run() {
+  static void _apply() {
     Function<String, Integer> fn = (word) -> word.length();
     Integer res = fn.apply("henrique"); // 8
 
   }
-}
 
-class FunctionAndThen {
-  static void run() {
+  static void _andThen() {
     Function<String, Integer> fn1 = x -> x.length();
     Function<Integer, Integer> fn2 = x -> x * 2;
 

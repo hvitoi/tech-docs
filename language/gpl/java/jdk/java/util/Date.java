@@ -7,8 +7,7 @@ class Main {
     _new();
 
     // Instance methods
-    getTime();
-
+    _getTime();
   }
 
   static void _new() {
@@ -21,10 +20,8 @@ class Main {
 
   }
 
-  static void getTime() {
+  static void _getTime() {
     Date date = new Date();
-
     Long time = date.getTime();
-
   }
 }

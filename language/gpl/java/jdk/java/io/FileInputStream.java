@@ -1,5 +1,5 @@
-import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 class Main {
@@ -23,7 +23,7 @@ class Main {
   }
 
   static void _read() {
-    FileInputStream fileInputStream = FileInputStreamNew.run();
+    FileInputStream fileInputStream = _new();
     try {
       int binaryData = fileInputStream.read();
       fileInputStream.close();
@@ -32,7 +32,7 @@ class Main {
   }
 
   static void _close() {
-    FileInputStream fileInputStream = FileInputStreamNew.run();
+    FileInputStream fileInputStream = _new();
     try {
       int binaryData = fileInputStream.read();
       fileInputStream.close();

@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 class Main {
@@ -34,7 +35,11 @@ class Main {
 
     try {
       Method method = clazz.getDeclaredMethod("printName");
-      method.invoke(person);
+      try {
+        method.invoke(person);
+      } catch (IllegalAccessException | InvocationTargetException e) {
+        e.printStackTrace();
+      }
       // method.invoke(person, arg1, arg2);
       // String name = (String) method.invoke(person);
     } catch (NoSuchMethodException e) {

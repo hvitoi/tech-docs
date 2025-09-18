@@ -1,20 +1,12 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.regex.Pattern;
 
 class Main {
   public static void main(String[] args) {
-    /**
-     * Static
-     */
-    PatternCompile.run();
-
+    // Static methods
+    _compile();
   }
-}
 
-class PatternCompile {
-  static void run() {
+  static void _compile() {
     Pattern pattern = Pattern.compile("abc*");
   }
 }

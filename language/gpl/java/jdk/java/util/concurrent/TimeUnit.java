@@ -6,27 +6,19 @@ import java.util.concurrent.TimeUnit;
 
 class Main {
   public static void main(String[] args) {
-    /*
-     * Static
-     */
-    Init.run();
+    // Static methods
+    _new();
 
-    /*
-     * Instance
-     */
-    _sleep.run();
+    // Instance methods
+    _sleep();
   }
-}
 
-class Init {
-  static void run() {
+  static void _new() {
     var seconds = TimeUnit.SECONDS;
     var days = TimeUnit.DAYS;
   }
-}
 
-class _sleep {
-  static void run() {
+  static void _sleep() {
     try {
       var timeUnit = TimeUnit.SECONDS;
       timeUnit.sleep(5);

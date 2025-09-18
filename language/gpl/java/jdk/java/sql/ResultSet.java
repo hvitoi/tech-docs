@@ -27,7 +27,7 @@ class Main {
   }
 
   static void _next() throws SQLException {
-    ResultSet rs = ResultSetNew.run();
+    ResultSet rs = _new();
 
     // goes to the next line in the result set
     boolean goneToNextLine = rs.next();

@@ -1,8 +1,6 @@
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
@@ -30,7 +28,7 @@ class Main {
   }
 
   static void _writeObject() {
-    ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
+    ObjectOutputStream objectOutputStream = _new();
 
     // Object -> Serialize -> File
     Person p1 = new Person("Joe", 20);
@@ -44,7 +42,7 @@ class Main {
   }
 
   static void _flush() {
-    ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
+    ObjectOutputStream objectOutputStream = _new();
 
     // Object -> Serialize -> File
     Person p1 = new Person("Joe", 20);
@@ -57,7 +55,7 @@ class Main {
   }
 
   static void _close() {
-    ObjectOutputStream objectOutputStream = ObjectOutputStreamNew.run();
+    ObjectOutputStream objectOutputStream = _new();
 
     // Object -> Serialize -> File
     Person p1 = new Person("Joe", 20);

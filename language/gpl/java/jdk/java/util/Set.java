@@ -1,22 +1,18 @@
-import java.util.HashSet; // implementation
-import java.util.LinkedHashSet; // implementation
-import java.util.Set; // interface
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 class Main {
   public static void main(String[] args) {
-    // Implementations
-    implementations();
-
     // Static methods
     _new();
   }
 
-  static void implementations() {
-
+  static void _new() {
     /**
-     * * Sets do not accept duplicate values
-     * * Sets are good for searching (quick and inexpensive)
+     * Sets do not accept duplicate values
+     * Sets are good for searching (quick and inexpensive)
      */
 
     // do not guarantee order
@@ -30,10 +26,5 @@ class Main {
     // works only for comparable items
     Set<String> treeSet = new TreeSet<String>(); // optionally receives a comparator
     treeSet.add("Henry");
-
-  }
-
-  static void _new() {
-    Set<String> set = new HashSet<String>();
   }
 }
