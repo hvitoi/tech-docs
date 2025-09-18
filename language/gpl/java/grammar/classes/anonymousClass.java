@@ -2,13 +2,6 @@ import java.util.Comparator;
 
 class Main {
   public static void main(String[] args) {
-    AnonymousClass.run();
-
-  }
-}
-
-class AnonymousClass {
-  static void run() {
 
     // Anonymous classes are inner classes with no name.
     // Declare and instantiate anonymous classes in a single expression
@@ -19,6 +12,4 @@ class AnonymousClass {
       }
     };
 
-    System.out.println(isEqual);
-  }
-}
+  

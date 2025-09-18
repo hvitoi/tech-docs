@@ -12,20 +12,19 @@ class Main {
     _newHttpClient();
 
     // Instance methods
-    _newBuilder();
+    _send();
 
   }
 
-  static HttpClient _newHttpClient() {
+  static void _newHttpClient() {
     var httpClient = HttpClient.newHttpClient();
-    return httpClient;
   }
 
   static void _send() throws URISyntaxException, IOException, InterruptedException {
-    var httpClient = _newHttpClient();
+    var httpClient = HttpClient.newHttpClient();
 
-    var uri = new URI("https://httpbin.org/get");
-    var request = HttpRequest.newBuilder(uri)
+    var request = HttpRequest.newBuilder()
+        .uri(URI.create("https://httpbin.org/get"))
         .GET()
         .build();
 
