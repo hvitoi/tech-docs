@@ -41,7 +41,8 @@ class Main {
 
   static void _of() {
     // Immutable list
-    var items = List.of("hey", "there");
+    var items1 = List.of("hey", "there");
+    var items2 = List.of(); // empty list
   }
 
   static void _get() {
@@ -55,8 +56,10 @@ class Main {
   }
 
   static void _add() {
+    // List overrides the method from Collection, allowing insert on a given index
     var items = new ArrayList<String>();
-    items.add("a");
+    items.add("a"); // add to end
+    items.add(0, "b"); // add to index
   }
 
   static void _remove() {

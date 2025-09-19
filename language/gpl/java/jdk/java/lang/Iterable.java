@@ -15,4 +15,9 @@ class Main {
     data.forEach(consumer1);
     data.forEach(consumer2);
   }
+
+  static void _iterator() {
+    var items = List.of("a", "b", "c");
+    var it = items.iterator();
+  }
 }

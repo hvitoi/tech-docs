@@ -9,6 +9,7 @@ class Main {
   public static void main(String[] args) {
     // Static methods
     _emptySet();
+    _emptyList();
     _nCopies();
     _reverse();
     _shuffle();
@@ -22,6 +23,10 @@ class Main {
   static void _emptySet() {
     // create unmodified empty set
     Set<String> set = Collections.emptySet();
+  }
+
+  static void _emptyList() {
+    List<String> items = Collections.emptyList();
   }
 
   static void _nCopies() {

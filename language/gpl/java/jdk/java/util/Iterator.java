@@ -1,5 +1,7 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 class Main {
   public static void main(String[] args) {
@@ -7,40 +9,55 @@ class Main {
     _new();
 
     // Instance methods
-    _hasNext();
-    _next();
-    _remove();
+    _hasNext(); // pure
+    _next(); // pure
+    _remove(); // mut
   }
 
-  static Iterator<String> _new() {
-    Iterable<String> list = Arrays.asList("henry", "john", "albert");
-    Iterator<String> it = list.iterator(); // must be reset in order to iterate again
-    return it;
+  static void _new() {
+    // It's an object for traversing a collection
+    Iterable<String> items = List.of("a", "b", "c");
+    Iterator<String> it = items.iterator();
   }
 
   static void _hasNext() {
-    Iterator<String> it = _new();
+    Iterable<String> items = List.of("a", "b", "c");
 
     // loop the list
+    Iterator<String> it = items.iterator();
     while (it.hasNext()) {
-      String el = it.next();
+      var el = it.next();
+    }
+
+    // loop again ...
+    Iterator<String> it2 = items.iterator();
+    while (it.hasNext()) {
+      var el = it.next();
     }
   }
 
   static void _next() {
-    Iterator<String> it = _new();
-    // loop the list
-    while (it.hasNext()) {
-      String el = it.next(); // the current element in the loop
+    Iterable<String> items = List.of("a", "b", "c");
+    Iterator<String> it = items.iterator();
+
+    it.next(); // a
+    it.next(); // b
+    it.next(); // c
+
+    try {
+      it.next(); // throws when trying to access it and it's already exhausted
+    } catch (NoSuchElementException e) {
     }
   }
 
   static void _remove() {
-    Iterator<String> it = _new();
-    // loop the list
-    while (it.hasNext()) {
-      String el = it.next();
-      it.remove(); // remove the current element
-    }
+    Iterable<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    Iterator<String> it = items.iterator();
+
+    it.next();
+    it.remove(); // removes "a"
+    it.next(); // continue iterating... "b"
+    it.next(); // continue iterating... "c"
+
   }
 }

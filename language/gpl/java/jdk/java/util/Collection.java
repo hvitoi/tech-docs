@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 class Main {
   public static void main(String[] args) {
@@ -10,137 +8,98 @@ class Main {
     _new();
 
     // Instance methods
-    _add();
-    _addAll();
-    _clear();
-    _contains();
-    _isEmpty();
-    _iterator();
-    _remove();
-    _size();
-    _stream();
+    _add(); // mut
+    _addAll(); // mut
+    _remove(); // mut
+    _removeAll(); // mut
+    _removeIf(); // mut
+    _retainAll(); // mut
+    _clear(); // mut
 
-    // inherited from Iterable
-    // _forEach()
+    _isEmpty(); // pure
+    _contains(); // pure
+    _containsAll(); // pure
+    _size(); // pure
+    _stream(); // pure
+
+    // + Iterable methods
   }
 
-  static Collection<String> _new() {
-    Collection<String> col = new ArrayList<>();
-    col.add("awesome");
-    return col;
+  static void _new() {
+    Collection<String> items = new ArrayList<>(List.of("a", "b", "c"));
   }
 
   static void _add() {
-    Collection<String> col = _new();
-
-    col.add("cool"); // add element to end
-    // col.add(0, "great"); // Implemented in Lists only
+    Collection<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    items.add("d"); // Where it is added depends on the implementation
+    // items.add(0, "great"); // Implemented in Lists only
   }
 
   static void _addAll() {
-    Collection<String> col1 = _new();
-    Collection<String> col2 = _new();
+    Collection<String> items = new ArrayList<>(List.of("a", "b", "c"));
 
-    col1.addAll(col2); // add a whole list to the list
-    // col1.addAll(col2.stream().map(RespostaDto::new).collect(Collectors.toList()));
-  }
-
-  static void _clear() {
-    Collection<String> col = _new();
-    col.clear(); // clear all the elements
-  }
-
-  static void _contains() {
-    Collection<String> col = _new();
-
-    col.add("abc");
-    col.add("abcd");
-
-    /**
-     * Contains: Search an element in the array using the method equals for each
-     * element in the list. The equals method must be @Override in order to
-     * customize the behavior of the comparison. The default implementation of
-     * equals compare the references
-     *
-     */
-    // public boolean equals(Object ref)
-    col.contains("abc"); // verify if a list contains a single element
-
-  }
-
-  static void _isEmpty() {
-    Collection<String> col = _new();
-    col.isEmpty(); // true or false
-  }
-
-  static void _iterator() {
-
-    Collection<String> col = _new();
-    col.add("henry");
-    col.add("john");
-    col.add("albert");
-
-    /**
-     * * Listing with Iterator
-     */
-    Iterator<String> it = col.iterator(); // must be reset in order to iterate again
-    while (it.hasNext()) {
-      it.next();
-    }
-
+    // add a whole list to the list
+    items.addAll(List.of("d", "e"));
   }
 
   static void _remove() {
-    Collection<String> col = _new();
+    Collection<String> items = new ArrayList<>(List.of("a", "a", "b"));
 
-    col.remove(0); // remove element at index 0
+    // removes the FIRST element with a given value
+    // if the element does not exist, simply remove nothing
+    items.remove("a"); // [a, b]
+  }
+
+  static void _removeAll() {
+    Collection<String> items = new ArrayList<>(List.of("a", "a", "b", "b", "c"));
+
+    // removes ALL elements with a given value
+    items.removeAll(List.of("a", "b")); // [c]
+  }
+
+  static void _removeIf() {
+    Collection<Integer> items = new ArrayList<>(List.of(1, 2, 3, 4));
+    items.removeIf((num) -> num % 2 == 0); // remove even numbers
+  }
+
+  static void _retainAll() {
+    Collection<String> items = new ArrayList<>(List.of("a", "a", "b", "b", "c"));
+
+    // "Intersection", retain also duplicates
+    items.retainAll(List.of("a", "c"));
+  }
+
+  static void _clear() {
+    Collection<String> items = new ArrayList<>(List.of("a", "b", "c"));
+
+    // removes all the elements from the list
+    items.clear();
+  }
+
+  static void _isEmpty() {
+    Collection<String> items = List.of();
+    items.isEmpty(); // true
+  }
+
+  static void _contains() {
+    Collection<String> items = List.of("a", "b", "c");
+    items.contains("a"); // true
+  }
+
+  static void _containsAll() {
+    Collection<String> items = List.of("a", "b", "c");
+    items.containsAll(List.of("a")); // true
+    items.containsAll(List.of("a", "a")); // true
+    items.containsAll(List.of("a", "b", "c", "z")); // false
   }
 
   static void _size() {
-    Collection<String> col = _new();
-    col.size(); // get size
+    Collection<String> col = List.of("a", "b", "c");
+    col.size();
   }
 
   static void _stream() {
-    Collection<String> col = _new();
-    col.stream(); // returns a Stream object
+    Collection<String> items = List.of("a", "b", "c");
+    var stream = items.stream();
   }
-}
-
-class Person {
-  private int number;
-  private String name;
-  private Map<Integer, Person> numberToPerson = new HashMap<>();
-
-  public Person(int number, String name) {
-    this.number = number;
-    this.name = name;
-    this.numberToPerson.put(this.number, this);
-  }
-
-  public int getNumber() {
-    return number;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  // For Searching
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + number;
-    return result;
-  }
-
-  // For Searching
-  @Override
-  public boolean equals(Object obj) {
-    Person other = (Person) obj;
-    return this.name.equals(other.name);
-  }
-
 }
