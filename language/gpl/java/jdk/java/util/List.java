@@ -20,10 +20,21 @@ class Main {
     _of();
 
     // Instance methods
-    _get();
-    _add();
-    _remove();
-    _sort();
+    _add(); // mut
+    _addAll(); // mut
+    _remove(); // mut
+    _set(); // mut
+    _replaceAll(); // mut
+    _sort(); // mut
+
+    _get(); // pure
+    _indexOf(); // pure
+    _lastIndexOf(); // pure
+    _subList(); // pure
+
+    // + SequencedCollection methods
+    // + Collections methods
+    // + Iterable methods
   }
 
   static void _new() {
@@ -45,26 +56,34 @@ class Main {
     var items2 = List.of(); // empty list
   }
 
-  static void _get() {
-    var items = new ArrayList<>(List.of("a", "b", "c"));
-    items.get(0); // get element by index
-
-    try {
-      items.get(99);
-    } catch (IndexOutOfBoundsException e) {
-    }
+  static void _add() {
+    // Method overload on method from Collection: allow insert on a given index
+    List<String> items = new ArrayList<>();
+    items.add("z"); // add to end
+    items.add(0, "a"); // add to index
   }
 
-  static void _add() {
-    // List overrides the method from Collection, allowing insert on a given index
-    var items = new ArrayList<String>();
-    items.add("a"); // add to end
-    items.add(0, "b"); // add to index
+  static void _addAll() {
+    // Method overload on method from Collection: allow insert on a given index
+    List<String> items = new ArrayList<>();
+    items.addAll(0, List.of("a", "b")); // add at index 0
   }
 
   static void _remove() {
-    var list = new ArrayList<>(List.of("a", "b", "c"));
-    list.remove(0); // remove by index
+    // Overrides the method from Collection: remove by index (instead of by element)
+    List<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    items.remove(0); // removes "a"
+  }
+
+  static void _set() {
+    List<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    items.set(0, "z"); // updates index 0
+  }
+
+  static void _replaceAll() {
+    List<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    items.replaceAll(s -> s.toUpperCase());
+    // Works like a map
   }
 
   static void _sort() {
@@ -89,6 +108,37 @@ class Main {
     personList.sort(new PersonComparator()); // comparator class (legacy)
 
   }
+
+  static void _get() {
+    var items = new ArrayList<>(List.of("a", "b", "c"));
+    items.get(0); // get element by index
+
+    try {
+      items.get(99);
+    } catch (IndexOutOfBoundsException e) {
+    }
+  }
+
+  static void _indexOf() {
+    List<String> items = new ArrayList<>(List.of("a", "a", "b", "c"));
+    // Get the index of the FIRST appearance
+    items.indexOf("a"); // 0
+  }
+
+  static void _lastIndexOf() {
+    List<String> items = new ArrayList<>(List.of("a", "a", "b", "c"));
+    // Get the index of the LAST appearance
+    items.lastIndexOf("a"); // 1
+  }
+
+  static void _subList() {
+    List<String> items = new ArrayList<>(List.of("a", "b", "c", "d", "e"));
+
+    // Extract a chunk of the list
+    // The original list is untouched
+    var sub = items.subList(1, 3); // [1,3)
+  }
+
 }
 
 class Person implements Comparable<Person> {

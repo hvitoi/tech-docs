@@ -32,7 +32,7 @@ class Main {
   static void _add() {
     Collection<String> items = new ArrayList<>(List.of("a", "b", "c"));
     items.add("d"); // Where it is added depends on the implementation
-    // items.add(0, "great"); // Implemented in Lists only
+    // items.add(0, "z"); // Implemented in Lists only
   }
 
   static void _addAll() {
