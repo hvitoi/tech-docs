@@ -5,15 +5,15 @@ import java.lang.String;
 class Main {
   public static void main(String[] args) {
 
-    List<String> list = new ArrayList<>();
-    list.add("hey");
-    list.add("there");
+    var items = new ArrayList<>(List.of("a", "b", "c"));
 
-    for (int i = 0; i < list.size(); i++) {
-      System.out.println(list.get(i));
+    for (int i = 0; i < items.size(); i++) {
+      System.out.println(items.get(i));
     }
 
-    var a = "a";
-    a.
+    for (int i = items.size() - 1; i >= 0; i--) {
+      System.out.println(items.get(i));
+    }
+
   }
 }

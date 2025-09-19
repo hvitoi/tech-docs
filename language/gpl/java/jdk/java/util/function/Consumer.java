@@ -11,7 +11,7 @@ class Main {
   static void _new() {
     Consumer<String> consumer1 = System.out::println; // new syntax
     Consumer<String> consumer2 = (el) -> System.out.println(el); // with lambdas
-    Consumer<String> consumer3 = new MyConsumer(); // older way to create consumers
+    Consumer<String> consumer3 = new MyConsumer(); // consumer class (legacy)
   }
 }
 

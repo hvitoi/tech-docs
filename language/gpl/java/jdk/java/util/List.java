@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.function.Consumer;
 
 /**
  * Lists accept duplicate values
@@ -21,64 +20,54 @@ class Main {
     _of();
 
     // Instance methods
-    _add();
     _get();
+    _add();
     _remove();
     _sort();
   }
 
   static void _new() {
-
     // ArrayList (good to iterate, bad to modify)
-    List<String> arrayList = new ArrayList<>();
-    List<String> arrayList2 = new ArrayList<>(List.of("hey", "there")); // out of another list
+    List<String> list1 = new ArrayList<>();
+    var list2 = new ArrayList<String>();
+    var list3 = new ArrayList<>(List.of("hey", "there"));
 
     // LinkedList (good to modify, bad to iterate)
-    List<String> linkedList = new LinkedList<>();
+    var list4 = new LinkedList<String>();
 
     // VectorList (manipulate a list across call stacks (thread safe))
-    List<String> vectorList = new Vector<>();
-
+    var list5 = new Vector<String>();
   }
 
   static void _of() {
     // Immutable list
-    List<String> list = List.of("hey", "there");
-  }
-
-  static void _add() {
-    List<String> list = new ArrayList<>();
-    list.add("a");
+    var items = List.of("hey", "there");
   }
 
   static void _get() {
-    List<String> list = new ArrayList<>();
-    list.add("a");
-    list.get(0); // get element by index
+    var items = new ArrayList<>(List.of("a", "b", "c"));
+    items.get(0); // get element by index
+
+    try {
+      items.get(99);
+    } catch (IndexOutOfBoundsException e) {
+    }
+  }
+
+  static void _add() {
+    var items = new ArrayList<String>();
+    items.add("a");
   }
 
   static void _remove() {
-    List<String> list = new ArrayList<>();
-    list.add("a");
+    var list = new ArrayList<>(List.of("a", "b", "c"));
     list.remove(0); // remove by index
   }
 
   static void _sort() {
-
-    List<Integer> numberList = new ArrayList<>();
-    numberList.add(5);
-    numberList.add(-3);
-    numberList.add(2);
-
-    List<String> stringList = new ArrayList<>();
-    stringList.add("hey");
-    stringList.add("12");
-    stringList.add("awesome");
-
-    List<Person> personList = new ArrayList<>();
-    personList.add(new Person(5, "Henry"));
-    personList.add(new Person(9, "Albert"));
-    personList.add(new Person(4, "John"));
+    var numberList = new ArrayList<>(List.of(3, 1, 2));
+    var stringList = new ArrayList<>(List.of("a", "b", "c"));
+    var personList = new ArrayList<>(List.of(new Person("Henry", 5), new Person("Albert", 9), new Person("John", 4)));
 
     /**
      * * Sorting (natural order)
@@ -90,37 +79,36 @@ class Main {
     /**
      * * Sorting (comparator)
      */
-    personList.sort(new PersonComparator()); // class comparator
-    personList.sort((p1, p2) -> Integer.compare(p1.number, p2.number)); // lambda-expression comparator
+    personList.sort((p1, p2) -> Integer.compare(p1.age, p2.age)); // lambda-expression comparator
     personList.sort((p1, p2) -> p1.name.compareTo(p2.name)); // lambda-expression comparator
-
-    personList.sort(Comparator.comparing(Person::getNumber));
+    personList.sort(Comparator.comparing(Person::getAge));
     personList.sort(Comparator.comparing(Person::getName));
+    personList.sort(new PersonComparator()); // comparator class (legacy)
 
   }
 }
 
 class Person implements Comparable<Person> {
-  int number;
   String name;
+  int age;
 
-  public Person(int number, String name) {
-    this.number = number;
+  public Person(String name, int age) {
     this.name = name;
-  }
-
-  public int getNumber() {
-    return number;
+    this.age = age;
   }
 
   public String getName() {
     return name;
   }
 
+  public int getAge() {
+    return age;
+  }
+
   // For Sorting
   @Override
   public int compareTo(Person other) {
-    return Integer.compare(this.number, other.number); // 0: equal, -1: smaller, +1: bigger
+    return Integer.compare(this.age, other.age); // 0: equal, -1: smaller, +1: bigger
   }
 
   // For Searching
@@ -129,7 +117,7 @@ class Person implements Comparable<Person> {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + number;
+    result = prime * result + age;
     return result;
   }
 
@@ -148,7 +136,7 @@ class Person implements Comparable<Person> {
         return false;
     } else if (!name.equals(other.name))
       return false;
-    if (number != other.number)
+    if (age != other.age)
       return false;
     return true;
   }
@@ -156,19 +144,8 @@ class Person implements Comparable<Person> {
 }
 
 class PersonComparator implements Comparator<Person> {
-
   @Override
   public int compare(Person p1, Person p2) {
-    return Integer.compare(p1.number, p2.number); // 0: equal, -1: smaller, +1: bigger
+    return Integer.compare(p1.age, p2.age); // 0: equal, -1: smaller, +1: bigger
   }
-
-}
-
-class PersonConsumer implements Consumer<Person> {
-
-  @Override
-  public void accept(Person p) {
-    System.out.println("Person number: " + p.number + ". Person name:" + p.name);
-  }
-
 }
