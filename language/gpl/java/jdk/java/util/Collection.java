@@ -15,7 +15,6 @@ class Main {
     _removeIf(); // mut
     _retainAll(); // mut
     _clear(); // mut
-
     _isEmpty(); // pure
     _contains(); // pure
     _containsAll(); // pure

@@ -21,12 +21,11 @@ class Main {
 
     // Instance methods
     _add(); // mut (overloaded)
-    _addAll(); // mut
-    _remove(); // mut
+    _addAll(); // mut (overload)
+    _remove(); // mut (override)
     _set(); // mut
     _replaceAll(); // mut
     _sort(); // mut
-
     _get(); // pure
     _indexOf(); // pure
     _lastIndexOf(); // pure
