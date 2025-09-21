@@ -15,7 +15,6 @@ class Main {
     Stream
         .of("Henrique", "Abrantes", "Vitoi")
         .map(String::length) // class::instanceMethod - el -> el.length()
-        // .reduce(Integer::sum) // class::staticMethod - els -> Integer.sum(els)
         .forEach(System.out::println); // object::instanceMethod - el -> System.out.println(el)
   }
 }

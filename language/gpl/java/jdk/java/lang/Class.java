@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _forName();
 
@@ -28,7 +27,6 @@ class Main {
     _getDeclaredMethod(); // -> Method
     _getMethods(); // -> Method[]
     _getMethod(); // -> Method
-
   }
 
   static void _forName() {

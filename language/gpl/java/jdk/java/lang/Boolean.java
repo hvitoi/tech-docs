@@ -1,8 +1,6 @@
 class Main {
 
   public static void main(String[] args) {
-
-    // Static methods
     _new();
 
     // Instance methods

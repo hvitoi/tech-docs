@@ -1,7 +1,8 @@
 class Main {
   public static void main(String[] args) {
-    // Static Methods
     _new();
+
+    // Static Methods
     _valueOf();
     _isLetter();
   }

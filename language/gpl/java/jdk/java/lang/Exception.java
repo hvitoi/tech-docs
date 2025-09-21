@@ -1,8 +1,8 @@
 class Main {
   public static void main(String[] args) {
-
-    // Static methods
     _new();
+
+    // Instance methods
     _printStackTrace();
     _getStackTrace();
   }
@@ -12,12 +12,16 @@ class Main {
   }
 
   static void _printStackTrace() {
-    Exception e = new Exception();
-    e.printStackTrace();
+    var e = new Exception();
+    // e.printStackTrace();
   }
 
   static void _getStackTrace() {
-    Exception e = new Exception();
-    e.getStackTrace();
+    var e = new Exception();
+    var stackTrace = e.getStackTrace();
+
+    // for (var el : stackTrace) {
+    // System.out.println(el);
+    // }
   }
 }

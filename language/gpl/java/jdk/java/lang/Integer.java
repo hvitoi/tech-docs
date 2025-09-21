@@ -1,35 +1,33 @@
 class Main {
   public static void main(String[] args) {
-
     // Static Methods
     _compare();
-    _parseInt();
     _valueOf();
+    _parseInt();
     _sum();
   }
 
   static void _compare() {
+    var num1 = 9;
+    var num2 = 8;
 
-    Integer ref1 = 30;
-    Integer ref2 = 30;
-    Integer ref3 = 20;
-
-    Integer.compare(ref1, ref2); // 0: equal
-    Integer.compare(ref2, ref3); // +1: 1st > 2nd
-    Integer.compare(ref3, ref2); // -1: 1st < 2nd
-  }
-
-  static void _parseInt() {
-    Integer parsedInt = Integer.parseInt("3279"); // String -> Integer
+    Integer.compare(num1, num1); // 0: equal
+    Integer.compare(num1, num2); // +1: 1st > 2nd
+    Integer.compare(num2, num1); // -1: 1st < 2nd
   }
 
   static void _valueOf() {
-    Integer ref1 = 30; // boxing from int
-    Integer ref2 = Integer.valueOf(30); // boxing from int
-    Integer ref3 = Integer.valueOf("20"); // boxing from str
+    Integer num1 = 30; // boxing from int
+    var num2 = Integer.valueOf(30); // boxing from int
+    var num3 = Integer.valueOf("20"); // boxing from str
+  }
+
+  static void _parseInt() {
+    var num = Integer.parseInt("3279"); // String -> Integer
   }
 
   static void _sum() {
-    int sum = Integer.sum(1, 1);
+    // Sums 2 numbers
+    int sum = Integer.sum(1, 2);
   }
 }
