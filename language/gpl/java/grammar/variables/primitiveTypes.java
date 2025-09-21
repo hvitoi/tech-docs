@@ -30,7 +30,10 @@ class Main {
   static void _char() {
     // Stores a single Unicode character
     // 1 byte
-    char foo = 'a';
+    char foo1 = 'A';
+    char foo2 = '\u0041'; // D in unicode
+    // System.out.println(foo1 == foo2); // true
+
   }
 
   static void _short() {

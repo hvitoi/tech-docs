@@ -7,10 +7,9 @@ class Main {
   }
 
   static void _new() {
-    // Stores unicode characters
-    char myChar = 'D'; // Stores only one character
-    char myUnicodeChar = '\u0044'; // D in unicode
-    char myCopyrightChar = '\u00A9';
+    // Stores a single unicode character
+    char myChar1 = 'A';
+    Character myChar2 = 'A';
   }
 
   static void _valueOf() {

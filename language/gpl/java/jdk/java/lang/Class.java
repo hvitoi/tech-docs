@@ -10,175 +10,147 @@ class Main {
     _forName();
 
     // Instance methods
-    _getName();
-    _getCanonicalName();
-    _getSimpleName();
-    _getPackage();
-    _getSuperclass();
-    _getInterfaces();
-    _getModifiers();
+    _getName(); // -> String
+    _getCanonicalName(); // -> String
+    _getSimpleName(); // -> String
+    _getPackage(); // -> Package
+    _getSuperclass(); // -> Class
+    _getInterfaces(); // -> Class[]
+    _getModifiers(); // -> Integer
+    _getConstructors(); // -> Constructor[]
 
-    _getDeclaredFields();
-    _getDeclaredField();
-    _getFields();
-    _getField();
+    _getDeclaredFields(); // -> Field[]
+    _getDeclaredField(); // -> Field
+    _getFields(); // -> Field[]
+    _getField(); // -> Field
 
-    _getDeclaredMethods();
-    _getDeclaredMethod();
-    _getMethods();
-    _getMethod();
-
-    _getConstructors();
+    _getDeclaredMethods(); // -> Method[]
+    _getDeclaredMethod(); // -> Method
+    _getMethods(); // -> Method[]
+    _getMethod(); // -> Method
 
   }
 
   static void _forName() {
+    // returns the class associated with a given name
+    // the type <?> is unknown because it's only known at runtime
     try {
-      // returns the class associated with a given name
-      Class clazz = Class.forName("Person");
-      // System.out.println(clazz.getName());
+      Class<?> clazz = Class.forName("java.lang.String");
+      var clazz2 = Class.forName("java.lang.String");
     } catch (ClassNotFoundException e) {
+      e.printStackTrace();
     }
   }
 
   static void _getName() {
-    var person = new Person();
-    var clazz = person.getClass();
-    clazz.getName(); // DQN: e.g., com.hvitoi.Person
+    var clazz = "hello".getClass();
+    String name = clazz.getName(); // java.lang.String (DQN)
   }
 
   static void _getCanonicalName() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    String classCanonicalName = clazz.getCanonicalName(); // com.hvitoi.Person
+    var clazz = "hello".getClass();
+    String canonicalName = clazz.getCanonicalName(); // java.lang.String
   }
 
   static void _getSimpleName() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    String classSimpleName = clazz.getSimpleName(); // Person
+    var clazz = "hello".getClass();
+    String simpleName = clazz.getSimpleName(); // String
+  }
+
+  static void _getPackage() {
+    var clazz = "hello".getClass();
+    Package classPackage = clazz.getPackage(); // java.lang
+  }
+
+  static void _getSuperclass() {
+    var clazz = "hello".getClass();
+    Class<?> superClass = clazz.getSuperclass(); // java.lang.Object
+  }
+
+  static void _getInterfaces() {
+    // Get interfaces that a class explicitly declares as implemented
+    var clazz = "hello".getClass();
+    Class<?>[] classInterfaces = clazz.getInterfaces(); // list containing interface Printable
+  }
+
+  static void _getModifiers() {
+    var clazz = "hello".getClass();
+    int modifiers = clazz.getModifiers(); // 1
+  }
+
+  static void _getConstructors() {
+    var clazz = "hello".getClass();
+    Constructor<?>[] constructors = clazz.getConstructors();
   }
 
   static void _getDeclaredFields() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
+    var clazz = "hello".getClass();
     Field[] fields = clazz.getDeclaredFields();
 
     Stream.of(fields).anyMatch(e -> e.getType() == Integer.class); // check if any of the fields is an integer
+
+    // for (var f : fields) {
+    // System.out.println(f);
+    // }
   }
 
   static void _getDeclaredField() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
+    var clazz = "hello".getClass();
     try {
-      Field field = clazz.getDeclaredField("name");
+      Field field = clazz.getDeclaredField("hash");
     } catch (NoSuchFieldException e) {
+      e.printStackTrace();
     }
   }
 
   static void _getFields() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
     // return only the public fields in both the class and all superclasses
+    var clazz = "hello".getClass();
     Field[] fields = clazz.getFields();
   }
 
   static void _getField() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
+    // return a single public field by its name
+    var clazz = "hello".getClass();
     try {
-      // return a single public field by its name
-      Field field = clazz.getField("name");
+      Field field = clazz.getField("CASE_INSENSITIVE_ORDER");
     } catch (NoSuchFieldException e) {
+      e.printStackTrace();
     }
   }
 
   static void _getDeclaredMethods() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
+    var clazz = "hello".getClass();
     Method[] methods = clazz.getDeclaredMethods();
+
+    // for (var m : methods) {
+    // System.out.println(m);
+    // }
   }
 
   static void _getDeclaredMethod() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
+    var clazz = "hello".getClass();
     try {
-      Method method = clazz.getDeclaredMethod("printName"); // public void Person.printName()
+      Method method = clazz.getDeclaredMethod("lastIndexOfNonWhitespace");
     } catch (NoSuchMethodException e) {
+      e.printStackTrace();
     }
   }
 
   static void _getMethods() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
     // return only the public methods in both the class and all superclasses
+    var clazz = "hello".getClass();
     Method[] methods = clazz.getMethods();
-    // "equals", "notifyAll", "hashCode", "toString", "printName"
   }
 
   static void _getMethod() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
     // return a single public method by its name
+    var clazz = "hello".getClass();
     try {
-      Method method = clazz.getMethod("printName"); // public void Person.printName()
+      Method method = clazz.getMethod("describeConstable");
     } catch (NoSuchMethodException e) {
+      e.printStackTrace();
     }
   }
 
-  static void _getPackage() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    Package classPackage = clazz.getPackage();
-  }
-
-  static void _getSuperclass() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    Class<?> superClass = clazz.getSuperclass(); // class java.lang.Object
-  }
-
-  static void _getInterfaces() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
-    // Get interfaces that a class explicitly declares as implemented
-    Class<?>[] classInterfaces = clazz.getInterfaces(); // list containing interface Printable
-    // System.out.println(classInterfaces[0]);
-  }
-
-  static void _getConstructors() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-
-    Constructor<?>[] constructors = clazz.getConstructors(); // list containing public Person() constructor
-    // System.out.println(constructors[0]);
-  }
-
-  static void _getModifiers() {
-    Person person = new Person();
-    Class<?> clazz = person.getClass();
-    int personModifiers = clazz.getModifiers(); // 1
-  }
-}
-
-class Person implements Printable {
-  private String name;
-  private Integer age;
-
-  @Override
-  public void printName() {
-    System.out.println(this.name + ": " + this.age.toString());
-  }
-
-}
-
-interface Printable {
-  void printName();
 }

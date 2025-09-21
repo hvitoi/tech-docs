@@ -11,11 +11,12 @@ class Main {
   }
 
   static void _new() {
-    boolean myTrue = true;
-    boolean myFalse = false;
+    Boolean myTrue1 = Boolean.TRUE;
+    Boolean myFalse1 = Boolean.FALSE;
 
-    Boolean myTrue2 = Boolean.TRUE;
-    Boolean myFalse2 = Boolean.FALSE;
+    boolean myTrue2 = true;
+    boolean myFalse2 = false;
+
   }
 
   static void _booleanValue() {
