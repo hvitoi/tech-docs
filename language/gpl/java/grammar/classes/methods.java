@@ -16,7 +16,7 @@ class Greetings {
    * It does not consider the method return type or the method visibility
    * It takes into account only the parameters and their types
    */
-  static void sayHello() {
+  static void sayHello() { // static methods can be called without an instance
     System.out.println("Hello!");
   }
 

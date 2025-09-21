@@ -11,7 +11,7 @@ enum StatusTopico {
 }
 
 // "Strategy" Design Pattern
-public enum Desempenho {
+enum Desempenho {
   A_DESEJAR {
     @Override
     public BigDecimal percentualReajuste() {
