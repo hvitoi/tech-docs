@@ -1,6 +1,5 @@
 class Main {
   public static void main(String[] args) {
-
   }
 }
 
@@ -13,22 +12,20 @@ interface Authenticable {
   boolean authenticate(int password);
 }
 
-class Employee {
-  private double salary;
+class Person {
+  private String name;
 
-  protected double getSalary() {
-    return salary;
+  protected String getName() {
+    return name;
   }
 
-  protected void setSalary(double salary) {
-    this.salary = salary;
+  protected void setName(String name) {
+    this.name = name;
   }
-
 }
 
 // A class can implement multiple interfaces
-class Boss extends Employee implements Authenticable {
-
+class Employee extends Person implements Authenticable {
   private int password;
 
   @Override
@@ -43,9 +40,4 @@ class Boss extends Employee implements Authenticable {
     }
     return false;
   }
-
-  public double getBonus() {
-    return super.getSalary();
-  }
-
 }

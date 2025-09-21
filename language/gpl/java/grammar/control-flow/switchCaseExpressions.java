@@ -3,6 +3,7 @@ class Main {
   // Available as of Java 21 (standard)
 
   public static void main(String[] args) {
+
     // Switch Expression (Java 14)
     var day = 2;
     String dayOfTheWeek = switch (day) {

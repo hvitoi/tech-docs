@@ -1,49 +1,27 @@
 class Main {
   public static void main(String[] args) {
-
-    Client client = new Client();
-    client.setPassword(123);
-    System.out.println(client.authenticate(123));
-
+    Car myCar = new Car();
+    myCar.start();
   }
 }
 
-class AuthenticationUtil {
-  private int password;
-
-  public void setPassword(int password) {
-    this.password = password;
+class Engine {
+  void start() {
+    System.out.println("Engine starting...");
   }
-
-  public int getPassword() {
-    return this.password;
-  }
-
-  public boolean authenticate(int password) {
-    if (this.password == password) {
-      return true;
-    }
-    return false;
-  }
-
 }
 
-class Client {
+class Car {
 
-  private AuthenticationUtil authenticator;
+  private Engine engine;
 
-  public Client() {
-    this.authenticator = new AuthenticationUtil(); // compose with a new object
+  public Car() {
+    this.engine = new Engine(); // composed inside Car
   }
 
-  // delegate the method to the util instance
-  public void setPassword(int password) {
-    this.authenticator.setPassword(password);
-  }
-
-  // delegate the method to the util instance
-  public boolean authenticate(int password) {
-    return this.authenticator.authenticate(password);
+  public void start() {
+    System.out.println("Car is starting...");
+    engine.start(); // delegate work to Engine
   }
 
 }
