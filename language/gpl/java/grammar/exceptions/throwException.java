@@ -1,5 +1,6 @@
 class Main {
   public static void main(String[] args) {
+
     // StackOverflowError
     try {
       stackProcess(); // Errors are Throwable

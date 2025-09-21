@@ -4,8 +4,8 @@ class Main {
   }
 }
 
-// unchecked exceptions extends RuntimeException and are not verified by
-// the compiler
+// Unchecked exceptions extends "RuntimeException"
+// These kind of exceptions are NOT verified by the compiler
 class MyException extends RuntimeException {
   public MyException(String msg) {
     super(msg);

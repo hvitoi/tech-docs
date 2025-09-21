@@ -2,21 +2,21 @@
 class Main {
 
   public static void main(String[] args) {
-    System.out.println("Main: start");
+    System.out.println("main: start");
     Main.method1();
-    System.out.println("Main: end");
+    System.out.println("main: end");
   }
 
   static void method1() {
-    System.out.println("Method 1: start");
+    System.out.println("method 1: start");
     method2();
-    System.out.println("Method 1: end");
+    System.out.println("method 1: end");
   }
 
   static void method2() {
-    System.out.println("Method 2: start");
+    System.out.println("method 2: start");
     int lol = 3 / 0; // show the callstack with the exact line where the exception happened
-    System.out.println("Method 2: end");
+    System.out.println("method 2: end");
   }
 
 }
