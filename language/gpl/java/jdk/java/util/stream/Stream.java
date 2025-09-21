@@ -4,150 +4,146 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// Stream API has been introduced in Java 8
+// Streams can't be reused
+
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _builder();
-    _empty();
     _of();
+    _empty();
     _generate();
     _iterate();
+    _builder();
 
-    // Intermediate operations
-    _filter();
-    _limit();
+    // Intermediate operations (return another stream)
     _map();
-    _skip();
+    _filter();
     _sorted();
+    _skip();
+    _limit();
 
-    // Terminal operations
-    _anyMatch();
-    _count();
+    // Terminal operations (return a value)
     _forEach();
+    _reduce();
+    _count();
+    _anyMatch();
     _findFirst();
     _findAny();
     _collect();
-    _reduce();
     _toArray();
   }
 
-  static Stream<String> _builder() {
-    var streamBuilder = Stream.<String>builder()
-        .add("henry")
-        .add("albert")
-        .add("john")
-        .build();
-    return streamBuilder;
+  static void _of() {
+    var stream = Stream.of("a", "b", "c");
+
+    Supplier<Stream<String>> streamSupplier = () -> Stream.of("a", "b", "c");
+    var stream2 = streamSupplier.get();
   }
 
   static void _empty() {
-    var stream = Stream.empty();
-  }
-
-  static void _of() {
-    // Stream object can be used only once (Java 8 streams can't be reused)
-    var stream = Stream.of("henry", "albert", "john");
-    Stream<String> stream2 = Stream.of("henry", "albert", "john");
-
-    Supplier<Stream<String>> streamSupplier = () -> Stream.of("henry", "albert", "john");
-    streamSupplier.get();
+    var stream = Stream.<String>empty();
   }
 
   static void _generate() {
-    // 10 strings with the value “element”
-    var streamGenerated = Stream
-        .generate(() -> "element")
+    // 10 strings with the value "foo"
+    var stream = Stream
+        .generate(() -> "foo")
         .limit(10);
   }
 
   static void _iterate() {
-    var streamIterated = Stream
-        .iterate(40, n -> n + 2)
-        .limit(20);
+    // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    var stream = Stream
+        .iterate(0, x -> x + 1)
+        .limit(10);
   }
 
-  static void _filter() {
-    Stream<String> stream = _builder();
-    Stream<String> filtered = stream.filter(e -> e.length() >= 4); // find the String than has length > 4
-    // Stream<String> filtered2 = stream.filter(e -> {
-    // return e.length() >= 4;
-    // });
-  }
-
-  static void _limit() {
-    Stream<String> stream = _builder();
-    Stream<String> limited = stream.limit(3);
+  static void _builder() {
+    var streamBuilder = Stream.<String>builder();
+    var stream = streamBuilder
+        .add("henry")
+        .add("john")
+        .build();
   }
 
   static void _map() {
-    Stream<String> stream = _builder();
-    Stream<String> mapped = stream.map(e -> e.substring(0, 3));
+    var stream = Stream.of("a", "b", "c");
+    stream.map(e -> e.toUpperCase());
   }
 
-  static void _skip() {
-    Stream<String> stream = _builder();
-    Stream<String> skipped = stream.skip(1); // discard the first n elements of the stream
+  static void _filter() {
+    var stream = Stream.of(1, 2, 3, 4);
+    stream.filter(e -> e % 2 == 0);
   }
 
   static void _sorted() {
-    Stream<String> stream = _builder();
-    Stream<String> sorted = stream.sorted();
+    var stream = Stream.of("a", "b", "c");
+    stream.sorted();
   }
 
-  static void _anyMatch() {
-    Stream<String> stream = _builder();
-    boolean anyMatch = stream.anyMatch(e -> e.equals("henry")); // true
+  static void _skip() {
+    // discard the first n elements of the stream
+    var stream = Stream.of("a", "b", "c");
+    stream.skip(1);
   }
 
-  static void _count() {
-    Stream<String> stream = _builder();
-    Long count = stream.count();
+  static void _limit() {
+    var stream = Stream.of("a", "b", "c");
+    stream.limit(2);
   }
 
   static void _forEach() {
-    Stream<String> stream = _builder();
-    stream.forEach(System.out::println);
-    // stream.forEach((el) -> System.out.println(el));
+    // returns nothing
+    var stream = Stream.of("a", "b", "c");
+    // stream.forEach(System.out::println);
+  }
+
+  static void _reduce() {
+    var stream = Stream.of(1, 2, 3, 4, 5);
+
+    BinaryOperator<Integer> reducerFn = (acc, num) -> acc + num;
+    stream.reduce(0, reducerFn);
+  }
+
+  static void _count() {
+    var stream = Stream.of("a", "b", "c");
+    stream.count(); // 3
+  }
+
+  static void _anyMatch() {
+    var stream = Stream.of("a", "b", "c");
+    stream.anyMatch(e -> e.equals("b")); // true
   }
 
   static void _findFirst() {
-    Stream<String> stream = _builder();
+    // Get the first element of a stream
+    var stream = Stream.of("a", "b", "c");
     Optional<String> found = stream
-        .filter(e -> e.equals("a"))
         .findFirst();
     // .orElseThrow(() -> new RuntimeException());
   }
 
   static void _findAny() {
-    Stream<String> stream = _builder();
+    // Gets an any element of the stream
+    // The element is usually the first, but it's not guaranteed! (like findFirst)
+    var stream = Stream.of("a", "b", "c");
     Optional<String> found = stream
-        .filter(e -> e.equals("a"))
         .findAny();
   }
 
   static void _collect() {
-    Stream<String> stream1 = _builder();
-    Stream<String> stream2 = _builder();
-    Stream<String> stream3 = _builder();
+    var stream1 = Stream.of("a", "b", "c");
+    var stream2 = Stream.of("a", "b", "c");
+    var stream3 = Stream.of("a", "b", "c");
 
-    // From stream to List
-    var list = stream1.collect(Collectors.toList());
-
-    // From stream to Set
-    var set = stream2.collect(Collectors.toSet());
-
-    // From stream to Map
-    var col = stream3.collect(Collectors.toMap(u1 -> u1.toString(), u1 -> u1.toString()));
-  }
-
-  static void _reduce() {
-    BinaryOperator<Integer> fn = (sum, num) -> sum + num;
-    Integer res = Stream.of(1, 2, 3, 4)
-        .reduce(0, fn); // 10
+    stream1.collect(Collectors.toList());
+    stream2.collect(Collectors.toSet());
+    stream3.collect(Collectors.toMap(el -> el, el -> el.repeat(3)));
   }
 
   static void _toArray() {
-    Stream<String> stream = _builder();
+    var stream = Stream.of("a", "b", "c");
     Object[] arr = stream.toArray();
   }
 

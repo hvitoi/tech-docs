@@ -4,9 +4,14 @@ class Main {
   public static void main(String[] args) {
 
     var colors = List.of("red", "green", "blue");
+
     colors.stream()
         .filter(c -> c.startsWith("g"))
         .forEach(System.out::println);
+
+    colors.stream().filter(e -> {
+      return e.length() >= 4;
+    });
 
   }
 }

@@ -20,7 +20,7 @@ class Main {
     _of();
 
     // Instance methods
-    _add(); // mut
+    _add(); // mut (overloaded)
     _addAll(); // mut
     _remove(); // mut
     _set(); // mut
@@ -89,23 +89,28 @@ class Main {
   static void _sort() {
     var numberList = new ArrayList<>(List.of(3, 1, 2));
     var stringList = new ArrayList<>(List.of("a", "b", "c"));
-    var personList = new ArrayList<>(List.of(new Person("Henry", 5), new Person("Albert", 9), new Person("John", 4)));
+    var personList = new ArrayList<>(List.of(new Person("Henry", 3), new Person("Albert", 1), new Person("John", 2)));
 
     /**
-     * * Sorting (natural order)
+     * * Sorting (natural order) - Uses the class-defined "compareTo" function
      */
-    numberList.sort(null); // built-in compareTo
-    stringList.sort(null); // built-in compareTo
-    personList.sort(null); // user-defined compareTo
+    numberList.sort(null);
+    stringList.sort(null);
+    personList.sort(null);
 
     /**
-     * * Sorting (comparator)
+     * * Sorting (comparator) - Uses a custom comparator
      */
     personList.sort((p1, p2) -> Integer.compare(p1.age, p2.age)); // lambda-expression comparator
     personList.sort((p1, p2) -> p1.name.compareTo(p2.name)); // lambda-expression comparator
-    personList.sort(Comparator.comparing(Person::getAge));
-    personList.sort(Comparator.comparing(Person::getName));
-    personList.sort(new PersonComparator()); // comparator class (legacy)
+    personList.sort(Comparator.comparing(Person::getAge)); // comparator class (built using the "comparing" helper)
+    personList.sort(Comparator.comparing(Person::getName)); // comparator class (built using the "comparing" helper)
+    personList.sort(new Comparator<Person>() { // comparator class (built using an anonymous class)
+      @Override
+      public int compare(Person p1, Person p2) {
+        return Integer.compare(p1.age, p2.age); // 0: equal, -1: smaller, +1: bigger
+      }
+    });
 
   }
 
@@ -158,47 +163,9 @@ class Person implements Comparable<Person> {
     return age;
   }
 
-  // For Sorting
   @Override
   public int compareTo(Person other) {
     return Integer.compare(this.age, other.age); // 0: equal, -1: smaller, +1: bigger
   }
 
-  // For Searching
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + age;
-    return result;
-  }
-
-  // For Searching
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Person other = (Person) obj;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (age != other.age)
-      return false;
-    return true;
-  }
-
-}
-
-class PersonComparator implements Comparator<Person> {
-  @Override
-  public int compare(Person p1, Person p2) {
-    return Integer.compare(p1.age, p2.age); // 0: equal, -1: smaller, +1: bigger
-  }
 }

@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// All String methods are pure. It's not possible to mutate a string
+
 class Main {
   public static void main(String[] args) {
     // Static methods

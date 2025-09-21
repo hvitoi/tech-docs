@@ -8,21 +8,42 @@ class Main {
   }
 
   static void _new() {
-    var comparator1 = new PersonComparator(); // old way of creating comparators
-    var comparator2 = (a, b) -> Integer.compare(a, b); // new syntax
+    // Anonymous class
+    var comparator1 = new Comparator<String>() {
+      @Override
+      public int compare(String a, String b) {
+        return a.compareTo(b);
+      }
+    };
+
+    // Lambda
+    Comparator<Integer> comparator2 = (a, b) -> Integer.compare(a, b);
 
   }
 
   static void _comparing() {
-    // Comparator.comparing();
+    // It's a factory method
+    // You specify just what field will be used to compare
+    var comparator1 = Comparator.comparing(Person::getAge);
+    var comparator2 = Comparator.comparing((Person p) -> p.getAge()); // same
   }
 }
 
-class PersonComparator implements Comparator<Integer> {
+class Person {
+  String name;
+  int age;
 
-  @Override
-  public int compare(Integer a, Integer b) {
-    return Integer.compare(a, b); // 0: equal, -1: smaller, +1: bigger
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
   }
 
 }
