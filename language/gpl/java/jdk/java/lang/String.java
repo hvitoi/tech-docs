@@ -7,8 +7,9 @@ import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
+
+    // Static methods
     _format();
     _join();
     _valueOf();
@@ -31,12 +32,13 @@ class Main {
   }
 
   static void _new() {
-    // String from literal
+    // String from literal. This "interns" the string, so that equal strings use the
+    // same object from the string pool
     var str = "Henry";
     str = str + " Vitoi"; // concatenate (create new, strings are immutable)
 
     // String Class
-    var str2 = new String("Henry"); // avoid it
+    var str2 = new String("Henry"); // Creates a new string object, instead of "interning" it from the string pool
     var str3 = new String("Henry".getBytes(), StandardCharsets.UTF_8); // specify encoding (charset)
     var str4 = new String(new char[] { 'a', 'b', 'c' }); // from array of chars
     var str5 = new String(new byte[] { 65, 66, 67 }); // from array of bytes

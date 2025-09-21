@@ -1,6 +1,5 @@
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _abs();
     _random();

@@ -1,9 +1,16 @@
+import java.util.Objects;
+
 class Main {
   public static void main(String[] args) {
     // Instance methods
+    _getClass();
     _toString();
     _equals();
-    _getClass();
+  }
+
+  static void _getClass() {
+    var p = new Person("Henry", 30);
+    var clazz = p.getClass(); // get class at runtime
   }
 
   static void _toString() {
@@ -13,15 +20,9 @@ class Main {
   }
 
   static void _equals() {
-    var a = "Hey";
-    var b = "Hey";
-    a.equals(b); // true
-  }
-
-  static void _getClass() {
-    var a = "Hey";
-    var clazz = a.getClass(); // get class at runtime
-    System.out.println(clazz);
+    var p1 = new Person("Henry", 30);
+    var p2 = new Person("Henry", 30);
+    p1.equals(p2); // Uses the user-define equal implementation
   }
 
 }
@@ -37,6 +38,21 @@ class Person {
 
   @Override
   public String toString() {
-    return "Person [name=" + name + ", number=" + age + "]";
+    return String.format("Person{name='%s', number=%d]", name, age);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true; // same object
+    if (obj == null || getClass() != obj.getClass())
+      return false;
+    Person other = (Person) obj;
+    return age == other.age && Objects.equals(name, other.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age);
   }
 }

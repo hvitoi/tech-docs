@@ -38,6 +38,8 @@ class Main {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
+
+    // Usually the class is get using Object.getClass()
   }
 
   static void _getName() {
