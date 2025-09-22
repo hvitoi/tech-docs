@@ -14,28 +14,28 @@ class Main {
 
   static FileOutputStream _new() {
     try {
-      FileOutputStream fileOutputStream = new FileOutputStream("file.txt");
-      return fileOutputStream;
+      return new FileOutputStream("file.txt");
     } catch (FileNotFoundException e) {
+      e.printStackTrace();
       return null;
     }
   }
 
   static void _write() {
-    FileOutputStream fileOutputStream = _new();
-    try {
-      fileOutputStream.write(1234567890); // write binary to a file
-      fileOutputStream.close();
+    try (var outputStream = _new()) { // auto-closable
+      outputStream.write(1234567890); // write binary to a file
     } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
   static void _close() {
-    FileOutputStream fileOutputStream = _new();
+    var fileOutputStream = _new();
     try {
-      fileOutputStream.write(1234567890); // write binary to a file
       fileOutputStream.close();
     } catch (IOException e) {
+      e.printStackTrace();
     }
+
   }
 }

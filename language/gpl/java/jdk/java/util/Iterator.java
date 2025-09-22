@@ -29,10 +29,11 @@ class Main {
       var el = it.next();
     }
 
-    // loop again ...
-    Iterator<String> it2 = items.iterator();
-    while (it.hasNext()) {
-      var el = it.next();
+    // loop the list again
+    it = items.iterator();
+    String el;
+    while (it.hasNext() && (el = it.next()) != null) { // this is redundant
+      // System.out.println(el);
     }
   }
 

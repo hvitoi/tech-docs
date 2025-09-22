@@ -3,38 +3,34 @@ import java.nio.file.Path;
 
 class Main {
   public static void main(String[] args) {
-    /**
-     * Static
-     */
+    // Static methods
     _new();
 
-    /**
-     * Instance
-     */
+    // Instance methods
     _toPath();
     _getParentFile();
     _mkdirs();
   }
 
-  static File _new() {
-    File file = new File("src/main/resources/sample.json"); // scoped to the root project path
-    return file;
+  static void _new() {
+    // scoped to the root project path
+    File file = new File("sample.json");
   }
 
   static void _toPath() {
-    File file = _new();
-    Path path = file.toPath();
+    var file = new File("sample.json");
+    Path path = file.toPath(); // the relative path of the file
   }
 
   static void _getParentFile() {
-    File file = _new();
+    var file = new File("sample.json");
 
     // the same filename but at a parent directory
     File parentFile = file.getParentFile();
   }
 
   static void _mkdirs() {
-    File file = _new();
+    var file = new File("sample.json");
     // create parent directories as needed to create the file
     file.mkdirs();
   }

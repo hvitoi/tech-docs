@@ -15,6 +15,7 @@ class Main {
     _valueOf();
 
     // Instance methods
+    _equals();
     _charAt();
     _compareTo();
     _concat();
@@ -85,6 +86,16 @@ class Main {
     var str = String.valueOf(123);
     var str2 = String.valueOf('a');
     var str3 = String.valueOf(new char[] { 'a', 'b', 'c' });
+  }
+
+  static void _equals() {
+    // Compares the objects. In this case it is true because string literals are
+    // interned and stored in a pool of strings
+    var areEqual = "Henry" == "Henry"; // true!
+    var areEqual2 = new String("Henry") == new String("Henry"); // false (bypass the string pool)
+
+    // Compares the values
+    var areEqual3 = "Henry".equals("Henry");
   }
 
   static void _charAt() {
