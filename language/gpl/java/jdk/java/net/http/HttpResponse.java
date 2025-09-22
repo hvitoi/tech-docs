@@ -7,15 +7,15 @@ import java.net.http.HttpResponse;
 class Main {
 
   public static void main(String[] args) {
-    // Static methods
     _new();
+
+    // Static methods
     _BodyHandlers_ofString();
     _BodyHandlers_discarding();
 
     // Instance methods
     _statusCode();
     _body();
-
   }
 
   static HttpResponse<String> _new() {

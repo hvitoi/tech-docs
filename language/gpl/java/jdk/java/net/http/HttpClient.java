@@ -13,7 +13,6 @@ class Main {
     // Instance methods
     _send();
     _sendAsync();
-
   }
 
   static void _newHttpClient() {

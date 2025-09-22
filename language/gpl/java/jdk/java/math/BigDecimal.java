@@ -10,11 +10,13 @@ import java.util.Random;
 
 class Main {
   public static void main(String[] args) {
-    // Static Attributes
-    _attributes();
+    _new();
+
+    // Static Fields
+    _ONE();
+    _ZERO();
 
     // Static Methods
-    _new();
     _valueOf();
 
     // Instance methods
@@ -25,49 +27,53 @@ class Main {
 
   }
 
-  static void _attributes() {
-    BigDecimal one = BigDecimal.ONE;
-    BigDecimal zero = BigDecimal.ZERO;
+  static void _new() {
+    var a = new BigDecimal("0.1");
+    var b = new BigDecimal(new char[] { '3', '.', '1', '6', '1', '5' });
+    var c = new BigDecimal(42);
+    var d = new BigDecimal(123412345678901L);
+    var e = new BigDecimal(0.1d); // 0.1 does not have an exact representation in double
+    var f = new BigDecimal(BigInteger.probablePrime(100, new Random()));
   }
 
-  static void _new() {
-    BigDecimal bdFromString = new BigDecimal("0.1");
-    BigDecimal bdFromCharArray = new BigDecimal(new char[] { '3', '.', '1', '6', '1', '5' });
-    BigDecimal bdFromInt = new BigDecimal(42);
-    BigDecimal bdFromLong = new BigDecimal(123412345678901L);
-    BigDecimal bdFromDouble = new BigDecimal(0.1d); // 0.1 does not have an exact representation in double
-    BigDecimal bdFromBigInteger = new BigDecimal(BigInteger.probablePrime(100, new Random()));
+  static void _ONE() {
+    var one = BigDecimal.ONE;
+  }
+
+  static void _ZERO() {
+    var zero = BigDecimal.ZERO;
   }
 
   static void _valueOf() {
-    BigDecimal bdFromLong1 = BigDecimal.valueOf(123412345678901L);
-    BigDecimal bdFromLong2 = BigDecimal.valueOf(123412345678901L, 2);
-    BigDecimal bdFromDouble = BigDecimal.valueOf(0.1d);
+    var a = BigDecimal.valueOf(123412345678901L);
+    var b = BigDecimal.valueOf(123412345678901L, 2);
+    var c = BigDecimal.valueOf(0.1d);
   }
 
   static void _add() {
-    BigDecimal num1 = BigDecimal.ONE;
-    BigDecimal num2 = BigDecimal.ONE;
+    var num1 = BigDecimal.ONE;
+    var num2 = BigDecimal.ONE;
 
-    BigDecimal res = num1.add(num2);
+    var res = num1.add(num2);
   }
 
   static void _compareTo() {
-    BigDecimal num1 = BigDecimal.ONE;
-    BigDecimal num2 = BigDecimal.ONE;
+    var num1 = BigDecimal.ONE;
+    var num2 = BigDecimal.ONE;
+
     int res = num1.compareTo(num2); // 0: the same, 1: greater, -1: lesser
   }
 
   static void _multiply() {
-    BigDecimal num1 = BigDecimal.ONE;
-    BigDecimal num2 = BigDecimal.ONE;
+    var num1 = BigDecimal.ONE;
+    var num2 = BigDecimal.ONE;
 
-    BigDecimal res = num1.multiply(num2); // does not change the original value
+    var res = num1.multiply(num2);
   }
 
   static void _setScale() {
-    BigDecimal num = BigDecimal.ONE;
+    var num = BigDecimal.ONE;
 
-    BigDecimal res = num.setScale(2, RoundingMode.HALF_UP); // transform to 1.00
+    var res = num.setScale(2, RoundingMode.HALF_UP); // transform to 1.00
   }
 }

@@ -2,13 +2,11 @@ import java.time.LocalDate;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _now();
 
     // Instance methods
     _plusDays();
-
   }
 
   static void _now() {

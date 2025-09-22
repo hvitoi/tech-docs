@@ -3,7 +3,6 @@ import java.time.Period;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _between();
 

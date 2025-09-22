@@ -13,5 +13,7 @@ class Main {
       return e.length() >= 4;
     });
 
+    colors.stream().filter(e -> e.length() >= 4); // same
+
   }
 }

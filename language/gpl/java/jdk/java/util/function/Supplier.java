@@ -1,10 +1,9 @@
 import java.util.function.Supplier;
 
-// Void -> One Output
+// 0 input -> 1 output
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
 
     // Instance methods

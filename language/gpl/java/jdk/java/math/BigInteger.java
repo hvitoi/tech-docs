@@ -6,21 +6,19 @@ import java.math.BigInteger;
 
 class Main {
   public static void main(String[] args) {
+    _new();
 
     // Static Methods
-    _new();
     _valueOf();
   }
 
   static void _new() {
-    BigInteger biFromString = new BigInteger("1234567890987654321");
-    BigInteger biFromByteArray = new BigInteger(
-        new byte[] { 64, 64, 64, 64, 64, 64 });
-    BigInteger biFromSignMagnitude = new BigInteger(-1,
-        new byte[] { 64, 64, 64, 64, 64, 64 });
+    var biFromString = new BigInteger("1234567890987654321");
+    var biFromByteArray = new BigInteger(new byte[] { 64, 64, 64, 64, 64, 64 });
+    var biFromSignMagnitude = new BigInteger(-1, new byte[] { 64, 64, 64, 64, 64, 64 });
   }
 
   static void _valueOf() {
-    BigInteger bi = BigInteger.valueOf(2305843009213693951L);
+    var bi = BigInteger.valueOf(2305843009213693951L);
   }
 }

@@ -2,9 +2,7 @@ import java.nio.file.Path;
 
 class Main {
   public static void main(String[] args) {
-    /**
-     * Static
-     */
+    // Static methods
     _of();
   }
 

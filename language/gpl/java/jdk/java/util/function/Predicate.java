@@ -1,10 +1,9 @@
 import java.util.function.Predicate;
 
-// One Input -> Boolean
+// 1 input -> 1 output (boolean)
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
   }
 

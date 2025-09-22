@@ -6,14 +6,9 @@ import java.sql.SQLException;
 
 class Main {
   public static void main(String[] args) throws SQLException {
-    /**
-     * Static
-     */
     _new();
 
-    /**
-     * Instance
-     */
+    // Instance methods
     _setString();
     _execute();
     _executeQuery();

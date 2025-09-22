@@ -1,10 +1,9 @@
 import java.util.function.Function;
 
-// One Input -> One Output
+// 1 input -> 1 output
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
 
     // Instance methods
@@ -28,6 +27,5 @@ class Main {
 
     Function<String, Integer> compositeFn = fn1.andThen(fn2);
     Integer res = compositeFn.apply("henrique"); // 16
-
   }
 }

@@ -7,7 +7,6 @@ class Main {
     // Static methods
     _newBuilder();
     _BodyPublishers_ofString();
-
   }
 
   static void _newBuilder() {

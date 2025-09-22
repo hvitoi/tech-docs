@@ -1,11 +1,9 @@
 import java.util.function.BiFunction;
 
-// Two Inputs (different type) -> One Output
-// T: first param type, U: second param type, R: return type
+// 2 inputs -> One Output
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
 
     // Instance methods

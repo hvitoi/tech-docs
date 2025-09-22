@@ -6,13 +6,9 @@ import java.sql.Statement;
 
 class Main {
   public static void main(String[] args) throws SQLException {
-    /**
-     * Static
-     */
     _new();
-    /**
-     * Instance
-     */
+
+    // Instance methods
     _createStatement();
     _prepareStatement();
   }
@@ -23,7 +19,7 @@ class Main {
   }
 
   static void _createStatement() throws SQLException {
-    Connection conn = _new();
+    var conn = _new();
 
     // Statement (empty)
     Statement statement = conn.createStatement();
@@ -32,7 +28,7 @@ class Main {
   }
 
   static void _prepareStatement() throws SQLException {
-    Connection conn = _new();
+    var conn = _new();
 
     // PreparedStatement (with query built)
     PreparedStatement preparedStatement = conn

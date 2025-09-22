@@ -1,6 +1,6 @@
 import java.util.function.UnaryOperator;
 
-// One Input -> One Output
+// One Input -> One Output (of the same type)
 
 class Main {
   public static void main(String[] args) {
@@ -9,7 +9,6 @@ class Main {
   }
 
   static void _new() {
-    UnaryOperator<String> fn = (String s) -> s.toUpperCase();
-    UnaryOperator<String> fn2 = s -> s.toUpperCase(); // types can be omitted
+    UnaryOperator<String> fn = s -> s.toUpperCase();
   }
 }

@@ -2,10 +2,8 @@ import java.time.Instant;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _now();
-
   }
 
   static void _now() {

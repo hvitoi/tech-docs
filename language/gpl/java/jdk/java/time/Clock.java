@@ -4,12 +4,10 @@ import java.time.ZoneId;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _systemUTC();
     _systemDefaultZone();
     _system();
-
   }
 
   static void _systemUTC() {

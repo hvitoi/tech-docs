@@ -1,7 +1,3 @@
-/*
- * CompletableFuture class
- */
-
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
@@ -12,8 +8,9 @@ import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
+
+    // Static methods
     _completedFuture();
     _supplyAsync();
 
@@ -37,7 +34,7 @@ class Main {
 
   static void _new() {
     // CompletableFuture implements the Future interface
-    var task = new CompletableFuture<>();
+    var task = new CompletableFuture<String>();
   }
 
   static void _completedFuture() {

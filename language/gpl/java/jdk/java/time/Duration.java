@@ -2,13 +2,11 @@ import java.time.Duration;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _ofMillis();
     _ofSeconds();
     _ofHours();
     _parse();
-
   }
 
   static void _ofMillis() {

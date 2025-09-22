@@ -1,9 +1,10 @@
 // Interface
 
-// Function: No input -> Void
+// Function: 0 input -> 0 output (void)
 
 class Main {
   public static void main(String[] args) {
+
     Runnable r1 = () -> System.out.println("Hello, World!");
     Runnable r2 = new Runnable() {
       @Override

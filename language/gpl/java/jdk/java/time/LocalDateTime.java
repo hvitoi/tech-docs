@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 class Main {
   public static void main(String[] args) {
-
     // Static methods
     _now();
     _parse();
@@ -14,7 +13,6 @@ class Main {
     _format();
     _toEpochSecond();
     _toLocalDate();
-
   }
 
   static void _now() {
