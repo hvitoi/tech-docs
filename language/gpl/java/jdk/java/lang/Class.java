@@ -16,7 +16,9 @@ class Main {
     _getSuperclass(); // -> Class
     _getInterfaces(); // -> Class[]
     _getModifiers(); // -> Integer
+
     _getConstructors(); // -> Constructor[]
+    _getConstructor(); // -> Constructor
 
     _getDeclaredFields(); // -> Field[]
     _getDeclaredField(); // -> Field
@@ -44,6 +46,7 @@ class Main {
 
   static void _getName() {
     var clazz = "hello".getClass();
+    var clazz2 = String.class.getClass();
     String name = clazz.getName(); // java.lang.String (DQN)
   }
 
@@ -81,6 +84,18 @@ class Main {
   static void _getConstructors() {
     var clazz = "hello".getClass();
     Constructor<?>[] constructors = clazz.getConstructors();
+  }
+
+  static void _getConstructor() {
+    var clazz = "hello".getClass();
+    try {
+      // get the constructor with no args
+      Constructor<?> constructor = clazz.getConstructor();
+      // get the constructor with 1 arg (a string)
+      Constructor<?> constructor2 = clazz.getConstructor(String.class);
+    } catch (NoSuchMethodException | SecurityException e) {
+      e.printStackTrace();
+    }
   }
 
   static void _getDeclaredFields() {
