@@ -1,31 +1,39 @@
 # Iterates over a list
 
-for i in $(seq 1 5); do
+# Literal
+for el in "a" "b" "c"; do
+  echo "$el"
+done
+
+# Array
+items=("a" "b" "c")
+for el in "${items[@]}"; do
+  echo "$el"
+done
+foo=("a" "b" "c")
+for ((i = 0; i < ${#foo[@]}; i++)); do
   echo $i
+  echo ${foo[$index]}
 done
 
-for i in 1 2 3 4 5; do
-  echo "Welcome $i times"
+# Command
+for el in $(seq 1 5); do
+  echo "$el"
 done
 
-for letter in 'a' 'b' 'c'; do
-  echo $letter
-done
-
-for i in eat run jump play; do
-  echo $i
-done
-
-for i in {1..5}; do # same as 1 2 3 4 5
-  touch $i
-done
-
-for file in ~/.config/*; do
-  echo $file
-done
-
+# prefer using while with read!
 for word in $(cat ~/.zshrc); do
   echo $word
+done
+
+# Sequence
+for el in {1..5}; do # same as 1 2 3 4 5
+  echo "$el"
+done
+
+# Globbing
+for file in ~/.config/*; do
+  echo "$file"
 done
 
 boot-vga() {
@@ -36,9 +44,3 @@ boot-vga() {
     done
   done
 }
-
-foo=("a" "b" "c")
-for ((i = 0; i < ${#foo[@]}; i++)); do
-  echo $i
-  echo ${foo[$index]}
-done

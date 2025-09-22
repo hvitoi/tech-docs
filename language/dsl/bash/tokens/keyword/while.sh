@@ -26,3 +26,8 @@ brew list --formula |
         echo -e "$formula\t$file"
       done
   done
+
+# Read lines
+while IFS= read -r line; do
+  echo "Line: $line"
+done <filename.txt

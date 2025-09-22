@@ -1,6 +1,8 @@
 echo "What is your name?"
-read fancy_name # Wait input from stdin
+read -r fancy_name # Wait input from stdin
 echo "Hello $fancy_name"
+
+# -r: do not allow backslashes to escape any characters
 
 read -p "Do you wish to drink a beer?" answer
 

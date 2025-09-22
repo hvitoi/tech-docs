@@ -21,3 +21,23 @@ else
 fi
 
 echo "String size ${#first_name})"
+
+# Multi-line strings
+
+str=$(
+  cat <<EOF
+This is a multiline
+string in Bash.
+It spans multiple lines.
+EOF
+)
+
+str="Line 1
+Line 2
+Line 3"
+
+lines=("Line 1" "Line 2" "Line 3")
+
+for line in "${lines[@]}"; do
+  echo "$line"
+done
