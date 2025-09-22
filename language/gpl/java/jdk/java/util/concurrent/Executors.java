@@ -1,8 +1,6 @@
-/*
- * Executors class
- */
-
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 class Main {
   public static void main(String[] args) {
@@ -15,7 +13,7 @@ class Main {
 
   static void _newCachedThreadPool() {
     // This is used for light tasks that can be idle (e.g., http requests)
-    Executors.newCachedThreadPool();
+    ExecutorService executor = Executors.newCachedThreadPool();
   }
 
   static void _newFixedThreadPool() {
@@ -32,14 +30,14 @@ class Main {
     // If a thread terminates due to a failure in the task, then a new thread with
     // the task is created to replace it
     int coreCount = Runtime.getRuntime().availableProcessors();
-    Executors.newFixedThreadPool(coreCount);
+    ExecutorService executor = Executors.newFixedThreadPool(coreCount);
   }
 
   static void _newScheduledThreadPool() {
-    Executors.newScheduledThreadPool(1);
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
   }
 
   static void _newSingleThreadScheduledExecutor() {
-    Executors.newSingleThreadScheduledExecutor();
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
   }
 }

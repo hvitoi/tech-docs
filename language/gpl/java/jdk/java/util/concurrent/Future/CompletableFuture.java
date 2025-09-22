@@ -3,33 +3,28 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class Main {
   public static void main(String[] args) {
     _new();
 
     // Static methods
-    _completedFuture();
-    _supplyAsync();
-
-    _allOf();
-    _join();
+    _completedFuture(); // -> CompletableFuture<T>
+    _supplyAsync(); // -> CompletableFuture<T>
+    _allOf(); // -> CompletableFuture<Void>
 
     // Instance methods
-    _complete();
-    _completeExceptionally();
-    _get();
-    _handle();
-
-    _thenApply();
-    _thenAccept();
-    _thenRun();
-
-    _thenCompose();
-    _thenCombine();
-    _thenAcceptBoth();
+    _get(); // -> T (result)
+    _join(); // -> T (result)
+    _complete(); // -> boolean
+    _completeExceptionally(); // -> boolean
+    _handle(); // -> CompletableFuture
+    _thenApply(); // -> CompletableFuture
+    _thenAccept(); // -> CompletableFuture
+    _thenRun(); // -> CompletableFuture
+    _thenCompose(); // -> CompletableFuture
+    _thenCombine(); // -> CompletableFuture
+    _thenAcceptBoth(); // -> CompletableFuture
   }
 
   static void _new() {
@@ -43,8 +38,8 @@ class Main {
   }
 
   static void _supplyAsync() {
+    // complete Future (with the value from a supplier)
     Supplier<String> supplier = () -> "Hello";
-    // complete Future (with a supplier)
     var task = CompletableFuture.supplyAsync(supplier);
   }
 
@@ -53,37 +48,9 @@ class Main {
     var task2 = CompletableFuture.completedFuture("Beautiful");
     var task3 = CompletableFuture.completedFuture("World");
 
-    // This new CompletableFuture waits for all tasks to be completed
+    // Waits for all tasks to be completed
     // With this we cannot access the results of each task (returns Void)
     var combinedFuture = CompletableFuture.allOf(task1, task2, task3);
-  }
-
-  static void _join() {
-    var task1 = CompletableFuture.completedFuture("Hello");
-    var task2 = CompletableFuture.completedFuture("Beautiful");
-    var task3 = CompletableFuture.completedFuture("World");
-
-    // Gets the result of each task (similar to the get())
-    // Differently from get() it throws an unchecked exception in case the Future
-    // does not complete normally.
-    var combined = Stream.of(task1, task2, task3)
-        .map(CompletableFuture::join)
-        .collect(Collectors.joining(" "));
-  }
-
-  static void _complete() {
-    var task = new CompletableFuture<>();
-    task.complete("Hello"); // mark the task as complete right away
-  }
-
-  static void _completeExceptionally() {
-    var task = new CompletableFuture<>();
-
-    // Complete it with an exception
-    task.completeExceptionally(
-        new RuntimeException("Calculation failed!"));
-
-    // task.get(); // ExecutionException
   }
 
   static void _get() {
@@ -91,24 +58,42 @@ class Main {
 
     try {
       task.get(); // will wait for the result to be ready
-    } catch (InterruptedException e) {
-    } catch (ExecutionException e) {
+    } catch (InterruptedException | ExecutionException e) {
+      e.printStackTrace();
     }
+
+  }
+
+  static void _join() {
+    var task = CompletableFuture.completedFuture("Hello");
+
+    // Gets the result of each task (similar to the get())
+    // Differently from get() it throws an unchecked exception in case the Future
+    // does not complete normally.
+    task.join();
+  }
+
+  static void _complete() {
+    var task = new CompletableFuture<String>();
+    task.complete("Hello"); // mark the task as complete right away
+  }
+
+  static void _completeExceptionally() {
+    var task = new CompletableFuture<String>();
+    // Complete it with an exception
+    task.completeExceptionally(
+        new RuntimeException("Calculation failed!"));
+
+    // task.get(); // ExecutionException
   }
 
   static void _handle() {
-    String name = null;
-    var task = CompletableFuture.supplyAsync(() -> {
-      if (name == null) {
-        throw new RuntimeException("Computation error!");
-      }
-      return "Hello, " + name;
+    CompletableFuture<String> task = CompletableFuture.supplyAsync(() -> {
+      throw new RuntimeException("Computation error!");
     });
 
-    // ...
-
     // Handle result (set a default result) in case of exception
-    task.handle((s, t) -> s != null ? s : "Hello, Stranger!");
+    var taskHandled = task.handle((s, t) -> s != null ? s : "Hello, Stranger!");
   }
 
   static void _thenApply() {
@@ -141,7 +126,6 @@ class Main {
 
   static void _thenCompose() {
     var task = CompletableFuture.completedFuture("Hello");
-
     var taskComposite = task
         .thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
   }

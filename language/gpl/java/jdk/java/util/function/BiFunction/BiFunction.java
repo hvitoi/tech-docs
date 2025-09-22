@@ -1,6 +1,6 @@
 import java.util.function.BiFunction;
 
-// 2 inputs -> One Output
+// 2 inputs -> 1 output
 
 class Main {
   public static void main(String[] args) {

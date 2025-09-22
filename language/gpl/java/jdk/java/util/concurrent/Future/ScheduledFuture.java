@@ -1,7 +1,3 @@
-/*
- * ScheduledFuture class
- */
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
@@ -9,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 
 class Main {
   public static void main(String[] args) {
-    var scheduledFuture = Init.run();
+    var scheduledFuture = Executors
+        .newScheduledThreadPool(1)
+        .schedule(() -> "hey", 2, TimeUnit.SECONDS);
 
     // Instance methods
     _get(scheduledFuture);
@@ -28,13 +26,4 @@ class Main {
     scheduledFuture.getDelay(TimeUnit.MILLISECONDS);
   }
 
-}
-
-class Init {
-  static ScheduledFuture<String> run() {
-    var service = Executors.newScheduledThreadPool(1);
-    var scheduledFuture = service.schedule(() -> "hey", 2, TimeUnit.SECONDS);
-    service.shutdown();
-    return scheduledFuture;
-  }
 }
