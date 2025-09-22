@@ -9,13 +9,24 @@ import java.util.List;
 class Main {
   public static void main(String[] args) {
 
-    var list = new ArrayList<>(List.of("Charlie", "Alice", "Bob"));
-    list.sort(new Comparator<String>() { // Anonymous class out of the Comparator interface
+    // Anonymous class out of the Comparator interface
+    Comparator<String> myComparator = new Comparator<String>() {
       @Override
       public int compare(String a, String b) {
         return a.compareTo(b);
       }
-    });
+    };
+    var list = new ArrayList<>(List.of("Charlie", "Alice", "Bob"));
+    list.sort(myComparator);
+
+    // Anonymous class out of the Runnable interface
+    Runnable myRunnable = new Runnable() {
+      @Override
+      public void run() {
+        System.out.println("Hello, World!");
+      }
+    };
+    myRunnable.run();
 
   }
 }

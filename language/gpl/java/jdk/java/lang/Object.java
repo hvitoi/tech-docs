@@ -6,6 +6,7 @@ class Main {
     _getClass();
     _toString();
     _equals();
+    _hashCode();
   }
 
   static void _getClass() {
@@ -14,6 +15,7 @@ class Main {
   }
 
   static void _toString() {
+    // The default Object string representation is "ClassName@hashcode_in_hex"
     var p = new Person("Henry", 30);
     System.out.println(p.toString()); // Person@3911c2a7 (unless overridden)
     System.out.println(p); // no need to call .toString() - it's done automatically
@@ -23,6 +25,17 @@ class Main {
     var p1 = new Person("Henry", 30);
     var p2 = new Person("Henry", 30);
     p1.equals(p2); // Uses the user-define equal implementation
+
+  }
+
+  static void _hashCode() {
+    // The default hash algorithm outputs returns a unique integer (usually derived
+    // from memory address)
+    var str = "Henry";
+    int hash = str.hashCode();
+
+    // Provides a hash code so the object can be used in hash-based collections
+    // (HashMap, HashSet, etc)
   }
 
 }

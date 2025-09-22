@@ -1,27 +1,18 @@
-/*
- * Runtime class
- */
-
 class Main {
   public static void main(String[] args) {
-    /*
-     * Static
-     */
+    // Static methods
     _getRuntime();
 
-    /*
-     * Instance
-     */
+    // Instance methods
     _availableProcessors();
-
   }
 
   static void _getRuntime() {
-    Runtime.getRuntime();
+    var runtime = Runtime.getRuntime();
   }
 
   static void _availableProcessors() {
     var runtime = Runtime.getRuntime();
-    runtime.availableProcessors();
+    int processorsCount = runtime.availableProcessors();
   }
 }

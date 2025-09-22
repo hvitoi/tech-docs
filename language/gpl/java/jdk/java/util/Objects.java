@@ -29,7 +29,7 @@ class Main {
     // Generates a hash code for a sequence of input values. The hash code is
     // generated as if all the input values were placed into an array, and that
     // array were hashed by calling Arrays.hashCode(Object []).
-    Objects.hash("Henry");
+    Objects.hash("Henry", "Vitoi");
   }
 
 }

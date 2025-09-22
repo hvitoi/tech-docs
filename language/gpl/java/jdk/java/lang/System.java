@@ -24,14 +24,15 @@ class Main {
   }
 
   static void _getenv() {
-    System.getenv("HOME"); // environment variable
+    String envHome = System.getenv("HOME"); // environment variable
 
     try {
-      String foo = Optional.ofNullable(System.getenv("FOO")).orElseThrow(
-          () -> new IllegalArgumentException("FOO is not set in the environment"));
+      String foo = Optional
+          .ofNullable(System.getenv("HOME"))
+          .orElseThrow(() -> new IllegalArgumentException("This env is not set"));
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
     }
-
   }
 
   static void _getProperties() {

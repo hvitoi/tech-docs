@@ -1,19 +1,11 @@
 class Main {
   public static void main(String[] args) {
-
     // Instance methods
     _getName();
   }
 
   static void _getName() {
-    Class clazz = new Person().getClass();
-    Package pkg = clazz.getPackage();
-
+    var pkg = "hello".getClass().getPackage();
     String packageName = pkg.getName();
   }
-}
-
-class Person {
-  private String name;
-  private int age;
 }
