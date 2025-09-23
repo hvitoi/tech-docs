@@ -6,64 +6,61 @@ import java.util.Map;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _new();
-    _of();
+    _new(); // -> Map<K,V>
+    _of(); // -> Map<K,V>
 
     // Instance methods
-    _get();
-    _put();
-    _entrySet();
-    _keySet();
-    values();
+    _get(); // pure (-> V)
+    _put(); // mut (-> V)
+    _entrySet(); // pure (-> Set<Entry<K,V>>)
+    _keySet(); // pure (-> Set<K>)
+    _values(); // pure (-> Collection<V>)
   }
 
-  static Map<Integer, String> _new() {
+  static void _new() {
     Map<Integer, String> hashMap = new HashMap<>();
     Map<Integer, String> linkedHashMap = new LinkedHashMap<>();
     Map<Integer, String> hashtable = new Hashtable<>(); // thread-safe
-    return hashMap;
   }
 
   static void _of() {
-    Map.of("cpf", "000.000.000-00");
+    // Immutable
+    var map = Map.of("a", "alpha");
   }
 
   static void _get() {
-    Map<Integer, String> map = _new();
-    map.put(1, "aaa");
-    map.get(1); // aaa
+    var map = Map.of("a", "alpha");
+    String value = map.get("a"); // alpha
   }
 
   static void _put() {
-    Map<Integer, String> map = _new();
-    map.put(1, "aaa");
-    map.put(2, "bbb");
+    var map = new HashMap<>(Map.of("a", "alpha"));
+
+    // Returns the old value
+    var oldValue = map.put("b", "beta");
   }
 
   static void _entrySet() {
-    Map<Integer, String> map = _new();
-    map.put(1, "aaa");
-    for (Map.Entry<Integer, String> entry : map.entrySet()) {
-      entry.getKey(); // 1
-      entry.getValue(); // aaa
-    }
+    var map = new HashMap<>(Map.of("a", "alpha", "b", "beta"));
 
+    // Good for iterating! Returns a set of entries (with key-val)
+    for (var entry : map.entrySet()) {
+      String key = entry.getKey();
+      String value = entry.getValue();
+    }
   }
 
   static void _keySet() {
-    Map<Integer, String> map = _new();
-    map.put(1, "aaa");
-    for (Integer key : map.keySet()) {
-      // key = 1
+    var map = new HashMap<>(Map.of("a", "alpha"));
+    // Return a set of keys
+    for (var key : map.keySet()) {
     }
-
   }
 
-  static void values() {
-    Map<Integer, String> map = _new();
-    map.put(1, "aaa");
-    for (String value : map.values()) {
-      // value = "aaa"
+  static void _values() {
+    var map = new HashMap<>(Map.of("a", "alpha"));
+    // Return a collection of values
+    for (var value : map.values()) {
     }
   }
 }

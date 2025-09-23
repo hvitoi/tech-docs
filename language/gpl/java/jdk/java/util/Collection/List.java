@@ -26,6 +26,7 @@ class Main {
     _set(); // mut
     _replaceAll(); // mut
     _sort(); // mut
+
     _get(); // pure
     _indexOf(); // pure
     _lastIndexOf(); // pure

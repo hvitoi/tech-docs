@@ -14,6 +14,7 @@ class Main {
     _addLast(); // mut
     _removeFirst(); // mut
     _removeLast(); // mut
+
     _getFirst(); // pure
     _getLast(); // pure
 

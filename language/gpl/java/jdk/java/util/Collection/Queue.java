@@ -1,5 +1,5 @@
-import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 class Main {
@@ -13,24 +13,23 @@ class Main {
     _peek();
   }
 
-  static Queue<String> _new() {
+  static void _new() {
     Queue<String> queue = new LinkedList<>();
-    return queue;
   }
 
   static void _add() {
-    Queue<String> queue = _new();
+    Queue<String> queue = new LinkedList<>();
     queue.add("a");
   }
 
   static void _addAll() {
-    Queue<String> queue = _new();
-    queue.addAll(Arrays.asList("a", "b", "c"));
+    Queue<String> queue = new LinkedList<>();
+    queue.addAll(List.of("a", "b", "c"));
   }
 
   static void _peek() {
-    Queue<String> queue = _new();
+    Queue<String> queue = new LinkedList<>();
     queue.add("a");
-    String peeked = queue.peek(); // peek first element without poping
+    String peeked = queue.peek(); // peek first element without popping it
   }
 }
