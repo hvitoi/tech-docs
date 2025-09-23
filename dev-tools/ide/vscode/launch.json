@@ -61,7 +61,7 @@
       "suppressMultipleSessionWarning": true
     },
     {
-      /**
+      /*
        * Java options
        */
       "type": "java",
@@ -77,7 +77,7 @@
       "vmArgs": ""
     },
     {
-      /**
+      /*
        * Go options
        */
       "type": "go",
@@ -106,7 +106,7 @@
       "dlvFlags": [] // additional dlv flags
     },
     {
-      /**
+      /*
        * Python options
        */
       "type": "debugpy",
@@ -133,7 +133,7 @@
       "guiEventLoop": "matplotlib"
     },
     {
-      /**
+      /*
        * Node options
        */
       "type": "node",
@@ -171,6 +171,9 @@
       "customPropertiesGenerator": ""
     },
     {
+      /*
+       * C/C++
+       */
       "type": "lldb",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "breakpointMode": "file",
@@ -185,7 +188,7 @@
       },
       "initCommands": [],
       "exitCommands": [], // commands to be executed after the debugging session
-      "expressions": "native",
+      "expressions": "native"
     }
   ]
 }

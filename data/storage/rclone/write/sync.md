@@ -70,15 +70,125 @@ rclone sync foo google-drive:foo --track-renames --verbose --use-json-log 2>&1 |
         '
 ```
 
-- Copy
-  - `Skipped copy as --dry-run is set (size 0)`
-  - `Copied (new)`
-  - `Copied (replaced existing)`
+### Copy (new)
 
-- Delete
-  - `Skipped delete as --dry-run is set (size 0)`
-  - `Deleted`
+```json
+// dry-run
+{
+  "time":"2025-09-21T23:32:20.097645-03:00",
+  "level":"notice",
+  "msg":"Skipped copy as --dry-run is set (size 0)",
+  "skipped":"copy",
+  "size":0,
+  "object":"foo/a.txt",
+  "objectType":"*local.Object",
+  "source":"slog/logger.go:256"
+}
 
-- Directory
-  - `Skipped set directory modification time as --dry-run is set`
-  - `Set directory modification time (using DirSetModTime)`
+// run
+{
+  "time":"2025-09-21T23:42:18.863965-03:00",
+  "level":"info",
+  "msg":"Copied (new)",
+  "size":14,
+  "object":"foo/a.txt",
+  "objectType":"*local.Object",
+  "source":"slog/logger.go:256"
+}
+```
+
+### Copy (overwrite)
+
+```json
+// dry-run (same as copy new)
+{
+  "time":"2025-09-21T23:50:36.640844-03:00",
+  "level":"notice",
+  "msg":"Skipped copy as --dry-run is set (size 13)",
+  "skipped":"copy",
+  "size":13,
+  "object":"foo/a.txt",
+  "objectType":"*local.Object",
+  "source":"slog/logger.go:256"
+}
+
+// run
+{
+  "time":"2025-09-21T23:51:41.252991-03:00",
+  "level":"info",
+  "msg":"Copied (replaced existing)",
+  "size":13,
+  "object":"foo/a.txt",
+  "objectType":"*local.Object",
+  "source":"slog/logger.go:256"
+}
+```
+
+### Delete
+
+```json
+// dry-run
+{
+  "time":"2025-09-21T23:38:23.239318-03:00",
+  "level":"notice",
+  "msg":"Skipped delete as --dry-run is set (size 0)",
+  "skipped":"delete",
+  "size":0,
+  "object":"foo/a.txt",
+  "objectType":"*crypt.Object",
+  "source":"slog/logger.go:256"
+}
+
+// run
+{
+  "time":"2025-09-21T23:42:19.581362-03:00",
+  "level":"info",
+  "msg":"Deleted",
+  "object":"foo/a.txt",
+  "objectType":"*crypt.Object",
+  "source":"slog/logger.go:256"
+}
+```
+
+### Move
+
+```json
+// dry-run
+{
+  "time":"2025-09-21T23:32:20.432851-03:00",
+  "level":"notice",
+  "msg":"Skipped move to foo/b.txt as --dry-run is set (size 6)",
+  "skipped":"move to foo/b.txt",
+  "size":6,
+  "object":"foo/a.txt",
+  "objectType":"*crypt.Object",
+  "source":"slog/logger.go:256"
+}
+
+// run
+{
+  "time":"2025-09-21T23:42:17.84027-03:00",
+  "level":"info",
+  "msg":"Moved (server-side) to: foo/b.txt",
+  "object":"foo/a.txt",
+  "objectType":"*crypt.Object",
+  "source":"slog/logger.go:256"
+}
+```
+
+```json
+// dry-run & run
+{
+  "time":"2025-09-21T23:38:23.239236-03:00",
+  "level":"info",
+  "msg":"Renamed from \"foo/a.txt\"",
+  "object":"foo/b.txt",
+  "objectType":"*local.Object",
+  "source":"slog/logger.go:256"
+}
+```
+
+### Directory
+
+- `Skipped set directory modification time as --dry-run is set`
+- `Set directory modification time (using DirSetModTime)`

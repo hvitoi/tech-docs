@@ -2,8 +2,9 @@ import java.util.Comparator;
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new();
+
+    // Static methods
     _comparing();
   }
 

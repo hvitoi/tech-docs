@@ -4,101 +4,120 @@ import java.util.Optional;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _empty();
-    _of();
-    _ofNullable();
+    _empty(); // -> Optional
+    _of(); // -> Optional
+    _ofNullable(); // -> Optional
 
     // Instance methods
-    _isPresent();
-    _isEmpty();
-    _ifPresent();
-    _orElse();
-    _orElseGet();
-    _orElseThrow();
-    _get();
-    _filter();
-    _map();
+    _get(); // -> T
+    _orElse(); // -> T
+    _orElseGet(); // -> T
+    _orElseThrow(); // -> T
+
+    _isPresent(); // -> bool
+    _isEmpty(); // -> bool
+    _ifPresent(); // -> void
+
+    _filter(); // -> Optional
+    _map(); // -> Optional
   }
 
   static void _empty() {
-    var opt = Optional.empty(); // opt.isPresent() == false
+    var opt = Optional.<String>empty();
   }
 
   static void _of() {
-    var opt = Optional.of("henry"); // opt.isPresent() == true
+    var opt = Optional.of("henry");
+    // var opt = Optional.of(null); // fails! Use ofNullable instead
   }
 
   static void _ofNullable() {
     var opt = Optional.ofNullable("henry");
-    var opt2 = Optional.ofNullable(null);
+    var opt2 = Optional.<String>ofNullable(null);
+  }
+
+  static void _get() {
+    var opt = Optional.of("hey");
+    try {
+      var value = opt.get();
+    } catch (NoSuchElementException e) {
+      // throw when there is not value in the optional
+      e.printStackTrace();
+    }
+  }
+
+  static void _orElse() {
+    // similar to .get() but sets a default value if none is found
+
+    // Null or Empty
+    var opt = Optional.<String>empty();
+    var opt2 = Optional.<String>ofNullable(null);
+
+    var name = opt.orElse("john");
+  }
+
+  static void _orElseGet() {
+    // similar to .orElse() but receives an a supplier as argument to be used in
+    // case the value is null/empty
+
+    // Null or Empty
+    var opt = Optional.<String>empty();
+    var opt2 = Optional.<String>ofNullable(null);
+
+    var name = opt.orElseGet(() -> "john");
+  }
+
+  static void _orElseThrow() {
+    // Null or Empty
+    var opt = Optional.<String>empty();
+    var opt2 = Optional.<String>ofNullable(null);
+
+    // throw error if the value is null/empty
+    try {
+      var name1 = opt.orElseThrow(); // throws NoSuchElementException by default
+      var name2 = opt.orElseThrow(IllegalArgumentException::new);
+    } catch (Exception e) {
+    }
   }
 
   static void _isPresent() {
     var opt = Optional.empty();
-    if (opt.isPresent()) {
-      // do something ..
+    if (opt.isPresent()) { // false
     }
   }
 
   static void _isEmpty() {
     var opt = Optional.empty();
-    if (opt.isEmpty()) {
-      // do something ..
+    if (opt.isEmpty()) { // true
     }
   }
 
   static void _ifPresent() {
     // Execute the lambda only if there is a value
-    var msg1 = Optional.of("Hey!");
+    var msg1 = Optional.of("hey");
     var msg2 = Optional.empty();
 
+    // Accepts a consumer (does not return any value)
     // msg1.ifPresent(s -> System.out.println(s.length()));
     msg2.ifPresent(System.out::println); // I won't run
 
   }
 
-  static void _orElse() {
-    Optional<String> opt = Optional.ofNullable(null);
-    String name = opt.orElse("john"); // similar to .get() but sets a default value if none is found
-  }
-
-  static void _orElseGet() {
-    Optional<String> opt = Optional.ofNullable(null);
-    String name = opt.orElseGet(() -> "john"); // similar to .orElse() but receives an expression as argument
-  }
-
-  static void _orElseThrow() {
-    Optional<String> opt = Optional.ofNullable(null);
-
-    try {
-      String name = opt.orElseThrow(IllegalArgumentException::new); // throw error if null is found
-      String name2 = opt.orElseThrow(); // throws NoSuchElementException if empty Optional is found (java 10+)
-    } catch (Exception e) {
-    }
-  }
-
-  static void _get() {
-    Optional<String> opt = Optional.of("henry");
-
-    try {
-      String name = opt.get();
-    } catch (NoSuchElementException e) {
-    }
-  }
-
   static void _filter() {
-    String str = "hi";
-
-    // empty string will also be considered as Empty Optional
-    Optional<String> opt = Optional.ofNullable(str).filter(s -> !s.isEmpty());
+    // returns the Optional unchanged if the predicate matches, otherwise returns an
+    // empty Optional
+    var opt = Optional
+        .of(8)
+        .filter(el -> el % 2 == 0);
   }
 
   static void _map() {
-    String str = Optional.ofNullable("hi")
+    // Apply the map only if a value is present
+    Object obj = "Hey";
+    var result = Optional.of(obj)
         .filter(String.class::isInstance) // verify if it's an instance of String
         .map(String.class::cast) // cast to string (redundant here)
         .map(s -> s + ", how are you doing?")
-        .map(s -> s + " Great!")
-        .orElse("default message");
+        .map(s -> s + " Great!");
   }
 }

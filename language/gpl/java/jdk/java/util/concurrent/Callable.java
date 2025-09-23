@@ -1,6 +1,6 @@
 // Interface
 
-// Function: 0 input -> 1 output
+// 0 input -> 1 output
 
 import java.util.concurrent.Callable;
 

@@ -9,13 +9,16 @@ class Main {
     _forName();
 
     // Instance methods
+    _isInstance(); // -> boolean
     _getName(); // -> String
     _getCanonicalName(); // -> String
     _getSimpleName(); // -> String
-    _getPackage(); // -> Package
+
+    _getModifiers(); // -> Integer
     _getSuperclass(); // -> Class
     _getInterfaces(); // -> Class[]
-    _getModifiers(); // -> Integer
+
+    _getPackage(); // -> Package
 
     _getConstructors(); // -> Constructor[]
     _getConstructor(); // -> Constructor
@@ -42,6 +45,12 @@ class Main {
     }
 
     // Usually the class is get using Object.getClass()
+  }
+
+  static void _isInstance() {
+    var clazz = String.class;
+    boolean a = clazz.isInstance("hey");
+    System.out.println(a);
   }
 
   static void _getName() {

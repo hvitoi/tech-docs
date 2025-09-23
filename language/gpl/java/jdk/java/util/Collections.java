@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -8,123 +8,108 @@ import java.util.Set;
 class Main {
   public static void main(String[] args) {
     // Static methods
-    _emptySet();
-    _emptyList();
-    _nCopies();
-    _reverse();
-    _shuffle();
-    _singletonList();
-    _sort();
-    _swap();
-    _unmodifiableList();
-    _unmodifiableSet();
+    _emptySet(); // -> Set
+    _emptyList(); // -> List
+    _singletonList(); // -> List
+    _nCopies(); // -> List
+    _unmodifiableList(); // -> List
+    _unmodifiableSet(); // -> Set
+
+    _sort(); // mut (List)
+    _reverse(); // mut (List)
+    _shuffle(); // mut (List)
+    _swap(); // mut (List)
+
   }
 
   static void _emptySet() {
     // create unmodified empty set
-    Set<String> set = Collections.emptySet();
+    var set = Collections.<String>emptySet();
   }
 
   static void _emptyList() {
-    List<String> items = Collections.emptyList();
+    var list = Collections.<String>emptyList();
+  }
+
+  static void _singletonList() {
+    // List with a single immutable element
+    var list = Collections.singletonList("hey");
   }
 
   static void _nCopies() {
-    // Array with size 1000 with nulls
-    List<String> list = Collections.nCopies(1000, null);
+    // Array with size 20 with "hey"
+    var list = Collections.nCopies(20, "hey");
+  }
+
+  static void _unmodifiableList() {
+    var list = new ArrayList<>(List.of("a", "b", "c"));
+    // return a new reference to a list that is unmodifiable
+    var unmodifiable = Collections.unmodifiableList(list);
+  }
+
+  static void _unmodifiableSet() {
+    var set = new HashSet<String>(Set.of("a", "b", "c"));
+    // return a new reference to a Set that is unmodifiable
+    var unmodifiable = Collections.unmodifiableSet(set);
+  }
+
+  static void _sort() {
+    var numberList = new ArrayList<>(List.of(3, 1, 2));
+    var stringList = new ArrayList<>(List.of("a", "b", "c"));
+    var personList = new ArrayList<>(List.of(new Person("Henry", 3), new Person("Albert", 1), new Person("John", 2)));
+
+    /*
+     * Sorting (natural order) - Uses the class-defined "compareTo" function
+     */
+    Collections.sort(numberList); // built-in "compareTo"
+    Collections.sort(stringList); // built-in "compareTo"
+    Collections.sort(personList); // overridden "compareTo"
+
+    /*
+     * Sorting (comparator) - Uses a custom comparator
+     */
+    Collections.sort(personList, (p1, p2) -> Integer.compare(p1.age, p2.age));
+    Collections.sort(personList, (p1, p2) -> p1.name.compareTo(p2.name));
+    Collections.sort(personList, Comparator.comparing(Person::getName));
+
   }
 
   static void _reverse() {
-    List<Integer> list = Arrays.asList(3, -3, 2);
+    var list = new ArrayList<>(List.of(3, 2, 1));
     Collections.reverse(list);
   }
 
   static void _shuffle() {
-    List<Integer> list = Arrays.asList(3, -3, 2);
+    var list = new ArrayList<>(List.of(3, 2, 1));
     Collections.shuffle(list);
   }
 
-  static void _singletonList() {
-    Collections.singletonList("hey"); // List with a single immutable element
-  }
-
-  static void _sort() {
-    var numberList = Arrays.asList(3, -3, 2);
-    var stringList = Arrays.asList("hey", "12", "awesome");
-    var objectList = Arrays.asList(new Person(5, "Henry"), new Person(9, "Albert"), new Person(4, "John"));
-
-    /**
-     * * sort() - natural order
-     */
-    Collections.sort(numberList); // built-in "compareTo"
-    Collections.sort(stringList); // built-in "compareTo"
-    Collections.sort(objectList); // overridden "compareTo"
-
-    /**
-     * * sort() - comparator
-     */
-
-    Collections.sort(objectList, new PersonComparator());
-
-    Collections.sort(objectList, (p1, p2) -> Integer.compare(p1.number, p2.number));
-    Collections.sort(objectList, (p1, p2) -> p1.name.compareTo(p2.name));
-
-    Collections.sort(objectList, Comparator.comparing(Person::getNumber));
-    Collections.sort(objectList, Comparator.comparing(Person::getName));
-
-  }
-
   static void _swap() {
-    List<Integer> list = Arrays.asList(3, -3, 2);
-
+    var list = new ArrayList<>(List.of("a", "b", "c"));
     Collections.swap(list, 0, 2); // change value from index 0 to index 2
-  }
-
-  static void _unmodifiableList() {
-    List<Integer> list = Arrays.asList(3, -3, 2);
-
-    Collections.unmodifiableList(list); // return a new reference to a list that is unmodifiable
-  }
-
-  static void _unmodifiableSet() {
-    Set<Integer> numberSet = new HashSet<>();
-    numberSet.add(5);
-    numberSet.add(-3);
-    numberSet.add(2);
-
-    Collections.unmodifiableSet(numberSet); // return a new reference to a Set that is unmodifiable
   }
 }
 
 class Person implements Comparable<Person> {
-  int number;
   String name;
+  int age;
 
-  public Person(int number, String name) {
-    this.number = number;
+  public Person(String name, int age) {
     this.name = name;
-  }
-
-  public int getNumber() {
-    return number;
+    this.age = age;
   }
 
   public String getName() {
     return name;
   }
 
-  @Override
-  public int compareTo(Person other) {
-    return Integer.compare(this.number, other.number); // 0: equal, -1: smaller, +1: bigger
+  public int getAge() {
+    return age;
   }
 
-}
-
-class PersonComparator implements Comparator<Person> {
-
   @Override
-  public int compare(Person p1, Person p2) {
-    return Integer.compare(p1.number, p2.number); // 0: equal, -1: smaller, +1: bigger
+  public int compareTo(Person other) {
+    return Integer.compare(this.age, other.age); // 0: equal, -1: smaller, +1: bigger
   }
 
 }

@@ -90,15 +90,15 @@ class Main {
     var stringList = new ArrayList<>(List.of("a", "b", "c"));
     var personList = new ArrayList<>(List.of(new Person("Henry", 3), new Person("Albert", 1), new Person("John", 2)));
 
-    /**
-     * * Sorting (natural order) - Uses the class-defined "compareTo" function
+    /*
+     * Sorting (natural order) - Uses the class-defined "compareTo" function
      */
     numberList.sort(null);
     stringList.sort(null);
     personList.sort(null);
 
-    /**
-     * * Sorting (comparator) - Uses a custom comparator
+    /*
+     * Sorting (comparator) - Uses a custom comparator
      */
     personList.sort((p1, p2) -> Integer.compare(p1.age, p2.age)); // lambda-expression comparator
     personList.sort((p1, p2) -> p1.name.compareTo(p2.name)); // lambda-expression comparator
