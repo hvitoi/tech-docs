@@ -22,7 +22,6 @@ class Main {
     _descendingIterator(); // -> Iterator<E> (pure)
 
     // + Queue methods
-    // + SequencedCollection methods
   }
 
   static void _new() {

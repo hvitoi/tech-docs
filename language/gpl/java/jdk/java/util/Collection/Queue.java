@@ -4,7 +4,6 @@ import java.util.Queue;
 
 class Main {
   public static void main(String[] args) {
-    // Static methods
     _new(); // -> Queue<E>
 
     // Instance methods
