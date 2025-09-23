@@ -19,7 +19,7 @@ class Main {
 
   static void _new() {
     Map<Integer, String> hashMap = new HashMap<>();
-    Map<Integer, String> linkedHashMap = new LinkedHashMap<>();
+    Map<Integer, String> linkedHashMap = new LinkedHashMap<>(); // maintains order
     Map<Integer, String> hashtable = new Hashtable<>(); // thread-safe
   }
 

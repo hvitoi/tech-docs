@@ -3,34 +3,24 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-/*
- * Sets do not accept duplicate values
- * Sets are good for searching (quick and inexpensive)
- */
-
 class Main {
   public static void main(String[] args) {
-    // Static methods
-    _new();
+    _new(); // -> Set<E>
 
-    // Instance methods
-    _add();
+    // + Collection methods
   }
 
   static void _new() {
-    // do not guarantee order
+    // Backed by a bash table - do not guarantee order
+    // add, remove, contains: O(1)
     Set<String> hashSet = new HashSet<String>();
 
-    // guarantee order
+    // Maintains insertion order
     Set<String> linkedHashSet = new LinkedHashSet<String>();
 
+    // Implements a sorted set
     // works only for comparable items
     Set<String> treeSet = new TreeSet<String>(); // optionally receives a comparator
   }
 
-  static void _add() {
-    Set<String> set = new HashSet<String>();
-    set.add("Henry");
-
-  }
 }

@@ -14,36 +14,38 @@ import java.util.Vector;
 
 class Main {
   public static void main(String[] args) {
+    _new(); // -> List<E>
 
     // Static methods
-    _new();
-    _of();
+    _of(); // -> List<E>
 
     // Instance methods
-    _add(); // mut (overloaded)
-    _addAll(); // mut (overload)
-    _remove(); // mut (override)
-    _set(); // mut
-    _replaceAll(); // mut
-    _sort(); // mut
+    _add(); // -> boolean/void (mut)
+    _addAll(); // -> boolean (mut)
 
-    _get(); // pure
-    _indexOf(); // pure
-    _lastIndexOf(); // pure
-    _subList(); // pure
+    _remove(); // -> E/void (mut)
+    _set(); // -> E (mut)
+    _replaceAll(); // -> void (mut)
+
+    _sort(); // -> void (mut)
+
+    _get(); // -> E (pure)
+    _indexOf(); // -> int (pure)
+    _lastIndexOf(); // -> int (pure)
+    _subList(); // -> List<E> (pure)
+
+    _listIterator(); // -> ListIterator<E> (pure)
 
     // + SequencedCollection methods
-    // + Collections methods
-    // + Iterable methods
   }
 
   static void _new() {
-    // ArrayList (good to iterate, bad to modify)
+    // ArrayList (backed by an array)
     List<String> list1 = new ArrayList<>();
     var list2 = new ArrayList<String>();
     var list3 = new ArrayList<>(List.of("hey", "there"));
 
-    // LinkedList (good to modify, bad to iterate)
+    // LinkedList (doubly-linked list)
     var list4 = new LinkedList<String>();
 
     // VectorList (manipulate a list across call stacks (thread safe))
@@ -59,31 +61,34 @@ class Main {
   static void _add() {
     // Method overload on method from Collection: allow insert on a given index
     List<String> items = new ArrayList<>();
-    items.add("z"); // add to end
+    boolean isAdded = items.add("z"); // add to end
     items.add(0, "a"); // add to index
   }
 
   static void _addAll() {
     // Method overload on method from Collection: allow insert on a given index
     List<String> items = new ArrayList<>();
-    items.addAll(0, List.of("a", "b")); // add at index 0
+    boolean isAdded = items.addAll(List.of("c", "d")); // add at first (index 0)
+    boolean isAdded2 = items.addAll(0, List.of("a", "b")); // add at index 0
   }
 
   static void _remove() {
     // Overrides the method from Collection: remove by index (instead of by element)
     List<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.remove(0); // removes "a"
+    String removedElement = items.remove(0); // removes "a" (index 0)
+    boolean removedElement2 = items.remove("b"); // removes "b" (behavior from Collection class)
   }
 
   static void _set() {
     List<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.set(0, "z"); // updates index 0
+    String oldElement = items.set(0, "z"); // updates index 0
   }
 
   static void _replaceAll() {
     List<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.replaceAll(s -> s.toUpperCase());
+
     // Works like a map
+    items.replaceAll(s -> s.toUpperCase());
   }
 
   static void _sort() {
@@ -119,7 +124,7 @@ class Main {
     items.get(0); // get element by index
 
     try {
-      items.get(99);
+      String el = items.get(99);
     } catch (IndexOutOfBoundsException e) {
     }
   }
@@ -127,21 +132,26 @@ class Main {
   static void _indexOf() {
     List<String> items = new ArrayList<>(List.of("a", "a", "b", "c"));
     // Get the index of the FIRST appearance
-    items.indexOf("a"); // 0
+    int i = items.indexOf("a"); // 0
   }
 
   static void _lastIndexOf() {
     List<String> items = new ArrayList<>(List.of("a", "a", "b", "c"));
     // Get the index of the LAST appearance
-    items.lastIndexOf("a"); // 1
+    int i = items.lastIndexOf("a"); // 1
   }
 
   static void _subList() {
     List<String> items = new ArrayList<>(List.of("a", "b", "c", "d", "e"));
 
-    // Extract a chunk of the list
+    // Extract a chunk of the list, works like a substring
     // The original list is untouched
-    var sub = items.subList(1, 3); // [1,3)
+    List<String> subItems = items.subList(1, 3); // [1,3)
+  }
+
+  static void _listIterator() {
+    List<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    var it = items.listIterator();
   }
 
 }

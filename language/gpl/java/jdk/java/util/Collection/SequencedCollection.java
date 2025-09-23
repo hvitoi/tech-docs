@@ -4,22 +4,20 @@ import java.util.List;
 
 class Main {
   public static void main(String[] args) {
-
-    // Static methods
-    _new();
+    _new(); // -> SequencedCollection<E>
 
     // Instance methods
-    _reversed(); // mut
-    _addFirst(); // mut
-    _addLast(); // mut
-    _removeFirst(); // mut
-    _removeLast(); // mut
+    _reversed(); // -> SequencedCollection<E> (mut)
 
-    _getFirst(); // pure
-    _getLast(); // pure
+    _addFirst(); // -> void (mut)
+    _addLast(); // -> void (mut)
+    _removeFirst(); // -> E (mut)
+    _removeLast(); // -> E (mut)
 
-    // + Collections methods
-    // + Iterable methods
+    _getFirst(); // -> E (pure)
+    _getLast(); // -> E (pure)
+
+    // + Collection methods
   }
 
   static void _new() {
@@ -28,12 +26,12 @@ class Main {
 
   static void _reversed() {
     SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.reversed();
+    var reversedList = items.reversed();
   }
 
   static void _addFirst() {
     SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.addFirst(".");
+    items.addFirst("z");
   }
 
   static void _addLast() {
@@ -41,24 +39,24 @@ class Main {
     items.addLast("d");
   }
 
-  static void _getFirst() {
-    SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.getFirst(); // Throws if the collection is empty
-  }
-
-  static void _getLast() {
-    SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.getLast(); // Throws if the collection is empty
-  }
-
   static void _removeFirst() {
     SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.removeFirst(); // remove and returns "a"
+    String removed = items.removeFirst(); // remove and returns "a"
   }
 
   static void _removeLast() {
     SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
-    items.removeLast(); // remove and returns "c"
+    String removed = items.removeLast(); // remove and returns "c"
+  }
+
+  static void _getFirst() {
+    SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    String el = items.getFirst(); // Throws if the collection is empty
+  }
+
+  static void _getLast() {
+    SequencedCollection<String> items = new ArrayList<>(List.of("a", "b", "c"));
+    String el = items.getLast(); // Throws if the collection is empty
   }
 
 }
