@@ -79,3 +79,13 @@ find . -nogroup -ls
 ```shell
 find . -regex ".*\(aaa\|bbb\).*\.so" -exec cp {} {}.bak \;
 ```
+
+## -exec
+
+```shell
+cp -p src dest # preserve metadata
+chown -R 1000:1000 dest
+chmod -R 777 dest # change permissions for everything
+find /path/to/directory -type d -exec chmod 700 {} \; # change permissions for folders only
+find /path/to/directory -type f -exec chmod 600 {} \; # change permissions for files only
+```
