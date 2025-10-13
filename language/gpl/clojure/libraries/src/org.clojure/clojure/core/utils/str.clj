@@ -8,3 +8,5 @@
 (str ["b" "c"])
 
 (str [\a \b \c])
+
+(subs (str :foo/bar) 1)
