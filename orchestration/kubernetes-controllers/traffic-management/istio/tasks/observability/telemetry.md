@@ -21,7 +21,7 @@
 - **Trace**: Gather of all hoops performed by a request. It's broken down into spans
 - **Span**: Each individual route
 
-![Distributed tracing](./images/distributed-tracing.png)
+![Distributed tracing](.images/distributed-tracing.png)
 
 ### x-request-id
 
