@@ -61,6 +61,15 @@ istioctl install --set "values.global.jwtPolicy=third-party-jwt" # authenticatio
 kubectl label namespace default istio-injection=enabled
 ```
 
+## uninstall
+
+```shell
+istioctl uninstall -y --purge
+kubectl delete namespace istio-system
+kubectl label namespace default istio-injection-
+kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.3.0" | kubectl delete -f - # Delete the Gateway API CRD
+```
+
 ## manifest
 
 ```shell

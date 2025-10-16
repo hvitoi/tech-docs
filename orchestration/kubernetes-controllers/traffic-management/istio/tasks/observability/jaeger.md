@@ -1,18 +1,4 @@
-# Telemetry
-
-- Requirements for telemetry
-  - Envoy sidecars (proxy)
-  - Control plane running
-  - No Istio configuration is needed (VS, DR, GW)
-
-## Kiali
-
-- **App graph**: Squares represent a component with label `app`
-- **Versioned app graph**: App graph but subdivided into more labels, for example label `version`
-- **Service graph**: Connection between services
-- **Workload graph**: Workloads are analog to a deployment
-
-## Jaeger
+# Jaeger
 
 - Distributed tracing framework (implements `OpenTracing`)
 - Track a single request
@@ -23,7 +9,7 @@
 
 ![Distributed tracing](.images/distributed-tracing.png)
 
-### x-request-id
+## x-request-id
 
 - Must be implemented into the code for the `distributed tracing` to work properly
 - `x` is HTML standards was used to point out a experimental header. `Extra headers`

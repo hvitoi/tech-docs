@@ -4,7 +4,7 @@
 
 ```shell
 # Minikube setup
-minikube start --memory 4g
+minikube start
 
 # Install istioctl
 brew install istioctl
@@ -17,7 +17,9 @@ kubectl label namespace default istio-injection=enabled # If there are already r
 
 # Install the official Gateway API CRD (if your cluster doesn't have it already)
 kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.3.0" | kubectl apply -f -; }
+```
 
+```shell
 # Deploy a sample application
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/bookinfo/platform/kube/bookinfo.yaml
 
@@ -25,9 +27,16 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samp
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/bookinfo/gateway-api/bookinfo-gateway.yaml
 kubectl annotate gateway bookinfo-gateway networking.istio.io/service-type=ClusterIP -n default # Change the service type to ClusterIP
 
-# Access the app
-kubectl port-forward svc/bookinfo-gateway-istio 8080:80
+# Expose the app locally
+kubectl port-forward svc/bookinfo-gateway-istio 8080:80 # localhost:8080/productpage
+
+# Send requests
+for i in $(seq 1 100); do
+  curl -s -o /dev/null "http://localhost:8080/productpage"
+done
 ```
+
+## Components
 
 - Namespace **istio-system**
   - Pod `istiod`: Istio daemon
