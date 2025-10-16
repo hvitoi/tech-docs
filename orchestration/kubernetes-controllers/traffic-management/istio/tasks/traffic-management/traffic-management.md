@@ -2,23 +2,6 @@
 
 - Traffic routing is created by means of `virtual services` and `destination rules`
 
-- **VirtualService**
-  - Allow custom routing rules to the service mesh
-  - Virtual services are act in the istio-daemon. It updates all the DNS from the proxies inside all the pods
-  - Virtual Services reconfigure the proxies dynamically. VS is applied upon conventional services!
-
-- **DestinationRule**
-  - A configuration for the `Istio Load Balancing` policy
-  - Define subsets of pods
-  - Define which pods should be part of which subset!
-
-- Request matching
-  - By header
-  - By URI
-  - By scheme
-  - By method
-  - By authority
-
 ## Canary releases
 
 - Deploy a new version a version of a software (new image)

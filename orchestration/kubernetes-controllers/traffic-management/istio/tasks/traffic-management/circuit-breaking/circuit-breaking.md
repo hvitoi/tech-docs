@@ -47,3 +47,23 @@ spec:
             port:
               number: 443
 ```
+
+## Demo
+
+```shell
+# Deploy HTTP Server (httpbin)
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/httpbin.yaml
+
+# Apply DR to the App
+kubectl apply -f destination-rule.yaml
+
+# Deploy an HTTP Client (fortio) - this client will trip the circuit breaker of the server app
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/sample-client/fortio-deploy.yaml
+```
+
+```shell
+# Trigger requests!
+# 2 concurrent connections, 20 requests
+export FORTIO_POD=$(kubectl get pods -l app=fortio -o 'jsonpath={.items[0].metadata.name}')
+kubectl exec "$FORTIO_POD" -c fortio -- /usr/bin/fortio load -c 2 -qps 0 -n 20 -loglevel Warning http://httpbin:8000/get
+```
