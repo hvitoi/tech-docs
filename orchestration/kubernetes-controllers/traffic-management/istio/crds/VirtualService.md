@@ -5,9 +5,53 @@
 - Without virtual services, Envoy distributes traffic using least requests load balancing between all service instances
 - Virtual services act in the istio-daemon. It updates all the DNS from the proxies inside all the pods dynamically
 
-## Matching by header
+## Properties
+
+### spec.hosts
 
 ```yaml
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+    - reviews # to what hosts this rule applies to. Wildcards can be used
+  http:
+    - match:
+        - headers:
+            end-user:
+              exact: jason
+      route:
+        - destination:
+            host: reviews
+            subset: v2
+    - route:
+        - destination:
+            host: reviews
+            subset: v3
+```
+
+### spec.gateways
+
+- Get traffic from gateway
+
+```shell
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: virtual-svc
+spec:
+  hosts:
+    - ext-host.example.com
+  gateways:
+    - ext-host-gwy
+```
+
+### spec.http.[].match.[]
+
+```yaml
+# Matching by header
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
@@ -30,9 +74,8 @@ spec:
             subset: v3
 ```
 
-## Matching by URI
-
 ```yaml
+# Matching by URI
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
@@ -55,7 +98,7 @@ spec:
             host: ratings
 ```
 
-## Weighted destination
+### spec.http.[].route.[]
 
 ```yaml
 apiVersion: networking.istio.io/v1
@@ -70,23 +113,71 @@ spec:
         - destination:
             host: reviews
             subset: v1
-          weight: 75
+          weight: 75 # Weighted destination
         - destination:
             host: reviews
             subset: v2
           weight: 25
 ```
 
-## From Gateway
+### spec.http.[].timeout
 
-```shell
+- This timeout implemented here means that http calls to this host will timeout after X seconds
+
+```yaml
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: virtual-svc
+  name: ratings
 spec:
   hosts:
-    - ext-host.example.com
-  gateways:
-    - ext-host-gwy
+    - ratings
+  http:
+    - route:
+        - destination:
+            host: ratings
+            subset: v1
+      timeout: 10s
+```
+
+### spec.http.[].retries
+
+```yaml
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+    - ratings
+  http:
+    - route:
+        - destination:
+            host: ratings
+            subset: v1
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+```
+
+### spec.http.[].fault
+
+```yaml
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: my-vs
+spec:
+  hosts:
+    - ratings
+  http:
+    - fault:
+        delay: # inject a delay fault
+          percentage:
+            value: 100
+          fixedDelay: 2s
+      route:
+        - destination:
+            host: ratings
+            subset: v1
 ```
