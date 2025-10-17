@@ -82,3 +82,27 @@ spec:
   resolution: DNS
   location: MESH_EXTERNAL
 ```
+
+### spec.location
+
+- When `MESH_EXTERNAL` is set, it means the traffic is going to outside of the cluster
+- If it's not provided it might be redirected to an internal component (e.g., an Egress Gateway)
+
+```yaml
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: my-se
+spec:
+  hosts:
+    - example.org
+  ports:
+    - number: 80
+      name: http-port
+      protocol: HTTP
+    - number: 443
+      name: https-port
+      protocol: HTTPS
+  resolution: DNS
+  location: MESH_EXTERNAL
+```

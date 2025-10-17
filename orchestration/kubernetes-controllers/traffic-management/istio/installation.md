@@ -11,6 +11,7 @@ brew install istioctl
 
 # Install Istio Control Plane components on "istio-system" namespace
 istioctl install --set profile=demo
+istioctl install -f "istio-operator.yaml" # or install from a IstioOperator
 
 # Configure istio to inject proxy container into pods in 'default' namespace
 kubectl label namespace default istio-injection=enabled # If there are already running pods in the ns they must be restarted

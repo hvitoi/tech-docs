@@ -1,0 +1,127 @@
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: my-se
+spec:
+  hosts:
+    - postman-echo.com
+  ports:
+    - number: 80
+      name: http
+      protocol: HTTP
+    # - number: 443
+    #   name: https
+    #   protocol: HTTPS
+    - number: 443
+      name: tls
+      protocol: TLS
+  resolution: DNS
+---
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: my-postman-egress-gateway
+spec:
+  selector:
+    istio: egressgateway # tells which controller to use (the one in the istio-system namespace)
+  servers:
+    - hosts:
+        - postman-echo.com
+      port:
+        number: 80
+        name: http
+        protocol: HTTP
+    - hosts:
+        - postman-echo.com
+      port:
+        number: 443
+        name: tls
+        protocol: TLS
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: dr-for-my-postman-egress-gateway
+spec:
+  host: istio-egressgateway.istio-system.svc.cluster.local
+  subsets:
+    - name: postman
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: direct-postman-traffic-through-egress-gateway
+spec:
+  hosts:
+    - postman-echo.com
+  gateways:
+    - my-postman-egress-gateway
+    - mesh
+  http:
+    - route:
+        - destination:
+            host: istio-egressgateway.istio-system.svc.cluster.local
+            subset: postman
+            port:
+              number: 80
+          weight: 100
+      match:
+        - gateways:
+            - mesh
+          port: 80
+    - route:
+        - destination:
+            host: postman-echo.com
+            port:
+              number: 80
+          weight: 100
+      match:
+        - gateways:
+            - my-postman-egress-gateway
+          port: 80
+
+  tls:
+    - route:
+        - destination:
+            host: istio-egressgateway.istio-system.svc.cluster.local
+            subset: postman
+            port:
+              number: 443
+      match:
+        - gateways:
+            - mesh
+          port: 443
+          sniHosts:
+            - postman-echo.com
+    - route:
+        - destination:
+            host: postman-echo.com
+            port:
+              number: 443
+          weight: 100
+      match:
+        - gateways:
+            - my-postman-egress-gateway
+          port: 443
+          sniHosts:
+            - postman-echo.com
+# ---
+# # No DestinationRule needed as we aren't doing any subsets, load balancing or outlier detection.
+# kind: VirtualService
+# apiVersion: networking.istio.io/v1alpha3
+# metadata:
+#   name: fleetman-webapp
+#   namespace: default
+# spec:
+#   hosts: # which incoming host are we applying the proxy rules to???
+#     - "*"
+#   gateways:
+#     - ingress-gateway-configuration
+#   http:
+#     - route: # All traffic routed to the fleetman-webapp service (it's a catch all, no matching rule)
+#         - destination:
+#             host: fleetman-webapp
+# ---
+
