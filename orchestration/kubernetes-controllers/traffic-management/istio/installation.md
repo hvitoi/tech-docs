@@ -16,11 +16,11 @@ istioctl install --set profile=demo
 kubectl label namespace default istio-injection=enabled # If there are already running pods in the ns they must be restarted
 
 # Install the official Gateway API CRD (if your cluster doesn't have it already)
-kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.3.0" | kubectl apply -f -; }
+kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.3.0" | kubectl apply -f - # installs the CRDs gateways.gateway.networking.k8s.io
 ```
 
 ```shell
-# Deploy a sample application
+# Deploy a distributed system
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/bookinfo/platform/kube/bookinfo.yaml
 
 # Create a gateway for the app
@@ -34,6 +34,18 @@ kubectl port-forward svc/bookinfo-gateway-istio 8080:80 # localhost:8080/product
 for i in $(seq 1 100); do
   curl -s -o /dev/null "http://localhost:8080/productpage"
 done
+```
+
+```shell
+# Deploy an HTTP Server (httpbin)
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/httpbin.yaml
+
+# Deploy an HTTP Client (fortio)
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/sample-client/fortio-deploy.yaml
+
+# 2 concurrent connections, 20 requests
+export POD=$(kubectl get pods -l app=fortio -o 'jsonpath={.items[0].metadata.name}')
+kubectl exec "$POD" -c fortio -- /usr/bin/fortio load -c 2 -qps 0 -n 20 -loglevel Warning http://httpbin:8000/get
 ```
 
 ## Components

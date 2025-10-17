@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: my-se
+spec:
+  hosts:
+    - postman-echo.com
+  ports:
+    - number: 80
+      name: http-port
+      protocol: HTTP
+    - number: 443
+      name: https-port
+      protocol: HTTPS
+  resolution: DNS
+  location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: my-vs
+spec:
+  hosts:
+    - postman-echo.com
+  http:
+    - route:
+        - destination:
+            host: postman-echo.com
+            port:
+              number: 443
+      timeout: 3s
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: my-dr
+spec:
+  host: postman-echo.com
+  trafficPolicy:
+    tls:
+      mode: SIMPLE # upgrade http to https

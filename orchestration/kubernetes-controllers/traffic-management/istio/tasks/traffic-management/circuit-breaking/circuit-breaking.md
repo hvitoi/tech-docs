@@ -54,9 +54,6 @@ spec:
 # Deploy HTTP Server (httpbin)
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/httpbin.yaml
 
-# Apply DR to the App
-kubectl apply -f destination-rule.yaml
-
 # Deploy an HTTP Client (fortio) - this client will trip the circuit breaker of the server app
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.27/samples/httpbin/sample-client/fortio-deploy.yaml
 ```

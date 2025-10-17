@@ -54,6 +54,15 @@ curl https://httpbin.org/post \
 curl -s https://httpbin.org/get
 ```
 
+## --show-error (-S)
+
+- Show error even when -s is used
+- On its own, it does nothing. It only matters with -s
+
+```shell
+curl -sS https://httpbin.org/get
+```
+
 ## --remote-name (-O)
 
 - Save file with its original filename
