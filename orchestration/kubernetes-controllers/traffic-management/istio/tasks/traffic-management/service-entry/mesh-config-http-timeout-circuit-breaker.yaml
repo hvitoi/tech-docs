@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: test-resilience-example-se
+spec:
+  hosts:
+    - example.com
+  ports:
+    - number: 80
+      name: http-port
+      protocol: HTTP
+  resolution: DNS
+  location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: test-resilience-example-vs
+spec:
+  hosts:
+    - example.com
+  http:
+    - route:
+        - destination:
+            host: example.com
+      timeout: 3s
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: test-resilience-example-dr
+spec:
+  host: example.com
+  trafficPolicy:
+    # https://istio.io/latest/docs/reference/config/networking/destination-rule/#OutlierDetection
+    # A Circuit breaker implementation that tracks the status of each individual host in the upstream service.
+    outlierDetection:
+      interval: 10s
+      consecutive5xxErrors: 5
+      baseEjectionTime: 30s # eject unhealthy host from the pool for X min
+      maxEjectionPercent: 100

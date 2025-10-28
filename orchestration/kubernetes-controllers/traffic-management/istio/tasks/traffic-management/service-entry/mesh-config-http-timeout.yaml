@@ -11,3 +11,16 @@ spec:
       protocol: HTTP
   resolution: DNS
   location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: test-resilience-example-vs
+spec:
+  hosts:
+    - example.com
+  http:
+    - route:
+        - destination:
+            host: example.com
+      timeout: 3s
