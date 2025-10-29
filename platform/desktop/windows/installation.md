@@ -10,7 +10,7 @@
 
 - Installation ISO
   - <https://www.microsoft.com/pt-br/software-download/windows11>
-  - If installing in a VM, make sure if has at least 2 cores set up, UEFI and TPM enabled
+  - If installing in a VM, make sure it has at least 2 cores set up, UEFI and TPM enabled
 
 ## Bypass Hardware Check
 
