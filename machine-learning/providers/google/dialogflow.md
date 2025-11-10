@@ -1,3 +1,0 @@
-# Google Dialog Flow
-
-- Chatbot

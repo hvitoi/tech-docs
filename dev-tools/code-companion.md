@@ -59,3 +59,8 @@
   - Proprietary
   - Supports Claude LLMs only
   - Integrates with IDEs by means of plugins, but both program and plugin is required
+
+## Agents
+
+- `Plan agent`: ask questions about the codebase
+- `Build agent`: make changes on your codebase

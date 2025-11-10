@@ -21,7 +21,3 @@
 - Filesystems: let's AI read/write project files
 - Dev tools (like VS Code, GitHub, CI/CD)
 - Other agents
-
-## VSCode
-
--
