@@ -25,8 +25,8 @@ pip show "pip"
 pip install numpy
 pip install "numpy[standard]" # specify version
 
-# upgrade package to the newest version
-pip install --upgrade pip # upgrade pip itself
+# upgrade package to the newest version (install or upgrade it)
+pip install --upgrade pip # -U upgrade pip itself
 
 # install from a directory
 git clone https://github.com/squidfunk/mkdocs-material.git
