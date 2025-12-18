@@ -1,7 +1,6 @@
 # AppProject
 
 ```yaml
----
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
