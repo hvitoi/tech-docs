@@ -57,8 +57,13 @@
 - **Regional services**
   - `Control plane`: Regional
   - `Data plane`: Regional
-  - S3, SQS, DybamoDB
+  - S3, SQS, DynamoDB
 - **Global services**
   - `Control plane`: Single Region
   - `Data plane`: Globally Distributed
-  - IAM (cp in us-east-1), CloudFront, Route 53, Global Accelerator
+  - IAM (cp in us-east-1), CloudFront, Route 53, Global Accelerator, WAF
+
+## Services
+
+- Documentation: <https://docs.aws.amazon.com/>
+- CloudFormation Definition: <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html>
