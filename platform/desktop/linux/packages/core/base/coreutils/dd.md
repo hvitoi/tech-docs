@@ -42,3 +42,13 @@ sudo dd \
   conv=fdatasync \
   status=progress
 ```
+
+## Wipe a disk
+
+```shell
+sudo dd \
+  if=/dev/zero \
+  of=/dev/sdx \
+  bs=4M \
+  status=progress
+```

@@ -16,20 +16,23 @@ ping "archlinux.org"
 
 ## Partitions
 
-- Partition Setup
-  - `g` -> New partition table
-  - `n` -> New partition
-  - `/dev/sdx1` -> +0.5G
-  - `/dev/sdx2` -> Rest
-  - `w` -> write
-
 ```shell
 # List available disks and partitions
 lsblk
 
 # List disks
 fdisk -l # Optionally use cgdisk
+
+# Partition disk
+fdisk /dev/sdx
 ```
+
+- Partition Setup
+  - `g` -> New partition table
+  - `n` -> New partition
+  - `/dev/sdx1` -> +0.5G (EFI)
+  - `/dev/sdx2` -> Rest (System)
+  - `w` -> write
 
 ## Root partition: LUKS encryption
 
@@ -94,8 +97,9 @@ dd \
 # swap file permission
 chmod 600 /swapfile
 
-# create swap from file
-mkswap /swapfile
+# create swap from file (and set label)
+mkswap -L SWAP /swapfile # from file
+mkswap -L SWAP /dev/sdx # from partition
 
 # activate swap
 swapon /swapfile # if using a partition use its device e.g., /dev/sdy
@@ -104,11 +108,13 @@ swapon /swapfile # if using a partition use its device e.g., /dev/sdy
 ## Install System
 
 ```shell
-# Setup pacman keys
+# Update repo
+pacman -Syy
+
+# Setup pacman keys (if necessary)
 pacman-key --init
 pacman-key --populate
 pacman-key --refresh-keys
-pacman -Syy
 ```
 
 ```shell
@@ -154,7 +160,7 @@ HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt)
 
 ```conf
 # /etc/crypttab.initramfs
-sun LABEL=FOO_CRYPT
+foo LABEL=FOO_CRYPT
 ```
 
 ```shell
@@ -182,9 +188,7 @@ systemctl enable gdm.service
 
 ```shell
 # Time zone
-ln -sf \
-  /usr/share/zoneinfo/America/Sao_Paulo \
-  /etc/localtime
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
 
 # Localization
@@ -201,7 +205,7 @@ echo "::1 localhost" >> /etc/hosts
 useradd -m -d /home/me -s /bin/bash me # new user
 usermod -aG wheel me # add into a group
 passwd me # change password
-EDITOR=vim visudo # Uncomment %wheel ALL=(ALL) ALL
+EDITOR=vim visudo # Uncomment %wheel ALL=(ALL:ALL) ALL
 ```
 
 ## Finish
