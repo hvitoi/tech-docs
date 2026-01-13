@@ -5,3 +5,4 @@
 (merge ab cd ef)
 
 (merge nil {:a :b})
+(merge {:a :b} nil)

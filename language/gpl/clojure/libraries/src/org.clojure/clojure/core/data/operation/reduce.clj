@@ -3,6 +3,7 @@
 (reduce + 10 [1 2 3]) ; sum up all elements (starts with 10)
 (reduce + 10 nil)
 (reduce + 10 [])
+(reduce (fn [acc el] (concat acc [el])) [] [1 2])
 
 ; custom aggregation function
 (reduce (fn [acc n]
