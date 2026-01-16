@@ -16,3 +16,12 @@ brew install cursor --cask
 - `Plan`
 - `Debug`
 - `Ask`
+
+## CLI
+
+### cursor agent
+
+```shell
+# Start the Cursor agent in your terminal
+cursor agent
+```
