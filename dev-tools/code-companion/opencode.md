@@ -11,3 +11,5 @@
 
 - `/connect`: add API keys for a new AI provider
 - `/models`: list all models based on your configured providers
+
+- `/init`: sends a prompt to analyze the codebase and create an AGENTS.md file
