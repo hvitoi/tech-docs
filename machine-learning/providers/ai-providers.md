@@ -30,57 +30,33 @@
 - `o4`
 - `o4-mini`
 
-- `Codex Mini`
+- `Codex Mini` (Used by github copilot)
 
 ## Anthropic
 
-- `Claude Haiku 3`
-- `Claude Haiku 3.5`
-
-- `Claude Sonnet 3`
-- `Claude Sonnet 3.5`
-- `Claude Sonnet 3.5 v2`
-- `Claude Sonnet 3.7`
-- `Claude Sonnet 4`
-
-- `Claude Opus 3`
-- `Claude Opus 4`
-- `Claude Opus 4.1`
+- `Claude Opus 4.5`
+- `Claude Sonnet 4.5`
+- `Claude Haiku 4.5`
 
 ## Google
 
-- `Gemini 2.5 Flash Lite`
+- `Gemini 3 Pro`
+- `Gemini 3 Flash`
+
 - `Gemini 2.5 Flash`
-- `Gemini 2.5 Pro`
+- `Gemini 2.5 Flash Lite`
 
-## Azure
+- `Gemini 2.0 Flash`
 
-- `Microsoft Copilot`
-  - OpenAI GPT
+## X-AI (Twitter)
+
+- `Grok 4.1 Fast`
+- `Grok Code Fast 1`
 
 ## DeepSeek
 
-- `DeepSeek`
-  - DeepSeek General
-  - DeepSeek Reasoning
+- DeepSeek V3.2
 
-## Github Copilot
+## Meta
 
-- `GitHub Copilot`
-  - OpenAI Codex (not GPT!)
-
-## Groq (Twitter)
-
-- `Grok 4`
-
-## Llama
-
-- `Meta`
-  - Meta Llama
-
-## OpenRouter
-
-- It's not a provider, but behaves like one
-- It's a unified interface for LLMs
-- Adopts a single interface (e.g., for authentication, billing, error, etc)
-- <https://openrouter.ai/>
+- Meta Llama
