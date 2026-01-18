@@ -6,15 +6,15 @@
 - Github Copilot uses the OpenAI Codex models
 
 - `GPT 5.2`
-- `GPT 5.2 Codex`
+- `GPT 5.2 Codex` (best for coding)
 
 - `o4`
 
 ## Anthropic
 
-- `Claude Opus 4.5`
-- `Claude Sonnet 4.5`
-- `Claude Haiku 4.5`
+- `Claude Opus 4.5` (deep reasoning)
+- `Claude Sonnet 4.5` (balances reasoning, accuracy and cost)
+- `Claude Haiku 4.5` (lighter and cheaper)
 
 ## Google
 

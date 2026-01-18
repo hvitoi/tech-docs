@@ -1,4 +1,4 @@
-# Code Companion
+# Agents
 
 ## Standalone
 
@@ -13,7 +13,6 @@
 
 - <https://claude.com/product/claude-code>
 
-- Proprietary
 - Supports Claude LLMs only
 - Provides an CLI and Integrates with IDEs by means of plugins, but both program and plugin is required
 
@@ -44,7 +43,7 @@
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev>
   - **CLI**: `npm install -g cline`
 
-### kilocode
+### Kilo Code
 
 - <https://kilo.ai>
 - <https://github.com/Kilo-Org/kilocode>
@@ -55,7 +54,7 @@
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code>
   - **CLI**: <https://kilo.ai/cli>
 
-### Roo-Code
+### RooCode
 
 - <https://github.com/RooCodeInc/Roo-Code>
 - <https://roocode.com/>
