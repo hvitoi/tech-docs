@@ -20,6 +20,13 @@ export ANTHROPIC_AUTH_TOKEN="..."
 export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 ```
 
+## Agent mode
+
+- `Plan mode`: R-only
+- `Accept edits`: RW
+
+- "Shift+Tab" to switch modes
+
 ## Memory (CLAUDE.md)
 
 - `~/.claude/CLAUDE.md` (user)
@@ -40,19 +47,18 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 ```shell
 claude # interactive mode in cwd
 
-# Task
-claude "fix the build error" # one-time task
-
-# Prompt (-f)
-claude -p "explain this $CONTEXT" # prompt
+# Start a conversation with a prompt
+claude "fix the build error" # Interactive
+claude -p "explain this $CONTEXT" # (print) Non-interactive (print and exit - useful for pipes)
 tail -f app.log | claude -p "Slack me if you see any anomalies appear in this log stream"
 
-# Last conversation (-c)
-claude -c
+# Pick a conversation
+claude -c # (continue) last conversation
+claude -r # (resume) pick conversation from a list
+```
 
-# MCP
+### mcp
+
+```shell
 claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh --scope user
-
-# Commit
-claude commit # create a git commit
 ```
