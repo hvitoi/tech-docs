@@ -17,13 +17,13 @@ brew install --cask claude-code
   - `~/.claude/settings.json` (user)
   - `.claude/settings.json` (project)
 
+- Memory
+  - `~/.claude/CLAUDE.md` (user)
+  - `.claude/CLAUDE.md` or `CLAUDE.md`
+
 - MCP servers
   - `~/.claude.json` (user)
   - `.mcp.json` (project)
-
-- Memory
-  - `~/.claude/CLAUDE.md` (user)
-  - `CLAUDE.md` or `.claude/CLAUDE.md`
 
 ```shell
 # Auth config can only be set via environment variables
@@ -119,6 +119,54 @@ claude -c --fork-session # fork the last session and leave the last intact
 
 ### mcp
 
+- Scopes
+  - `User` and `local` scope: ~/.claude.json (in the mcpServers field or under project paths)
+  - `Project` scope: .mcp.json in your project root (checked into source control)
+  - `Managed`: managed-mcp.json in system directories (see Managed MCP configuration)
+
+- Many cloud-based MCP servers require authentication. Claude Code supports OAuth 2.0 for secure connections, it should be done with the command `/mcp`
+
 ```shell
-claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh --scope user
+claude mcp list
+claude mcp get "github"
+claude mcp remove "github" -s local
+```
+
+```shell
+# HTTP Server
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ # for the current project (cwd) only (local scope) - default behavior
+claude mcp add --transport http --scope user github https://api.githubcopilot.com/mcp/ # for all the projects (user scope)
+
+# SSE (Server-Sent Events) Server
+claude mcp add asana --transport sse https://mcp.asana.com/sse --header "X-API-Key: your-key-here"
+
+# Local stdio Server
+claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable -- npx -y airtable-mcp-server
+claude mcp add --transport stdio --env KEY=value myserver -- python server.py --port 8080
+claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh
+
+# From JSON (exactly how it will be added to the config file)
+claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/mcp","headers":{"Authorization":"Bearer token"}}'
+```
+
+```json
+// ~/.claude.json
+{ // ...
+  "mcpServers": {
+    "nu-mcp": {
+      "type": "stdio",
+      "command": "/Users/myself/mymcp/run.sh",
+      "args": [],
+      "env": {}
+    },
+    "atlassian": {
+      "type": "sse",
+      "url": "https://mcp.atlassian.com/v1/sse"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}
 ```
