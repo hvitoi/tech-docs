@@ -3,9 +3,21 @@
 - Allows responding with only the necessary data needed by the client
 - It is a single entrypoint `POST /graphql`
 
+- `Query Language`
+- A GraphQL server validates the query and returns the value requested
+- Originally created for mobile
+- Addresses the problem of unreliable network connection
+- Provide an API server that do not need requests all the time
+
 ## Type System
 
 - Provides a type system
+- GraphQL is `strongly typed`
+
+- `Scalar`
+- `Query`
+- `Object`: custom objects!
+- `Mutation`
 
 ```gql
 type Book {
@@ -30,6 +42,32 @@ type Mutation {
   createVideo(url: String): Video
   deleteVideo(url: String): String
 }
+```
+
+## Schema
+
+- Contract that defines the shape of the data to be exchanged
+- `Query`: fetch data
+- `Mutation`: update data, side-effect
+
+```graphql
+type query {
+  customer(id: Uuid): Customer
+  customers: [Customer]
+}
+type mutation {
+  updateName(newName: string): Customer
+  updateAge(newAge: int): Customer
+}
+
+type Customer {
+  id: Uuid
+  name: string
+  age: int
+  contracts: [Customer]
+}
+
+scalar Uuid
 ```
 
 ## Resolvers
@@ -128,6 +166,27 @@ curl --request POST \
   "captain": {
     "name": "Neil Armstrong",
     "callsign" :"Neil"
+  }
+}
+```
+
+### Client Request Example
+
+- `Operation Name`: getCustomerName
+- `Query/Mutation schema` defined in the schema: customer.name
+- `Variable`: $id
+- `Argument`: id
+
+```graphql
+query getCustomerName($id: Uuid){
+  customer(id: $id){
+    name // what fields to fetch! (declarative data fetching)
+  }
+}
+
+mutation changeCustomerName($name: String){
+  updateName(newNam: $name){
+    name
   }
 }
 ```

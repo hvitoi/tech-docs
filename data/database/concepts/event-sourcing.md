@@ -23,3 +23,31 @@
 - CDC implementation: `Debezium` Kafka Connector
 
 ![CDC](.images/event-sourcing-cdc.png)
+
+## Event Sourcing -
+
+- It's a `data modelling` technique
+- Event sourcing is `append only`. Events cannot be removed or updated
+- This way you can replay the whole history to get into the current state
+- Also you can make analysis based on a specific time frame
+- `Book`: Designing Data-Intensive Application
+- Git is an example of event sourcing. All the commits are considered events and all of them represent the full history of the process
+
+- **Event Driven Architecture**
+  - Communication between entities/services
+  - Application or Service Level
+- **Event Sourcing**
+  - Persist the full history of a domain as a sequence of events, rather than persisting just the current state
+  - Application level only
+
+## Retry
+
+- At-least-once
+- Kafka message with auto retry until the consumer can process it
+
+## Idempotency
+
+- Executing an operation multiple times ahs the same effect as executing it once
+- Each event has an ID
+- Each event uses the source event ID as its unique idempotency key
+- Each event validates its idempotency keys, so it's impossible to create two events for the same key
