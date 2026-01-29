@@ -15,3 +15,14 @@ uv init
 ```shell
 uv add "langchain"
 ```
+
+## run
+
+- Run python code
+
+```shell
+uv run python - <<'EOF'
+  import sys
+  sys.exit(1)
+EOF
+```
