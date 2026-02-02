@@ -13,6 +13,43 @@ cd demo
 uv init
 ```
 
+## sync
+
+- What is does?
+  - Read your pyproject.toml
+  - Create a `.venv/` (if not there yet)
+  - Install all dependencies
+  - Create/update the uv.lock file
+- It's similar to `npm i`
+
+```shell
+uv sync
+```
+
+## run
+
+```shell
+# Run the entrypoint of the project
+uv run python main.py
+uv run python main.py --arg1 value1
+
+# Run python code
+uv run python - <<'EOF'
+  import sys
+  sys.exit(1)
+EOF
+
+# Run python code interactively (and specify the version)
+uv run --python pypy@3.8 -- python
+uv run --python 3.12.0 -- python
+
+# Run an arbitrary command of a dependency
+uv run ruff check
+
+# Run a custom script
+uv run start
+```
+
 ## add
 
 - Adds a dependency into `pyproject.toml` and installs it in the virtual environment `.venv/`
@@ -31,35 +68,10 @@ uv add requests --script demo.py
 uv run demo.py
 ```
 
-## run
-
-- Run a script of a dependency
-
-```shell
-# Run python code
-uv run python - <<'EOF'
-  import sys
-  sys.exit(1)
-EOF
-
-# Run python code interactively (and specify the version)
-uv run --python pypy@3.8 -- python
-uv run --python 3.12.0 -- python
-
-#
-uv run ruff check
-```
-
 ## uv lock
 
 ```shell
 uv lock
-```
-
-## uv sync
-
-```shell
-uv sync
 ```
 
 ## uv python
