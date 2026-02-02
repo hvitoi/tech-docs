@@ -1,6 +1,22 @@
-import openai
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "openai>=2.16.0",
+# ]
+# ///
+from openai import OpenAI
 
-client = openai.OpenAI(api_key="<your-liteLLM-key>", base_url="<https://myhost.com>")
-response = client.chat.completions.create(
-    model="openai/gpt-4o", messages=[{"role": "user", "content": "Hello!"}]
+client = OpenAI(
+    api_key="<your-api-key>",
+    base_url="<https://myhost.com>",
 )
+
+response = client.responses.create(
+    model="gpt-5.2", input="Write a short bedtime story about a unicorn."
+)
+print(response)
+
+response = client.chat.completions.create(
+    model="gpt-5.2", messages=[{"role": "user", "content": "Hello!"}]
+)
+print(response)

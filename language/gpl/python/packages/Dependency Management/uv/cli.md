@@ -25,20 +25,10 @@ uv add "langchain"
 # Add a dependency for a single file
 # Dependency are added as comments to the file
 echo 'import requests; print(requests.get("http://example.com"))' > demo.py
-uv add --script demo.py requests
+uv add requests --script demo.py
 
 # Run it
 uv run demo.py
-```
-
-```python
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#     "requests>=2.32.5",
-# ]
-# ///
-import requests; print(requests.get("http://example.com"))
 ```
 
 ## run
