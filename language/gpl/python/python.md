@@ -37,13 +37,15 @@ python3 --version
 
 ## Virtual Environment
 
-- Each virtual environment is created based on a python interpreter (version)
+- Each virtual environment is created based on a python interpreter (a python version)
 - A virtual environment contains all libraries and binaries isolated from the operating system
   - Even the python binary is isolated (although symlinked to the system python binary)
 - Options
   - `venv`: the native virtual environment solution
   - `virtualenv`: 3rd party
-  - `pipenv`: 3rd party, more recent
+  - `pipenv`: 3rd party
+  - `poetry`: 3rd party
+  - `uv`: 3rd party
 
 ```shell
 python -m venv ".venv"

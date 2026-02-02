@@ -1,5 +1,7 @@
 # virtualenv
 
+- This is an external package! The native module is `venv`
+
 ```shell
 # creates a new virtual environment (in the current directory)
 virtualenv ./my-awesome-environment
