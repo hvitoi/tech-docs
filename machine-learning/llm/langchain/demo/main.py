@@ -1,13 +1,15 @@
+import os
+
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-load_dotenv()  # load .env into os.environ
+load_dotenv()
 
 
 def main():
-    llm = ChatOpenAI(
-        # base_url="http://localhost:4000",  # If not provided, automatically pick from OPENAI_BASE_URL
-        # api_key=os.getenv("OPENAI_API_KEY"), # If not provided, automatically pick from OPENAI_API_KEY
+    model = ChatOpenAI(
+        base_url=os.getenv("OPENAI_BASE_URL"),  # if not specified, uses env OPENAI_BASE_URL
+        api_key=os.getenv("OPENAI_API_KEY"),  # if not specified, uses env OPENAI_API_KEY
         model="gpt-5.2",
     )
 
@@ -16,10 +18,13 @@ def main():
         ("user", "Tell me a joke about programming."),
     ]
 
-    # response = llm.invoke("What is the capital of France?") # with no context
-    response = llm.invoke(messages)  # with context from messages
+    response = model.invoke(messages)
 
+    print("\n" + "=" * 50)
+    print("Response:")
+    print("=" * 50)
     print(response.content)
+    print("=" * 50 + "\n")
 
 
 if __name__ == "__main__":

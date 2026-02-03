@@ -24,6 +24,7 @@ uv init
 
 ```shell
 uv sync
+uv sync --extra dev # also install "project.optional-dependencies.dev"
 ```
 
 ## run
@@ -48,6 +49,9 @@ uv run ruff check
 
 # Run a custom script
 uv run start
+
+# Run test deps
+uv run pytest tests/
 ```
 
 ## add
