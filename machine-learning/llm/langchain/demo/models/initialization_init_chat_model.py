@@ -7,9 +7,9 @@ load_dotenv()
 
 def main():
     model = init_chat_model(
-        "gpt-5.2",
-        api_key=os.getenv("OPENAI_API_KEY"),  # if not specified, uses env OPENAI_API_KEY
-        temperature=0.7,
+        "google_genai:gemini-2.5-flash-lite",  # "gpt-5.2",
+        # api_key=os.getenv("MY_API_KEY"),  # if not specified, uses env OPENAI_API_KEY, GOOGLE_API_KEY, etc
+        temperature=0.9,
         timeout=30,
         max_tokens=1000,
     )

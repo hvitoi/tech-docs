@@ -13,4 +13,7 @@
 ```shell
 pip install "langchain[openai]"
 pip install "langchain[google-genai]"
+
+uv add langchain-openai
+uv add langchain-google-genai
 ```

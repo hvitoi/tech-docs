@@ -2,16 +2,19 @@ import os
 
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 
 
 def main():
-    model = ChatOpenAI(
-        base_url=os.getenv("OPENAI_BASE_URL"),  # if not specified, uses env OPENAI_BASE_URL
-        api_key=os.getenv("OPENAI_API_KEY"),  # if not specified, uses env OPENAI_API_KEY
-        model="gpt-5.2",
-    )
+    # model = ChatOpenAI(
+    #     base_url=os.getenv("OPENAI_BASE_URL"),  # if not specified, uses env OPENAI_BASE_URL
+    #     api_key=os.getenv("OPENAI_API_KEY"),  # if not specified, uses env OPENAI_API_KEY
+    #     model="gpt-5.2",
+    # )
+
+    model = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
 
     messages = [
         ("system", "You are a helpful assistant."),

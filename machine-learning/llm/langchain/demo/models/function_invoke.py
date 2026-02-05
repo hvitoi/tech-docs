@@ -5,7 +5,8 @@ load_dotenv()
 
 
 def main():
-    model = init_chat_model("gpt-5.2")
+    # model = init_chat_model("gpt-5.2")
+    model = init_chat_model("google_genai:gemini-2.5-flash-lite")
 
     # A single prompt
     response = model.invoke("Hi, how are you?")
