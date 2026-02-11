@@ -4,3 +4,5 @@
 (count "aaa") ; 3
 
 (count {:a "a"}) ; 1
+
+(count nil) ; 0

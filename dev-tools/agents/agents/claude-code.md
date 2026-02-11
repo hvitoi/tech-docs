@@ -19,7 +19,7 @@ brew install --cask claude-code
 
 - Memory
   - `~/.claude/CLAUDE.md` (user)
-  - `.claude/CLAUDE.md` or `CLAUDE.md`
+  - `.claude/CLAUDE.md` or `CLAUDE.md` (project)
 
 - MCP servers
   - `~/.claude.json` (user)
@@ -69,7 +69,7 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
   - run commands
   - search the web
   - interact with external services
-- Each tool use returns information that `feeds back into the agentic loop`, informing Claude’s next decision.
+- Each tool use returns information that `feeds back into the agentic loop`, informing Claude's next decision.
 
 - Categories of built-in tools (base capabilities)
   - `File operations`: Read files, edit code, create new files, rename and reorganize
@@ -97,6 +97,7 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 - `/init`: create CLAUDE.md (similar to AGENTS.md)
 - `/agents`: helps you configure custom subagents
 - `/memory`: open the memory file
+- `/resume`: jump back to previous conversation. Same as "claude -r"
 - `/compact`: define rules for the context window compactation, e.g., "/compact focus on the API changes"
 - `/context`: check what is using space on the context window
 - `/permissions`
