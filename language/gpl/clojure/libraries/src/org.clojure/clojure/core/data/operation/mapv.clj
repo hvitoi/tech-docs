@@ -5,3 +5,4 @@
 
 ;; sequence
 (mapv println (range 50))
+(mapv identity nil) ; []
