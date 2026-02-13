@@ -2,7 +2,6 @@
 # cast to string
 import time
 
-
 str(1)
 
 # single quote
@@ -28,6 +27,9 @@ f"Bad nvram line: {foo!r}"
 
 start_time = time.perf_counter()
 print(f"Processing time: {time.perf_counter() - start_time}")
+
+# Substituting
+"hello %s" % "world"
 
 # %%
 

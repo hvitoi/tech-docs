@@ -42,6 +42,11 @@ def main():
     print(type(response))  # AIMessage
     print(response.content)
 
+    # https://docs.langchain.com/oss/python/langchain/messages#text-prompts
+    # Text prompts are strings, ideal for straightforward generation tasks where you don't need to retain conversation history.
+    response = model.invoke("Write a haiku about spring")
+    print(response.content)
+
 
 if __name__ == "__main__":
     main()

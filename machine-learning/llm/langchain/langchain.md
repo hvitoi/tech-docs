@@ -5,3 +5,8 @@
 - Build LLM-powered applications
 - It abstracts the process of interacting with the LLM
 - Supports agent ecosystem (e.g., search on internet, query database, send emails)
+
+## Documentation
+
+- Reference <https://reference.langchain.com/python/langchain/>
+- Docs <https://docs.langchain.com/oss/python/langchain/overview>

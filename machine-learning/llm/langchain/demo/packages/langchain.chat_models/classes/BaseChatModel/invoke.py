@@ -1,7 +1,4 @@
-from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
-
-load_dotenv()
 
 
 def main():
@@ -10,7 +7,6 @@ def main():
 
     # A single prompt
     response = model.invoke("Hi, how are you?")
-
     print(response.content)
 
     # A set of messages
@@ -24,8 +20,9 @@ def main():
         {"role": "user", "content": "Translate: I love building applications."},
     ]
     response = model.invoke(conversation)
-
     print(response.content)
+
+    # see langchain.messages for more
 
 
 if __name__ == "__main__":

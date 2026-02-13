@@ -5,10 +5,13 @@ b = 12  # 0000 1100
 # %%
 # AND
 a & b  # 0000 0100 (4)
+a.__and__(b)
 
 # %%
 # OR
+# With bitwise OR, both sides are always evaluated (no short-circuit)
 a | b  # 0000 1110 (14)
+a.__or__(b)
 
 # %%
 # XOR
