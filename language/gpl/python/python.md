@@ -59,8 +59,10 @@ echo $PATH
 ## Language Server
 
 - `Jedi`: Community-driven
-- `Pylance`: Developed by Microsoft
-- With homebrew, source files are installed at `/opt/homebrew/Cellar/python@3.12/3.12.1_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12`
+- `Pyright`
+  - Microsoft created the "Pylance" VS Code extension, which is powered by Pyright
+  - With homebrew, source files are installed at `/opt/homebrew/Cellar/python@3.12/3.12.1_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12`
+- `PyLSP`
 
 ## Linter & Formatter
 

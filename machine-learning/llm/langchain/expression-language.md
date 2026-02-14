@@ -5,6 +5,6 @@
   - <https://reference.langchain.com/python/langchain_core/runnables/#langchain_core.runnables.base.Runnable>
 
 ```python
-chain = prompt_template | model
-chain = prompt_template.__or__(model) # same
+chain: Runnable = prompt_template | model
+chain: Runnable = prompt_template.__or__(model) # same
 ```

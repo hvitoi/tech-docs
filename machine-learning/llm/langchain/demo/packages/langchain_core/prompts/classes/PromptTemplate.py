@@ -1,10 +1,12 @@
 from langchain_core.prompts import PromptTemplate
+from langchain_core.runnables import Runnable
 from langchain.chat_models import init_chat_model
 
 
 def main():
 
-    #
+    model = init_chat_model("google_genai:gemini-2.5-flash-lite")
+
     prompt_template = PromptTemplate(
         template="""
             given the information {information} about a person I want you to create:
@@ -14,10 +16,7 @@ def main():
         input_variables=["information"],  # just lists the input variables
     )
 
-    model = init_chat_model("google_genai:gemini-2.5-flash-lite")
-
-    # Pipe together the prompt_template into the model and invoke
-    chain = prompt_template | model
+    chain: Runnable = prompt_template | model
 
     response = chain.invoke(
         input={
