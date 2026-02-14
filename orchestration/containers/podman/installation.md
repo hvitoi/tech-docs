@@ -6,6 +6,7 @@
 
 ```shell
 brew install podman
+brew install podman-compose # for docker-compose support
 
 # Linux VM
 podman system connection list # empty
