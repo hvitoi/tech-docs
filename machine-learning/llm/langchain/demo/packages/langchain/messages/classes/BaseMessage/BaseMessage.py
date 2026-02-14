@@ -1,5 +1,5 @@
 from langchain.chat_models import init_chat_model
-from langchain.messages import HumanMessage, AIMessage, SystemMessage
+from langchain.messages import AIMessage, HumanMessage, SystemMessage
 
 # https://docs.langchain.com/oss/python/langchain/messages#message-prompts
 
@@ -37,11 +37,10 @@ def main():
         {"role": "user", "content": "Great! What's 2+2?"},
     ]
 
-    response = model.invoke(messages)
-
-    print(type(response))  # AIMessage
+    response: AIMessage = model.invoke(messages)
     print(response.content)
 
+    # Or you can invoke with a simple text prompt...
     # https://docs.langchain.com/oss/python/langchain/messages#text-prompts
     # Text prompts are strings, ideal for straightforward generation tasks where you don't need to retain conversation history.
     response = model.invoke("Write a haiku about spring")

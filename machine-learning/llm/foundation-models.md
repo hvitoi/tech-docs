@@ -6,16 +6,6 @@
 
 ![Generative AI](.images/gen-ai.png)
 
-- **Open AI**: GPT-4o (Generative Pre-trained Transformer)
-- **AI21 Labs**: Jurassic-2
-- **Anthropic** Claude
-- **Stability AI** Stable Diffusion
-- **Amazon** Amazon Titan
-- **Cohere** Command
-- **Meta** Llama 2
-- **Mistral AI** Mistral
-- **Google**: BERT
-
 ## Generative modality
 
 - Modalities
