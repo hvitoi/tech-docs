@@ -3,6 +3,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import Runnable
 
 
+# https://reference.langchain.com/python/langchain_core/runnables/#langchain_core.runnables.base.Runnable
+
+
 def main():
 
     model = init_chat_model("google_genai:gemini-2.5-flash-lite")
