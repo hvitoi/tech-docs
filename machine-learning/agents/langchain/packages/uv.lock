@@ -124,6 +124,7 @@ dependencies = [
     { name = "langchain-openai" },
     { name = "langchain-tavily" },
     { name = "langfuse" },
+    { name = "pydantic" },
     { name = "python-dotenv" },
 ]
 
@@ -144,6 +145,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = ">=1.0.2" },
     { name = "langchain-tavily", specifier = ">=0.2.17" },
     { name = "langfuse", specifier = ">=3.14.1" },
+    { name = "pydantic", specifier = ">=2.12.4" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "python-dotenv", specifier = ">=1.2.1" },

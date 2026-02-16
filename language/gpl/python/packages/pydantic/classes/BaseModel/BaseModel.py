@@ -28,6 +28,9 @@ class User(BaseModel):
         gt=0,
         le=100,
     )
+    favorite_number: int = Field(
+        default_factory=int,  # 0 by default
+    )
 
 
 data = {

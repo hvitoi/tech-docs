@@ -3,6 +3,7 @@ from langchain.chat_models import init_chat_model
 from langchain.messages import HumanMessage
 from langchain.tools import tool
 from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 
 load_dotenv()
 
@@ -13,12 +14,23 @@ def get_weather(city: str) -> str:
     return f"It's always sunny in {city}!"
 
 
-model = init_chat_model("google_genai:gemini-2.5-flash-lite")
+class AgentResponse(BaseModel):
+    answer: str = Field(
+        description="The agent's answer to the query",
+    )
+    magic_numbers: list[int] = Field(
+        default_factory=list,
+        description="A short list with random numbers",
+    )
+
+
+model = init_chat_model("ollama:llama3.2")
 
 agent = create_agent(
     model=model,  # you can specify the model string directly too (without building the model first)
     tools=[get_weather],
     system_prompt="You are a helpful assistant",
+    response_format=AgentResponse,
 )
 
 result = agent.invoke(
