@@ -1,8 +1,7 @@
 [project]
-name = "demo"
+name = "app"
 version = "0.1.0"
 description = "My reference project"
-readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "langchain>=1.0.5",
@@ -14,9 +13,6 @@ dependencies = [
     "python-dotenv>=1.2.1",
 ]
 
-[project.scripts]
-start = "main:main"
-
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
@@ -24,17 +20,3 @@ dev = [
     "black>=24.0.0",     # formatting
     "ruff>=0.1.0",
 ]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-
-[tool.black]
-line-length = 100
-target-version = ["py313"]
-
-[tool.ruff]
-line-length = 100
-target-version = "py313"
