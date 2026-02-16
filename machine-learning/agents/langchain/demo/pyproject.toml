@@ -9,6 +9,7 @@ dependencies = [
     "langchain-google-genai>=4.2.0",
     "langchain-ollama>=1.0.1",
     "langchain-openai>=1.0.2",
+    "langchain-tavily>=0.2.17",
     "langfuse>=3.14.1",
     "python-dotenv>=1.2.1",
 ]
@@ -17,7 +18,12 @@ dependencies = [
 start = "main:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0.0", "pytest-cov>=4.1.0", "black>=24.0.0", "ruff>=0.1.0"]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.0.0",     # formatting
+    "ruff>=0.1.0",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

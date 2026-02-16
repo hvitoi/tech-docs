@@ -10,6 +10,5 @@ class User(BaseModel):
     friends: list[int] = []
 
 
-external_data = {"id": "123", "name": "Henry"}
-
-user = User(**external_data)
+data = {"id": "123", "name": "Henry"}
+User(**data)

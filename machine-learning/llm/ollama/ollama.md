@@ -8,16 +8,20 @@
 
 - Library of supported models: <https://ollama.com/library/gpt-oss>
 
-- `LLaMA 3` (Meta)
+- `LLaMA` (Meta)
+  - <https://ollama.com/library/llama3.2>
+  - **llama3.2:latest** (2.0GB and supports tools API)
+  - **llama2-uncensored:latest** (3.8 GB)
 - `Mistral` (Mistral AI)
-- `gemma3` (Google DeepMind)
-  - Offers light size versions (270M params)
+- `Gemma` (Google DeepMind)
   - <https://ollama.com/library/gemma3>
+  - **gemma3:270m**: (300MB very light but do not support tools API)
 - `Qwen` (Alibaba)
 - `Phi series` (Microsoft)
-- `gpt-oss` (OpenAI)
-  - 20B and 120B parameters versions
+- `GPT OSS` (OpenAI)
   - <https://ollama.com/library/gpt-oss>
+  - **gpt-oss:20b** (14 GB)
+  - **gpt-oss:120b** (65 GB)
 
 ## Install
 

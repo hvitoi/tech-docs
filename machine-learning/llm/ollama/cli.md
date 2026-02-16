@@ -23,7 +23,7 @@ ollama ps
 
 ## ollama run
 
-- Download and run a model
+- Download, run a model and plug it to stdin
 - If you want just to download -> `ollama pull`
 
 ```shell
@@ -43,4 +43,10 @@ curl http://localhost:11434/api/chat \
 
 ```shell
 ollama stop gpt-oss
+```
+
+## ollama rm
+
+```shell
+ollama rm gpt-oss
 ```
