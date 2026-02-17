@@ -22,5 +22,5 @@ pip install langchain langchain-<provider>
 ```conf
 LANGSMITH_TRACING=true
 LANGSMITH_PROJECT=hello-world
-LANGSMITH_API_KEY=...
+LANGSMITH_API_KEY=lsv2_pt_...
 ```

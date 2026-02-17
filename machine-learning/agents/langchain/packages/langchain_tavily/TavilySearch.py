@@ -31,7 +31,9 @@ agent = create_agent(
 
 result = agent.invoke(
     {
-        "messages": [HumanMessage("Search for job postings for an AI engineer in Lisbon.")],
+        "messages": [
+            HumanMessage("Search for job postings for an AI engineer in Lisbon.")
+        ],
     },
 )
 

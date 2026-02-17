@@ -12,6 +12,7 @@
 ## Tool function
 
 - The function types, argument names, docstrings, and so on are important! The LLM uses those descriptions in order to know whether to call this tool or not and with which arguments
+- The LLM itself does not run the tools! Your agent service does, LLM just specify the tool to call and the arguments
 
 Workflow:
 

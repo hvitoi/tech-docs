@@ -5,6 +5,7 @@ description = "My reference project"
 requires-python = ">=3.13"
 dependencies = [
     "langchain>=1.0.5",
+    "langchain-classic>=1.0.1",
     "langchain-google-genai>=4.2.0",
     "langchain-ollama>=1.0.1",
     "langchain-openai>=1.0.2",

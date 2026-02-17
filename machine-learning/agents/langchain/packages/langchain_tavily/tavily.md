@@ -11,5 +11,5 @@ uv add langchain-tavily
 ```
 
 ```conf
-TAVILY_API_KEY=tvly-dev-...
+TAVILY_API_KEY=tvly-...
 ```

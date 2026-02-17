@@ -19,3 +19,10 @@
 chain: Runnable = prompt_template | model
 chain: Runnable = prompt_template.__or__(model) # same
 ```
+
+## Evolution of ReAct Agents
+
+1. `LangChain ReAct Agent`: using ReAct prompt
+2. `Tool Calling Agent`: using function calling
+3. `LangGraph ReAct Agent`: using function calling
+4. `LangChain create_agent()`:using LangGraph ReAct agent
