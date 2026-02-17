@@ -1,5 +1,7 @@
 # /v1/chat/completions
 
+- It's an old API, but still supported. Prefer `/v1/responses` instead
+
 ```shell
 curl -X POST \
   "https://api.openai.com/v1/chat/completions" \
