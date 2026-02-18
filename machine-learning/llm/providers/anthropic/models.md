@@ -1,5 +1,16 @@
 # Models
 
-- `Claude Opus 4.5` (deep reasoning)
-- `Claude Sonnet 4.5` (balances reasoning, accuracy and cost)
-- `Claude Haiku 4.5` (lighter and cheaper)
+## Claude Opus
+
+- For deep reasoning
+- Latest: `Claude Opus 4.6`
+
+## Claude Sonnet
+
+- Balances reasoning, accuracy and cost
+- `Claude Sonnet 4.5`
+
+## Claude Haiku
+
+- Lighter and cheaper
+- `Claude Haiku 4.5`
