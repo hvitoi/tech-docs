@@ -69,3 +69,8 @@ def pprint(text, options):
 
 
 pprint("Hello!", (BRIGHT, RED))
+
+# %%
+
+my_map = {"foo": "bar"}
+str(my_map)  # convert map to string
