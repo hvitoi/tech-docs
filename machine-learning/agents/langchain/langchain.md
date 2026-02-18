@@ -1,6 +1,6 @@
 # Langchain
 
-- <https://docs.langchain.com/oss/python/langchain/overview>
+- <https://docs.langchain.com/oss/python/langchain/overview> (you can copy it to input it to an LLM - see "llms.txt")
 - LangChain is an open source framework with an agent architecture and integrations with several LLMs
 - Build LLM-powered applications
 - It abstracts the process of interacting with the LLM
@@ -22,7 +22,12 @@ chain: Runnable = prompt_template.__or__(model) # same
 
 ## Evolution of Agents
 
-1. `ReAct Prompt`: All the instructions, tools, output format, etc are passing in the prompt itself
-2. `Tool Calling`: Use the [function calling](https://developers.openai.com/api/docs/guides/function-calling) functionality of LLMs (made available in June 2023) that also support the [structured output](https://developers.openai.com/api/docs/guides/structured-outputs)
-3. `LangGraph ReAct Agent`: using function calling
-4. `LangChain create_agent()`:using LangGraph ReAct agent
+1. `ReAct Prompt with AgentExecutor` (2022~mid-2023)
+    - Prompt with the reasoning format (Thought/Action/Observation), tool descriptions and output instructions
+    - The AgentExecutor ran the loop: call LLM, parse output, tool calls, append observations, repeat
+2. `Tool Calling with AgentExecutor` (mid-2023~2024)
+    - OpenAI introduced function calling (June 2023)
+    - Use the [function calling](https://developers.openai.com/api/docs/guides/function-calling) functionality of LLMs (made available in June 2023) that also support the [structured output](https://developers.openai.com/api/docs/guides/structured-outputs)
+    - AgentExecutor still orchestrated the loop
+3. `Tool Calling with LangGraph`
+    - LangGraph allowed agents with graphs/state machines, not hidden loops

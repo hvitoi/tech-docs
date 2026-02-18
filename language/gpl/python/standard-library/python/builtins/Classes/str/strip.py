@@ -1,6 +1,7 @@
 # %%
 # Removes whitespaces
 "   Hey!   ".strip()
+"\nHey!".strip("\n")  # removes new lines
 
 # %%
 # alternative (to any kind of iterable)
@@ -10,13 +11,13 @@ my_str = "   Hey!   "
 while my_str[0] == " ":
     my_str = my_str[1:]
 
-# strip left
+# strip right
 while my_str[-1] == " ":
     my_str = my_str[:-1]
 
 my_str
 
-# %
+# %%
 # alternative (to any kind of iterable)
 my_str = "   Hey!   "
 

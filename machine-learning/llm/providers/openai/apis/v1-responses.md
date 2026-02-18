@@ -276,7 +276,7 @@ curl https://api.openai.com/v1/responses \
 
 ## stop
 
-- Force generation to stop
+- Force generation to stop once a specific token is reached
 
 ```shell
 curl https://api.openai.com/v1/responses \
