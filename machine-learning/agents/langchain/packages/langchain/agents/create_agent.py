@@ -32,6 +32,7 @@ agent = create_agent(
     tools=[get_weather],
     system_prompt="You are a helpful assistant",
     response_format=ProviderStrategy(AgentResponse),  # or the model directly
+    # uses the structured output LLM functionalities https://developers.openai.com/api/docs/guides/structured-outputs)
 )
 
 result = agent.invoke(

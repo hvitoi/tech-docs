@@ -20,9 +20,9 @@ chain: Runnable = prompt_template | model
 chain: Runnable = prompt_template.__or__(model) # same
 ```
 
-## Evolution of ReAct Agents
+## Evolution of Agents
 
-1. `LangChain ReAct Agent`: using ReAct prompt
-2. `Tool Calling Agent`: using function calling
+1. `ReAct Prompt`: All the instructions, tools, output format, etc are passing in the prompt itself
+2. `Tool Calling`: Use the [function calling](https://developers.openai.com/api/docs/guides/function-calling) functionality of LLMs (made available in June 2023) that also support the [structured output](https://developers.openai.com/api/docs/guides/structured-outputs)
 3. `LangGraph ReAct Agent`: using function calling
 4. `LangChain create_agent()`:using LangGraph ReAct agent

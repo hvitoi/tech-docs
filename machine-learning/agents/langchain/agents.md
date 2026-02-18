@@ -49,4 +49,5 @@ agent = create_agent(
 - There are 2 strategies
   - `Tool Strategy`: you use a local tool to structure the answer
   - `Provider Strategy`: you use the LLM to structure the answer natively
+    - <https://developers.openai.com/api/docs/guides/structured-outputs>
     - Supported only by some providers/models. E.g., OpenAI, Anthropic (Claude), or xAI (Grok)

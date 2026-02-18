@@ -62,8 +62,6 @@ react_prompt = react_prompt.partial(
     format_instructions=output_parser.get_format_instructions()
 )
 
-print(react_prompt)
-
 
 # TOOLS
 @tool
@@ -78,6 +76,9 @@ tools = [get_weather]
 ## LLM
 llm = init_chat_model("google_genai:gemini-2.5-flash")
 # if a less capable model is used here (e.g., gemini 2.5 flash lite) then the agentic loop may run indefinitely without a final answer
+
+# This is an alternative to the formatting instructions prompt! The formatting is done via LLM API (using function calling) and it's much more reliable
+# llm = llm.with_structured_output(FinalResponse)
 
 
 ## AGENT

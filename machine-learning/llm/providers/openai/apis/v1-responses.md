@@ -125,6 +125,7 @@ curl https://api.openai.com/v1/responses \
 
 ## response_format
 
+- <https://developers.openai.com/api/docs/guides/structured-outputs>
 - The response format lets you control the shape of the model's output
 - It's good to get reliable JSON to parse in your agent code
 
