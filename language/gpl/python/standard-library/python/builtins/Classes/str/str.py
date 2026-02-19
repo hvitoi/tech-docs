@@ -1,22 +1,24 @@
 # %%
 # cast to string
-import time
-
 str(1)
 
+# %%
 # single quote
 'single quotes allows "double quotes" inside'
 
+# %%
 # double quotes
 "double quotes"
-
-# triple quotes
-"""Trip'le qu"oted
-   Multiple lines"""
 
 # nested quotes
 "wrap lot's of other quotes"
 
+# %%
+# triple quotes
+"""Trip'le qu"oted
+   Multiple lines"""
+
+# %%
 # F-strings
 name = "Henrique"
 PI = 3.1415926535
@@ -24,18 +26,26 @@ f"Hey {name}, the value of π is {PI:.4f}"  # interpolation
 
 foo = "ABC"
 f"Bad nvram line: {foo!r}"
+f"{foo=}"
+
+import time
 
 start_time = time.perf_counter()
-print(f"Processing time: {time.perf_counter() - start_time}")
+f"Processing time: {time.perf_counter() - start_time}"
 
-# Substituting
+# %%
+# regex
+r"Action\s*\d*\s*:[\s]*(.*?)"
+
+# %%
+# Substitution
 "hello %s" % "world"
 
 # %%
-
 # Concatenate
 "12" + str(3)  # "123"
 
+# %%
 # Multiply
 "ab" * 2  # "abab"
 
