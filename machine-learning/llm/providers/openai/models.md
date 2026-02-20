@@ -6,9 +6,11 @@
 ## GPT (Generative Pre-trained Transformer)
 
 - Auto-regressive language model
-- `GPT-3`: trained on 175 billion parameters
-- `GPT-4`: traned on 100 trillion parameters
 - **ChatGPT**: has a human friendly interface
+
+- `GPT-3`: trained on 175 billion parameters
+- `GPT-4`: trained on 100 trillion parameters
+- `GPT-5.2`
 
 - **Pricing**
   - GPT-5 mini

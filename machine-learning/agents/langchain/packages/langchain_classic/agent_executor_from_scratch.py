@@ -1,15 +1,14 @@
 from typing import Any
 
 from dotenv import load_dotenv
+from langchain.chat_models import init_chat_model
 from langchain_classic.agents.format_scratchpad import format_log_to_str
 from langchain_classic.agents.output_parsers import ReActSingleInputOutputParser
-from langchain_core import callbacks
 from langchain_core.agents import AgentAction, AgentFinish
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.outputs import LLMResult
 from langchain_core.prompts import PromptTemplate
 from langchain_core.tools import BaseTool, Tool, render_text_description, tool
-from langchain.chat_models import init_chat_model
 
 load_dotenv()
 
@@ -84,7 +83,7 @@ if __name__ == "__main__":
     )
 
     llm = init_chat_model(
-        model="ollama:llama3.2",
+        model="google_genai:gemini-2.5-flash",
         # Stop generating once it reaches the "Observation" token. This way, it stops that the "Action Input" line
         stop=["\nObservation", "Observation"],
         callbacks=[AgentCallbackHandler()],
@@ -114,13 +113,11 @@ if __name__ == "__main__":
         )
 
         if isinstance(llm_output, AgentAction):
-            tool_name = llm_output.tool
-            tool = find_tool_by_name(tools, tool_name)
-            tool_input = llm_output.tool_input
+            tool = find_tool_by_name(tools, llm_output.tool)
+            tool_input = str(llm_output.tool_input)
 
-            observation = tool.func(str(tool_input))
+            observation = tool.func(tool_input)
             print(f"***Function calling: {observation=}")
             scratchpad.append((llm_output, str(observation)))
 
-    if isinstance(llm_output, AgentFinish):
-        print(llm_output.return_values)
+    print(llm_output.return_values)
