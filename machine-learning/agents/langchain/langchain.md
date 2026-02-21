@@ -23,9 +23,11 @@ chain: Runnable = prompt_template.__or__(model) # same
 ## Evolution of Agents
 
 1. `ReAct Prompt with AgentExecutor` (2022~mid-2023)
+    - `create_react_agent` & `AgentExecutor`
     - Prompt with the reasoning format (Thought/Action/Observation), tool descriptions and output instructions
     - The AgentExecutor ran the loop: call LLM, parse output, tool calls, append observations, repeat
 2. `Tool Calling with AgentExecutor` (mid-2023~2024)
+    - `create_tool_calling_agent` & `AgentExecutor`
     - OpenAI introduced function calling (June 2023)
     - Use the [function calling](https://developers.openai.com/api/docs/guides/function-calling) functionality of LLMs (made available in June 2023) that also support the [structured output](https://developers.openai.com/api/docs/guides/structured-outputs)
     - AgentExecutor still orchestrated the loop
