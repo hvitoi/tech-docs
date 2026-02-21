@@ -7,10 +7,6 @@
 - Adopts a single interface (e.g., for authentication, billing, error, etc)
 - <https://openrouter.ai/>
 
-## OpenCode Zen
-
-- <https://opencode.ai/docs/zen>
-
 ## LiteLLM
 
 - <https://github.com/BerriAI/litellm>
