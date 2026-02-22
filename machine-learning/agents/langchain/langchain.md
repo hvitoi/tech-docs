@@ -32,4 +32,5 @@ chain: Runnable = prompt_template.__or__(model) # same
     - Use the [function calling](https://developers.openai.com/api/docs/guides/function-calling) functionality of LLMs (made available in June 2023) that also support the [structured output](https://developers.openai.com/api/docs/guides/structured-outputs)
     - AgentExecutor still orchestrated the loop
 3. `Tool Calling with LangGraph`
+    - `create_agent` (langchain 1.0)
     - LangGraph allowed agents with graphs/state machines, not hidden loops

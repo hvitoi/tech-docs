@@ -12,12 +12,12 @@ foo = [el for el in range(10) if el % 2 == 0]
 # %%
 # Nested fors
 [
-    y
-    for x in [
+    item
+    for row in [
         ["a", "b", "c"],
         ["d", "e", "f"],
     ]
-    for y in x
+    for item in row
 ]
 
 # %%

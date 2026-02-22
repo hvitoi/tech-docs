@@ -10,4 +10,6 @@
 - `Output tokens`
   - The model's response
 
+## Billing
+
 - You are billed for both input and output tokens
