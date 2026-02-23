@@ -229,16 +229,16 @@ aws dynamodb put-item \
 aws dynamodb update-item \
   --table-name "Users" \
   --key '{
-           "UserId":{"S":"123"},
-           "JoinedAt":{"S":"<date>"}
-         }' \
+    "UserId":{"S":"123"},
+    "JoinedAt":{"S":"<date>"}
+  }' \
   --update-expression "SET Name = :n, Age = :a, Profile.City = :c, Tags = list_append(Tags, :t)" \
   --expression-attribute-values '{
-                                   ":n": {"S":"John"},
-                                   ":a": {"N":"31"},
-                                   ":c": {"S":"Berlin"},
-                                   ":t": {"L":[{"S":"VIP"}]}
-                                 }'
+    ":n": {"S":"John"},
+    ":a": {"N":"31"},
+    ":c": {"S":"Berlin"},
+    ":t": {"L":[{"S":"VIP"}]}
+  }'
 
 # Update only if value matches. This is optimistic locking
 aws dynamodb update-item \
