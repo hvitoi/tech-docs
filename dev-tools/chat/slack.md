@@ -70,6 +70,13 @@ curl -X POST "https://slack.com/api/chat.postMessage" \
         "channel": "C062TK76L0Z",
         "text": "Hey!",
         "markdown_text": "**Hey!**", # formatting is different
+        "blocks": [{
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "**Hey!**"
+          }
+        }],
         "thread_ts": "1770298071.095679", # post it as "sub-message" in a slack thread
       }'
 ```
