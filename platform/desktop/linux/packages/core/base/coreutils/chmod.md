@@ -1,6 +1,6 @@
 # chmod
 
-- The `user` is the user who created it (the owner of the file ).
+- The `user` is the user who created it (the owner of the file)
 - The `group` is the group of the owner
 - `others` are all the other users
 - `a` stands for all (u+g+o)
