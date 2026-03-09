@@ -49,7 +49,7 @@ python3 --version
 
 ```shell
 python -m venv ".venv"
-source ./.venv/bin/activate
+source .venv/bin/activate
 echo $VIRTUAL_ENV
 echo $PATH
 ```

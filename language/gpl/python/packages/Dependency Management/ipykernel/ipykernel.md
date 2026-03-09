@@ -1,7 +1,7 @@
 # ipykernel
 
 ```shell
-source activate ./my/virtual/environment
+source .venv/bin/activate
 pip install ipykernel
 python -m ipykernel install --user
 ```
