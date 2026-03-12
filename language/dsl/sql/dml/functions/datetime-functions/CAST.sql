@@ -1,0 +1,16 @@
+CREATE TABLE comments (
+  content VARCHAR(100),
+  created_at TIMESTAMP DEFAULT NOW(),
+  changed_at TIMESTAMP DEFAULT NOW() ON
+  UPDATE CURRENT_TIMESTAMP -- or ON UPDATE NOW
+);
+
+-- CAST
+SELECT
+  name,
+  birthdt
+FROM
+  people
+WHERE
+  birthdt BETWEEN CAST('1980-01-01' AS DATETIME)
+  AND CAST('2000-01-01' AS DATETIME);

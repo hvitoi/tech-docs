@@ -15,8 +15,21 @@ str(1)
 
 # %%
 # triple quotes
+# It's mostly used for docstrings
+# It's bad sometimes because it might cause unintended whitespaces due to the indentation
 """Trip'le qu"oted
    Multiple lines"""
+
+# %%
+# Python automatically concatenates adjacent string literals inside of parenthesis
+# So unintended whitespaces!
+message = (
+    f"I am "
+    f"multiline {str(1)} \n"
+    f"Greetings! \n"
+    "a b c d e f g h i j k l m n o p q r s t u v w x y z"
+)
+type(message)  # it's a string! not a tuple (tuples would need commas)
 
 # %%
 # F-strings

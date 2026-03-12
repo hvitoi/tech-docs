@@ -1,0 +1,2 @@
+SELECT
+  ABS(-10)

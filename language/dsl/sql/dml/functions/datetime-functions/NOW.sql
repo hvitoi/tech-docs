@@ -1,0 +1,6 @@
+SELECT
+  DATE_ADD(NOW(), INTERVAL 1 MONTH);
+
+-- 1 month before now + 10 hours
+SELECT
+  NOW() - INTERVAL 1 MONTH + INTERVAL 10 HOUR;

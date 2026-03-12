@@ -6,7 +6,7 @@
 
 ;; access (sets are functions)
 (my-set "a") ; "a"
-(#{"a" "b" "c"} "z")
+(#{"a" "b" "c"} "a")
 (my-set "d") ; nil
 
 (some my-set ["a" "b" "z"]) ; "a" (the first element)
