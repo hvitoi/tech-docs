@@ -14,3 +14,7 @@ if None or True:
 # %%
 foo = None or "1"
 foo  # 1
+
+# %%
+letters = ["a", None, "c"]
+[(letter or "?") for letter in letters]

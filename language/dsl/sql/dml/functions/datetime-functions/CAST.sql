@@ -1,11 +1,3 @@
-CREATE TABLE comments (
-  content VARCHAR(100),
-  created_at TIMESTAMP DEFAULT NOW(),
-  changed_at TIMESTAMP DEFAULT NOW() ON
-  UPDATE CURRENT_TIMESTAMP -- or ON UPDATE NOW
-);
-
--- CAST
 SELECT
   name,
   birthdt
