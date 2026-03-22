@@ -1,10 +1,7 @@
-# ifconfig
-
-- Deprecated: use `ip address` and `ip link` instead
-- Configure a network interface
+# networksetup
 
 ```shell
-ifconfig
+networksetup -listallhardwareports
 
 # Shows the MAC address of a given network interface
 sudo ifconfig en0 | grep ether
