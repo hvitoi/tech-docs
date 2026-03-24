@@ -1,5 +1,6 @@
 # Model Context Protocol (MCP)
 
+- <https://modelcontextprotocol.io/docs/getting-started/intro>
 - Standardizes how AI systems (like LLMs) connect with external tools and data sources
 - Launched by Anthropic in December 2024
 - It's connector between the LLM models and the context in which it needs to operate (the outside world)
@@ -21,3 +22,7 @@
 - Filesystems: let's AI read/write project files
 - Dev tools (like VS Code, GitHub, CI/CD)
 - Other agents
+
+## MCP servers
+
+- <https://github.com/modelcontextprotocol/servers>
