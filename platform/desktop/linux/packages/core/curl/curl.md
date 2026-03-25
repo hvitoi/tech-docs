@@ -13,6 +13,7 @@ curl example.com
 
 ```shell
 curl https://httpbin.org/get -X GET
+curl https://httpbin.org/get -G # --get
 ```
 
 ## --data (-d)
@@ -33,6 +34,12 @@ curl https://httpbin.org/post \
   --request POST \
   --header "Content-Type: application/json" \
   --data @search.json
+
+# query params
+curl -X GET "https://api.atlassian.com/jsm/ops/api/$ORG_ID/v1/alerts" \
+  -d "from=1742312040000" \
+  -d "to=1742312642000" \
+  -d "sort=updatedAt" \
 ```
 
 ## --header (-H)
