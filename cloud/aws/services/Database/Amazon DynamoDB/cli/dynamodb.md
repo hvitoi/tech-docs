@@ -169,6 +169,7 @@ aws dynamodb query \
 
 - Returns ONE specific item
 - Requires the `hash key` and the `range key` (if any)
+- It won't throw if an item is not found
 
 ```shell
 aws dynamodb get-item \

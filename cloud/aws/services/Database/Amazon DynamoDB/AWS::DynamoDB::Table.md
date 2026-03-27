@@ -44,7 +44,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-dynamodb-table.html>
 
 ```yaml
 Type: AWS::DynamoDB::Table
@@ -219,9 +219,9 @@ Properties:
 - Events are guaranteed in the same order the modification took place
 - The change can be accessed through `DynamoDB Streams API`
 - Streams can be sent to
-  - Kinesis Data Streams (does not guarantee ordering of the events or even duplicate events)
-  - AWS Lambda
-  - Kinesis Client Library applications
+  - `Kinesis Data Streams` (does not guarantee ordering of the events or even duplicate events)
+  - `AWS Lambda`
+  - `Kinesis Client Library applications`
 - Data retention `up to 24 hours`
 - Use cases:
   - React to changes in real-time (e.g., welcome new users)
@@ -230,8 +230,22 @@ Properties:
   - Insert into derivative tables
   - Insert into elasticsearch
   - Implement cross-region replication
+- The stream ARN looks like `arn:aws:dynamodb:us-east-1:123456789012:table/mytable/stream/2026-02-17T18:59:22.060`
 
 ![Streams](.images/dynamodb-streams.png)
+
+```json
+{
+  "ResourcePolicy" : ResourcePolicy,
+  "StreamViewType" : String
+}
+```
+
+- The view type can be:
+  - `keys-only`: only the key attributes of the modified item.
+  - `new-image`: the entire item, as it appears after it was modified.
+  - `old-image`: the entire item, as it appeared before it was modified.
+  - `new-and-old-images`: both the new and the old images of the item.
 
 - The event
   - Keys
