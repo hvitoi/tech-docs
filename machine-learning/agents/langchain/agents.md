@@ -4,7 +4,7 @@
 - Agents reason about tasks, decide which tools to use and work towards a solution
 - <https://docs.langchain.com/oss/python/langchain/agents>
 
-![Agentic loop](/.images/agentic-loop.png)
+![Agentic loop](.images/agentic-loop.png)
 
 - The `langchain.agents.create_agent` function build a `graph-based` agent runtime using `LangGraph`
   - It consists of nodes (steps) and edges (connections) that defines how your agent processes information

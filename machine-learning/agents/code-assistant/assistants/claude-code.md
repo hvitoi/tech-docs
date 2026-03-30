@@ -3,7 +3,7 @@
 - <https://code.claude.com/docs/en/overview>
 - Claude Code is an agentic assistant that runs in your terminal.
 - Claude Code serves as the `agentic harness` around Claude LLM: it provides the `tools`, `context management`, and `execution environment` that turn a language model into a capable coding agent
-- Subscriptions: Pro, Max, Teams, or Enterprise
+- Subscriptions: Pro, Max, Teams, or Enterprise. Or Claude Console (pre-paid credits)
 
 ```shell
 brew install --cask claude-code
@@ -13,17 +13,16 @@ brew install --cask claude-code
 
 - <https://code.claude.com/docs/en/settings#what-uses-scopes>
 
-- Settings
-  - `~/.claude/settings.json` (user)
-  - `.claude/settings.json` (project)
+- **Global Settings**
+  - `~/.claude/settings.json` (settings)
+  - `~/.claude/CLAUDE.md` (memory)
+  - `~/.claude/.credentials.json` (secrets)
+  - `~/.claude.json` (App state, UI preferences, MCP servers) - Mostly managed through `/config` (rather than directly editing)
 
-- Memory
-  - `~/.claude/CLAUDE.md` (user)
-  - `.claude/CLAUDE.md` or `CLAUDE.md` (project)
-
-- MCP servers
-  - `~/.claude.json` (user)
-  - `.mcp.json` (project)
+- **Project Settings**
+  - `.claude/settings.json` (settings)
+  - `.claude/CLAUDE.md`, `CLAUDE.md` (memory)
+  - `.mcp.json` (MCPs)
 
 ```shell
 # Auth config can only be set via environment variables
@@ -49,10 +48,6 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 - Sessions are tied to your current directory
 - Sessions are ephemeral, it has no persistent memory between sessions
   - If you want Claude to know something across sessions, put it in your CLAUDE.md.
-
-- **Memory (CLAUDE.md)**
-  - `~/.claude/CLAUDE.md` (user)
-  - `./CLAUDE.md` (project)
 
 - **Context Window**
   - Holds your `conversation history`, `file contents`, `command outputs`, `CLAUDE.md`, `loaded skills`, and `system instructions`
@@ -84,8 +79,11 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
   - **Hooks**: automate workflows
   - **Subagents**: offload tasks
 
+- `Plugins` are the packaging layer. A plugin bundles `skills`, `hooks`, `subagents`, and `MCP servers` into a single installable unit. Plugin skills are namespaced (like `/my-plugin:review`) so multiple plugins can coexist
+
 ## Commands
 
+- `/help`: show all commands/
 - `/login`: log-in to add new credentials (or use the ANTHROPIC_AUTH_TOKEN env)
 - `/theme`
 - `/clear`: clear conversation history
@@ -100,6 +98,7 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 - `/resume`: jump back to previous conversation. Same as "claude -r"
 - `/compact`: define rules for the context window compactation, e.g., "/compact focus on the API changes"
 - `/context`: check what is using space on the context window
+- `/btw`: side question
 - `/permissions`
 
 ## CLI
@@ -116,6 +115,7 @@ tail -f app.log | claude -p "Slack me if you see any anomalies appear in this lo
 claude -r # (resume) pick session from a list
 claude -c # (continue) last session in cwd
 claude -c --fork-session # fork the last session and leave the last intact
+
 ```
 
 ### mcp
@@ -170,4 +170,11 @@ claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/m
     }
   }
 }
+```
+
+### commit
+
+```shell
+# Git commit
+claude commit
 ```

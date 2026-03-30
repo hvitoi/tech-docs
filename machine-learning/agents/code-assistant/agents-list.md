@@ -12,9 +12,7 @@
 ### Claude Code
 
 - <https://claude.com/product/claude-code>
-
 - Supports Claude LLMs only
-- Provides an CLI and Integrates with IDEs by means of plugins, but both program and plugin is required
 
 - Clients
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code>
@@ -23,7 +21,6 @@
 ### OpenAI Codex
 
 - <https://developers.openai.com/codexide>
-
 - Requires ChatGPT Plus ($20/month)
 
 - Clients
@@ -34,7 +31,6 @@
 
 - <https://cline.bot/>
 - <https://github.com/cline/cline>
-
 - Model Agnostic (although there is a preference for Claude)
 - Formerly "Claude Dev"
 - Open-source
@@ -47,7 +43,6 @@
 
 - <https://kilo.ai>
 - <https://github.com/Kilo-Org/kilocode>
-
 - Model Agnostic
 
 - Clients
@@ -58,7 +53,6 @@
 
 - <https://github.com/RooCodeInc/Roo-Code>
 - <https://roocode.com/>
-
 - Model Agnostic
 
 - Clients
@@ -79,15 +73,6 @@
 - Clients
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=sst-dev.opencode> (requires the CLI)
   - **CLI**: <https://opencode.ai/docs/cli/>
-
-### Windsurf
-
-- <https://windsurf.com/editor>
-- Formerly "Codeium"
-- Proprietary crap
-
-- Clients
-  - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=Codeium.codeium>
 
 ### Qodo
 
@@ -111,7 +96,6 @@
 ### Goose
 
 - <https://github.com/block/goose>
-
 - CLI-only
 
 ## IDE
@@ -125,3 +109,13 @@
 
 - <https://github.com/voideditor/void>
 - Open-Source alternative to Cursor
+
+### Windsurf
+
+- <https://windsurf.com/>
+- Formerly "Codeium"
+- Proprietary crap
+
+- Clients
+  - **Editor**: <https://windsurf.com/editor>
+  - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=Codeium.codeium>
