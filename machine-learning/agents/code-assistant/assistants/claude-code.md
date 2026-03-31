@@ -134,17 +134,18 @@ claude mcp remove "github" -s local
 ```
 
 ```shell
+# Local stdio Server
+claude mcp add --scope user clojure -- nu mcp server clojure --config-profile cli-assist-agent
+claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh
+claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable -- npx -y airtable-mcp-server
+claude mcp add --transport stdio --env KEY=value myserver -- python server.py --port 8080
+
 # HTTP Server
 claude mcp add --transport http github https://api.githubcopilot.com/mcp/ # for the current project (cwd) only (local scope) - default behavior
 claude mcp add --transport http --scope user github https://api.githubcopilot.com/mcp/ # for all the projects (user scope)
 
 # SSE (Server-Sent Events) Server
 claude mcp add asana --transport sse https://mcp.asana.com/sse --header "X-API-Key: your-key-here"
-
-# Local stdio Server
-claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable -- npx -y airtable-mcp-server
-claude mcp add --transport stdio --env KEY=value myserver -- python server.py --port 8080
-claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh
 
 # From JSON (exactly how it will be added to the config file)
 claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/mcp","headers":{"Authorization":"Bearer token"}}'
@@ -170,6 +171,23 @@ claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/m
     }
   }
 }
+```
+
+### plugin
+
+- <https://claude.com/plugins>
+- By default, the marketplace `anthropics/claude-plugins-official` is enabled
+- MCPs installed via plugins do NOT appear under `~/.claude.json` (mcpServers)
+
+```shell
+# Plugins
+claude plugin list
+claude plugin install "<name>@claude-plugins-official" # or /plugin install <name>@claude-plugins-official
+
+# Marketplace
+claude plugin marketplace list
+claude plugin marketplace add "git@github.com:myorg/myrepo.git" # add to ~/.claude/settings.json (extraKnownMarketplaces.myorg-myrepo)
+claude plugin marketplace update # update plugins list
 ```
 
 ### commit
