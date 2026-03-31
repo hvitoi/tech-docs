@@ -177,7 +177,9 @@ claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/m
 
 - <https://claude.com/plugins>
 - By default, the marketplace `anthropics/claude-plugins-official` is enabled
-- MCPs installed via plugins do NOT appear under `~/.claude.json` (mcpServers)
+- Plugins are installed at `~/.claude/plugins/marketplaces/nubank-ai-agents-plugins/plugins/<namespace>/<plugin_name>/`
+  - MCP installed via plugins have its config there, e.g., `~/.claude/plugins/marketplaces/nubank-ai-agents-plugins/plugins/engineering/mymcp/.mcp.json`
+  - MCPs installed via plugins do NOT appear under `~/.claude.json` (mcpServers)
 
 ```shell
 # Plugins
