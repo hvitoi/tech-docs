@@ -134,15 +134,18 @@ claude mcp remove "github" -s local
 ```
 
 ```shell
+# HTTP Server
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ # same as --scope local
+claude mcp add --transport http --scope local github https://api.githubcopilot.com/mcp/ # ~/.claude.json (.projects.<project>.mcpServers)
+claude mcp add --transport http --scope project github https://api.githubcopilot.com/mcp/ # ./.mcp.json
+claude mcp add --transport http --scope user github https://api.githubcopilot.com/mcp/ # ~/.claude.json (.mcpServers)
+
+
 # Local stdio Server
 claude mcp add --scope user clojure -- nu mcp server clojure --config-profile cli-assist-agent
 claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh
 claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable -- npx -y airtable-mcp-server
 claude mcp add --transport stdio --env KEY=value myserver -- python server.py --port 8080
-
-# HTTP Server
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/ # for the current project (cwd) only (local scope) - default behavior
-claude mcp add --transport http --scope user github https://api.githubcopilot.com/mcp/ # for all the projects (user scope)
 
 # SSE (Server-Sent Events) Server
 claude mcp add asana --transport sse https://mcp.asana.com/sse --header "X-API-Key: your-key-here"
