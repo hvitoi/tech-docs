@@ -17,6 +17,7 @@
   - <https://ollama.com/library/gemma3>
   - **gemma3:270m**: (300MB very light but do not support tools API)
 - `Qwen` (Alibaba)
+  - **qwen3:1.7b** (supporing function calling)
 - `Phi series` (Microsoft)
 - `GPT OSS` (OpenAI)
   - <https://ollama.com/library/gpt-oss>

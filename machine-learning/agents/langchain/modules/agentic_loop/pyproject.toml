@@ -7,4 +7,5 @@ dependencies = [
   "langchain>=1.2",
   "langchain-google-genai>=4.2",
   "langchain-classic>=1.0",
+  "ollama>=0.6.1",
 ]
