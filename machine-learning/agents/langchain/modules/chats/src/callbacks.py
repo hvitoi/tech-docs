@@ -1,11 +1,8 @@
 from typing import Any
 
-from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.outputs import LLMResult
-
-load_dotenv()
 
 
 class AgentCallbackHandler(BaseCallbackHandler):
@@ -30,9 +27,9 @@ class AgentCallbackHandler(BaseCallbackHandler):
 
 
 llm = init_chat_model(
-    "ollama:llama3.2",
+    "anthropic:claude-sonnet-4-6",
     callbacks=[AgentCallbackHandler()],
 )
 
 
-response = llm.invoke("hey!")
+response = llm.invoke("Hey!")

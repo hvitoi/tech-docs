@@ -9,10 +9,11 @@ from langchain_openai import ChatOpenAI
 # https://docs.langchain.com/oss/python/integrations/chat/anthropic
 # uv add langchain-anthropic
 llm = ChatAnthropic(
-    model="claude-sonnet-4-6",
+    model_name="claude-sonnet-4-6",
+    timeout=60.0,
+    stop=[],
     # temperature=,
     # max_tokens=,
-    # timeout=,
     # max_retries=,
     # ...
 )
