@@ -6,7 +6,7 @@ from langchain_core.runnables import Runnable, RunnableLambda
 # https://reference.langchain.com/python/langchain_core/runnables/#langchain_core.runnables.base.Runnable
 
 
-model = init_chat_model("google_genai:gemini-2.5-flash-lite")
+model = init_chat_model("anthropic:claude-sonnet-4-6")
 
 prompt_template = ChatPromptTemplate(
     [
