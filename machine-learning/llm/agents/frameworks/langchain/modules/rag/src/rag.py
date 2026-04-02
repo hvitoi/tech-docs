@@ -57,7 +57,7 @@ def retrieve_blog_posts(query: str) -> str:
 
 
 ##
-llm = init_chat_model("ollama:llama3.2", temperature=0)
+llm = init_chat_model("anthropic:claude-sonnet-4-6", temperature=0)
 
 
 def generate_query_or_respond(state: MessagesState):

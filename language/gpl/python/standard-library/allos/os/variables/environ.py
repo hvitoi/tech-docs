@@ -3,6 +3,7 @@
 import os
 
 # os.environ is a dict-like object with all the environment variables
+# different from os.getenv() which is a function to a read a specific variable
 print(os.environ)
 os.environ.get("HOME", None)
 
