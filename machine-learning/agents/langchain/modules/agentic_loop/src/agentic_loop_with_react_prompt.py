@@ -1,7 +1,7 @@
-import re
 import inspect
+import re
+
 import ollama
-from langsmith import traceable
 
 MAX_ITERATIONS = 10
 MODEL = "qwen3:1.7b"
