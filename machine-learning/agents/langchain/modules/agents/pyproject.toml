@@ -3,4 +3,4 @@ name = "Demo"
 version = "0.1.0"
 description = "My reference project"
 requires-python = "~=3.13.0"
-dependencies = ["langchain~=1.0", "langchain-anthropic~=1.0"]
+dependencies = ["langchain>=1.2", "langchain-anthropic>=1.4"]

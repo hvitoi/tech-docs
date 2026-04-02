@@ -1,13 +1,12 @@
 from dotenv import load_dotenv
 from langchain.agents import create_agent
-from langchain.tools import BaseTool
 from langchain_core.messages import HumanMessage
 from langchain_tavily import TavilySearch
 
 load_dotenv()
 
 
-search_tool: BaseTool = TavilySearch(
+search_tool = TavilySearch(
     max_results=5,
     topic="general",
     # include_answer=False,
@@ -24,7 +23,7 @@ search_tool: BaseTool = TavilySearch(
 
 
 agent = create_agent(
-    model="ollama:llama3.2",
+    model="anthropic:claude-sonnet-4-6",
     tools=[search_tool],
 )
 
@@ -37,4 +36,5 @@ result = agent.invoke(
     },
 )
 
-print(result)
+for msg in result["messages"]:
+    print(f"[{msg.__class__.__name__}]: {msg.content}")
