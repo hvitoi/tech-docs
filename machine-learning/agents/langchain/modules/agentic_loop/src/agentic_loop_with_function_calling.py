@@ -64,7 +64,7 @@ tools_schemas = [
     },
 ]
 
-tools_dict = {
+available_tools = {
     "get_product_price": get_product_price,
     "apply_discount": apply_discount,
 }
@@ -123,7 +123,7 @@ def run_agent(question: str):
 
         print(f"  [Tool Selected] {tool_name} with args: {tool_args}")
 
-        tool_fn = tools_dict.get(tool_name)
+        tool_fn = available_tools.get(tool_name)
         if tool_fn is None:
             raise ValueError(f"Tool '{tool_name}' not found")
 
