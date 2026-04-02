@@ -1,6 +1,6 @@
 from langchain.agents import create_agent
 from langchain.messages import HumanMessage
-from langchain.tools import tool
+from langchain.tools import BaseTool, tool
 
 
 @tool
@@ -9,9 +9,11 @@ def get_weather(city: str) -> str:
     return f"It's always sunny in {city}!"  # Just a hardcoded implementation, ideally it will go fetch the weather somewhere
 
 
+tools: list[BaseTool] = [get_weather]
+
 agent = create_agent(
-    model="google_genai:gemini-2.5-flash-lite",
-    tools=[get_weather],
+    model="anthropic:claude-sonnet-4-6",
+    tools=tools,
 )
 
 result = agent.invoke(
@@ -21,7 +23,8 @@ result = agent.invoke(
         ]
     }
 )
-print(result)
+for msg in result["messages"]:
+    print(f"[{msg.__class__.__name__}]: {msg.content}")
 
 # Workflow:
 # 1. LangChain sends a request to LLM with the available tools and the user prompt

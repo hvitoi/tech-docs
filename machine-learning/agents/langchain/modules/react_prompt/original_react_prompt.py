@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain.tools import tool
 from langchain_classic.agents import AgentExecutor, create_react_agent
@@ -6,8 +5,6 @@ from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda
 from pydantic import BaseModel, Field
-
-load_dotenv()
 
 
 ## OUTPUT STRUCTURE

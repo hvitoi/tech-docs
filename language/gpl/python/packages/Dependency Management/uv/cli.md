@@ -76,6 +76,7 @@ uv run demo.py
 
 ```shell
 uv lock
+uv lock --upgrade # upgrade dependencies respecting pyproject.toml
 ```
 
 ## uv python

@@ -1,6 +1,5 @@
 from typing import Any
 
-from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_classic.agents.format_scratchpad import format_log_to_str
 from langchain_classic.agents.output_parsers import ReActSingleInputOutputParser
@@ -10,7 +9,6 @@ from langchain_core.outputs import LLMResult
 from langchain_core.prompts import PromptTemplate
 from langchain_core.tools import BaseTool, Tool, render_text_description, tool
 
-load_dotenv()
 
 REACT_PROMPT = """
       Answer the following questions as best you can. You have access to the following tools:

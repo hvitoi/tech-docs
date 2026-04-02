@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = ["langchain>=1.0.5", "langchain-openai>=1.0.2"]
+dependencies = [
+  "langchain>=1.0.5",
+  "langchain-openai>=1.0.2",
+  "mydep~=1.0",              # lock major, allows minor & patch (>=1.0, <2.0) - "uv lock --upgrade" to bump
+  "mydep~=1.0.0",            # lock major & minor, allows patch (>=1.0.0, <1.1) - "uv lock --upgrade" to bump
+]
 
 [project.scripts]
 start = "main:main" # from file main.py (in root) invoke main function
