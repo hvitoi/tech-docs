@@ -5,8 +5,10 @@ uv add langchain-classic
 ```
 
 - This is a legacy prompt was used before the `tools` API was implemented in several LLMs
-- This was the prompt: <https://smith.langchain.com/hub/hwchase17/react>
-- This prompt was derived from the paper `ReAct: Synergizing Reasoning and Acting in Language Models`: <https://arxiv.org/abs/2210.03629>
+- This is the prompt: <https://smith.langchain.com/hub/hwchase17/react>
+- This prompt was derived from the paper `ReAct: Synergizing Reasoning and Acting in Language Models` (2023): <https://arxiv.org/abs/2210.03629>
+
+## Prompt
 
 ```txt
 Answer the following questions as best you can. You have access to the following tools:
@@ -30,7 +32,7 @@ Question: {input}
 Thought:{agent_scratchpad}
 ```
 
-LLM answer:
+## Answer
 
 ```txt
 Thought: To get the weather for São Paulo, I need to call the get_weather function with the city name as an argument.

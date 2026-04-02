@@ -7,20 +7,7 @@ from langchain_core.runnables import RunnableLambda
 from pydantic import BaseModel, Field
 
 
-## OUTPUT STRUCTURE
-class FinalResponse(BaseModel):
-    city: str = Field(
-        description="The city inputted.",
-    )
-    weather: str = Field(
-        description="The weather for that city",
-    )
-
-
-output_parser = PydanticOutputParser(pydantic_object=FinalResponse)
-
-
-# PROMPT
+## PROMPT
 
 # langsmith_client = Client(api_url="https://eu.api.smith.langchain.com")
 # react_prompt = langsmith_client.pull_prompt("tseste/react") # The original ReAct prompt from Langsmith Hub
@@ -55,12 +42,25 @@ react_prompt = PromptTemplate(
     ],
 )
 
+
+## OUTPUT STRUCTURE
+class FinalResponse(BaseModel):
+    city: str = Field(
+        description="The city inputted.",
+    )
+    weather: str = Field(
+        description="The weather for that city",
+    )
+
+
+output_parser = PydanticOutputParser(pydantic_object=FinalResponse)
+
 react_prompt = react_prompt.partial(
     format_instructions=output_parser.get_format_instructions()
 )
 
 
-# TOOLS
+## TOOLS
 @tool
 def get_weather(city: str) -> str:
     """Get weather for a given city."""
