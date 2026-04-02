@@ -6,6 +6,35 @@ import ollama
 MAX_ITERATIONS = 10
 MODEL = "qwen3:1.7b"
 
+# PROMPT
+
+REACT_PROMPT = """
+STRICT RULES — you must follow these exactly:
+1. NEVER guess or assume any product price. You MUST call get_product_price first to get the real price.
+2. Only call apply_discount AFTER you have received a price from get_product_price. Pass the exact price returned by get_product_price — do NOT pass a made-up number.
+3. NEVER calculate discounts yourself using math. Always use the apply_discount tool.
+4. If the user does not specify a discount tier, ask them which tier to use — do NOT assume one.
+
+Answer the following questions as best you can. You have access to the following tools:
+
+{tool_descriptions}
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action, as comma separated values
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: {question}
+Thought:"""  # scratchpad is appended to the final
+
 
 # TOOLS
 def get_product_price(product: str) -> float:
@@ -47,35 +76,6 @@ def get_tool_descriptions(tools_dict):
 tool_descriptions = get_tool_descriptions(available_tools)
 tool_names = ", ".join(available_tools.keys())
 
-# PROMPT
-
-react_prompt = f"""
-STRICT RULES — you must follow these exactly:
-1. NEVER guess or assume any product price. You MUST call get_product_price first to get the real price.
-2. Only call apply_discount AFTER you have received a price from get_product_price. Pass the exact price returned by get_product_price — do NOT pass a made-up number.
-3. NEVER calculate discounts yourself using math. Always use the apply_discount tool.
-4. If the user does not specify a discount tier, ask them which tier to use — do NOT assume one.
-
-Answer the following questions as best you can. You have access to the following tools:
-
-{tool_descriptions}
-
-Use the following format:
-
-Question: the input question you must answer
-Thought: you should always think about what to do
-Action: the action to take, should be one of [{tool_names}]
-Action Input: the input to the action, as comma separated values
-Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-
-Begin!
-
-Question: {{question}}
-Thought:"""
-
 
 # AGENTIC LOOP
 
@@ -84,7 +84,11 @@ def run_agent(question: str):
     print(f"Question: {question}")
     print("=" * 60)
 
-    prompt = react_prompt.format(question=question)
+    prompt = REACT_PROMPT.format(
+        tool_descriptions=tool_descriptions,
+        tool_names=tool_names,
+        question=question,
+    )
     scratchpad = ""
 
     for iteration in range(1, MAX_ITERATIONS + 1):
@@ -138,7 +142,7 @@ def run_agent(question: str):
 
         print(f"  [Tool Result] {observation}")
 
-        # CHANGE 7: History is one growing string re-sent every iteration (replaces messages.append).
+        # History (scratchpad) is one growing string re-sent every iteration
         scratchpad += f"{output}\nObservation: {observation}\nThought:"
 
     print("ERROR: Max iterations reached without a final answer")

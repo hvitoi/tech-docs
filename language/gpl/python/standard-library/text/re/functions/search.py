@@ -7,7 +7,7 @@ re.search(r"-(prod|staging|test)$", "br-prod")
 # %%
 
 slack_link = "https://company.slack.com/archives/C123ABC/p1234567890123456"
-match: re.Match[str] = re.search(r"/archives/([^/]+)/p(\d+)", slack_link)
+match: re.Match[str] | None = re.search(r"/archives/([^/]+)/p(\d+)", slack_link)
 
 if not match:
     raise Exception(f"Could not extract thread info from: {slack_link}")
