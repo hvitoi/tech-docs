@@ -1,5 +1,34 @@
 # /v1/messages
 
+## messages
+
+```shell
+curl https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d "{
+    \"model\": \"claude-3-5-sonnet-20241022\",
+    \"max_tokens\": 1000,
+    \"messages\": [
+      {
+        \"role\": \"user\",
+        \"content\": [
+          {\"type\": \"text\", \"text\": \"Analyze this PDF\"},
+          {
+            \"type\": \"document\",
+            \"source\": {
+              \"type\": \"base64\",
+              \"media_type\": \"application/pdf\",
+              \"data\": \"$(cat document.b64)\"
+            }
+          }
+        ]
+      }
+    ]
+  }"
+```
+
 ## tools
 
 ```shell
