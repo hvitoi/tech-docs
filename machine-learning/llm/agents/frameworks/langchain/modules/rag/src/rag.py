@@ -18,27 +18,18 @@ from pinecone import Pinecone
 
 ## DOCUMENT LOADER
 
-urls = [
-    "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/",
-    "https://lilianweng.github.io/posts/2024-07-07-hallucination/",
-    "https://lilianweng.github.io/posts/2024-04-12-diffusion-video/",
-]
-
-selected_doc_chunks: list[Document] = []
-
-for url in urls:
-    # each url may contain several documents
-    loader = WebBaseLoader(url)
-    selected_doc_chunks.extend(loader.load())  # load the file as a LangChain document
-# docs[0].page_content.strip()[:1000]  # accessing it
+# Alice's Adventures in Wonderland — Project Gutenberg (public domain)
+book_url = "https://www.gutenberg.org/files/11/11-h/11-h.htm"
+loader = WebBaseLoader(book_url)
+selected_chunks: list[Document] = loader.load()
 
 
 ## TEXT SPLITTER: Break documents into chunks
 
 # RecursiveCharacterTextSplitter attempts to keep larger units (e.g., paragraphs) intact.
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=100,  # 100 characters in each chunk
-    chunk_overlap=50,  # allow some tolerance on the chunk size so that context is not lost in the middle of a sentence or phrase
+    chunk_size=1000,
+    chunk_overlap=200,
 )
 
 # Uses "tiktoken", the tokenizer by OpenAI to count tokens (pip install tiktoken)
@@ -47,8 +38,8 @@ text_splitter = RecursiveCharacterTextSplitter(
 #     encoding_name="cl100k_base", chunk_size=100, chunk_overlap=0
 # )
 
-docs_chunks: list[Document] = text_splitter.split_documents(selected_doc_chunks)
-print(f"Number of chunks: {len(docs_chunks)}")
+book_chunks: list[Document] = text_splitter.split_documents(selected_chunks)
+print(f"Book chunks: {len(book_chunks)}")
 
 
 ## VECTOR DATABASE & EMBEDDING MODEL
@@ -60,7 +51,7 @@ embedding_model: Embeddings = init_embeddings("ollama:nomic-embed-text")
 
 # With InMemory Vector Store
 vector_store = InMemoryVectorStore.from_documents(
-    documents=docs_chunks,
+    documents=book_chunks,
     embedding=embedding_model,
 )
 
@@ -109,7 +100,7 @@ prompt_template = ChatPromptTemplate.from_template(
 
 
 # Query
-query = "what is Pinecone in machine learning?"
+query = "What happens when Alice falls down the rabbit hole?"
 
 # ========================================================================
 # Option 0: Raw invocation without RAG
@@ -127,10 +118,10 @@ print("\n" + "=" * 70)
 print("IMPLEMENTATION 1: Without LCEL")
 print("=" * 70)
 # Step 1: Retrieve relevant documents
-selected_doc_chunks = retriever.invoke(query)  # top 3
+selected_chunks = retriever.invoke(query)  # top 3
 
 # Step 2: Format documents into context string
-context = format_docs(selected_doc_chunks)
+context = format_docs(selected_chunks)
 
 # Step 3: Format the prompt with context and question
 messages = prompt_template.format_messages(context=context, question=query)
@@ -148,12 +139,12 @@ print("\n" + "=" * 70)
 print("IMPLEMENTATION 2: With LCEL")
 print("=" * 70)
 
-retrieval_chain = (
+chain = (
     RunnablePassthrough.assign(context=itemgetter("question") | retriever | format_docs)
     | prompt_template
     | llm
     | StrOutputParser()
 )
 
-result = retrieval_chain.invoke({"question": query})
+result = chain.invoke({"question": query})
 print(result)
