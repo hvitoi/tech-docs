@@ -16,3 +16,10 @@
 - Therefore we need another way to embed this information into the prompt
 
 ## RAG Implementation
+
+1. Take the entire document
+2. Split it into smaller chunks (text splitters)
+3. Transform each of those chunks into embeddings and save it into a vector database
+4. Search through the embeddings with the original prompt in order to know which are the most relevant chunks
+
+![RAG Pipeline](.images/rag-pipeline.png)

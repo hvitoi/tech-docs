@@ -17,14 +17,24 @@ uv init
 
 - What is does?
   - Read your pyproject.toml
-  - Create a `.venv/` (if not there yet)
+  - Create/update the uv.lock file (if not there yet)
+  - Create a `.venv/` with dependencies from lock file (if not there yet)
   - Install all dependencies
-  - Create/update the uv.lock file
 - It's similar to `npm i`
 
 ```shell
 uv sync
 uv sync --extra dev # also install "project.optional-dependencies.dev"
+```
+
+## uv lock
+
+- What is does?
+  - Create/update the uv.lock file (if not there yet)
+
+```shell
+uv lock
+uv lock --upgrade # upgrade dependencies respecting pyproject.toml
 ```
 
 ## run
@@ -70,13 +80,6 @@ uv add requests --script demo.py
 
 # Run it
 uv run demo.py
-```
-
-## uv lock
-
-```shell
-uv lock
-uv lock --upgrade # upgrade dependencies respecting pyproject.toml
 ```
 
 ## uv python

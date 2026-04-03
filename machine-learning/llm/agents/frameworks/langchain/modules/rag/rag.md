@@ -6,3 +6,7 @@
 ```shell
 pip install -U langgraph "langchain[openai]" langchain-community langchain-text-splitters bs4
 ```
+
+## Text splitter
+
+- <https://docs.langchain.com/oss/python/integrations/splitters>
