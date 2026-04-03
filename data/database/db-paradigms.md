@@ -112,12 +112,12 @@
 - Rapidly growing paradigm since 2023
 
 - **Implementations**
-  - Pgvector (Postgres extension — simplest to adopt)
-  - Pinecone (managed, purpose-built)
-  - Weaviate (open-source, multi-modal)
-  - Qdrant (open-source, Rust-based)
-  - Milvus / Zilliz (open-source, large-scale)
-  - Chroma (lightweight, local-first)
+  - `Pinecone`: SaaS, very population for AI apps
+  - `Weaviate`: Open-source, graphQL API
+  - `Qdrant`: Open-source, Rust-based
+  - `Milvus`: Open-source, large-scale
+  - `Chroma`: lightweight, local-first, prototyping
+  - `Pgvector`:Postgres extension
 
 ## Graph DB
 

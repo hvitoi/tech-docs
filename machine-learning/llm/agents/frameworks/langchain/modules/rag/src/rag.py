@@ -6,7 +6,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
 from langchain_core.vectorstores import InMemoryVectorStore
-from langchain_openai import OpenAIEmbeddings
+from langchain.embeddings import init_embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langgraph.graph import MessagesState
 
@@ -22,11 +22,14 @@ urls = [
 docs: list[Document] = []
 
 for url in urls:
+    # each url may contain several documents
     docs.extend(WebBaseLoader(url).load())
 # docs[0].page_content.strip()[:1000]  # accessing it
 
 
 ## Break documents into chunks
+
+# The RecursiveCharacterTextSplitter attempts to keep larger units (e.g., paragraphs) intact.
 # Uses "tiktoken", the tokenizer by OpenAI to count tokens
 text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
     chunk_size=100,  # 100 tokens in each chunk
@@ -35,10 +38,11 @@ text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
 doc_splits: list[Document] = text_splitter.split_documents(docs)
 
 
+## Choose the embeddings model to generate the vectors for the chunks
 ## Index the document chunks into a in-memory vector database
 vectorstore = InMemoryVectorStore.from_documents(
     documents=doc_splits,
-    embedding=OpenAIEmbeddings(),
+    embedding=init_embeddings("ollama:nomic-embed-text"),
 )
 
 
