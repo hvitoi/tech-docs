@@ -24,3 +24,5 @@
 
 - Limits
   - GPT 3.5: 4k tokens
+  - GPT 5.0: 1M tokens
+  - Opus/Sonnet 4.6: 1M tokens

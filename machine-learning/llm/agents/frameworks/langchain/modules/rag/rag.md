@@ -4,10 +4,6 @@
 - Attempts to solve the problem about making the LLM know about information on which it was not trained on
 
 ```shell
-pip install -U langgraph "langchain[openai]" langchain-community langchain-text-splitters bs4
-```
-
-```shell
 export PINECONE_API_KEY=pcsk_...
 export
 ```
@@ -20,14 +16,27 @@ export
 - Types
   - `WebBaseLoader`: loads an website <https://docs.langchain.com/oss/python/integrations/document_loaders/web_base>
 
+```shell
+uv add langchain-community beautifulsoup4
+```
+
 ## Text splitter
 
 - <https://docs.langchain.com/oss/python/integrations/splitters>
 - Text splitters break large docs into smaller chunks that will be retrievable individually and fit within model context window limit.
 
+```shell
+uv add langchain-text-splitters
+```
+
 ## Vector DB
 
 - <https://docs.langchain.com/oss/python/integrations/providers/pinecone>
+
+```shell
+# for Pinecone
+uv add langchain-pinecone
+```
 
 ## Embedding Model
 
