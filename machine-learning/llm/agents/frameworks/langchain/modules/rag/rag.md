@@ -28,3 +28,11 @@ export
 ## Vector DB
 
 - <https://docs.langchain.com/oss/python/integrations/providers/pinecone>
+
+## Embedding Model
+
+- <https://docs.langchain.com/oss/python/integrations/embeddings>
+
+## Retriever
+
+- <https://docs.langchain.com/oss/python/integrations/retrievers>

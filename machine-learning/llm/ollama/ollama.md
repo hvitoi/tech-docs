@@ -4,7 +4,7 @@
 - It's a platform for running LLMs locally on your machine
 - It's an independent open-source project (not by meta, openai, google, etc)
 
-## Popular models supported
+## Popular LLM Models
 
 - Library of supported models: <https://ollama.com/library/gpt-oss>
 
@@ -23,6 +23,10 @@
   - <https://ollama.com/library/gpt-oss>
   - **gpt-oss:20b** (14 GB)
   - **gpt-oss:120b** (65 GB)
+
+## Popular Embeddings Models
+
+- `nomid-embed-text` (Nomic AI)
 
 ## Install
 

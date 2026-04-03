@@ -20,18 +20,18 @@ ollama ps
 
 - Download a model only
 - Models are saved at `~/.ollama/models/`
+- After a model is pulled, it's ready to be used via API
 
 ## ollama run
 
 - Download, run a model and plug it to stdin
 - If you want just to download -> `ollama pull`
-- Automatically expose the ollama server with the model
 
 ```shell
 ollama run gpt-oss
 ollama run gemma3:270m
 
-# same!
+# same! (the model must be pulled first)
 curl http://localhost:11434/api/chat \
   -d '{
         "model": "gpt-oss",

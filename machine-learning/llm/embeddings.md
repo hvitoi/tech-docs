@@ -8,3 +8,10 @@
 
 ![Embeddings](.images/embeddings.png)
 ![Embeddings](.images/embeddings-semantic-meaning.png)
+
+## Embeddings Models (Encoders)
+
+- `OpenAI`: text-embedding-3-small, text-embedding-ada-002 (old)
+- `Google`: gemini-embedding-001,
+- `Voyage AI`: voyage-3-large. Recommended by Anthropic
+- `Nomic AI`: nomic-embed-text. Open-source, available in Ollama
