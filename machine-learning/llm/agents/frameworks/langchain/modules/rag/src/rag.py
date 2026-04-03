@@ -139,9 +139,11 @@ print("\n" + "=" * 70)
 print("IMPLEMENTATION 2: With LCEL")
 print("=" * 70)
 
+# This solution is more concise and offers better tracing
 chain = (
+    # .assign merges into the original input a new key (context in this case)
     RunnablePassthrough.assign(context=itemgetter("question") | retriever | format_docs)
-    | prompt_template
+    | prompt_template  # receives "question" (from input) and "context" (from previous chain)
     | llm
     | StrOutputParser()
 )
