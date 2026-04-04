@@ -43,6 +43,20 @@
 - <https://github.com/modelcontextprotocol/inspector>
 
 ```shell
-npx @modelcontextprotocol/inspector # connect later to a remote mcp server e.g., https://docs.langchain.com/mcp
-npx @modelcontextprotocol/inspector <command> # start the server via a command
+npx @modelcontextprotocol/inspector # connect later to a mcp server e.g., https://docs.langchain.com/mcp
+npx @modelcontextprotocol/inspector <command> # start a server stdio
+```
+
+## MCP config
+
+```json
+// Claude Code (~/.claude.json)
+{
+  "mcpServers": {
+      "mymcp": {
+        "type": "http",
+        "url": "https://docs.langchain.com/mcp"
+      }
+  }
+}
 ```
