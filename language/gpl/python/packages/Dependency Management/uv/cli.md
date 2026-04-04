@@ -25,6 +25,9 @@ uv init
 ```shell
 uv sync
 uv sync --extra dev # also install "project.optional-dependencies.dev"
+uv sync --dev # same?
+uv sync --reinstall # re-created .venv cleanly
+
 ```
 
 ## uv lock
@@ -88,7 +91,6 @@ uv run demo.py
 
 ```shell
 uv python install 3.10 3.11 3.12
-
 uv python pin 3.11 # pin a version for the cwd
 ```
 
@@ -103,4 +105,38 @@ uv tool run pycowsay 'hello world!' # same
 
 # install
 uv tool install ruff # just install without running
+```
+
+## uv venv
+
+- Creates a virtual environment (like python -m venv)
+- Does NOT install dependencies
+- This command is not usually used. Prefer `uv sync` instead
+
+```shell
+uv venv
+```
+
+## uv pip
+
+- Mimic pip commands, it's a compatibility layer
+- Pip is actually not used under the hood, it's just the same interface/commands
+- This command is not usually used. Prefer `uv sync` instead
+
+```shell
+uv pip install <package>
+```
+
+## uvx
+
+- Similar to npx
+- `--from` defines which package to use
+
+```shell
+uvx --from mcpdoc \
+    mcpdoc \
+    --urls "LangGraph:https://langchain-ai.github.io/langgraph/llms.txt" "LangChain:https://python.langchain.com/llms.txt" \
+    --transport sse \
+    --port 8082 \
+    --host localhost
 ```
