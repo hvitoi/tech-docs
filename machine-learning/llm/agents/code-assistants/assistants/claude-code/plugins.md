@@ -10,6 +10,7 @@
 # Plugins
 claude plugin list
 claude plugin install "<name>@claude-plugins-official" # or /plugin install <name>@claude-plugins-official
+claude plugin uninstall "<name>@claude-plugins-official"
 
 # Marketplace
 claude plugin marketplace list
