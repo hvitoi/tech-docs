@@ -2,6 +2,7 @@ from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 from langchain.messages import HumanMessage
 
+# optionally pass the tools as second arg
 llm = init_chat_model("anthropic:claude-sonnet-4-6")
 
 agent = create_agent(
