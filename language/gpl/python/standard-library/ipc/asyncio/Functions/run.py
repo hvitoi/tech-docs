@@ -16,9 +16,9 @@ async def main():
     await say_hello()
 
 
-asyncio.run(main())
+asyncio.run(main())  # you can't do "await main()"
 
-## %%
+# %%
 
 import asyncio
 from contextlib import asynccontextmanager

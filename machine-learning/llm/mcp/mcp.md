@@ -9,6 +9,7 @@
   - Security: It standardizes permissions and sandboxing, so agents don't get unrestricted access.
   - Ecosystem: Third-party developers can build MCP "servers" (tools, connectors) that any AI app can use.
 - Official servers: <<https://github.com/modelcontextprotocol/servers>>
+- [fastmcp](https://pypi.org/project/fastmcp/1.0/) is a python framework for creating MCP servers
 
 ## Architecture
 
