@@ -39,19 +39,19 @@ claude mcp remove "github" -s local
 
 ```shell
 # HTTP Server
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/ # same as --scope local
-claude mcp add --transport http --scope local github https://api.githubcopilot.com/mcp/ # ~/.claude.json (.projects.<project>.mcpServers)
-claude mcp add --transport http --scope project github https://api.githubcopilot.com/mcp/ # ./.mcp.json (.mcpServers)
-claude mcp add --transport http --scope user github https://api.githubcopilot.com/mcp/ # ~/.claude.json (.mcpServers)
+claude mcp add github https://api.githubcopilot.com/mcp --transport http # same as --scope local
+claude mcp add github https://api.githubcopilot.com/mcp --transport http --scope local # ~/.claude.json (.projects.<project>.mcpServers)
+claude mcp add github https://api.githubcopilot.com/mcp --transport http --scope project # ./.mcp.json (.mcpServers)
+claude mcp add github https://api.githubcopilot.com/mcp --transport http --scope user # ~/.claude.json (.mcpServers)
 
 # Local stdio Server
-claude mcp add --scope user clojure -- nu mcp server clojure --config-profile cli-assist-agent
-claude mcp add nu-mcp $HOME/dev/nu/nu-mcp/run.sh
-claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable -- npx -y airtable-mcp-server
-claude mcp add --transport stdio --env KEY=value myserver -- python server.py --port 8080
+claude mcp add mymcp /run.sh
+claude mcp add clojure -- nu mcp server clojure --config-profile cli-assist-agent
+claude mcp add airtable --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY -- npx -y airtable-mcp-server
+claude mcp add myserver --transport stdio --env KEY=value -- python server.py --port 8080
 
-# SSE (Server-Sent Events) Server
-claude mcp add asana --transport sse https://mcp.asana.com/sse --header "X-API-Key: your-key-here"
+# SSE (Server-Sent Events) Server - this transport method is deprecated by MCP spec
+claude mcp add asana https://mcp.asana.com/sse --transport sse --header "X-API-Key: your-key-here"
 
 # From JSON (exactly how it will be added to the config file)
 claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/mcp","headers":{"Authorization":"Bearer token"}}'

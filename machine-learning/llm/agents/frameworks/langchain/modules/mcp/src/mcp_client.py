@@ -42,6 +42,7 @@ async def main():
         print(f"[{msg.__class__.__name__}]: {msg.content}")
 
     ## STATEFUL SESSION
+
     async with (
         mcp_client.session("math") as math_session,
         mcp_client.session("weather") as weather_session,
