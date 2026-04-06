@@ -24,30 +24,32 @@ async def main():
 
     ## STATELESS SESSION
 
-    # tools = await mcp_client.get_tools()
-    # agent = create_agent("claude-sonnet-4-6", tools)
+    tools = await mcp_client.get_tools()
+    agent = create_agent("claude-sonnet-4-6", tools)
 
-    # math_response = await agent.ainvoke(
-    #     {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
-    # )
+    math_response = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
+    )
 
-    # for msg in math_response["messages"]:
-    #     print(f"[{msg.__class__.__name__}]: {msg.content}")
+    for msg in math_response["messages"]:
+        print(f"[{msg.__class__.__name__}]: {msg.content}")
 
-    # weather_response = await agent.ainvoke(
-    #     {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
-    # )
+    weather_response = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
+    )
 
-    # for msg in weather_response["messages"]:
-    #     print(f"[{msg.__class__.__name__}]: {msg.content}")
+    for msg in weather_response["messages"]:
+        print(f"[{msg.__class__.__name__}]: {msg.content}")
 
     ## STATEFUL SESSION
-    async with mcp_client.session("math") as session:
-        # this session contains only the "math" MCP
-        # The MCP is initialized here (initialize method is called)
-
-        tools = await load_mcp_tools(session)
-        agent = create_agent("claude-sonnet-4-6", tools)
+    async with (
+        mcp_client.session("math") as math_session,
+        mcp_client.session("weather") as weather_session,
+    ):
+        # Both MCPs servers are initialized here (calling the "initialize" method)
+        math_tools = await load_mcp_tools(math_session)
+        weather_tools = await load_mcp_tools(weather_session)
+        agent = create_agent("claude-sonnet-4-6", math_tools + weather_tools)
 
         math_response = await agent.ainvoke(
             {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
@@ -56,7 +58,6 @@ async def main():
         for msg in math_response["messages"]:
             print(f"[{msg.__class__.__name__}]: {msg.content}")
 
-        # This WON'T use weather MCP because it's not on the session
         weather_response = await agent.ainvoke(
             {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
         )
