@@ -10,7 +10,7 @@
 - Example: you want to ask a question about a book, then just attach the whole book into the prompt
 - That doesn't scale!
   - Hard token limit
-  - `Needle in the Haystack` (LLMs tend to become less effective with long prompts) <https://arxiv.org/abs/2407.01437>
+  - `Needle in the Haystack` - Context Rot (LLMs tend to become less effective with long prompts) <https://arxiv.org/abs/2407.01437>
   - Cost
   - Latency
 - Therefore we need another way to embed this information into the prompt

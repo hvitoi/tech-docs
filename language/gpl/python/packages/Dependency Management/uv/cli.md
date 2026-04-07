@@ -103,8 +103,19 @@ uv python pin 3.11 # pin a version for the cwd
 uvx pycowsay 'hello world!'
 uv tool run pycowsay 'hello world!' # same
 
-# install
+# --from defines which package to use
+uvx --from mcpdoc \
+    mcpdoc \
+    --urls "LangGraph:https://langchain-ai.github.io/langgraph/llms.txt" "LangChain:https://python.langchain.com/llms.txt" \
+    --transport sse \
+    --port 8082 \
+    --host localhost
+```
+
+```shell
+# installs a CLI tool globally (into ~/.local/bin), not into your project. It's like pipx install - it doesn't touch your pyproject.toml
 uv tool install ruff # just install without running
+uv tool install 'deepagents-cli[ollama,groq]'
 ```
 
 ## uv venv
@@ -125,18 +136,4 @@ uv venv
 
 ```shell
 uv pip install <package>
-```
-
-## uvx
-
-- Similar to npx
-- `--from` defines which package to use
-
-```shell
-uvx --from mcpdoc \
-    mcpdoc \
-    --urls "LangGraph:https://langchain-ai.github.io/langgraph/llms.txt" "LangChain:https://python.langchain.com/llms.txt" \
-    --transport sse \
-    --port 8082 \
-    --host localhost
 ```
