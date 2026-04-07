@@ -6,7 +6,13 @@
 
 ```shell
 # configure an arbitrary skill
-npx skills add "remotion-dev/skills"
+npx skills add "remotion-dev/skills" # it's a github repository! (github.com/remotion-dev/skills)
+
+# check skills updates
+npx skills check
+
+# update skills
+npx skills update
 ```
 
 ## SKILL.md
