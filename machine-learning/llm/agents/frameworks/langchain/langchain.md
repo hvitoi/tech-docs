@@ -14,6 +14,17 @@
 - MCP server for the docs: <https://docs.langchain.com/use-these-docs#use-our-mcp-server>. Uses <https://docs.langchain.com/mcp> remote server
 - LangChain Hub: <https://smith.langchain.com/hub> provides community prompts, chains, agents, etc
 
-## Langchain vs. Deep Agents
+## Deep Agents
 
-- Deep Agents: <https://docs.langchain.com/oss/python/deepagents/overview>
+- <https://docs.langchain.com/oss/python/deepagents/overview>
+- <https://blog.langchain.com/deep-agents/>
+- It's a new project in the Langchain umbrella
+- It's basically a more rich agent with more capabilities
+- Those capabilities/techniques mainly involve
+  - `Planning Tool`: e.g., checklists
+  - `Sub Agents`: sub instances of agents for specialized tasks
+  - `File System`
+  - `System Prompt`
+- Deep Agents solve the problem of an increasingly context. Because it delegates tasks and offload unnecessary context
+
+![Deep Agents](.images/deep-agents.png)
