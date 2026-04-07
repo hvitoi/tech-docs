@@ -24,6 +24,7 @@ uv add langchain-community beautifulsoup4
 
 - <https://docs.langchain.com/oss/python/integrations/splitters>
 - Text splitters break large docs into smaller chunks that will be retrievable individually and fit within model context window limit.
+- Text splitting playgrund to simulate how your text will be split: <https://langchain-text-splitter.streamlit.app/>
 
 ```shell
 uv add langchain-text-splitters
