@@ -33,7 +33,7 @@
 
 ## Properties
 
-- <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html>
+- <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-iam-role.html>
 
 ```yaml
 Type: AWS::IAM::Role
@@ -109,6 +109,20 @@ aws iam list-role-policies --role-name henrique.vitoi-dev-role
 aws iam create-role \
   --role-name MyRole \
   --assume-role-policy-document "file://trust-policy.json"
+
+aws iam get-role \
+  --role-name MyRole \
+  --query 'Role.Arn' \
+  --output text
+
+aws iam attach-role-policy \
+  --role-name MyRole \
+  --policy-arn 'arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy' # attach a managed policy
+
+aws iam put-role-policy \
+  --role-name MyRole \
+  --policy-name MyPolicy \
+  --policy-document file://devops-agentspace-additional-policy.json # attach # inline policy
 ```
 
 #### Action

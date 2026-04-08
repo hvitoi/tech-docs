@@ -1,13 +1,26 @@
-# AWS::CodePipeline::Pipeline
+# AWS::DevOpsAgent::Service
+
+- Represents a tool that the DevOps Agent will have access to
+- It needs to be associated with the `AWS::DevOpsAgent::AgentSpace` using an `AWS::DevOpsAgent::Association`
 
 ## Properties
-
-- <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-devopsagent-service.html>
 
 ```yaml
 Type: AWS::DevOpsAgent::Service
 Properties:
+  KmsKeyArn: String
   ServiceDetails:
     ServiceDetails
   ServiceType: String
+  Tags:
+    - Tag
 ```
+
+### ServiceType
+
+- `dynatrace`
+- `mcpserver`
+- `mcpserversplunk`
+- `mcpservernewrelic`
+- `gitlab`
+- `servicenow`
