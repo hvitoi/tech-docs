@@ -8,7 +8,6 @@
 aws devops-agent create-agent-space \
   --name "MyAgentSpace" \
   --description "AgentSpace for monitoring my application"
-
 ```
 
 ## list-agent-spaces
