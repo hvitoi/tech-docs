@@ -17,18 +17,20 @@ Properties:
 
 ### ServiceId
 
-- `SourceAws`
-- `Aws`: associate an AWS Account to discover the topology
+- It's the UUID of the `AWS::DevOpsAgent::Service` resource
+- The exception is only for the "Aws" and "SourceAwd" configurations, in which the id is `aws`
 
-For the following ones, you need to use the UUID of the `AWS::DevOpsAgent::Service` resource
+### Configuration
 
+- `Aws`
+- `Dynatrace`
+- `EventChannel`
 - `GitHub`
 - `GitLab`
-- `Slack`
-- `Dynatrace`
-- `ServiceNow`
 - `MCPServer`
-- `MCPServerNewRelic`
 - `MCPServerDatadog`
+- `MCPServerNewRelic`
 - `MCPServerSplunk`
-- `EventChannel`
+- `ServiceNow`
+- `Slack`
+- `SourceAws`

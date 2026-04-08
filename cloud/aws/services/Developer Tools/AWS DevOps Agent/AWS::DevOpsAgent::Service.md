@@ -19,8 +19,8 @@ Properties:
 ### ServiceType
 
 - `dynatrace`
-- `mcpserver`
-- `mcpserversplunk`
-- `mcpservernewrelic`
 - `gitlab`
+- `mcpserver`
+- `mcpservernewrelic`
+- `mcpserversplunk`
 - `servicenow`
