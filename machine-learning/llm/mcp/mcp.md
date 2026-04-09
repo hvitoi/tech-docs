@@ -1,15 +1,14 @@
 # Model Context Protocol (MCP)
 
 - <https://modelcontextprotocol.io/docs/getting-started/intro>
+- MCP Servers: <<https://github.com/modelcontextprotocol/servers>>
 - Standardizes how AI systems (like LLMs) connect with external tools and data sources
 - Launched by Anthropic in December 2024
 - It's connector between the LLM models and the context in which it needs to operate (the outside world)
 - Key features
-  - Portability: You don't need to rewrite integrations for each LLM vendor.
-  - Security: It standardizes permissions and sandboxing, so agents don't get unrestricted access.
-  - Ecosystem: Third-party developers can build MCP "servers" (tools, connectors) that any AI app can use.
-- Official servers: <<https://github.com/modelcontextprotocol/servers>>
-- [fastmcp](https://pypi.org/project/fastmcp/1.0/) is a python framework for creating MCP servers
+  - `Portability`: You don't need to rewrite integrations for each LLM vendor.
+  - `Security`: It standardizes permissions and sandboxing, so agents don't get unrestricted access.
+  - `Ecosystem`: Third-party developers can build MCP "servers" (tools, connectors) that any AI app can use.
 
 ## Architecture
 
@@ -31,6 +30,10 @@
 - **Prompts**
   - Pre-defined templates for AI interactions
   - Documentation Q&A, Transcript Summary, Output as JSON
+
+## MCP Frameworks
+
+- [fastmcp](https://pypi.org/project/fastmcp/1.0/) is a python framework for creating MCP servers
 
 ## Runtime
 
