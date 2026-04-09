@@ -1,6 +1,7 @@
 # AWS::DevOpsAgent::Service
 
 - Represents a tool that the DevOps Agent will have access to
+- It's also called "Capability Providers"
 - It needs to be associated with the `AWS::DevOpsAgent::AgentSpace` using an `AWS::DevOpsAgent::Association`
 
 ## Properties

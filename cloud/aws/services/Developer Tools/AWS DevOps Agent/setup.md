@@ -3,10 +3,11 @@
 ## IAM Role: AgentSpace
 
 - <https://docs.aws.amazon.com/devopsagent/latest/userguide/getting-started-with-aws-devops-agent-cli-onboarding-guide.html>
+- It's role grants to the `Agent Space` access to `AWS resources` in this account (the same account in which the AgentSpace is deployed). You can add access to resources in `secondary AWS accounts` when setting up the capabilities of this Agent Space.
 
 ```shell
 # Create Role
-cat > devops-agentspace-trust-policy.json << 'EOF'
+cat > trust-policy.json << 'EOF'
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -18,10 +19,10 @@ cat > devops-agentspace-trust-policy.json << 'EOF'
       "Action": "sts:AssumeRole",
       "Condition": {
         "StringEquals": {
-          "aws:SourceAccount": "<MONITORING_ACCOUNT_ID>"
+          "aws:SourceAccount": "<ACCOUNT_ID>"
         },
         "ArnLike": {
-          "aws:SourceArn": "arn:aws:aidevops:<REGION>:<MONITORING_ACCOUNT_ID>:agentspace/*"
+          "aws:SourceArn": "arn:aws:aidevops:<REGION>:<ACCOUNT_ID>:agentspace/*"
         }
       }
     }
@@ -31,7 +32,7 @@ EOF
 
 aws iam create-role \
   --role-name DevOpsAgentRole-AgentSpace \
-  --assume-role-policy-document file://devops-agentspace-trust-policy.json
+  --assume-role-policy-document file://trust-policy.json
 
 # Get Role ARN
 aws iam get-role --role-name DevOpsAgentRole-AgentSpace --query 'Role.Arn' --output text
@@ -42,7 +43,7 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy
 
 # Attach Inline Policy
-cat > devops-agentspace-additional-policy.json << 'EOF'
+cat > inline-policy.json << 'EOF'
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -53,7 +54,7 @@ cat > devops-agentspace-additional-policy.json << 'EOF'
         "iam:CreateServiceLinkedRole"
       ],
       "Resource": [
-        "arn:aws:iam::<MONITORING_ACCOUNT_ID>:role/aws-service-role/resource-explorer-2.amazonaws.com/AWSServiceRoleForResourceExplorer"
+        "arn:aws:iam::<ACCOUNT_ID>:role/aws-service-role/resource-explorer-2.amazonaws.com/AWSServiceRoleForResourceExplorer"
       ]
     }
   ]
@@ -63,14 +64,16 @@ EOF
 aws iam put-role-policy \
   --role-name DevOpsAgentRole-AgentSpace \
   --policy-name AllowCreateServiceLinkedRoles \
-  --policy-document file://devops-agentspace-additional-policy.json
+  --policy-document file://inline-policy.json
 ```
 
-## IAM Role: Operator
+## IAM Role: WebApp (Operator)
+
+- This role grants to the `WebApp` access to this `AgentSpace`
 
 ```shell
 # Create role
-cat > devops-operator-trust-policy.json << 'EOF'
+cat > trust-policy.json << 'EOF'
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -85,10 +88,10 @@ cat > devops-operator-trust-policy.json << 'EOF'
       ],
       "Condition": {
         "StringEquals": {
-          "aws:SourceAccount": "<MONITORING_ACCOUNT_ID>"
+          "aws:SourceAccount": "<ACCOUNT_ID>"
         },
         "ArnLike": {
-          "aws:SourceArn": "arn:aws:aidevops:<REGION>:<MONITORING_ACCOUNT_ID>:agentspace/*"
+          "aws:SourceArn": "arn:aws:aidevops:<REGION>:<ACCOUNT_ID>:agentspace/*"
         }
       }
     }
@@ -98,7 +101,7 @@ EOF
 
 aws iam create-role \
   --role-name DevOpsAgentRole-WebappAdmin \
-  --assume-role-policy-document file://devops-operator-trust-policy.json
+  --assume-role-policy-document file://trust-policy.json
 
 # Get Role ARN
 aws iam get-role --role-name DevOpsAgentRole-WebappAdmin --query 'Role.Arn' --output text
@@ -117,6 +120,31 @@ aws devops-agent create-agent-space \
   --description "AgentSpace for monitoring my application"
 
 aws devops-agent list-agent-spaces
+```
+
+- On the first setup on an account, your user role will need you will permissions to
+- This is done via `aws iam create-service-linked-role --aws-service-name aidevops.amazonaws.com` and it's executed automatically when creating the first agent space on that account
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "aidevops:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateServiceLinkedRole"
+      ],
+      "Resource": "arn:aws:iam::*:role/aws-service-role/aidevops.amazonaws.com/AWSServiceRoleForAIDevOps"
+    }
+  ]
+}
 ```
 
 ## Associate Services
