@@ -8,7 +8,6 @@
 
 - It's an `Agent Harness` (and agent general purpose client), not a framework like langchain
 - Store keys in `~/.deepagents/.env` so they're available in every project without per-shell exports
-- Deep agents also have a `skills` framework, that are loaded upon demand
 
 - Those capabilities/techniques mainly involve
   - `Planning Tool`: e.g., checklists
@@ -45,6 +44,12 @@ deepagents list
 ```
 
 ## Skills
+
+- Deep agents have a `skills` framework
+- Workflow
+  1. Skills are loaded to the to the agent state on the session start
+  2. Then, on each LLM call, the system prompt is updated with the skills metadata.
+  3. Based on that, the LLM can request the read of the full skill when needed (progressive disclosure)
 
 - Skills at `~/.agents/skills/` are read by deepagents
 - It has the built-in skill `skill-creator`
