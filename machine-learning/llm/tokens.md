@@ -36,3 +36,4 @@
 - `Stuffing`: no summarization at all, just stuff the whole document into the prompt
 - `Map Reduce`: send parallel requests to LLM to summarize each document/part and then integrate it all in a smaller prompt
 - `Refine`: basically a reduce operation. pass "acc + el" to the LLM to summarize
+- `Trim old messages`
