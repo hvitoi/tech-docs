@@ -27,6 +27,7 @@ selected_chunks: list[Document] = loader.load()
 ## TEXT SPLITTER: Break documents into chunks
 
 # RecursiveCharacterTextSplitter attempts to keep larger units (e.g., paragraphs) intact.
+# This recursively tries to split text by larger to smaller units (e.g., \n\n then \n then " ") until it's small enough
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=200,

@@ -52,5 +52,6 @@ print(response.content)
 # Or you can invoke with a simple text prompt...
 # https://docs.langchain.com/oss/python/langchain/messages#text-prompts
 # Text prompts are strings, ideal for straightforward generation tasks where you don't need to retain conversation history.
+# it's automatically wrapped in a HumanMessage
 response = llm.invoke("Write a haiku about spring")
 print(response.content)
