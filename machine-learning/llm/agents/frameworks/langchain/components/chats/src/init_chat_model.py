@@ -4,7 +4,7 @@ from langchain.chat_models import BaseChatModel, init_chat_model
 
 ## MODELS
 # "ollama:llama3.2"
-# "ollama:gemma3:270m": does not accept tools
+# "ollama:gemma4"
 # "anthropic:claude-sonnet-4-6"
 # "google_genai:gemini-2.5-flash-lite"
 # "gpt-5.2"
