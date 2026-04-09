@@ -19,3 +19,12 @@ llm_with_tools = llm.bind_tools(tools)
 response = llm_with_tools.invoke("What is the weather in São Paulo?")
 
 print(response.content)
+
+
+# Workflow:
+# 1. LangChain sends a request to LLM with the available tools and the user prompt
+# 2. LLM answers with which tool to call and with which arguments
+# 3. LangChain executes the tool define by the LLM
+# 4. LangChain makes a new request to LLM with the tool result
+# 5. LLM processes the input and decide that it already has a final solution, this final answer is returned
+# 6. LangChain understand that the LLM decided that it is the final answer and return it to the client
