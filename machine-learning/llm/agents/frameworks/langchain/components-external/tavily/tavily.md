@@ -13,3 +13,7 @@ uv add langchain-tavily
 ```conf
 TAVILY_API_KEY=tvly-...
 ```
+
+## Tavily Crawler
+
+- Tavily provides a tool to crawl through webpages
