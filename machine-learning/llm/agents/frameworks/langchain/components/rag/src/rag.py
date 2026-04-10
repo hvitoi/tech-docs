@@ -21,7 +21,7 @@ from pinecone import Pinecone
 # Alice's Adventures in Wonderland — Project Gutenberg (public domain)
 book_url = "https://www.gutenberg.org/files/11/11-h/11-h.htm"
 loader = WebBaseLoader(book_url)
-selected_chunks: list[Document] = loader.load()
+docs: list[Document] = loader.load()
 
 
 ## TEXT SPLITTER: Break documents into chunks
@@ -39,7 +39,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 #     encoding_name="cl100k_base", chunk_size=100, chunk_overlap=0
 # )
 
-book_chunks: list[Document] = text_splitter.split_documents(selected_chunks)
+book_chunks: list[Document] = text_splitter.split_documents(docs)
 print(f"Book chunks: {len(book_chunks)}")
 
 
@@ -49,6 +49,12 @@ print(f"Book chunks: {len(book_chunks)}")
 # Pull the model first "ollama pull nomic-embed-text"
 # This embedding model has a fixes output dimension of 768
 embedding_model: Embeddings = init_embeddings("ollama:nomic-embed-text")
+# embedding_model = OpenAIEmbeddings(
+#     model="text-embedding-3-small",
+#     show_progress_bar=False,
+#     chunk_size=50,
+#     retry_min_seconds=10,
+# )
 
 # With InMemory Vector Store
 vector_store = InMemoryVectorStore.from_documents(

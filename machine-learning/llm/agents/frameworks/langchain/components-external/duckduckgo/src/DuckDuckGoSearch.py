@@ -2,7 +2,6 @@ from langchain.agents import create_agent
 from langchain_community.tools import DuckDuckGoSearchResults
 from langchain_core.messages import HumanMessage
 
-
 search_tool = DuckDuckGoSearchResults(
     # max_results=5,
     # output_format="list",
