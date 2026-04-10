@@ -18,6 +18,7 @@ async def do_something(name, delay):
 async def main():
     # The coroutine is NOT started yet. It will only start when it is awaited
     coroutine = do_something("A", 5)
+    # task = asyncio.create_task(coroutine)  # now it starts
 
     # Start the coroutine, "block" the program until it returns the result
     print(await coroutine)

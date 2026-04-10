@@ -23,3 +23,14 @@
 4. Search through the embeddings with the original prompt in order to know which are the most relevant chunks
 
 ![RAG Pipeline](.images/rag-pipeline.png)
+
+## Fine-tuning as an alternative
+
+Some argue that fine-tuning on domain knowledge is more reliable than retrieval - no retrieval errors, no chunking artifacts, no context stuffing issues.
+
+## RAG evolution
+
+- `Graph RAG`: combines knowledge graphs with vector search
+- `Agentic RAG`: multi-step retrieval with planning
+- `HyDE`, `FLARE`, `RAPTOR`: smarter retrieval strategies
+- `Rerankers`: cross-encoder models improve precision
