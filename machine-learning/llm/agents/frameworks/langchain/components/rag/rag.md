@@ -33,6 +33,9 @@ uv add langchain-text-splitters
 ## Vector DB
 
 - <https://docs.langchain.com/oss/python/integrations/providers/pinecone>
+- <https://www.pinecone.io/>
+  - You need to select the correct configuration for your index according to the embedding model you are going to use
+  - For example the `ollama:nomic-embed-text` model uses 768 and it must be exactly it in the index configuration
 
 ```shell
 # for Pinecone

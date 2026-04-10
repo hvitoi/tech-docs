@@ -60,7 +60,7 @@ vector_store = InMemoryVectorStore.from_documents(
 # pc = Pinecone()
 # index = pc.Index("cazzo-duro")
 # index.delete(delete_all=True)  # clear the index before adding more documents
-# vector_store = PineconeVectorStore.from_documents(  # uses the PINECORE_API_KEY under the hood
+# vector_store = PineconeVectorStore.from_documents(  # uses the PINECONE_API_KEY under the hood
 #     docs_chunks,  # add the chunks to the index
 #     embedding_model,
 #     index_name="cazzo-duro",  # The pre-created index must match the 768 dimension of the embedding model
