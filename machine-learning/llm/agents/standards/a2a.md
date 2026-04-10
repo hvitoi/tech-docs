@@ -2,3 +2,4 @@
 
 - É um padrão para agentes de IA conversarem entre si
 - Apresentado pela Google em 2025
+- <https://a2a-protocol.org/>

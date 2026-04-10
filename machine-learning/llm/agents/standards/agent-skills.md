@@ -1,5 +1,7 @@
 # Skills
 
+- It's an `open standard`, as the way to provide specialized knowledge to the agent
+- <https://agentskills.io/home>
 - Skills extend the general knowledge of the LLM
 - When invoked, a skill injects a specialized prompt/instruction set into the agent's context
 - The [skills](https://www.npmjs.com/package/skills) npm package helps on the setup of skills
