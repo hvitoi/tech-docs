@@ -1,5 +1,12 @@
 # /v1/responses
 
+- This API is stateful, differently from chat completions API, which is stateless, in which you always needed to send the whole conversation every time
+- In the Responses API, you don't always have to resend full history, OpenAI can manage conversation state internally
+- Memory is no longer fully under your control
+  - history may live on OpenAI's side
+  - tool execution context may be hidden
+  - you don't fully control what's stored or injected
+
 ## input
 
 ```shell
@@ -10,6 +17,16 @@ curl https://api.openai.com/v1/responses \
   -d '{
     "model": "gpt-5-nano",
     "input": "Tell me a joke."
+  }'
+
+# Continue the conversation with the ID received from the first response
+curl https://api.openai.com/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-5-nano",
+    "previous_response_id": "resp_abc123",
+    "input": "Now make it funnier"
   }'
 ```
 

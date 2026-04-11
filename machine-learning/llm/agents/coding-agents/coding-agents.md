@@ -5,6 +5,7 @@
 ### Github Copilot
 
 - <https://github.com/features/copilot>
+- Uses OpenAI's Codex model
 
 - Clients
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=GitHub.copilot>
@@ -20,12 +21,14 @@
 
 ### OpenAI Codex
 
-- <https://developers.openai.com/codexide>
+- <https://github.com/openai/codex>
+- Uses OpenAI's coding models: Codex (before), GPT-5.4 (more recently)
 - Requires ChatGPT Plus ($20/month)
 
 - Clients
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=openai.chatgpt>
-  - **CLI**: <<https://developers.openai.com/codex/cli>>
+  - **CLI**: <https://developers.openai.com/codex/cli>
+  - **GUI**: <https://developers.openai.com/codex/app>
 
 ### Cline
 
@@ -38,6 +41,15 @@
 - Clients
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev>
   - **CLI**: `npm install -g cline`
+
+### Opencode
+
+- <https://github.com/anomalyco/opencode>
+- <https://github.com/sst/opencode> (former repo)
+
+- Clients
+  - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=sst-dev.opencode> (requires the CLI)
+  - **CLI**: <https://opencode.ai/docs/cli/>
 
 ### Kilo Code
 
@@ -65,15 +77,6 @@
 - Clients:
   - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=Continue.continue>
 
-### Opencode
-
-- <https://github.com/anomalyco/opencode>
-- <https://github.com/sst/opencode> (former repo)
-
-- Clients
-  - **VS Code**: <https://marketplace.visualstudio.com/items?itemName=sst-dev.opencode> (requires the CLI)
-  - **CLI**: <https://opencode.ai/docs/cli/>
-
 ### Qodo
 
 - <https://www.qodo.ai/>
@@ -92,6 +95,9 @@
 - Model Agnostic
 - No monetization
 - CLI-only
+
+- Clients
+  - **CLI**: `python -m pip install aider-install && aider-install`
 
 ### Goose
 
