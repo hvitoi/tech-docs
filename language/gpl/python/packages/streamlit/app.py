@@ -11,6 +11,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Counter")
+    # the session state is simply a dictionary
     if "count" not in st.session_state:
         st.session_state.count = 0
     if st.button("Increment"):

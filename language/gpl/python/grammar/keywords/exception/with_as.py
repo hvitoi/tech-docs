@@ -6,6 +6,9 @@
 # The expression must be an object that supports the "context management protocol"
 # The "context management protocol" has the methods __enter__() and __exit__()
 
+# The original intent of with (PEP 343) is resource management - ensuring cleanup happens even when exceptions occur: close the file, release the lock, roll back the transaction.
+
+
 # %%
 # ---- File open ----
 # open() creates a  an object that is called a "Context Manager"
