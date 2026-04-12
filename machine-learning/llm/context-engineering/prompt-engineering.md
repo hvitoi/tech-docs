@@ -4,10 +4,10 @@
 
 ## The Prompt
 
-  1. `Instructions`: usually the system prompt
+  1. `Instructions`
   1. `Context`: additional information relevant to the task
-  1. `Input data`: the user prompt
-  1. `Output indicator`: structured output
+  1. `Input data`
+  1. `Output indicator`
   1. `Negative Prompting`: explicit instruct the model on what not to include or do in its response
 
 ```txt
@@ -87,3 +87,9 @@ John takes care of 10 dogs. Each dog takes .5 hours a day to walk and take care 
 ## Prompt Success
 
 - Context-rich, clear non-ambiguous, iterations
+
+## Prompt Hub
+
+## System Prompt
+
+- <https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools>

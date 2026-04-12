@@ -1,4 +1,4 @@
-# Context Management
+# History Shortening
 
 ## Stuffing
 
