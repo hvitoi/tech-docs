@@ -7,9 +7,6 @@
 ```shell
 # Brew
 brew install uv
-
-# Pip (global)
-pip3 install uv
 ```
 
 ## Project structure

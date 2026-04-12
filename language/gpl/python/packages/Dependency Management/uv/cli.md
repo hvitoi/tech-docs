@@ -70,6 +70,7 @@ uv run pytest tests/
 ## add
 
 - Adds a dependency into `pyproject.toml` and installs it in the virtual environment `.venv/`
+- If there is no parent pyproject, it will fail
 
 ```shell
 uv add "langchain"
@@ -100,8 +101,8 @@ uv python pin 3.11 # pin a version for the cwd
 
 ```shell
 # run
-uvx pycowsay 'hello world!'
-uv tool run pycowsay 'hello world!' # same
+uv tool run pycowsay 'hello world!'
+uvx pycowsay 'hello world!' # same
 
 # --from defines which package to use
 uvx --from mcpdoc \
