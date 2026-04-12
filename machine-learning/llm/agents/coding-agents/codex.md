@@ -10,7 +10,12 @@ code # cli
 code-app # gui
 ```
 
-## BIlling
+## Config
 
-- You can run Codex with your ChatGPT subscription: Plus, Pro, Business, Edu, or Enterprise
-- Or use your API key
+- Everything is stored at `~/.codex/` (global) and `./.codex/` (project)
+  - `~/.codex/config.toml`: main config file
+
+## Billing
+
+- You can run Codex with your `ChatGPT subscription`: Free, Go, Plus, Pro, Business, Edu, or Enterprise plan
+- ... or use with `API credits` by signing in with an OpenAI API key.
