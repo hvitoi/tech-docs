@@ -1,15 +1,14 @@
 # Models
 
 - Azure also hosts OpenAI models, therefore it's also possible to access OpenAI models via Azure API Keys
--
 
 ## GPT (Generative Pre-trained Transformer)
 
 - Auto-regressive language model
 - **ChatGPT**: has a human friendly interface
 
-- `GPT-3`: trained on 175 billion parameters
-- `GPT-4`: trained on 100 trillion parameters
+- `GPT-3`: trained on 175 B parameters
+- `GPT-4`: trained on 100 T parameters
 - `GPT-5.2`
 
 - **Pricing**

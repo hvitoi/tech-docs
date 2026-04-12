@@ -299,7 +299,7 @@ curl https://api.openai.com/v1/responses \
 
 - 0.2 factual/consistent
 - 0.7 balanced
-- 1.0+ creative
+- 1.0+ creative (may cause hallucinations)
 
 ```shell
 curl https://api.openai.com/v1/responses \
@@ -314,8 +314,15 @@ curl https://api.openai.com/v1/responses \
 
 ## top_p
 
+- `Top P` (0 to 1)
+  - Low P (e.g., 0.25) - safer
+  - High P (e.g., 0.99): more broad answers, diverse output
+- `Top K`
+  - Low K (e.g., 10): more coherent responses
+  - High K (e.g., 500): more diverse and creative
+
+- Considers only the P% most likely words
 - Alternative to temperature
-- Lower value = safer outputs
 
 ```shell
 curl https://api.openai.com/v1/responses \
@@ -331,6 +338,7 @@ curl https://api.openai.com/v1/responses \
 ## stop
 
 - Force generation to stop once a specific token is reached
+- Tokens that signals that the model to stop generating output
 
 ```shell
 curl https://api.openai.com/v1/responses \
