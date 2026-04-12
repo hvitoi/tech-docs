@@ -93,3 +93,7 @@ John takes care of 10 dogs. Each dog takes .5 hours a day to walk and take care 
 ## System Prompt
 
 - <https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools>
+- <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- The system prompt must be calibrate with the just enough information to output a `consistent behavior`. It should also avoid to give too specific set of rules and pipeline/flowchart of problem solving, this kills the reasoning aspect of the LLM and make it inflexible (empower rather and constraint). Provide a reasoning framework and guidance! At the same that it must have clear goals
+
+![Calibrating System Prompt](.images/calibrating-system-prompt.png)
