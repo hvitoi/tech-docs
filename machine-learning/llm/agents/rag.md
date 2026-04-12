@@ -28,9 +28,15 @@
 
 Some argue that fine-tuning on domain knowledge is more reliable than retrieval - no retrieval errors, no chunking artifacts, no context stuffing issues.
 
-## RAG evolution
+## RAG types
 
 - `Graph RAG`: combines knowledge graphs with vector search
 - `Agentic RAG`: multi-step retrieval with planning
 - `HyDE`, `FLARE`, `RAPTOR`: smarter retrieval strategies
 - `Rerankers`: cross-encoder models improve precision
+
+| Architecture  | Description                                                               | Control    | Flexibility | Latency       | Example Use Case                                    |
+|---------------|---------------------------------------------------------------------------|------------|-------------|---------------|-----------------------------------------------------|
+| 2-Step RAG    | Retrieval always happens before generation. Simple and predictable.       | ✅ High    | ❌ Low      | ⚡ Fast       | FAQs, documentation bots                            |
+| Agentic RAG   | An LLM-powered agent decides when and how to retrieve during reasoning.   | ❌ Low     | ✅ High     | ⏳ Variable   | Research assistants with access to multiple tools   |
+| Hybrid        | Combines characteristics of both approaches with validation steps.        | ⚖️ Medium  | ⚖️ Medium   | ⏳ Variable   | Domain-specific Q&A with quality validation         |

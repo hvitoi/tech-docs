@@ -11,5 +11,10 @@
 - Reference <https://reference.langchain.com/python/langchain/>
 - Docs <https://docs.langchain.com/oss/python/langchain/overview>
 - llms.txt: <https://docs.langchain.com/llms.txt>
-- MCP server for the docs: <https://docs.langchain.com/use-these-docs#use-our-mcp-server>. Uses <https://docs.langchain.com/mcp> remote server
 - LangChain Hub: <https://smith.langchain.com/hub> provides community prompts, chains, agents, etc
+
+- MCP server for the docs <https://docs.langchain.com/use-these-docs#use-our-mcp-server>
+  - Uses <https://docs.langchain.com/mcp> remote server
+
+- Documentation Chat: <https://chat.langchain.com/>
+  - Under the hood it uses agentic RAG to fetch the appropriate fresh documentation for you based on your query
