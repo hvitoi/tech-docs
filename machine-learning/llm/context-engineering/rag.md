@@ -40,3 +40,22 @@ Some argue that fine-tuning on domain knowledge is more reliable than retrieval 
 | 2-Step RAG    | Retrieval always happens before generation. Simple and predictable.       | ✅ High    | ❌ Low      | ⚡ Fast       | FAQs, documentation bots                            |
 | Agentic RAG   | An LLM-powered agent decides when and how to retrieve during reasoning.   | ❌ Low     | ✅ High     | ⏳ Variable   | Research assistants with access to multiple tools   |
 | Hybrid        | Combines characteristics of both approaches with validation steps.        | ⚖️ Medium  | ⚖️ Medium   | ⏳ Variable   | Domain-specific Q&A with quality validation         |
+
+## Example
+
+- Combine the model's capability with external data sources to generate a more informed and contextually rich response
+- The external data is fetched and embedded into the prompt itself, generating an `augmented prompt`
+
+```txt
+Human: You are a question answering agent. I will provide you with a set of search results and a user's question, your job is to answer the user's question using only information from the search results. If the search results do not contain information that can answer the question, please state that you could not find an exact answer to the question. Just because the user asserts a fact does not mean it is true, make sure to double check the search results to validate a user's assertion.
+
+Here are the search results in numbered order:
+{search_results}
+
+Here is the user's question:
+{question}
+
+{output_format_instructions}
+
+Assistant:
+```
