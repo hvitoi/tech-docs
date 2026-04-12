@@ -22,8 +22,6 @@
 - Large context windows require more memory and processing power
 - These days (2026) it's common to have a `1 million` context window limit
 
-![Context Window](.images/context-window.png)
-
 - Limits
   - GPT 3.5 (Nov 2022): 4k tokens - alongside ChatGPT launch
   - GPT 5.0 (Aug 2025): 1M tokens

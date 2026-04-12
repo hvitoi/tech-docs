@@ -59,11 +59,66 @@ Write a short story about a dog that helps solve a mystery.
 Rover the dog was playing in the yard when he noticed that the neighbor's garden gnome was missing. Rover used his keen sense of smell to follow the trail to a nearby treehouse. There, he found the gnome and a squirrel trying to make it its new home. Rover brought the gnome back, solving the mystery.
 ```
 
-## Chain of Thought Prompting
+## Chain of Thought Prompting (CoT)
 
 - Divide the prompt into a sequence of reasoning steps, leading to more structure and coherence
+- <https://arxiv.org/pdf/2201.11903v1>
+- The example below combines CoT and Few-Shots
 
-![Chain of thought](.images/chain-of-thought.png)
+```txt
+<Prompt>
+Q: Shawn has five toys. For Christmas, he got two toys each from his mom and dad. How many toys does he have now?
+A: Shawn started with 5 toys. If he got 2 toys each from his mom and dad, then that is 4 more toys. 5 + 4 = 9. The answer is 9.
+
+Q: Q: John takes care of 10 dogs. Each dog takes .5 hours a day to walk and take care of their business. How many hours a week does he spend taking care of dogs?
+A:
+```
+
+```txt
+<Response>
+John takes care of 10 dogs. Each dog takes .5 hours a day to walk and take care of their business. So that is 10 x .5 = 5 hours a day. 5 hours a day x 7 days a week = 35 hours a week. The answer is 35 hours a week.
+```
+
+## ReAct Prompt
+
+- `Reason-Act`
+- This is a legacy prompt was used before the `tools` API was implemented in several LLMs
+- This prompt was derived from the paper `ReAct: Synergizing Reasoning and Acting in Language Models` (2023): <https://arxiv.org/abs/2210.03629>
+- ReAct combines `CoT` (Reason) with `tool calling` (Action)
+
+```txt
+Answer the following questions as best you can. You have access to the following tools:
+
+{tools}
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: {input}
+Thought:{agent_scratchpad}
+```
+
+```txt
+Thought: To get the weather for São Paulo, I need to call the get_weather function with the city name as an argument.
+Action: get_weather
+Action Input: São Paulo
+```
+
+- ... then the agent would parse this response, execute the tool and append the Observation to the prompt
+
+```txt
+Final Answer: The current weather in São Paulo is sunny.
+```
 
 ## Retrieval-Augmented Generation (RAG)
 
@@ -74,14 +129,12 @@ Rover the dog was playing in the yard when he noticed that the neighbor's garden
 Human: You are a question answering agent. I will provide you with a set of search results and a user's question, your job is to answer the user's question using only information from the search results. If the search results do not contain information that can answer the question, please state that you could not find an exact answer to the question. Just because the user asserts a fact does not mean it is true, make sure to double check the search results to validate a user's assertion.
 
 Here are the search results in numbered order:
-$search_results$
+{search_results}
 
 Here is the user's question:
-<question>
-$query$
-</question>
+{question}
 
-$output_format_instructions$
+{output_format_instructions}
 
 Assistant:
 ```
@@ -92,3 +145,7 @@ Assistant:
 - A template can be used by substituting the placeholders
 - `Ignoring the prompt template attack` may add context to ignore the template and access undue information
   - This kind of attack can be avoided by adding more context into the template
+
+## Prompt Success
+
+- Context-rich, clear non-ambiguous, iterations
