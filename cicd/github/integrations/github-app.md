@@ -4,6 +4,15 @@
 - A GitHub App is its own identity, it acts as itself (e.g., @my-bot[bot]), not as a user.
 - Installation token
 
+## Install vs. Authorize GithubApps
+
+- **Installed Github Apps**: <https://github.com/settings/installations>
+  - The app has access to your repos/org. It can act on its own (as a bot) using installation tokens. You (or an org admin) chose which repos it can see. This is the server-to-server side.
+
+- **Authorized Github Apps**: <https://github.com/settings/apps/authorizations>
+  - You personally granted the app permission to act as you via OAuth. This is the user-to-server side - the app used the client ID + client secret flow to get a token that represents you.
+  - Do things as you, e.g., know who you are, access resources scoped to your identity
+
 ## Step 0: Create App
 
 - Create it at <https://github.com/settings/apps>
@@ -23,7 +32,7 @@
   - The `repositories` and other resources that you want to grant access to
 - You can then manage the installation: <https://github.com/settings/installations/123456789>
 
-## Step 1: Generate JWT
+## Step 2: Generate JWT
 
 - Generate a JWT from the app's private key (valid for up to 10 minutes)
 
@@ -42,7 +51,7 @@ signature=$(echo -n "${header}.${payload}" | openssl dgst -sha256 -sign "$pem_fi
 jwt="${header}.${payload}.${signature}"
 ```
 
-## Step 2: Generate access token
+## Step 3: Generate access token (installation token)
 
 - Find the installation ID and exchange the JWT for an installation access token
 - You can use the App Access Token just like a `PAT` (however it expires in 1 hour)
@@ -69,7 +78,11 @@ curl -Lsf -X POST \
 GH_ACCESS_TOKEN= # ghs_xxxx
 ```
 
-## Step 3: use the installation token to call the API (acts as the app bot)
+## Step 4: Use the access token
+
+- Use the access token (installation token) to call the API (acts as the app bot)
+
+-
 
 ```shell
 curl -Lsf \

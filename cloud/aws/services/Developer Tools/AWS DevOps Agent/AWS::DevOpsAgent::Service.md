@@ -22,11 +22,40 @@ Properties:
     - Tag
 ```
 
+```json
+// Example
+{
+  "services": [
+    {
+      "serviceId": "51aadfb1-f042-403e-9810-87378ff05e65",
+      "serviceType": "github",
+      "additionalServiceDetails": {
+        "github": {
+          "owner": "hvitoi", // has potential access to all repos of that user/org (if you allow it on the app installation)
+          "ownerType": "user"
+        }
+      }
+    },
+    {
+      "serviceId": "c3284ed3-7634-4fa1-afd6-80563bc10052",
+      "serviceType": "mcpserver",
+      "additionalServiceDetails": {
+        "mcpserver": {
+          "name": "prometheus-mcp",
+          "endpoint": "https://myprometheus/mcp",
+          "authorizationMethod": "api-key",
+          "apiKeyHeader": "x-api-key"
+        }
+      },
+      "privateConnectionName": "prometheus-mcp"
+    }
+  ]
+}
+```
+
 ### ServiceType
 
-- `dynatrace`
-- `gitlab`
 - `mcpserver`
-- `mcpservernewrelic`
-- `mcpserversplunk`
-- `servicenow`
+- `github`
+- `gitlab`
+- ...
