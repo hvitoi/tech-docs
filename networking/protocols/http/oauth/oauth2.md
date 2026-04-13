@@ -5,17 +5,17 @@
 
 - It Gives permissions to the `application object`
 
-## Roles
+## Roles (Entities)
 
 - `Resource Owner`: entity that owns the data (e.g., a logged user)
 - `Resource Server`: server that hosts the protected resource. Access is only granted with the use of access tokens
-- `Client`
-  - The application that requests a token to the authorization server in behalf of the resource owner
+- `Client`: The application that requests a token to the authorization server in behalf of the resource owner
 - `Authorization Server`
   - The identity provider, it issues the authorization codes and the access tokens
   - Autorize the client and emit tokens
   - SSO (Single Sign On)
-- `Access Token`: security token requested by the client in order to access the resource server
+  - E.g., Azure AD
+- `Access Token`: security token requested by the client to the authorization server in order to access the resource server
 
 ## Clients
 
@@ -31,13 +31,13 @@
 - <https://oauth.net/2/grant-types/>
 - Each grant type has its own flow to acquire an access token
 
-- `Authorization Code`
+- `Authorization Code`: client_id + redirect_uri
 - `PKCE`
-- `Client Credentials`
+- `Client Credentials`: client-id + client-secret
 - `Device Code`
 - `Refresh Token`
 - `Implicit Flow` (legacy)
-- `Password Grant` (legacy)
+- `Password Grant` (legacy): username + password
 
 ## Protocols
 

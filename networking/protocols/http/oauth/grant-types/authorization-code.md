@@ -13,12 +13,8 @@
 - `scope`: which permissions the application is requesting
 - `state`: random string (prevent CSRF attacks)
 
-```http
-GET https://authorization-server.com/oauth2/authorize
-    ?response_type=code
-    &client_id=client-id
-    &scope=email+offline_access
-    &redirect_uri=https://client.com/callback/
+```shell
+curl -X GET "https://authorization-server.com/oauth2/authorize?response_type=code&client_id=client-id&scope=email+offline_access&redirect_uri=https://client.com/callback/"
 ```
 
 - The `authorization code` is sent back to the `redirect_url` (which is part of the application). E.g., <https://client.com/callback?code=12345>
@@ -29,14 +25,11 @@ GET https://authorization-server.com/oauth2/authorize
 - The client uses the code received from the authorization server to get an access token
 - The authorization server `authenticates the client`, `validates the authorization code` and `verify the redirection uri`
 
-```http
-POST https://authorization-server.com/oauth2/token HTTP/1.1
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Accept: application/json
-
-&grant_type=authorization_code
-&redirect_uri=https://client.com/callback/&
-&code=12345
+```shell
+curl -X POST https://authorization-server.com/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
+  -H "Accept: application/json" \
+  -d "grant_type=authorization_code&redirect_uri=https://client.com/callback/&code=12345"
 ```
 
 ```json
@@ -50,7 +43,7 @@ Accept: application/json
 
 ## Get resource
 
-```http
-GET https://resource-server.com/file.txt HTTP/1.1
-Authorization: Bearer bearer-token
+```shell
+curl -X GET https://resource-server.com/file.txt \
+  -H "Authorization: Bearer $TOKEN"
 ```
