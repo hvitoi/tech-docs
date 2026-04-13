@@ -32,8 +32,8 @@
 
 ### Cline
 
-- <https://cline.bot/>
 - <https://github.com/cline/cline>
+- <https://cline.bot/>
 - Model Agnostic (although there is a preference for Claude)
 - Formerly "Claude Dev"
 - Open-source
@@ -53,8 +53,8 @@
 
 ### Kilo Code
 
-- <https://kilo.ai>
 - <https://github.com/Kilo-Org/kilocode>
+- <https://kilo.ai>
 - Model Agnostic
 
 - Clients
@@ -89,8 +89,8 @@
 
 ### Aider
 
-- <https://aider.chat/>
 - <https://github.com/Aider-AI/aider>
+- <https://aider.chat/>
 
 - Model Agnostic
 - No monetization
