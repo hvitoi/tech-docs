@@ -2,7 +2,7 @@
 
 - Git Hook is a `trigger`
 - E.g., whenever code is pushed to master branch, github/gitlab must trigger a script
-- Git hooks must be placed at `.git/hooks` folder
+- Git hooks must be placed at `.git/hooks/` folder. Or at any path if you specify it at `core.hooksPath` config
 
 ## Example hook
 

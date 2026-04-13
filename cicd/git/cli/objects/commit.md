@@ -31,6 +31,9 @@ git commit --allow-empty-message --no-edit
 
 # Commit all files currently in the working directory
 git commit -a -m "description"
+
+# do not trigger hooks
+git commit --no-verify -m "..."
 ```
 
 ## Amend

@@ -1,15 +1,25 @@
+# /etc/gitconfig
+# ~/.gitconfig
+# ~/.config/git/config
+
+
 [user]
-	email = user@example.com
 	name = Henrique Vitoi
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-[pull]
-	rebase = false
+	email = user@example.com
+
 [init]
 	defaultBranch = main
+
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
+[pull]
+	ff = only
+	rebase = false
+
 [alias]
 	# prettier git log
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
@@ -19,5 +29,19 @@
 
 	# list files changed in comparison to master branch
 	stat = !git diff --stat $(git merge-base HEAD master)
+
+# ssh -> https
+[url "git@github.com:hvitoi"]
+insteadOf = https://github.com/hvitoi
+
 [color]
 	ui = true
+
+[commit]
+gpgSign = true
+
+[tag]
+gpgSign = true
+
+[core]
+hooksPath = /usr/local/git-dlp/hooks
