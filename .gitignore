@@ -22,3 +22,14 @@ __pycache__/
 
 # MkDocs
 /site/
+
+# Lock files (as they add noise to the documentation)
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+Pipfile.lock
+Cargo.lock
+go.sum
+poetry.lock
+Gemfile.lock
+composer.lock
