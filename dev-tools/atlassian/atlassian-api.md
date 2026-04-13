@@ -1,5 +1,7 @@
 # Jira CLI
 
+- <https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/>
+
 ## /v1/alerts
 
 - <https://developer.atlassian.com/cloud/jira/service-desk-ops/rest/v2/api-group-alerts/#api-v1-alerts-get>
