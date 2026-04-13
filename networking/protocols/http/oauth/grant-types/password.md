@@ -16,15 +16,14 @@
 
 ## Get access token
 
-```http
-POST https://authorization-server.com/oauth2/token HTTP/1.1
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Accept: application/json
-
-&grant_type=password
-&username=john
-&password=admin
-&scope=users:read users:write
+```shell
+curl -X POST https://authorization-server.com/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
+  -H "Accept: application/json" \
+  -d "grant_type=password
+     &username=john
+     &password=admin
+     &scope=users:read users:write"
 ```
 
 ```json
@@ -38,7 +37,7 @@ Accept: application/json
 
 ## Get resource
 
-```http
-GET https://resource-server.com/file.txt HTTP/1.1
-Authorization: Bearer bearer-token
+```shell
+curl -X GET https://resource-server.com/file.txt \
+  -H "Authorization: Bearer $TOKEN"
 ```

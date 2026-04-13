@@ -14,7 +14,11 @@
 - `state`: random string (prevent CSRF attacks)
 
 ```shell
-curl -X GET "https://authorization-server.com/oauth2/authorize?response_type=code&client_id=client-id&scope=email+offline_access&redirect_uri=https://client.com/callback/"
+curl -X GET "https://authorization-server.com/oauth2/authorize
+  ?response_type=code
+  &client_id=client-id
+  &scope=email+offline_access
+  &redirect_uri=https://client.com/callback/"
 ```
 
 - The `authorization code` is sent back to the `redirect_url` (which is part of the application). E.g., <https://client.com/callback?code=12345>
@@ -29,7 +33,9 @@ curl -X GET "https://authorization-server.com/oauth2/authorize?response_type=cod
 curl -X POST https://authorization-server.com/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
   -H "Accept: application/json" \
-  -d "grant_type=authorization_code&redirect_uri=https://client.com/callback/&code=12345"
+  -d "grant_type=authorization_code
+      &redirect_uri=https://client.com/callback/
+      &code=12345"
 ```
 
 ```json

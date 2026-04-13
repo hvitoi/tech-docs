@@ -14,7 +14,10 @@
   - `state`: random string (prevent CSRF attacks)
 
 ```shell
-curl -X GET "https://authorization-server.com/oauth2/authorize?response_type=token&client_id=client-id&redirect_uri=https://client.com/callback/"
+curl -X GET "https://authorization-server.com/oauth2/authorize
+  ?response_type=token
+  &client_id=client-id
+  &redirect_uri=https://client.com/callback/"
 ```
 
 - The `access token` is sent back to the `redirect_url` (which is part of the application). E.g., <https://client.com/callback#access_token=12345&token_type=example&expires_in=3600>

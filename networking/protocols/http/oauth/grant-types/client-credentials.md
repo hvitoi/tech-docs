@@ -11,7 +11,10 @@
 curl -X POST https://authorization-server.com/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
   -H "Accept: application/json" \
-  -d "grant_type=client_credentials&client_id=client-id&client_secret=client-secret&resource=https://resource-server.com"
+  -d "grant_type=client_credentials
+     &client_id=client-id
+     &client_secret=client-secret
+     &resource=https://resource-server.com"
 ```
 
 ```json
