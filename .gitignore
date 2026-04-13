@@ -28,6 +28,7 @@ yarn.lock
 package-lock.json
 pnpm-lock.yaml
 Pipfile.lock
+uv.lock
 Cargo.lock
 go.sum
 poetry.lock
