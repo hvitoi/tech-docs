@@ -68,6 +68,7 @@ aws devops-agent associate-service \
 ## list-services
 
 - List **AWS::DevOpsAgent::Service** resources
+- Does not list `aws` or `sourceaws` services, it's an association directly ("built-in" services)
 
 ```shell
 aws devops-agent list-services
