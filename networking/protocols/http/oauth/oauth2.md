@@ -1,8 +1,8 @@
 # OAuth 2.0
 
+- <https://oauth.net/2>
 - `OAuth 2.0` is a specification for authorization (and authentication)
   - `OpenID Connect` is another specification based on OAuth 2.0 used for authentication only
-
 - It Gives permissions to the `application object`
 
 ## Roles (Entities)
@@ -26,6 +26,16 @@
   - Clients that do not have a client_secret
   - Client running in a frontend (browser, mobile)
 
+## 2LO vs. 3LO
+
+- 3LO (3-Legged OAuth) are flows that involves three parties (the "three legs"):
+
+1. User (Resource Owner)
+2. Application (Client)
+3. Authorization/Resource Server
+
+- Contrast with 2LO (2-Legged OAuth), where only two parties are involved (the `client` and the `server`). There's no user in the loop.
+
 ## Grant Types
 
 - <https://oauth.net/2/grant-types/>
@@ -37,12 +47,11 @@
 - `Device Code`
 - `Refresh Token`
 - `Implicit Flow` (legacy)
-- `Password Grant` (legacy): username + password
+- `Password Grant` (legacy)
 
 ## Protocols
 
-- OpenID Connect / OAuth 2.0
-
+- **OpenID Connect / OAuth 2.0**
   - JSON
   - Simple
   - Bearer token (access token)
@@ -52,7 +61,7 @@
     - Mobile
     - REST Services
 
-- SAML v2
+- **SAML v2**
   - XML
   - More mature
   - More complex

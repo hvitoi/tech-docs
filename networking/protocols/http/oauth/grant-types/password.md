@@ -1,5 +1,6 @@
 # Password Grant
 
+- Also called `Resource Owner Password Credentials (ROPC)`
 - It's deprecated and unsafe
 - The "resource owner" has a trust relation with the "client"
 - The client (a web page, for example) gets the user and password (through a form, for example)

@@ -2,9 +2,7 @@
 
 ## OAuth 2.1
 
-- It's based on:
-  - RFC 8414 — OAuth 2.0 Authorization Server Metadata
-  - RFC 7591 — `Dynamic Client Registration` (DCR)
+- Uses `Dynamic Client Registration` (RCR)
 
 ```shell
 claude mcp add sentry https://mcp.sentry.dev/mcp \
