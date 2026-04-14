@@ -44,3 +44,21 @@ curl "$OPENAI_BASE_URL/v1/models" -H "Authorization: Bearer $OPENAI_API_KEY"
 
 # if you use LITELLM_BASE_URL it will use the LITELLM API directly (which is OpenAI compatible)
 ```
+
+## Groq
+
+- <https://groq.com/>
+- It's a service that hosts opensource models
+- It's an AI inference company that using their own hardware with LPU (Language Processing Unit), instead of GPUs
+- They expose their hardware via a cloud API (OpenAI-compatible) so you can call models like:
+  - Llama 3.3, Mixtral 8x, Gemma 2, Whisper
+
+```python
+from groq import Groq
+
+client = Groq()
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "Explain RAG in one paragraph"}]
+)
+```

@@ -1,5 +1,7 @@
 # Anthropic
 
+- Anthropic also offers their models on AWS Bedrock and Google Cloud, with that your data can stay on that cloud
+
 ## Products
 
 - **Claude**

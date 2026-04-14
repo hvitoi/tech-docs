@@ -3,6 +3,7 @@
 - RAG allows the LLM to `retrieve relevant information` from external sources rather than using only what it learned during training
 - Then this information is used to `augment the prompt`
 - Useful to reason about private documents or information, because the model was not trained with it
+- RAG can also be applied to the tool selection. This is useful when there are way too many tools available, and you want to pass only a few to the LLM. This avoids burning input tokens and improves the tool selection process
 - <https://en.wikipedia.org/wiki/Retrieval-augmented_generation>
 
 ## Why not just "stuff" the whole information into the prompt?
