@@ -1,4 +1,4 @@
-# Models
+# DeepSeek Models
 
 - Deepseek models are open-source
 

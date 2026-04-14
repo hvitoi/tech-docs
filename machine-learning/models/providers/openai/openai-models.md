@@ -2,7 +2,9 @@
 
 - Azure also hosts OpenAI models, therefore it's also possible to access OpenAI models via Azure API Keys
 
-## GPT (Generative Pre-trained Transformer)
+## LLM
+
+### GPT (Generative Pre-trained Transformer)
 
 - Auto-regressive language model
 - **ChatGPT**: has a human friendly interface
@@ -26,33 +28,45 @@
     - Input:        $21.00   / 1M tokens
     - Output:       $168.00  / 1M tokens
 
-## GPT Codex
+### GPT Codex
 
 - Latest: GPT 5.3 Codex
 - Best for coding
 - Github Copilot uses the OpenAI Codex models
 
-## GPT-OSS
+### GPT-OSS
 
 - Open source
 - Available on Ollama
 
-## o4
+### o4
 
 - Reasoning
 
-## Dall-E
+## Image Generation
 
-- Generates images given a prompt
-- Dall-E2 was revelead on Jan. 2021 and went viral
-- Uses 12 billion parameter training
+### Dall-E
 
-## Sora
+- `DALL-E 1` (2021)
+- `DALL-E 2` (2022)
+- `DALL-E 3` (2023)
+
+### GPT Image
+
+- `GPT Image 1.5` (2026)
+
+## Video Generation
+
+### Sora
 
 - `Sora 2` (2026)
 - Creates vídeos and animations
 
-## Whisper
+## Transcription (Speech-to-Text)
 
-- Created by `OpenAI`
+### Whisper
+
+- `Whisper Large V3 Turbo`
 - Transcribes video into text
+
+## Speech

@@ -1,4 +1,4 @@
-# Models
+# Mistral AI Models
 
 - `Mistral` Large, Medium, Small: main models
 - `Magistral` Medium/Small: reasoning optimized
