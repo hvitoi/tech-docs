@@ -29,14 +29,11 @@ claude -c --fork-session # fork the last session and leave the last intact
 
 - **Global Settings**
   - `~/.claude/settings.json` (settings)
-  - `~/.claude/CLAUDE.md` (memory)
   - `~/.claude/.credentials.json` (secrets)
-  - `~/.claude.json` (App state, UI preferences, MCP servers) - Mostly managed through `/config` (rather than directly editing). Can also be project-specific when placed at ".projects.<-project>.mcpServers"
+  - `~/.claude.json` (App state, UI preferences, MCP servers) - Mostly managed through "/config" (rather than directly editing). Can also be project-specific when placed at ".projects.<-project>"
 
 - **Project Settings**
   - `.claude/settings.json` (settings)
-  - `.claude/CLAUDE.md`, `CLAUDE.md` (memory)
-  - `.mcp.json` (MCPs)
 
 ```shell
 # Auth config can only be set via environment variables
@@ -56,6 +53,31 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
   - `Plan mode`: claude uses read-only tools only
   - "Shift+Tab" to switch modes
 
+## Tools
+
+- With tools Claude Code can act
+  - read your code
+  - edit files
+  - run commands
+  - search the web
+  - interact with external services
+- Each tool use returns information that `feeds back into the agentic loop`, informing Claude's next decision.
+
+- Categories of built-in tools (base capabilities)
+  - `File operations`: Read files, edit code, create new files, rename and reorganize
+  - `Search`: Find files by pattern, search content with regex, explore codebases
+  - `Execution`: Run shell commands, start servers, run tests, use git
+  - `Web`: Search the web, fetch documentation, look up error messages
+  - `Code intelligence`: See type errors and warnings after edits, jump to definitions, find references (requires code intelligence plugins)
+
+- You can extend the base capabilities with
+  - **Skills**: what claude knows
+  - **MCP**: connect to external services
+  - **Hooks**: automate workflows
+  - **Subagents**: offload tasks
+
+- **Plugins** are the packaging layer. A plugin bundles `skills`, `hooks`, `subagents`, and `MCP servers` into a single installable unit. Plugin skills are namespaced (like `/my-plugin:review`) so multiple plugins can coexist
+
 ## Sessions
 
 - Also know as conversations
@@ -66,6 +88,5 @@ export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
 - **Context Window**
   - Holds your `conversation history`, `file contents`, `command outputs`, `CLAUDE.md`, `loaded skills`, and `system instructions`
   - As you work, context fills up and claude compacts it automatically (detailed instructions from early conversations may be lost)
-  - Put persistent rules in CLAUDE.md
   - Use /context to see what's using space
-  - Claude Sonnet for instance has a limit of 200k tokens
+  - Claude Sonnet 4.6 for instance has a limit of 1M tokens
