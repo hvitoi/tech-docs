@@ -34,3 +34,6 @@ go.sum
 poetry.lock
 Gemfile.lock
 composer.lock
+
+# Secrets
+.env
