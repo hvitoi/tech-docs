@@ -1,42 +1,88 @@
-from langchain_core.messages import HumanMessage
-from langgraph.graph import MessagesState, StateGraph, END
+from typing import Literal
 
-from nodes import run_agent_reasoning, tool_node
-
-
-AGENT_REASON = "agent_reason"
-ACT = "act"
-LAST = -1
+from langchain.chat_models import init_chat_model
+from langchain.messages import HumanMessage, SystemMessage, ToolMessage
+from langchain.tools import tool
+from langgraph.graph import END, START, MessagesState, StateGraph
 
 
-def should_continue(state: MessagesState) -> str:
-    if not state["messages"][LAST].tool_calls:
-        return END
-    return ACT
+# --- Tools ---
 
 
-flow = StateGraph(MessagesState)
+@tool
+def triple(num: float) -> float:
+    """Triple a number.
 
-flow.add_node(AGENT_REASON, run_agent_reasoning)
-flow.set_entry_point(AGENT_REASON)
-flow.add_node(ACT, tool_node)
+    Args:
+        num: a number to triple
+    """
+    return num * 3
 
-flow.add_conditional_edges(AGENT_REASON, should_continue, {END: END, ACT: ACT})
 
-flow.add_edge(ACT, AGENT_REASON)
+tools = [triple]
+tools_by_name = {t.name: t for t in tools}
 
-app = flow.compile()
-app.get_graph().draw_mermaid_png(output_file_path="flow.png")
+# --- LLM ---
+
+llm_with_tools = init_chat_model("openai:gpt-5.4", temperature=0).bind_tools(tools)
+
+# --- Nodes ---
+
+
+def llm_call(state: MessagesState):
+    """LLM decides whether to call a tool or not."""
+    return {
+        "messages": [
+            llm_with_tools.invoke(
+                [
+                    SystemMessage(
+                        content="You are a helpful assistant that can use tools to answer questions."
+                    )
+                ]
+                + state["messages"]
+            )
+        ]
+    }
+
+
+def tool_node(state: MessagesState):
+    """Execute the tool calls from the last message."""
+    results = []
+    for tool_call in state["messages"][-1].tool_calls:
+        observation = tools_by_name[tool_call["name"]].invoke(tool_call["args"])
+        results.append(
+            ToolMessage(content=str(observation), tool_call_id=tool_call["id"])
+        )
+    return {"messages": results}
+
+
+# --- Routing ---
+
+
+def should_continue(state: MessagesState) -> Literal["tool_node", "__end__"]:
+    """Route to tool_node if the LLM made tool calls, otherwise end."""
+    if state["messages"][-1].tool_calls:
+        return "tool_node"
+    return END
+
+
+# --- Graph ---
+
+graph = StateGraph(MessagesState)
+
+graph.add_node("llm_call", llm_call)
+graph.add_node("tool_node", tool_node)
+
+graph.add_edge(START, "llm_call")
+graph.add_conditional_edges("llm_call", should_continue, ["tool_node", END])
+graph.add_edge("tool_node", "llm_call")
+
+agent = graph.compile()
+agent.get_graph().draw_mermaid_png(output_file_path="flow.png")
+
+# --- Run ---
 
 if __name__ == "__main__":
-    print("Hello ReAct LangGraph with Function Calling")
-    res = app.invoke(
-        {
-            "messages": [
-                HumanMessage(
-                    content="What is the temperature in Tokyo? List it and then triple it"
-                )
-            ]
-        }
-    )
-    print(res["messages"][LAST].content)
+    result = agent.invoke({"messages": [HumanMessage(content="what is 100 *3?")]})
+    for msg in result["messages"]:
+        msg.pretty_print()
