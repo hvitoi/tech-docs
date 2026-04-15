@@ -8,6 +8,7 @@ from langgraph.graph.message import MessagesState
 
 # --- Prompts ---
 
+# Generates a new draft
 generation_prompt = ChatPromptTemplate.from_messages(
     [
         (
@@ -20,6 +21,7 @@ generation_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
+# Criticize the draft
 reflection_prompt = ChatPromptTemplate.from_messages(
     [
         (
@@ -43,13 +45,13 @@ reflect_chain = reflection_prompt | llm
 MAX_REFLECTIONS = 3
 
 
-def generate(state: MessagesState):
+def generate_draft(state: MessagesState):
     """Generate or revise a tweet based on the conversation so far."""
     response = generate_chain.invoke({"messages": state["messages"]})
     return {"messages": [response]}
 
 
-def reflect(state: MessagesState):
+def criticize_draft(state: MessagesState):
     """Critique the latest draft and return feedback as a HumanMessage."""
     # The AIMessage will appear as a HumanMessage. It's like the Human is reflecting about the previous AI Message (the generation). But in fact it's AI criticizing itself
     response = reflect_chain.invoke({"messages": state["messages"]})
@@ -71,8 +73,8 @@ def should_continue(state: MessagesState) -> str:
 
 graph = StateGraph(MessagesState)
 
-graph.add_node("generate", generate)
-graph.add_node("reflect", reflect)
+graph.add_node("generate", generate_draft)
+graph.add_node("reflect", criticize_draft)
 
 graph.add_edge(START, "generate")
 graph.add_conditional_edges("generate", should_continue, ["reflect", END])
@@ -80,6 +82,7 @@ graph.add_edge("reflect", "generate")
 
 agent = graph.compile()
 agent.get_graph().draw_mermaid_png(output_file_path="reflection-agent-flow.png")
+print(agent.get_graph().draw_mermaid())
 
 # --- Run ---
 

@@ -1,5 +1,11 @@
 # gh repo
 
+## list
+
+```shell
+gh repo list
+```
+
 ## create
 
 ```shell
