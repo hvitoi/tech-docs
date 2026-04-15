@@ -32,14 +32,14 @@ async def main():
     )
 
     for msg in math_response["messages"]:
-        print(f"[{msg.__class__.__name__}]: {msg.content}")
+        msg.pretty_print()
 
     weather_response = await agent.ainvoke(
         {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
     )
 
     for msg in weather_response["messages"]:
-        print(f"[{msg.__class__.__name__}]: {msg.content}")
+        msg.pretty_print()
 
     ## STATEFUL SESSION
 
@@ -57,14 +57,14 @@ async def main():
         )
 
         for msg in math_response["messages"]:
-            print(f"[{msg.__class__.__name__}]: {msg.content}")
+            msg.pretty_print()
 
         weather_response = await agent.ainvoke(
             {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
         )
 
         for msg in weather_response["messages"]:
-            print(f"[{msg.__class__.__name__}]: {msg.content}")
+            msg.pretty_print()
 
 
 if __name__ == "__main__":

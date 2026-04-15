@@ -51,6 +51,7 @@ def generate(state: MessagesState):
 
 def reflect(state: MessagesState):
     """Critique the latest draft and return feedback as a HumanMessage."""
+    # The AIMessage will appear as a HumanMessage. It's like the Human is reflecting about the previous AI Message (the generation). But in fact it's AI criticizing itself
     response = reflect_chain.invoke({"messages": state["messages"]})
     return {"messages": [HumanMessage(content=response.content)]}
 
@@ -58,6 +59,7 @@ def reflect(state: MessagesState):
 # --- Routing ---
 
 
+# Quit after 3 reflections
 def should_continue(state: MessagesState) -> str:
     """Stop after MAX_REFLECTIONS rounds (each round = generate + reflect = 2 messages)."""
     if len(state["messages"]) > MAX_REFLECTIONS * 2:
@@ -77,6 +79,7 @@ graph.add_conditional_edges("generate", should_continue, ["reflect", END])
 graph.add_edge("reflect", "generate")
 
 agent = graph.compile()
+agent.get_graph().draw_mermaid_png(output_file_path="reflection-agent-flow.png")
 
 # --- Run ---
 

@@ -46,4 +46,4 @@ result = agent.invoke(
 )
 
 for msg in result["messages"]:
-    print(f"[{msg.__class__.__name__}]: {msg.content}")
+    msg.pretty_print()

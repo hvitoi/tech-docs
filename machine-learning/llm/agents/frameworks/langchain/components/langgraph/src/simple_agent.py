@@ -88,7 +88,7 @@ graph.add_conditional_edges("llm_call", should_continue, ["tool_node", END])
 graph.add_edge("tool_node", "llm_call")
 
 agent = graph.compile()
-agent.get_graph().draw_mermaid_png(output_file_path="flow.png")
+agent.get_graph().draw_mermaid_png(output_file_path="simple-agent-flow.png")
 
 # --- Run ---
 
