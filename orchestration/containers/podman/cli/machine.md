@@ -82,5 +82,6 @@ podman machine stop
 ## rm
 
 ```shell
-podman machine rm <vm>
+podman machine rm # removes the only one
+podman machine rm <vm> # removes a specific
 ```
