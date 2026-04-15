@@ -7,16 +7,28 @@ from langgraph.graph import END, START, MessagesState, StateGraph
 
 
 @tool
-def triple(num: float) -> float:
-    """Triple a number.
+def multiply(a: float, b: float) -> float:
+    """Multiply two numbers.
 
     Args:
-        num: a number to triple
+        a: first number
+        b: second number
     """
-    return num * 3
+    return a * b
 
 
-tools = [triple]
+@tool
+def add(a: float, b: float) -> float:
+    """Add two numbers.
+
+    Args:
+        a: first number
+        b: second number
+    """
+    return a + b
+
+
+tools = [multiply, add]
 tools_by_name = {t.name: t for t in tools}
 
 # --- LLM ---
@@ -81,6 +93,6 @@ agent.get_graph().draw_mermaid_png(output_file_path="flow.png")
 # --- Run ---
 
 if __name__ == "__main__":
-    result = agent.invoke({"messages": [HumanMessage(content="what is 100 *3?")]})
+    result = agent.invoke({"messages": [HumanMessage(content="what is 3 * 3 + 1?")]})
     for msg in result["messages"]:
         msg.pretty_print()
