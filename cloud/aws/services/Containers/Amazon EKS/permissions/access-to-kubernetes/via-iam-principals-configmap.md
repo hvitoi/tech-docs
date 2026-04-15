@@ -3,11 +3,14 @@
 > This authentication method is deprecated, consider using EKS Access Entries to authenticate IAM principals
 
 - It's a form of authenticating on the Kubernetes API endpoint
-- It uses an IAM principal (role or user) and therefore you to authenticate to AWS first
-- The ability to access your cluster using IAM principals is provided by the [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator#readme), which runs on the control plane.
+- It uses an IAM principal (`IAM role` or `IAM user`).
+- It uses standard Kubernetes `RBAC for authorization`, but `authentication` comes from AWS IAM.
+- The `aws-auth ConfigMap` is the bridge: it translates an IAM identity (role ARN) into a Kubernetes identity (username + group memberships)
+- This is possible because of the [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator#readme), which runs on the control plane.
 
 ```yaml
 # ~/.kube/config
+#
 users:
 - name: henrique.vitoi@foo.us-east-1.eksctl.io
   user:
@@ -28,7 +31,26 @@ users:
           value: regional
 ```
 
-- You can allow IAM principals to access Kubernetes objects on your cluster using `aws-auth ConfigMap` or `Access Entries`
+## End-to-end Flow
+
+- EKS uses standard Kubernetes RBAC for authorization, but authentication comes from AWS IAM. The aws-auth ConfigMap is the bridge: it translates an IAM identity (role ARN) into a Kubernetes identity (username + group memberships).
+
+1. Someone (or a workload) assumes an IAM role: `arn:aws:iam::123456789012:role/my-role`
+
+1. The EKS API server intercepts the `kubectl` call. The caller presents an AWS token (via `aws eks get-token`). The EKS API server authenticator looks up the caller's role ARN in aws-auth.
+
+1. aws-auth maps the role to a `Kubernetes identity` in the K8S RBAC system
+
+```yaml
+- rolearn: arn:aws:iam::{{aws-account-id}}:role/.../devops-agent-agent-space-role
+  username: myuser        # ← becomes the k8s "User"
+  groups:
+    - mygroup       # ← becomes the k8s "Group"
+```
+
+1. Kubernetes RBAC takes over
+
+Now that the caller has a username (myuser) and group (mygroup), standard k8s RBAC applies (e.g., ClusterRole, ClusterRoleBinding).
 
 ## Initial user
 
