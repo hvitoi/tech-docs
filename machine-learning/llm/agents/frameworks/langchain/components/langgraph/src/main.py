@@ -1,10 +1,7 @@
-from typing import Literal
-
 from langchain.chat_models import init_chat_model
 from langchain.messages import HumanMessage, SystemMessage, ToolMessage
 from langchain.tools import tool
 from langgraph.graph import END, START, MessagesState, StateGraph
-
 
 # --- Tools ---
 
@@ -23,6 +20,7 @@ tools = [triple]
 tools_by_name = {t.name: t for t in tools}
 
 # --- LLM ---
+
 
 llm_with_tools = init_chat_model("openai:gpt-5.4", temperature=0).bind_tools(tools)
 
@@ -59,7 +57,7 @@ def tool_node(state: MessagesState):
 # --- Routing ---
 
 
-def should_continue(state: MessagesState) -> Literal["tool_node", "__end__"]:
+def should_continue(state: MessagesState) -> str:
     """Route to tool_node if the LLM made tool calls, otherwise end."""
     if state["messages"][-1].tool_calls:
         return "tool_node"
