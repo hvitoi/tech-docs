@@ -9,3 +9,11 @@ from . import submodule1, submodule2
 
 # this variable specifies what is imported with the "*" syntax
 __all__ = ["submodule1", "submodule2"]
+
+
+# -------------
+
+from .othermodule import myfunction
+from .anothermodule import otherfunction
+
+__all__ = ["myfunction", "otherfunction"]
