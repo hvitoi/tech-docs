@@ -24,17 +24,6 @@ aws devops-agent get-agent-space \
   --agent-space-id $SPACE_ID
 ```
 
-## enable-operator-app
-
-- Authentication flows can use `IAM`, `IAM Identity Center (IDC)`, or an `external identity provider (IdP)`.
-
-```shell
-aws devops-agent enable-operator-app \
-  --agent-space-id MyAgentSpace \
-  --auth-flow iam \
-  --operator-app-role-arn "arn:aws:iam::<ACCOUNT_ID>:role/DevOpsAgentRole-WebappAdmin"
-```
-
 ## register-service
 
 ```shell
@@ -79,6 +68,7 @@ aws devops-agent list-services
 - Creates an **AWS::DevOpsAgent::Service** and a **AWS::DevOpsAgent::Association** (if not the built-in services "aws" and "sourceaws")
 - The `service-id` is either "Aws", "SourceAws", or the uuid of the AWS::DevOpsAgent::Service resource
 - Built-in services do not need to you register the service beforehand
+- Your role needs a PassRole permission for passing `arn:aws:iam::<ACCOUNT_ID>:role/DevOpsAgentRole-AgentSpace` to the DevOps Agent
 
 ```shell
 # aws (self aws account)
@@ -116,6 +106,18 @@ aws devops-agent associate-service \
 SPACE_ID=
 aws devops-agent list-associations \
   --agent-space-id $SPACE_ID
+```
+
+## enable-operator-app
+
+- Authentication flows can use `IAM`, `IAM Identity Center (IDC)`, or an `external identity provider (IdP)`.
+- Your role needs a PassRole permission for passing `arn:aws:iam::<ACCOUNT_ID>:role/DevOpsAgentRole-WebappAdmin` to the DevOps Agent
+
+```shell
+aws devops-agent enable-operator-app \
+  --agent-space-id MyAgentSpace \
+  --auth-flow iam \
+  --operator-app-role-arn "arn:aws:iam::<ACCOUNT_ID>:role/DevOpsAgentRole-WebappAdmin"
 ```
 
 ## list-private-connections
