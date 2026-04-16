@@ -118,6 +118,26 @@ aws devops-agent list-associations \
   --agent-space-id $SPACE_ID
 ```
 
+## list-private-connections
+
+```shell
+aws devops-agent list-private-connections
+```
+
+- Does **not** return subnets or security groups — those are on the underlying VPC Lattice Resource Gateway
+- To see subnets/SGs, use the `resourceGatewayId` from the output and run:
+
+```shell
+aws vpc-lattice get-resource-gateway \
+  --resource-gateway-identifier <RESOURCE_GATEWAY_ARN>
+```
+
+```shell
+NAME=
+aws devops-agent describe-private-connection \
+  --name $NAME
+```
+
 ## create-private-connection
 
 ```shell
