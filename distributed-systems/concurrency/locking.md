@@ -1,13 +1,87 @@
 # Locking
 
+## Pessimistic Locking (conservative)
+
+- Acquires an **exclusive lock** on the resource before reading/writing
+- Guarantees no concurrent modification, but `introduces contention` (multiple threads waiting for the same lock) and `reduces throughput`
+
+### SQL
+
+```sql
+-- all within the same transaction
+SELECT balance FROM accounts WHERE id = 42 FOR UPDATE;   -- acquires lock, balance=100
+UPDATE accounts SET balance = balance - 20 WHERE id = 42; -- balance=80
+COMMIT;                                                   -- releases lock
+```
+
+### DynamoDB
+
+- DynamoDB does not support pessimistic locking natively (no `FOR UPDATE` equivalent)
+
+### HTTP
+
+- HTTP is stateless — no standard mechanism to hold a lock between requests
+
 ## Optimistic Locking
 
-- Each `write operation` includes a `version` or `timestamp`.
-- Before updating the data, check whether the version or timestamp has changed since the data was retrieved
-- If it has changed, it indicates that another operation has modified the data, and appropriate actions can be taken, such as retrying the operation or notifying the user.
-- The write operation has to be done using `conditional write` to ensure that the version/timestamp is the same as previously fetched
+- Does **not** hold a lock — instead, each write carries a `version` or `timestamp`
+- Before writing, check whether the version has changed since the read
+- If it changed, the write is rejected and the caller retries or aborts
+- Implemented via **conditional writes** (e.g. `UPDATE ... WHERE version = ?`)
 
-## Pessimistic Locking
+### SQL -
 
-- This involves `locking the data resource exclusively` when it is being worked on by a service or thread
-- While effective in preventing race conditions, it can also lead to `scalability and performance issues`, as it may introduce contention among multiple services or threads.
+```sql
+SELECT balance, version FROM accounts WHERE id = 42;  --> balance=100, version=3
+UPDATE accounts SET balance = balance - 20, version = 4 WHERE id = 42 AND version = 3;
+-- 0 rows affected → someone else changed it, retry from SELECT
+```
+
+### DynamoDB -
+
+```json
+// 1. GetItem → balance=100, version=3
+{
+  "TableName": "accounts",
+  "Key": {
+    "id": { "N": "42" }
+  }
+}
+
+
+// 2. Conditional UpdateItem
+{
+  "TableName": "accounts",
+  "Key": {
+    "id": { "N": "42" }
+  },
+  "UpdateExpression": "SET balance = balance - :amt, version = version + :one",
+  "ConditionExpression": "version = :v",
+  "ExpressionAttributeValues": {
+    ":amt": { "N": "20" },
+    ":v": { "N": "3" },
+    ":one": { "N": "1" }
+  }
+}
+
+// throws ConditionalCheckFailedException if version changed → retry
+```
+
+### HTTP (ETags)
+
+```shell
+# 1. GET → returns ETag header
+curl -i http://api.example.com/accounts/42
+# → 200 OK
+# → ETag: "v3"
+# → {"balance":100}
+
+# 2. PUT with If-Match → only succeeds if ETag still matches
+curl -X PUT http://api.example.com/accounts/42 \
+  -H 'If-Match: "v3"' \
+  -H 'Content-Type: application/json' \
+  -d '{"balance":80}'
+
+# → 200 OK (ETag matched, update applied)
+# → 412 Precondition Failed (ETag changed → retry from GET)
+```
