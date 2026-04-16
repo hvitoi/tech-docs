@@ -49,23 +49,19 @@
 - `Implicit Flow` (legacy)
 - `Password Grant` (legacy)
 
-## Protocols
+## Characteristics
 
-- **OpenID Connect / OAuth 2.0**
-  - JSON
-  - Simple
-  - Bearer token (access token)
-  - When to use?
-    - Default
-    - Single-page
-    - Mobile
-    - REST Services
+- JSON
+- Simple
+- Bearer token (access token)
 
-- **SAML v2**
-  - XML
-  - More mature
-  - More complex
-  - When to use?
-    - Monoliths
-    - Apps with SAML support
-    - If you have fancy requirements
+## When to use
+
+- Default
+- Single-page apps
+- Mobile
+- REST Services
+
+## Alternatives
+
+- [SAML v2](../saml.md) — XML-based, more mature and complex, better fit for monoliths or apps with native SAML support
