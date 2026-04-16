@@ -3,6 +3,53 @@
 - **Web identity**
 - Allows users federated by the specified external web identity provider to assume this role to perform actions in this account
 
+- `OIDC` Provider. Also known as `Web Identity Federation`
+- In this method, you don't know your customers (e.g., web application in which the user can sign-in directly)
+- With that you don’t have to distribute or embed long-term security credentials, such as access keys, in your applications
+- Examples:
+  - Facebook IdP
+  - Google IdP
+- The `Cognito` service can be added to the flow before requesting STS. This approach is preferred because:
+  - It supports `anonymous users`
+  - It supports `MFA`
+  - It supports `data synchronization`
+
+![OIDC](.images/idp-oidc.png)
+![OIDC with Cognito](.images/idp-oidc-with-cognito.png)
+
+```json
+// Allow users to access only their own bucket
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::mybucket",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "myapp/${www.amazon.com:user_id}/*"
+          ]
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::mybucket/myapp/${www.amazon.com:user_id}",
+        "arn:aws:s3:::mybucket/myapp/${www.amazon.com:user_id}/*"
+      ]
+    }
+  ]
+}
+```
+
 ## Examples
 
 ```json

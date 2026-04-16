@@ -2,6 +2,8 @@
 
 > "IAM Identity Center" is the successor to "AWS Single Sign-On" (SSO)
 
+- The new recommended way
+
 - Log once and have `access to multiple accounts`. Allow access to multiple account at once
 - Allows centralized auditing with Cloudtrail
 - You can create only one instance per account and across all AWS Regions.
