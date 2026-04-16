@@ -112,6 +112,70 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/AIDevOpsOperatorAppAccessPolicy
 ```
 
+## IAM Role: AgentSpace (Source Account) - OPTIONAL
+
+- Create this role in an external account if you need your Agent Space in the monitoring account to access other accounts
+
+```shell
+# Create Role
+cat > trust-policy.json << 'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "aidevops.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "<MONITORING_ACCOUNT_ID>",
+          "sts:ExternalId": "arn:aws:aidevops:<REGION>:<MONITORING_ACCOUNT_ID>:agentspace/<AGENT_SPACE_ID>"
+        }
+      }
+    }
+  ]
+}
+EOF
+
+aws iam create-role \
+  --role-name DevOpsAgentCrossAccountRole \
+  --assume-role-policy-document file://trust-policy.json
+
+# Get Role ARN
+aws iam get-role --role-name DevOpsAgentCrossAccountRole --query 'Role.Arn' --output text
+
+# Attach Managed Policy
+aws iam attach-role-policy \
+  --role-name DevOpsAgentCrossAccountRole \
+  --policy-arn arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy
+
+# Attach Inline Policy
+cat > inline-policy.json << 'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCreateServiceLinkedRoles",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateServiceLinkedRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::<EXTERNAL_ACCOUNT_ID>:role/aws-service-role/resource-explorer-2.amazonaws.com/AWSServiceRoleForResourceExplorer"
+      ]
+    }
+  ]
+}
+EOF
+
+aws iam put-role-policy \
+  --role-name DevOpsAgentCrossAccountRole \
+  --policy-name AllowCreateServiceLinkedRoles \
+  --policy-document file://inline-policy.json
+```
+
 ## Create AgentSpace
 
 ```shell
@@ -156,9 +220,24 @@ aws devops-agent associate-service \
   --service-id aws \
   --configuration '{
     "aws": {
-      "assumableRoleArn": "arn:aws:iam::<MONITORING_ACCOUNT_ID>:role/DevOpsAgentRole-AgentSpace",
-      "accountId": "<MONITORING_ACCOUNT_ID>",
+      "assumableRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/DevOpsAgentRole-AgentSpace",
+      "accountId": "<ACCOUNT_ID>",
       "accountType": "monitor"
+    }
+  }'
+
+```
+
+```shell
+# Associate the external account (optional) - requires creating a role in the external account
+aws devops-agent associate-service \
+  --agent-space-id MyAgentSpace \
+  --service-id aws \
+  --configuration '{
+    "sourceAws": {
+      "accountId": "<EXTERNAL_ACCOUNT_ID>",
+      "accountType": "source",
+      "assumableRoleArn": "arn:aws:iam::<EXTERNAL_ACCOUNT_ID>:role/DevOpsAgentCrossAccountRole"
     }
   }'
 ```

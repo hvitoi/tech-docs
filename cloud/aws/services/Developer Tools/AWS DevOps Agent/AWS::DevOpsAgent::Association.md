@@ -19,7 +19,7 @@ Properties:
 // example
 {
   "associations": [
-    // AWS Account
+    // AWS Account (same account)
     {
       "agentSpaceId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
       "createdAt": "2026-04-10T11:55:38.558000+00:00",

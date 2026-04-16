@@ -1,5 +1,11 @@
 # gh pr
 
+## view
+
+```shell
+gh pr view 40640 --repo hvitoi/foo
+```
+
 ## create
 
 ```shell
@@ -17,4 +23,12 @@ Solving this
 - [x] Awesome
 EOF
 )"
+```
+
+## edit
+
+```shell
+gh pr edit 40640 --repo hvitoi/foo --body "## Context
+
+My new PR description"
 ```
