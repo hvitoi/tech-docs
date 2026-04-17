@@ -64,4 +64,4 @@
 
 ## Alternatives
 
-- [SAML v2](../saml.md) — XML-based, more mature and complex, better fit for monoliths or apps with native SAML support
+- [SAML v2](../sso/saml.md) — XML-based, more mature and complex, better fit for monoliths or apps with native SAML support
