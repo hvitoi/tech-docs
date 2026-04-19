@@ -13,6 +13,6 @@ ssh-add ~/.ssh/id_rsa
 # MacOS (if you are getting the error: failed to retrieve git folder: failed to clone ref 'refs/heads/main': ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain)
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 
- # Print ssh public keys
+# Print ssh public keys
 ssh-add -L
 ```

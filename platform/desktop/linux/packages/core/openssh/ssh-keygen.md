@@ -6,7 +6,7 @@
 
 ```shell
 # List existing keys
-ls "~/.ssh"
+ls "~/.ssh/"
 
 # Create a SSH key-pair at ~/.ssh (id_rsa & id_rsa.pub)
 ssh-keygen
@@ -22,6 +22,7 @@ ssh-keygen
 -
 
 ```shell
+ssh-keygen -t "ed25519" # this is the default
 ssh-keygen -t "rsa"
 ```
 
