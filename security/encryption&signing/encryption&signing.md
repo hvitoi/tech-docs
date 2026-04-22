@@ -2,20 +2,18 @@
 
 ## Encryption (confidentiality)
 
-- Asymmetric scheme
-  - public key encrypts
+- **Asymmetric scheme**
   - private key decrypts
-- Symmetric scheme
+  - public key encrypts
+
+- **Symmetric scheme**
   - secret key encrypts and decrypts
 
 ## Signing/HMAC (integrity & authenticity)
 
-- Asymmetric scheme
+- **Asymmetric scheme**
   - private key signs
   - public key verifies
-- Symmetric scheme
+
+- **Symmetric scheme**
   - secret key signs and verifies
-
-## Both
-
-- Combined scheme

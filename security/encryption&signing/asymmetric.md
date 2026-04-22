@@ -5,7 +5,7 @@
 - `Public Key`: shared with everyone
 - `Private Key`: kept secret
 
-![Asymmetric encryption](./images/asymmetric-encryption.png)
+![Asymmetric encryption](.images/asymmetric-encryption.png)
 
 - Both keys have the same length
 - Asymmetric keys allow signing and verifying signatures
