@@ -354,3 +354,28 @@ aws iam put-role-policy \
   ]
 }
 ```
+
+#### Condition
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "aidevops.amazonaws.com"
+      },
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "123456789012"
+        },
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:aidevops:us-east-1:123456789012:agentspace/*"
+        }
+      }
+    }
+  ]
+}
+```
