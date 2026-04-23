@@ -119,6 +119,7 @@
   - `Milvus`: Open-source, large-scale
   - `Chroma`: lightweight, local-first, prototyping
   - `Pgvector`:Postgres extension
+  - `OpenSearch`: general-purpose search engine with k-NN plugin for ANN vector search; supports hybrid (keyword + vector) queries
 
 ## Graph DB
 

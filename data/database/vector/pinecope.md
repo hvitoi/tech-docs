@@ -2,6 +2,7 @@
 
 - It's a SaaS managed database
 - <https://www.pinecone.io/>
+- Its entire design is optimized for `ANN (approximate nearest neighbor)` search on dense/sparse embeddings.
 
 ## Index
 
