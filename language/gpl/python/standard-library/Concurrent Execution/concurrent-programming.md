@@ -59,16 +59,7 @@ with ProcessPoolExecutor() as executor:
 - Uses `async-await` syntax
 - Introduces `Coroutines`, which are lightweight "threads" managed by the python runtime (similar to java virtual threads)
 - It's the preferred way to implement I/O-bound parallelism
-- The threading module is now mostly used for compatibility with libraries that are not async-aware
-
-## When to use what
-
-| Scenario | Recommended |
-| --- | --- |
-| I/O-bound (network, disk) — async codebase | `asyncio` |
-| I/O-bound — sync/legacy codebase | `ThreadPoolExecutor` |
-| CPU-bound (computation, data processing) | `ProcessPoolExecutor` |
-| Mixed CPU + I/O | `ProcessPoolExecutor` + `asyncio` per process |
+- The `threading` module is now mostly used for compatibility with libraries that are not async-aware. Also the `concurrent.futures.ThreadPoolExecutor` is mostly "deprecated" in favor of asyncio
 
 ## GIL removal (Python 3.13+)
 

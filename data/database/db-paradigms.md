@@ -106,6 +106,7 @@
 
 ## Vector DB
 
+- Connects data that is **similar** (semantic proximity in embedding space)
 - Stores high-dimensional vector embeddings (from ML models)
 - Enables semantic/similarity search via Approximate Nearest Neighbor (ANN)
 - Core infrastructure for RAG (Retrieval-Augmented Generation) pipelines and AI applications
@@ -121,6 +122,7 @@
 
 ## Graph DB
 
+- Connects data that is **connected** (explicit relationships between entities)
 - Data is represented as `nodes` (vertices) with properties
 - Relationships are represented as `edges` (can be directed and weighted)
 - Two main models: **Property Graphs** (Neo4j) and **RDF/Triple Stores** (SPARQL)
