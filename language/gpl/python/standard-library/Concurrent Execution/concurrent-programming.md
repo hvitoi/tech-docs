@@ -1,6 +1,7 @@
 # Async programming
 
 - Python supports both `concurrency` and `parallelism`
+- <https://docs.python.org/3/library/concurrency.html>
 
 ## GIL (Global Interpreter Lock)
 
@@ -33,9 +34,45 @@
 
 - On the OS, it starts multiple processes with one or more threads
 
+### concurrent.futures (python 3.2+ 2011)
+
+- High-level API over `threading` and `multiprocessing`
+- `ThreadPoolExecutor` — pool of threads, good for I/O-bound tasks (**threading**)
+- `ProcessPoolExecutor` — pool of processes, good for CPU-bound tasks (**multiprocessing**)
+- Preferred over raw `threading`/`multiprocessing` in most real code — simpler interface, manages the pool lifecycle
+
+```python
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+
+# I/O-bound
+with ThreadPoolExecutor(max_workers=10) as executor:
+    futures = [executor.submit(fetch, url) for url in urls]
+    results = [f.result() for f in futures]
+
+# CPU-bound
+with ProcessPoolExecutor() as executor:
+    results = list(executor.map(cpu_heavy_fn, items))
+```
+
 ### asyncio (python 3.4+ 2014)
 
 - Uses `async-await` syntax
 - Introduces `Coroutines`, which are lightweight "threads" managed by the python runtime (similar to java virtual threads)
 - It's the preferred way to implement I/O-bound parallelism
 - The threading module is now mostly used for compatibility with libraries that are not async-aware
+
+## When to use what
+
+| Scenario | Recommended |
+| --- | --- |
+| I/O-bound (network, disk) — async codebase | `asyncio` |
+| I/O-bound — sync/legacy codebase | `ThreadPoolExecutor` |
+| CPU-bound (computation, data processing) | `ProcessPoolExecutor` |
+| Mixed CPU + I/O | `ProcessPoolExecutor` + `asyncio` per process |
+
+## GIL removal (Python 3.13+)
+
+- Python 3.13 introduced an experimental **free-threaded mode** (PEP 703) that can be enabled at build time
+- Removes the GIL, allowing true multi-threaded parallelism for CPU-bound tasks without `multiprocessing`
+- Still experimental — some C extensions and libraries are not yet compatible
+- Run with `python3.13t` (the `t` build) or compile CPython with `--disable-gil`
