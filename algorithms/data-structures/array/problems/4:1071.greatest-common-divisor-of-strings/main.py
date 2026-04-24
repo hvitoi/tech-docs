@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/greatest-common-divisor-of-strings/ - 6k likes (Apr/2026)
 # %%
 from unittest import TestCase
 

@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/asteroid-collision/ - 9k likes (Apr/2026)
 # %%
 import unittest
 

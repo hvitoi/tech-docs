@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/removing-stars-from-a-string/ - 3k likes (Apr/2026)
 # %%
 import unittest
 

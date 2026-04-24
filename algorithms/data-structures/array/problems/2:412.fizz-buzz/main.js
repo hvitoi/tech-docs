@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/fizz-buzz/ - 3k likes (Apr/2026)
 function fizzBuzz(n) {
   return Array.from({ length: n }, (_, i) => i + 1)
     .map((i) => {

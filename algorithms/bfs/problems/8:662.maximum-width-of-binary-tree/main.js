@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/maximum-width-of-binary-tree/ - 9k likes (Apr/2026)
 class Node {
   constructor(data) {
     this.data = data;

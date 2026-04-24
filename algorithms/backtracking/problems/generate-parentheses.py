@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/generate-parentheses/
+# https://leetcode.com/problems/generate-parentheses/ - 23k likes (Apr/2026)
 # %%
 import unittest
 

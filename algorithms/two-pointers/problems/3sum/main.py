@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/3sum/ - 35k likes (Apr/2026)
 # %%
 # another option is just to pick a number and then apply 2sum, in this case the time complexity would be O(n^2)
 

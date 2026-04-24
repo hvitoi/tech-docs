@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/best-time-to-buy-and-sell-stock/ - 35k likes (Apr/2026)
 # %%
 from unittest import TestCase
 

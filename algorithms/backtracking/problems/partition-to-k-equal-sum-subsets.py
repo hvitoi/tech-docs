@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/partition-to-k-equal-sum-subsets/ - 7k likes (Apr/2026)
 # %%
 from unittest import TestCase
 

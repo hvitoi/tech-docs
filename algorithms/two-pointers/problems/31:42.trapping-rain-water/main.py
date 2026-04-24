@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/trapping-rain-water/ - 36k likes (Apr/2026)
 # %%
 from typing import List
 from unittest import TestCase

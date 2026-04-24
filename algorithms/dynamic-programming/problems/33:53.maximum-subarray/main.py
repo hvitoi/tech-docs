@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/maximum-subarray/ - 37k likes (Apr/2026)
 # %%
 from itertools import accumulate
 from unittest import TestCase

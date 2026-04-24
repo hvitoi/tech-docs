@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/contains-duplicate/ - 13k likes (Apr/2026)
 # %%
 
 from unittest import TestCase

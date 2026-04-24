@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/missing-number/ - 14k likes (Apr/2026)
 const arr = [1, 2, 3, 4, 6, 7, 8]; // 5 is missing
 
 const n = arr.length + 1;

@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/reverse-integer/ - 15k likes (Apr/2026)
 function reverseInteger(n) {
   const rev = n.toString().split("").reverse().join("");
   return parseInt(rev) * Math.sign(n);

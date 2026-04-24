@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/search-suggestions-system/ - 5k likes (Apr/2026)
 const suggestions = (repository, searchQuery) => {
   repository = repository.sort().map((el) => el.toLowerCase()); // O(n*log(n))
   searchQuery = searchQuery.toLowerCase();

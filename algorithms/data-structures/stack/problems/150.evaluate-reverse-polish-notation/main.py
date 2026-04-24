@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/evaluate-reverse-polish-notation/ - 8k likes (Apr/2026)
 # %%
 import unittest
 from collections import deque

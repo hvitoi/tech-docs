@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/squares-of-a-sorted-array/ - 10k likes (Apr/2026)
 const arr = [1, 0, -1, 1, -20, 20, 100, -100];
 
 const squareAndSort = (arr) => {

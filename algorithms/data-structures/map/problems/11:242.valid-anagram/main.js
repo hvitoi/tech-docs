@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/valid-anagram/ - 14k likes (Apr/2026)
 function anagramCharMap(strA, strB) {
   // Clean strings
   strA = strA.replace(/[^\w]/g, "").toLowerCase();

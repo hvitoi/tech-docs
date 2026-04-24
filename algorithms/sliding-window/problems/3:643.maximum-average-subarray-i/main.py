@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/maximum-average-subarray-i/ - 4k likes (Apr/2026)
 # %%
 import unittest
 

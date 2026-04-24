@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/merge-k-sorted-lists/ - 21k likes (Apr/2026)
 # %%
 import heapq
 import math

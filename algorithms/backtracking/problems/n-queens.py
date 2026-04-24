@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/n-queens/
+# https://leetcode.com/problems/n-queens/ - 14k likes (Apr/2026)
 # %%
 
 # WIP

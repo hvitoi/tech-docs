@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/implement-queue-using-stacks/ - 8k likes (Apr/2026)
 class Stack {
   constructor() {
     this.data = [];

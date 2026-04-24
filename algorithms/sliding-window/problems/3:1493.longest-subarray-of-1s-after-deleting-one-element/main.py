@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/ - 4k likes (Apr/2026)
 # %%
 import unittest
 import itertools

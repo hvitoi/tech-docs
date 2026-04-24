@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/string-compression/ - 6k likes (Apr/2026)
 # %%
 import unittest
 

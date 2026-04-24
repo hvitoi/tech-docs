@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/merge-strings-alternately/ - 4k likes (Apr/2026)
 # %%
 from unittest import TestCase
 from itertools import zip_longest

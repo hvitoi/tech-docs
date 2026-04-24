@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/balanced-binary-tree/ - 12k likes (Apr/2026)
 # %%
 from unittest import TestCase
 from collections import deque

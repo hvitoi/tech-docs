@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/valid-palindrome/ - 11k likes (Apr/2026)
 function isPalindromeByReverseAndCompare(str) {
   const rev = str.split("").reverse().join("");
   return str === rev;

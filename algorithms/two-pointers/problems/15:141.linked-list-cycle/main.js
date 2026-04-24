@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/linked-list-cycle/ - 17k likes (Apr/2026)
 class Node {
   constructor(data, next = null) {
     this.data = data;

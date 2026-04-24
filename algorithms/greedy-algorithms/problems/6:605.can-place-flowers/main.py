@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/can-place-flowers/ - 7k likes (Apr/2026)
 # %%
 from unittest import TestCase
 

@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list/ - 21k likes (Apr/2026)
 class Node {
   constructor(data, next = null) {
     this.data = data;

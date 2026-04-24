@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/equal-row-and-column-pairs/ - 2k likes (Apr/2026)
 # %%
 import unittest
 import copy

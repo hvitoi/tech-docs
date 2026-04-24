@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/chunk-array/ - 413 likes (Apr/2026)
 // Check if it's the last element
 function lastSubchunk(array, size) {
   const chunkedArray = [];
