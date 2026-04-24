@@ -16,7 +16,7 @@ cat file.txt | md5sum
 ### SHA-1 (Secure Hash Algorithm 1)
 
 - `SHA-1`: 160-bit (20-byte)
-- Tipically rendered as a 40 hexadecimal digits
+- Typically rendered as a 40 hexadecimal digits
 - Applications: git
 
 ```shell
@@ -62,7 +62,7 @@ echo -n "Hello" | shasum -a 512
 ## Non-cryptographic
 
 - Also known as "fast hash functions"
-- Used for hash tables, checksums, or detecting accidental changes—not for security.
+- Used for hash tables, checksums, or detecting accidental changes — not for security.
 
 - `MurmurHash`: Very fast, good distribution
 - `CityHash` / `FarmHash` / `MetroHash`: High-performance hashing for large data
