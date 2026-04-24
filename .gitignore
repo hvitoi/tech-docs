@@ -6,6 +6,9 @@
 
 # Java
 target/
+*.jar
+*.class
+pom.xml.asc
 
 # Javascript
 node_modules/
@@ -19,6 +22,11 @@ __pycache__/
 .clj-kondo/
 .lsp/
 .cpcache/
+.nrepl-port
+.lein-deps-sum
+.lein-repl-history
+.lein-failures
+.lein-plugins/
 
 # MkDocs
 /site/
