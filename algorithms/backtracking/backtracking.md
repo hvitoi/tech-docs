@@ -6,11 +6,8 @@
 
 ## Steps
 
-1. `The Choice`
-    - E.g., place 1-9 in an empty cell (sudoku)
+Example for a Sudoku game
 
-2. `The Constraints`
-    - E.g., placement can't break the board (sudoku)
-
-3. `The Goal`
-    - E.g., fill the board (sudoku)
+1. `The Choice`: place 1-9 in an empty cell
+2. `The Constraints`: placement can't break the board
+3. `The Goal`: fill the board
