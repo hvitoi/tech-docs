@@ -1,5 +1,5 @@
 # Quotient
 
 # %%
-7 // 3
-int(7).__floordiv__(3)
+5 // 2
+int(5).__floordiv__(2) # 2 (rest 1)
