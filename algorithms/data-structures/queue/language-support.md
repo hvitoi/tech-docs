@@ -2,17 +2,10 @@
 
 ## Python
 
-- Queue
-  - queue.Queue
-  - collections.deque
-
-- Deque
-  - collections.deque
+- queue.Queue
+- collections.deque
 
 ## C++
 
-- Queue
-  - std::queue
-
-- Deque
-  - std::deque
+- std::queue
+- std::deque

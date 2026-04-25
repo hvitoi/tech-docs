@@ -3,6 +3,8 @@
 - <https://en.wikipedia.org/wiki/List_of_data_structures>
 - <https://www.bigocheatsheet.com/>
 
+- Abstract data type
+
 ## Operations
 
 - `Access` (Lookup): get an element in the structure by its identifier

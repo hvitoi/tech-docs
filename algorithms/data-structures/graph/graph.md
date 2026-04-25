@@ -26,7 +26,7 @@
 
 ## Representation
 
-![Graph](.images/graph.png)
+![Graph](graph.png)
 
 ### Edge List
 
