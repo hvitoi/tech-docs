@@ -7,4 +7,4 @@
 
 ## C++
 
-- `std::stack`
+- std::stack

@@ -1,9 +1,9 @@
 # Data Structure
 
 - <https://en.wikipedia.org/wiki/List_of_data_structures>
-- <https://www.bigocheatsheet.com/>
 
-- Abstract data type
+- `Abstract Data Type`: the interface — what operations it supports
+- `Implementations`: the data structure — how memory is laid out
 
 ## Operations
 

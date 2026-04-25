@@ -1,8 +1,6 @@
-# Operations
+# List
 
-## Search
-
-$$O(n)$$
+## Operations
 
 ## Access
 
@@ -17,3 +15,12 @@ $$O(n)$$
 
 - From end: $O(1)$
 - From beginning: $O(n)$
+
+## Search
+
+$$O(n)$$
+
+## Implementations
+
+- Array
+- Linked List (less common)
