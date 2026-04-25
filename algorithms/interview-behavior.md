@@ -2,7 +2,7 @@
 
 The goal is not to solve hard problems — it is to demonstrate clean fundamentals, structured thinking, communication, and self-debugging. Most loss happens to silence and to bugs the candidate didn't catch first.
 
-## The 40 minutes, structured
+## Structure
 
 - **Understand** `3-5 min` — restate the problem in your words. Ask about input shape, size, edge cases (empty, negatives, duplicates, unicode), constraints, expected output. **Write down** 1-2 example inputs/outputs.
 - **Plan** `3-5 min` — describe an approach in plain words. State time/space complexity. Explicitly ask: "is this acceptable, or should I aim for something better?"
@@ -63,16 +63,14 @@ If two patterns fit, name both, then pick the simpler one.
 
 See [asymptotic-notation/](asymptotic-notation/time-complexity.md) for full reference.
 
-## Testability — what they actually want to see
-
-The recruiter explicitly mentioned testability. In a 40-minute window this means:
+## Testability
 
 1. **Write a couple of asserts** alongside or below your function. Even 3 lines of `assert f([1,2,3]) == 6` shows you think in cases.
 2. **Walk through the code** with a concrete input, tracing each variable.
 3. **Cover edge cases verbally** even if you don't write them all: empty, single element, duplicates, all-same, sorted, reverse-sorted, max size, negative, zero.
 4. If they ask "how would you test this in production?" — mention property-based tests, fuzzing, and the boundary between unit-of-logic and integration tests.
 
-## Use of stdlib / "internal libraries"
+## Use of internal libraries
 
 - **Random**: `random.randint`, `random.choice`, `random.sample`, `random.shuffle`, seeding for reproducibility.
 - **Collections**: `dict`, `set`, `list`, `tuple`; `collections.Counter`, `defaultdict`, `deque`, `OrderedDict`.
