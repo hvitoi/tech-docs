@@ -1,6 +1,5 @@
 # %%
 import functools
-import unittest
 
 
 def memoize(fn):
@@ -42,8 +41,6 @@ def knapsack(items: dict[str, dict[str, int]], bag_capacity: int):
     return most_profitable_bag[0]
 
 
-test_case = unittest.TestCase()
-
 items = {
     "item1": {"value": 60, "weight": 5},
     "item2": {"value": 50, "weight": 3},
@@ -52,8 +49,5 @@ items = {
 }
 
 counter = 0
-test_case.assertEqual(
-    knapsack(items, 5),
-    {"item2", "item4"},
-)
+assert knapsack(items, 5) == {"item2", "item4"}
 counter

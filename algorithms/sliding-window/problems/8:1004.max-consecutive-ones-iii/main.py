@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/max-consecutive-ones-iii/ - 10k likes (Apr/2026)
 # %%
-import unittest
 
 
 def longest_ones(A: list, k: int) -> int:
@@ -18,15 +17,9 @@ def longest_ones(A: list, k: int) -> int:
     return max_ones
 
 
-test_case = unittest.TestCase()
+assert longest_ones([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2) == 6
+assert longest_ones([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3) == 10
+assert longest_ones([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3) == 10
 
-test_case.assertEqual(longest_ones([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2), 6)
-test_case.assertEqual(
-    longest_ones([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3), 10
-)
-test_case.assertEqual(
-    longest_ones([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3), 10
-)
-
-test_case.assertEqual(longest_ones([0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], 2), 9)
-test_case.assertEqual(longest_ones([1, 1, 1, 1, 1, 1], 2), 6)
+assert longest_ones([0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], 2) == 9
+assert longest_ones([1, 1, 1, 1, 1, 1], 2) == 6

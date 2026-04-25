@@ -1,6 +1,5 @@
 # %%
 from typing import Self
-from unittest import TestCase
 
 
 class Node:
@@ -92,50 +91,48 @@ class DoublyLinkedList:
         return acc
 
 
-test_case = TestCase()
-
 ll = DoublyLinkedList()
-test_case.assertEqual(ll.to_list(), [])
+assert ll.to_list() == []
 
 ll.push_left("a")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.to_list() == ["a"]
 
 ll.push_left("b")
-test_case.assertEqual(ll.to_list(), ["b", "a"])
+assert ll.to_list() == ["b", "a"]
 
-test_case.assertEqual(ll.pop_left(), "b")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.pop_left() == "b"
+assert ll.to_list() == ["a"]
 
-test_case.assertEqual(ll.pop_left(), "a")
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_left() == "a"
+assert ll.to_list() == []
 
-test_case.assertEqual(ll.pop_left(), None)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_left() is None
+assert ll.to_list() == []
 
 ##
 
 ll.push_right("a")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.to_list() == ["a"]
 
 ll.push_right("b")
-test_case.assertEqual(ll.to_list(), ["a", "b"])
+assert ll.to_list() == ["a", "b"]
 
-test_case.assertEqual(ll.pop_right(), "b")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.pop_right() == "b"
+assert ll.to_list() == ["a"]
 
-test_case.assertEqual(ll.pop_right(), "a")
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_right() == "a"
+assert ll.to_list() == []
 
-test_case.assertEqual(ll.pop_right(), None)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_right() is None
+assert ll.to_list() == []
 
 ##
 ll.push_left("a")
 ll.push_left("b")
-test_case.assertEqual(ll.to_list(), ["b", "a"])
-test_case.assertEqual(ll.to_list_inverse(), ["a", "b"])
+assert ll.to_list() == ["b", "a"]
+assert ll.to_list_inverse() == ["a", "b"]
 
 ll.pop_left()
 ll.pop_left()
-test_case.assertEqual(ll.to_list(), [])
-test_case.assertEqual(ll.to_list_inverse(), [])
+assert ll.to_list() == []
+assert ll.to_list_inverse() == []

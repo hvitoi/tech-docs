@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/ - 45k likes (Apr/2026)
 # %%
 from collections import Counter
-from unittest import TestCase
 
 
 def length_of_longest_substring(s: str) -> int:
@@ -51,14 +50,12 @@ def length_of_longest_substring_with_seen_chars(s: str) -> int:
     return longest_size
 
 
-test_case = TestCase()
-
 for fn in {
     length_of_longest_substring,
     length_of_longest_substring2,
     length_of_longest_substring3,
     length_of_longest_substring_with_seen_chars,
 }:
-    test_case.assertEqual(fn("abcabcbb"), 3)
-    test_case.assertEqual(fn("bbbbb"), 1)
-    test_case.assertEqual(fn("pwwkew"), 3)
+    assert fn("abcabcbb") == 3
+    assert fn("bbbbb") == 1
+    assert fn("pwwkew") == 3

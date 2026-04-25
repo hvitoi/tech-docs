@@ -1,6 +1,5 @@
 # %%
 from collections import deque
-from unittest import TestCase
 
 # With BFS you are guaranteed to find the shortest path, but may take longer to find
 # With DFS you are guaranteed to find a path faster, but may not be the shortest
@@ -46,32 +45,18 @@ def search_maze_bfs_returning_bool(
     return False
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
+assert (
     search_maze_bfs_returning_bool(
-        [
-            [0, 0, 0, 0],
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    True,
+        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    is True
 )
 
-test_case.assertEqual(
+assert (
     search_maze_bfs_returning_bool(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    False,
+        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    is False
 )
 
 
@@ -117,30 +102,5 @@ def search_maze_bfs(
     return -1
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    search_maze_bfs(
-        [
-            [0, 0, 0, 0],
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    2,
-)
-
-test_case.assertEqual(
-    search_maze_bfs(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    -1,
-)
+assert search_maze_bfs([[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)) == 2
+assert search_maze_bfs([[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)) == -1

@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/ - 16k likes (Apr/2026)
 # %%
 import json
-from unittest import TestCase
 
 
 class TreeNode:
@@ -49,11 +48,6 @@ def build_tree(preorder: list, inorder: list) -> TreeNode | None:
     return root
 
 
-test_case = TestCase()
-test_case.assertEqual(
-    build_tree(
-        [3, 9, 20, 15, 7],
-        [9, 3, 15, 20, 7],
-    ).to_dict(),
-    {3: [{9: []}, {20: [{15: []}, {7: []}]}]},
-)
+assert build_tree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7]).to_dict() == {
+    3: [{9: []}, {20: [{15: []}, {7: []}]}]
+}

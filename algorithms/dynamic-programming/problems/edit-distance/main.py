@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/edit-distance/ - 16k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 # Levenshtein distance (edit distance)
@@ -76,12 +75,10 @@ def min_distance_recursive(word: str, target: str) -> int:
         return 1 + min_distance_recursive(word[1:], target[1:])
 
 
-test_case = TestCase()
-
 for fn in {min_distance, min_distance_recursive}:
-    test_case.assertEqual(fn("horse", "ros"), 3)
-    test_case.assertEqual(fn("intention", "execution"), 5)
-    test_case.assertEqual(fn("", ""), 0)
-    test_case.assertEqual(fn("abc", "abc"), 0)
-    test_case.assertEqual(fn("abc", ""), 3)
-    test_case.assertEqual(fn("", "abc"), 3)
+    assert fn("horse", "ros") == 3
+    assert fn("intention", "execution") == 5
+    assert fn("", "") == 0
+    assert fn("abc", "abc") == 0
+    assert fn("abc", "") == 3
+    assert fn("", "abc") == 3

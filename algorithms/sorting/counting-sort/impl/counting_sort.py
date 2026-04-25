@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def counting_sort(arr: list[int]) -> list[int]:
@@ -23,5 +22,4 @@ def counting_sort(arr: list[int]) -> list[int]:
     return sorted
 
 
-test_case = TestCase()
-test_case.assertEqual(counting_sort([1, 0, 3, 1, 3, 1]), [0, 1, 1, 1, 3, 3])
+assert counting_sort([1, 0, 3, 1, 3, 1]) == [0, 1, 1, 1, 3, 3]

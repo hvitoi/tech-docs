@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/two-sum/ - 68k likes (Apr/2026)
 # %%
 from typing import List
-from unittest import TestCase
 
 
 # %%
@@ -46,11 +45,10 @@ def two_sum_has_been_seen(data: List[int], target_sum: int) -> bool:
     return False
 
 
-test_case = TestCase()
 for fn in {two_sum_brute_force, two_sum_from_both_sides, two_sum_has_been_seen}:
-    test_case.assertEqual(fn([1, 2, 3, 9], 8), False)
-    test_case.assertEqual(fn([1, 2, 4, 4], 8), True)
-    test_case.assertEqual(fn([], 8), False)
+    assert fn([1, 2, 3, 9], 8) is False
+    assert fn([1, 2, 4, 4], 8) is True
+    assert fn([], 8) is False
 
 
 # %%
@@ -68,9 +66,8 @@ def two_sum_every_match(arr: list[int], target_sum: int):
     return pairs
 
 
-test_case = TestCase()
-test_case.assertEqual(two_sum_every_match([2, 6, 3, 9, 11], 9), {(3, 6)})
-test_case.assertEqual(two_sum_every_match([2, 6, 3, 5, 9, 4], 9), {(3, 6), (4, 5)})
-test_case.assertEqual(two_sum_every_match([4], 8), set())
-test_case.assertEqual(two_sum_every_match([4, 4], 8), {(4, 4)})
-test_case.assertEqual(two_sum_every_match([2, 6, 3, 3, 6, 9, 11], 9), {(3, 6)})
+assert two_sum_every_match([2, 6, 3, 9, 11], 9) == {(3, 6)}
+assert two_sum_every_match([2, 6, 3, 5, 9, 4], 9) == {(3, 6), (4, 5)}
+assert two_sum_every_match([4], 8) == set()
+assert two_sum_every_match([4, 4], 8) == {(4, 4)}
+assert two_sum_every_match([2, 6, 3, 3, 6, 9, 11], 9) == {(3, 6)}

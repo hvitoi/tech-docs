@@ -1,8 +1,6 @@
 # %%
 # https://leetcode.com/problems/validate-binary-search-tree/ - 18k likes (Apr/2026)
 
-import unittest
-
 
 class Node:
     def __init__(self, data, *, left=None, right=None):
@@ -24,15 +22,12 @@ def is_valid_bst(node: Node, *, min=float("-inf"), max=float("inf")) -> bool:
     return True
 
 
-test_case = unittest.TestCase()
-
-
 node = Node(
     2,
     left=Node(1),
     right=Node(3),
 )
-test_case.assertEqual(is_valid_bst(node), True)
+assert is_valid_bst(node) is True
 
 node = Node(
     5,
@@ -43,4 +38,4 @@ node = Node(
         right=Node(6),
     ),
 )
-test_case.assertEqual(is_valid_bst(node), False)
+assert is_valid_bst(node) is False

@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def traverse_df(matrix: list[list], start_row: int, start_col: int):
@@ -32,17 +31,14 @@ def traverse_df(matrix: list[list], start_row: int, start_col: int):
     return traverse(start_row, start_col)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    traverse_df(
-        [
-            ["a", "b", "c"],
-            ["d", "e", "f"],
-            ["g", "h", "i"],
-        ],
-        1,
-        1,
-    ),
-    ["e", "d", "a", "b", "c", "f", "i", "h", "g"],
-)
+assert traverse_df([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 1, 1) == [
+    "e",
+    "d",
+    "a",
+    "b",
+    "c",
+    "f",
+    "i",
+    "h",
+    "g",
+]

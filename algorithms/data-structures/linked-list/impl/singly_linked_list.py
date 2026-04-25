@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 from typing import Self
 
 
@@ -78,54 +77,52 @@ class SinglyLinkedList:
         return to_list(self.head)
 
 
-test_case = TestCase()
-
 ll = SinglyLinkedList()
-test_case.assertEqual(ll.to_list(), [])
+assert ll.to_list() == []
 
 ll.push_left("a")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.to_list() == ["a"]
 
 ll.push_left("b")
-test_case.assertEqual(ll.to_list(), ["b", "a"])
+assert ll.to_list() == ["b", "a"]
 
-test_case.assertEqual(ll.pop_left(), "b")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.pop_left() == "b"
+assert ll.to_list() == ["a"]
 
-test_case.assertEqual(ll.pop_left(), "a")
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_left() == "a"
+assert ll.to_list() == []
 
-test_case.assertEqual(ll.pop_left(), None)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_left() is None
+assert ll.to_list() == []
 
 ##
 
 ll.push_right("a")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.to_list() == ["a"]
 
 ll.push_right("b")
-test_case.assertEqual(ll.to_list(), ["a", "b"])
+assert ll.to_list() == ["a", "b"]
 
-test_case.assertEqual(ll.pop_right(), "b")
-test_case.assertEqual(ll.to_list(), ["a"])
+assert ll.pop_right() == "b"
+assert ll.to_list() == ["a"]
 
-test_case.assertEqual(ll.pop_right(), "a")
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_right() == "a"
+assert ll.to_list() == []
 
-test_case.assertEqual(ll.pop_right(), None)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.pop_right() is None
+assert ll.to_list() == []
 
 ##
 
 ll.push_left("a")
 ll.push_left("b")
-test_case.assertEqual(ll.to_list(), ["b", "a"])
-test_case.assertEqual(ll.to_list_recursively(), ["b", "a"])
+assert ll.to_list() == ["b", "a"]
+assert ll.to_list_recursively() == ["b", "a"]
 
 ll.pop_left()
 ll.pop_left()
-test_case.assertEqual(ll.to_list(), [])
-test_case.assertEqual(ll.to_list_recursively(), [])
+assert ll.to_list() == []
+assert ll.to_list_recursively() == []
 
 
 # %%
@@ -149,19 +146,17 @@ def reverse(ll: SinglyLinkedList) -> None:
     ll.head = prev
 
 
-test_case = TestCase()
-
 ll = SinglyLinkedList([1, 2, 3])
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [3, 2, 1])
+assert ll.to_list() == [3, 2, 1]
 
 ll = SinglyLinkedList([1])
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [1])
+assert ll.to_list() == [1]
 
 ll = SinglyLinkedList()
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.to_list() == []
 
 
 # %%
@@ -179,16 +174,14 @@ def reverse_in_place_recursively2(ll: SinglyLinkedList) -> None:
     ll.head = reversed_list_head(ll.head)
 
 
-test_case = TestCase()
-
 ll = SinglyLinkedList([1, 2, 3])
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [3, 2, 1])
+assert ll.to_list() == [3, 2, 1]
 
 ll = SinglyLinkedList([1])
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [1])
+assert ll.to_list() == [1]
 
 ll = SinglyLinkedList()
 reverse(ll)
-test_case.assertEqual(ll.to_list(), [])
+assert ll.to_list() == []

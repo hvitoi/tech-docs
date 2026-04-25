@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/unique-number-of-occurrences/ - 5k likes (Apr/2026)
 # %%
-import unittest
 
 
 def unique_occurrences(arr: list) -> bool:
@@ -11,17 +10,6 @@ def unique_occurrences(arr: list) -> bool:
     return len(occ) == len(set(occ))
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(
-    unique_occurrences([1, 2, 2, 1, 1, 3]),
-    True,
-)
-test_case.assertEqual(
-    unique_occurrences([1, 2]),
-    False,
-)
-test_case.assertEqual(
-    unique_occurrences([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]),
-    True,
-)
+assert unique_occurrences([1, 2, 2, 1, 1, 3]) is True
+assert unique_occurrences([1, 2]) is False
+assert unique_occurrences([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]) is True

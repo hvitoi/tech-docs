@@ -1,7 +1,6 @@
 # %%
 # https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/ - 11k likes (Apr/2026)
 
-import unittest
 import collections
 
 
@@ -53,24 +52,12 @@ def create_balanced_bst(nums: list) -> Node | None:
     return node
 
 
-test_case = unittest.TestCase()
-
-
 bst = create_balanced_bst([1, 2, 3, 4, 5, 6, 7])
-test_case.assertEqual(
-    bst.serialize(),
-    [4, 2, 6, 1, 3, 5, 7],
-)
+assert bst.serialize() == [4, 2, 6, 1, 3, 5, 7]
 
 bst = create_balanced_bst([-10, -3, 0, 5, 9])
-test_case.assertEqual(
-    bst.serialize(),
-    [0, -3, 9, -10, None, 5],
-)
+assert bst.serialize() == [0, -3, 9, -10, None, 5]
 
 
 bst = create_balanced_bst([1, 3])
-test_case.assertEqual(
-    bst.serialize(),
-    [3, 1],
-)
+assert bst.serialize() == [3, 1]

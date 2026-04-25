@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/find-the-highest-altitude/ - 3k likes (Apr/2026)
 # %%
-import unittest
 import itertools
 
 
@@ -17,8 +16,6 @@ def largest_altitude2(gain: list) -> int:
     return max(itertools.accumulate(gain, initial=0))
 
 
-test_case = unittest.TestCase()
-
 for fn in {largest_altitude, largest_altitude2}:
-    test_case.assertEqual(fn([-5, 1, 5, 0, -7]), 1)
-    test_case.assertEqual(fn([-4, -3, -2, -1, 4, 3, 2]), 0)
+    assert fn([-5, 1, 5, 0, -7]) == 1
+    assert fn([-4, -3, -2, -1, 4, 3, 2]) == 0

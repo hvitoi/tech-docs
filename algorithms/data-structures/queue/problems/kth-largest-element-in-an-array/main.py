@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/kth-largest-element-in-an-array/ - 18k likes (Apr/2026)
 # %%
 import heapq
-from unittest import TestCase
 
 
 def heapify(nums: list) -> None:
@@ -79,12 +78,10 @@ def find_kth_largest_with_partitioning(arr: list[int], k: int) -> int:
     return kth_largest(0, len(arr) - 1, target_index)
 
 
-test_case = TestCase()
-
 for fn in {
     find_kth_largest_max_heap,
     find_kth_largest_min_heap,
     find_kth_largest_with_partitioning,
 }:
-    test_case.assertEqual(fn([3, 2, 1, 5, 6, 4], 2), 5)
-    test_case.assertEqual(fn([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
+    assert fn([3, 2, 1, 5, 6, 4], 2) == 5
+    assert fn([3, 2, 3, 1, 2, 4, 5, 5, 6], 4) == 4

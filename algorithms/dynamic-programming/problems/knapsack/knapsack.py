@@ -1,6 +1,5 @@
 # %%
 import heapq
-from unittest import TestCase
 
 
 def heappush(heap, item):
@@ -45,8 +44,6 @@ def knapsack(items: dict[str, dict[str, int]], bag_size: int):
     # return total_value_worth
 
 
-test_case = TestCase()
-
 items = {
     "potato": {"value": 10, "weight": 2},
     "corn": {"value": 5, "weight": 3},
@@ -57,14 +54,11 @@ items = {
     "mate": {"value": 3, "weight": 1},
 }
 
-test_case.assertEqual(
-    knapsack(items, 15),
-    {
-        ("beans", 1.0),
-        ("broccoli", 1.0),
-        ("carrot", 1.0),
-        ("corn", 0.6666666666666666),
-        ("mate", 1.0),
-        ("potato", 1.0),
-    },
-)
+assert knapsack(items, 15) == {
+    ("beans", 1.0),
+    ("broccoli", 1.0),
+    ("carrot", 1.0),
+    ("corn", 0.6666666666666666),
+    ("mate", 1.0),
+    ("potato", 1.0),
+}

@@ -1,6 +1,5 @@
 # %%
 import heapq
-import unittest
 
 
 def build_full_path(distances, node):
@@ -60,9 +59,5 @@ graph = {
     "F": {"D": 22, "E": 1},
 }
 
-test_case = unittest.TestCase()
 
-test_case.assertEqual(
-    distance_to_destination(graph, "A", "F"),
-    (10, ["A", "C", "E", "F"]),
-)
+assert distance_to_destination(graph, "A", "F") == (10, ["A", "C", "E", "F"])

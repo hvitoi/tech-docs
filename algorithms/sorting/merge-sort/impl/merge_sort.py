@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def merge_sort(arr: list):
@@ -18,8 +17,7 @@ def merge_sort(arr: list):
         return sorted_right + sorted_left
 
 
-test_case = TestCase()
-test_case.assertEqual(merge_sort([4, 5, 1, 3, 2]), [1, 2, 3, 4, 5])
-test_case.assertEqual(merge_sort([]), [])
-test_case.assertEqual(merge_sort([1]), [1])
-test_case.assertEqual(merge_sort([1, 1]), [1, 1])
+assert merge_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
+assert merge_sort([]) == []
+assert merge_sort([1]) == [1]
+assert merge_sort([1, 1]) == [1, 1]

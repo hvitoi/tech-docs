@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/3sum/ - 35k likes (Apr/2026)
 # %%
 from typing import List
-from unittest import TestCase
 
 
 def three_sum(nums: List[int]) -> List[List[int]]:
@@ -16,9 +15,7 @@ def three_sum(nums: List[int]) -> List[List[int]]:
     return sorted(result)
 
 
-test_case = TestCase()
-
 for fn in {three_sum}:
-    test_case.assertEqual(fn([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
-    test_case.assertEqual(fn([0, 1, 1]), [])
-    test_case.assertEqual(fn([0, 0, 0]), [[0, 0, 0]])
+    assert fn([-1, 0, 1, 2, -1, -4]) == [[-1, -1, 2], [-1, 0, 1]]
+    assert fn([0, 1, 1]) == []
+    assert fn([0, 0, 0]) == [[0, 0, 0]]

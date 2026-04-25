@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/decode-string/ - 14k likes (Apr/2026)
 # %%
-import unittest
 
 
 def decode_string_with_stack(s: str) -> str:
@@ -23,8 +22,6 @@ def decode_string_with_stack(s: str) -> str:
     return "".join(stack)
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(decode_string_with_stack("3[a]2[bc]"), "aaabcbc")
-test_case.assertEqual(decode_string_with_stack("3[a2[c]]b"), "accaccaccb")
-test_case.assertEqual(decode_string_with_stack("2[abc]3[cd]ef"), "abcabccdcdcdef")
+assert decode_string_with_stack("3[a]2[bc]") == "aaabcbc"
+assert decode_string_with_stack("3[a2[c]]b") == "accaccaccb"
+assert decode_string_with_stack("2[abc]3[cd]ef") == "abcabccdcdcdef"

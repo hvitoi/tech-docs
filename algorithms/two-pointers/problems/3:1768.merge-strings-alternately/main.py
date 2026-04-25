@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/merge-strings-alternately/ - 4k likes (Apr/2026)
 # %%
-from unittest import TestCase
 from itertools import zip_longest
 
 
@@ -25,8 +24,6 @@ def merge_alternately2(w1, w2):
     return "".join(a + b for a, b in zip_longest(w1, w2, fillvalue=""))
 
 
-test_case = TestCase()
-
 for fn in [merge_alternately, merge_alternately2]:
-    test_case.assertEqual(fn("abc", "123"), "a1b2c3")
-    test_case.assertEqual(fn("abc", "123"), "a1b2c3")
+    assert fn("abc", "123") == "a1b2c3"
+    assert fn("abc", "123") == "a1b2c3"

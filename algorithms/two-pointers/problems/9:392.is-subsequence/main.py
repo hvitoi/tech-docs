@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/is-subsequence/ - 10k likes (Apr/2026)
 # %%
-import unittest
 
 
 def is_subsequence(s: str, t: str) -> bool:
@@ -25,8 +24,6 @@ def is_subsequence2(s: str, t: str) -> bool:
         return is_subsequence2(s[1:], t[found_i + 1 :])
 
 
-test_case = unittest.TestCase()
-
 for fn in {is_subsequence, is_subsequence2}:
-    test_case.assertTrue(fn("abc", "ahbgdc"))
-    test_case.assertFalse(fn("axc", "ahbgdc"))
+    assert fn("abc", "ahbgdc")
+    assert not fn("axc", "ahbgdc")

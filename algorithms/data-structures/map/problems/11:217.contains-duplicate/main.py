@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/contains-duplicate/ - 13k likes (Apr/2026)
 # %%
 
-from unittest import TestCase
-
 
 def contains_duplicate(nums: list[int]):
     seen_numbers = set()
@@ -13,7 +11,6 @@ def contains_duplicate(nums: list[int]):
     return False
 
 
-test_case = TestCase()
-test_case.assertEqual(contains_duplicate([1, 2, 3, 1]), True)
-test_case.assertEqual(contains_duplicate([1, 2, 3, 4]), False)
-test_case.assertEqual(contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]), True)
+assert contains_duplicate([1, 2, 3, 1]) is True
+assert contains_duplicate([1, 2, 3, 4]) is False
+assert contains_duplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]) is True

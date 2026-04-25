@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/string-compression/ - 6k likes (Apr/2026)
 # %%
-import unittest
 
 
 def compress(chars: list) -> int:
@@ -23,11 +22,7 @@ def compress2(chars: list) -> int:
     return len("".join([str(el) for el in compressed if el != 1]))
 
 
-test_case = unittest.TestCase()
-
 for fn in {compress, compress2}:
-    test_case.assertEqual(fn(["a", "a", "b", "b", "c", "c", "c"]), 6)
-    test_case.assertEqual(fn(["a"]), 1)
-    test_case.assertEqual(
-        fn(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]), 4
-    )
+    assert fn(["a", "a", "b", "b", "c", "c", "c"]) == 6
+    assert fn(["a"]) == 1
+    assert fn(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]) == 4

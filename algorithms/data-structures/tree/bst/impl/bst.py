@@ -1,5 +1,4 @@
 # %%
-import unittest
 import collections
 
 
@@ -250,47 +249,44 @@ class BST:
             return height_total(self.root)
 
 
-test_case = unittest.TestCase()
-
-
 # Serialize / Deserialize
 serialized_bst = [3, 9, 20, None, None, 15, 7]
 bst = BST(serialized_bst)
-test_case.assertEqual(bst.serialize(), serialized_bst)
+assert bst.serialize() == serialized_bst
 
 # Insert
 bst = BST()
 bst.insert(1)
 bst.insert(2)
-test_case.assertEqual(bst.serialize(), [1, None, 2])
+assert bst.serialize() == [1, None, 2]
 
 # Search
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(True, bst.search(60))
-test_case.assertEqual(False, bst.search(99))
+assert bst.search(60) is True
+assert bst.search(99) is False
 
 # To List (DF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.to_list_df(), [10, 20, 30, 40, 50, 60, 70, 80])
+assert bst.to_list_df() == [10, 20, 30, 40, 50, 60, 70, 80]
 
 # To List (BF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.to_list_bf(), [50, 30, 70, 20, 40, 60, 80, 10])
+assert bst.to_list_bf() == [50, 30, 70, 20, 40, 60, 80, 10]
 
 # Height (DF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.height_df(), 3)
-test_case.assertEqual(bst.height_df(99), -1)
-test_case.assertEqual(bst.height_df(50), 0)
-test_case.assertEqual(bst.height_df(30), 1)
-test_case.assertEqual(bst.height_df(20), 2)
-test_case.assertEqual(bst.height_df(10), 3)
+assert bst.height_df() == 3
+assert bst.height_df(99) == -1
+assert bst.height_df(50) == 0
+assert bst.height_df(30) == 1
+assert bst.height_df(20) == 2
+assert bst.height_df(10) == 3
 
 # Height (BF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-test_case.assertEqual(bst.height_bf(), 3)
-test_case.assertEqual(bst.height_bf(99), -1)
-test_case.assertEqual(bst.height_bf(50), 0)
-test_case.assertEqual(bst.height_bf(30), 1)
-test_case.assertEqual(bst.height_bf(20), 2)
-test_case.assertEqual(bst.height_bf(10), 3)
+assert bst.height_bf() == 3
+assert bst.height_bf(99) == -1
+assert bst.height_bf(50) == 0
+assert bst.height_bf(30) == 1
+assert bst.height_bf(20) == 2
+assert bst.height_bf(10) == 3

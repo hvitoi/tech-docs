@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/ - 21k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def letter_combinations(digits: str, combinations=None) -> list[str]:
@@ -56,17 +55,16 @@ def letter_combinations(digits: str, combinations=None) -> list[str]:
             return letter_combinations(digits[1:], combinations)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    letter_combinations("23"),
-    ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"],
-)
-test_case.assertEqual(
-    letter_combinations(""),
-    [],
-)
-test_case.assertEqual(
-    letter_combinations("2"),
-    ["a", "b", "c"],
-)
+assert letter_combinations("23") == [
+    "ad",
+    "ae",
+    "af",
+    "bd",
+    "be",
+    "bf",
+    "cd",
+    "ce",
+    "cf",
+]
+assert letter_combinations("") == []
+assert letter_combinations("2") == ["a", "b", "c"]

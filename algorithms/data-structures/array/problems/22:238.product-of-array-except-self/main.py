@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/product-of-array-except-self/ - 25k likes (Apr/2026)
 # %%
-import unittest
 import functools
 import operator
 
@@ -16,7 +15,5 @@ def product_except_self(nums: list) -> list:
     )
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(product_except_self([1, 2, 3, 4]), [24, 12, 8, 6])
-test_case.assertEqual(product_except_self([-1, 1, 0, -3, 3]), [0, 0, 9, 0, 0])
+assert product_except_self([1, 2, 3, 4]) == [24, 12, 8, 6]
+assert product_except_self([-1, 1, 0, -3, 3]) == [0, 0, 9, 0, 0]

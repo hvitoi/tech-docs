@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/partition-to-k-equal-sum-subsets/ - 7k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def can_partition_k_subsets(nums: list[int], k: int):
@@ -27,9 +26,7 @@ def can_partition_k_subsets(nums: list[int], k: int):
     return backtrack(0)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(can_partition_k_subsets([4, 3, 2, 3, 5, 2, 1], 4), True)
-test_case.assertEqual(can_partition_k_subsets([1, 2, 3, 4], 3), False)
-test_case.assertEqual(can_partition_k_subsets([1, 1, 1, 1, 2, 2, 2, 2], 4), True)
-test_case.assertEqual(can_partition_k_subsets([2, 2, 2, 2, 3, 4, 5], 4), False)
+assert can_partition_k_subsets([4, 3, 2, 3, 5, 2, 1], 4) is True
+assert can_partition_k_subsets([1, 2, 3, 4], 3) is False
+assert can_partition_k_subsets([1, 1, 1, 1, 2, 2, 2, 2], 4) is True
+assert can_partition_k_subsets([2, 2, 2, 2, 3, 4, 5], 4) is False

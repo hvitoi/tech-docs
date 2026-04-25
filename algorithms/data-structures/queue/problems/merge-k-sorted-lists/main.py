@@ -2,7 +2,6 @@
 # %%
 import heapq
 import math
-from unittest import TestCase
 
 
 def merge_k_lists_with_pointers(lists: list[list[int]]) -> list[int]:
@@ -71,16 +70,11 @@ def merge_k_lists_with_min_heap(lists: list[list[int]]) -> list[int]:
     return merged
 
 
-test_case = TestCase()
-
 for fn in {
     merge_k_lists_with_pointers,
     merge_k_lists_with_pointers_and_linked_lists,
     merge_k_lists_with_min_heap,
 }:
-    test_case.assertEqual(
-        fn([[1, 4, 5], [1, 3, 4], [2, 6]]),
-        [1, 1, 2, 3, 4, 4, 5, 6],
-    )
-    test_case.assertEqual(fn([]), [])
-    test_case.assertEqual(fn([[]]), [])
+    assert fn([[1, 4, 5], [1, 3, 4], [2, 6]]) == [1, 1, 2, 3, 4, 4, 5, 6]
+    assert fn([]) == []
+    assert fn([[]]) == []

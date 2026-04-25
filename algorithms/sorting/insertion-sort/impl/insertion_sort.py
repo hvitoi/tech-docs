@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def insertion_sort(arr):
@@ -12,8 +11,7 @@ def insertion_sort(arr):
     return arr
 
 
-test_case = TestCase()
-test_case.assertEqual(insertion_sort([4, 5, 1, 3, 2]), [1, 2, 3, 4, 5])
-test_case.assertEqual(insertion_sort([]), [])
-test_case.assertEqual(insertion_sort([1]), [1])
-test_case.assertEqual(insertion_sort([1, 1]), [1, 1])
+assert insertion_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
+assert insertion_sort([]) == []
+assert insertion_sort([1]) == [1]
+assert insertion_sort([1, 1]) == [1, 1]

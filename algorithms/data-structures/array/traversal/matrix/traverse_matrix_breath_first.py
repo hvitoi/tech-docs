@@ -1,10 +1,8 @@
 # %%
 from collections import deque
-from unittest import TestCase
 
 
 def traverse_bf(matrix: list[list], start_row: int, start_col: int):
-    """ """
     len_rows = len(matrix)
     len_cols = len(matrix[0])
 
@@ -39,56 +37,32 @@ def traverse_bf(matrix: list[list], start_row: int, start_col: int):
     return acc
 
 
-test_case = TestCase()
-
 # From the middle
-test_case.assertEqual(
-    traverse_bf(
-        [
-            ["a", "b", "c"],
-            ["d", "e", "f"],
-            ["g", "h", "i"],
-        ],
-        1,
-        1,
-    ),
-    ["e", "d", "b", "f", "h", "a", "g", "c", "i"],
-)
+assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 1, 1) == [
+    "e",
+    "d",
+    "b",
+    "f",
+    "h",
+    "a",
+    "g",
+    "c",
+    "i",
+]
 
 # From origin
-test_case.assertEqual(
-    traverse_bf(
-        [
-            ["a", "b"],
-            ["c", "d"],
-        ],
-        0,
-        0,
-    ),
-    ["a", "b", "c", "d"],
-)
-test_case.assertEqual(
-    traverse_bf(
-        [
-            ["a", "b", "c"],
-            ["d", "e", "f"],
-            ["g", "h", "i"],
-        ],
-        0,
-        0,
-    ),
-    ["a", "b", "d", "c", "e", "g", "f", "h", "i"],
-)
-test_case.assertEqual(
-    traverse_bf(
-        [
-            ["a", "b", "c"],
-            ["d", "e", "f"],
-            ["g", "h", "i"],
-            ["j", "k", "l"],
-        ],
-        0,
-        0,
-    ),
-    ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"],
-)
+assert traverse_bf([["a", "b"], ["c", "d"]], 0, 0) == ["a", "b", "c", "d"]
+assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 0, 0) == [
+    "a",
+    "b",
+    "d",
+    "c",
+    "e",
+    "g",
+    "f",
+    "h",
+    "i",
+]
+assert traverse_bf(
+    [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"], ["j", "k", "l"]], 0, 0
+) == ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"]

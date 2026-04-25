@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/find-the-difference-of-two-arrays/ - 2k likes (Apr/2026)
 # %%
-import unittest
 
 
 def find_difference(nums1: list, nums2: list) -> list:
@@ -19,15 +18,6 @@ def find_difference2(nums1: list, nums2: list) -> list:
     ]
 
 
-test_case = unittest.TestCase()
-
 for fn in {find_difference, find_difference2}:
-    test_case.assertEqual(
-        fn([1, 2, 3], [2, 4, 6]),
-        [[1, 3], [4, 6]],
-    )
-
-    test_case.assertEqual(
-        fn([1, 2, 3, 3], [1, 1, 2, 2]),
-        [[3], []],
-    )
+    assert fn([1, 2, 3], [2, 4, 6]) == [[1, 3], [4, 6]]
+    assert fn([1, 2, 3, 3], [1, 1, 2, 2]) == [[3], []]

@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/greatest-common-divisor-of-strings/ - 6k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def gcd_of_strings(s1: str, s2: str) -> str:
@@ -30,12 +29,10 @@ def gcd_of_strings2(s1: str, s2: str) -> str:
     return ""
 
 
-test_case = TestCase()
+assert gcd_of_strings("ABCABC", "ABC") == "ABC"
+assert gcd_of_strings("ABABAB", "ABAB") == "AB"
+assert gcd_of_strings("LEET", "CODE") == ""
 
-test_case.assertEqual(gcd_of_strings("ABCABC", "ABC"), "ABC")
-test_case.assertEqual(gcd_of_strings("ABABAB", "ABAB"), "AB")
-test_case.assertEqual(gcd_of_strings("LEET", "CODE"), "")
-
-test_case.assertEqual(gcd_of_strings2("ABCABC", "ABC"), "ABC")
-test_case.assertEqual(gcd_of_strings2("ABABAB", "ABAB"), "AB")
-test_case.assertEqual(gcd_of_strings2("LEET", "CODE"), "")
+assert gcd_of_strings2("ABCABC", "ABC") == "ABC"
+assert gcd_of_strings2("ABABAB", "ABAB") == "AB"
+assert gcd_of_strings2("LEET", "CODE") == ""

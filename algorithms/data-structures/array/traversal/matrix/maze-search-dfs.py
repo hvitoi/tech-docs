@@ -8,8 +8,6 @@
 # Space: O(|V|)
 # -- Where |V| is the numbers of vertices (elements in the maze) and |E| is the number of edges (total path length in the maze)
 
-from unittest import TestCase
-
 
 def search_maze_dfs_return_bool(
     maze: list[list], start: tuple[int, int], goal: tuple[int, int]
@@ -47,9 +45,7 @@ def search_maze_dfs_return_bool(
     return search(*start)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
+assert (
     search_maze_dfs_return_bool(
         [
             [0, 0, 1, 0, 0],
@@ -60,11 +56,11 @@ test_case.assertEqual(
         ],
         (0, 4),
         (4, 4),
-    ),
-    True,
+    )
+    is True
 )
 
-test_case.assertEqual(
+assert (
     search_maze_dfs_return_bool(
         [
             [0, 0, 1, 0, 0],
@@ -75,8 +71,8 @@ test_case.assertEqual(
         ],
         (0, 4),
         (4, 4),
-    ),
-    False,
+    )
+    is False
 )
 
 
@@ -118,32 +114,18 @@ def search_maze_dfs_return_length(
     return search(*start)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
+assert (
     search_maze_dfs_return_length(
-        [
-            [0, 0, 0, 0],
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    8,  # not the shortest solution, but a solution
+        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    == 8
 )
 
-test_case.assertEqual(
+assert (
     search_maze_dfs_return_length(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    -1,
+        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    == -1
 )
 
 
@@ -186,32 +168,18 @@ def search_maze_dfs_backtracking(
     return search(*start)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
+assert (
     search_maze_dfs_backtracking(
-        [
-            [0, 0, 0, 0],
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    2,
+        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    == 2
 )
 
-test_case.assertEqual(
+assert (
     search_maze_dfs_backtracking(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    -1,
+        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    == -1
 )
 
 
@@ -253,30 +221,13 @@ def search_maze_dfs_return_path(
     return search(*start)
 
 
-test_case = TestCase()
+assert search_maze_dfs_return_path(
+    [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+) == [(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3), (2, 2), (2, 1), (2, 0)]
 
-test_case.assertEqual(
+assert (
     search_maze_dfs_return_path(
-        [
-            [0, 0, 0, 0],
-            [0, 1, 1, 0],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    [(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3), (2, 2), (2, 1), (2, 0)],
-)
-
-test_case.assertEqual(
-    search_maze_dfs_return_path(
-        [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0],
-        ],
-        (0, 0),
-        (2, 0),
-    ),
-    [],
+        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+    )
+    == []
 )

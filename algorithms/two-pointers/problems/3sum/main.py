@@ -2,8 +2,6 @@
 # %%
 # another option is just to pick a number and then apply 2sum, in this case the time complexity would be O(n^2)
 
-from unittest import TestCase
-
 
 def three_sum_brute_force(nums: list[int]) -> list[list[int]]:
     triplets = set()
@@ -44,9 +42,7 @@ def three_sum_brute_force_recursion(nums: list[int], k=3) -> list[list[int]]:
     )
 
 
-test_case = TestCase()
-
 for fn in {three_sum_brute_force, three_sum_brute_force_recursion}:
-    test_case.assertEqual(fn([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
-    test_case.assertEqual(fn([0, 1, 1]), [])
-    test_case.assertEqual(fn([0, 0, 0]), [[0, 0, 0]])
+    assert fn([-1, 0, 1, 2, -1, -4]) == [[-1, -1, 2], [-1, 0, 1]]
+    assert fn([0, 1, 1]) == []
+    assert fn([0, 0, 0]) == [[0, 0, 0]]

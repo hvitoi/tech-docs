@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/longest-common-subsequence/ - 15k likes (Apr/2026)
 # %%
-import unittest
 
 
 def longest_common_subsequence_dp(txt1: str, txt2: str) -> int:
@@ -25,9 +24,7 @@ def longest_common_subsequence_dp(txt1: str, txt2: str) -> int:
         )
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(longest_common_subsequence_dp("abcde", "ace"), 3)
-test_case.assertEqual(longest_common_subsequence_dp("abc", "abc"), 3)
-test_case.assertEqual(longest_common_subsequence_dp("abc", "def"), 0)
-test_case.assertEqual(longest_common_subsequence_dp("axb", "azb"), 2)
+assert longest_common_subsequence_dp("abcde", "ace") == 3
+assert longest_common_subsequence_dp("abc", "abc") == 3
+assert longest_common_subsequence_dp("abc", "def") == 0
+assert longest_common_subsequence_dp("axb", "azb") == 2

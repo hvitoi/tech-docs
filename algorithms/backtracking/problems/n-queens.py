@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/n-queens/ - 14k likes (Apr/2026)
 # %%
-
 # WIP
-import unittest
 
 
 def solve_n_queens(n):
@@ -52,25 +50,20 @@ def solve_n_queens(n):
     return board
 
 
-test_case = unittest.TestCase()
-
-# test_case.assertEqual(
-#     solve_n_queens(4),
+# assert solve_n_queens(4) == [
 #     [
-#         [
-#             [".", "Q", ".", "."],
-#             [".", ".", ".", "Q"],
-#             ["Q", ".", ".", "."],
-#             [".", ".", "Q", "."],
-#         ],
-#         [
-#             [".", ".", "Q", "."],
-#             ["Q", ".", ".", "."],
-#             [".", ".", ".", "Q"],
-#             [".", "Q", ".", "."],
-#         ],
+#         [".", "Q", ".", "."],
+#         [".", ".", ".", "Q"],
+#         ["Q", ".", ".", "."],
+#         [".", ".", "Q", "."],
 #     ],
-# )
+#     [
+#         [".", ".", "Q", "."],
+#         ["Q", ".", ".", "."],
+#         [".", ".", ".", "Q"],
+#         [".", "Q", ".", "."],
+#     ],
+# ]
 
 
 solve_n_queens(4)

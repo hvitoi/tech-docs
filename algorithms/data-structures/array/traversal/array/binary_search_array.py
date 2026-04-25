@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def binary_search(arr: list[int], target: int) -> bool:
@@ -46,9 +45,7 @@ def binary_search_recursive(arr: list[int], target: int):
     return binary_search(0, len(arr) - 1)
 
 
-test_case = TestCase()
-
 for fn in {binary_search, binary_search_recursive}:
-    test_case.assertEqual(fn([1, 2, 3, 4, 5], 4), True)
-    test_case.assertEqual(fn([1, 2, 3, 4, 5], 99), False)
-    test_case.assertEqual(fn([], 99), False)
+    assert fn([1, 2, 3, 4, 5], 4) is True
+    assert fn([1, 2, 3, 4, 5], 99) is False
+    assert fn([], 99) is False

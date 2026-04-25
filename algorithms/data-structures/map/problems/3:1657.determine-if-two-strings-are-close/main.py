@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/determine-if-two-strings-are-close/ - 4k likes (Apr/2026)
 # %%
-import unittest
 import collections
 
 
@@ -18,18 +17,6 @@ def code_strings(word1: str, word2: str) -> bool:
     return sorted(counter1.values()) == sorted(counter2.values())
 
 
-test_case = unittest.TestCase()
-
-
-test_case.assertEqual(
-    code_strings("abc", "bca"),
-    True,
-)
-test_case.assertEqual(
-    code_strings("a", "aa"),
-    False,
-)
-test_case.assertEqual(
-    code_strings("cabbba", "abbccc"),
-    True,
-)
+assert code_strings("abc", "bca") is True
+assert code_strings("a", "aa") is False
+assert code_strings("cabbba", "abbccc") is True

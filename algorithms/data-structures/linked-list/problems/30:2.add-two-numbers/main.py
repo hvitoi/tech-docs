@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/add-two-numbers/ - 36k likes (Apr/2026)
 # %%
 from functools import reduce
-from unittest import TestCase
 
 
 class LinkedListNode:
@@ -60,24 +59,15 @@ def add_two_numbers_from_linked_list(
     return result
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    add_two_numbers_from_linked_list(
-        LinkedList([2, 4, 3]), LinkedList([5, 6, 4])
-    ).to_list(),
-    [7, 0, 8],
-)
-test_case.assertEqual(
-    add_two_numbers_from_linked_list(LinkedList([0]), LinkedList([0])).to_list(),
-    [0],
-)
-test_case.assertEqual(
-    add_two_numbers_from_linked_list(
-        LinkedList([9, 9, 9, 9, 9, 9, 9]), LinkedList([9, 9, 9, 9])
-    ).to_list(),
-    [8, 9, 9, 9, 0, 0, 0, 1],
-)
+assert add_two_numbers_from_linked_list(
+    LinkedList([2, 4, 3]), LinkedList([5, 6, 4])
+).to_list() == [7, 0, 8]
+assert add_two_numbers_from_linked_list(LinkedList([0]), LinkedList([0])).to_list() == [
+    0
+]
+assert add_two_numbers_from_linked_list(
+    LinkedList([9, 9, 9, 9, 9, 9, 9]), LinkedList([9, 9, 9, 9])
+).to_list() == [8, 9, 9, 9, 0, 0, 0, 1]
 
 
 # %%
@@ -89,17 +79,15 @@ def add_two_numbers_from_list(l1, l2):
     return list(map(int, reversed(str(num1 + num2))))
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    add_two_numbers_from_list([2, 4, 3], [5, 6, 4]),
-    [7, 0, 8],
-)
-test_case.assertEqual(
-    add_two_numbers_from_list([0], [0]),
-    [0],
-)
-test_case.assertEqual(
-    add_two_numbers_from_list([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),
-    [8, 9, 9, 9, 0, 0, 0, 1],
-)
+assert add_two_numbers_from_list([2, 4, 3], [5, 6, 4]) == [7, 0, 8]
+assert add_two_numbers_from_list([0], [0]) == [0]
+assert add_two_numbers_from_list([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]) == [
+    8,
+    9,
+    9,
+    9,
+    0,
+    0,
+    0,
+    1,
+]

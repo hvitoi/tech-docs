@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/ - 3k likes (Apr/2026)
 # %%
-import unittest
 
 
 def number_of_vowels(s: str) -> int:
@@ -20,8 +19,6 @@ def max_vowels(s: str, k: int) -> int:
     return max_vowels
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(max_vowels("abciiidef", 3), 3)
-test_case.assertEqual(max_vowels("aeiou", 2), 2)
-test_case.assertEqual(max_vowels("leetcode", 3), 2)
+assert max_vowels("abciiidef", 3) == 3
+assert max_vowels("aeiou", 2) == 2
+assert max_vowels("leetcode", 3) == 2

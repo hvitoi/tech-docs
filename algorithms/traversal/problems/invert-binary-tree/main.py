@@ -1,7 +1,6 @@
 # %%
 # https://leetcode.com/problems/invert-binary-tree/ - 15k likes (Apr/2026)
 
-import unittest
 import collections
 
 
@@ -48,24 +47,16 @@ def invert_binary_tree(node: Node) -> Node:
     return node
 
 
-test_case = unittest.TestCase()
-
 tree_node = Node(
     2,
     left=Node(1),
     right=Node(3),
 )
-test_case.assertEqual(
-    invert_binary_tree(tree_node).serialize(),
-    [2, 3, 1],
-)
+assert invert_binary_tree(tree_node).serialize() == [2, 3, 1]
 
 tree_node = Node(
     5,
     left=Node(1),
     right=Node(4, left=Node(3), right=Node(6)),
 )
-test_case.assertEqual(
-    invert_binary_tree(tree_node).serialize(),
-    [5, 4, 1, 6, 3],
-)
+assert invert_binary_tree(tree_node).serialize() == [5, 4, 1, 6, 3]

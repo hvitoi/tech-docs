@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/longest-palindromic-substring/ - 32k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def longest_palindrome(s: str) -> str:
@@ -14,8 +13,6 @@ def longest_palindrome(s: str) -> str:
     return ""
 
 
-test_case = TestCase()
-
 for fn in {longest_palindrome}:
-    test_case.assertEqual(fn("babad"), "bab")
-    test_case.assertEqual(fn("cbbd"), "bb")
+    assert fn("babad") == "bab"
+    assert fn("cbbd") == "bb"

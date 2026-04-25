@@ -2,14 +2,9 @@
 # %%
 
 
-from unittest import TestCase
-
-
 def flood_fill(
     image: list[list[int]], initial_row: int, initial_col: int, target_color: int
 ) -> list[list[int]]:
-    """"""
-
     def ff(row, col):
         if not (0 <= row < len_rows):
             return
@@ -36,21 +31,8 @@ def flood_fill(
     return image
 
 
-test_case = TestCase()
-test_case.assertEqual(
-    flood_fill(
-        [
-            [1, 1, 1],
-            [1, 1, 0],
-            [1, 0, 1],
-        ],
-        1,
-        1,
-        2,
-    ),
-    [
-        [2, 2, 2],
-        [2, 2, 0],
-        [2, 0, 1],
-    ],
-)
+assert flood_fill([[1, 1, 1], [1, 1, 0], [1, 0, 1]], 1, 1, 2) == [
+    [2, 2, 2],
+    [2, 2, 0],
+    [2, 0, 1],
+]

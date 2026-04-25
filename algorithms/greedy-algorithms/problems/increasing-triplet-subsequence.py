@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/increasing-triplet-subsequence/ - 8k likes (Apr/2026)
 # %%
-import unittest
 
 
 def increasing_triplet(nums: list) -> bool:
@@ -10,7 +9,6 @@ def increasing_triplet(nums: list) -> bool:
     return False
 
 
-test_case = unittest.TestCase()
-test_case.assertTrue(increasing_triplet([1, 2, 3, 4, 5]))
-test_case.assertFalse(increasing_triplet([5, 4, 3, 2, 1]))
-test_case.assertTrue(increasing_triplet([2, 1, 5, 0, 4, 6]))
+assert increasing_triplet([1, 2, 3, 4, 5])
+assert not increasing_triplet([5, 4, 3, 2, 1])
+assert increasing_triplet([2, 1, 5, 0, 4, 6])

@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/generate-parentheses/ - 23k likes (Apr/2026)
 # %%
-import unittest
 
 
 def generate_parenthesis(n: int) -> list[str]:
@@ -43,19 +42,6 @@ def generate_parenthesis(n: int) -> list[str]:
     return _generate_parenthesis(n, n)
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(
-    generate_parenthesis(0),
-    [],
-)
-
-test_case.assertEqual(
-    generate_parenthesis(1),
-    ["()"],
-)
-
-test_case.assertEqual(
-    generate_parenthesis(3),
-    ["((()))", "(()())", "(())()", "()(())", "()()()"],
-)
+assert generate_parenthesis(0) == []
+assert generate_parenthesis(1) == ["()"]
+assert generate_parenthesis(3) == ["((()))", "(()())", "(())()", "()(())", "()()()"]

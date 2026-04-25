@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/asteroid-collision/ - 9k likes (Apr/2026)
 # %%
-import unittest
 
 
 def sign(num):
@@ -64,20 +63,7 @@ def asteroid_collision2(asteroids: list) -> list:
     return arr
 
 
-test_case = unittest.TestCase()
-
 for fn in {asteroid_collision, asteroid_collision2}:
-    test_case.assertEqual(
-        fn([5, 10, -5]),
-        [5, 10],
-    )
-
-    test_case.assertEqual(
-        fn([8, -8]),
-        [],
-    )
-
-    test_case.assertEqual(
-        fn([10, 2, -5]),
-        [10],
-    )
+    assert fn([5, 10, -5]) == [5, 10]
+    assert fn([8, -8]) == []
+    assert fn([10, 2, -5]) == [10]

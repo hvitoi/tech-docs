@@ -1,6 +1,5 @@
 # %%
 from collections import deque
-from unittest import TestCase
 
 # This solution has the same output as running the BF traversal with
 # origin as starting point
@@ -70,37 +69,30 @@ def traverse_matrix_diag_recursive(
     return bfs(0)
 
 
-test_case = TestCase()
-
-
 for fn in {traverse_matrix_diag, traverse_matrix_diag_recursive}:
-    test_case.assertEqual(
-        fn(
-            [
-                ["a", "b"],
-                ["c", "d"],
-            ]
-        ),
-        ["a", "b", "c", "d"],
-    )
-    test_case.assertEqual(
-        fn(
-            [
-                ["a", "b", "c"],
-                ["d", "e", "f"],
-                ["g", "h", "i"],
-            ]
-        ),
-        ["a", "b", "d", "c", "e", "g", "f", "h", "i"],
-    )
-    test_case.assertEqual(
-        fn(
-            [
-                ["a", "b", "c"],
-                ["d", "e", "f"],
-                ["g", "h", "i"],
-                ["j", "k", "l"],
-            ]
-        ),
-        ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"],
-    )
+    assert fn([["a", "b"], ["c", "d"]]) == ["a", "b", "c", "d"]
+    assert fn([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]) == [
+        "a",
+        "b",
+        "d",
+        "c",
+        "e",
+        "g",
+        "f",
+        "h",
+        "i",
+    ]
+    assert fn([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"], ["j", "k", "l"]]) == [
+        "a",
+        "b",
+        "d",
+        "c",
+        "e",
+        "g",
+        "f",
+        "h",
+        "j",
+        "i",
+        "k",
+        "l",
+    ]

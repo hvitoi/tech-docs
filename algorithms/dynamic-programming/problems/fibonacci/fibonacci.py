@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/fibonacci-number/ - 9k likes (Apr/2026)
 # %%
 from functools import lru_cache
-import unittest
 
 # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 # fib(0) = 0
@@ -74,17 +73,15 @@ def fibonacci_recursive(n):
     return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
 
-test_case = unittest.TestCase()
-
 for fn in {
     fibonacci_with_array,
     fibonacci_with_curr_prev,
     fibonacci_recursive_with_accumulator,
     fibonacci_recursive,
 }:
-    test_case.assertEqual(fn(0), 0)
-    test_case.assertEqual(fn(1), 1)
-    test_case.assertEqual(fn(2), 1)
-    test_case.assertEqual(fn(3), 2)
-    test_case.assertEqual(fn(4), 3)
-    test_case.assertEqual(fn(5), 5)
+    assert fn(0) == 0
+    assert fn(1) == 1
+    assert fn(2) == 1
+    assert fn(3) == 2
+    assert fn(4) == 3
+    assert fn(5) == 5

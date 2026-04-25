@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/merge-sorted-array/ - 19k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def merge_sorted_arrays(arr1: list[int], arr2: list[int]) -> list[int]:
@@ -35,17 +34,6 @@ def merge_sorted_arrays(arr1: list[int], arr2: list[int]) -> list[int]:
     return merged
 
 
-test_case = TestCase()
-
-test_case.assertEqual(
-    merge_sorted_arrays([0, 3, 4, 31], [4, 6, 30]),
-    [0, 3, 4, 4, 6, 30, 31],
-)
-test_case.assertEqual(
-    merge_sorted_arrays([], [4, 6, 30]),
-    [4, 6, 30],
-)
-test_case.assertEqual(
-    merge_sorted_arrays([1, 2, 3], [2, 5, 6]),
-    [1, 2, 2, 3, 5, 6],
-)
+assert merge_sorted_arrays([0, 3, 4, 31], [4, 6, 30]) == [0, 3, 4, 4, 6, 30, 31]
+assert merge_sorted_arrays([], [4, 6, 30]) == [4, 6, 30]
+assert merge_sorted_arrays([1, 2, 3], [2, 5, 6]) == [1, 2, 2, 3, 5, 6]

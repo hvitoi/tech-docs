@@ -1,5 +1,4 @@
 # %%
-import unittest
 
 
 class TrieNode:
@@ -39,6 +38,5 @@ trie.insert("apple")
 trie.insert("banana")
 trie.insert("cucumber")
 
-test_case = unittest.TestCase()
-test_case.assertEqual(trie.search("apple"), True)
-test_case.assertEqual(trie.search("app"), False)
+assert trie.search("apple") is True
+assert trie.search("app") is False

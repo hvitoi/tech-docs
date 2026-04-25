@@ -1,5 +1,4 @@
 # %%
-import unittest
 
 
 def babylon_game(stacks: list[list[str]], current_player: int = 1) -> int:
@@ -27,8 +26,7 @@ def babylon_game(stacks: list[list[str]], current_player: int = 1) -> int:
     return current_player * -1
 
 
-test_case = unittest.TestCase()
-test_case.assertEqual(
+assert (
     babylon_game(
         [
             ["Y"],
@@ -44,6 +42,6 @@ test_case.assertEqual(
             ["B"],
             ["B"],
         ]
-    ),
-    1,
+    )
+    == 1
 )

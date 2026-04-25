@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/ - 4k likes (Apr/2026)
 # %%
-import unittest
 import itertools
 
 
@@ -38,9 +37,7 @@ def longest_subarray2(nums: list) -> int:
     )
 
 
-test_case = unittest.TestCase()
-
 for fn in {longest_subarray, longest_subarray2}:
-    test_case.assertEqual(fn([1, 1, 0, 1]), 3)
-    test_case.assertEqual(fn([0, 1, 1, 1, 0, 1, 1, 0, 1]), 5)
-    test_case.assertEqual(fn([1, 1, 1]), 2)
+    assert fn([1, 1, 0, 1]) == 3
+    assert fn([0, 1, 1, 1, 0, 1, 1, 0, 1]) == 5
+    assert fn([1, 1, 1]) == 2

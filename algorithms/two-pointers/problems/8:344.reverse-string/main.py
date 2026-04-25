@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/reverse-string/ - 9k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def reverse_string(original_string: str) -> str:
@@ -10,7 +9,6 @@ def reverse_string(original_string: str) -> str:
     return reversed_string
 
 
-test_case = TestCase()
-test_case.assertEqual(reverse_string("Hi, I'm Henrique"), "euqirneH m'I ,iH")
-test_case.assertEqual(reverse_string("hello"), "olleh")
-test_case.assertEqual(reverse_string("Hannah"), "hannaH")
+assert reverse_string("Hi, I'm Henrique") == "euqirneH m'I ,iH"
+assert reverse_string("hello") == "olleh"
+assert reverse_string("Hannah") == "hannaH"

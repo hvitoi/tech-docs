@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/find-pivot-index/ - 9k likes (Apr/2026)
 # %%
-import unittest
 
 
 def pivot_index(nums: list) -> int:
@@ -29,8 +28,7 @@ def pivot_index_with_two_sums_tracking(nums: list) -> int:
     return -1
 
 
-test_case = unittest.TestCase()
 for fn in {pivot_index, pivot_index_with_two_sums_tracking}:
-    test_case.assertEqual(fn([1, 7, 3, 6, 5, 6]), 3)
-    test_case.assertEqual(fn([1, 2, 3]), -1)
-    test_case.assertEqual(fn([2, 1, -1]), 0)
+    assert fn([1, 7, 3, 6, 5, 6]) == 3
+    assert fn([1, 2, 3]) == -1
+    assert fn([2, 1, -1]) == 0

@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/number-of-islands/ - 25k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 # SOLUTION 1
 # Step 1: execute BF traversal on the matrix
@@ -93,10 +92,8 @@ def number_of_islands_explore_islands(matrix: list[list]) -> int:
     return number_of_islands
 
 
-test_case = TestCase()
-
 for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
-    test_case.assertEqual(
+    assert (
         fn(
             [
                 ["1", "1", "1", "1", "0"],
@@ -104,10 +101,10 @@ for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
                 ["1", "1", "0", "0", "0"],
                 ["0", "0", "0", "0", "0"],
             ]
-        ),
-        1,
+        )
+        == 1
     )
-    test_case.assertEqual(
+    assert (
         fn(
             [
                 ["1", "1", "0", "0", "0"],
@@ -115,11 +112,11 @@ for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
                 ["0", "0", "1", "0", "0"],
                 ["0", "0", "0", "1", "1"],
             ]
-        ),
-        3,
+        )
+        == 3
     )
 
-    test_case.assertEqual(
+    assert (
         fn(
             [
                 ["1", "1", "1", "0", "0"],
@@ -127,11 +124,11 @@ for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
                 ["1", "0", "1", "1", "0"],
                 ["0", "0", "1", "0", "1"],
             ]
-        ),
-        3,
+        )
+        == 3
     )
 
-    test_case.assertEqual(
+    assert (
         fn(
             [
                 ["0", "0", "0", "0", "0"],
@@ -139,6 +136,6 @@ for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
                 ["0", "0", "0", "0", "0"],
                 ["0", "0", "0", "0", "1"],
             ]
-        ),
-        1,
+        )
+        == 1
     )

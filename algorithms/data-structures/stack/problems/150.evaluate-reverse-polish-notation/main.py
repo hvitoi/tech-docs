@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/evaluate-reverse-polish-notation/ - 8k likes (Apr/2026)
 # %%
-import unittest
 from collections import deque
 from dataclasses import dataclass
 from typing import Self
@@ -123,15 +122,13 @@ def calculate_polish_notation(tokens: str) -> int:
     return calculate(tokens.split())
 
 
-test_case = unittest.TestCase()
-
 for fn in {
     calculate_polish_notation,
     calculate_polish_notation_recursive,
     calculate_polish_notation_ast,
 }:
-    test_case.assertEqual(fn("+ 2 3"), 5)
-    test_case.assertEqual(fn("* 3 + 1 2"), 9)
-    test_case.assertEqual(fn("* + 1 2 4"), 12)
-    test_case.assertEqual(fn("- 10 / 8 2"), 6)
-    test_case.assertEqual(fn("/ * 3 5 + 2 3"), 3)
+    assert fn("+ 2 3") == 5
+    assert fn("* 3 + 1 2") == 9
+    assert fn("* + 1 2 4") == 12
+    assert fn("- 10 / 8 2") == 6
+    assert fn("/ * 3 5 + 2 3") == 3

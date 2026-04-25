@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/minimum-window-substring/ - 20k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def frequency(coll):
@@ -58,9 +57,7 @@ def min_window_two_pointers_and_frequency_map(s: str, t: str) -> str:
     return current_solution
 
 
-test_case = TestCase()
-
 for fn in {min_window_brute_force, min_window_two_pointers_and_frequency_map}:
-    test_case.assertEqual(fn("ADOBECODEBANC", "ABC"), "BANC")
-    test_case.assertEqual(fn("a", "a"), "a")
-    test_case.assertEqual(fn("a", "aa"), "")
+    assert fn("ADOBECODEBANC", "ABC") == "BANC"
+    assert fn("a", "a") == "a"
+    assert fn("a", "aa") == ""

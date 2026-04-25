@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/reverse-vowels-of-a-string/ - 5k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def reverse_vowels(s: str) -> str:
@@ -20,7 +19,5 @@ def reverse_vowels(s: str) -> str:
     return "".join(s)
 
 
-test_case = TestCase()
-
-test_case.assertEqual(reverse_vowels("hello"), "holle")
-test_case.assertEqual(reverse_vowels("leetcode"), "leotcede")
+assert reverse_vowels("hello") == "holle"
+assert reverse_vowels("leetcode") == "leotcede"

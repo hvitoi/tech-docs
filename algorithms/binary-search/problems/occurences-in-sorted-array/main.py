@@ -1,7 +1,4 @@
 # %%
-from unittest import TestCase
-
-
 # We have a dictionary list. E.g [“apple”, “banana”, ...]
 # Given a prefix, we want to return all the words from the above list which matches the prefix.
 
@@ -100,7 +97,5 @@ def occurrences_with_trie(arr: list[str], prefix: str) -> int:
     return count_downstream_nodes(node)
 
 
-test_case = TestCase()
-
 for fn in {occurrences_with_bs_both_sides, occurrences_with_trie}:
-    test_case.assertEqual(fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc"), 5)
+    assert fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc") == 5

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/decode-ways/ - 12k likes (Apr/2026)
 # %%
 
-import unittest
-
 
 def memoize_from_first_three_letters(fn):
     """
@@ -44,8 +42,7 @@ def num_decodings(s: str) -> int:
         return num_decodings(s[1:])
 
 
-test_case = unittest.TestCase()
-test_case.assertEqual(num_decodings("12"), 2)
-test_case.assertEqual(num_decodings("226"), 3)
-test_case.assertEqual(num_decodings("06"), 0)
-test_case.assertEqual(num_decodings("2263"), 3)
+assert num_decodings("12") == 2
+assert num_decodings("226") == 3
+assert num_decodings("06") == 0
+assert num_decodings("2263") == 3

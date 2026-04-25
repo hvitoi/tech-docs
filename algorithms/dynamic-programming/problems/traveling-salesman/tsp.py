@@ -1,5 +1,4 @@
 # %%
-import unittest
 
 
 def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
@@ -28,8 +27,6 @@ def tsp_nearest_neighbor(graph: dict[str, dict[str, int]], start: str):
     return path, total_distance
 
 
-test_case = unittest.TestCase()
-
 graph = {
     "A": {"A": 0, "B": 10, "C": 15, "D": 20},
     "B": {"A": 10, "B": 0, "C": 35, "D": 25},
@@ -37,7 +34,4 @@ graph = {
     "D": {"A": 20, "B": 25, "C": 30, "D": 0},
 }
 # 10 + 25 + 30
-test_case.assertEqual(
-    tsp_nearest_neighbor(graph, "A"),
-    (["A", "B", "D", "C", "A"], 80),
-)
+assert tsp_nearest_neighbor(graph, "A") == (["A", "B", "D", "C", "A"], 80)

@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/trapping-rain-water/ - 36k likes (Apr/2026)
 # %%
 from typing import List
-from unittest import TestCase
 
 
 def trap(bars: List[int]) -> int:
@@ -14,7 +13,5 @@ def trap(bars: List[int]) -> int:
     return trapped_water
 
 
-test_case = TestCase()
-
-test_case.assertEqual(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6)
-test_case.assertEqual(trap([4, 2, 0, 3, 2, 5]), 9)
+assert trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]) == 6
+assert trap([4, 2, 0, 3, 2, 5]) == 9

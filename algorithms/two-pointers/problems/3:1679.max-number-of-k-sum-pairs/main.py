@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/max-number-of-k-sum-pairs/ - 3k likes (Apr/2026)
 # %%
-import unittest
 
 
 def remove_summing_up_elements(nums: list, k: int):
@@ -26,7 +25,5 @@ def max_operations(nums: list, k: int) -> int:
     return operations
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(max_operations([1, 2, 3, 4], 5), 2)
-test_case.assertEqual(max_operations([3, 1, 3, 4, 3], 6), 1)
+assert max_operations([1, 2, 3, 4], 5) == 2
+assert max_operations([3, 1, 3, 4, 3], 6) == 1

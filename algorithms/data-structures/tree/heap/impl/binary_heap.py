@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 class MaxHeap:
@@ -88,20 +87,18 @@ class MaxHeap:
         return None
 
 
-test_case = TestCase()
-
 # Heapify
 heap = MaxHeap([1, 2, 3, 4, 5, 6, 7])
-test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
+assert heap.heap == [7, 5, 6, 4, 2, 1, 3]
 
 # Peek
-test_case.assertEqual(heap.peek(), 7)
-test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
+assert heap.peek() == 7
+assert heap.heap == [7, 5, 6, 4, 2, 1, 3]
 
 # Pop
-test_case.assertEqual(heap.pop(), 7)
-test_case.assertEqual(heap.heap, [6, 5, 3, 4, 2, 1])
+assert heap.pop() == 7
+assert heap.heap == [6, 5, 3, 4, 2, 1]
 
 # Push
 heap.push(7)
-test_case.assertEqual(heap.heap, [7, 5, 6, 4, 2, 1, 3])
+assert heap.heap == [7, 5, 6, 4, 2, 1, 3]

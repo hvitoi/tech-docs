@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/maximum-average-subarray-i/ - 4k likes (Apr/2026)
 # %%
-import unittest
 
 
 def find_max_average(nums: list, k: int) -> float:
@@ -11,7 +10,5 @@ def find_max_average(nums: list, k: int) -> float:
     return max_sum / k
 
 
-test_case = unittest.TestCase()
-
-test_case.assertEqual(find_max_average([1, 12, -5, -6, 50, 3], 4), 12.75000)
-test_case.assertEqual(find_max_average([5], 1), 5.00000)
+assert find_max_average([1, 12, -5, -6, 50, 3], 4) == 12.75
+assert find_max_average([5], 1) == 5.0

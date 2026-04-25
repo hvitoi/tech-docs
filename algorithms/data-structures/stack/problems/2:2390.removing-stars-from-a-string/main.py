@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/removing-stars-from-a-string/ - 3k likes (Apr/2026)
 # %%
-import unittest
 
 
 def remove_stars(s: str) -> str:
@@ -30,25 +29,8 @@ def remove_stars3(s: str) -> str:
     return "".join(res)
 
 
-test_case = unittest.TestCase()
-
 for fn in {remove_stars, remove_stars2, remove_stars3}:
-    test_case.assertEqual(
-        fn("leet**cod*e"),
-        "lecoe",
-    )
-
-    test_case.assertEqual(
-        fn("erase*****"),
-        "",
-    )
-
-    test_case.assertEqual(
-        fn("*leet**cod*e"),
-        "lecoe",
-    )
-
-    test_case.assertEqual(
-        fn("*leet**cod*e*"),
-        "leco",
-    )
+    assert fn("leet**cod*e") == "lecoe"
+    assert fn("erase*****") == ""
+    assert fn("*leet**cod*e") == "lecoe"
+    assert fn("*leet**cod*e*") == "leco"

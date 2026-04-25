@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/ - 7k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def find_str_brute_force(word: str, prefix: str) -> int:
@@ -18,7 +17,6 @@ def find_str_brute_force(word: str, prefix: str) -> int:
     return -1
 
 
-test_case = TestCase()
-test_case.assertEqual(find_str_brute_force("sadbutsad", "sad"), 0)
-test_case.assertEqual(find_str_brute_force("leetcode", "leeto"), -1)
-test_case.assertEqual(find_str_brute_force("Henrique", "riq"), 3)
+assert find_str_brute_force("sadbutsad", "sad") == 0
+assert find_str_brute_force("leetcode", "leeto") == -1
+assert find_str_brute_force("Henrique", "riq") == 3

@@ -1,5 +1,4 @@
 # %%
-from unittest import TestCase
 
 
 def bubble_sort(arr):
@@ -10,8 +9,7 @@ def bubble_sort(arr):
     return arr
 
 
-test_case = TestCase()
-test_case.assertEqual(bubble_sort([4, 5, 1, 3, 2]), [1, 2, 3, 4, 5])
-test_case.assertEqual(bubble_sort([]), [])
-test_case.assertEqual(bubble_sort([1]), [1])
-test_case.assertEqual(bubble_sort([1, 1]), [1, 1])
+assert bubble_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
+assert bubble_sort([]) == []
+assert bubble_sort([1]) == [1]
+assert bubble_sort([1, 1]) == [1, 1]

@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/can-place-flowers/ - 7k likes (Apr/2026)
 # %%
-from unittest import TestCase
 
 
 def can_place_flowers(flowerbed: list[int], n: int) -> bool:
@@ -17,7 +16,5 @@ def can_place_flowers(flowerbed: list[int], n: int) -> bool:
     return n <= 0
 
 
-test_case = TestCase()
-
-test_case.assertTrue(can_place_flowers([1, 0, 0, 0, 1], 1))
-test_case.assertFalse(can_place_flowers([1, 0, 0, 0, 1], 2))
+assert can_place_flowers([1, 0, 0, 0, 1], 1)
+assert not can_place_flowers([1, 0, 0, 0, 1], 2)

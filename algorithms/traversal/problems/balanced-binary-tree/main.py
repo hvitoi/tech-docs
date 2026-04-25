@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/balanced-binary-tree/ - 12k likes (Apr/2026)
 # %%
-from unittest import TestCase
 from collections import deque
 
 
@@ -111,8 +110,6 @@ def is_balanced2(tree: BST) -> bool:
     return check_balance(tree.root)[0]
 
 
-test_case = TestCase()
-
 for fn in {is_balanced, is_balanced2}:
-    test_case.assertEqual(fn(BST([3, 9, 20, None, None, 15, 7])), True)
-    test_case.assertEqual(fn(BST([1, 2, 2, 3, 3, None, None, 4, 4])), False)
+    assert fn(BST([3, 9, 20, None, None, 15, 7])) is True
+    assert fn(BST([1, 2, 2, 3, 3, None, None, 4, 4])) is False

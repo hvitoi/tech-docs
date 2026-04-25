@@ -1,6 +1,5 @@
 # %%
 from functools import reduce
-import unittest
 
 
 def factorial_recursive(n):
@@ -31,17 +30,15 @@ def factorial_reduce(n):
     )
 
 
-test_case = unittest.TestCase()
-
 for fn in {
     factorial_recursive,
     factorial_with_loop,
     factorial_recursive_with_accumulator,
     factorial_reduce,
 }:
-    test_case.assertEqual(fn(0), 1)
-    test_case.assertEqual(fn(1), 1)
-    test_case.assertEqual(fn(2), 2)
-    test_case.assertEqual(fn(3), 6)
-    test_case.assertEqual(fn(4), 24)
-    test_case.assertEqual(fn(5), 120)
+    assert fn(0) == 1
+    assert fn(1) == 1
+    assert fn(2) == 2
+    assert fn(3) == 6
+    assert fn(4) == 24
+    assert fn(5) == 120

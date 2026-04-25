@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/ - 22k likes (Apr/2026)
 # %%
-import unittest
 
 
 def longest_increasing_subsequence(nums: list[int], prev=float("-inf")) -> int:
@@ -25,11 +24,10 @@ def longest_increasing_subsequence(nums: list[int], prev=float("-inf")) -> int:
         return longest_increasing_subsequence(nums[1:], prev)  # not pick
 
 
-test_case = unittest.TestCase()
-test_case.assertEqual(longest_increasing_subsequence([]), 0)
-test_case.assertEqual(longest_increasing_subsequence([1]), 1)
-test_case.assertEqual(longest_increasing_subsequence([1, 2]), 2)
-test_case.assertEqual(longest_increasing_subsequence([2, 1]), 1)
-test_case.assertEqual(longest_increasing_subsequence([10, 9, 2, 5, 3, 7, 101, 18]), 4)
-test_case.assertEqual(longest_increasing_subsequence([0, 1, 0, 3, 2, 3]), 4)
-test_case.assertEqual(longest_increasing_subsequence([7, 7, 7, 7, 7, 7, 7]), 1)
+assert longest_increasing_subsequence([]) == 0
+assert longest_increasing_subsequence([1]) == 1
+assert longest_increasing_subsequence([1, 2]) == 2
+assert longest_increasing_subsequence([2, 1]) == 1
+assert longest_increasing_subsequence([10, 9, 2, 5, 3, 7, 101, 18]) == 4
+assert longest_increasing_subsequence([0, 1, 0, 3, 2, 3]) == 4
+assert longest_increasing_subsequence([7, 7, 7, 7, 7, 7, 7]) == 1

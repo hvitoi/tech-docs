@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/container-with-most-water/ - 34k likes (Apr/2026)
 # %%
-import unittest
 from functools import reduce
 
 
@@ -29,8 +28,6 @@ def max_area2(heights: list) -> int:
     return current_max
 
 
-test_case = unittest.TestCase()
-
 for fn in {max_area, max_area2}:
-    test_case.assertEqual(fn([1, 8, 6, 2, 5, 4, 8, 3, 7]), 49)
-    test_case.assertEqual(fn([1, 1]), 1)
+    assert fn([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
+    assert fn([1, 1]) == 1
