@@ -1,42 +1,32 @@
-# Patterns — what to apply when
-
-Each entry: one-line essence, `triggers` (cues in the problem text), `skeleton` (mental template), `don't confuse with` (adjacent patterns), and a worked-problem list with `time / space — approach`.
+# Patterns
 
 Triage:
 
-1. **Is the input sorted, or could sorting cheaply unlock something?** → two pointers, binary search.
-2. **Is the answer a contiguous subarray/substring?** → sliding window or prefix sums.
-3. **Does the answer require pairing/triplet/lookup?** → hashing.
-4. **Is there nesting / matching / "most recent"?** → stack.
-5. **Is there a monotonic predicate over a numeric search space?** → binary search the answer.
-6. **Tree or graph?** → BFS for shortest unweighted, DFS for "explore all".
-7. **"All combinations / all valid configurations"?** → backtracking.
-8. **"Min/max/count of ways" + overlapping subproblems?** → DP.
-9. **Top-k / streaming / k-way merge?** → heap.
-10. **"Range sum / range count" of static array?** → prefix sums.
-11. **"Always pick the locally best" + can prove it works?** → greedy.
+1. `Is the input sorted, or could sorting cheaply unlock something?` → two pointers, binary search
+2. `Is the answer a contiguous subarray/substring?` → sliding window or prefix sums
+3. `Does the answer require pairing/triplet/lookup?` → hashing
+4. `Is there nesting / matching / "most recent"?` → stack
+5. `Is there a monotonic predicate over a numeric search space?` → binary search the answer
+6. `Tree or graph?` → BFS for shortest unweighted, DFS for "explore all"
+7. `"All combinations / all valid configurations"?` → backtracking
+8. `"Min/max/count of ways" + overlapping subproblems?` → DP
+9. `Top-k / streaming / k-way merge?` → heap
+10. `"Range sum / range count" of static array?` → prefix sums
+11. `"Always pick the locally best" + can prove it works?` → greedy
 
-Process:
+---
 
-1. **Read the problem twice.** Note the input shape, the constraint sizes, and the asked output.
-2. **Run the triage checklist above** out loud. Stop at the first match.
-3. **State the pattern** to the interviewer: "this looks like a sliding-window problem because the answer is a contiguous substring with a length constraint."
-4. **Pull the skeleton** from the matching section. Adapt names; don't change the structure unless you have a reason.
-5. **State complexity** using the skeleton's known cost, then verify after coding.
-
-See also: [interview-behavior.md](../interview-behavior.md) for the meta-process. Worked examples per pattern live in the sibling folders ([backtracking/](backtracking/), [dynamic-programming/](dynamic-programming/), …).
-
-## 1. Hashing — frequency, lookup, dedup
+## Hashing — frequency, lookup, dedup
 
 > Replace an `O(n)` scan-for-existence with an `O(1)` lookup.
 
-**Triggers**
+`Triggers`
 
 - "Has this value been seen before?" / "find duplicates" / "two values that sum to k".
 - Counting frequencies / detecting anagrams.
 - Mapping `a[i] → i`, or grouping items by some derived key.
 
-**Skeleton**
+`Skeleton`
 
 ```python
 seen = {}
@@ -46,12 +36,7 @@ for i, x in enumerate(a):
     seen[x] = i
 ```
 
-**Don't confuse with**
-
-- Two pointers — if the array is sorted, two pointers gets `O(1)` space, hashing wastes memory.
-- Sliding window — when the property is contiguous, hashing alone is not enough; you also need a window.
-
-**Problems**
+`Problems`
 
 - **Two Sum** `O(n) / O(n)` — hash map of `target - x` while iterating.
 - **Contains Duplicate** `O(n) / O(n)` — set membership check.
@@ -67,20 +52,21 @@ for i, x in enumerate(a):
 
 ---
 
-## 2. Two pointers
+## Two pointers
 
 > Two indices walk a sequence to replace a nested `O(n²)` loop with a single `O(n)` pass.
 
-**Triggers**
+`Triggers`
 
 - Sorted array / string with a pair/triple constraint.
 - Palindromes (converge from ends).
 - In-place rewrite ("read" pointer ahead of "write" pointer).
 - Linked-list cycle / nth-from-end (fast & slow).
 
-**Skeleton — opposite ends**
+`Skeleton`
 
 ```python
+# opposite ends
 l, r = 0, len(a) - 1
 while l < r:
     s = a[l] + a[r]
@@ -89,9 +75,8 @@ while l < r:
     else: r -= 1
 ```
 
-**Skeleton — fast & slow**
-
 ```python
+# fast & slow
 slow = fast = head
 while fast and fast.next:
     slow = slow.next
@@ -99,12 +84,7 @@ while fast and fast.next:
     if slow is fast: ...   # cycle detected
 ```
 
-**Don't confuse with**
-
-- Sliding window — same direction, but window has variable width and tracks an aggregate.
-- Hashing — needed when input is unsorted and you can't sort.
-
-**Problems**
+`Problems`
 
 - **Valid Palindrome** `O(n) / O(1)` — skip non-alphanumerics; converge from ends.
 - **Two Sum II (sorted)** `O(n) / O(1)` — `left`/`right` move toward each other based on sum.
@@ -124,19 +104,20 @@ while fast and fast.next:
 
 ---
 
-## 3. Sliding window
+## Sliding window
 
 > Maintain a contiguous range `[l, r]` and update an aggregate incrementally as it grows or shrinks.
 
-**Triggers**
+`Triggers`
 
 - Answer is a **contiguous** subarray/substring.
 - "Longest / shortest / max / min subarray with property X".
 - Aggregate (sum, count, frequency map) is reversible.
 
-**Skeleton — variable window**
+`Skeleton`
 
 ```python
+# variable window
 l = 0; best = 0; agg = init()
 for r, x in enumerate(a):
     agg.add(x)
@@ -145,21 +126,15 @@ for r, x in enumerate(a):
     best = max(best, r - l + 1)
 ```
 
-**Skeleton — fixed window of size k**
-
 ```python
+# fixed window of size k
 agg = sum(a[:k]); best = agg
 for r in range(k, len(a)):
     agg += a[r] - a[r-k]
     best = max(best, agg)
 ```
 
-**Don't confuse with**
-
-- Two pointers — narrows by jumping; sliding window expands/shrinks one step at a time tracking an aggregate.
-- Prefix sums — if you only need range *sums* of a *static* array, prefix sums are simpler.
-
-**Problems**
+`Problems`
 
 - **Best Time to Buy and Sell Stock** `O(n) / O(1)` — track running min, update best profit.
 - **Longest Substring Without Repeating Characters** `O(n) / O(min(n,Σ))` — map char→last index; advance left past duplicates.
@@ -170,19 +145,20 @@ for r in range(k, len(a)):
 
 ---
 
-## 4. Binary search (and "binary-search the answer")
+## Binary search
 
 > Halve the candidate space each step using a monotonic predicate.
 
-**Triggers**
+`Triggers`
 
 - Sorted input — find target / first ≥ x / last ≤ x.
 - Rotated-sorted array.
 - Numeric search space where `f(x)` flips false → true exactly once. (Capacity, speed, time, threshold problems.)
 
-**Skeleton — leftmost true**
+`Skeleton`
 
 ```python
+# leftmost true
 lo, hi = 0, n
 while lo < hi:
     mid = (lo + hi) // 2
@@ -191,19 +167,14 @@ while lo < hi:
 return lo
 ```
 
-**"Binary search the answer" recipe**
+`"Binary search the answer" recipe`
 
 1. Pick the answer's range `[lo, hi]`.
 2. Define `feasible(x)` — "can we achieve the goal with parameter x?".
 3. Verify `feasible` is monotonic.
 4. Binary search the smallest (or largest) feasible `x`.
 
-**Don't confuse with**
-
-- Two pointers — when both ends move and you don't bisect, it's two pointers.
-- Sorting + scan — if the input wasn't already sorted, sort + scan may dominate the log factor.
-
-**Problems**
+`Problems`
 
 - **Binary Search** `O(log n) / O(1)` — standard template.
 - **Search in Rotated Sorted Array** `O(log n) / O(1)` — detect which half is sorted; recurse on relevant half.
@@ -215,20 +186,21 @@ return lo
 
 ---
 
-## 5. Stack
+## Stack
 
 > LIFO matches the structure when the most recent unmatched item drives the next decision. A *monotonic* stack additionally enforces an ordering on what stays in it — pops anything that would break the order — and that's how "next greater / smaller" is `O(n)`.
 
-**Triggers**
+`Triggers`
 
 - Bracket / parenthesis / tag matching.
 - Nested expressions (RPN, calculator, decode string).
 - "Most recent" lookups during a single scan.
 - "Next greater / smaller element" → monotonic stack.
 
-**Skeleton — matching**
+`Skeleton`
 
 ```python
+# matching
 stack = []
 for t in tokens:
     if is_open(t): stack.append(t)
@@ -237,9 +209,8 @@ for t in tokens:
 return not stack
 ```
 
-**Skeleton — monotonic (next greater on the right)**
-
 ```python
+# monotonic (next greater on the right)
 res = [-1] * n; stack = []
 for i, x in enumerate(a):
     while stack and a[stack[-1]] < x:
@@ -247,12 +218,7 @@ for i, x in enumerate(a):
     stack.append(i)
 ```
 
-**Don't confuse with**
-
-- Queue — use queue for FIFO / BFS.
-- Heap — heap gives global min/max in `O(log n)`; monotonic stack gives *adjacent* next-greater in `O(1)` amortised.
-
-**Problems**
+`Problems`
 
 - **Valid Parentheses** `O(n) / O(n)` — push openers; on closer, pop and match.
 - **Min Stack** `O(1) per op / O(n)` — pair every push with current min on stack.
@@ -264,17 +230,17 @@ for i, x in enumerate(a):
 
 ---
 
-## 6. BFS — level-order / shortest unweighted
+## BFS — level-order / shortest unweighted
 
 > Queue-based traversal that visits all nodes at distance `d` before any at `d+1`. Optimal for shortest path on **unweighted** graphs.
 
-**Triggers**
+`Triggers`
 
 - "Shortest steps / minimum moves" in a grid or graph with uniform edge cost.
 - "Level by level" tree processing.
 - Word ladder, knight's shortest path, rotting oranges.
 
-**Skeleton**
+`Skeleton`
 
 ```python
 from collections import deque
@@ -290,12 +256,7 @@ while q:
 return -1
 ```
 
-**Don't confuse with**
-
-- DFS — DFS is for "explore all" / "is there a path"; not for shortest unweighted.
-- Dijkstra — needed when edge weights differ.
-
-**Problems**
+`Problems`
 
 - **Binary Tree Level Order Traversal** `O(n) / O(n)` — BFS with a queue, process per level.
 - **Maximum Width of Binary Tree** `O(n) / O(n)` — BFS with index propagation; track first/last per level.
@@ -305,20 +266,21 @@ return -1
 
 ---
 
-## 7. DFS — explore all / connected component
+## DFS — explore all / connected component
 
 > Recursive (or stack-based) traversal that follows a path to its end before backtracking.
 
-**Triggers**
+`Triggers`
 
 - "Is there a path from A to B?" / "count connected components".
 - Tree problems where every node's answer depends on its subtrees (post-order).
 - Flood fill on grids.
 - Cycle detection in directed/undirected graphs.
 
-**Skeleton — graph**
+`Skeleton`
 
 ```python
+# graph
 seen = set()
 def dfs(u):
     seen.add(u)
@@ -327,21 +289,15 @@ def dfs(u):
             dfs(v)
 ```
 
-**Skeleton — tree post-order returning info**
-
 ```python
+# tree post-order returning info
 def dfs(node):
     if not node: return base
     L = dfs(node.left); R = dfs(node.right)
     return combine(node.val, L, R)
 ```
 
-**Don't confuse with**
-
-- BFS — BFS for shortest path / level info; DFS for existence / structure.
-- Backtracking — backtracking *is* DFS plus an "undo" step on the way out.
-
-**Problems**
+`Problems`
 
 - **Invert Binary Tree** `O(n) / O(h)` — recurse, swap children.
 - **Maximum Depth of Binary Tree** `O(n) / O(h)` — recursion or BFS level count.
@@ -360,17 +316,17 @@ def dfs(node):
 
 ---
 
-## 8. Backtracking
+## Backtracking
 
 > DFS where you make a choice, recurse, and **undo** the choice on return. Used to enumerate / search a solution space with pruning.
 
-**Triggers**
+`Triggers`
 
 - "Generate all permutations / combinations / subsets / partitions".
 - Constraint satisfaction (Sudoku, N-Queens, word search).
 - "Find any/all valid configurations".
 
-**Skeleton**
+`Skeleton`
 
 ```python
 def backtrack(path, choices):
@@ -383,12 +339,7 @@ def backtrack(path, choices):
         path.pop()             # undo
 ```
 
-**Don't confuse with**
-
-- DP — when subproblems overlap and you only need an aggregate (count/optimum), DP is exponentially faster.
-- Plain DFS — plain DFS doesn't undo state; backtracking does.
-
-**Problems**
+`Problems`
 
 - **Subsets** `O(n·2ⁿ) / O(n) stack` — choose/skip recursion or iterative power-set.
 - **Permutations** `O(n·n!) / O(n)` — swap-in-place or used-set recursion.
@@ -402,18 +353,18 @@ def backtrack(path, choices):
 
 ---
 
-## 9. Dynamic programming
+## Dynamic programming
 
 > Decompose into overlapping subproblems with optimal substructure; cache each subproblem's answer.
 
-**Triggers**
+`Triggers`
 
 - "Min / max / count of ways to reach / form X".
 - Naive recursion has exponential branching but few **distinct** states.
 - 1D: index-based decisions (rob houses, climb stairs). 2D: pair of indices (LCS, edit distance) or grid (unique paths).
 - Knapsack-style: "pick items to optimise value under a constraint".
 
-**Recipe**
+`Recipe`
 
 1. Define `dp[state]` precisely.
 2. Write the recurrence: how does `dp[state]` relate to smaller states?
@@ -421,21 +372,17 @@ def backtrack(path, choices):
 4. Decide top-down (memoise) or bottom-up (iterate).
 5. Optimise space (often `O(n)` → `O(1)` rolling).
 
-**Skeleton — 1D bottom-up**
+`Skeleton`
 
 ```python
+# 1D bottom-up
 dp = [0] * (n + 1); dp[0] = base
 for i in range(1, n + 1):
     dp[i] = recurrence(dp, i, a)
 return dp[n]
 ```
 
-**Don't confuse with**
-
-- Greedy — greedy commits without revisiting; DP considers all options at each state.
-- Backtracking — same recursion shape, but DP memoises and only returns aggregates.
-
-**Problems**
+`Problems`
 
 - **Climbing Stairs** `O(n) / O(1)` — `dp[i] = dp[i-1] + dp[i-2]` (Fibonacci).
 - **House Robber** `O(n) / O(1)` — `dp[i] = max(dp[i-1], dp[i-2] + nums[i])`.
@@ -453,19 +400,20 @@ return dp[n]
 
 ---
 
-## 10. Greedy
+## Greedy
 
 > At each step, take the locally optimal action; the locally best is also globally best for problems with the **greedy-choice property**.
 
-**Triggers**
+`Triggers`
 
 - Interval scheduling / merging.
 - Activity selection / minimum number of platforms.
 - "Always pick the largest / earliest-ending / nearest" feels right and you can prove it.
 
-**Skeleton — interval problems**
+`Skeleton`
 
 ```python
+# interval problems
 intervals.sort(key=lambda x: x[end])
 last_end = -inf; count = 0
 for s, e in intervals:
@@ -473,14 +421,9 @@ for s, e in intervals:
         count += 1; last_end = e
 ```
 
-**Don't confuse with**
-
-- DP — if you'd ever need to revisit a choice, you need DP, not greedy.
-- Backtracking — same answer with brute force, but greedy is `O(n log n)` if it applies.
-
 **Proof obligation:** before committing to greedy, sketch *why* the local choice is safe. Otherwise default to DP.
 
-**Problems**
+`Problems`
 
 - **Jump Game** `O(n) / O(1)` — track furthest reachable index.
 - **Jump Game II** `O(n) / O(1)` — greedy "current end / furthest" levels.
@@ -492,11 +435,11 @@ for s, e in intervals:
 
 ---
 
-## 11. Heap / priority queue
+## Heap / priority queue
 
 > A balanced-tree structure with `O(log n)` push/pop and `O(1)` peek of the min (or max).
 
-**Triggers**
+`Triggers`
 
 - Top-k / k-th largest / k-th smallest.
 - Streaming median (two heaps).
@@ -504,7 +447,7 @@ for s, e in intervals:
 - Scheduling / "process the next available" simulations.
 - Dijkstra (priority queue of (dist, node)).
 
-**Skeleton**
+`Skeleton`
 
 ```python
 import heapq
@@ -515,12 +458,7 @@ for x in a:
 return h[0]                         # k-th largest
 ```
 
-**Don't confuse with**
-
-- Sort + slice — `O(n log n)`. Heap-of-size-k is `O(n log k)` and works on streams.
-- Quickselect — `O(n)` average for k-th order statistic on a static array.
-
-**Problems**
+`Problems`
 
 - **Kth Largest Element in Array** `O(n log k) / O(k)` — min-heap of size k, or quickselect.
 - **Top K Frequent Elements** `O(n log k) / O(n)` — counter + heap of size k, or bucket sort.
@@ -534,19 +472,20 @@ return h[0]                         # k-th largest
 
 ---
 
-## 12. Prefix sums
+## Prefix sums
 
 > Pre-compute `pre[i] = a[0] + … + a[i-1]`. Range sum `[l, r]` becomes `pre[r+1] - pre[l]` in `O(1)`.
 
-**Triggers**
+`Triggers`
 
 - Many range-sum or range-count queries on a static array.
 - "Number of subarrays with sum exactly k" → prefix sum + hash map of seen sums.
 - 2D: pre-compute `pre[r][c]` for instant rectangle sums.
 
-**Skeleton — count subarrays summing to k**
+`Skeleton`
 
 ```python
+# count subarrays summing to k
 seen = {0: 1}; cur = 0; count = 0
 for x in a:
     cur += x
@@ -554,11 +493,7 @@ for x in a:
     seen[cur] = seen.get(cur, 0) + 1
 ```
 
-**Don't confuse with**
-
-- Sliding window — sliding window requires a monotone shrink predicate; with negatives, prefix-sum + hashing is the safer tool.
-
-**Problems**
+`Problems`
 
 - **Range Sum Query (immutable)** `O(n) build, O(1) query` — classic prefix array.
 - **Subarray Sum Equals K** `O(n) / O(n)` — running sum + hash map of `cur - k`.
@@ -566,32 +501,3 @@ for x in a:
 - **Product of Array Except Self** `O(n) / O(1) extra` — prefix and suffix products in two passes.
 - **Find Pivot Index** `O(n) / O(1)` — `2·left == total - a[i]` while scanning.
 - **Find the Highest Altitude** `O(n) / O(1)` — running sum, track max.
-
----
-
-## A 20-problem rehearsal set
-
-If time is short, drill these 20 (one per pattern, mostly easy/medium):
-
-1. Two Sum
-2. Valid Palindrome
-3. Best Time to Buy and Sell Stock
-4. Valid Parentheses
-5. Binary Search
-6. Reverse Linked List
-7. Merge Two Sorted Lists
-8. Linked List Cycle
-9. Invert Binary Tree
-10. Maximum Depth of Binary Tree
-11. Validate BST
-12. Binary Tree Level Order Traversal
-13. Number of Islands
-14. Climbing Stairs
-15. House Robber
-16. Coin Change
-17. Longest Substring Without Repeating Characters
-18. Kth Largest Element in an Array
-19. Subsets
-20. Merge Intervals
-
-Time-box yourself: 20 minutes for easy, 30 for medium. After each, write down the pattern, complexity, and one bug you almost made.
