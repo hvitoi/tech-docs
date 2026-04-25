@@ -7,7 +7,9 @@ from collections import deque
 
 
 def search_maze_bfs_returning_bool(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> int:
     """
     Breadth-first solution
@@ -47,7 +49,13 @@ def search_maze_bfs_returning_bool(
 
 assert (
     search_maze_bfs_returning_bool(
-        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     is True
 )
@@ -62,7 +70,9 @@ assert (
 
 # %%
 def search_maze_bfs(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> int:
     """
     In order to return the length of the solution, it's necessary to keep
@@ -102,5 +112,27 @@ def search_maze_bfs(
     return -1
 
 
-assert search_maze_bfs([[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)) == 2
-assert search_maze_bfs([[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)) == -1
+assert (
+    search_maze_bfs(
+        [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
+    )
+    == 2
+)
+assert (
+    search_maze_bfs(
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
+    )
+    == -1
+)

@@ -2,12 +2,15 @@
 from collections import deque
 
 
-def traverse_bf(matrix: list[list], start_row: int, start_col: int):
+def traverse_bf(
+    matrix: list[list],
+    start: tuple[int, int],
+):
     len_rows = len(matrix)
     len_cols = len(matrix[0])
 
     acc = []
-    queue = deque([(start_row, start_col)])
+    queue = deque([start])
     visited = set()
 
     while queue:
@@ -38,7 +41,14 @@ def traverse_bf(matrix: list[list], start_row: int, start_col: int):
 
 
 # From the middle
-assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 1, 1) == [
+assert traverse_bf(
+    [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+        ["g", "h", "i"],
+    ],
+    (1, 1),
+) == [
     "e",
     "d",
     "b",
@@ -51,8 +61,22 @@ assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 1, 1) ==
 ]
 
 # From origin
-assert traverse_bf([["a", "b"], ["c", "d"]], 0, 0) == ["a", "b", "c", "d"]
-assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 0, 0) == [
+assert traverse_bf(
+    [
+        ["a", "b"],
+        ["c", "d"],
+    ],
+    (0, 0),
+) == ["a", "b", "c", "d"]
+
+assert traverse_bf(
+    [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+        ["g", "h", "i"],
+    ],
+    (0, 0),
+) == [
     "a",
     "b",
     "d",
@@ -63,6 +87,26 @@ assert traverse_bf([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 0, 0) ==
     "h",
     "i",
 ]
+
 assert traverse_bf(
-    [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"], ["j", "k", "l"]], 0, 0
-) == ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"]
+    [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+        ["g", "h", "i"],
+        ["j", "k", "l"],
+    ],
+    (0, 0),
+) == [
+    "a",
+    "b",
+    "d",
+    "c",
+    "e",
+    "g",
+    "f",
+    "h",
+    "j",
+    "i",
+    "k",
+    "l",
+]

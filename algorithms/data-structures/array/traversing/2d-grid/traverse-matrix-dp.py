@@ -1,7 +1,10 @@
 # %%
 
 
-def traverse_df(matrix: list[list], start_row: int, start_col: int):
+def traverse_df(
+    matrix: list[list],
+    start: tuple[int, int],
+):
     """
     Exhaust each direction first before trying the other
     """
@@ -28,10 +31,17 @@ def traverse_df(matrix: list[list], start_row: int, start_col: int):
     len_cols = len(matrix[0])
     visited = set()
     acc = []
-    return traverse(start_row, start_col)
+    return traverse(start[0], start[1])
 
 
-assert traverse_df([["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]], 1, 1) == [
+assert traverse_df(
+    [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+        ["g", "h", "i"],
+    ],
+    (1, 1),
+) == [
     "e",
     "d",
     "a",

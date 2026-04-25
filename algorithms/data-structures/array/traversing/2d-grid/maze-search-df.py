@@ -10,7 +10,9 @@
 
 
 def search_maze_dfs_return_bool(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> bool:
     def search(row, col):
         if (
@@ -78,7 +80,9 @@ assert (
 
 # %%
 def search_maze_dfs_return_length(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> int:
     def search(row, col):
         if (
@@ -116,14 +120,26 @@ def search_maze_dfs_return_length(
 
 assert (
     search_maze_dfs_return_length(
-        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     == 8
 )
 
 assert (
     search_maze_dfs_return_length(
-        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     == -1
 )
@@ -131,7 +147,9 @@ assert (
 
 # %%
 def search_maze_dfs_backtracking(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> int:
     def search(row, col):
         if (
@@ -170,14 +188,26 @@ def search_maze_dfs_backtracking(
 
 assert (
     search_maze_dfs_backtracking(
-        [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     == 2
 )
 
 assert (
     search_maze_dfs_backtracking(
-        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     == -1
 )
@@ -185,7 +215,9 @@ assert (
 
 # %%
 def search_maze_dfs_return_path(
-    maze: list[list], start: tuple[int, int], goal: tuple[int, int]
+    maze: list[list],
+    start: tuple[int, int],
+    goal: tuple[int, int],
 ) -> list[tuple[int, int]]:
     def search(row, col):
         if (
@@ -222,12 +254,34 @@ def search_maze_dfs_return_path(
 
 
 assert search_maze_dfs_return_path(
-    [[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]], (0, 0), (2, 0)
-) == [(0, 0), (0, 1), (0, 2), (0, 3), (1, 3), (2, 3), (2, 2), (2, 1), (2, 0)]
+    [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ],
+    (0, 0),
+    (2, 0),
+) == [
+    (0, 0),
+    (0, 1),
+    (0, 2),
+    (0, 3),
+    (1, 3),
+    (2, 3),
+    (2, 2),
+    (2, 1),
+    (2, 0),
+]
 
 assert (
     search_maze_dfs_return_path(
-        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     == []
 )
