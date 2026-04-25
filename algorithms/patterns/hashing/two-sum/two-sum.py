@@ -1,11 +1,8 @@
 # https://leetcode.com/problems/two-sum/ - 68k likes (Apr/2026)
-# %%
-from typing import List
-
 
 # %%
 # This variation returns a boolean whether at least one pair matches the target sum
-def two_sum_brute_force(data: List[int], target_sum: int) -> bool:
+def two_sum_brute_force(data: list[int], target_sum: int) -> bool:
     # O(n^2)
     n = len(data)
     for i in range(n):
@@ -17,7 +14,7 @@ def two_sum_brute_force(data: List[int], target_sum: int) -> bool:
     return False
 
 
-def two_sum_from_both_sides(data: List[int], target_sum: int) -> bool:
+def two_sum_from_both_sides(data: list[int], target_sum: int) -> bool:
     # This assumes that the list is sorted
     # O(n)
     low = 0
@@ -34,7 +31,7 @@ def two_sum_from_both_sides(data: List[int], target_sum: int) -> bool:
     return False
 
 
-def two_sum_has_been_seen(data: List[int], target_sum: int) -> bool:
+def two_sum_has_been_seen(data: list[int], target_sum: int) -> bool:
     # O(n)
     seen_numbers = set()
     for el in data:

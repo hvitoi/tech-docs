@@ -1,9 +1,8 @@
 # https://leetcode.com/problems/trapping-rain-water/ - 36k likes (Apr/2026)
 # %%
-from typing import List
 
 
-def trap(bars: List[int]) -> int:
+def trap(bars: list[int]) -> int:
     trapped_water = 0
     for water_level in range(1, max(bars) + 1):
         bars_above_height = [bar >= water_level for bar in bars]
