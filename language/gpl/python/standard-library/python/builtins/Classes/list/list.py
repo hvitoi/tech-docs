@@ -47,7 +47,6 @@ my_list[3] = "d"  # throws! This index does not exist, should be created first
 2 * [[]]  # [[], []] -- it's a reference to the same list!
 [[] for _ in range(2)]  # use this instead
 
-
 # %%
 # list unpacking
 l1 = ["a", "b"]

@@ -2,7 +2,9 @@
 
 > An algorithmic paradigm that follows the problem solving approach of making the locally optimal choice at each stage with the hope of finding a global optimum.
 
-This may not apply to all cases!
+A greedy algorithm makes the locally best choice at each step and never reconsiders. It commits to a decision and moves on — no undo, no exploration of alternatives.
+
+It contrast with backtracking, that tries every possible combination
 
 ## Example
 
