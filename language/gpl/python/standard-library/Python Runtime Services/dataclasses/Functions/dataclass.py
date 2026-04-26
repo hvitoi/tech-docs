@@ -12,6 +12,9 @@ class Point:
     # force it to be passed as a kw arg (not positional)
     z: int | None = field(default=None, kw_only=True)
 
+    # my_list = []  # forbidden! (dataclass explicitly forbids mutable defaults)
+    my_list: list = field(default_factory=list)  # correct way to instantiate lists
+
 
 p1 = Point(1, 2)
 p2 = Point(1, 2)

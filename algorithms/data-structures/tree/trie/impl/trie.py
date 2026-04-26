@@ -1,34 +1,37 @@
 # %%
+from __future__ import annotations
+
+from dataclasses import dataclass
 
 
-class TrieNode:
-    def __init__(self):
-        # there is no need to store the "letter" of the node, because it's already implicit in the child key of the upper node
-        self.children = {}
-        self.end_of_word = False
+@dataclass
+class Node:
+    # there is no need to store the "letter" of the node, because it's already implicit in the child key of the upper node
+    children: dict[str, Node] = {}
+    end_of_word: bool = False
 
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode()
+        self.root = Node()
 
     def insert(self, word: str):
         node = self.root
 
-        for c in word:
-            if c not in node.children:
-                node.children[c] = TrieNode()
-            node = node.children[c]
+        for letter in word:
+            if letter not in node.children:
+                node.children[letter] = Node()
+            node = node.children[letter]
 
         node.end_of_word = True
 
     def search(self, word: str):
         node = self.root
 
-        for c in word:
-            if not node.children[c]:
+        for letter in word:
+            if not node.children[letter]:
                 return False
-            node = node.children[c]
+            node = node.children[letter]
 
         return node.end_of_word
 
