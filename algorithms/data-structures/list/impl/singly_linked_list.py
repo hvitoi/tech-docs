@@ -80,10 +80,10 @@ class SinglyLinkedList[T]:
 
     def to_list(self) -> list[T]:
         acc = []
-        it = self.head
-        while it:
-            acc.append(it.val)
-            it = it.next
+        curr = self.head
+        while curr:
+            acc.append(curr.val)
+            curr = curr.next
         return acc
 
     def to_list_recursively(self) -> list[T]:

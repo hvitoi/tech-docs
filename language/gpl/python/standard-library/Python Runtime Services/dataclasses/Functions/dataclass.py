@@ -1,5 +1,5 @@
 # %%
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 # It's designed to make it easier to create classes that are mainly used to store data
@@ -8,6 +8,9 @@ from dataclasses import dataclass
 class Point:
     x: int
     y: int
+
+    # force it to be passed as a kw arg (not positional)
+    z: int | None = field(default=None, kw_only=True)
 
 
 p1 = Point(1, 2)

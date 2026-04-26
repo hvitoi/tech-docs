@@ -2,7 +2,7 @@
 
 type Vertex = int
 type VertexEdges = set[Vertex]
-type Graph = dict[Vertex, VertexEdges]  # Adjacent List
+type Graph = dict[Vertex, VertexEdges]  # Adjacency List
 
 
 # %%

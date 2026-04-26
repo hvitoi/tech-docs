@@ -1,18 +1,20 @@
 # %%
-from typing import Self
+from __future__ import annotations  # Allows self referencing in a class
+
+from dataclasses import dataclass
 
 
-class Node:
-    def __init__(self, data: object, *, next: Self = None, prev: Self = None):
-        self.data = data
-        self.next = next
-        self.prev = prev
+@dataclass
+class Node[T]:
+    val: T
+    next: Node | None = None
+    prev: Node | None = None
 
 
-class DoublyLinkedList:
-    def __init__(self, elements: list = None):
-        self.head: Node = None
-        self.tail: Node = None
+class DoublyLinkedList[T]:
+    def __init__(self, elements: list[T] | None = None):
+        self.head: Node | None = None
+        self.tail: Node | None = None
 
         if elements is None:
             elements = []
@@ -20,8 +22,8 @@ class DoublyLinkedList:
         for el in elements:
             self.push_right(el)
 
-    def push_left(self, data: object) -> None:
-        new_node = Node(data)
+    def push_left(self, val: T) -> None:
+        new_node = Node(val)
 
         if not self.head:
             self.head = new_node
@@ -32,23 +34,23 @@ class DoublyLinkedList:
         new_node.next = self.head
         self.head = new_node
 
-    def pop_left(self) -> object:
+    def pop_left(self) -> T:
         if not self.head:
-            return
+            raise IndexError("empty list")
 
         if not self.head.next:
             popped = self.head
             self.head = None
             self.tail = None
-            return popped.data
+            return popped.val
 
         popped = self.head
         self.head = popped.next
         self.head.prev = None
-        return popped.data
+        return popped.val
 
-    def push_right(self, data: object) -> None:
-        new_node = Node(data)
+    def push_right(self, val: T) -> None:
+        new_node = Node(val)
 
         if not self.tail:
             self.tail = new_node
@@ -59,35 +61,35 @@ class DoublyLinkedList:
         new_node.prev = self.tail
         self.tail = new_node
 
-    def pop_right(self) -> object:
+    def pop_right(self) -> T:
         if not self.tail:
-            return
+            raise IndexError("empty list")
 
         if not self.tail.prev:
             popped = self.tail
             self.head = None
             self.tail = None
-            return popped.data
+            return popped.val
 
         popped = self.tail
         self.tail = popped.prev
         self.tail.next = None
-        return popped.data
+        return popped.val
 
-    def to_list(self) -> list:
+    def to_list(self) -> list[T]:
         acc = []
-        itr = self.head
-        while itr:
-            acc.append(itr.data)
-            itr = itr.next
+        curr = self.head
+        while curr:
+            acc.append(curr.val)
+            curr = curr.next
         return acc
 
     def to_list_inverse(self) -> list:
         acc = []
-        itr = self.tail
-        while itr:
-            acc.append(itr.data)
-            itr = itr.prev
+        curr = self.tail
+        while curr:
+            acc.append(curr.val)
+            curr = curr.prev
         return acc
 
 
@@ -106,7 +108,12 @@ assert ll.to_list() == ["a"]
 assert ll.pop_left() == "a"
 assert ll.to_list() == []
 
-assert ll.pop_left() is None
+try:
+    ll.pop_left()
+    assert False, "expected IndexError"
+except IndexError:
+    pass
+assert ll.to_list() == []
 assert ll.to_list() == []
 
 ##
@@ -123,7 +130,11 @@ assert ll.to_list() == ["a"]
 assert ll.pop_right() == "a"
 assert ll.to_list() == []
 
-assert ll.pop_right() is None
+try:
+    ll.pop_right()
+    assert False, "expected IndexError"
+except IndexError:
+    pass
 assert ll.to_list() == []
 
 ##
