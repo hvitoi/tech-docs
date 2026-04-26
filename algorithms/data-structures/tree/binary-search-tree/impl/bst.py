@@ -1,29 +1,32 @@
 # %%
-import collections
+from __future__ import annotations
+
+from collections import deque
+from dataclasses import dataclass
 
 
+@dataclass
 class Node:
-    def __init__(self, data, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
+    num: int
+    left: Node | None = None
+    right: Node | None = None
 
 
 class BST:
-    def __init__(self, elements: list | None = None):
-        self.root = self._deserialize(elements)
+    def __init__(self, elements: list[int | None] | None = None):
+        self.root: Node | None = self._deserialize(elements)
 
-    def _deserialize(self, elements: list) -> Node:
+    def _deserialize(self, elements: list[int | None] | None) -> Node | None:
         """
         Create a BST out of a serialized BST as a list. E.g., [3, 9, 20, None, None, 15, 7]
-        The serialized format uses BFS, therefore this algorithm uses Bread-First Traversal to deserialize it
+        The serialized format uses Level-order, therefore this algorithm uses Bread-First Traversal to deserialize it
         """
         if not elements:
-            return
+            return None
 
-        remaining_elements = collections.deque(elements)
+        remaining_elements = deque(elements)
         root = Node(remaining_elements.popleft())
-        nodes = collections.deque([root])
+        nodes = deque([root])
 
         while remaining_elements:
             node = nodes.popleft()
@@ -43,22 +46,23 @@ class BST:
 
     def serialize(self) -> list[int | None]:
         """
-        Serialize the BST into a list created via Bread-first Traversal
+        Serialize the BST into a list with Level-order
         """
         acc = []
 
-        nodes = collections.deque([self.root]) if self.root else collections.deque()
-        while nodes:
-            node = nodes.popleft()
+        queue: deque[Node | None] = deque([self.root]) if self.root else deque()
+        while queue:
+            node = queue.popleft()
 
             # It's necessary to do this verification here because the node (left or right) inserted into the nodes queue may be None
             if not node:
                 acc.append(None)
                 continue
 
-            acc.append(node.data)
-            nodes.append(node.left)
-            nodes.append(node.right)
+            acc.append(node.num)
+
+            queue.append(node.left)
+            queue.append(node.right)
 
         # trim right Nones
         while acc[-1] is None:
@@ -66,32 +70,32 @@ class BST:
 
         return acc
 
-    def insert(self, value: int) -> None:
+    def insert(self, num: int) -> None:
         """
         Insert an element to the BST
         """
 
-        def _insert(node: Node, value: int) -> None:
-            if value == node.data:
+        def _insert(node: Node, num: int) -> None:
+            if num == node.num:
                 raise Exception("Duplicated value")
 
-            if value < node.data:
+            if num < node.num:
                 if node.left:
-                    _insert(node.left, value)
+                    _insert(node.left, num)
                 else:
-                    node.left = Node(value)
+                    node.left = Node(num)
 
-            if value > node.data:
+            if num > node.num:
                 if node.right:
-                    _insert(node.right, value)
+                    _insert(node.right, num)
                 else:
-                    node.right = Node(value)
+                    node.right = Node(num)
 
         if not self.root:
-            self.root = Node(value)
+            self.root = Node(num)
             return
 
-        _insert(self.root, value)
+        _insert(self.root, num)
 
     def search(self, target: int) -> bool:
         """
@@ -99,58 +103,58 @@ class BST:
         """
 
         def search_(node: Node | None, target: int) -> bool:
-            """Depth-First Pre-Order Traversal"""
+            """Pre-Order (depth-First) Traversal"""
             if not node:
                 return False
 
-            if target == node.data:
+            if target == node.num:
                 return True
 
-            if target < node.data:
+            if target < node.num:
                 return search_(node.left, target)
 
-            if target > node.data:
+            if target > node.num:
                 return search_(node.right, target)
 
             return False
 
         return search_(self.root, target)
 
-    def to_list_df(self) -> list[int]:
+    def to_list_in_order(self) -> list[int]:
         """
-        Depth-First In-Order Traversal
+        In-Order Traversal (depth-first)
         """
 
-        def dfs(node: Node | None) -> list[int]:
+        def recur(node: Node | None) -> list[int]:
             acc = []
 
             if not node:
                 return acc
 
-            acc.extend(dfs(node.left))
-            acc.append(node.data)  # in-order
-            acc.extend(dfs(node.right))
+            acc.extend(recur(node.left))
+            acc.append(node.num)  # in-order
+            acc.extend(recur(node.right))
 
             return acc
 
-        return dfs(self.root)
+        return recur(self.root)
 
-    def to_list_bf(self) -> list[int]:
+    def to_list_level_order(self) -> list[int]:
         """
-        Breadth-First Traversal
+        Level-Order Traversal (Breadth-First)
         """
 
-        def bfs(root: Node | None) -> list[int]:
+        def recur(root: Node | None) -> list[int]:
             acc = []
 
             if not root:
                 return acc
 
-            nodes = collections.deque([root])
+            nodes = deque([root])
 
             while nodes:
                 node = nodes.popleft()
-                acc.append(node.data)
+                acc.append(node.num)
 
                 if node.left:
                     nodes.append(node.left)
@@ -159,14 +163,14 @@ class BST:
 
             return acc
 
-        return bfs(self.root)
+        return recur(self.root)
 
     def height_df(self, target: int | None = None) -> int:
         """
-        Height of a node/tree using DFS
+        Height of a node/tree
         """
 
-        def height_total(node) -> int:
+        def height_total(node: Node | None) -> int:
             if not node:
                 return -1
 
@@ -175,11 +179,11 @@ class BST:
                 1 + height_total(node.right),
             )
 
-        def height_for_element(node, target) -> int:
+        def height_for_element(node: Node | None, target: int) -> int:
             if not node:
                 return -1
 
-            if node.data == target:
+            if node.num == target:
                 return 0
 
             # search left
@@ -202,15 +206,15 @@ class BST:
 
     def height_bf(self, target: int | None = None) -> int:
         """
-        Height of a node/tree using BFS
+        Height of a node/tree
         """
 
-        def height_total(root) -> int:
+        def height_total(root: Node | None) -> int:
             if not root:
                 return -1
 
             # the "nodes" queue stores the height of each node
-            nodes = collections.deque([(root, 0)])
+            nodes: deque[tuple[Node, int]] = deque([(root, 0)])
             while nodes:
                 node, level = nodes.popleft()
 
@@ -223,15 +227,15 @@ class BST:
             # the level of the last node added via BFS
             return level
 
-        def height_for_element(root, target) -> int:
+        def height_for_element(root: Node | None, target: int) -> int:
             if not root:
                 return -1
 
-            nodes = collections.deque([(root, 0)])
+            nodes = deque([(root, 0)])
             while nodes:
                 node, level = nodes.popleft()
 
-                if node.data == target:
+                if node.num == target:
                     return level
 
                 if node.left:
@@ -267,11 +271,11 @@ assert bst.search(99) is False
 
 # To List (DF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-assert bst.to_list_df() == [10, 20, 30, 40, 50, 60, 70, 80]
+assert bst.to_list_in_order() == [10, 20, 30, 40, 50, 60, 70, 80]
 
 # To List (BF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
-assert bst.to_list_bf() == [50, 30, 70, 20, 40, 60, 80, 10]
+assert bst.to_list_level_order() == [50, 30, 70, 20, 40, 60, 80, 10]
 
 # Height (DF)
 bst = BST([50, 30, 70, 20, 40, 60, 80, 10])
