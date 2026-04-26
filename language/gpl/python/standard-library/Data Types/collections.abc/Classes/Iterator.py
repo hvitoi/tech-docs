@@ -1,7 +1,7 @@
 # %%
 from collections.abc import Iterable, Iterator
 
-# It's am object that produces items one at a time
+# It's an object that produces items one at a time
 # Iterators are stateful, once exhausted, they cannot be reused
 # It must implement the methods __iter__() and __next__()
 

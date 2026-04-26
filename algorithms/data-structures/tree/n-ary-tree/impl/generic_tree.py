@@ -1,7 +1,8 @@
 # %%
 from __future__ import annotations
 
-import collections
+from collections import deque
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 
 
@@ -11,20 +12,24 @@ class Node[T]:
     children: list[Node[T]] = field(default_factory=list)
 
 
-def traverse_bf(node: Node):
-    queue = collections.deque()
-    queue.append(node)
-
+def traverse_level_order[T](node: Node[T]) -> Iterator[T]:
+    """
+    Performs a Level-order (breath-first) traversal
+    """
+    queue = deque([node])
     while queue:
-        node = queue.popleft()
-        print(node.data)
-        queue.extend(node.children)
+        curr = queue.popleft()
+        yield curr.data
+        queue.extend(curr.children)
 
 
-def traverse_df(node: Node):
-    print(node.data)
-    for child_node in node.children:
-        traverse_df(child_node)
+def traverse_pre_order[T](node: Node[T]) -> Iterator[T]:
+    """
+    Performs a Pre-order (depth-first) traversal
+    """
+    yield node.data
+    for child in node.children:
+        yield from traverse_pre_order(child)
 
 
 root = Node("a")
@@ -37,6 +42,6 @@ root.children[1].children.append(Node("f"))
 root.children[1].children.append(Node("g"))
 root.children[2].children.append(Node("h"))
 
-traverse_bf(root)
-print("---")
-traverse_df(root)
+
+print(list(traverse_level_order(root)))
+print(list(traverse_pre_order(root)))

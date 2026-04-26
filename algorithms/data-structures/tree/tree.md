@@ -14,3 +14,13 @@
 - **Child**: downstream node of a parent node
 - **Leaf**: nodes with no children
 - **Sibling**: nodes in the same level in the tree
+
+## Traversal
+
+- DFS variants
+  - **Pre-order**: `node -> left -> right` (Usually the most common traversal for n-ary-trees)
+  - **In-order**: `left -> node -> right` (Especially useful for BST, to yield in ascending order)
+  - **Post-order**: `left -> right -> node`
+
+- BFS variants
+  - **Level-order**: level by level, left to right
