@@ -8,9 +8,9 @@ class MaxHeap:
 
     def _heapify(self) -> None:
         """
-        O(n*log(n))
+        O(n)
            O(n) due to the half array iteration
-           O(log(n)) due to the bubble until (possibly) the end of the tree
+           O(n) due to the sifting down of the elements. It might seem like it's O(log(n)) because every node needs to travel at most the height of the tree, but few elements actually need to travel all the height, see https://stackoverflow.com/questions/9755721/how-can-building-a-heap-be-on-time-complexity
         """
         # We start from the middle of the array and go backwards because the last level of the tree (the rest of the array) will be arranged anyway by the bubbles performed on the upper levels
         mid_index = len(self.heap) // 2
