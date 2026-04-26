@@ -2,8 +2,8 @@
 
 
 class MaxHeap:
-    def __init__(self, numbers: list | None = None):
-        self.heap: list = numbers if numbers else []
+    def __init__(self, numbers: list[int] | None = None):
+        self.heap: list[int] = numbers if numbers else []
         self.__heapify()
 
     def __parent(self, i: int) -> int | None:
@@ -27,7 +27,7 @@ class MaxHeap:
         children = list(filter(lambda el: el, [left_child, right_child]))
         return max(children, key=lambda i: self.heap[i]) if children else None
 
-    def __bubble_downwards(self, i):
+    def __bubble_downwards(self, i: int):
         """
         O(log(n))
         """
@@ -36,7 +36,7 @@ class MaxHeap:
             self.heap[child], self.heap[i] = self.heap[i], self.heap[child]
             self.__bubble_downwards(child)
 
-    def __bubble_upwards(self, i):
+    def __bubble_upwards(self, i: int):
         """
         O(log(n))
         """
