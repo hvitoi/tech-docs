@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Node[T]:
-    data: T
+    val: T
     next: Node[T] | None = None
 
 
@@ -23,11 +23,11 @@ class SinglyLinkedList[T]:
         for el in reversed(elements):
             self.push_left(el)
 
-    def push_left(self, data: T) -> None:
+    def push_left(self, val: T) -> None:
         """
         O(1)
         """
-        new_node = Node(data, self.head)  # new head
+        new_node = Node(val, self.head)  # new head
         self.head = new_node
 
     def pop_left(self) -> T:
@@ -39,13 +39,13 @@ class SinglyLinkedList[T]:
 
         popped = self.head
         self.head = popped.next
-        return popped.data
+        return popped.val
 
-    def push_right(self, data: T) -> None:
+    def push_right(self, val: T) -> None:
         """
         O(n)
         """
-        new_node = Node(data)  # new tail
+        new_node = Node(val)  # new tail
 
         if not self.head:
             self.head = new_node
@@ -67,7 +67,7 @@ class SinglyLinkedList[T]:
         if not self.head.next:
             popped = self.head
             self.head = None
-            return popped.data
+            return popped.val
 
         it = self.head
         while it.next and it.next.next:
@@ -76,13 +76,13 @@ class SinglyLinkedList[T]:
         assert it.next is not None
         popped = it.next
         it.next = None
-        return popped.data
+        return popped.val
 
     def to_list(self) -> list[T]:
         acc = []
         it = self.head
         while it:
-            acc.append(it.data)
+            acc.append(it.val)
             it = it.next
         return acc
 
@@ -90,7 +90,7 @@ class SinglyLinkedList[T]:
         def to_list(node: Node[T] | None):
             if not node:
                 return []
-            return [node.data] + to_list(node.next)
+            return [node.val] + to_list(node.next)
 
         return to_list(self.head)
 
