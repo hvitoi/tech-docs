@@ -21,6 +21,8 @@
 
 - A node has **data** and **next**
 - The Linked List has a **head** node
+- The singly LinkedList can also store the **tail**
+  - This way, new elements are enqueued (appended) to tail, and dequeued (popped) from head
 
 ## Doubly Linked List
 
