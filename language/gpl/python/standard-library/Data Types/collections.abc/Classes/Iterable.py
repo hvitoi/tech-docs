@@ -1,5 +1,6 @@
 # %%
-from collections.abc import Iterable
+from collections.abc import Iterable  # Python 3.9+
+# from typing import Iterable  # deprecated!
 
 
 # It's an Object that can be iterated over

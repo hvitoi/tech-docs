@@ -1,5 +1,6 @@
 # %%
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterable, Iterator  # Python 3.9+
+# from typing import Iterator  # deprecated!
 
 # It's an object that produces items one at a time
 # Iterators are stateful, once exhausted, they cannot be reused
