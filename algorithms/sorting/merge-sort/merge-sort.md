@@ -4,8 +4,9 @@
 
 - Divide and conquer!
 
-1. Array is divided in two halves and each is sorted
-1. Two sorted halves are concatenated in the correct order
+1. Collection is divided in two halves
+2. Each half is sorted (subproblem)
+3. The sorted halves are merged together
 
 ## Complexity
 

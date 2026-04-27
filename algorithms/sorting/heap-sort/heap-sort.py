@@ -3,8 +3,11 @@ import heapq
 
 
 def heap_sort(col: list[int]) -> list[int]:
-    heap = list(col)  # O(n) copy elements into a new list (leave original untouched)
-    heapq.heapify(heap)  # O(n) - create min heap
+    # O(n) copy elements into a new list (leave original untouched)
+    heap = list(col)
+
+    # O(n) - create min heap (see binary-heap.py for explanations why)
+    heapq.heapify(heap)
 
     # O(n*log(n)): heap pop O(log(n)) for every item O(n)
     return [heapq.heappop(heap) for _ in range(len(heap))]
