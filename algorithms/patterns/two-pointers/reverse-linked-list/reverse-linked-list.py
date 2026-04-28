@@ -35,16 +35,21 @@ def reverse_iterative(head: Node | None) -> Node | None:
     Time:  O(n)
     Space: O(1)
     """
+    curr: Node | None = head
     prev: Node | None = None
-    curr = head
 
     while curr:
-        nxt = curr.next  # stash before we overwrite
-        curr.next = prev  # flip the link
-        prev = curr  # advance window
+        # stash before overwrite
+        nxt = curr.next
+
+        # flip the link
+        curr.next = prev
+
+        # advance window
+        prev = curr
         curr = nxt
 
-    return prev  # prev is the new head once curr falls off the end
+    return prev  # prev is the new head once curr "falls off" the end
 
 
 # %%
