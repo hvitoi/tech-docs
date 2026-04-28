@@ -16,7 +16,10 @@ def _merge_sorted_col(left: list[int], right: list[int]) -> list[int]:
     """
     O(n + m) time; O(n + m) space
     This is a "two pointers" algorithm pattern
-    This algorithm related the problems "merge-sorted-array" (with arrays) or "merge-two-sorted-lists" (with linked lists)
+    This algorithm related the problems:
+        - "merge-sorted-array" (with arrays)
+        - "merge-two-sorted-lists" (with linked lists, so a difference implementations)
+        - "merge-k-sorted-lists": same idea, but solved with a heap instead
     """
     merged: list[int] = []
     i = j = 0
@@ -27,8 +30,8 @@ def _merge_sorted_col(left: list[int], right: list[int]) -> list[int]:
         else:
             merged.append(right[j])
             j += 1
-    merged.extend(left[i:])
-    merged.extend(right[j:])
+    merged.extend(left[i:])  # drain the rest
+    merged.extend(right[j:])  # drain the rest
     return merged
 
 
