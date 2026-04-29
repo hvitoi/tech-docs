@@ -1,5 +1,6 @@
 # %%
 import asyncio
+import inspect
 import os
 from concurrent.futures import Executor, ThreadPoolExecutor
 
@@ -91,12 +92,18 @@ def merge_sorted(left: list[int], right: list[int]) -> list[int]:
     return merged
 
 
-for fn in {merge_sort, merge_sort_parallel_asyncio}:
-    assert fn([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
-    assert fn([3, 1, 4, 2]) == [1, 2, 3, 4]
-    assert fn([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-    assert fn([2, 1, 2, 1, 2]) == [1, 1, 2, 2, 2]
-    assert fn([]) == []
-    assert fn([1]) == [1]
-    assert fn([1, 1]) == [1, 1]
-    assert fn(list(range(1000, 0, -1))) == list(range(1, 1001))
+for fn in [merge_sort, merge_sort_parallel_asyncio, merge_sort_parallel_threads]:
+    run = (
+        (lambda *args, **kwargs: asyncio.run(fn(*args, **kwargs)))
+        if inspect.iscoroutinefunction(fn)
+        else fn
+    )
+
+    assert run([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
+    assert run([3, 1, 4, 2]) == [1, 2, 3, 4]
+    assert run([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert run([2, 1, 2, 1, 2]) == [1, 1, 2, 2, 2]
+    assert run([]) == []
+    assert run([1]) == [1]
+    assert run([1, 1]) == [1, 1]
+    assert run(list(range(1000, 0, -1))) == list(range(1, 1001))
