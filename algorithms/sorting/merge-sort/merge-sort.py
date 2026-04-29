@@ -2,7 +2,7 @@
 import asyncio
 import inspect
 import os
-from concurrent.futures import Executor, ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
 
 def merge_sort(col: list[int]) -> list[int]:
@@ -35,35 +35,33 @@ async def merge_sort_parallel_asyncio(col: list[int]) -> list[int]:
     return merge_sorted(left, right)
 
 
-def merge_sort_parallel_threads(
-    col: list[int],
-    pool: Executor | None = None,
-    depth: int = 0,
-) -> list[int]:
+def merge_sort_parallel_threads(col: list[int]) -> list[int]:
     """Parallel execution with the GIL removal (Python 3.13+ built with --disable-gil)
 
     We fork only down to a depth that saturates available cores; deeper recursion
     stays sequential to avoid thread-scheduling overhead dominating the work.
-
-    Top-level callers pass just `col`; the first call creates the pool and the
-    `pool`/`depth` parameters are then threaded through the recursion.
     """
-    if pool is None:
-        workers = os.cpu_count() or 1
-        depth = (workers - 1).bit_length()  # ceil(log2(workers))
-        with ThreadPoolExecutor(max_workers=workers) as pool:
-            return merge_sort_parallel_threads(col, pool, depth)
 
-    if depth == 0:
-        return merge_sort(col)
+    def _merge_sort_parallel_threads(col: list[int], depth: int) -> list[int]:
+        if depth == 0:
+            return merge_sort(col)
 
-    mid = len(col) // 2
-    # Fork the left half to the pool; sort the right half in this thread —
-    # the standard fork-join trick that keeps the caller busy instead of idling.
-    future = pool.submit(merge_sort_parallel_threads, col[:mid], pool, depth - 1)
-    right = merge_sort_parallel_threads(col[mid:], pool, depth - 1)
-    left = future.result()
-    return merge_sorted(left, right)
+        mid = len(col) // 2
+
+        # execute left in a new thread
+        left = pool.submit(_merge_sort_parallel_threads, col[:mid], depth - 1)
+
+        # execute right in the same thread
+        right = _merge_sort_parallel_threads(col[mid:], depth - 1)
+
+        # merge results
+        return merge_sorted(left.result(), right)
+
+    workers = os.cpu_count() or 1
+    max_depth = (workers - 1).bit_length()  # ceil(log2(workers))
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        return _merge_sort_parallel_threads(col, max_depth)
 
 
 # ----
@@ -94,9 +92,9 @@ def merge_sorted(left: list[int], right: list[int]) -> list[int]:
 
 for fn in [merge_sort, merge_sort_parallel_asyncio, merge_sort_parallel_threads]:
     run = (
-        (lambda *args, **kwargs: asyncio.run(fn(*args, **kwargs)))
+        (lambda *args, **kwargs: asyncio.run(fn(*args, **kwargs)))  # for coroutines
         if inspect.iscoroutinefunction(fn)
-        else fn
+        else fn  # for conventional functions (includes the one with threads)
     )
 
     assert run([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
