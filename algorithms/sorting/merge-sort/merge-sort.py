@@ -1,18 +1,38 @@
 # %%
+import asyncio
 
 
 def merge_sort(col: list[int]) -> list[int]:
-    """O(n log n) time; O(n) space; stable"""
+    """O(n log n) time; O(n) space; stable
+    The recursive calls share no state, they can run in different threads or machines
+    The merging of the two sorted collections need to be synchronized in the same machine
+    This a classic fork-join or map-reduce problem
+    """
     if len(col) <= 1:
         return col
 
     mid = len(col) // 2
     left = merge_sort(col[:mid])
     right = merge_sort(col[mid:])
-    return _merge_sorted_col(left, right)
+    return _merge_sorted_cols(left, right)
 
 
-def _merge_sorted_col(left: list[int], right: list[int]) -> list[int]:
+async def merge_sort_async(col: list[int]) -> list[int]:
+    """Naive solution for concurrently sorting. Asyncio is I/O bound, and partitioning is purely CPU bound"""
+    if len(col) <= 1:
+        return col
+
+    mid = len(col) // 2
+    # asyncio.gather schedules concurrently — but neither task ever awaits I/O,
+    # so they run sequentially on the same thread anyway.
+    left, right = await asyncio.gather(
+        merge_sort_async(col[:mid]),
+        merge_sort_async(col[mid:]),
+    )
+    return _merge_sorted_cols(left, right)
+
+
+def _merge_sorted_cols(left: list[int], right: list[int]) -> list[int]:
     """
     O(n + m) time; O(n + m) space
     This is a "two pointers" algorithm pattern

@@ -1,24 +1,32 @@
 import asyncio
 
 
-async def task(name, delay):
-    print(f"{name} started")
+async def do_something(name, delay):
+    """
+    When invoked, it returns a coroutine! No actual execution, execution is performed only when it is awaited
+    """
+    print(f"Coroutine {name} started")
     await asyncio.sleep(delay)
-    print(f"{name} finished")
+    print(f"Coroutine {name} finished")
+    return f"{name} result"
 
 
 async def main():
-    # The coroutines are started at this point! (the same wouldn't happen if you just created the 2 coros independently)
-    tasks = [
-        task("A", 4),
-        task("B", 3),
+    coroutines = [
+        do_something("A", 3),
+        do_something("B", 2),
     ]
-    coroutines = asyncio.gather(*tasks, return_exceptions=True)
 
-    await asyncio.sleep(10)  # the tasks are already running while this is sleeping
+    # The coroutines start at this point! (the same wouldn't happen if you just created the 2 coros independently)
+    tasks = asyncio.gather(*coroutines, return_exceptions=True)
+
+    # Other coroutines outside of the gather
+    await do_something("C", 1)
 
     # As the coros were already running in the background, here they will return instantly
-    await coroutines
+    results = await tasks
+    print(f"Final result: {results}")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

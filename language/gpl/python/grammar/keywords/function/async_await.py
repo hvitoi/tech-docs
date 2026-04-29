@@ -4,7 +4,7 @@ import asyncio
 # Async Functions (Coroutines)
 
 
-# "coroutine" is the object returned by calling an async function
+# "coroutine" is the object returned by invoking an async function
 # Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an await inside of it.
 
 
@@ -12,7 +12,7 @@ async def do_something(name, delay):
     print(f"Coroutine {name} started")
     await asyncio.sleep(delay)
     print(f"Coroutine {name} finished")
-    return "foo"
+    return f"{name} result"
 
 
 async def main():
@@ -21,7 +21,8 @@ async def main():
     # task = asyncio.create_task(coroutine)  # now it starts
 
     # Start the coroutine, "block" the program until it returns the result
-    print(await coroutine)
+    result = await coroutine
+    print(result)
 
 
 if __name__ == "__main__":

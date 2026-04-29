@@ -2,19 +2,20 @@
 import asyncio
 
 
-async def just_wait(delay):
-    print("Coroutine started")
+async def do_something(name, delay):
+    print(f"Coroutine {name} started")
     await asyncio.sleep(delay)
-    print("Coroutine finished")
+    print(f"Coroutine {name} finished")
+    return f"{name} result"
 
 
 async def main():
     # The coroutine is started right away. Even though it has not been awaited yet
-    coroutine = asyncio.create_task(just_wait(5))
+    task = asyncio.create_task(do_something("A", 5))
 
     await asyncio.sleep(10)
 
-    await coroutine
+    await task
 
 
 if __name__ == "__main__":
