@@ -11,7 +11,7 @@ class Node[T]:
 
 
 class LinkedList[T]:
-    def __init__(self, elements: list[T] | None = None):
+    def __init__(self, elements: list[T] | None = None) -> None:
         self.head: Node[T] | None = None
         if elements:
             for el in reversed(elements):
@@ -32,25 +32,25 @@ class LinkedList[T]:
 
 
 def merge(
-    col1: LinkedList[int],
-    col2: LinkedList[int],
+    l1: LinkedList[int],
+    l2: LinkedList[int],
 ) -> LinkedList[int]:
 
     merged: LinkedList[int] = LinkedList()
 
-    curr1: Node[int] | None = col1.head
-    curr2: Node[int] | None = col2.head
+    h1: Node[int] | None = l1.head
+    h2: Node[int] | None = l2.head
 
-    while curr1 or curr2:
-        el1 = curr1.data if curr1 is not None else float("inf")
-        el2 = curr2.data if curr2 is not None else float("inf")
+    while h1 or h2:
+        el1 = h1.data if h1 is not None else float("inf")
+        el2 = h2.data if h2 is not None else float("inf")
 
         if el1 <= el2:
             merged.add(el1)
-            curr1 = curr1.next
+            h1 = h1.next
         else:
             merged.add(el2)
-            curr2 = curr2.next
+            h2 = h2.next
 
     # reverse the Linked List (see "reverse-linked-list.py")
     curr: Node[int] | None = merged.head
@@ -70,15 +70,45 @@ def merge(
     return merged
 
 
-col1 = LinkedList([1, 2, 4])
-col2 = LinkedList([1, 3, 4])
-assert merge(col1, col2).to_list() == [1, 1, 2, 3, 4, 4]
+def merge_reuse_nodes(
+    l1: LinkedList[int],
+    l2: LinkedList[int],
+) -> LinkedList[int]:
+    """O(n + m) time, O(1) extra space — splices existing nodes.
+
+    Note: l1 and l2 are consumed; their nodes are now part of the result.
+    The original lists are destroyed/corrupted, their nodes have been spliced/rewired
+    """
+
+    dummy_head: Node[int] = Node(0)  # sentinel head, simplifies the first append
+    tail = dummy_head  # hold a tail pointer, and append to it, this way the list is already inverted
+    h1, h2 = l1.head, l2.head
+
+    while h1 and h2:
+        if h1.data <= h2.data:
+            tail.next = h1  # splice — reuse existing node
+            h1 = h1.next
+        else:
+            tail.next = h2
+            h2 = h2.next
+        tail = tail.next
+
+    tail.next = h1 or h2  # attach the remainder in one move
+
+    result: LinkedList[int] = LinkedList()
+    result.head = dummy_head.next  # drop the dummy head
+    return result
 
 
-col1 = LinkedList([])
-col2 = LinkedList([])
-assert merge(col1, col2).to_list() == []
+for fn in {merge, merge_reuse_nodes}:
+    col1 = LinkedList([1, 2, 4])
+    col2 = LinkedList([1, 3, 4])
+    assert fn(col1, col2).to_list() == [1, 1, 2, 3, 4, 4]
 
-col1 = LinkedList([])
-col2 = LinkedList([0])
-assert merge(col1, col2).to_list() == [0]
+    col1 = LinkedList([])
+    col2 = LinkedList([])
+    assert fn(col1, col2).to_list() == []
+
+    col1 = LinkedList([])
+    col2 = LinkedList([0])
+    assert fn(col1, col2).to_list() == [0]
