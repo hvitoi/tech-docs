@@ -58,9 +58,12 @@ with ProcessPoolExecutor() as executor:
 
 - Uses `async-await` syntax
 - Introduces `Coroutines`, which are lightweight "threads" managed by the python runtime (similar to java virtual threads)
+- Asyncio is single-threaded by design - it's NOT built on top of the "threading" module. Therefore it doesn't benefit from the GIL removal in python 3.13+
+
+- Memory per task: ~8 MB stack for a OS thread; ~few KB for coroutines
 - It's the preferred way to implement I/O-bound parallelism
-- The `threading` module is now mostly used for compatibility with libraries that are not async-aware.
-- Also the `concurrent.futures.ThreadPoolExecutor` is mostly "unused" in favor of asyncio. Errata: not anymore! With 3.13+ the GIL is removed so threads shine again
+  - For a web server holding 50k open WebSocket connections, or a scraper hitting 10k URLs, threads are not just slower — they don't fit.
+- The reason asyncio exists isn't to replace threads - it's to handle multiple concurrent I/O-bound tasks cheaply. It will still be relevant after GIl removal
 
 ## GIL removal (Python 3.13+)
 

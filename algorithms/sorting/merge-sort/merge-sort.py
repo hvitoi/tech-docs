@@ -1,5 +1,7 @@
 # %%
 import asyncio
+import os
+from concurrent.futures import Executor, ThreadPoolExecutor
 
 
 def merge_sort(col: list[int]) -> list[int]:
@@ -14,10 +16,10 @@ def merge_sort(col: list[int]) -> list[int]:
     mid = len(col) // 2
     left = merge_sort(col[:mid])
     right = merge_sort(col[mid:])
-    return _merge_sorted_cols(left, right)
+    return merge_sorted(left, right)
 
 
-async def merge_sort_async(col: list[int]) -> list[int]:
+async def merge_sort_parallel_asyncio(col: list[int]) -> list[int]:
     """Naive solution for concurrently sorting. Asyncio is I/O bound, and partitioning is purely CPU bound"""
     if len(col) <= 1:
         return col
@@ -26,13 +28,47 @@ async def merge_sort_async(col: list[int]) -> list[int]:
     # asyncio.gather schedules concurrently — but neither task ever awaits I/O,
     # so they run sequentially on the same thread anyway.
     left, right = await asyncio.gather(
-        merge_sort_async(col[:mid]),
-        merge_sort_async(col[mid:]),
+        merge_sort_parallel_asyncio(col[:mid]),
+        merge_sort_parallel_asyncio(col[mid:]),
     )
-    return _merge_sorted_cols(left, right)
+    return merge_sorted(left, right)
 
 
-def _merge_sorted_cols(left: list[int], right: list[int]) -> list[int]:
+def merge_sort_parallel_threads(
+    col: list[int],
+    pool: Executor | None = None,
+    depth: int = 0,
+) -> list[int]:
+    """Parallel execution with the GIL removal (Python 3.13+ built with --disable-gil)
+
+    We fork only down to a depth that saturates available cores; deeper recursion
+    stays sequential to avoid thread-scheduling overhead dominating the work.
+
+    Top-level callers pass just `col`; the first call creates the pool and the
+    `pool`/`depth` parameters are then threaded through the recursion.
+    """
+    if pool is None:
+        workers = os.cpu_count() or 1
+        depth = (workers - 1).bit_length()  # ceil(log2(workers))
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            return merge_sort_parallel_threads(col, pool, depth)
+
+    if depth == 0:
+        return merge_sort(col)
+
+    mid = len(col) // 2
+    # Fork the left half to the pool; sort the right half in this thread —
+    # the standard fork-join trick that keeps the caller busy instead of idling.
+    future = pool.submit(merge_sort_parallel_threads, col[:mid], pool, depth - 1)
+    right = merge_sort_parallel_threads(col[mid:], pool, depth - 1)
+    left = future.result()
+    return merge_sorted(left, right)
+
+
+# ----
+
+
+def merge_sorted(left: list[int], right: list[int]) -> list[int]:
     """
     O(n + m) time; O(n + m) space
     This is a "two pointers" algorithm pattern
@@ -55,10 +91,12 @@ def _merge_sorted_cols(left: list[int], right: list[int]) -> list[int]:
     return merged
 
 
-assert merge_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
-assert merge_sort([3, 1, 4, 2]) == [1, 2, 3, 4]
-assert merge_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-assert merge_sort([2, 1, 2, 1, 2]) == [1, 1, 2, 2, 2]
-assert merge_sort([]) == []
-assert merge_sort([1]) == [1]
-assert merge_sort([1, 1]) == [1, 1]
+for fn in {merge_sort, merge_sort_parallel_asyncio}:
+    assert fn([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
+    assert fn([3, 1, 4, 2]) == [1, 2, 3, 4]
+    assert fn([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert fn([2, 1, 2, 1, 2]) == [1, 1, 2, 2, 2]
+    assert fn([]) == []
+    assert fn([1]) == [1]
+    assert fn([1, 1]) == [1, 1]
+    assert fn(list(range(1000, 0, -1))) == list(range(1, 1001))
