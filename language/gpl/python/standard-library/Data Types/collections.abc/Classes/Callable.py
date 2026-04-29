@@ -1,6 +1,6 @@
 # %%
 # The __call__ method makes an object "callable"
-
+# Callable by itself means "any object you can call with ()" regardless of the number of args
 
 from collections.abc import Callable  # Python 3.9+
 # from typing import Callable # deprecated!
