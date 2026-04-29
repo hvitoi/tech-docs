@@ -9,13 +9,13 @@ import time
 #   FIRST_EXCEPTION          — return on first exception (or all done if none)
 
 
-def task(n):
+def do_something(n):
     time.sleep(n)
     return n
 
 
 with ThreadPoolExecutor(max_workers=3) as executor:
-    futures = [executor.submit(task, n) for n in (3, 1, 2)]
+    futures = [executor.submit(do_something, n) for n in (3, 1, 2)]
 
     done, not_done = wait(futures, return_when=FIRST_COMPLETED)
 

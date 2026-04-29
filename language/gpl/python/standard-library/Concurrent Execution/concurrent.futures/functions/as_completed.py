@@ -1,6 +1,6 @@
 # %%
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import random
+from random import random
 import time
 
 # as_completed() yields futures as they finish (any order).
@@ -8,13 +8,13 @@ import time
 # instead of waiting for all of them like .map() does.
 
 
-def task(n):
-    time.sleep(random.uniform(0.1, 1.0))
+def do_something(n):
+    time.sleep(random())
     return n
 
 
 with ThreadPoolExecutor(max_workers=4) as executor:
-    futures = {executor.submit(task, i): i for i in range(5)}
+    futures = {executor.submit(do_something, i): i for i in range(5)}
 
     for future in as_completed(futures):
         original_input = futures[future]

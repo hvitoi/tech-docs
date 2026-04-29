@@ -12,6 +12,7 @@ def slow_square(n):
 
 
 with ThreadPoolExecutor(max_workers=4) as executor:
+    # automatically Executor.submit() them and lazily Future.result() them as they are iterated over
     results = executor.map(slow_square, [1, 2, 3, 4, 5])
 
 # Iterating consumes results in input order.
