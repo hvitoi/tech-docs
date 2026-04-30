@@ -1,38 +1,37 @@
 # %%
 
 
-def partition2(col: list[int]) -> int:
-    """
-    Rearrange the arr, moving:
-       - the elements smaller than the pivot to the left
-       - the elements greater than the pivot to the right
-
-    The pivot is arbitrarily chosen as the first one in the arr
-    """
-    p = 0
-    i = len(col) - 1
-    direction = "<-"
-
-    while i != p:
-        match direction:
-            case "<-":
-                if col[i] < col[p]:
-                    col[i], col[p] = col[p], col[i]
-                    i, p = p, i
-                    direction = "->"
-                else:
-                    i -= 1
-            case "->":
-                if col[i] > col[p]:
-                    col[i], col[p] = col[p], col[i]
-                    i, p = p, i
-                    direction = "<-"
-                else:
-                    i += 1
-    return p
-
-
 def quick_sort(col: list[int]) -> list[int]:
+    def partition2(left: int, right: int) -> int:
+        """
+        Rearrange the arr, moving:
+        - the elements smaller than the pivot to the left
+        - the elements greater than the pivot to the right
+
+        The pivot is arbitrarily chosen as the first one (left-most)
+        """
+        p = left
+        i = right
+        direction = "<-"
+
+        while i != p:
+            match direction:
+                case "<-":
+                    if col[i] < col[p]:
+                        col[i], col[p] = col[p], col[i]
+                        i, p = p, i
+                        direction = "->"
+                    else:
+                        i -= 1
+                case "->":
+                    if col[i] > col[p]:
+                        col[i], col[p] = col[p], col[i]
+                        i, p = p, i
+                        direction = "<-"
+                    else:
+                        i += 1
+        return p
+
     def partition(left: int, right: int) -> int:
         """Lomuto partition"""
         pivot_value = col[right]  # pivot is the rightmost el (convention, could be any)
