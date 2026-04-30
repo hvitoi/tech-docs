@@ -49,7 +49,7 @@ def merge_sort_parallel_threads(col: list[int]) -> list[int]:
         mid = len(col) // 2
 
         # execute left in a new thread
-        left = pool.submit(_merge_sort_parallel_threads, col[:mid], depth - 1)
+        left = executor.submit(_merge_sort_parallel_threads, col[:mid], depth - 1)
 
         # execute right in the same thread
         right = _merge_sort_parallel_threads(col[mid:], depth - 1)
@@ -60,7 +60,7 @@ def merge_sort_parallel_threads(col: list[int]) -> list[int]:
     workers = os.cpu_count() or 1
     max_depth = (workers - 1).bit_length()  # ceil(log2(workers))
 
-    with ThreadPoolExecutor(max_workers=workers) as pool:
+    with ThreadPoolExecutor(max_workers=workers) as executor:
         return _merge_sort_parallel_threads(col, max_depth)
 
 

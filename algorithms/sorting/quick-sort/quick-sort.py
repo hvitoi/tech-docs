@@ -32,17 +32,17 @@ def partition2(arr: list[int]) -> int:
     return p
 
 
-def quick_sort(arr: list[int]) -> list[int]:
+def quick_sort(col: list[int]) -> list[int]:
     def partition(left: int, right: int) -> int:
-        pivot_value = arr[right]  # pivot is the rightmost el (convention, could be any)
+        pivot_value = col[right]  # pivot is the rightmost el (convention, could be any)
         pivot_index = left  # initial position of the pivot, elements to the left of this index (exclusive) should be lower than the pivot value
         for i in range(left, right):  # excludes the last element (the pivot)
-            if arr[i] <= pivot_value:
-                arr[pivot_index], arr[i] = arr[i], arr[pivot_index]
+            if col[i] <= pivot_value:
+                col[pivot_index], col[i] = col[i], col[pivot_index]
                 pivot_index += 1
-        arr[pivot_index], arr[right] = (
-            arr[right],
-            arr[pivot_index],
+        col[pivot_index], col[right] = (
+            col[right],
+            col[pivot_index],
         )  # Bring pivot to the correct position
         return pivot_index  # return the pivot's final resting position
 
@@ -50,14 +50,15 @@ def quick_sort(arr: list[int]) -> list[int]:
         if (right - left) <= 0:
             return
 
+        # after that, the pivot element is guaranteed to be in the right place (the pivot index)
         pivot_index = partition(left, right)
 
         qs(left, pivot_index - 1)
         qs(pivot_index + 1, right)
 
-    qs(0, len(arr) - 1)
+    qs(0, len(col) - 1)
 
-    return arr
+    return col
 
 
 assert quick_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
