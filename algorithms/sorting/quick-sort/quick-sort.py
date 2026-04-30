@@ -36,15 +36,17 @@ def quick_sort(col: list[int]) -> list[int]:
     def partition(left: int, right: int) -> int:
         pivot_value = col[right]  # pivot is the rightmost el (convention, could be any)
         pivot_index = left  # initial position of the pivot, elements to the left of this index (exclusive) should be lower than the pivot value
+
         for i in range(left, right):  # excludes the last element (the pivot)
             if col[i] <= pivot_value:
                 col[pivot_index], col[i] = col[i], col[pivot_index]
                 pivot_index += 1
-        col[pivot_index], col[right] = (
-            col[right],
-            col[pivot_index],
-        )  # Bring pivot to the correct position
-        return pivot_index  # return the pivot's final resting position
+
+        # Bring pivot to the correct position
+        col[pivot_index], col[right] = col[right], col[pivot_index]
+
+        # return the pivot's final resting position
+        return pivot_index
 
     def qs(left: int, right: int) -> None:
         if (right - left) <= 0:
@@ -57,7 +59,6 @@ def quick_sort(col: list[int]) -> list[int]:
         qs(pivot_index + 1, right)
 
     qs(0, len(col) - 1)
-
     return col
 
 
