@@ -1,14 +1,14 @@
 # %%
 
 
-def insertion_sort(arr):
-    for i in range(len(arr)):
+def insertion_sort(col: list[int]) -> list[int]:
+    for i in range(len(col)):
         for j in range(i, 0, -1):  # go left (except the first item)
-            if arr[j] < arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]  # bubble sort (inverted)
+            if col[j] < col[j - 1]:
+                col[j], col[j - 1] = col[j - 1], col[j]  # bubble sort (inverted)
             else:
                 break  # means it's in the right place (no need to go over the other elements)
-    return arr
+    return col
 
 
 assert insertion_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
