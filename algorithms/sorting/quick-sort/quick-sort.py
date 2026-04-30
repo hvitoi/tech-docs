@@ -1,7 +1,7 @@
 # %%
 
 
-def partition2(arr: list[int]) -> int:
+def partition2(col: list[int]) -> int:
     """
     Rearrange the arr, moving:
        - the elements smaller than the pivot to the left
@@ -10,21 +10,21 @@ def partition2(arr: list[int]) -> int:
     The pivot is arbitrarily chosen as the first one in the arr
     """
     p = 0
-    i = len(arr) - 1
+    i = len(col) - 1
     direction = "<-"
 
     while i != p:
         match direction:
             case "<-":
-                if arr[i] < arr[p]:
-                    arr[i], arr[p] = arr[p], arr[i]
+                if col[i] < col[p]:
+                    col[i], col[p] = col[p], col[i]
                     i, p = p, i
                     direction = "->"
                 else:
                     i -= 1
             case "->":
-                if arr[i] > arr[p]:
-                    arr[i], arr[p] = arr[p], arr[i]
+                if col[i] > col[p]:
+                    col[i], col[p] = col[p], col[i]
                     i, p = p, i
                     direction = "<-"
                 else:
@@ -34,8 +34,9 @@ def partition2(arr: list[int]) -> int:
 
 def quick_sort(col: list[int]) -> list[int]:
     def partition(left: int, right: int) -> int:
+        """Lomuto partition"""
         pivot_value = col[right]  # pivot is the rightmost el (convention, could be any)
-        pivot_index = left  # initial position of the pivot, elements to the left of this index (exclusive) should be lower than the pivot value
+        pivot_index = left  # initial pivot index, elements to the left of this index (exclusive) should be lower than the pivot value
 
         for i in range(left, right):  # excludes the last element (the pivot)
             if col[i] <= pivot_value:
