@@ -7,5 +7,6 @@ a ^ b  # 0000 1010 (10)
 a.__xor__(b)
 
 # %%
+# Opposite of intersection
 {1, 2} ^ {2, 3}
 set({1, 2}).__xor__({2, 3})

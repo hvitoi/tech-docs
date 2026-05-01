@@ -1,5 +1,6 @@
 # %%
-from collections import Counter
+from collections import Counter, defaultdict
+from functools import reduce
 
 # Returns a frequency map
 # Works on any Iterable
@@ -10,18 +11,25 @@ dict(c)
 
 # %%
 # char_map from scratch
-def frequency(coll):
+def frequency(col):
     freq = {}
-    for el in coll:
+    for el in col:
         freq[el] = freq.get(el, 0) + 1
     return freq
 
 
-def frequency2(coll):
+def frequency2(col):
     freq = {}
-    for num in coll:
+    for num in col:
         if num not in freq:
             freq[num] = 0
+        freq[num] += 1
+    return freq
+
+
+def frequency3(col):
+    freq = defaultdict(int)
+    for num in col:
         freq[num] += 1
     return freq
 
@@ -31,7 +39,6 @@ frequency(sentence)
 
 
 # %%
-from functools import reduce
 
 sentence = "hey there! How are you?"
 
