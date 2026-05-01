@@ -1,13 +1,12 @@
 # https://leetcode.com/problems/contains-duplicate/ - 13k likes (Apr/2026)
+
 # %%
-
-
-def contains_duplicate(nums: list[int]):
+def contains_duplicate(nums: list[int]) -> bool:
     seen_numbers = set()
-    for el in nums:
-        if el in seen_numbers:
+    for num in nums:
+        if num in seen_numbers:
             return True
-        seen_numbers.add(el)
+        seen_numbers.add(num)
     return False
 
 
