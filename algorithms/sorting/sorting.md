@@ -21,7 +21,7 @@ Compares somehow each elements against each other. These algorithms can mathemat
 - Merge Sort
 - Quick Sort
 
-### B-Tier — $O(n^2)$ ~ $O(n)
+### B-Tier — $O(n^2)$ ~ $O(n)$
 
 - Insertion Sort
 

@@ -3,7 +3,7 @@
 
 def insertion_sort(col: list[int]) -> list[int]:
     for i in range(len(col)):
-        for j in range(i, 0, -1):  # go left (except the first item)
+        for j in range(i, 0, -1):  # go left (excludes index 0, otherwise j - 0 breaks)
             if col[j] < col[j - 1]:
                 col[j], col[j - 1] = col[j - 1], col[j]  # bubble sort (inverted)
             else:

@@ -1,12 +1,12 @@
 # %%
 
 
-def bubble_sort(arr):
-    for i in range(len(arr)):
-        for j in range(len(arr) - 1 - i):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-    return arr
+def bubble_sort(col: list[int]) -> list[int]:
+    for i in range(len(col)):
+        for j in range(len(col) - 1 - i):
+            if col[j] > col[j + 1]:
+                col[j], col[j + 1] = col[j + 1], col[j]
+    return col
 
 
 assert bubble_sort([4, 5, 1, 3, 2]) == [1, 2, 3, 4, 5]
