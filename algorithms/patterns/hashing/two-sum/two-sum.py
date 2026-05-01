@@ -1,27 +1,44 @@
 # https://leetcode.com/problems/two-sum/ - 68k likes (Apr/2026)
 
 # %%
-# This variation returns a boolean whether at least one pair matches the target sum
-def two_sum_brute_force(data: list[int], target_sum: int) -> bool:
-    # O(n^2)
-    n = len(data)
+import heapq
+
+
+def two_sum_brute_force(nums: list[int], target_sum: int) -> bool:
+    """
+    O(n^2)
+    """
+    n = len(nums)
     for i in range(n):
-        for j in range(n):
-            if i == j:
-                continue
-            if data[i] + data[j] == target_sum:
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target_sum:
                 return True
     return False
 
 
-def two_sum_from_both_sides(data: list[int], target_sum: int) -> bool:
-    # This assumes that the list is sorted
-    # O(n)
+def two_sum_has_been_seen(nums: list[int], target_sum: int) -> bool:
+    """
+    O(n)
+    """
+    seen_numbers = set()
+    for num in nums:
+        complement = target_sum - num
+        if complement in seen_numbers:
+            return True
+        seen_numbers.add(num)
+    return False
+
+
+def two_sum_from_both_sides(nums: list[int], target_sum: int) -> bool:
+    """
+    O(n)
+    This assumes that the list is sorted
+    """
     low = 0
-    high = len(data) - 1
+    high = len(nums) - 1
 
     while low < high:
-        current_sum = data[low] + data[high]
+        current_sum = nums[low] + nums[high]
         if current_sum == target_sum:
             return True
         if current_sum < target_sum:
@@ -31,18 +48,7 @@ def two_sum_from_both_sides(data: list[int], target_sum: int) -> bool:
     return False
 
 
-def two_sum_has_been_seen(data: list[int], target_sum: int) -> bool:
-    # O(n)
-    seen_numbers = set()
-    for el in data:
-        complement = target_sum - el
-        if complement in seen_numbers:
-            return True
-        seen_numbers.add(el)
-    return False
-
-
-for fn in {two_sum_brute_force, two_sum_from_both_sides, two_sum_has_been_seen}:
+for fn in [two_sum_brute_force, two_sum_has_been_seen, two_sum_from_both_sides]:
     assert fn([1, 2, 3, 9], 8) is False
     assert fn([1, 2, 4, 4], 8) is True
     assert fn([], 8) is False
@@ -50,15 +56,16 @@ for fn in {two_sum_brute_force, two_sum_from_both_sides, two_sum_has_been_seen}:
 
 # %%
 # This variation returns the list of pairs that match the target sum
-def two_sum_every_match(arr: list[int], target_sum: int):
-    pairs = set()
-    seenNumbers = set()
+def two_sum_every_match(nums: list[int], target_sum: int) -> set[tuple[int, int]]:
+    pairs: set[tuple[int, int]] = set()
+    seen_numbers: set[int] = set()
 
-    for number in arr:
-        complement = target_sum - number
-        if complement in seenNumbers:
-            pairs.add(tuple(sorted((number, complement))))
-        seenNumbers.add(number)
+    for num in nums:
+        complement = target_sum - num
+        if complement in seen_numbers:
+            pair = (min(num, complement), max(num, complement))  # sort the tuple
+            pairs.add(pair)
+        seen_numbers.add(num)
 
     return pairs
 
