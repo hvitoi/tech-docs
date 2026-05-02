@@ -77,8 +77,11 @@ class Trie:
 
 
 def occurrences_with_trie(arr: list[str], prefix: str) -> int:
-    def count_downstream_nodes(node: Node):
-        counter = 1
+    def count_downstream_nodes(node: Node) -> int:
+        counter = 0
+
+        if node.end_of_word:
+            counter += 1
 
         for c in node.children:
             counter += count_downstream_nodes(node.children[c])
@@ -101,3 +104,9 @@ def occurrences_with_trie(arr: list[str], prefix: str) -> int:
 for fn in [occurrences_with_bs_both_sides, occurrences_with_trie]:
     assert fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc") == 5
     assert fn(["apple", "cherry"], "banana") == 0
+    assert fn(["cab"], "c") == 1
+    assert fn(["apple", "banana"], "z") == 0
+    assert fn([], "x") == 0
+    assert fn(["aa", "ab", "ac"], "a") == 3
+    assert fn(["aa", "ab", "ac"], "b") == 0
+    assert fn(["aa"], "aa") == 1
