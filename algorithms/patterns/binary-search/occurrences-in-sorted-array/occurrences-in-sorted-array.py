@@ -1,5 +1,5 @@
 # %%
-# We have a dictionary list. E.g [“apple”, “banana”, ...]
+# We have a dictionary list. E.g ["apple", "banana", ...]
 # Given a prefix, we want to return all the words from the above list which matches the prefix.
 
 
@@ -10,43 +10,39 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     Slice the array with both indexes
     """
 
-    def find_left_most_match(left, right):
-        """Binary search with check on the element to the left"""
-        mid_index = left + (right - left) // 2
+    def find_left_most_match(lo, hi):
+        mid_index = lo + (hi - lo) // 2
         mid_value = arr[mid_index]
 
-        if prefix == mid_value[:prefix_len]:
+        if mid_value.startswith(prefix):
             left_index = mid_index - 1
             left_value = arr[left_index] if left_index >= 0 else None
-            if left_value and left_value[:prefix_len] == prefix:
-                return find_left_most_match(left, mid_index - 1)
+            if left_value and left_value.startswith(prefix):
+                return find_left_most_match(lo, mid_index - 1)
             return mid_index
 
-        if prefix < mid_value[:prefix_len]:
-            return find_left_most_match(left, mid_index - 1)
+        if prefix < mid_value:
+            return find_left_most_match(lo, mid_index - 1)
 
-        if prefix > mid_value[:prefix_len]:
-            return find_left_most_match(mid_index + 1, right)
+        if prefix > mid_value:
+            return find_left_most_match(mid_index + 1, hi)
 
-    def find_right_most_match(left, right):
-        """Binary search with check on the element to the right"""
-        mid_index = left + (right - left) // 2
+    def find_right_most_match(lo, hi):
+        mid_index = lo + (hi - lo) // 2
         mid_value = arr[mid_index]
 
-        if prefix == mid_value[:prefix_len]:
+        if mid_value.startswith(prefix):
             right_index = mid_index + 1
             right_value = arr[right_index] if right_index < len(arr) else None
-            if right_value and right_value[:prefix_len] == prefix:
-                return find_right_most_match(mid_index + 1, right)
+            if right_value and right_value.startswith(prefix):
+                return find_right_most_match(mid_index + 1, hi)
             return mid_index
 
-        if prefix < mid_value[:prefix_len]:
-            return find_right_most_match(left, mid_index - 1)
+        if prefix < mid_value:
+            return find_right_most_match(lo, mid_index - 1)
 
-        if prefix > mid_value[:prefix_len]:
-            return find_right_most_match(mid_index + 1, right)
-
-    prefix_len = len(prefix)
+        if prefix > mid_value:
+            return find_right_most_match(mid_index + 1, hi)
 
     lower_bound = find_left_most_match(0, len(arr) - 1)
     upper_bound = find_right_most_match(0, len(arr) - 1)
