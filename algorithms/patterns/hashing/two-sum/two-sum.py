@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/two-sum/ - 68k likes (Apr/2026)
 
 # %%
-import heapq
 
 
 def two_sum_brute_force(nums: list[int], target_sum: int) -> bool:

@@ -13,3 +13,7 @@ assert frozenset({"a": 1, "b": 2}) == frozenset({"a": 1, "b": 2})
 assert frozenset({"a": 1, "b": 2}) == frozenset({"b": 2, "a": 1})
 assert frozenset(("a", "b")) == frozenset(("a", "b"))
 assert frozenset(("a", "b")) == frozenset(("b", "a"))
+
+# %%
+# elements are deduplicated just like in a set
+assert frozenset(("a", "a")) == frozenset(("a",))
