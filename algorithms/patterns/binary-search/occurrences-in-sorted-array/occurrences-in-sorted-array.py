@@ -10,39 +10,37 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     Slice the array with both indexes
     """
 
-    def find_left_most_match(lo, hi):
-        mid_index = lo + (hi - lo) // 2
-        mid_value = arr[mid_index]
+    def find_left_most_match(lo: int, hi: int) -> int:
+        left_most_index = 0
+        while lo <= hi:
+            mid = lo + (hi - lo) // 2
+            if arr[mid].startswith(prefix):
+                left_most_index = mid
+                hi = mid - 1
+                continue
+            if prefix < arr[mid]:
+                hi = mid - 1
+                continue
+            if prefix > arr[mid]:
+                lo = mid + 1
+                continue
+        return left_most_index
 
-        if mid_value.startswith(prefix):
-            left_index = mid_index - 1
-            left_value = arr[left_index] if left_index >= 0 else None
-            if left_value and left_value.startswith(prefix):
-                return find_left_most_match(lo, mid_index - 1)
-            return mid_index
-
-        if prefix < mid_value:
-            return find_left_most_match(lo, mid_index - 1)
-
-        if prefix > mid_value:
-            return find_left_most_match(mid_index + 1, hi)
-
-    def find_right_most_match(lo, hi):
-        mid_index = lo + (hi - lo) // 2
-        mid_value = arr[mid_index]
-
-        if mid_value.startswith(prefix):
-            right_index = mid_index + 1
-            right_value = arr[right_index] if right_index < len(arr) else None
-            if right_value and right_value.startswith(prefix):
-                return find_right_most_match(mid_index + 1, hi)
-            return mid_index
-
-        if prefix < mid_value:
-            return find_right_most_match(lo, mid_index - 1)
-
-        if prefix > mid_value:
-            return find_right_most_match(mid_index + 1, hi)
+    def find_right_most_match(lo: int, hi: int) -> int:
+        right_most_index = 0
+        while lo <= hi:
+            mid = lo + (hi - lo) // 2
+            if arr[mid].startswith(prefix):
+                right_most_index = mid
+                lo = mid + 1
+                continue
+            if prefix < arr[mid]:
+                hi = mid - 1
+                continue
+            if prefix > arr[mid]:
+                lo = mid + 1
+                continue
+        return right_most_index
 
     lower_bound = find_left_most_match(0, len(arr) - 1)
     upper_bound = find_right_most_match(0, len(arr) - 1)
