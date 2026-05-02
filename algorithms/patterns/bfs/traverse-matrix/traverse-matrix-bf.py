@@ -1,6 +1,8 @@
 # %%
 from collections import deque
 
+# See patterns/dfs/traverse-matrix/ for DFS implementation
+
 
 def traverse_bf(
     matrix: list[list],

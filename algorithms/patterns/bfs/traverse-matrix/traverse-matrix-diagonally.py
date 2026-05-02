@@ -5,7 +5,7 @@ from collections import deque
 # origin as starting point
 
 
-def traverse_matrix_diag(matrix: list[list[str]]) -> list[str]:
+def traverse_matrix_diagonally(matrix: list[list[str]]) -> list[str]:
     acc = []
 
     if not matrix:
@@ -37,7 +37,7 @@ def traverse_matrix_diag(matrix: list[list[str]]) -> list[str]:
     return acc
 
 
-def traverse_matrix_diag_recursive(matrix: list[list[str]]) -> list[str]:
+def traverse_matrix_diagonally_recursive(matrix: list[list[str]]) -> list[str]:
     """
     The quantity of levels is m + n
     """
@@ -66,7 +66,7 @@ def traverse_matrix_diag_recursive(matrix: list[list[str]]) -> list[str]:
     return bfs(0)
 
 
-for fn in [traverse_matrix_diag, traverse_matrix_diag_recursive]:
+for fn in [traverse_matrix_diagonally, traverse_matrix_diagonally_recursive]:
     assert fn(
         [
             ["a", "b"],

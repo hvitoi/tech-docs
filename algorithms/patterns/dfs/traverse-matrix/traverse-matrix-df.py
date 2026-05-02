@@ -1,5 +1,7 @@
 # %%
 
+# See patterns/bfs/traverse-matrix/ for BFS implementation
+
 
 def traverse_df(
     matrix: list[list],

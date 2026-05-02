@@ -1,12 +1,16 @@
-# %%
 # https://leetcode.com/problems/validate-binary-search-tree/ - 18k likes (Apr/2026)
 
+# %%
+from __future__ import annotations
 
+from dataclasses import dataclass
+
+
+@dataclass
 class Node:
-    def __init__(self, data, *, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
+    data: int
+    left: Node | None = None
+    right: Node | None = None
 
 
 def is_valid_bst(node: Node, *, min=float("-inf"), max=float("inf")) -> bool:

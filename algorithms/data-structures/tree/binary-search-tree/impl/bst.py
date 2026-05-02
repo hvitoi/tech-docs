@@ -21,11 +21,13 @@ class BST:
         Create a BST out of a serialized BST as a list. E.g., [3, 9, 20, None, None, 15, 7]
         The serialized format uses Level-order, therefore this algorithm uses Bread-First Traversal to deserialize it
         """
-        if not elements:
+        if elements is None:
             return None
 
         remaining_elements = deque(elements)
-        root = Node(remaining_elements.popleft())
+        root_num = remaining_elements.popleft()
+        assert root_num is not None
+        root = Node(root_num)
         nodes = deque([root])
 
         while remaining_elements:
@@ -210,8 +212,9 @@ class BST:
         """
 
         def height_total(root: Node | None) -> int:
+            level = -1
             if not root:
-                return -1
+                return level
 
             # the "nodes" queue stores the height of each node
             nodes: deque[tuple[Node, int]] = deque([(root, 0)])
