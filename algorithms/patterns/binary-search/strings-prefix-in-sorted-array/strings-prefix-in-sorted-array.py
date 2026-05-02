@@ -12,6 +12,10 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     Find the left-most matching element (using binary search)
     Find the right-most matching element (using binary search)
     Slice the array with both indexes
+
+    O(k log n); where:
+        - k is the prefix size (for the startswith comparison)
+        - n is the length of the arr
     """
 
     def find_left_most_match(lo: int, hi: int) -> int:
@@ -21,13 +25,10 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
             if arr[mid].startswith(prefix):
                 left_most_index = mid
                 hi = mid - 1
-                continue
             if prefix < arr[mid]:
                 hi = mid - 1
-                continue
             if prefix > arr[mid]:
                 lo = mid + 1
-                continue
         return left_most_index
 
     def find_right_most_match(lo: int, hi: int) -> int:
@@ -37,13 +38,10 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
             if arr[mid].startswith(prefix):
                 right_most_index = mid
                 lo = mid + 1
-                continue
             if prefix < arr[mid]:
                 hi = mid - 1
-                continue
             if prefix > arr[mid]:
                 lo = mid + 1
-                continue
         return right_most_index
 
     lower_bound = find_left_most_match(0, len(arr) - 1)
@@ -77,6 +75,11 @@ class Trie:
 
 
 def occurrences_with_trie(arr: list[str], prefix: str) -> int:
+    """
+
+    This implementations doesn't count twice duplicates
+    """
+
     def count_downstream_nodes(node: Node) -> int:
         counter = 0
 
@@ -102,7 +105,7 @@ def occurrences_with_trie(arr: list[str], prefix: str) -> int:
 
 
 for fn in [occurrences_with_bs_both_sides, occurrences_with_trie]:
-    assert fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc") == 5
+    assert fn(["ab", "cc", "cca", "ccb", "ccd", "cce"], "cc") == 5
     assert fn(["apple", "cherry"], "banana") == 0
     assert fn(["cab"], "c") == 1
     assert fn(["apple", "banana"], "z") == 0
@@ -110,3 +113,4 @@ for fn in [occurrences_with_bs_both_sides, occurrences_with_trie]:
     assert fn(["aa", "ab", "ac"], "a") == 3
     assert fn(["aa", "ab", "ac"], "b") == 0
     assert fn(["aa"], "aa") == 1
+    assert fn(["a", "b", "c"], "") == 3

@@ -15,11 +15,9 @@ def binary_search(arr: list[int], target: int) -> bool:
 
         if target < arr[mid]:
             hi = mid - 1
-            continue
 
         if target > arr[mid]:
             lo = mid + 1
-            continue
 
     return False
 
