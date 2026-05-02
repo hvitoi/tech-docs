@@ -1,9 +1,8 @@
+# These implementations use BFS. For DFS/backtracking, see patterns/backtracking/maze-search/
 # %%
 from collections import deque
 
-# With BFS you are guaranteed to find the shortest path, but may take longer to find
-# With DFS you are guaranteed to find a path faster, but may not be the shortest
-# With DFS you can also apply backtracking, this way you will also guarantee to have the shortest path
+# With BFS, you are guaranteed to find the fastest route first, because it's a level by level search
 
 
 def search_maze_bfs_returning_bool(
@@ -12,29 +11,30 @@ def search_maze_bfs_returning_bool(
     goal: tuple[int, int],
 ) -> int:
     """
-    Breadth-first solution
+    Returns true when a solution path is found. And it's guaranteed to be the fastest path
     """
     len_rows = len(maze)
     len_cols = len(maze[0])
 
-    queue = deque([(start[0], start[1])])
+    queue = deque([start])
     visited = set()
 
     while queue:
-        row, col = queue.popleft()
+        pos = queue.popleft()
+        row, col = pos
 
         if (
-            (row, col) in visited
+            pos in visited
             or (not 0 <= row < len_rows)
             or (not 0 <= col < len_cols)
             or maze[row][col] == 1
         ):
-            continue
+            continue  # don't go that route
 
-        if (row, col) == goal:
+        if pos == goal:
             return True
 
-        visited.add((row, col))
+        visited.add(pos)
 
         next_level_positions = [
             (row, col - 1),  # left
@@ -62,14 +62,20 @@ assert (
 
 assert (
     search_maze_bfs_returning_bool(
-        [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]], (0, 0), (2, 0)
+        [
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0],
+        ],
+        (0, 0),
+        (2, 0),
     )
     is False
 )
 
 
 # %%
-def search_maze_bfs(
+def search_maze_bfs_returning_length(
     maze: list[list],
     start: tuple[int, int],
     goal: tuple[int, int],
@@ -81,7 +87,7 @@ def search_maze_bfs(
     len_rows = len(maze)
     len_cols = len(maze[0])
 
-    queue: deque[tuple[tuple[int, int], int]] = deque([((start[0], start[1]), 0)])
+    queue = deque([(start, 0)])
     visited = set()
 
     while queue:
@@ -89,17 +95,17 @@ def search_maze_bfs(
         row, col = pos
 
         if (
-            (row, col) in visited
+            pos in visited
             or (not 0 <= row < len_rows)
             or (not 0 <= col < len_cols)
             or maze[row][col] == 1
         ):
-            continue
+            continue  # don't go that route
 
-        if (row, col) == goal:
+        if pos == goal:
             return level
 
-        visited.add((row, col))
+        visited.add(pos)
 
         next_level_positions = [
             ((row - 1, col), level + 1),  # up
@@ -113,7 +119,7 @@ def search_maze_bfs(
 
 
 assert (
-    search_maze_bfs(
+    search_maze_bfs_returning_length(
         [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
@@ -125,7 +131,7 @@ assert (
     == 2
 )
 assert (
-    search_maze_bfs(
+    search_maze_bfs_returning_length(
         [
             [0, 0, 0, 0],
             [1, 1, 1, 1],

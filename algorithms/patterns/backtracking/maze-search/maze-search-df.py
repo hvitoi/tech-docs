@@ -1,3 +1,4 @@
+# These implementations use DFS/backtracking. For BFS, see patterns/bfs/maze-search/
 # %%
 
 # With BFS you are guaranteed to find the shortest path, but may take longer to find
@@ -9,23 +10,28 @@
 # -- Where |V| is the numbers of vertices (elements in the maze) and |E| is the number of edges (total path length in the maze)
 
 
-def search_maze_dfs_return_bool(
+def search_maze_dfs_first_solution_returning_bool(
     maze: list[list],
     start: tuple[int, int],
     goal: tuple[int, int],
 ) -> bool:
-    def search(row, col):
+    """
+    Returns true when a solution path is found. But this path is not guaranteed to be the best
+    """
+
+    def search(pos: tuple[int, int]):
+        row, col = pos
         if (
-            (row, col) in visited
+            pos in visited
             or (not 0 <= row < len_rows)
             or (not 0 <= col < len_cols)
             or maze[row][col] == 1
         ):
             return False
 
-        visited.add((row, col))
+        visited.add(pos)
 
-        if (row, col) == goal:
+        if pos == goal:
             return True
 
         next_positions = [
@@ -36,7 +42,7 @@ def search_maze_dfs_return_bool(
         ]
 
         for pos in next_positions:
-            if search(*pos):
+            if search(pos):
                 return True
 
         return False
@@ -44,11 +50,11 @@ def search_maze_dfs_return_bool(
     len_rows = len(maze)
     len_cols = len(maze[0])
     visited = set()
-    return search(*start)
+    return search(start)
 
 
 assert (
-    search_maze_dfs_return_bool(
+    search_maze_dfs_first_solution_returning_bool(
         [
             [0, 0, 1, 0, 0],
             [0, 0, 0, 0, 0],
@@ -63,7 +69,7 @@ assert (
 )
 
 assert (
-    search_maze_dfs_return_bool(
+    search_maze_dfs_first_solution_returning_bool(
         [
             [0, 0, 1, 0, 0],
             [0, 0, 0, 0, 0],
@@ -79,24 +85,25 @@ assert (
 
 
 # %%
-def search_maze_dfs_return_length(
+def search_maze_dfs_first_solution_returning_length(
     maze: list[list],
     start: tuple[int, int],
     goal: tuple[int, int],
 ) -> int:
-    def search(row, col):
+    def search(pos: tuple[int, int]):
+        row, col = pos
         if (
-            (row, col) in visited
+            pos in visited
             or (not 0 <= row < len_rows)
             or (not 0 <= col < len_cols)
             or maze[row][col] == 1
         ):
             return -1
 
-        if (row, col) == goal:
+        if pos == goal:
             return 0
 
-        visited.add((row, col))
+        visited.add(pos)
 
         next_positions = [
             (row - 1, col),  # up
@@ -106,7 +113,7 @@ def search_maze_dfs_return_length(
         ]
 
         for pos in next_positions:
-            path_length = search(*pos)
+            path_length = search(pos)
             if path_length != -1:
                 return 1 + path_length
 
@@ -115,11 +122,11 @@ def search_maze_dfs_return_length(
     len_rows = len(maze)
     len_cols = len(maze[0])
     visited = set()
-    return search(*start)
+    return search(start)
 
 
 assert (
-    search_maze_dfs_return_length(
+    search_maze_dfs_first_solution_returning_length(
         [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
@@ -132,7 +139,7 @@ assert (
 )
 
 assert (
-    search_maze_dfs_return_length(
+    search_maze_dfs_first_solution_returning_length(
         [
             [0, 0, 0, 0],
             [1, 1, 1, 1],
@@ -146,24 +153,25 @@ assert (
 
 
 # %%
-def search_maze_dfs_backtracking(
+def search_maze_dfs_best_solution_returning_length(
     maze: list[list],
     start: tuple[int, int],
     goal: tuple[int, int],
 ) -> int:
-    def search(row, col):
+    def search(pos: tuple[int, int]):
+        row, col = pos
         if (
-            (row, col) in visited
+            pos in visited
             or (not 0 <= row < len_rows)
             or (not 0 <= col < len_cols)
             or maze[row][col] == 1
         ):
             return -1
 
-        if (row, col) == goal:
+        if pos == goal:
             return 0
 
-        visited.add((row, col))
+        visited.add(pos)
 
         next_positions = [
             (row - 1, col),  # up
@@ -172,22 +180,22 @@ def search_maze_dfs_backtracking(
             (row, col - 1),  # left
         ]
 
-        paths = []
+        path_lengths = []
         for pos in next_positions:
-            path = search(*pos)
-            if path != -1:
-                paths.append(path + 1)
+            path_length = search(pos)
+            if path_length != -1:
+                path_lengths.append(path_length + 1)
 
-        return min(paths) if paths else -1
+        return min(path_lengths) if path_lengths else -1
 
     len_rows = len(maze)
     len_cols = len(maze[0])
     visited = set()
-    return search(*start)
+    return search(start)
 
 
 assert (
-    search_maze_dfs_backtracking(
+    search_maze_dfs_best_solution_returning_length(
         [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
@@ -200,7 +208,7 @@ assert (
 )
 
 assert (
-    search_maze_dfs_backtracking(
+    search_maze_dfs_best_solution_returning_length(
         [
             [0, 0, 0, 0],
             [1, 1, 1, 1],
