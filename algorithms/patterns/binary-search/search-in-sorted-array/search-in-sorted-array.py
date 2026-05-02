@@ -8,7 +8,6 @@ def binary_search(arr: list[int], target: int) -> bool:
 
     while left <= right:
         mid = left + (right - left) // 2
-        # mid = (right + left) // 2 # this is prone to overflow
 
         if target == arr[mid]:
             return True
@@ -31,16 +30,16 @@ def binary_search_recursive(arr: list[int], target: int):
         if (right - left) < 0:
             return False
 
-        mid_index = left + (right - left) // 2
+        mid = left + (right - left) // 2
 
-        if target == arr[mid_index]:
+        if target == arr[mid]:
             return True
 
-        if target < arr[mid_index]:
-            return binary_search(left, mid_index - 1)
+        if target < arr[mid]:
+            return binary_search(left, mid - 1)
 
-        if target > arr[mid_index]:
-            return binary_search(mid_index + 1, right)
+        if target > arr[mid]:
+            return binary_search(mid + 1, right)
 
     return binary_search(0, len(arr) - 1)
 
