@@ -8,6 +8,7 @@ def binary_search(arr: list[int], target: int) -> bool:
 
     while lo <= hi:
         mid = lo + (hi - lo) // 2
+        # mid = (lo + hi) // 2 # don't use this to prevent overflow
 
         if target == arr[mid]:
             return True
