@@ -17,6 +17,9 @@ for el in it:
 
 
 def infinite_counter() -> Iterator[int]:
+    """
+    This is actually a generator, but since generators implement the Iterator interface so it can be casted
+    """
     n = 0
     while True:
         yield (n := n + 1)

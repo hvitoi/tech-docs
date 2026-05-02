@@ -6,7 +6,8 @@
 
 [el for el in range(10)]  # same as list(range(10))
 [el**2 for el in range(10)]
-foo = [el for el in range(10) if el % 2 == 0]
+[el for el in range(10) if el % 2 == 0]
+[*iter([1, 2, 3])]  # iterate elements of an iterator into a list
 
 
 # %%

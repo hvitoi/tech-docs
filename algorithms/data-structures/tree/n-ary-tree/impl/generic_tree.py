@@ -32,15 +32,19 @@ def traverse_pre_order[T](node: Node[T]) -> Iterator[T]:
         yield from traverse_pre_order(child)
 
 
-root = Node("a")
-root.children.append(Node("b"))
-root.children.append(Node("c"))
-root.children.append(Node("d"))
-
-root.children[0].children.append(Node("e"))
-root.children[1].children.append(Node("f"))
-root.children[1].children.append(Node("g"))
-root.children[2].children.append(Node("h"))
+root = Node(
+    "a",
+    [
+        Node("b", [Node("e")]),
+        Node("c", [Node("f"), Node("g")]),
+        Node("d", [Node("e")]),
+    ],
+)
+#     a
+#   / | \
+#  b  c  d
+#  |  |\ |
+#  e  f g e
 
 
 print(list(traverse_level_order(root)))
