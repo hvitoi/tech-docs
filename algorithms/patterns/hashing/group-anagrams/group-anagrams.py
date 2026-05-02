@@ -2,31 +2,38 @@
 # %%
 
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 
 def group_anagrams(strings: list[str]) -> list[list[str]]:
     """
-    O(n k log k); where:
+    O(n k); where:
       - n is the number of strings (iteration)
-      - k is the average length of a string (sorting)
+      - k is the average length of a string (counting chars - frequency map)
+    The key is a frozenset of [(char, count)] — hashable, order-independent.
     """
 
-    groups: dict[str, list[str]] = defaultdict(list)
+    groups: dict[frozenset[tuple[str, int]], list[str]] = defaultdict(list)
     for string in strings:
-        key = tuple(sorted(c.casefold() for c in string if c.isalpha()))
+        fm = Counter(c.casefold() for c in string if c.isalpha())
+        key = frozenset(fm.items())
         groups[key].append(string)
-        groups[key].sort()
 
     return list(groups.values())
 
 
-group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
-# assert group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) == [
-#     ["bat"],
-#     ["nat", "tan"],
-#     ["ate", "eat", "tea"],
-# ]
+def test(actual, expected):
+    assert {tuple(sorted(g)) for g in actual} == {tuple(sorted(g)) for g in expected}
 
-# assert group_anagrams([""]) == [[""]]
-# assert group_anagrams(["a"]) == [["a"]]
+
+test(
+    group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]),
+    [
+        ["bat"],
+        ["nat", "tan"],
+        ["ate", "eat", "tea"],
+    ],
+)
+
+test(group_anagrams([""]), [[""]])
+test(group_anagrams(["a"]), [["a"]])
