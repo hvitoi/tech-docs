@@ -14,17 +14,18 @@ def traverse_bf(
     visited = set()
 
     while queue:
-        row, col = queue.popleft()
+        pos = queue.popleft()
+        row, col = pos
 
         if (
-            (row, col) in visited
+            pos in visited  #
             or not (0 <= row < len_rows)
             or not (0 <= col < len_cols)
         ):
             continue
 
         acc.append(matrix[row][col])
-        visited.add((row, col))
+        visited.add(pos)
 
         positions = [
             (row, col - 1),  # left
@@ -48,17 +49,7 @@ assert traverse_bf(
         ["g", "h", "i"],
     ],
     (1, 1),
-) == [
-    "e",
-    "d",
-    "b",
-    "f",
-    "h",
-    "a",
-    "g",
-    "c",
-    "i",
-]
+) == ["e", "d", "b", "f", "h", "a", "g", "c", "i"]
 
 # From origin
 assert traverse_bf(
@@ -76,17 +67,7 @@ assert traverse_bf(
         ["g", "h", "i"],
     ],
     (0, 0),
-) == [
-    "a",
-    "b",
-    "d",
-    "c",
-    "e",
-    "g",
-    "f",
-    "h",
-    "i",
-]
+) == ["a", "b", "d", "c", "e", "g", "f", "h", "i"]
 
 assert traverse_bf(
     [
@@ -96,17 +77,4 @@ assert traverse_bf(
         ["j", "k", "l"],
     ],
     (0, 0),
-) == [
-    "a",
-    "b",
-    "d",
-    "c",
-    "e",
-    "g",
-    "f",
-    "h",
-    "j",
-    "i",
-    "k",
-    "l",
-]
+) == ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"]

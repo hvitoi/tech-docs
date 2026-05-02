@@ -5,9 +5,7 @@ from collections import deque
 # origin as starting point
 
 
-def traverse_matrix_diag(
-    matrix: list[list],
-) -> list:
+def traverse_matrix_diag(matrix: list[list[str]]) -> list[str]:
     acc = []
 
     if not matrix:
@@ -16,8 +14,9 @@ def traverse_matrix_diag(
     len_rows = len(matrix)
     len_cols = len(matrix[0])
 
-    queue = deque([(0, 0)])
-    queue_items = {(0, 0)}  # to avoid inserting duplicate items to the queue O(1)
+    start = (0, 0)
+    queue = deque([start])
+    queue_items = {start}  # to avoid inserting duplicate items to the queue O(1)
 
     while queue:
         row, col = queue.popleft()
@@ -38,9 +37,7 @@ def traverse_matrix_diag(
     return acc
 
 
-def traverse_matrix_diag_recursive(
-    matrix: list[list],
-) -> list:
+def traverse_matrix_diag_recursive(matrix: list[list[str]]) -> list[str]:
     """
     The quantity of levels is m + n
     """
@@ -83,17 +80,7 @@ for fn in [traverse_matrix_diag, traverse_matrix_diag_recursive]:
             ["d", "e", "f"],
             ["g", "h", "i"],
         ]
-    ) == [
-        "a",
-        "b",
-        "d",
-        "c",
-        "e",
-        "g",
-        "f",
-        "h",
-        "i",
-    ]
+    ) == ["a", "b", "d", "c", "e", "g", "f", "h", "i"]
 
     assert fn(
         [
@@ -102,17 +89,4 @@ for fn in [traverse_matrix_diag, traverse_matrix_diag_recursive]:
             ["g", "h", "i"],
             ["j", "k", "l"],
         ]
-    ) == [
-        "a",
-        "b",
-        "d",
-        "c",
-        "e",
-        "g",
-        "f",
-        "h",
-        "j",
-        "i",
-        "k",
-        "l",
-    ]
+    ) == ["a", "b", "d", "c", "e", "g", "f", "h", "j", "i", "k", "l"]
