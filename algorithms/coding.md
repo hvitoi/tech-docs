@@ -27,6 +27,7 @@ Bad assumption you don't ask about → bug you'll trip on → less time to recov
 
 - Is the list sorted?
 - Does the list contain duplicates?
+- Does it contain negative numbers?
 - Are the elements of the list of the same type?
 
 ## Communication patterns that score

@@ -2,7 +2,7 @@
 # %%
 
 
-def rotate_array(nums: list[int], k: int) -> None:
+def rotate_array(nums: list[int], k: int) -> list[int]:
     """
     O(n): due to slicing (the complete array)
     """
