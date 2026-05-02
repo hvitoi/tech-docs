@@ -1,4 +1,4 @@
-# Live coding interview prep
+# Live coding
 
 The goal is not to solve hard problems — it is to demonstrate clean fundamentals, structured thinking, communication, and self-debugging. Most loss happens to silence and to bugs the candidate didn't catch first.
 
@@ -22,6 +22,12 @@ The goal is not to solve hard problems — it is to demonstrate clean fundamenta
 - Time/space constraints? Is `O(n²)` acceptable for `n=1000`?
 
 Bad assumption you don't ask about → bug you'll trip on → less time to recover.
+
+## Input disambiguation
+
+- Is the list sorted?
+- Does the list contain duplicates?
+- Are the elements of the list of the same type?
 
 ## Communication patterns that score
 
