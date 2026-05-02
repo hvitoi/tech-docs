@@ -1,13 +1,13 @@
 # %%
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
 class Node:
     # there is no need to store the "letter" of the node, because it's already implicit in the child key of the upper node
-    children: dict[str, Node] = {}
+    children: dict[str, Node] = field(default_factory=dict)
     end_of_word: bool = False
 
 

@@ -2,6 +2,10 @@
 # We have a dictionary list. E.g ["apple", "banana", ...]
 # Given a prefix, we want to return all the words from the above list which matches the prefix.
 
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
 
 def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     """
@@ -11,7 +15,7 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     """
 
     def find_left_most_match(lo: int, hi: int) -> int:
-        left_most_index = 0
+        left_most_index = -1
         while lo <= hi:
             mid = lo + (hi - lo) // 2
             if arr[mid].startswith(prefix):
@@ -27,7 +31,7 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
         return left_most_index
 
     def find_right_most_match(lo: int, hi: int) -> int:
-        right_most_index = 0
+        right_most_index = -1
         while lo <= hi:
             mid = lo + (hi - lo) // 2
             if arr[mid].startswith(prefix):
@@ -45,32 +49,35 @@ def occurrences_with_bs_both_sides(arr: list[str], prefix: str) -> int:
     lower_bound = find_left_most_match(0, len(arr) - 1)
     upper_bound = find_right_most_match(0, len(arr) - 1)
 
+    if lower_bound == -1:  # or upper_bound
+        return 0
+
     return upper_bound - lower_bound + 1
 
 
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.end_of_word = False
+@dataclass
+class Node:
+    children: dict[str, Node] = field(default_factory=dict)
+    end_of_word: bool = False
 
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode()
+        self.root = Node()
 
     def insert(self, word: str):
         node = self.root
 
-        for c in word:
-            if c not in node.children:
-                node.children[c] = TrieNode()
-            node = node.children[c]
+        for letter in word:
+            if letter not in node.children:
+                node.children[letter] = Node()
+            node = node.children[letter]
 
         node.end_of_word = True
 
 
 def occurrences_with_trie(arr: list[str], prefix: str) -> int:
-    def count_downstream_nodes(node: TrieNode):
+    def count_downstream_nodes(node: Node):
         counter = 1
 
         for c in node.children:
@@ -83,13 +90,14 @@ def occurrences_with_trie(arr: list[str], prefix: str) -> int:
         trie.insert(word)
 
     node = trie.root
-    for c in prefix:
-        if c not in node.children:
+    for letter in prefix:
+        if letter not in node.children:
             return 0
-        node = node.children[c]
+        node = node.children[letter]
 
     return count_downstream_nodes(node)
 
 
 for fn in [occurrences_with_bs_both_sides, occurrences_with_trie]:
     assert fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc") == 5
+    assert fn(["apple", "cherry"], "banana") == 0
