@@ -13,7 +13,7 @@ class Node[T]:
     right: Node[T] | None = None
 
 
-def traverse_level_order[T](node: Node[T]) -> Iterator[T]:
+def traverse_level_order[T](node: Node[T] | None) -> Iterator[T]:
     """
     Performs a Level-order (breath-first) traversal
     """
@@ -34,6 +34,7 @@ def traverse_level_order[T](node: Node[T]) -> Iterator[T]:
 #  9  20
 #     / \
 #    15  7
+
 root = Node(3, left=Node(9), right=Node(20, left=Node(15), right=Node(7)))
 assert list(traverse_level_order(root)) == [3, 9, 20, 15, 7]
 
