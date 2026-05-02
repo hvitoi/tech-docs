@@ -132,7 +132,7 @@ class BST:
                 return acc
 
             acc.extend(recur(node.left))
-            acc.append(node.num)  # in-order
+            acc.append(node.num)
             acc.extend(recur(node.right))
 
             return acc
@@ -141,7 +141,7 @@ class BST:
 
     def to_list_level_order(self) -> list[int]:
         """
-        Level-Order Traversal (Breadth-First)
+        Level-Order Traversal (breadth-first)
         """
 
         def recur(root: Node | None) -> list[int]:
