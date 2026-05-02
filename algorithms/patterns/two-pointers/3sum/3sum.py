@@ -54,7 +54,7 @@ def three_sum(nums: list[int]) -> list[list[int]]:
     return sorted(result)
 
 
-for fn in {three_sum_brute_force, three_sum_brute_force_recursion, three_sum}:
+for fn in [three_sum_brute_force, three_sum_brute_force_recursion, three_sum]:
     assert fn([-1, 0, 1, 2, -1, -4]) == [[-1, -1, 2], [-1, 0, 1]]
     assert fn([0, 1, 1]) == []
     assert fn([0, 0, 0]) == [[0, 0, 0]]

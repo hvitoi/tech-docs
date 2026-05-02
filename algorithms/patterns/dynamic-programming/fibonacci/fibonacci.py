@@ -73,12 +73,12 @@ def fibonacci_recursive(n):
     return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
 
-for fn in {
+for fn in [
     fibonacci_with_array,
     fibonacci_with_curr_prev,
     fibonacci_recursive_with_accumulator,
     fibonacci_recursive,
-}:
+]:
     assert fn(0) == 0
     assert fn(1) == 1
     assert fn(2) == 1

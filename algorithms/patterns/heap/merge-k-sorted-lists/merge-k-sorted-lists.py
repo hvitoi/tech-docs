@@ -70,11 +70,11 @@ def merge_k_lists_with_min_heap(lists: list[list[int]]) -> list[int]:
     return merged
 
 
-for fn in {
+for fn in [
     merge_k_lists_with_pointers,
     merge_k_lists_with_pointers_and_linked_lists,
     merge_k_lists_with_min_heap,
-}:
+]:
     assert fn([[1, 4, 5], [1, 3, 4], [2, 6]]) == [1, 1, 2, 3, 4, 4, 5, 6]
     assert fn([]) == []
     assert fn([[]]) == []

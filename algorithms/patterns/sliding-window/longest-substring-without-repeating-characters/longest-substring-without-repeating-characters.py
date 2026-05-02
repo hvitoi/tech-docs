@@ -50,12 +50,12 @@ def length_of_longest_substring_with_seen_chars(s: str) -> int:
     return longest_size
 
 
-for fn in {
+for fn in [
     length_of_longest_substring,
     length_of_longest_substring2,
     length_of_longest_substring3,
     length_of_longest_substring_with_seen_chars,
-}:
+]:
     assert fn("abcabcbb") == 3
     assert fn("bbbbb") == 1
     assert fn("pwwkew") == 3

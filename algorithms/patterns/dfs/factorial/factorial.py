@@ -30,12 +30,12 @@ def factorial_reduce(n):
     )
 
 
-for fn in {
+for fn in [
     factorial_recursive,
     factorial_with_loop,
     factorial_recursive_with_accumulator,
     factorial_reduce,
-}:
+]:
     assert fn(0) == 1
     assert fn(1) == 1
     assert fn(2) == 2

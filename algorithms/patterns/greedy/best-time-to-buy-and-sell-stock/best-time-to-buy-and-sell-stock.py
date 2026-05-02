@@ -32,6 +32,6 @@ def max_profit2(prices: list[int]):
     return highest_profit
 
 
-for fn in {max_profit, max_profit2}:
+for fn in [max_profit, max_profit2]:
     assert fn([7, 1, 5, 3, 6, 4]) == 5
     assert fn([7, 6, 4, 3, 1]) == 0

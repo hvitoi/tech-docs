@@ -122,11 +122,11 @@ def calculate_polish_notation(tokens: str) -> int:
     return calculate(tokens.split())
 
 
-for fn in {
+for fn in [
     calculate_polish_notation,
     calculate_polish_notation_recursive,
     calculate_polish_notation_ast,
-}:
+]:
     assert fn("+ 2 3") == 5
     assert fn("* 3 + 1 2") == 9
     assert fn("* + 1 2 4") == 12

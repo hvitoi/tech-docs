@@ -75,7 +75,7 @@ def min_distance_recursive(word: str, target: str) -> int:
         return 1 + min_distance_recursive(word[1:], target[1:])
 
 
-for fn in {min_distance, min_distance_recursive}:
+for fn in [min_distance, min_distance_recursive]:
     assert fn("horse", "ros") == 3
     assert fn("intention", "execution") == 5
     assert fn("", "") == 0

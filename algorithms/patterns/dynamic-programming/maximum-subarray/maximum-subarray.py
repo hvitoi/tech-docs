@@ -46,12 +46,12 @@ def maximum_subarray_kadane_accumulator(nums: list[int]) -> int:
     )
 
 
-for fn in {
+for fn in [
     maximum_subarray_windows_brute_force,
     maximum_subarray_windows_brute_force_with_current_window_accumulator,
     maximum_subarray_kadane,
     maximum_subarray_kadane_accumulator,
-}:
+]:
     assert fn([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
     assert fn([1]) == 1
     assert fn([5, 4, -1, 7, 8]) == 23

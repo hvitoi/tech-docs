@@ -47,10 +47,10 @@ def coin_change_backtrack_every_combination(coins: list[int], amount: int) -> in
     return min(options) if options else -1
 
 
-for fn in {
+for fn in [
     coin_change_pick_highest_coins_first,
     coin_change_backtrack_every_combination,
-}:
+]:
     assert fn([1, 2, 5], 11) == 3
     assert fn([2], 3) == -1
     assert fn([1], 0) == 0

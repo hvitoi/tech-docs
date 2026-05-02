@@ -97,5 +97,5 @@ def occurrences_with_trie(arr: list[str], prefix: str) -> int:
     return count_downstream_nodes(node)
 
 
-for fn in {occurrences_with_bs_both_sides, occurrences_with_trie}:
+for fn in [occurrences_with_bs_both_sides, occurrences_with_trie]:
     assert fn(["ab", "cca", "ccb", "cc", "ccd", "cce"], "cc") == 5

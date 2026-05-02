@@ -38,8 +38,8 @@ def sort_k_sorted_array_with_pointers(arr: list[int], k: int):
     return arr
 
 
-for fn in {
+for fn in [
     sort_k_sorted_array_with_heap,
     sort_k_sorted_array_with_pointers,
-}:
+]:
     assert fn([6, 5, 3, 2, 8, 10, 9, 9], 3) == [2, 3, 5, 6, 8, 9, 9, 10]

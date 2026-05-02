@@ -100,7 +100,7 @@ def merge_reuse_nodes(
     return result
 
 
-for fn in {merge, merge_reuse_nodes}:
+for fn in [merge, merge_reuse_nodes]:
     col1 = LinkedList([1, 2, 4])
     col2 = LinkedList([1, 3, 4])
     assert fn(col1, col2).to_list() == [1, 1, 2, 3, 4, 4]

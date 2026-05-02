@@ -28,6 +28,6 @@ def max_area2(heights: list) -> int:
     return current_max
 
 
-for fn in {max_area, max_area2}:
+for fn in [max_area, max_area2]:
     assert fn([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
     assert fn([1, 1]) == 1

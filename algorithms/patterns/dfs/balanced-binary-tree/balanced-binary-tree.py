@@ -110,6 +110,6 @@ def is_balanced2(tree: BST) -> bool:
     return check_balance(tree.root)[0]
 
 
-for fn in {is_balanced, is_balanced2}:
+for fn in [is_balanced, is_balanced2]:
     assert fn(BST([3, 9, 20, None, None, 15, 7])) is True
     assert fn(BST([1, 2, 2, 3, 3, None, None, 4, 4])) is False

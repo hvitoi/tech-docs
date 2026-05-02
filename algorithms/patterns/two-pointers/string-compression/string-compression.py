@@ -22,7 +22,7 @@ def compress2(chars: list) -> int:
     return len("".join([str(el) for el in compressed if el != 1]))
 
 
-for fn in {compress, compress2}:
+for fn in [compress, compress2]:
     assert fn(["a", "a", "b", "b", "c", "c", "c"]) == 6
     assert fn(["a"]) == 1
     assert fn(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]) == 4

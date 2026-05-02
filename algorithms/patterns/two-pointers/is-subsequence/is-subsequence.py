@@ -24,6 +24,6 @@ def is_subsequence2(s: str, t: str) -> bool:
         return is_subsequence2(s[1:], t[found_i + 1 :])
 
 
-for fn in {is_subsequence, is_subsequence2}:
+for fn in [is_subsequence, is_subsequence2]:
     assert fn("abc", "ahbgdc")
     assert not fn("axc", "ahbgdc")

@@ -45,7 +45,7 @@ def binary_search_recursive(arr: list[int], target: int):
     return binary_search(0, len(arr) - 1)
 
 
-for fn in {binary_search, binary_search_recursive}:
+for fn in [binary_search, binary_search_recursive]:
     assert fn([1, 2, 3, 4, 5], 4) is True
     assert fn([1, 2, 3, 4, 5], 99) is False
     assert fn([], 99) is False

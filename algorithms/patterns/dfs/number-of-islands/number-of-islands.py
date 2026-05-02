@@ -92,7 +92,7 @@ def number_of_islands_explore_islands(matrix: list[list]) -> int:
     return number_of_islands
 
 
-for fn in {number_of_islands_check_barriers, number_of_islands_explore_islands}:
+for fn in [number_of_islands_check_barriers, number_of_islands_explore_islands]:
     assert (
         fn(
             [

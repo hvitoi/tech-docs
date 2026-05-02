@@ -63,7 +63,7 @@ def asteroid_collision2(asteroids: list) -> list:
     return arr
 
 
-for fn in {asteroid_collision, asteroid_collision2}:
+for fn in [asteroid_collision, asteroid_collision2]:
     assert fn([5, 10, -5]) == [5, 10]
     assert fn([8, -8]) == []
     assert fn([10, 2, -5]) == [10]

@@ -57,7 +57,7 @@ def min_window_two_pointers_and_frequency_map(s: str, t: str) -> str:
     return current_solution
 
 
-for fn in {min_window_brute_force, min_window_two_pointers_and_frequency_map}:
+for fn in [min_window_brute_force, min_window_two_pointers_and_frequency_map]:
     assert fn("ADOBECODEBANC", "ABC") == "BANC"
     assert fn("a", "a") == "a"
     assert fn("a", "aa") == ""

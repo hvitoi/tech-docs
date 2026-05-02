@@ -28,7 +28,7 @@ def pivot_index_with_two_sums_tracking(nums: list) -> int:
     return -1
 
 
-for fn in {pivot_index, pivot_index_with_two_sums_tracking}:
+for fn in [pivot_index, pivot_index_with_two_sums_tracking]:
     assert fn([1, 7, 3, 6, 5, 6]) == 3
     assert fn([1, 2, 3]) == -1
     assert fn([2, 1, -1]) == 0

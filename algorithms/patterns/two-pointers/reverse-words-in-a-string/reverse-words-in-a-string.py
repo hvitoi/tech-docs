@@ -10,7 +10,7 @@ def reverse_words2(s: str) -> str:
     return " ".join(s.split()[::-1])
 
 
-for fn in {reverse_words, reverse_words2}:
+for fn in [reverse_words, reverse_words2]:
     assert reverse_words("the sky is blue") == "blue is sky the"
     assert reverse_words("  hello world  ") == "world hello"
     assert reverse_words("a good   example") == "example good a"

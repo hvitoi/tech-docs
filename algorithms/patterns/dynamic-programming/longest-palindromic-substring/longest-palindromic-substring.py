@@ -13,6 +13,6 @@ def longest_palindrome(s: str) -> str:
     return ""
 
 
-for fn in {longest_palindrome}:
+for fn in [longest_palindrome]:
     assert fn("babad") == "bab"
     assert fn("cbbd") == "bb"

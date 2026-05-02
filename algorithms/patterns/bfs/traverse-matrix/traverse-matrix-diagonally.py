@@ -69,7 +69,7 @@ def traverse_matrix_diag_recursive(
     return bfs(0)
 
 
-for fn in {traverse_matrix_diag, traverse_matrix_diag_recursive}:
+for fn in [traverse_matrix_diag, traverse_matrix_diag_recursive]:
     assert fn(
         [
             ["a", "b"],
