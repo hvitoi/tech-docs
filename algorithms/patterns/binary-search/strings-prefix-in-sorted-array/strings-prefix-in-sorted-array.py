@@ -76,8 +76,11 @@ class Trie:
 
 def occurrences_with_trie(arr: list[str], prefix: str) -> int:
     """
-
     This implementations doesn't count twice duplicates
+
+    O(k n); where:
+        - k is the prefix size (traverse until the node that contains the prefix)
+        - n is the length of the arr (count all the nodes/words under that prefix)
     """
 
     def count_downstream_nodes(node: Node) -> int:
