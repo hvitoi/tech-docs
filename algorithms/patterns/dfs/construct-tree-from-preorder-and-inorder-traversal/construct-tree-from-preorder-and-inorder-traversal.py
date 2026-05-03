@@ -46,9 +46,9 @@ def build_tree(preorder: list[int], inorder: list[int]) -> Node | None:
         if lo > hi:
             return None
         root = Node(next(pre_iter))
-        mid = in_index[root.val]
-        root.left = build(lo, mid - 1)
-        root.right = build(mid + 1, hi)
+        root_index_inorder = in_index[root.val]
+        root.left = build(lo, root_index_inorder - 1)
+        root.right = build(root_index_inorder + 1, hi)
         return root
 
     return build(0, len(inorder) - 1)

@@ -3,7 +3,9 @@
 
 
 def flood_fill(
-    image: list[list[int]], initial_row: int, initial_col: int, target_color: int
+    image: list[list[int]],
+    start: tuple[int, int],
+    target_color: int,
 ) -> list[list[int]]:
     def ff(row, col):
         if not (0 <= row < len_rows):
@@ -24,14 +26,22 @@ def flood_fill(
 
     len_rows = len(image)
     len_cols = len(image[0])
-    drive_color = image[initial_row][initial_col]
+    drive_color = image[start[0]][start[1]]
 
-    ff(initial_row, initial_col)
+    ff(start[0], start[1])
 
     return image
 
 
-assert flood_fill([[1, 1, 1], [1, 1, 0], [1, 0, 1]], 1, 1, 2) == [
+assert flood_fill(
+    [
+        [1, 1, 1],
+        [1, 1, 0],
+        [1, 0, 1],
+    ],
+    (1, 1),
+    2,
+) == [
     [2, 2, 2],
     [2, 2, 0],
     [2, 0, 1],
