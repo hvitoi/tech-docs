@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/flood-fill/ - 9k likes (Apr/2026)
+
 # %%
-
-
 def flood_fill(
     image: list[list[int]],
     start: tuple[int, int],
@@ -27,6 +26,12 @@ def flood_fill(
     len_rows = len(image)
     len_cols = len(image[0])
     drive_color = image[start[0]][start[1]]
+
+    # Guard: if the start cell already has the target color, ff() would recurse
+    # forever — the mismatch check `image[row][col] != drive_color` doubles as the
+    # visited-marker, and that trick breaks when target_color == drive_color.
+    if drive_color == target_color:
+        return image
 
     ff(start[0], start[1])
 

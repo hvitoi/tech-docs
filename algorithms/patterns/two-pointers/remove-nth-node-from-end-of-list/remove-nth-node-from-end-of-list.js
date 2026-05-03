@@ -1,4 +1,15 @@
 // https://leetcode.com/problems/remove-nth-node-from-end-of-list/ - 21k likes (Apr/2026)
+
+
+// Given a linked list and integer n, return the element n spaces from the last node in the list.  Do not call the 'size' method of the linked list.  Assume that n will always be less than the length of the list.
+// const list = new List();
+// list.insertLast('a');
+// list.insertLast('b');
+// list.insertLast('c');
+// list.insertLast('d');
+// fromLast(list, 2).data // 'b'
+
+
 class Node {
   constructor(data, next = null) {
     this.data = data;

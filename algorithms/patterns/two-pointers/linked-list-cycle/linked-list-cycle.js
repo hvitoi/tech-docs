@@ -1,4 +1,16 @@
 // https://leetcode.com/problems/linked-list-cycle/ - 17k likes (Apr/2026)
+
+
+// Given a linked list, return true if the list is circular, false if it is not.
+// const l = new List();
+// const a = new Node('a');
+// const b = new Node('b');
+// const c = new Node('c');
+// l.head = a;
+// a.next = b;
+// b.next = c;
+// c.next = b;
+
 class Node {
   constructor(data, next = null) {
     this.data = data;
