@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/invert-binary-tree/ - 15k likes (Apr/2026)
+# https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/ - 11k likes (Apr/2026)
 
 # %%
 from __future__ import annotations
@@ -39,20 +39,23 @@ def serialize(root: Node | None) -> list[int | None]:
     return acc
 
 
-def invert_binary_tree(node: Node | None) -> Node | None:
-    if node is None:
+def create_balanced_bst(nums: list[int]) -> Node | None:
+    """
+    Insert elements to the BST in an optimal order so that the tree has the minimum height possible
+    """
+
+    if not nums:
         return None
 
-    node.left, node.right = (
-        invert_binary_tree(node.right),
-        invert_binary_tree(node.left),
-    )
+    mid = len(nums) // 2
+
+    node = Node(nums[mid])
+    node.left = create_balanced_bst(nums[:mid])
+    node.right = create_balanced_bst(nums[mid + 1 :])
 
     return node
 
 
-root = Node(2, left=Node(1), right=Node(3))
-assert serialize(invert_binary_tree(root)) == [2, 3, 1]
-
-root = Node(5, left=Node(1), right=Node(4, left=Node(3), right=Node(6)))
-assert serialize(invert_binary_tree(root)) == [5, 4, 1, 6, 3]
+assert serialize(create_balanced_bst([1, 2, 3, 4, 5, 6, 7])) == [4, 2, 6, 1, 3, 5, 7]
+assert serialize(create_balanced_bst([-10, -3, 0, 5, 9])) == [0, -3, 9, -10, None, 5]
+assert serialize(create_balanced_bst([1, 3])) == [3, 1]

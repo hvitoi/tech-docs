@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    num: int
+    val: int
     left: Node | None = None
     right: Node | None = None
 
@@ -17,15 +17,15 @@ def to_dict(node: Node | None) -> dict[int, list[Node]]:
     if not node:
         return {}
 
-    serialized = {node.num: []}
+    serialized = {node.val: []}
 
     left_serialized = to_dict(node.left)
     if left_serialized:
-        serialized[node.num].append(left_serialized)
+        serialized[node.val].append(left_serialized)
 
     right_serialized = to_dict(node.right)
     if right_serialized:
-        serialized[node.num].append(right_serialized)
+        serialized[node.val].append(right_serialized)
 
     return serialized
 
@@ -36,17 +36,22 @@ def pretty_print(node: Node | None) -> None:
 
 
 def build_tree(preorder: list[int], inorder: list[int]) -> Node | None:
-    if not inorder:
-        return None
+    """
+    Get elements from the pre-order list, but use the in-order list to know when to stop for each node
+    """
+    in_index = {v: i for i, v in enumerate(inorder)}
+    pre_iter = iter(preorder)
 
-    root_val = preorder.pop(0)
-    root = Node(root_val)
-    root_index = inorder.index(root_val)
+    def build(lo: int, hi: int) -> Node | None:
+        if lo > hi:
+            return None
+        root = Node(next(pre_iter))
+        mid = in_index[root.val]
+        root.left = build(lo, mid - 1)
+        root.right = build(mid + 1, hi)
+        return root
 
-    root.left = build_tree(preorder, inorder[:root_index])
-    root.right = build_tree(preorder, inorder[root_index + 1 :])
-
-    return root
+    return build(0, len(inorder) - 1)
 
 
 assert to_dict(
