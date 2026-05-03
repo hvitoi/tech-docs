@@ -15,7 +15,7 @@
 
 def number_of_islands_check_barriers(
     matrix: list[list],
-    cells: set = None,
+    cells: set | None = None,
     nums_islands: int = 0,
     existing_island: bool = False,
 ) -> int:
@@ -92,7 +92,99 @@ def number_of_islands_explore_islands(matrix: list[list]) -> int:
     return number_of_islands
 
 
-for fn in [number_of_islands_check_barriers, number_of_islands_explore_islands]:
+def number_of_islands_dfs_recursive(matrix: list[list[str]]) -> int:
+    """
+    SOLUTION 3 — classical recursive DFS
+    - Scan every cell. When an unvisited "1" is found, it is the seed of a new island
+      so increment the count and DFS-flood the whole connected component.
+    - Recursion gives depth-first behaviour for free: each call dives along one
+      neighbour all the way before returning to explore the next direction.
+    - Mark cells visited at the start of dfs() (before recursing) so a cell is never
+      processed twice.
+
+    Time:  O(rows * cols) — every cell is visited at most once.
+    Space: O(rows * cols) worst case for the visited set and the recursion stack
+           (a snake-shaped island fills the whole grid → recursion depth = rows*cols,
+           which can blow Python's default recursion limit on large inputs).
+    """
+    if not matrix or not matrix[0]:
+        return 0
+
+    rows, cols = len(matrix), len(matrix[0])
+    visited: set[tuple[int, int]] = set()
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    def explore_island(i: int, j: int) -> None:
+        """
+        Visit all the points inside of an island
+        """
+        if (
+            i < 0
+            or i >= rows
+            or j < 0
+            or j >= cols
+            or matrix[i][j] != "1"
+            or (i, j) in visited
+        ):
+            return
+        visited.add((i, j))
+        for di, dj in directions:
+            explore_island(i + di, j + dj)
+
+    count = 0
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] == "1" and (i, j) not in visited:
+                count += 1
+                explore_island(i, j)
+    return count
+
+
+def number_of_islands_dfs_iterative(matrix: list[list[str]]) -> int:
+    """
+    SOLUTION 4 — iterative DFS with an explicit stack
+    Same shape as BFS but with a list used as a LIFO stack (.append / .pop) instead
+    of a FIFO queue. Avoids the recursion depth limit on snake-shaped inputs and is
+    the production-safe variant of SOLUTION 3.
+    """
+    if not matrix or not matrix[0]:
+        return 0
+
+    rows, cols = len(matrix), len(matrix[0])
+    visited: set[tuple[int, int]] = set()
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    def explore_island(start: tuple[int, int]) -> None:
+        stack: list[tuple[int, int]] = [start]
+        visited.add(start)
+        while stack:
+            i, j = stack.pop()
+            for di, dj in directions:
+                ni, nj = i + di, j + dj
+                if (
+                    0 <= ni < rows
+                    and 0 <= nj < cols
+                    and matrix[ni][nj] == "1"
+                    and (ni, nj) not in visited
+                ):
+                    visited.add((ni, nj))
+                    stack.append((ni, nj))
+
+    count = 0
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] == "1" and (i, j) not in visited:
+                count += 1
+                explore_island((i, j))
+    return count
+
+
+for fn in [
+    number_of_islands_check_barriers,
+    number_of_islands_explore_islands,
+    number_of_islands_dfs_recursive,
+    number_of_islands_dfs_iterative,
+]:
     assert (
         fn(
             [
