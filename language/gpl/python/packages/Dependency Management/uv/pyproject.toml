@@ -11,5 +11,15 @@ dependencies = [
   "mydep~=1.0.0",            # lock major & minor, allows patch (>=1.0.0, <1.1) - "uv lock --upgrade" to bump
 ]
 
-[project.scripts]
+
+[project.scripts] # "uv run <script-name>"
 start = "main:main" # from file main.py (in root) invoke main function
+my-package = "my_package:main" # from the "my_package" package invoke main function
+
+[dependency-groups]
+dev = ["pytest>=9.0.3"] # added here with "uv add --dev pytest"
+
+
+[build-system]
+requires = ["uv_build>=0.11.8,<0.12.0"]
+build-backend = "uv_build"

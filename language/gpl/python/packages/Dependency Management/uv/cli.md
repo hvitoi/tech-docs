@@ -1,11 +1,21 @@
 # uv
 
+```shell
+# Boilerplate
+uv init foo --project
+cd foo/
+source .venv/bin/activate
+uv add --dev pytest
+uv run pytest # or simply "pytest" since you're already in the venv
+```
+
 ## init
 
 ```shell
 # Create project in a new dir
 cd ~ # parent folder
 uv init demo
+uv init demo --project # create a src/ directory
 
 # Create project in the current dir
 mkdir demo
@@ -74,6 +84,7 @@ uv run pytest tests/
 
 ```shell
 uv add "langchain"
+uv add --dev pytest # adds to [dependency-groups].dev table
 ```
 
 ```shell
