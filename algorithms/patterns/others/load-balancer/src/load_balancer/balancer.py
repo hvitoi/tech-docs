@@ -16,9 +16,9 @@ class LoadBalancer:
         if max_servers <= 0:
             raise ValueError("max_servers must be positive")
         self._max_servers = max_servers
+        self._strategy: Strategy = strategy or RoundRobin()
         self._servers: list[str] = []
         self._lock = threading.Lock()
-        self._strategy: Strategy = strategy or RoundRobin()
 
     def register(self, server: str) -> bool:
         with self._lock:

@@ -1,5 +1,12 @@
 # Locking
 
+- **Pessimistic**
+  - assumption conflict is likely → block first, ask questions later
+  - acquire a lock before accessing the resource; other threads block
+- **Optimistic**
+  - conflict is rare → just do the work, verify on commit
+  - read state, compute new state, `compare-and-swap (CAS)` (write only if state hasn't changed), retry on failure
+
 ## Pessimistic Locking (conservative)
 
 - Acquires an **exclusive lock** on the resource before reading/writing
