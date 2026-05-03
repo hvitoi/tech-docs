@@ -1,56 +1,65 @@
 # %%
-# `ABC` -- helper class to inherit from when defining an abstract base class.
-# Equivalent to `class Foo(metaclass=ABCMeta): ...` but reads more like
-# inheritance, so prefer it.
+# `abc` -- Abstract Base Classes. Python's way of declaring "interfaces".
+# A class is abstract if it has at least one @abstractmethod; it can't be
+# instantiated until a subclass implements them. Checked at instantiation,
+# not at call time.
+#
+# Pieces:
+#   ABC               -- base class to inherit from (preferred)
+#   ABCMeta           -- the metaclass behind ABC. Use directly only if you
+#                        need to combine ABC with another custom metaclass.
+#   @abstractmethod   -- marks a method as required (see Decorators/)
+#   .register(cls)    -- declares a virtual subclass (see Functions/)
 
+# %%
 from abc import ABC, abstractmethod
 
 
-class Repository(ABC):
+class Shape(ABC):
     @abstractmethod
-    def get(self, id): ...
+    def area(self) -> float: ...
 
-    @abstractmethod
-    def save(self, obj): ...
+
+# Shape()# TypeError: Can't instantiate abstract class
+
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return 3.14159 * self.r * self.r
+
+
+Circle(2).area()  # 12.566...
 
 
 # %%
-# Use ABCMeta directly only if you need a custom metaclass that *also* needs ABC behavior.
-from abc import ABCMeta
-
-
-class _MyMeta(ABCMeta):  # combines ABCMeta with whatever extra logic you want
-    pass
-
-
-class Custom(metaclass=_MyMeta):
-    @abstractmethod
-    def do(self): ...
-
-
-# %%
-# Implementations
-class InMemoryRepo(Repository):
-    def __init__(self):
-        self._data = {}
-
-    def get(self, id):
-        return self._data.get(id)
-
-    def save(self, obj):
-        self._data[obj["id"]] = obj
-
-
-repo = InMemoryRepo()
-repo.save({"id": 1, "name": "x"})
-repo.get(1)  # {'id': 1, 'name': 'x'}
-
-# %%
-# ABC instances can hold state in __init__ -- being abstract just means
-# at least one method is not implemented.
-class Cache(ABC):
-    def __init__(self, ttl: int):
-        self.ttl = ttl
+# Concrete methods and __init__ are fine on an ABC. Only @abstractmethod is required.
+class Animal(ABC):
+    def __init__(self, name):
+        self.name = name
 
     @abstractmethod
-    def get(self, key: str): ...
+    def sound(self) -> str: ...
+
+    def greet(self):  # concrete, inherited as-is
+        return f"{self.name} says {self.sound()}"
+
+
+class Dog(Animal):
+    def sound(self):
+        return "woof"
+
+
+Dog("Rex").greet()  # 'Rex says woof'
+
+# %%
+# `collections.abc` is where the *standard* ABCs live -- Iterable, Iterator,
+# Sized, Container, Mapping, Sequence, Hashable, Callable, ...
+# Built-ins (list, dict, str, ...) match them via __subclasshook__,
+# so isinstance(x, Iterable) works without any registration.
+from collections.abc import Iterable, Sized
+
+isinstance([1, 2], Iterable)  # True
+isinstance("abc", Sized)  # True (has __len__)
