@@ -1,8 +1,9 @@
 # Accepts expressions only
 
 # %%
-assert 1 == 1  # usa o operador de igualdade (__eq__) se definido
-assert 1 != 2
+assert 1 + 1 == 3  # AssertionError: (no description)
+assert 1 + 1 == 3, "math is broken"  # AssertionError: math is broken
+
 
 # %%
 
@@ -27,3 +28,25 @@ assert ""  # Falsy
 assert 0  # Falsy
 assert None  # Falsy
 assert False  # Falsy
+
+# %%
+# `assert` is stripped when Python is run with -O (optimized).
+# Never use assert for runtime validation of user input or security checks.
+# Use it for invariants that must hold if the code is correct.
+
+
+def withdraw(amount):
+    """Wrong, assert is skipped under -O"""
+    assert amount > 0  # bypassable!
+
+
+def withdraw_(amount):
+    """Correct"""
+    if amount <= 0:
+        raise ValueError("amount must be positive")
+
+
+# %%
+# Another gotcha: `assert (x, y)` always passes (non-empty tuple is truthy).
+# This is a common bug.
+assert (1 == 2, "should fail")  # passes silently!  -- linters catch this

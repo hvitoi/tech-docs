@@ -1,45 +1,31 @@
-"""Selection strategies — pick one server from a pool snapshot.
+"""Selection strategies for `LoadBalancer`.
 
-Each strategy is responsible only for picking; the pool is owned by the
-`LoadBalancer`. Strategies receive a snapshot, so they're free of pool-mutation
-concerns.
+A strategy is any callable that picks one server from a non-empty pool.
+Stateless strategies are plain functions; stateful ones (round-robin) are
+callable classes. Custom strategies need only match the `Strategy` type.
 """
-
-from __future__ import annotations
 
 import random
 import threading
-from abc import ABC, abstractmethod
-from typing import Sequence
+from collections.abc import Callable, Sequence
+
+type Strategy = Callable[[Sequence[str]], str]
 
 
-class SelectionStrategy(ABC):
-    """Picks one server from a non-empty pool snapshot."""
-
-    @abstractmethod
-    def select(self, servers: Sequence[str]) -> str: ...
+def random_choice(servers: Sequence[str]) -> str:
+    """Uniform random pick."""
+    return random.choice(servers)
 
 
-class RoundRobinStrategy(SelectionStrategy):
-    """Cycle through servers in registration order.
-
-    The internal index is guarded by its own lock — the load balancer's pool
-    lock doesn't need to be held during selection.
-    """
+class RoundRobin:
+    """Cycle through servers in registration order. Thread-safe."""
 
     def __init__(self) -> None:
         self._index = 0
         self._lock = threading.Lock()
 
-    def select(self, servers: Sequence[str]) -> str:
+    def __call__(self, servers: Sequence[str]) -> str:
         with self._lock:
             i = self._index % len(servers)  # mod handles pool shrinking between calls
             self._index = i + 1
             return servers[i]
-
-
-class RandomStrategy(SelectionStrategy):
-    """Uniform random pick. Stateless, no lock needed."""
-
-    def select(self, servers: Sequence[str]) -> str:
-        return random.choice(servers)
