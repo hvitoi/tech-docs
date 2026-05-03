@@ -21,5 +21,6 @@ def db():
     db.close()
 
 
+# db receives the result of executing db()
 def test_db_connection(db):
     assert db.connected is True
