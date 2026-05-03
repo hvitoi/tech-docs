@@ -175,11 +175,7 @@ class BST:
         def height_total(node: Node | None) -> int:
             if node is None:
                 return -1
-
-            return max(
-                1 + height_total(node.left),
-                1 + height_total(node.right),
-            )
+            return 1 + max(height_total(node.left), height_total(node.right))
 
         def height_for_element(node: Node | None, target: int) -> int:
             if not node:

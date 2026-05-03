@@ -2,7 +2,6 @@
 # %%
 from __future__ import annotations
 
-from collections import deque
 from dataclasses import dataclass
 
 
@@ -17,21 +16,15 @@ def is_balanced(node: Node | None) -> bool:
     def height(node: Node | None) -> int:
         if node is None:
             return -1
-
-        return max(
-            1 + height(node.left),
-            1 + height(node.right),
-        )
+        return 1 + max(height(node.left), height(node.right))
 
     if node is None:
         return True
 
-    is_left_balanced = is_balanced(node.left)
-    if not is_left_balanced:
+    if not is_balanced(node.left):
         return False
 
-    is_right_balanced = is_balanced(node.right)
-    if not is_right_balanced:
+    if not is_balanced(node.right):
         return False
 
     left_height = height(node.left)
