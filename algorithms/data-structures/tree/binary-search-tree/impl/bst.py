@@ -173,7 +173,7 @@ class BST:
         """
 
         def height_total(node: Node | None) -> int:
-            if not node:
+            if node is None:
                 return -1
 
             return max(
