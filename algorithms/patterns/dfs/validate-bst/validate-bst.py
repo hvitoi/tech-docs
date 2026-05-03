@@ -8,19 +8,19 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    data: int
+    num: int
     left: Node | None = None
     right: Node | None = None
 
 
 def is_valid_bst(node: Node, *, min=float("-inf"), max=float("inf")) -> bool:
-    if (node.data < min) or (node.data > max):
+    if (node.num < min) or (node.num > max):
         return False
 
-    if node.left and not is_valid_bst(node.left, min=min, max=node.data):
+    if node.left and not is_valid_bst(node.left, min=min, max=node.num):
         return False
 
-    if node.right and not is_valid_bst(node.right, min=node.data, max=max):
+    if node.right and not is_valid_bst(node.right, min=node.num, max=max):
         return False
 
     return True
