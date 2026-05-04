@@ -25,7 +25,10 @@ The load balancer must be safe to call from multiple threads. Mutations and read
 
 ```text
 lb = LoadBalancer(strategy=RoundRobinStrategy())
-lb.register("a"); lb.register("b"); lb.register("c")
+lb.register("a")
+lb.register("b")
+lb.register("c")
+
 [lb.get() for _ in range(7)]   # ["a","b","c","a","b","c","a"]
 ```
 
@@ -99,7 +102,7 @@ Run through:
 - round-robin → 4 calls on `[a,b,c]` → `[a,b,c,a]`
 - random → returns a member of the pool
 
-**Find one bug yourself** — say it out loud, fix it. Revolut grades on this.
+**Find one bug yourself** — say it out loud, fix it. It's graded on this.
 
 ### Phase 5 — Reflect & optimise (2-3 min)
 
@@ -143,32 +146,6 @@ That single paragraph signals senior-level awareness.
 5. Reflect (3)      weighted, least-conn, health checks, lock-free
 ```
 
-## Project layout
-
-The reference implementation is split into a real-world package + tests structure:
-
-```text
-load-balancer/
-├── pyproject.toml                  # project metadata + pytest config
-├── load_balancer/                  # the package
-│   ├── __init__.py                 # public API (re-exports)
-│   ├── errors.py                   # NoServersAvailableError
-│   ├── strategies.py               # SelectionStrategy ABC + RoundRobin + Random
-│   └── balancer.py                 # LoadBalancer
-└── tests/
-    ├── __init__.py
-    ├── test_balancer.py            # register / unregister / get / dunder
-    ├── test_strategies.py          # round-robin + random + strategy injection
-    └── test_concurrency.py         # thread-safety smoke tests
-```
-
-### Run
-
-```sh
-pip install -e '.[dev]'   # installs the package + pytest
-pytest                    # runs all tests under tests/
-```
-
-### Note for the live interview
+### Project Layout
 
 You wouldn't actually build this whole layout in 40 minutes — for the interview, **everything goes in one file** and tests live under `if __name__ == "__main__":`. The split shown here is what a senior engineer would point to as "this is what I'd do if I had more time" — useful talking material in Phase 5 (Reflect).

@@ -47,6 +47,7 @@ pip install --upgrade pip # -U upgrade pip itself
 # install from a directory
 git clone https://github.com/squidfunk/mkdocs-material.git
 pip install -e mkdocs-material
+pip install -e '.[dev]'   # installs the package + pytest
 
 # install from requirements file
 pip install -r requirements.txt
