@@ -30,12 +30,11 @@ class RoundRobin:
     """
 
     def __init__(self) -> None:
-        self._index = 0
+        self._counter = 0
         self._lock = threading.Lock()
 
     def __call__(self, servers: Sequence[str]) -> str:
-        with self._lock:  # pessimistic lock
-            # mod handles pool shrinking between calls (if the pool shrinks between calls, it won't get an index out of range error)
-            i = self._index % len(servers)
-            self._index = i + 1
+        with self._lock:
+            i = self._counter % len(servers)
+            self._counter += 1  # A billion calls it's a 30-bit int (4 bytes). You will not exhaust memory.
             return servers[i]

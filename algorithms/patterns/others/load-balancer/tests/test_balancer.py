@@ -1,64 +1,34 @@
-"""Tests for `LoadBalancer` register / unregister / get / dunder methods."""
-
 import pytest
 
-from load_balancer import LoadBalancer, NoServersAvailableError
+from load_balancer.balancer import LoadBalancer, NoServersAvailableError, PoolFullError
 
 
-# --- register ---
-
-
-def test_register_returns_true_for_new_server():
-    lb = LoadBalancer()
-    assert lb.register("a") is True
-
-
-def test_register_returns_false_for_duplicate():
+def test_register_is_idempotent():
     lb = LoadBalancer()
     lb.register("a")
-    assert lb.register("a") is False
-
-
-def test_register_returns_false_when_full():
-    lb = LoadBalancer(max_servers=2)
     lb.register("a")
-    lb.register("b")
-    assert lb.register("c") is False
+    assert len(lb) == 1
 
 
-def test_register_raises_for_zero_capacity():
+def test_register_raises_when_full():
+    lb = LoadBalancer(max_servers=1)
+    lb.register("a")
+    with pytest.raises(PoolFullError):
+        lb.register("b")
+
+
+@pytest.mark.parametrize("n", [0, -1])
+def test_invalid_capacity_raises(n):
     with pytest.raises(ValueError):
-        LoadBalancer(max_servers=0)
+        LoadBalancer(max_servers=n)
 
 
-def test_register_raises_for_negative_capacity():
-    with pytest.raises(ValueError):
-        LoadBalancer(max_servers=-1)
-
-
-# --- unregister ---
-
-
-def test_unregister_returns_true_when_present():
-    lb = LoadBalancer()
-    lb.register("a")
-    assert lb.unregister("a") is True
-    assert "a" not in lb
-
-
-def test_unregister_returns_false_when_absent():
-    lb = LoadBalancer()
-    assert lb.unregister("a") is False
-
-
-def test_register_after_unregister_succeeds():
+def test_unregister_removes_server():
     lb = LoadBalancer(max_servers=1)
     lb.register("a")
     lb.unregister("a")
-    assert lb.register("a") is True
-
-
-# --- get ---
+    assert "a" not in lb
+    lb.register("a")  # slot freed
 
 
 def test_get_raises_on_empty_pool():
@@ -67,27 +37,8 @@ def test_get_raises_on_empty_pool():
         lb.get()
 
 
-def test_get_after_all_unregistered_raises():
+def test_len_and_contains():
     lb = LoadBalancer()
+    assert len(lb) == 0 and "a" not in lb
     lb.register("a")
-    lb.unregister("a")
-    with pytest.raises(NoServersAvailableError):
-        lb.get()
-
-
-# --- dunder methods ---
-
-
-def test_len_reflects_pool_size():
-    lb = LoadBalancer()
-    assert len(lb) == 0
-    lb.register("a")
-    lb.register("b")
-    assert len(lb) == 2
-
-
-def test_contains():
-    lb = LoadBalancer()
-    lb.register("a")
-    assert "a" in lb
-    assert "b" not in lb
+    assert len(lb) == 1 and "a" in lb

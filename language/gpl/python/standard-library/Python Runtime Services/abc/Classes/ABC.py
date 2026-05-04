@@ -19,8 +19,10 @@ class Shape(ABC):
     @abstractmethod
     def area(self) -> float: ...
 
+    # Using Ellipsis is common for an abstract method. Alternatively use "pass"
 
-# Shape()# TypeError: Can't instantiate abstract class
+
+# Shape() # TypeError: Can't instantiate abstract class
 
 
 class Circle(Shape):
@@ -62,4 +64,4 @@ Dog("Rex").greet()  # 'Rex says woof'
 from collections.abc import Iterable, Sized
 
 isinstance([1, 2], Iterable)  # True
-isinstance("abc", Sized)  # True (has __len__)
+isinstance("hey", Sized)  # True (has __len__)

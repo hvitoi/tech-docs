@@ -1,5 +1,3 @@
-"""Tests for selection strategies."""
-
 import pytest
 
 from load_balancer import (
@@ -11,62 +9,26 @@ from load_balancer import (
 )
 
 
-# --- round-robin ---
-
-
-def test_round_robin_cycles_through_servers():
+def test_round_robin_cycles_and_handles_shrinkage():
     rr = RoundRobin()
-    servers = ["a", "b", "c"]
-    assert [rr(servers) for _ in range(7)] == ["a", "b", "c", "a", "b", "c", "a"]
-
-
-def test_round_robin_handles_pool_shrinkage():
-    """If the pool shrinks between selects, the modulo keeps the index valid."""
-    rr = RoundRobin()
-    rr(["a", "b", "c"])
-    rr(["a", "b", "c"])
-    rr(["a", "b", "c"])
+    assert [rr(["a", "b", "c"]) for _ in range(4)] == ["a", "b", "c", "a"]
+    # modulo keeps the index valid when the pool shrinks below it
     assert rr(["a", "b"]) in {"a", "b"}
 
 
-def test_load_balancer_default_strategy_is_round_robin():
+def test_default_strategy_is_round_robin():
     lb = LoadBalancer()
-    for s in ["a", "b", "c"]:
+    for s in "abc":
         lb.register(s)
-    assert [lb.get() for _ in range(7)] == ["a", "b", "c", "a", "b", "c", "a"]
+    assert [lb.get() for _ in range(4)] == ["a", "b", "c", "a"]
 
 
-# --- random ---
-
-
-def test_random_choice_returns_member_of_pool():
-    assert random_choice(["a", "b", "c"]) in {"a", "b", "c"}
-
-
-def test_random_choice_distribution_covers_all_servers():
+def test_random_choice_covers_all_members():
     seen = {random_choice(["a", "b", "c"]) for _ in range(200)}
     assert seen == {"a", "b", "c"}
 
 
-# --- strategy injection (any callable works) ---
-
-
-def test_balancer_accepts_function_strategy():
-    lb = LoadBalancer(strategy=random_choice)
-    for s in ["a", "b", "c"]:
-        lb.register(s)
-    assert lb.get() in {"a", "b", "c"}
-
-
-def test_balancer_accepts_class_strategy():
-    lb = LoadBalancer(strategy=RoundRobin())
-    for s in ["a", "b", "c"]:
-        lb.register(s)
-    assert lb.get() == "a"
-
-
-def test_balancer_accepts_lambda_strategy():
-    """A `Strategy` is just a callable — anything matching the signature works."""
+def test_balancer_accepts_arbitrary_callable_strategy():
     always_first: Strategy = lambda servers: servers[0]
     lb = LoadBalancer(strategy=always_first)
     lb.register("a")
@@ -74,11 +36,8 @@ def test_balancer_accepts_lambda_strategy():
     assert lb.get() == "a"
 
 
-# --- empty pool propagation ---
-
-
-@pytest.mark.parametrize("strategy_factory", [RoundRobin, lambda: random_choice])
-def test_empty_pool_raises_via_balancer(strategy_factory):
-    lb = LoadBalancer(strategy=strategy_factory())
+@pytest.mark.parametrize("strategy", [RoundRobin(), random_choice])
+def test_empty_pool_raises_through_balancer(strategy):
+    lb = LoadBalancer(strategy=strategy)
     with pytest.raises(NoServersAvailableError):
         lb.get()

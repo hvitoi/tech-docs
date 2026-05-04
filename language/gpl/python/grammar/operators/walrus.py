@@ -2,7 +2,7 @@
 # Allows defining variables inside of an expression
 
 # %%
-# Expression that returns True and assign a value to the variable
+# Expression that returns and assigns a value
 (foo := True)
 
 foo
