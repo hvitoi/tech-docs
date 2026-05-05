@@ -8,5 +8,10 @@
 ```shell
 uv init "demo"
 cd demo
+source .venv/bin/activate
+uv add "requests"
+uv add "pytest" --dev
+uv sync
 uv run main.py
+uv run pytest
 ```
