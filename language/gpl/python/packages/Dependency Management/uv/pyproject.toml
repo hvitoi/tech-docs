@@ -13,7 +13,7 @@ dependencies = [
 
 [project.scripts] # "uv run <script-name>"
 start = "main:main" # from file main.py (in root) invoke main function
-my-package = "my_package:main" # from the "my_package" package invoke main function
+my-package = "my_package:main" # from the "my_package" package invoke main function (requires the __init__.py file)
 
 [dependency-groups]
 dev = ["pytest>=9.0.3"] # added here with "uv add --dev pytest"

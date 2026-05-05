@@ -1,23 +1,20 @@
-"""Smoke tests for thread safety. They cannot prove the absence of races,
-but they exercise enough concurrency to surface common bugs."""
-
 import threading
 
-from load_balancer import LoadBalancer, PoolFullError
+from load_balancer.balancer import LoadBalancer, PoolFullError
 
 
 def test_concurrent_register_respects_capacity():
     """Threads racing past capacity must never overflow the pool."""
     lb = LoadBalancer(max_servers=10)
 
-    def worker(prefix: str) -> None:
+    def register_20_servers(prefix: str) -> None:
         for i in range(20):
             try:
                 lb.register(f"{prefix}-{i}")
             except PoolFullError:
                 return
 
-    threads = [threading.Thread(target=worker, args=(p,)) for p in "abcde"]
+    threads = [threading.Thread(target=register_20_servers, args=(p,)) for p in "abcde"]
     for t in threads:
         t.start()
     for t in threads:

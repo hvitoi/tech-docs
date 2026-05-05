@@ -1,5 +1,4 @@
 # %%
 import string
 
-# '0123456789'
-string.digits
+string.digits  # "0123456789"

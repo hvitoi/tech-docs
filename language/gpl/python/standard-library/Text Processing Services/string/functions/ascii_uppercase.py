@@ -2,7 +2,6 @@
 import string
 import random
 
-# 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-string.ascii_uppercase
+string.ascii_uppercase  # "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-"".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+"".join(random.choices(string.ascii_uppercase + string.digits, k=5))

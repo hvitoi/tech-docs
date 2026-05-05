@@ -10,4 +10,6 @@
 ```shell
 pytest
 pytest -v # verbose
+pytest tests/test_main.py              # single file
+pytest tests/test_main.py::test_name   # single test
 ```
