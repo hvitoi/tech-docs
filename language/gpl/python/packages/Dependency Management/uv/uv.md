@@ -5,23 +5,16 @@
 - With uv, you don't need to manually create a virtual env, or requirements.txt
 
 ```shell
-# Brew
 brew install uv
 ```
 
-## Project structure
+## Dependency versions
 
-```shell
-# Create a project skeleton
-uv init
-```
-
-```txt
-.
-├── .venv/
-├── .python-version
-├── pyproject.toml
-├── uv.lock
-├── main.py
-└── README.md
+```toml
+dependencies = [
+  "langchain>=1.0.5",
+  "langchain-openai>=1.0.2",
+  "mydep~=1.0",              # lock major, allows minor & patch (>=1.0, <2.0) - "uv lock --upgrade" to bump
+  "mydep~=1.0.0",            # lock major & minor, allows patch (>=1.0.0, <1.1) - "uv lock --upgrade" to bump
+]
 ```

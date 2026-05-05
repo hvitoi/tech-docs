@@ -10,7 +10,7 @@ requires-python = ">=3.14"
 dependencies = ["requests>=2.33.1"]
 
 [project.scripts]
-demo = "demo_packaged_application:main"
+demo = "demo_packaged_application:main" # from package "demo_packaged_application" invoke function "main" (requires __init__.py)
 
 [dependency-groups]
 dev = ["pytest>=9.0.3"]
