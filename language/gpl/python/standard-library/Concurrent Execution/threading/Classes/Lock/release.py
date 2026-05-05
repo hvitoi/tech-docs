@@ -1,7 +1,7 @@
 # %%
 import threading
 
-printer = threading.Lock()
+lock = threading.Lock()
 
-printer.acquire()
-printer.release()
+lock.acquire()
+lock.release()

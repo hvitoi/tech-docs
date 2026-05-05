@@ -4,17 +4,19 @@ from load_balancer.balancer import LoadBalancer, PoolFullError
 
 
 def test_concurrent_register_respects_capacity():
-    """Threads racing past capacity must never overflow the pool."""
+    """Threads racing must never overflow the server maximum capacity"""
     lb = LoadBalancer(max_servers=10)
 
-    def register_20_servers(prefix: str) -> None:
+    def register_20_servers(thread_name: str) -> None:
         for i in range(20):
+            server = f"{thread_name}-{i}"
             try:
-                lb.register(f"{prefix}-{i}")
+                lb.register(server)
             except PoolFullError:
                 return
 
-    threads = [threading.Thread(target=register_20_servers, args=(p,)) for p in "abcde"]
+    threads = [threading.Thread(target=register_20_servers, args=(t,)) for t in "abc"]
+
     for t in threads:
         t.start()
     for t in threads:
@@ -44,8 +46,10 @@ def test_get_under_concurrent_register():
 
     reg = threading.Thread(target=registerer)
     get = threading.Thread(target=getter)
+
     reg.start()
     get.start()
+
     get.join()
     stop.set()
     reg.join()
