@@ -1,6 +1,6 @@
 import threading
 
-from load_balancer.strategies import RoundRobin, Strategy
+from strategies import RoundRobin, Strategy
 
 
 class NoServersAvailableError(RuntimeError):

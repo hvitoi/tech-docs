@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 
-from load_balancer.balancer import LoadBalancer, PoolFullError
+from balancer import LoadBalancer, PoolFullError
 
 
 def test_concurrent_register_respects_capacity():

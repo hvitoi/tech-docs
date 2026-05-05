@@ -1,10 +1,10 @@
 import pytest
-from load_balancer.balancer import (
+from balancer import (
     LoadBalancer,
     NoServersAvailableError,
     RoundRobin,
 )
-from load_balancer.strategies import random_choice
+from strategies import random_choice
 
 
 def test_round_robin_cycles_and_handles_shrinkage():

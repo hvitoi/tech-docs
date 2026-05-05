@@ -1,6 +1,6 @@
 import pytest
 
-from load_balancer.balancer import LoadBalancer, NoServersAvailableError, PoolFullError
+from balancer import LoadBalancer, NoServersAvailableError, PoolFullError
 
 
 def test_register_is_idempotent():

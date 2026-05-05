@@ -145,7 +145,3 @@ That single paragraph signals senior-level awareness.
 4. Test   (5-8)     empty, full, duplicate, RR cycle, post-unregister
 5. Reflect (3)      weighted, least-conn, health checks, lock-free
 ```
-
-### Project Layout
-
-You wouldn't actually build this whole layout in 40 minutes — for the interview, **everything goes in one file** and tests live under `if __name__ == "__main__":`. The split shown here is what a senior engineer would point to as "this is what I'd do if I had more time" — useful talking material in Phase 5 (Reflect).
