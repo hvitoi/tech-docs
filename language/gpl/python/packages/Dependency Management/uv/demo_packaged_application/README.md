@@ -3,4 +3,10 @@
 ```shell
 uv init "demo" --package
 cd demo
+source .venv/bin/activate
+uv add "requests"
+uv add "pytest" --dev
+uv sync
+uv run demo
+uv run pytest
 ```
