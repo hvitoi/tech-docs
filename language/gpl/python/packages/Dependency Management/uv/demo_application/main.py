@@ -1,5 +1,8 @@
+from greetings import greet
+
+
 def main():
-    print("Hello from demo-application!")
+    print(greet("demo-application"))
 
 
 if __name__ == "__main__":
