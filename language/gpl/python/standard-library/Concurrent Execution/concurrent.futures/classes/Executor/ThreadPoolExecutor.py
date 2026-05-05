@@ -1,5 +1,5 @@
 # %%
-from concurrent.futures import Future, ThreadPoolExecutor
+from concurrent.futures import Future, ThreadPoolExecutor, wait
 from threading import current_thread
 from time import sleep
 
@@ -20,3 +20,7 @@ with ThreadPoolExecutor(max_workers=4) as executor:
     # .result() blocks until that future is done
     result = f.result()
     print(result)
+
+    # exiting the `with` waits for all tasks; .result() also re-raises any exception, so calling .result() is not necessary
+    # but you can also call wait if you want...
+    wait([f])

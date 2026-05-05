@@ -1,4 +1,5 @@
 import threading
+from concurrent.futures import ThreadPoolExecutor
 
 from load_balancer.balancer import LoadBalancer, PoolFullError
 
@@ -9,18 +10,13 @@ def test_concurrent_register_respects_capacity():
 
     def register_20_servers(thread_name: str) -> None:
         for i in range(20):
-            server = f"{thread_name}-{i}"
             try:
-                lb.register(server)
+                lb.register(f"{thread_name}-{i}")
             except PoolFullError:
                 return
 
-    threads = [threading.Thread(target=register_20_servers, args=(t,)) for t in "abc"]
-
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        executor.map(register_20_servers, "abc")
 
     assert len(lb) == 10
 
@@ -28,7 +24,7 @@ def test_concurrent_register_respects_capacity():
 def test_get_under_concurrent_register():
     """get() must always succeed while another thread is registering."""
     lb = LoadBalancer(max_servers=1000)
-    lb.register("seed")
+    lb.register("myserver.com")
     stop = threading.Event()
 
     def registerer() -> None:
@@ -44,12 +40,7 @@ def test_get_under_concurrent_register():
         for _ in range(1000):
             assert lb.get()
 
-    reg = threading.Thread(target=registerer)
-    get = threading.Thread(target=getter)
-
-    reg.start()
-    get.start()
-
-    get.join()
-    stop.set()
-    reg.join()
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        executor.submit(registerer)
+        executor.submit(getter).result()  # block until getter is done
+        stop.set()
