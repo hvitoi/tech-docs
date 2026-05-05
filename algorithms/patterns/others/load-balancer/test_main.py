@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
+
 from main import (
     LoadBalancer,
     NoServersAvailableError,

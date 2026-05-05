@@ -2,7 +2,6 @@ import random
 import threading
 from collections.abc import Callable, Sequence
 
-
 # --- strategies ---
 
 
