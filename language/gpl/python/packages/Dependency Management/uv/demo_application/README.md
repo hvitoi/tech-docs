@@ -4,6 +4,7 @@
 - No build system, you just point at files
 - No `src/` and not installable
 - Conventionally `main.py` is used as entrypoint
+- Application is NOT installed into `.venv/`
 
 ```shell
 uv init "demo"

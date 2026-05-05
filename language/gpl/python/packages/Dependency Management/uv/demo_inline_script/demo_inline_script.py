@@ -14,10 +14,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-# To add the dependency to the header of the file
-# --> uv add requests --script demo.py
-
-# To run the file with the dependencies
-# --> uv run demo.py

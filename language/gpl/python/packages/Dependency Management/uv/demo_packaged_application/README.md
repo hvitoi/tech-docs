@@ -1,4 +1,8 @@
-# Application
+# Packaged Application
+
+- `src layout`: code inside `src/<package>/`
+- Requires a build system
+- Application is installed into `.venv/`
 
 ```shell
 uv init "demo" --package
