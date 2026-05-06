@@ -1,6 +1,5 @@
+import unittest
 from concurrent.futures import ThreadPoolExecutor
-
-import pytest
 
 from main import (
     LoadBalancer,
@@ -10,132 +9,123 @@ from main import (
     random_choice,
 )
 
-# --- register / capacity ---
 
+class TestRegisterAndCapacity(unittest.TestCase):
+    def test_register_is_idempotent(self):
+        lb = LoadBalancer()
+        lb.register("a")
+        lb.register("a")
+        self.assertEqual(len(lb), 1)
 
-def test_register_is_idempotent():
-    lb = LoadBalancer()
-    lb.register("a")
-    lb.register("a")
-    assert len(lb) == 1
+    def test_register_raises_when_full(self):
+        lb = LoadBalancer(max_servers=1)
+        lb.register("a")
+        with self.assertRaises(PoolFullError):
+            lb.register("b")
 
-
-def test_register_raises_when_full():
-    lb = LoadBalancer(max_servers=1)
-    lb.register("a")
-    with pytest.raises(PoolFullError):
+    def test_register_idempotent_on_full_pool(self):
+        """Re-registering an existing server in a full pool must not raise."""
+        lb = LoadBalancer(max_servers=2)
+        lb.register("a")
         lb.register("b")
+        lb.register("a")
+        self.assertEqual(len(lb), 2)
+
+    def test_invalid_capacity_raises(self):
+        for n in (0, -1):
+            with self.subTest(n=n), self.assertRaises(ValueError):
+                LoadBalancer(max_servers=n)
 
 
-def test_register_idempotent_on_full_pool():
-    """Re-registering an existing server in a full pool must not raise."""
-    lb = LoadBalancer(max_servers=2)
-    lb.register("a")
-    lb.register("b")
-    lb.register("a")  # no exception
-    assert len(lb) == 2
+class TestUnregister(unittest.TestCase):
+    def test_unregister_frees_slot(self):
+        lb = LoadBalancer(max_servers=1)
+        lb.register("a")
+        lb.unregister("a")
+        self.assertNotIn("a", lb)
+        lb.register("a")  # slot freed
 
 
-@pytest.mark.parametrize("n", [0, -1])
-def test_invalid_capacity_raises(n):
-    with pytest.raises(ValueError):
-        LoadBalancer(max_servers=n)
+class TestGet(unittest.TestCase):
+    def test_get_raises_on_empty_pool(self):
+        lb = LoadBalancer()
+        with self.assertRaises(NoServersAvailableError):
+            lb.get()
 
 
-# --- unregister ---
+class TestDunders(unittest.TestCase):
+    def test_len_and_contains(self):
+        lb = LoadBalancer()
+        self.assertEqual(len(lb), 0)
+        self.assertNotIn("a", lb)
+        lb.register("a")
+        self.assertEqual(len(lb), 1)
+        self.assertIn("a", lb)
 
 
-def test_unregister_frees_slot():
-    lb = LoadBalancer(max_servers=1)
-    lb.register("a")
-    lb.unregister("a")
-    assert "a" not in lb
-    lb.register("a")  # slot freed
+class TestStrategies(unittest.TestCase):
+    def test_round_robin_cycles_through_servers(self):
+        lb = LoadBalancer()
+        for s in "abc":
+            lb.register(s)
+        self.assertEqual(
+            [lb.get() for _ in range(7)],
+            ["a", "b", "c", "a", "b", "c", "a"],
+        )
+
+    def test_round_robin_handles_pool_shrinkage(self):
+        rr = RoundRobin()
+        for _ in range(3):
+            rr(["a", "b", "c"])
+        self.assertIn(rr(["a", "b"]), {"a", "b"})
+
+    def test_balancer_accepts_arbitrary_callable_strategy(self):
+        lb = LoadBalancer(strategy=lambda servers: servers[0])
+        lb.register("a")
+        lb.register("b")
+        self.assertEqual(lb.get(), "a")
+        self.assertEqual(lb.get(), "a")
+
+    def test_random_choice_covers_all_members(self):
+        seen = {random_choice(["a", "b", "c"]) for _ in range(200)}
+        self.assertEqual(seen, {"a", "b", "c"})
 
 
-# --- get / empty pool ---
+class TestConcurrency(unittest.TestCase):
+    def test_concurrent_register_respects_capacity(self):
+        """Threads racing must never overflow the server maximum capacity."""
+        lb = LoadBalancer(max_servers=10)
+
+        def register_many(prefix: str) -> None:
+            for i in range(20):
+                try:
+                    lb.register(f"{prefix}-{i}")
+                except PoolFullError:
+                    return
+
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            list(ex.map(register_many, "abc"))
+        self.assertEqual(len(lb), 10)
+
+    def test_get_under_concurrent_register(self):
+        """get() must keep working while another thread is registering."""
+        lb = LoadBalancer(max_servers=1000)
+        lb.register("seed")
+
+        def keep_registering() -> None:
+            for i in range(999):
+                lb.register(f"r-{i}")
+
+        def keep_getting() -> None:
+            for _ in range(1000):
+                self.assertTrue(lb.get())
+
+        with ThreadPoolExecutor(max_workers=2) as ex:
+            f1 = ex.submit(keep_registering)
+            f2 = ex.submit(keep_getting)
+            f1.result()
+            f2.result()
 
 
-def test_get_raises_on_empty_pool():
-    lb = LoadBalancer()
-    with pytest.raises(NoServersAvailableError):
-        lb.get()
-
-
-# --- dunder methods ---
-
-
-def test_len_and_contains():
-    lb = LoadBalancer()
-    assert len(lb) == 0 and "a" not in lb
-    lb.register("a")
-    assert len(lb) == 1 and "a" in lb
-
-
-# --- strategies ---
-
-
-def test_round_robin_cycles_through_servers():
-    lb = LoadBalancer()
-    for s in "abc":
-        lb.register(s)
-    assert [lb.get() for _ in range(7)] == ["a", "b", "c", "a", "b", "c", "a"]
-
-
-def test_round_robin_handles_pool_shrinkage():
-    rr = RoundRobin()
-    for _ in range(3):
-        rr(["a", "b", "c"])
-    assert rr(["a", "b"]) in {"a", "b"}
-
-
-def test_balancer_accepts_arbitrary_callable_strategy():
-    lb = LoadBalancer(strategy=lambda servers: servers[0])
-    lb.register("a")
-    lb.register("b")
-    assert lb.get() == "a"
-    assert lb.get() == "a"
-
-
-def test_random_choice_covers_all_members():
-    seen = {random_choice(["a", "b", "c"]) for _ in range(200)}
-    assert seen == {"a", "b", "c"}
-
-
-# --- concurrency ---
-
-
-def test_concurrent_register_respects_capacity():
-    """Threads racing must never overflow the server maximum capacity."""
-    lb = LoadBalancer(max_servers=10)
-
-    def register_many(prefix: str) -> None:
-        for i in range(20):
-            try:
-                lb.register(f"{prefix}-{i}")
-            except PoolFullError:
-                return
-
-    with ThreadPoolExecutor(max_workers=3) as ex:
-        list(ex.map(register_many, "abc"))
-    assert len(lb) == 10
-
-
-def test_get_under_concurrent_register():
-    """get() must keep working while another thread is registering."""
-    lb = LoadBalancer(max_servers=1000)
-    lb.register("seed")
-
-    def keep_registering() -> None:
-        for i in range(999):
-            lb.register(f"r-{i}")
-
-    def keep_getting() -> None:
-        for _ in range(1000):
-            assert lb.get()
-
-    with ThreadPoolExecutor(max_workers=2) as ex:
-        f1 = ex.submit(keep_registering)
-        f2 = ex.submit(keep_getting)
-        f1.result()
-        f2.result()
+if __name__ == "__main__":
+    unittest.main()
