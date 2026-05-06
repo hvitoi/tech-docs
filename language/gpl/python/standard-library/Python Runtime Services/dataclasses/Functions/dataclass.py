@@ -1,5 +1,6 @@
 # %%
 from dataclasses import dataclass, field
+from uuid import UUID, uuid4
 
 
 # It's designed to make it easier to create classes that are mainly used to store data
@@ -42,3 +43,25 @@ p1 = Point(1, 2)
 p2 = Point(1, 2)
 print(p1)  # Point(x=1, y=2)
 print(p1 == p2)  # True
+
+# %%
+
+# Data Classes can have methods too!
+
+
+@dataclass
+class Account:
+    account_id: UUID = field(default_factory=uuid4)
+    balance: int = 0
+
+    def deposit(self, amount: int) -> None:
+        self.balance += amount
+
+    def withdraw(self, amount: int) -> bool:
+        if self.balance < amount:
+            return False
+        self.balance -= amount
+        return True
+
+    def get_balance(self) -> int:
+        return self.balance

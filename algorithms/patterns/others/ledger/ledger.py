@@ -1,10 +1,11 @@
 import threading
+import uuid
 
 
 class Account:
-    def __init__(self, account_id, balance=0):
-        self.account_id = account_id
-        self.balance = balance
+    def __init__(self):
+        self.account_id = uuid.uuid4()
+        self.balance = 0
         self._lock = threading.RLock()
 
     def deposit(self, amount):

@@ -47,10 +47,12 @@ class Counter:
 # --- Shortener ---
 
 
-class UnknownShortURLError(KeyError): ...
+class UnknownShortURLError(KeyError):
+    pass
 
 
-class CollisionError(RuntimeError): ...
+class CollisionError(RuntimeError):
+    pass
 
 
 class URLShortener:
@@ -65,6 +67,7 @@ class URLShortener:
             short_url = self._long_to_short.get(long_url)
             if short_url is not None:
                 return short_url
+
             short_url = self._strategy(long_url)
 
             if self._short_to_long.get(short_url) is not None:
@@ -75,8 +78,7 @@ class URLShortener:
             return short_url
 
     def expand(self, short_url: str) -> str:
-        with self._lock:
-            try:
-                return self._short_to_long[short_url]
-            except KeyError:
-                raise UnknownShortURLError(short_url)
+        try:
+            return self._short_to_long[short_url]
+        except KeyError:
+            raise UnknownShortURLError(short_url)

@@ -1,75 +1,69 @@
 # %%
+# What can live at class scope:
+#   - class attribute      : value bound at class body, shared across instances
+#   - instance attribute   : value bound on `self`, one per instance
+#   - instance method      : function with `self`
+#   - classmethod          : function with `cls` (decorated)
+#   - staticmethod         : plain function (decorated, no self/cls)
+#   - property             : computed attribute (decorated)
+
+
 class Student:
-    # attributes
-    school = "UFJF"  # class/instance attribute
-    city: str  # class/instance attribute (just a placeholder, it still needs to be instantiated)
-    number_of_students = 0  # class/instance attribute
+    # === class attributes (shared across instances) ===
+    school = "UFJF"  # default value, can be shadowed per-instance
+    city: str  # annotation only — no value bound; must be set on the instance
+    count = 0  # shared counter
 
-    # constructor
-    # python does not allow multiple constructors (with multiple signatures), instead you can define default values for each argument
-    def __init__(self, name, major):  # self is the object instance
-        Student.number_of_students += 1  # increase a class attribute
+    # === __init__: a magic method, called when constructing the instance ===
+    def __init__(self, name: str, major: str, age: int = 22):
+        Student.count += 1  # bump the shared counter
         self.name = name  # instance attribute
-        self.major = major  # instance attribute
-        self.__age = 22  # a private instance attribute
-        self.school = "USP"  # overrides the value of the class/instance attribute for that specific instance only!
+        self.major = major
+        self._gpa = 0.0  # single underscore — "private" by convention
+        self.__age = age  # double underscore — name-mangled to _Student__age
+        self.school = "USP"  # shadows the class attribute on THIS instance only
 
-    # def __init__(self): # default/empty constructor is automatically used if you don't specify any
-    #     pass
-
-    # methods
-    def show(self):
+    # === instance method — receives self ===
+    def show(self) -> None:
         print(f"{self.name} studies {self.major}")
 
-    # private methods (single underscore): intended to be private to the module or class (a convention only)
-    def _show(self):
-        print(f"{self.name} studies {self.major}")
+    # === property — accessed like an attribute, no parentheses ===
+    @property
+    def is_adult(self) -> bool:
+        return self.__age >= 18
 
-    # name mangling (double underscore): python rewrites the function/attribute names to avoid naming conflicts in subclasses. It's renamed to _MyClass__myvar
-    def __show(self):
-        print(f"{self.name} studies {self.major}")
-
-    # "magic methods": reserved for Python's internal use
-    # __init__, __str__, __repr__, __call__
-    def __str__(self):
-        return f"[Name: {self.name}; Major: {self.major}"
-
-    # Class Methods receives the class itself
+    # === classmethod — receives the class ===
     @classmethod
-    def show_number_of_students(cls):
-        print(f"There are {cls.number_of_students} matriculated at {cls.school}")
+    def total(cls) -> int:
+        return cls.count
 
-    # Static Methods know nothing about the class or instance
+    # === staticmethod — no self, no cls ===
     @staticmethod
-    def say_hello(person):
-        print(f"Hello, {person}!")
+    def is_valid_major(major: str) -> bool:
+        return len(major) > 0
+
+    # === other magic methods: __str__ used by print(), __repr__ by the REPL ===
+    def __str__(self) -> str:
+        return f"{self.name} ({self.major})"
 
 
-# Instance of a class. An object
-student1 = Student("Jim", "Business")
-student11 = Student(name="Jim", major="Business")  # same
-student2 = Student("Maria", "Engineering")
+jose = Student("Jim", "Business")
+maria = Student("Maria", "Engineering")
 
-# toString method
-print(student1)
-print(student2)
+print(jose)  # "Jim (Business)"           ← __str__
+jose.show()  # "Jim studies Business"     ← instance method
+jose.is_adult  # True                     ← property, no parentheses
+Student.total()  # 2                     ← classmethod
+Student.is_valid_major("CS")  # True     ← staticmethod
 
-# show method
-student1.show()
-student2.show()
+# attribute lookup: instance first, then class
+Student.school  # "UFJF"  — class attribute
+jose.school  # "USP"       — shadowed in __init__
+# Student.city            # AttributeError — annotation only, never assigned
 
-Student.show_number_of_students()
-Student.say_hello("Maria")
-
-# Class attributes
-Student.school  # UFJF
-student1.school  # USP (because it was overwritten in the constructor)
-# Student.city  # fails! It has not be instantiated
-
-# Instance attributes
-student1.major  # Business
-# Student.major  # fails! it's not a class attribute
-# student1.__age  # fails! Private attribute
+# private / name-mangled
+# jim.__age               # AttributeError — name-mangled
+jose._Student__age  # type: ignore  # 22 — accessible via the mangled name (don't do this!)
 
 
 # %%
