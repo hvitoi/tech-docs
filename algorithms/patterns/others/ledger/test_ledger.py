@@ -1,30 +1,36 @@
 import threading
+import unittest
 from time import time
 
-import pytest
-from lib.ledger import Account, Ledger
+from ledger import Account, Ledger
 
 
-@pytest.mark.parametrize("num_threads, transfer_amount", [(5, 50)])
-def test_concurrent_transfers(num_threads, transfer_amount):
-    acc1 = Account(1, 1000)
-    acc2 = Account(2, 1000)
-    initial_total = acc1.get_balance() + acc2.get_balance()
+class TestLedger(unittest.TestCase):
+    def test_concurrent_transfers_preserve_total(self):
+        num_threads = 5
+        transfer_amount = 50
 
-    def transfer():
-        Ledger.transfer_money(acc1, acc2, transfer_amount)
+        acc1 = Account()
+        acc1.deposit(1000)
+        acc2 = Account()
+        acc2.deposit(1000)
+        initial_total = acc1.get_balance() + acc2.get_balance()
 
-    threads = [threading.Thread(target=transfer) for _ in range(num_threads)]
-    start_time = time()
+        def transfer() -> None:
+            Ledger.transfer_money(acc1, acc2, transfer_amount)
 
-    for t in threads:
-        t.start()
+        threads = [threading.Thread(target=transfer) for _ in range(num_threads)]
+        start = time()
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        elapsed = time() - start
 
-    for t in threads:
-        t.join()
+        final_total = acc1.get_balance() + acc2.get_balance()
+        self.assertEqual(final_total, initial_total, "total balance must be conserved")
+        self.assertLess(elapsed, 5, "potential deadlock detected")
 
-    end_time = time()
-    final_total = acc1.get_balance() + acc2.get_balance()
 
-    assert final_total == initial_total, "Total balance should remain constant"
-    assert (end_time - start_time) < 5, "Potential deadlock detected"
+if __name__ == "__main__":
+    unittest.main()

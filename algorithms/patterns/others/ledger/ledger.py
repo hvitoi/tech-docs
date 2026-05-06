@@ -1,37 +1,45 @@
 import threading
-import uuid
+from uuid import UUID, uuid4
 
 
 class Account:
     def __init__(self):
-        self.account_id = uuid.uuid4()
-        self.balance = 0
+        self.account_id: UUID = uuid4()
+        self.balance: int = 0
         self._lock = threading.RLock()
 
-    def deposit(self, amount):
+    def deposit(self, amount: int) -> None:
         with self._lock:
             self.balance += amount
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: int) -> bool:
         with self._lock:
             if self.balance >= amount:
                 self.balance -= amount
                 return True
             return False
 
-    def get_balance(self):
+    def get_balance(self) -> int:
         with self._lock:
             return self.balance
 
 
 class Ledger:
     @staticmethod
-    def transfer_money(from_account, to_account, amount):
-        if from_account.account_id < to_account.account_id:
-            first, second = from_account, to_account
-        else:
-            first, second = to_account, from_account
+    def transfer_money(
+        from_account: Account,
+        to_account: Account,
+        amount: int,
+    ):
+        first, second = sorted((from_account, to_account), key=lambda a: a.account_id)
 
+        # The order of acquiring the locks is to prevent deadlocks
+        # Thread 1: transfer_money(A, B, 50)   # wants A._lock then B._lock
+        # Thread 2: transfer_money(B, A, 30)   # wants B._lock then A._lock
+        # T1 acquires A._lock  ──┐
+        # T2 acquires B._lock    │  ── now both wait forever
+        # T1 wants  B._lock  ◄───┤
+        # T2 wants  A._lock  ◄───┘
         with first._lock, second._lock:
             if from_account.withdraw(amount):
                 to_account.deposit(amount)
