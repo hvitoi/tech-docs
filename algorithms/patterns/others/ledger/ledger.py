@@ -19,12 +19,14 @@ class Account:
                 return True
             return False
 
-    def get_balance(self) -> int:
-        with self._lock:
-            return self.balance
-
 
 class Ledger:
+    """
+    A ledger is an append-only log of transactions
+    Every transaction is double-entry: a transfer of $50 from A to B is two paired entries (-50 on A, +50 on B) that must sum to zero.
+    Immutable (never edit, only append corrections), atomic (both legs of a transfer commit or neither), ordered (sequence matters), reconcilable (you can replay the log and verify balances).
+    """
+
     @staticmethod
     def transfer_money(
         from_account: Account,
