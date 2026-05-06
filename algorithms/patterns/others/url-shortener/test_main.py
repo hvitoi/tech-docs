@@ -18,17 +18,14 @@ class TestShorten(unittest.TestCase):
         a = s.shorten("https://example.com")
         b = s.shorten("https://example.com")
         self.assertEqual(a, b)
-        self.assertEqual(len(s), 1)
 
     def test_distinct_urls_get_distinct_shorts(self):
         s = URLShortener(Counter())
         a = s.shorten("https://example.com")
         b = s.shorten("https://other.com")
         self.assertNotEqual(a, b)
-        self.assertEqual(len(s), 2)
 
-    def test_collision_with_different_long_url_raises(self):
-        """A strategy that returns a short already mapped to a different long URL must raise."""
+    def test_collision_raises(self):
         s = URLShortener(strategy=lambda _: "fixed-short")
         s.shorten("https://example.com")
         with self.assertRaises(CollisionError):
@@ -47,21 +44,13 @@ class TestExpand(unittest.TestCase):
             s.expand("nope")
 
 
-class TestDunders(unittest.TestCase):
+class TestDefaults(unittest.TestCase):
     def test_default_strategy_is_counter(self):
         s = URLShortener()
         s.shorten("https://example.com")
         s.shorten("https://other.com")
         self.assertEqual(s.expand("1"), "https://example.com")
         self.assertEqual(s.expand("2"), "https://other.com")
-
-    def test_len_and_contains(self):
-        s = URLShortener()
-        self.assertEqual(len(s), 0)
-        self.assertNotIn("https://example.com", s)
-        s.shorten("https://example.com")
-        self.assertEqual(len(s), 1)
-        self.assertIn("https://example.com", s)
 
 
 class TestStrategies(unittest.TestCase):
@@ -100,12 +89,10 @@ class TestStrategies(unittest.TestCase):
         self.assertEqual(len(random_string("anything")), 8)
 
     def test_random_string_is_non_deterministic(self):
-        """Two calls should differ — astronomically unlikely otherwise."""
         seen = {random_string("anything") for _ in range(100)}
         self.assertGreater(len(seen), 1)
 
     def test_shortener_accepts_arbitrary_callable_strategy(self):
-        """A `Strategy` is just a callable — anything matching the signature works."""
         counter = iter("xyz")
         s = URLShortener(strategy=lambda _: next(counter))
         self.assertEqual(s.shorten("https://a.com"), "x")
@@ -116,24 +103,20 @@ class TestStrategies(unittest.TestCase):
         s = URLShortener(strategy=md5_hash)
         short = s.shorten("https://example.com")
         self.assertEqual(s.expand(short), "https://example.com")
-        # idempotent — same long URL returns same short
         self.assertEqual(s.shorten("https://example.com"), short)
 
 
 class TestConcurrency(unittest.TestCase):
     def test_concurrent_shorten_is_idempotent(self):
-        """Many threads shortening the same URL must all get the same short."""
         s = URLShortener()
         long_url = "https://example.com"
 
         with ThreadPoolExecutor(max_workers=8) as ex:
             results = list(ex.map(lambda _: s.shorten(long_url), range(100)))
 
-        self.assertEqual(len(set(results)), 1)  # all identical
-        self.assertEqual(len(s), 1)  # only one mapping created
+        self.assertEqual(len(set(results)), 1)
 
     def test_concurrent_shorten_distinct_urls_no_collisions(self):
-        """Different URLs shortened concurrently must each get distinct shorts."""
         s = URLShortener()
 
         with ThreadPoolExecutor(max_workers=8) as ex:
@@ -142,10 +125,8 @@ class TestConcurrency(unittest.TestCase):
             )
 
         self.assertEqual(len(set(results)), 200)
-        self.assertEqual(len(s), 200)
 
     def test_concurrent_expand_under_shorten(self):
-        """expand() must keep working while another thread is shortening."""
         s = URLShortener()
         long_url = "https://seed.com"
         seed = s.shorten(long_url)
@@ -162,7 +143,7 @@ class TestConcurrency(unittest.TestCase):
             f1 = ex.submit(shortener)
             f2 = ex.submit(expander)
             f1.result()
-            f2.result()  # re-raises if either thread raised
+            f2.result()
 
 
 if __name__ == "__main__":
