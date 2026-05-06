@@ -9,16 +9,12 @@ type Strategy = Callable[[Sequence[str]], str]
 
 
 def random_choice(servers: Sequence[str]) -> str:
-    """Uniform random pick. Stateless."""
+    """Stateless strategy"""
     return random.choice(servers)
 
 
 class RoundRobin:
-    """Cycle through servers in order. Thread-safe via internal lock.
-
-    The lock guards the read-modify-write of _counter against lost updates
-    when multiple threads call __call__ concurrently.
-    """
+    """Stateful strategy"""
 
     def __init__(self) -> None:
         self._counter = 0
@@ -31,25 +27,16 @@ class RoundRobin:
             return servers[i]
 
 
-# --- errors + balancer ---
+# --- balancer ---
 
 
-class NoServersAvailableError(RuntimeError):
-    """Raised when get() is called on an empty pool."""
+class NoServersAvailableError(RuntimeError): ...
 
 
-class PoolFullError(RuntimeError):
-    """Raised when register() is called on a full pool."""
+class PoolFullError(RuntimeError): ...
 
 
 class LoadBalancer:
-    """Distributes requests across a pool of registered servers.
-
-    `register` is idempotent (re-registering an existing server is a no-op).
-    `get` snapshots the pool under the lock, then runs the strategy outside
-    the lock so a slow/buggy strategy can't block other operations.
-    """
-
     def __init__(
         self,
         max_servers: int = 10,

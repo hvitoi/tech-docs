@@ -1,7 +1,5 @@
 # URL Shortener
 
-Common Revolut / system-design coding problem (mentioned across multiple Glassdoor reviews). Builds a TinyURL-style service: long URL → short token, then back.
-
 ## Stage 1 — Basic operations
 
 - `shorten(long_url: str) -> str` — generate a short URL for `long_url`. Idempotent: same input always returns the same short.
@@ -16,7 +14,7 @@ Make the *how-to-generate* interchangeable. Common candidates:
 - **Base64** — first 8 chars of `urlsafe_b64encode(long_url)`. Deterministic.
 - **Random string** — random alphanumeric. Non-deterministic.
 
-The shortener owns the storage; strategies just generate. The shortener detects collisions (same short token bound to a different long URL).
+The shortener owns the storage and detects collisions; strategies just generate.
 
 ## Stage 3 — Concurrency
 
@@ -59,29 +57,39 @@ s.shorten("https://b.com")         # raises CollisionError
 
 ## How to lead the interview (5-phase script)
 
-### Phase 1 — Understand (3-5 min)
+### Phase 1 — Understand (3-5 min, **don't skip**)
+
+Restate the problem in your own words, then ask:
 
 1. *"Should `shorten(same_url)` always return the same short, or generate a fresh one?"* → idempotent
 2. *"What's the format of a short URL — any string, fixed length, alphanumeric only?"* → string of fixed length
-3. *"What happens if two different long URLs hash to the same short?"* → raise CollisionError
-4. *"What happens on `expand` for an unknown short?"* → raise UnknownShortURLError
-5. *"Single-threaded or concurrent?"* → concurrent
+3. *"What happens if two different long URLs hash to the same short?"* → raise `CollisionError`
+4. *"What happens on `expand` for an unknown short?"* → raise `UnknownShortURLError`
+5. *"Single-threaded or concurrent callers?"* → concurrent (almost always for this problem)
 6. *"Should we validate URLs?"* → no — that's the API boundary's job
 7. *"Strategy fixed at construction or pluggable?"* → expect *"start with one, we'll discuss more"*
 
+If they say "you decide", state your assumption out loud: *"I'll assume X — let me know if you want different behaviour."*
+
 ### Phase 2 — Plan (3-5 min)
+
+Speak the entire rubric in 30 seconds **before typing a line**:
 
 > *"I'll keep a bidirectional map: `dict[long → short]` and `dict[short → long]`. The first gives idempotence (`if long in map → return cached short`). The second gives O(1) `expand` and lets me detect collisions before committing.*
 >
 > *Strategies are callables matching `Callable[[str], str]` — function for stateless ones (md5, base64, random), class with `__call__` for stateful (counter). Default to counter.*
 >
-> *Single `threading.Lock` guards both dicts. `shorten` and `expand` are O(1).*
+> *For thread safety, a `threading.Lock` guarding both dicts. `shorten` and `expand` are O(1).*
 >
-> *Tests: idempotence, round-trip, unknown expand, collision, concurrency."*
+> *Tests: idempotence, round-trip, unknown expand, collision, concurrency.*
+>
+> *Is this OK or should I aim for something else upfront?"*
+
+Wait for the nod.
 
 ### Phase 3 — Code (15-20 min)
 
-Build incrementally:
+Build incrementally. Narrate each piece:
 
 1. `Strategy = Callable[[str], str]` type alias.
 2. `Counter` class with internal lock.
@@ -89,11 +97,11 @@ Build incrementally:
 4. `URLShortener` with the two dicts + lock.
 5. `shorten` (idempotence first, then collision check, then commit).
 6. `expand` raising `UnknownShortURLError`.
-7. Add asserts inline.
+7. Drop in asserts as you write — don't batch them at the end.
 
 ### Phase 4 — Test (5-8 min)
 
-Walk through:
+Run through:
 
 - shorten same URL twice → identical
 - two distinct URLs → distinct shorts
@@ -102,26 +110,28 @@ Walk through:
 - collision via mock strategy → raises
 - concurrent same-URL shorten → all get the same value (idempotence holds under contention)
 
-**Find at least one bug yourself.**
+**Find one bug yourself** — say it out loud, fix it. It's graded on this.
 
 ### Phase 5 — Reflect & optimise (2-3 min)
 
-> *"For production: persistence (Redis / Postgres), TTL on entries, per-user quotas, sharding by short-prefix, monotonic IDs encoded in base62 to keep shorts small (`1` → `b`, `26` → `B`, etc.). Collision retry: with random/hash strategies, on collision retry up to N attempts before giving up. The single lock is fine until you're handling >10k req/s — then split per-shard or use a CAS-based approach on a concurrent map."*
+> *"For production: persistence (Redis / Postgres), TTL on entries, per-user quotas, sharding by short-prefix, monotonic IDs encoded in base62 to keep shorts small. With random/hash strategies, retry up to N attempts on collision before giving up. The single lock is fine until you're handling >10k req/s — then split per-shard or use a CAS-based approach on a concurrent map."*
+
+That single paragraph signals senior-level awareness.
 
 ---
 
 ## Likely follow-ups (rehearse one-liners)
 
-| extension | one-line answer |
-| --- | --- |
-| **Custom alphabet / shorter shorts** | base62 encode the counter (62 chars vs 36/16); fits trillions in 7 chars |
-| **TTL / expiry** | store `(long_url, expires_at)`; lazy-evict on `expand`; or background sweep |
-| **Per-user quotas** | dict `{user_id: count}`; check before `shorten` |
-| **Custom alias (vanity URL)** | `shorten(long_url, alias=...)`; check alias not in `_short_to_long` first |
-| **Hit counter / analytics** | `dict[short, int]`; increment in `expand`; or off-host (statsd, Kafka) |
-| **Persistence** | swap in-memory dicts for Redis (`SETNX` for atomicity) or Postgres (UNIQUE constraint) |
-| **Sharding** | hash short URL → shard ID; route reads/writes to that shard |
-| **Collision-retry strategy** | wrap a strategy in `retry(strategy, max_attempts=5)` decorator |
+| extension | one-line answer | sketch |
+| --- | --- | --- |
+| **Custom alphabet / shorter shorts** | "base62 encode the counter" | 62 chars vs 36/16; fits trillions in 7 chars |
+| **TTL / expiry** | "store `(long_url, expires_at)`; lazy-evict on `expand`" | or background sweep |
+| **Per-user quotas** | "dict `{user_id: count}`; check before `shorten`" | bump on success, reject when over limit |
+| **Custom alias (vanity URL)** | "`shorten(long_url, alias=...)`; check alias not in `_short_to_long` first" | reject conflicts via `CollisionError` |
+| **Hit counter / analytics** | "`dict[short, int]`; increment in `expand`" | or off-host (statsd, Kafka) |
+| **Persistence** | "swap in-memory dicts for Redis (`SETNX`) or Postgres (UNIQUE constraint)" | DB enforces idempotence + collision |
+| **Sharding** | "hash short URL → shard ID; route reads/writes to that shard" | |
+| **Collision-retry strategy** | "wrap a strategy in `retry(strategy, max_attempts=5)` decorator" | useful for random/hash strategies |
 
 ---
 
@@ -131,34 +141,17 @@ Walk through:
 - **Don't forget the collision case** when the strategy is non-deterministic. A naive `_short_to_long[short] = long_url` silently overwrites a previous mapping.
 - **Don't forget idempotence** under concurrency. Two threads calling `shorten(same_url)` simultaneously must both return the same short — this is what the lock guarantees.
 - **Don't conflate "URL not found" with empty / None.** Raise an explicit error so callers can't accidentally use `None` as a real URL.
-- **Don't compute the short while holding the lock for slow strategies.** If a strategy ever does I/O (database, network), follow the load-balancer pattern: snapshot inputs under lock, compute outside, commit under lock again.
+- **Don't compute the short while holding the lock for slow strategies.** If a strategy ever does I/O (database, network), snapshot under lock, compute outside, commit under lock again.
+- **Don't write tests after coding** — write a couple of asserts as you go.
 
 ---
 
-## Project layout
-
-Flat — no package, just files in one directory:
+## Mental cheatsheet (pin to monitor)
 
 ```text
-url-shortener/
-├── pyproject.toml             # uv config, non-package mode
-├── uv.lock
-├── .python-version
-├── url-shortener.md
-├── shortener.py               # URLShortener + UnknownShortURLError + CollisionError
-├── strategies.py              # Strategy type + Counter + md5_hash + base64_hash + random_string
-├── test_shortener.py
-├── test_strategies.py
-└── test_concurrency.py
+1. Clarify (3 min)  idempotent? format? collision raises? unknown raises? thread-safe?
+2. Plan   (3 min)   Strategy = Callable, two dicts + Lock, default Counter
+3. Code   (15-20)   Strategy alias → Counter → hashes → URLShortener (shorten/expand) → Lock
+4. Test   (5-8)     idempotent, round-trip, unknown, collision, concurrent
+5. Reflect (3)      base62, TTL, persistence (Redis SETNX), sharding, collision-retry
 ```
-
-### Run
-
-```sh
-uv sync
-uv run pytest
-```
-
-### Note for the live interview
-
-In 40 minutes, **everything goes in one file** with `assert` tests under `if __name__ == "__main__":`. The split here is what to *talk about* during Phase 5 ("how I'd organise it for production").
