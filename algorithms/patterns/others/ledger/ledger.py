@@ -1,25 +1,23 @@
-import threading
 from dataclasses import dataclass
 from decimal import Decimal
+from threading import Lock
 from uuid import UUID, uuid4
-
-
-@dataclass(frozen=True)
-class Entry:
-    """One leg of a transfer. Positive credits the account, negative debits it."""
-
-    account_id: UUID
-    amount: Decimal
-
-
-class InsufficientFunds(Exception):
-    pass
 
 
 class Account:
     def __init__(self):
         self.account_id: UUID = uuid4()
         self.balance: Decimal = Decimal(0)
+
+
+@dataclass(frozen=True)
+class Entry:
+    account_id: UUID
+    amount: Decimal
+
+
+class InsufficientFunds(Exception):
+    pass
 
 
 class Ledger:
@@ -37,7 +35,7 @@ class Ledger:
 
     def __init__(self):
         self._journal: list[tuple[Entry, Entry]] = []
-        self._lock = threading.Lock()
+        self._lock = Lock()
         self._cash = Account()
 
     def deposit(self, account: Account, amount: Decimal) -> None:
@@ -54,10 +52,9 @@ class Ledger:
         with self._lock:
             # Cash is the bookkeeping counterparty, allowed to go negative.
             if from_account is not self._cash and from_account.balance < amount:
-                raise InsufficientFunds(
-                    f"{from_account.account_id} has {from_account.balance}, needs {amount}"
-                )
+                raise InsufficientFunds()
             self._journal.append(
+                # append the legs (each "side" of the transaction)
                 (
                     Entry(from_account.account_id, -amount),
                     Entry(to_account.account_id, +amount),
@@ -67,14 +64,14 @@ class Ledger:
             to_account.balance += amount
 
     def balance_of(self, account: Account) -> Decimal:
-        """Replay the journal for this account — reconciles against the cached balance."""
+        """Replay the journal for this account — reconciles against journal"""
         with self._lock:
             return sum(
                 (
-                    e.amount
+                    entry.amount
                     for legs in self._journal
-                    for e in legs
-                    if e.account_id == account.account_id
+                    for entry in legs
+                    if entry.account_id == account.account_id
                 ),
                 Decimal(0),
             )
