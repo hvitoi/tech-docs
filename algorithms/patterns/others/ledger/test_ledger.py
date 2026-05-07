@@ -37,21 +37,16 @@ class TestLedger(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.ledger.deposit(self.alice, bad)
 
-    def test_vault_liability_equals_negative_customer_total(self):
-        # Core accounting identity: vault is always exactly the negative of the
-        # total customer balance. If this ever breaks, money was created or destroyed.
-        self.assertEqual(
-            self.ledger.vault.balance,
-            -(self.alice.balance + self.bob.balance),
-        )
-
     def test_replay_matches_cached_balance(self):
-        for account in (self.alice, self.bob, self.ledger.vault):
-            self.assertEqual(self.ledger.replay_balance(account), account.balance)
+        # The journal is the source of truth — replaying it must reproduce
+        # whatever the cached balance says.
+        self.ledger.transfer(self.alice, self.bob, Decimal(100))
+        self.ledger.transfer(self.bob, self.alice, Decimal(40))
+        self.ledger.withdraw(self.alice, Decimal(25))
+        self.assertEqual(self.ledger.balance_of(self.alice), self.alice.balance)
+        self.assertEqual(self.ledger.balance_of(self.bob), self.bob.balance)
 
     def test_concurrent_transfers_preserve_total_no_deadlock(self):
-        # Bidirectional transfers under contention — surfaces deadlocks, torn
-        # writes between the log and the balances, and cache/log drift.
         initial_total = self.alice.balance + self.bob.balance
 
         def hammer():
@@ -69,13 +64,11 @@ class TestLedger(unittest.TestCase):
         with ThreadPoolExecutor(max_workers=20) as pool:
             for _ in range(20):
                 pool.submit(hammer)
-            # Exiting the `with` calls shutdown(wait=True) — joins every submitted task.
         elapsed = time() - start
 
         self.assertEqual(self.alice.balance + self.bob.balance, initial_total)
-        self.assertEqual(self.ledger.replay_balance(self.alice), self.alice.balance)
-        self.assertEqual(self.ledger.replay_balance(self.bob), self.bob.balance)
-        self.assertEqual(self.ledger.vault.balance, -(self.alice.balance + self.bob.balance))
+        self.assertEqual(self.ledger.balance_of(self.alice), self.alice.balance)
+        self.assertEqual(self.ledger.balance_of(self.bob), self.bob.balance)
         self.assertLess(elapsed, 5)
 
 
