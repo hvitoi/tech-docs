@@ -1,18 +1,19 @@
 import threading
+from decimal import Decimal
 from uuid import UUID, uuid4
 
 
 class Account:
     def __init__(self):
         self.account_id: UUID = uuid4()
-        self.balance: int = 0
+        self.balance: Decimal = Decimal(0)
         self._lock = threading.RLock()
 
-    def deposit(self, amount: int) -> None:
+    def deposit(self, amount: Decimal) -> None:
         with self._lock:
             self.balance += amount
 
-    def withdraw(self, amount: int) -> bool:
+    def withdraw(self, amount: Decimal) -> bool:
         with self._lock:
             if self.balance >= amount:
                 self.balance -= amount
@@ -31,7 +32,7 @@ class Ledger:
     def transfer_money(
         from_account: Account,
         to_account: Account,
-        amount: int,
+        amount: Decimal,
     ):
         first, second = sorted((from_account, to_account), key=lambda a: a.account_id)
 
