@@ -1,7 +1,7 @@
 from threading import Thread
 from time import time
 
-from lib.ledger_cas import Account, Ledger
+from ledger_cas import Account, Ledger
 
 
 def test_ledger_money_transfer_concurrency():
