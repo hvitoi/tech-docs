@@ -1,7 +1,7 @@
 # A lock object can lock the execution in the current thread
 # %%
 import threading
-from concurrent.futures import ThreadPoolExecutor, wait
+from concurrent.futures import ThreadPoolExecutor
 
 # The idiomatic pattern is to use a lock in the context manager
 # With that .acquire() and .release() and called transparently

@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from decimal import Decimal
-from itertools import chain
 from threading import Lock
 from uuid import UUID, uuid4
 

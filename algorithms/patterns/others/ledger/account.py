@@ -9,6 +9,7 @@ class Account:
     def __init__(self):
         self.account_id: UUID = uuid4()
         self.balance: Decimal = Decimal(0)
+        # Reentrant lock is necessary because on transfer the lock is acquired twice (for each account): first on the "with" statement and second on the withdraw or deposit operations
         self._lock = threading.RLock()
 
     def deposit(self, amount: Decimal) -> None:
