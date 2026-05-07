@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from decimal import Decimal
+from itertools import chain
 from threading import Lock
 from uuid import UUID, uuid4
 
@@ -66,6 +67,12 @@ class Ledger:
     def balance_of(self, account: Account) -> Decimal:
         """Replay the journal for this account — reconciles against journal"""
         with self._lock:
+            balance = Decimal(0)
+            for legs in self._journal:
+                for entry in legs:
+                    if entry.account_id == account.account_id:
+                        balance += entry.amount
+            return balance
             return sum(
                 (
                     entry.amount
