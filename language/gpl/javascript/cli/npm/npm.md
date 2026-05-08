@@ -19,6 +19,7 @@ npm init -y
 
 ```shell
 # Install globally
+# on node installations via "brew", global packages are installed at /opt/homebrew/lib/node_modules/
 sudo npm install -g "package"
 
 # Install locally

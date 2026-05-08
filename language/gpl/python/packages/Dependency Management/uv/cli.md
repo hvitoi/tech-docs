@@ -108,6 +108,8 @@ uv python pin 3.11 # pin a version for the cwd
 
 ## uv tool (uvx)
 
+### uv tool run
+
 - Run tools in an ephemeral environment (similar to pipx, npx, etc)
 
 ```shell
@@ -124,10 +126,20 @@ uvx --from mcpdoc \
     --host localhost
 ```
 
+### uv tool install
+
 ```shell
 # installs a CLI tool globally (into ~/.local/bin), not into your project. It's like pipx install - it doesn't touch your pyproject.toml
+# Each tool gets its own isolated virtual environment
 uv tool install ruff # just install without running
 uv tool install 'deepagents-cli[ollama,groq]'
+```
+
+### uv tool list
+
+```shell
+uv tool list
+uv tool dir
 ```
 
 ## uv venv
