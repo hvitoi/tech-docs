@@ -23,7 +23,7 @@ cat < /dev/tty1
 
 - `Alacritty`: has issues with unicode characters
 - `WezTerm`: written in Rust
-- `Ghostty`
+- `Ghostty`: use GTK4 on Linux, AppKit/SwiftUI on macOS
 - `Kitty`
 - `xterm`
 
