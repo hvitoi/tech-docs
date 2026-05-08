@@ -98,6 +98,20 @@ aws devops-agent associate-service \
   }'
 ```
 
+```shell
+aws devops-agent associate-service \
+  --agent-space-id MyAgentSpace \
+  --service-id gh-service-id \
+  --configuration '{
+    "github": {
+      "repoName": "dino",
+      "repoId":"",
+      "owner": "foo",
+      "ownerType": "organization"
+    }
+  }'
+```
+
 ## list-associations
 
 - List associations for an agent space
