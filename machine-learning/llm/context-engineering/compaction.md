@@ -1,4 +1,4 @@
-# History Shortening
+# Compaction
 
 ## Stuffing
 
