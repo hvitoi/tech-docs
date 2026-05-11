@@ -43,7 +43,7 @@ class LoadBalancer:
         strategy: Strategy | None = None,
     ) -> None:
         if max_targets <= 0:
-            raise ValueError("max_servers must be positive")
+            raise ValueError("Capacity must be positive")
         self._max_targets = max_targets
         self._strategy: Strategy = strategy or RoundRobin()
         self._targets: list[str] = []
