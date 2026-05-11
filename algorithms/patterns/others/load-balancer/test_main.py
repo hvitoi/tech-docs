@@ -18,14 +18,14 @@ class TestRegisterAndCapacity(unittest.TestCase):
         self.assertEqual(len(lb), 1)
 
     def test_register_raises_when_full(self):
-        lb = LoadBalancer(max_servers=1)
+        lb = LoadBalancer(max_targets=1)
         lb.register("a")
         with self.assertRaises(PoolFullError):
             lb.register("b")
 
     def test_register_idempotent_on_full_pool(self):
         """Re-registering an existing server in a full pool must not raise."""
-        lb = LoadBalancer(max_servers=2)
+        lb = LoadBalancer(max_targets=2)
         lb.register("a")
         lb.register("b")
         lb.register("a")
@@ -34,12 +34,12 @@ class TestRegisterAndCapacity(unittest.TestCase):
     def test_invalid_capacity_raises(self):
         for n in (0, -1):
             with self.subTest(n=n), self.assertRaises(ValueError):
-                LoadBalancer(max_servers=n)
+                LoadBalancer(max_targets=n)
 
 
 class TestUnregister(unittest.TestCase):
     def test_unregister_frees_slot(self):
-        lb = LoadBalancer(max_servers=1)
+        lb = LoadBalancer(max_targets=1)
         lb.register("a")
         lb.unregister("a")
         self.assertNotIn("a", lb)
@@ -50,7 +50,7 @@ class TestGet(unittest.TestCase):
     def test_get_raises_on_empty_pool(self):
         lb = LoadBalancer()
         with self.assertRaises(NoServersAvailableError):
-            lb.get()
+            lb.pick()
 
 
 class TestDunders(unittest.TestCase):
@@ -69,7 +69,7 @@ class TestStrategies(unittest.TestCase):
         for s in "abc":
             lb.register(s)
         self.assertEqual(
-            [lb.get() for _ in range(7)],
+            [lb.pick() for _ in range(7)],
             ["a", "b", "c", "a", "b", "c", "a"],
         )
 
@@ -83,8 +83,8 @@ class TestStrategies(unittest.TestCase):
         lb = LoadBalancer(strategy=lambda servers: servers[0])
         lb.register("a")
         lb.register("b")
-        self.assertEqual(lb.get(), "a")
-        self.assertEqual(lb.get(), "a")
+        self.assertEqual(lb.pick(), "a")
+        self.assertEqual(lb.pick(), "a")
 
     def test_random_choice_covers_all_members(self):
         seen = {random_choice(["a", "b", "c"]) for _ in range(200)}
@@ -94,7 +94,7 @@ class TestStrategies(unittest.TestCase):
 class TestConcurrency(unittest.TestCase):
     def test_concurrent_register_respects_capacity(self):
         """Threads racing must never overflow the server maximum capacity."""
-        lb = LoadBalancer(max_servers=10)
+        lb = LoadBalancer(max_targets=10)
 
         def register_many(prefix: str) -> None:
             for i in range(20):
@@ -109,7 +109,7 @@ class TestConcurrency(unittest.TestCase):
 
     def test_get_under_concurrent_register(self):
         """get() must keep working while another thread is registering."""
-        lb = LoadBalancer(max_servers=1000)
+        lb = LoadBalancer(max_targets=1000)
         lb.register("seed")
 
         def keep_registering() -> None:
@@ -118,7 +118,7 @@ class TestConcurrency(unittest.TestCase):
 
         def keep_getting() -> None:
             for _ in range(1000):
-                self.assertTrue(lb.get())
+                self.assertTrue(lb.pick())
 
         with ThreadPoolExecutor(max_workers=2) as ex:
             f1 = ex.submit(keep_registering)

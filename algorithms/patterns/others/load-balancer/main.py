@@ -39,32 +39,32 @@ class PoolFullError(RuntimeError): ...
 class LoadBalancer:
     def __init__(
         self,
-        max_servers: int = 10,
+        max_targets: int = 10,
         strategy: Strategy | None = None,
     ) -> None:
-        if max_servers <= 0:
+        if max_targets <= 0:
             raise ValueError("max_servers must be positive")
-        self._max_servers = max_servers
+        self._max_targets = max_targets
         self._strategy: Strategy = strategy or RoundRobin()
-        self._servers: list[str] = []
+        self._targets: list[str] = []
         self._lock = threading.Lock()
 
     def register(self, server: str) -> None:
         with self._lock:
-            if server in self._servers:
+            if server in self._targets:
                 return  # idempotent
-            if len(self._servers) >= self._max_servers:
-                raise PoolFullError(f"pool is full ({self._max_servers} servers)")
-            self._servers.append(server)
+            if len(self._targets) >= self._max_targets:
+                raise PoolFullError(f"pool is full ({self._max_targets} servers)")
+            self._targets.append(server)
 
     def unregister(self, server: str) -> None:
         with self._lock:
-            self._servers.remove(server)
+            self._targets.remove(server)
 
-    def get(self) -> str:
+    def pick(self) -> str:
         with self._lock:
             # copy under lock (take a copy and release the lock)
-            snapshot = list(self._servers)
+            snapshot = list(self._targets)
         if not snapshot:
             raise NoServersAvailableError
 
@@ -77,8 +77,8 @@ class LoadBalancer:
 
     def __len__(self) -> int:
         with self._lock:
-            return len(self._servers)
+            return len(self._targets)
 
-    def __contains__(self, server: object) -> bool:
+    def __contains__(self, target: object) -> bool:
         with self._lock:
-            return server in self._servers
+            return target in self._targets
