@@ -13,17 +13,14 @@ type Strategy = Callable[[str], str]
 
 
 def md5_hash(long_url: str) -> str:
-    """First 8 hex chars of MD5(long_url). Deterministic — same input → same output."""
     return hashlib.md5(long_url.encode()).hexdigest()[:8]
 
 
 def base64_hash(long_url: str) -> str:
-    """First 8 chars of urlsafe-base64(long_url). Deterministic."""
     return base64.urlsafe_b64encode(long_url.encode()).decode()[:8]
 
 
 def random_string(_long_url: str) -> str:
-    """8 random alphanumeric chars. Non-deterministic — ignores long_url."""
     chars = string.ascii_letters + string.digits
     return "".join(random.choices(chars, k=8))
 
@@ -47,19 +44,17 @@ class Counter:
 # --- Shortener ---
 
 
-class UnknownShortURLError(KeyError):
-    pass
+class UnknownShortURLError(KeyError): ...
 
 
-class CollisionError(RuntimeError):
-    pass
+class CollisionError(RuntimeError): ...
 
 
 class URLShortener:
     def __init__(self, strategy: Strategy | None = None) -> None:
-        self._strategy: Strategy = strategy or Counter()
-        self._long_to_short: dict[str, str] = {}
+        self._strategy: Strategy = strategy or random_string
         self._short_to_long: dict[str, str] = {}
+        self._long_to_short: dict[str, str] = {}  # it's only required for idempotency
         self._lock = threading.Lock()
 
     def shorten(self, long_url: str) -> str:
@@ -71,7 +66,7 @@ class URLShortener:
             short_url = self._strategy(long_url)
 
             if self._short_to_long.get(short_url) is not None:
-                raise CollisionError(f"{short_url!r} already maps to another url")
+                raise CollisionError("Already maps to another url")
 
             self._long_to_short[long_url] = short_url
             self._short_to_long[short_url] = long_url
