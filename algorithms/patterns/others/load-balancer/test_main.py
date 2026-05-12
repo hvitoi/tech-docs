@@ -19,7 +19,7 @@ class TestLoadBalancer(unittest.TestCase):
         self.assertEqual(len(lb), 1)
 
     def test_register_raises_when_full(self):
-        lb = LoadBalancer(max_targets=1)
+        lb = LoadBalancer(max_servers=1)
         lb.register("a")
         with self.assertRaises(PoolFullError):
             lb.register("b")
@@ -43,7 +43,7 @@ class TestLoadBalancer(unittest.TestCase):
         self.assertEqual(picked, ["a", "b", "c", "a", "b", "c", "a"])
 
     def test_concurrent_register_respects_capacity(self):
-        lb = LoadBalancer(max_targets=10)
+        lb = LoadBalancer(max_servers=10)
         with ThreadPoolExecutor(max_workers=10) as executor:
             for _ in range(999):
                 executor.submit(_try_register, lb)
