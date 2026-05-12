@@ -1,4 +1,5 @@
 import unittest
+import random
 from concurrent.futures import ThreadPoolExecutor
 
 from main import LoadBalancer, NoServersAvailableError, PoolFullError, RoundRobin
@@ -43,14 +44,15 @@ class TestLoadBalancer(unittest.TestCase):
 
     def test_concurrent_register_respects_capacity(self):
         lb = LoadBalancer(max_targets=10)
-        with ThreadPoolExecutor(max_workers=3) as ex:
-            ex.map(lambda i: _try_register(lb, i), range(50))
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            for _ in range(999):
+                executor.submit(_try_register, lb)
         self.assertEqual(len(lb), 10)
 
 
-def _try_register(lb: LoadBalancer, i: int) -> None:
+def _try_register(lb: LoadBalancer) -> None:
     try:
-        lb.register(f"s-{i}")
+        lb.register(f"{random.random()}")
     except PoolFullError:
         pass
 
