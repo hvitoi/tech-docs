@@ -44,8 +44,10 @@ my_list[3] = "d"  # throws! This index does not exist, should be created first
 2 * ["a", "b"]  # ["a", "b", "a", "b"]
 
 # multiply pointers (!!)
-2 * [[]]  # [[], []] -- it's a reference to the same list!
-[[] for _ in range(2)]  # use this instead
+a = 3 * [[0] * 2]  # [[0, 0], [0, 0], [0, 0]] -- it's a reference to the same list!
+a[0].append(1)  # [[0, 0, 1], [0, 0, 1], [0, 0, 1]]  ← all rows mutated
+
+[[0] * 2 for _ in range(3)]  # use this instead
 
 # %%
 # list unpacking

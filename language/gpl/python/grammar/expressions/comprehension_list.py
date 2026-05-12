@@ -19,9 +19,12 @@
     for item in row
 ]
 # %%
-# Generate a NxN matrix
+# Generate a 2D matrix
 n = 5
 [[0] * n for _ in range(n)]
+
+# Generate a 3D matrix
+[[[0] * n for _ in range(n)] for _ in range(n)]  # nested listcomp
 
 # %%
 # Remove multiple indexes from an array
