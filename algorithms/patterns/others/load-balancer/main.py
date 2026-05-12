@@ -1,14 +1,14 @@
 import random
 import threading
-from collections.abc import Callable, Sequence
+from collections.abc import Callable
 
 # --- strategies ---
 
 
-type Strategy = Callable[[Sequence[str]], str]
+type Strategy = Callable[[list[str]], str]
 
 
-def random_choice(servers: Sequence[str]) -> str:
+def random_choice(servers: list[str]) -> str:
     """Stateless strategy"""
     return random.choice(servers)
 
@@ -20,7 +20,7 @@ class RoundRobin:
         self._counter = 0
         self._lock = threading.Lock()
 
-    def __call__(self, servers: Sequence[str]) -> str:
+    def __call__(self, servers: list[str]) -> str:
         with self._lock:
             i = self._counter % len(servers)
             self._counter += 1  # A billion calls it's a 30-bit int (4 bytes). You will not exhaust memory.
