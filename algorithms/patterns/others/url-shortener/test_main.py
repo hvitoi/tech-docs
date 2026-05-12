@@ -39,8 +39,10 @@ class TestURLShortener(unittest.TestCase):
 
     def test_concurrent_shorten_distinct_urls(self):
         s = URLShortener()
-        with ThreadPoolExecutor(max_workers=8) as ex:
-            shorts = list(ex.map(lambda i: s.shorten(f"https://ex.com/{i}"), range(200)))
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            shorts = list(
+                executor.map(lambda i: s.shorten(f"https://ex.com/{i}"), range(200))
+            )
         self.assertEqual(len(set(shorts)), 200)
 
 

@@ -26,12 +26,6 @@ def random_string(_long_url: str) -> str:
 
 
 class Counter:
-    """Monotonic incrementing identifier — ignores long_url, just hands out the next int.
-
-    The lock guards the read-modify-write of the underlying counter against
-    lost updates when multiple threads call __call__ concurrently.
-    """
-
     def __init__(self) -> None:
         self._counter = itertools.count(1)
         self._lock = threading.Lock()
