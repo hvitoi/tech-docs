@@ -16,8 +16,7 @@ class Entry:
     amount: Decimal
 
 
-class InsufficientFunds(Exception):
-    pass
+class InsufficientFunds(Exception): ...
 
 
 class Ledger:
