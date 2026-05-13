@@ -51,17 +51,6 @@ service2:
   <<: *defaults
   endpoint: "https://service2.example.com"
 
-# Multi-line strings
-multiline_block: |
-  This is a multi-line
-  string block. It preserves
-  line breaks.
-
-folded_block: >
-  This is a folded block
-  that combines lines into
-  a single paragraph.
-
 # Inline syntax
 inline_list: [1, 2, 3]
 inline_map: { key1: value1, key2: value2 }
@@ -75,9 +64,49 @@ timestamp: 2024-11-18T15:00:00Z
 # Custom tags (advanced usage)
 custom_tag: !!str 12345 # Forces the scalar to be a string
 
+
 # Comments
 # YAML supports inline comments, like this!
 
 --- # YAML Document Separator
 # another document
 foo: bar
+
+---
+# Multi-line strings
+#
+# Block scalars use | (literal) or > (folded), optionally with a chomping
+# indicator: default (clip = keep one trailing \n), - (strip all), + (keep all).
+
+# Literal — preserves line breaks, keeps one trailing \n
+# → "line one\nline two\n"
+literal_clip: |
+  line one
+  line two
+
+# Literal strip — no trailing newline
+# → "line one\nline two"
+literal_strip: |-
+  line one
+  line two
+
+# Literal keep — keep all trailing blank lines
+# → "line one\nline two\n\n"
+literal_keep: |+
+  line one
+  line two
+
+
+# Folded — single newlines become spaces, blank lines become \n
+# → "line one line two\nparagraph two\n"
+folded_clip: >
+  line one
+  line two
+
+  paragraph two
+
+# Folded strip — folded, no trailing newline
+# → "line one line two"
+folded_strip: >-
+  line one
+  line two
