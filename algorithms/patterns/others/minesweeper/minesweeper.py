@@ -12,6 +12,21 @@
 #   ['0', 'x', '0', 'x']
 # ]
 
+# Create a func/class to fill all cells attached to mines
+# with numbers of attached mines to each cell and print the matrix.
+# f.e.:
+# before
+# ['0', '0', '0', '0']
+# ['0', '0', '0', '0']
+# ['0', '0', 'x', '0']
+# ['0', '0', '0', 'x']
+# after
+# ['0', '0', '0', '0']
+# ['0', '1', '1', '1']
+# ['0', '1', 'x', '2']
+# ['0', '1', '2', 'x']
+
+
 import random
 import unittest
 
