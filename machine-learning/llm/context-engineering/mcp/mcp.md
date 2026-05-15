@@ -40,17 +40,6 @@
 - `Locally`: stdin/stdout
 - `Remotelly`: SSE or HTTP
 
-## MCP Inspector
-
-- Helps troubleshooting a MCP server
-- <https://modelcontextprotocol.io/docs/tools/inspector>
-- <https://github.com/modelcontextprotocol/inspector>
-
-```shell
-npx @modelcontextprotocol/inspector # connect later to a mcp server e.g., https://docs.langchain.com/mcp
-npx @modelcontextprotocol/inspector <command> # start a server stdio
-```
-
 ## MCP config
 
 ```json
