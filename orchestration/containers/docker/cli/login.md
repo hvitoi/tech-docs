@@ -1,8 +1,26 @@
 # docker login
 
+The credentials are saved unencrypted at `~/.docker/config.json`
+
+```json
+// ~/.docker/config.json
+{
+ "auths": {
+  "012345678912.dkr.ecr.us-east-1.amazonaws.com": {
+   "auth": ""
+  },
+  "https://index.docker.io/v1/": {
+   "auth": ""
+  }
+ },
+ "currentContext": "colima"
+}
+```
+
 ```shell
 # Login to docker.io
 docker login
+docker login docker.io # if on podman you need to explicitly specify the docker hub registry
 
 # Login to a custom registry
 docker login "000000000000.dkr.ecr.us-east-1.amazonaws.com"

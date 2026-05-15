@@ -13,4 +13,5 @@
 ```shell
 brew install docker --cask # client + daemon
 brew install docker # client only (cli)
+brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
 ```
