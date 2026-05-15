@@ -10,6 +10,11 @@
 - The match of a `NetworkPolicy` with a `Pod` is done via labels
 - If a pod has no matching NetworkPolicy, then the All Allow rule will apply
 
+- Standard Kubernetes NetworkPolicy cannot match on hostnames. The egress rules only accept: `podSelector` / `namespaceSelector` (in-cluster targets), `ipBlock` (CIDR ranges), `ports` (protocol + port).
+- DNS names aren't a valid selector, mainly because:
+  - NetworkPolicy is enforced at L3/L4 by the CNI (iptables/eBPF), which sees IPs, not hostnames.
+  - A hostname like example.com can resolve to many IPs that change over time, so there's nothing stable to program into the dataplane.
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -37,6 +42,29 @@ spec:
         - protocol: TCP
           port: 3306
   egress:
+    # CoreDNS pods
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: myns
+          podSelector:
+            matchLabels:
+              nubank.com.br/name: mypod
+      ports:
+        - protocol: TCP
+          port: 8080
     - to:
         - ipBlock:
             cidr: 192.168.5.10/32
