@@ -11,7 +11,10 @@
 - Docker daemon is exposed as a socket at `unix:///var/run/docker.sock`
 
 ```shell
-brew install docker --cask # client + daemon
+# client + daemon
+brew install docker --cask
+
+# client + open source daemon
 brew install docker # client only (cli)
 brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
 ```
