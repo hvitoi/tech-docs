@@ -1,6 +1,6 @@
 # ingress-nginx
 
-- <<https://kubernetes.github.io/ingress-nginx>>
+- <https://kubernetes.github.io/ingress-nginx>
 - The Ingress Controller Pods are exposed as a single `LoadBalancer` (or NodePort)
 - The Ingress Controller Pods have a single `Public IP` (must be created beforehand) - `az network public-ip create ...`
 - All the external traffic now passed through one of the ingress controller replicas

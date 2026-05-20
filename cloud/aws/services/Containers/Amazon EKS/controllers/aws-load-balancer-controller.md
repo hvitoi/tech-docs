@@ -394,7 +394,7 @@ metadata:
   annotations:
     # Traffic Routing
     service.beta.kubernetes.io/aws-load-balancer-name: awesome-lb
-    service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree controller). You can also use loadBalancerClass: service.k8s.aws/nlb instead and omit this annotation
+    service.beta.kubernetes.io/aws-load-balancer-type: external # this tells Kubernetes to use the aws-load-balancer-controller (and not the in-tree Kubernetes AWS Cloud Provider). You can also use loadBalancerClass: service.k8s.aws/nlb instead and omit this annotation
     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance # instance (default) or ip
     service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-xxxx, mySubnet # Subnets are auto-discovered if this annotation is not specified
 
