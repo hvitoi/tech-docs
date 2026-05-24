@@ -18,3 +18,11 @@ brew install docker --cask
 brew install docker # client only (cli)
 brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
 ```
+
+```json
+// ~/.docker/config.json
+{
+ "auths": {},
+ "currentContext": "colima"
+}
+```
