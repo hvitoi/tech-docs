@@ -13,22 +13,6 @@ aws lambda create-function \
   --role $(cat ~/workshop/ddb-replication-role-arn.txt)
 ```
 
-## put-function-concurrency
-
-- Set how "instances" of lambda can be running
-
-```shell
-# Set reserved concurrency to 0 - universal kill switch
-# This is the cleanest "pause everything now" approach
-aws lambda put-function-concurrency \
-  --function-name my-function \
-  --reserved-concurrent-executions 0
-
-# Re-enable it
-aws lambda delete-function-concurrency \
-  --function-name my-function
-```
-
 ## update-event-source-mapping
 
 - For **poll-based** sources like `SQS`, `Kinesis`, or `DynamoDB streams`  you can disable the lambda by disabling the mapping so Lambda stops pulling messages
