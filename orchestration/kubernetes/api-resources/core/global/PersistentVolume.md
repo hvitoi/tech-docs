@@ -10,7 +10,7 @@
   - Storage does not depend on a node (it must be available on all nodes, pods can restart and spawn in another node)
   - Storage must be independent from the cluster (it needs to survive even if the cluster crashes)
 
-- **Local Volumes** violates the 2nd and 3rd requirements for data persistence: it's tied to 1 node, does not survive in cluster crashes. It's bad for DB persistence.
+- **Local Volumes** violates the 2nd and 3rd requirements for data persistence: it's tied to one node, does not survive in cluster crashes. It's bad for DB persistence.
 
 ## PV Phases
 

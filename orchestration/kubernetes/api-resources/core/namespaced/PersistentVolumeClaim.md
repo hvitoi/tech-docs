@@ -69,7 +69,7 @@ spec:
 ### spec.storageClassName
 
 - Defines `dynamic provisioning` of volumes by means of an StorageClass (SC)
-- When a VPC is created, a PV is then provisioned automatically on the cloud on the fly
+- When a PVC is created, a PV is then provisioned automatically on the cloud on the fly
 
 ```shell
 apiVersion: v1
