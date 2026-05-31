@@ -34,18 +34,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html>
 
-```yaml
-Type: AWS::AppConfig::ConfigurationProfile
-Properties:
-  ApplicationId: String
-  Description: String
-  KmsKeyIdentifier: String
-  LocationUri: String
-  Name: String
-  RetrievalRoleArn: String
-  Tags:
-    - Tags
-  Type: String
-  Validators:
-    - Validators
-```

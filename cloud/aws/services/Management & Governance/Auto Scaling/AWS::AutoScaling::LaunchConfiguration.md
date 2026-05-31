@@ -24,34 +24,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-launchconfiguration.html>
 
-```yaml
-Type: AWS::AutoScaling::LaunchConfiguration
-Properties:
-  AssociatePublicIpAddress: Boolean
-  BlockDeviceMappings:
-    - BlockDeviceMapping
-  ClassicLinkVPCId: String
-  ClassicLinkVPCSecurityGroups:
-    - String
-  EbsOptimized: Boolean
-  IamInstanceProfile: String
-  ImageId: String
-  InstanceId: String
-  InstanceMonitoring: Boolean
-  InstanceType: String
-  KernelId: String
-  KeyName: String
-  LaunchConfigurationName: String
-  MetadataOptions:
-    MetadataOptions
-  PlacementTenancy: String
-  RamDiskId: String
-  SecurityGroups:
-    - String
-  SpotPrice: String
-  UserData: String
-```
-
 ### ImageId
 
 - The VM image with the OS to run on the EC2 instance

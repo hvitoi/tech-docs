@@ -21,42 +21,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-cachecluster.html>
 
-```yaml
-Type: AWS::ElastiCache::CacheCluster
-Properties:
-  AutoMinorVersionUpgrade: Boolean
-  AZMode: String
-  CacheNodeType: String
-  CacheParameterGroupName: String
-  CacheSecurityGroupNames:
-    - String
-  CacheSubnetGroupName: String
-  ClusterName: String
-  Engine: String
-  EngineVersion: String
-  IpDiscovery: String
-  LogDeliveryConfigurations:
-    - LogDeliveryConfigurationRequest
-  NetworkType: String
-  NotificationTopicArn: String
-  NumCacheNodes: Integer
-  Port: Integer
-  PreferredAvailabilityZone: String
-  PreferredAvailabilityZones:
-    - String
-  PreferredMaintenanceWindow: String
-  SnapshotArns:
-    - String
-  SnapshotName: String
-  SnapshotRetentionLimit: Integer
-  SnapshotWindow: String
-  Tags:
-    - Tag
-  TransitEncryptionEnabled: Boolean
-  VpcSecurityGroupIds:
-    - String
-```
-
 ### Engine
 
 - `Redis`

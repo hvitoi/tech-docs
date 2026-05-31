@@ -4,17 +4,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html>
 
-```yaml
-Type: AWS::EC2::LaunchTemplate
-Properties:
-  LaunchTemplateData:
-    LaunchTemplateData
-  LaunchTemplateName: String
-  TagSpecifications:
-    - LaunchTemplateTagSpecification
-  VersionDescription: String
-```
-
 ### LaunchTemplateData
 
 ```yaml

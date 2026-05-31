@@ -4,31 +4,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html>
 
-```yaml
-Type: AWS::FSx::FileSystem
-Properties:
-  BackupId: String
-  FileSystemType: String
-  FileSystemTypeVersion: String
-  KmsKeyId: String
-  LustreConfiguration:
-    LustreConfiguration
-  OntapConfiguration:
-    OntapConfiguration
-  OpenZFSConfiguration:
-    OpenZFSConfiguration
-  SecurityGroupIds:
-    - String
-  StorageCapacity: Integer
-  StorageType: String
-  SubnetIds:
-    - String
-  Tags:
-    - Tag
-  WindowsConfiguration:
-    WindowsConfiguration
-```
-
 ### FileSystemType
 
 #### WINDOWS

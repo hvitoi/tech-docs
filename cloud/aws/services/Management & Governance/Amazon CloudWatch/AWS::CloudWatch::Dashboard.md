@@ -7,9 +7,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html>
 
-```yaml
-Type: AWS::CloudWatch::Dashboard
-Properties:
-  DashboardBody: String
-  DashboardName: String
-```

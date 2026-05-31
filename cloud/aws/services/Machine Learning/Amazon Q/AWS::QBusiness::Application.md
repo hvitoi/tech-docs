@@ -12,27 +12,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-application.html>
 
-```yaml
-Type: AWS::QBusiness::Application
-Properties:
-  AttachmentsConfiguration:
-    AttachmentsConfiguration
-  AutoSubscriptionConfiguration:
-    AutoSubscriptionConfiguration
-  ClientIdsForOIDC:
-    - String
-  Description: String
-  DisplayName: String
-  EncryptionConfiguration:
-    EncryptionConfiguration
-  IamIdentityProviderArn: String
-  IdentityCenterInstanceArn: String
-  IdentityType: String
-  PersonalizationConfiguration:
-    PersonalizationConfiguration
-  QAppsConfiguration:
-    QAppsConfiguration
-  RoleArn: String
-  Tags:
-    - Tag
-```

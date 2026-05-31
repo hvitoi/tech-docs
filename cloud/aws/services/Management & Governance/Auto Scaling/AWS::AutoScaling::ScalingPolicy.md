@@ -9,23 +9,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scalingpolicy.html>
 
-```yaml
-Type: AWS::AutoScaling::ScalingPolicy
-Properties:
-  AdjustmentType: String
-  AutoScalingGroupName: String
-  Cooldown: String
-  EstimatedInstanceWarmup: Integer
-  MetricAggregationType: String
-  MinAdjustmentMagnitude: Integer
-  PolicyType: String
-  PredictiveScalingConfiguration: PredictiveScalingConfiguration
-  ScalingAdjustment: Integer
-  StepAdjustments:
-    - StepAdjustment
-  TargetTrackingConfiguration: TargetTrackingConfiguration
-```
-
 ### PolicyType
 
 - **TargetTrackingScaling**

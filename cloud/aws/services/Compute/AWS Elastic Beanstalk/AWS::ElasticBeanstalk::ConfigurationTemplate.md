@@ -4,20 +4,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html>
 
-```yaml
-Type: AWS::ElasticBeanstalk::ConfigurationTemplate
-Properties:
-  ApplicationName: String
-  Description: String
-  EnvironmentId: String
-  OptionSettings:
-    - ConfigurationOptionSetting
-  PlatformArn: String
-  SolutionStackName: String
-  SourceConfiguration:
-    SourceConfiguration
-```
-
 ### SolutionStackName
 
 - The name of an Elastic Beanstalk solution stack (platform version) that this configuration uses. For example, `64bit Amazon Linux 2013.09 running Tomcat 7 Java 7`.

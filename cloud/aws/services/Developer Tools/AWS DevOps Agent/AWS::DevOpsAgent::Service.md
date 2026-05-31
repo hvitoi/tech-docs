@@ -11,17 +11,6 @@
 
 ## Properties
 
-```yaml
-Type: AWS::DevOpsAgent::Service
-Properties:
-  KmsKeyArn: String
-  ServiceDetails:
-    ServiceDetails
-  ServiceType: String
-  Tags:
-    - Tag
-```
-
 ```json
 // Example
 {

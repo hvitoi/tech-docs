@@ -14,14 +14,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-account.html>
 
-```yaml
-Type: AWS::Organizations::Account
-Properties:
-  AccountName: String
-  Email: String
-  ParentIds:
-    - String
-  RoleName: String
-  Tags:
-    - Tag
-```

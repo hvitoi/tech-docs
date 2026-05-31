@@ -8,15 +8,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-application.html>
 
-```yaml
-Type: AWS::ElasticBeanstalk::Application
-Properties:
-  ApplicationName: String
-  Description: String
-  ResourceLifecycleConfig:
-    ApplicationResourceLifecycleConfig
-```
-
 ### ResourceLifecycleConfig
 
 - Specifies an application resource lifecycle configuration to prevent your application from accumulating too many versions.

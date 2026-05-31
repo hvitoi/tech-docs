@@ -28,39 +28,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stack.html>
 
-```yaml
-Type: AWS::CloudFormation::Stack
-Properties:
-  Capabilities:
-    - String
-  ChangeSetId: String
-  CreationTime: String
-  Description: String
-  DisableRollback: Boolean
-  EnableTerminationProtection: Boolean
-  LastUpdateTime: String
-  NotificationARNs:
-    - String
-  Outputs:
-    - Output
-  Parameters:
-    Key: Value
-  ParentId: String
-  RoleARN: String
-  RootId: String
-  StackId: String
-  StackName: String
-  StackPolicyBody: Json
-  StackPolicyURL: String
-  StackStatus: String
-  StackStatusReason: String
-  Tags:
-    - Tag
-  TemplateBody: Json
-  TemplateURL: String
-  TimeoutInMinutes: Integer
-```
-
 ### TemplateURL
 
 - A template is a yaml/json file declaring all the configuration for the desired resources

@@ -20,25 +20,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-task.html>
 
-```yaml
-Type: AWS::DataSync::Task
-Properties:
-  CloudWatchLogGroupArn: String
-  DestinationLocationArn: String
-  Excludes:
-    - FilterRule
-  Includes:
-    - FilterRule
-  ManifestConfig:
-    ManifestConfig
-  Name: String
-  Options:
-    Options
-  Schedule:
-    TaskSchedule
-  SourceLocationArn: String
-  Tags:
-    - Tag
-  TaskReportConfig:
-    TaskReportConfig
-```

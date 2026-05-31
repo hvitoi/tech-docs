@@ -13,19 +13,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-lifecyclehook.html>
 
-```yaml
-Type: AWS::AutoScaling::LifecycleHook
-Properties:
-  AutoScalingGroupName: String
-  DefaultResult: String
-  HeartbeatTimeout: Integer
-  LifecycleHookName: String
-  LifecycleTransition: String
-  NotificationMetadata: String
-  NotificationTargetARN: String
-  RoleARN: String
-```
-
 ### LifecycleTransition
 
 - `EC2_INSTANCE_LAUNCHING`

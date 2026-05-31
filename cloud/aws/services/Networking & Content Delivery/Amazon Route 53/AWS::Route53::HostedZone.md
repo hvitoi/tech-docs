@@ -20,16 +20,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html>
 
-```yaml
-Type: AWS::Route53::HostedZone
-Properties:
-  HostedZoneConfig:
-    HostedZoneConfig
-  HostedZoneTags:
-    - HostedZoneTag
-  Name: String
-  QueryLoggingConfig:
-    QueryLoggingConfig
-  VPCs:
-    - VPC
-```

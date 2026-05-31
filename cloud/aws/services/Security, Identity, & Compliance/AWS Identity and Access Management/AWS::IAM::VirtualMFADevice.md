@@ -8,17 +8,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html>
 
-```yaml
-Type: AWS::IAM::VirtualMFADevice
-Properties:
-  Path: String
-  Tags:
-    - Tag
-  Users:
-    - String
-  VirtualMfaDeviceName: String
-```
-
 ### VirtualMfaDeviceName
 
 - `Virtual MFA device` (google authenticator app, authy web app, etc)

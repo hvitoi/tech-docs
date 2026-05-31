@@ -6,11 +6,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-applicationversion.html>
 
-```yaml
-Type: AWS::ElasticBeanstalk::ApplicationVersion
-Properties:
-  ApplicationName: String
-  Description: String
-  SourceBundle:
-    SourceBundle
-```

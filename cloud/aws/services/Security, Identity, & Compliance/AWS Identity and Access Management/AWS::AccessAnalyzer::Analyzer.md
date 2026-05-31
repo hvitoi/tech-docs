@@ -42,19 +42,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html>
 
-```yaml
-Type: AWS::AccessAnalyzer::Analyzer
-Properties:
-  AnalyzerConfiguration:
-    AnalyzerConfiguration
-  AnalyzerName: String
-  ArchiveRules:
-    - ArchiveRule
-  Tags:
-    - Tag
-  Type: String
-```
-
 ### Type
 
 - `External access` or `Unused access`

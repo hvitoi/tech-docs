@@ -6,37 +6,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html>
 
-```yaml
-Type: AWS::ECS::TaskDefinition
-Properties:
-  ContainerDefinitions:
-    - ContainerDefinition
-  Cpu: String
-  EphemeralStorage:
-    EphemeralStorage
-  ExecutionRoleArn: String
-  Family: String
-  InferenceAccelerators:
-    - InferenceAccelerator
-  IpcMode: String
-  Memory: String
-  NetworkMode: String
-  PidMode: String
-  PlacementConstraints:
-    - TaskDefinitionPlacementConstraint
-  ProxyConfiguration:
-    ProxyConfiguration
-  RequiresCompatibilities:
-    - String
-  RuntimePlatform:
-    RuntimePlatform
-  Tags:
-    - Tag
-  TaskRoleArn: String
-  Volumes:
-    - Volume
-```
-
 ### ContainerDefinitions
 
 ```json

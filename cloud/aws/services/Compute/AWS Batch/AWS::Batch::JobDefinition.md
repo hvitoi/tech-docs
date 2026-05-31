@@ -8,28 +8,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html>
 
-```yaml
-Type: AWS::Batch::JobDefinition
-Properties:
-  ContainerProperties:
-    ContainerProperties
-  EcsProperties:
-    EcsProperties
-  EksProperties:
-    EksProperties
-  JobDefinitionName: String
-  NodeProperties:
-    NodeProperties
-  Parameters: Json
-  PlatformCapabilities:
-    - String
-  PropagateTags: Boolean
-  RetryStrategy:
-    RetryStrategy
-  SchedulingPriority: Integer
-  Tags:
-    - Tag
-  Timeout:
-    Timeout
-  Type: String
-```

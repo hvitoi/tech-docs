@@ -8,14 +8,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-devopsagent-service.html>
 
-```yaml
-Type: AWS::DevOpsAgent::AgentSpace
-Properties:
-  Description: String
-  KmsKeyArn: String
-  Name: String
-  OperatorApp:
-    OperatorApp
-  Tags:
-    - Tag
-```

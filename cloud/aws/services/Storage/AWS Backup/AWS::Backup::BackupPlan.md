@@ -18,15 +18,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html>
 
-```yaml
-Type: AWS::Backup::BackupPlan
-Properties:
-  BackupPlan:
-    BackupPlanResourceType
-  BackupPlanTags:
-    Key: Value
-```
-
 ### BackupPlan
 
 - Backup `frequency`

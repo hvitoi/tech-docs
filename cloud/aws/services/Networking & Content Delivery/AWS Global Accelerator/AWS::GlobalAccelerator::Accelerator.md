@@ -16,14 +16,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-accelerator.html>
 
-```yaml
-Type: AWS::GlobalAccelerator::Accelerator
-Properties:
-  Enabled: Boolean
-  IpAddresses:
-    - String
-  IpAddressType: String
-  Name: String
-  Tags:
-    - Tag
-```

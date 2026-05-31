@@ -23,21 +23,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html>
 
-```yaml
-Type: AWS::SSM::Parameter
-Properties:
-  AllowedPattern: String
-  DataType: String
-  Description: String
-  Name: String
-  Policies: String
-  Tags:
-    Key: Value
-  Tier: String
-  Type: String
-  Value: String
-```
-
 ### Policies
 
 - Allow `TTL`s to force updating or deleting sensitive data

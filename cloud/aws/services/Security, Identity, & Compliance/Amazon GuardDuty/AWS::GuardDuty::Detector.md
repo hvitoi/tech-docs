@@ -19,19 +19,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html>
 
-```yaml
-Type: AWS::GuardDuty::Detector
-Properties:
-  DataSources:
-    CFNDataSourceConfigurations
-  Enable: Boolean
-  Features:
-    - CFNFeatureConfiguration
-  FindingPublishingFrequency: String
-  Tags:
-    - TagItem
-```
-
 ### DataSources
 
 - Data stored in S3 bucket

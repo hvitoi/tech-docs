@@ -35,23 +35,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-iam-role.html>
 
-```yaml
-Type: AWS::IAM::Role
-Properties:
-  AssumeRolePolicyDocument: Json
-  Description: String
-  ManagedPolicyArns:
-    - String
-  MaxSessionDuration: Integer
-  Path: String
-  PermissionsBoundary: String
-  Policies:
-    - Policy
-  RoleName: String
-  Tags:
-    - Tag
-```
-
 ### PermissionsBoundary
 
 - Supported for `users` and `roles` (not groups)

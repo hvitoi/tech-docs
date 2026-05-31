@@ -17,31 +17,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html>
 
-```yaml
-Type: AWS::CloudTrail::Trail
-Properties:
-  AdvancedEventSelectors:
-    - AdvancedEventSelector
-  CloudWatchLogsLogGroupArn: String
-  CloudWatchLogsRoleArn: String
-  EnableLogFileValidation: Boolean
-  EventSelectors:
-    - EventSelector
-  IncludeGlobalServiceEvents: Boolean
-  InsightSelectors:
-    - InsightSelector
-  IsLogging: Boolean
-  IsMultiRegionTrail: Boolean
-  IsOrganizationTrail: Boolean
-  KMSKeyId: String
-  S3BucketName: String
-  S3KeyPrefix: String
-  SnsTopicName: String
-  Tags:
-    - Tag
-  TrailName: String
-```
-
 ### EventSelectors
 
 - `Management Events`: operations on aws resources (e.g., configure iam, configure vpc) - Read or Write events

@@ -18,8 +18,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organization.html>
 
-```yaml
-Type: AWS::Organizations::Organization
-Properties:
-  FeatureSet: String
-```

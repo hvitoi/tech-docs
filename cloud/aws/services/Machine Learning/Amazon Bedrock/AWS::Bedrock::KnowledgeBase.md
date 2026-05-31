@@ -64,16 +64,3 @@ Assistant:
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-knowledgebase.html>
 
-```yaml
-Type: AWS::Bedrock::KnowledgeBase
-Properties:
-  Description: String
-  KnowledgeBaseConfiguration:
-    KnowledgeBaseConfiguration
-  Name: String
-  RoleArn: String
-  StorageConfiguration:
-    StorageConfiguration
-  Tags:
-    Key: Value
-```

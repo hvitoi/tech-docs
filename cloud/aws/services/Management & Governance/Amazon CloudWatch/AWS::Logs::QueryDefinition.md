@@ -7,12 +7,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-querydefinition.html>
 
-```yaml
-Type: AWS::Logs::QueryDefinition
-Properties:
-  LogGroupNames:
-    - String
-  Name: String
-  QueryString:
-    String
-```

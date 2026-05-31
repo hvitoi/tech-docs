@@ -46,45 +46,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-dynamodb-table.html>
 
-```yaml
-Type: AWS::DynamoDB::Table
-Properties:
-  AttributeDefinitions:
-    - AttributeDefinition
-  BillingMode: String
-  ContributorInsightsSpecification:
-    ContributorInsightsSpecification
-  DeletionProtectionEnabled: Boolean
-  GlobalSecondaryIndexes:
-    - GlobalSecondaryIndex
-  ImportSourceSpecification:
-    ImportSourceSpecification
-  KeySchema:
-    - KeySchema
-  KinesisStreamSpecification:
-    KinesisStreamSpecification
-  LocalSecondaryIndexes:
-    - LocalSecondaryIndex
-  OnDemandThroughput:
-    OnDemandThroughput
-  PointInTimeRecoverySpecification:
-    PointInTimeRecoverySpecification
-  ProvisionedThroughput:
-    ProvisionedThroughput
-  ResourcePolicy:
-    ResourcePolicy
-  SSESpecification:
-    SSESpecification
-  StreamSpecification:
-    StreamSpecification
-  TableClass: String
-  TableName: String
-  Tags:
-    - Tag
-  TimeToLiveSpecification:
-    TimeToLiveSpecification
-```
-
 ### KeySchema
 
 - Each table has `Partition Key` (hash) and an optional `Sort Key` (range)

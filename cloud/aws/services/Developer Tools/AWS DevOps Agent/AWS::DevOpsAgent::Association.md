@@ -4,17 +4,6 @@
 
 ## Properties
 
-```yaml
-Type: AWS::DevOpsAgent::Association
-Properties:
-  AgentSpaceId: String
-  Configuration:
-    ServiceConfiguration
-  LinkedAssociationIds:
-    - String
-  ServiceId: String
-```
-
 ### ServiceId
 
 - It's the UUID of the `AWS::DevOpsAgent::Service` resource

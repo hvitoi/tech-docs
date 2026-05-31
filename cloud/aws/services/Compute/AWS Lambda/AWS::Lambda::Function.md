@@ -50,51 +50,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html>
 
-```yaml
-Type: AWS::Lambda::Function
-Properties:
-  Architectures:
-    - String
-  Code:
-    Code
-  CodeSigningConfigArn: String
-  DeadLetterConfig:
-    DeadLetterConfig
-  Description: String
-  Environment:
-    Environment
-  EphemeralStorage:
-    EphemeralStorage
-  FileSystemConfigs:
-    - FileSystemConfig
-  FunctionName: String
-  Handler: String
-  ImageConfig:
-    ImageConfig
-  KmsKeyArn: String
-  Layers:
-    - String
-  LoggingConfig:
-    LoggingConfig
-  MemorySize: Integer
-  PackageType: String
-  RecursiveLoop: String
-  ReservedConcurrentExecutions: Integer
-  Role: String
-  Runtime: String
-  RuntimeManagementConfig:
-    RuntimeManagementConfig
-  SnapStart:
-    SnapStart
-  Tags:
-    - Tag
-  Timeout: Integer
-  TracingConfig:
-    TracingConfig
-  VpcConfig:
-    VpcConfig
-```
-
 ### Code
 
 ```python

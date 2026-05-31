@@ -13,32 +13,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html>
 
-```yaml
-Type: AWS::FMS::Policy
-Properties:
-  DeleteAllPolicyResources: Boolean
-  ExcludeMap:
-    IEMap
-  ExcludeResourceTags: Boolean
-  IncludeMap:
-    IEMap
-  PolicyDescription: String
-  PolicyName: String
-  RemediationEnabled: Boolean
-  ResourcesCleanUp: Boolean
-  ResourceSetIds:
-    - String
-  ResourceTags:
-    - ResourceTag
-  ResourceType: String
-  ResourceTypeList:
-    - String
-  SecurityServicePolicyData:
-    SecurityServicePolicyData
-  Tags:
-    - PolicyTag
-```
-
 ### SecurityServicePolicyData
 
 #### WAFV2

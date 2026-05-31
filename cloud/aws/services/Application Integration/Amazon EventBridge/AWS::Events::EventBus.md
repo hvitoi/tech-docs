@@ -15,16 +15,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html>
 
-```yaml
-Type: AWS::Events::EventBus
-Properties:
-  DeadLetterConfig:
-    DeadLetterConfig
-  Description: String
-  EventSourceName: String
-  KmsKeyIdentifier: String
-  Name: String
-  Policy: Json
-  Tags:
-    - Tag
-```

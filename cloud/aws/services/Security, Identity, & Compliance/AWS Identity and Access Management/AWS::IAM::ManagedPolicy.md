@@ -20,21 +20,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html>
 
-```yaml
-Type: AWS::IAM::ManagedPolicy
-Properties:
-  Description: String
-  Groups:
-    - String
-  ManagedPolicyName: String
-  Path: String
-  PolicyDocument: Json
-  Roles:
-    - String
-  Users:
-    - String
-```
-
 ### PolicyDocument
 
 ```json

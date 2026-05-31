@@ -22,24 +22,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnection.html>
 
-```yaml
-Type: AWS::EC2::VPNConnection
-Properties:
-  CustomerGatewayId: String
-  EnableAcceleration: Boolean
-  LocalIpv4NetworkCidr: String
-  LocalIpv6NetworkCidr: String
-  OutsideIpAddressType: String
-  RemoteIpv4NetworkCidr: String
-  RemoteIpv6NetworkCidr: String
-  StaticRoutesOnly: Boolean
-  Tags:
-    - Tag
-  TransitGatewayId: String
-  TransportTransitGatewayAttachmentId: String
-  TunnelInsideIpVersion: String
-  Type: String
-  VpnGatewayId: String
-  VpnTunnelOptionsSpecifications:
-    - VpnTunnelOptionsSpecification
-```

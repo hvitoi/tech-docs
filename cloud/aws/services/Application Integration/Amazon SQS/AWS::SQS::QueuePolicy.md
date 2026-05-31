@@ -7,14 +7,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queuepolicy.html>
 
-```yaml
-Type: AWS::SQS::QueuePolicy
-Properties:
-  PolicyDocument: Json
-  Queues:
-    - String
-```
-
 ### PolicyDocument
 
 ```json

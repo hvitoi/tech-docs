@@ -128,13 +128,3 @@ spec:
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-group.html>
 
-```yaml
-Type: AWS::XRay::Group
-Properties:
-  FilterExpression: String
-  GroupName: String
-  InsightsConfiguration:
-    InsightsConfiguration
-  Tags:
-    - Tag
-```

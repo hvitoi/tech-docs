@@ -11,9 +11,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html>
 
-```yaml
-Type: AWS::EC2::InternetGateway
-Properties:
-  Tags:
-    - Tag
-```

@@ -12,29 +12,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html>
 
-```yaml
-Type: AWS::Cognito::IdentityPool
-Properties:
-  AllowClassicFlow: Boolean
-  AllowUnauthenticatedIdentities: Boolean
-  CognitoEvents: Json
-  CognitoIdentityProviders:
-    - CognitoIdentityProvider
-  CognitoStreams:
-    CognitoStreams
-  DeveloperProviderName: String
-  IdentityPoolName: String
-  IdentityPoolTags:
-    - Tag
-  OpenIdConnectProviderARNs:
-    - String
-  PushSync:
-    PushSync
-  SamlProviderARNs:
-    - String
-  SupportedLoginProviders: Json
-```
-
 ### CognitoIdentityProviders
 
 - _SAML 2.0_: the client exchange a saml token for an sts token

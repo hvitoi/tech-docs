@@ -6,15 +6,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html>
 
-```yaml
-Type: AWS::Athena::PreparedStatement
-Properties:
-  Description: String
-  QueryStatement: String
-  StatementName: String
-  WorkGroup: String
-```
-
 ### QueryStatement
 
 ```sql

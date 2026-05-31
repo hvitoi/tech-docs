@@ -21,15 +21,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html>
 
-```yaml
-Type: AWS::DirectoryService::MicrosoftAD
-Properties:
-  CreateAlias: Boolean
-  Edition: String
-  EnableSso: Boolean
-  Name: String
-  Password: String
-  ShortName: String
-  VpcSettings:
-    VpcSettings
-```

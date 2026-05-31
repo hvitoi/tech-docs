@@ -11,9 +11,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-session.html>
 
-```yaml
-Type: AWS::Macie::Session
-Properties:
-  FindingPublishingFrequency: String
-  Status: String
-```

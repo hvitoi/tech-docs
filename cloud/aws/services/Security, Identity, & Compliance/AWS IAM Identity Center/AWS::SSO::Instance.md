@@ -24,10 +24,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instance.html>
 
-```yaml
-Type: AWS::SSO::Instance
-Properties:
-  Name: String
-  Tags:
-    - Tag
-```

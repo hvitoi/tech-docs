@@ -28,24 +28,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html>
 
-```yaml
-Type: AWS::ECS::Cluster
-Properties:
-  CapacityProviders:
-    - String
-  ClusterName: String
-  ClusterSettings:
-    - ClusterSettings
-  Configuration:
-    ClusterConfiguration
-  DefaultCapacityProviderStrategy:
-    - CapacityProviderStrategyItem
-  ServiceConnectDefaults:
-    ServiceConnectDefaults
-  Tags:
-    - Tag
-```
-
 ### CapacityProviders
 
 - **EC2 Launch Type**

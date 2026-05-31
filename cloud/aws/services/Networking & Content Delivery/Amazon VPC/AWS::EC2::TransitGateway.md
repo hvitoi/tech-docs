@@ -11,26 +11,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html>
 
-```yaml
-Type: AWS::EC2::TransitGateway
-Properties:
-  AmazonSideAsn: Integer
-  AssociationDefaultRouteTableId: String
-  AutoAcceptSharedAttachments: String
-  DefaultRouteTableAssociation: String
-  DefaultRouteTablePropagation: String
-  Description: String
-  DnsSupport: String
-  MulticastSupport: String
-  PropagationDefaultRouteTableId: String
-  SecurityGroupReferencingSupport: String
-  Tags:
-    - Tag
-  TransitGatewayCidrBlocks:
-    - String
-  VpnEcmpSupport: String
-```
-
 - **Shared services VPC**
   - Share VPCs across accounts
 

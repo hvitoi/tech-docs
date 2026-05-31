@@ -13,13 +13,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucketpolicy.html>
 
-```yaml
-Type: AWS::S3::BucketPolicy
-Properties:
-  Bucket: String
-  PolicyDocument: Json
-```
-
 ### PolicyDocument
 
 ```json

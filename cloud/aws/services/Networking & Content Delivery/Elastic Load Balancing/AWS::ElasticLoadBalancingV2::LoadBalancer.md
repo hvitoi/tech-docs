@@ -20,26 +20,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html>
 
-```yaml
-Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-Properties:
-  EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic: String
-  IpAddressType: String
-  LoadBalancerAttributes:
-    - LoadBalancerAttribute
-  Name: String
-  Scheme: String
-  SecurityGroups:
-    - String
-  SubnetMappings:
-    - SubnetMapping
-  Subnets:
-    - String
-  Tags:
-    - Tag
-  Type: String
-```
-
 ### SecurityGroups
 
 - With a LB, the EC2 can have an inbound rule to restricting access only from the LB (instead of allowing from anywhere)

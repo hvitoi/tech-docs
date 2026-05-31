@@ -23,11 +23,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html>
 
-```yaml
-Type: AWS::Route53::HealthCheck
-Properties:
-  HealthCheckConfig:
-    HealthCheckConfig
-  HealthCheckTags:
-    - HealthCheckTag
-```

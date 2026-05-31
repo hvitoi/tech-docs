@@ -9,25 +9,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html>
 
-```yaml
-Type: AWS::FIS::ExperimentTemplate
-Properties:
-  Actions:
-    Key: Value
-  Description: String
-  ExperimentOptions:
-    ExperimentTemplateExperimentOptions
-  LogConfiguration:
-    ExperimentTemplateLogConfiguration
-  RoleArn: String
-  StopConditions:
-    - ExperimentTemplateStopCondition
-  Tags:
-    Key: Value
-  Targets:
-    Key: Value
-```
-
 ### RoleArn
 
 - It's the IAM role that grants AWS FIS the permissions required so that it can run experiments on your behalf

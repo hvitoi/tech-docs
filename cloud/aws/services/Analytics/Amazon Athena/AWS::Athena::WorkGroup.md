@@ -10,19 +10,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html>
 
-```yaml
-Type: AWS::Athena::WorkGroup
-Properties:
-  Description: String
-  Name: String
-  RecursiveDeleteOption: Boolean
-  State: String
-  Tags:
-    - Tag
-  WorkGroupConfiguration:
-    WorkGroupConfiguration
-```
-
 ### WorkGroupConfiguration
 
 - **Athena Database** defines the `query result location` is the s3 bucket to store the databases

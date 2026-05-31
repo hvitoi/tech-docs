@@ -31,19 +31,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html>
 
-```yaml
-Type: AWS::IAM::Policy
-Properties:
-  Groups:
-    - String
-  PolicyDocument: Json
-  PolicyName: String
-  Roles:
-    - String
-  Users:
-    - String
-```
-
 ### PolicyDocument
 
 - Create policy documents: <https://awspolicygen.s3.amazonaws.com/policygen.html>

@@ -8,11 +8,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngateway.html>
 
-```yaml
-Type: AWS::EC2::VPNGateway
-Properties:
-  AmazonSideAsn: Integer
-  Tags:
-    - Tag
-  Type: String
-```

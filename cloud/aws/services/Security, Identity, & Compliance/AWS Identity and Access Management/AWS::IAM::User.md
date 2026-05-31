@@ -10,24 +10,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html>
 
-```yaml
-Type: AWS::IAM::User
-Properties:
-  Groups:
-    - String
-  LoginProfile:
-    LoginProfile
-  ManagedPolicyArns:
-    - String
-  Path: String
-  PermissionsBoundary: String
-  Policies:
-    - Policy
-  Tags:
-    - Tag
-  UserName: String
-```
-
 ### PermissionsBoundary
 
 - Supported for `users` and `roles` (not groups)

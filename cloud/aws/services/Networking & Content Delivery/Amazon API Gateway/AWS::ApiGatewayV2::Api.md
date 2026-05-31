@@ -32,31 +32,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html>
 
-```yaml
-Type: AWS::ApiGatewayV2::Api
-Properties:
-  ApiKeySelectionExpression: String
-  BasePath: String
-  Body: Json
-  BodyS3Location:
-    BodyS3Location
-  CorsConfiguration:
-    Cors
-  CredentialsArn: String
-  Description: String
-  DisableExecuteApiEndpoint: Boolean
-  DisableSchemaValidation: Boolean
-  FailOnWarnings: Boolean
-  Name: String
-  ProtocolType: String
-  RouteKey: String
-  RouteSelectionExpression: String
-  Tags:
-    Key: Value
-  Target: String
-  Version: String
-```
-
 ### ProtocolType
 
 - `HTTP API`: e.g., apps with cors, oauth, oidc

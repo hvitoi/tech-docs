@@ -24,26 +24,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html>
 
-```yaml
-Type: AWS::SNS::Topic
-Properties:
-  ArchivePolicy: Json
-  ContentBasedDeduplication: Boolean
-  DataProtectionPolicy: Json
-  DeliveryStatusLogging:
-    - LoggingConfig
-  DisplayName: String
-  FifoTopic: Boolean
-  KmsMasterKeyId: String
-  SignatureVersion: String
-  Subscription:
-    - Subscription
-  Tags:
-    - Tag
-  TopicName: String
-  TracingConfig: String
-```
-
 ### FifoTopic
 
 - `SQS FIFO` stores the messages in the exact order they take place

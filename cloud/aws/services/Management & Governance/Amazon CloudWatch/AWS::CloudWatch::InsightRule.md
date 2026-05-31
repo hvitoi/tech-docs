@@ -9,16 +9,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-insightrule.html>
 
-```yaml
-Type: AWS::CloudWatch::InsightRule
-Properties:
-  RuleBody: String
-  RuleName: String
-  RuleState: String
-  Tags:
-    - Tag
-```
-
 ### RuleBody
 
 - Define and send your own custom metrics to CloudWatch

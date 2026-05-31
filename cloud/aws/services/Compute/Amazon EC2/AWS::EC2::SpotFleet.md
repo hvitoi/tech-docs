@@ -29,13 +29,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html>
 
-```yaml
-Type: AWS::EC2::SpotFleet
-Properties:
-  SpotFleetRequestConfigData:
-    SpotFleetRequestConfigData
-```
-
 ### SpotFleetRequestConfigData
 
 ```yaml

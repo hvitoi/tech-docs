@@ -4,34 +4,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html>
 
-```yaml
-Type: AWS::ElasticLoadBalancingV2::TargetGroup
-Properties:
-  HealthCheckEnabled: Boolean
-  HealthCheckIntervalSeconds: Integer
-  HealthCheckPath: String
-  HealthCheckPort: String
-  HealthCheckProtocol: String
-  HealthCheckTimeoutSeconds: Integer
-  HealthyThresholdCount: Integer
-  IpAddressType: String
-  Matcher:
-    Matcher
-  Name: String
-  Port: Integer
-  Protocol: String
-  ProtocolVersion: String
-  Tags:
-    - Tag
-  TargetGroupAttributes:
-    - TargetGroupAttribute
-  Targets:
-    - TargetDescription
-  TargetType: String
-  UnhealthyThresholdCount: Integer
-  VpcId: String
-```
-
 ### TargetGroupAttributes
 
 - **stickiness.enabled**

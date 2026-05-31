@@ -8,25 +8,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html>
 
-```yaml
-Type: AWS::ElasticLoadBalancingV2::Listener
-Properties:
-  AlpnPolicy:
-    - String
-  Certificates:
-    - Certificate
-  DefaultActions:
-    - Action
-  ListenerAttributes:
-    - ListenerAttribute
-  LoadBalancerArn: String
-  MutualAuthentication:
-    MutualAuthentication
-  Port: Integer
-  Protocol: String
-  SslPolicy: String
-```
-
 ### Certificates
 
 - Public SSL/TLS certificates are issued by `Certificate Authorities` (CA). e.g., GlobalSign, Digicert, Letsencrypt, etc

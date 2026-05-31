@@ -10,18 +10,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html>
 
-```yaml
-Type: AWS::SecretsManager::Secret
-Properties:
-  Description: String
-  GenerateSecretString:
-    GenerateSecretString
-  KmsKeyId: String
-  Name: String
-  ReplicaRegions:
-    - ReplicaRegion
-  SecretString:
-    String
-  Tags:
-    - Tag
-```

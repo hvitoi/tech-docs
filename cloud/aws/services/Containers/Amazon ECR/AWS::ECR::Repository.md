@@ -24,23 +24,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html>
 
-```yaml
-Type: AWS::ECR::Repository
-Properties:
-  EmptyOnDelete: Boolean
-  EncryptionConfiguration:
-    EncryptionConfiguration
-  ImageScanningConfiguration:
-    ImageScanningConfiguration
-  ImageTagMutability: String
-  LifecyclePolicy:
-    LifecyclePolicy
-  RepositoryName: String
-  RepositoryPolicyText: Json
-  Tags:
-    - Tag
-```
-
 ### ImageTagMutability
 
 - When tag immutability is turned on for a repository, tags are prevented from being overwritten.

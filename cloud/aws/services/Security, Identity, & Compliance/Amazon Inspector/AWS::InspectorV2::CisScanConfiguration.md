@@ -12,15 +12,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-cisscanconfiguration.html>
 
-```yaml
-Type: AWS::InspectorV2::CisScanConfiguration
-Properties:
-  ScanName: String
-  Schedule:
-    Schedule
-  SecurityLevel: String
-  Tags:
-    Key: Value
-  Targets:
-    CisTargets
-```

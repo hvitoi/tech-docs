@@ -28,28 +28,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html>
 
-```yaml
-Type: AWS::SQS::Queue
-Properties:
-  ContentBasedDeduplication: Boolean
-  DeduplicationScope: String
-  DelaySeconds: Integer
-  FifoQueue: Boolean
-  FifoThroughputLimit: String
-  KmsDataKeyReusePeriodSeconds: Integer
-  KmsMasterKeyId: String
-  MaximumMessageSize: Integer
-  MessageRetentionPeriod: Integer
-  QueueName: String
-  ReceiveMessageWaitTimeSeconds: Integer
-  RedriveAllowPolicy: Json
-  RedrivePolicy: Json
-  SqsManagedSseEnabled: Boolean
-  Tags:
-    - Tag
-  VisibilityTimeout: Integer
-```
-
 ### DelaySeconds
 
 - Only make the message available to be polled after some time (up to 15min). Default to immediate (0s)

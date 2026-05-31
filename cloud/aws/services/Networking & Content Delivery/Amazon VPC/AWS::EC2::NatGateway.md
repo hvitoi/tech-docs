@@ -23,19 +23,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html>
 
-```yaml
-Type: AWS::EC2::NatGateway
-Properties:
-  AllocationId: String
-  ConnectivityType: String
-  MaxDrainDurationSeconds: Integer
-  PrivateIpAddress: String
-  SecondaryAllocationIds:
-    - String
-  SecondaryPrivateIpAddressCount: Integer
-  SecondaryPrivateIpAddresses:
-    - String
-  SubnetId: String
-  Tags:
-    - Tag
-```

@@ -7,17 +7,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budget.html>
 
-```yaml
-Type: AWS::Budgets::Budget
-Properties:
-  Budget:
-    BudgetData
-  NotificationsWithSubscribers:
-    - NotificationWithSubscribers
-  ResourceTags:
-    - ResourceTag
-```
-
 ### BudgetData
 
 - **BudgetType**

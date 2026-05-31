@@ -23,22 +23,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html>
 
-```yaml
-Type: AWS::EC2::CapacityReservation
-Properties:
-  AvailabilityZone: String
-  EbsOptimized: Boolean
-  EndDate: String
-  EndDateType: String
-  EphemeralStorage: Boolean
-  InstanceCount: Integer
-  InstanceMatchCriteria: String
-  InstancePlatform: String
-  InstanceType: String
-  OutPostArn: String
-  PlacementGroupArn: String
-  TagSpecifications:
-    - TagSpecification
-  Tenancy: String
-
-```

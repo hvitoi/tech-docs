@@ -19,11 +19,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html>
 
-```yaml
-Type: AWS::IAM::SAMLProvider
-Properties:
-  Name: String
-  SamlMetadataDocument: String
-  Tags:
-    - Tag
-```

@@ -10,14 +10,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-replicakey.html>
 
-```yaml
-Type: AWS::KMS::ReplicaKey
-Properties:
-  Description: String
-  Enabled: Boolean
-  KeyPolicy: Json
-  PendingWindowInDays: Integer
-  PrimaryKeyArn: String
-  Tags:
-    - Tag
-```

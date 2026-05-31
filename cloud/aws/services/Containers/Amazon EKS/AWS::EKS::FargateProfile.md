@@ -58,16 +58,3 @@
 
 ## Properties
 
-```yaml
-Type: AWS::EKS::FargateProfile
-Properties:
-  ClusterName: String
-  FargateProfileName: String
-  PodExecutionRoleArn: String
-  Selectors:
-    - Selector
-  Subnets:
-    - String
-  Tags:
-    - Tag
-```

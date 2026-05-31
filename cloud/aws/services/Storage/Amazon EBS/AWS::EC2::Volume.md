@@ -17,24 +17,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html>
 
-```yaml
-Type: AWS::EC2::Volume
-Properties:
-  AutoEnableIO: Boolean
-  AvailabilityZone: String
-  Encrypted: Boolean
-  Iops: Integer
-  KmsKeyId: String
-  MultiAttachEnabled: Boolean
-  OutpostArn: String
-  Size: Integer
-  SnapshotId: String
-  Tags:
-    - Tag
-  Throughput: Integer
-  VolumeType: String
-```
-
 ### AvailabilityZone
 
 - Belongs to an `AZ` and cannot be bound to ec2 instances in other AZ's. To attach the volume to an instance use `AWS::EC2::VolumeAttachment`

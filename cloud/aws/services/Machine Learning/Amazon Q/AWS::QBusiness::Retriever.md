@@ -12,15 +12,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-retriever.html>
 
-```yaml
-Type: AWS::QBusiness::Retriever
-Properties:
-  ApplicationId: String
-  Configuration:
-    RetrieverConfiguration
-  DisplayName: String
-  RoleArn: String
-  Tags:
-    - Tag
-  Type: String
-```

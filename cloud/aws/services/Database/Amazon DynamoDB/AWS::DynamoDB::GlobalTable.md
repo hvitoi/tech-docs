@@ -11,29 +11,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html>
 
-```yaml
-Type: AWS::DynamoDB::GlobalTable
-Properties:
-  AttributeDefinitions:
-    - AttributeDefinition
-  BillingMode: String
-  GlobalSecondaryIndexes:
-    - GlobalSecondaryIndex
-  KeySchema:
-    - KeySchema
-  LocalSecondaryIndexes:
-    - LocalSecondaryIndex
-  Replicas:
-    - ReplicaSpecification
-  SSESpecification:
-    SSESpecification
-  StreamSpecification:
-    StreamSpecification
-  TableName: String
-  TimeToLiveSpecification:
-    TimeToLiveSpecification
-  WriteOnDemandThroughputSettings:
-    WriteOnDemandThroughputSettings
-  WriteProvisionedThroughputSettings:
-    WriteProvisionedThroughputSettings
-```

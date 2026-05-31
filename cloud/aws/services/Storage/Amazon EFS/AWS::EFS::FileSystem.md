@@ -21,29 +21,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html>
 
-```yaml
-Type: AWS::EFS::FileSystem
-Properties:
-  AvailabilityZoneName: String
-  BackupPolicy:
-    BackupPolicy
-  BypassPolicyLockoutSafetyCheck: Boolean
-  Encrypted: Boolean
-  FileSystemPolicy: Json
-  FileSystemProtection:
-    FileSystemProtection
-  FileSystemTags:
-    - ElasticFileSystemTag
-  KmsKeyId: String
-  LifecyclePolicies:
-    - LifecyclePolicy
-  PerformanceMode: String
-  ProvisionedThroughputInMibps: Number
-  ReplicationConfiguration:
-    ReplicationConfiguration
-  ThroughputMode: String
-```
-
 ### Encrypted
 
 - Encryption at rest using `KMS`

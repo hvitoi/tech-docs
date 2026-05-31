@@ -20,13 +20,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html>
 
-```yaml
-Type: AWS::CE::AnomalyMonitor
-Properties:
-  MonitorDimension: String
-  MonitorName: String
-  MonitorSpecification: String
-  MonitorType: String
-  ResourceTags:
-    - ResourceTag
-```

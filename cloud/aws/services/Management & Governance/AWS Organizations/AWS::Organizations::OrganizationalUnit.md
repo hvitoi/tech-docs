@@ -15,11 +15,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organizationalunit.html>
 
-```yaml
-Type: AWS::Organizations::OrganizationalUnit
-Properties:
-  Name: String
-  ParentId: String
-  Tags:
-    - Tag
-```

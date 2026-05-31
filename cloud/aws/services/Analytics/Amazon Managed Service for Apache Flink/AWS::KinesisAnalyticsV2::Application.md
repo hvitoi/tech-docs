@@ -13,20 +13,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html>
 
-```yaml
-Type: AWS::KinesisAnalyticsV2::Application
-Properties:
-  ApplicationConfiguration:
-    ApplicationConfiguration
-  ApplicationDescription: String
-  ApplicationMaintenanceConfiguration:
-    ApplicationMaintenanceConfiguration
-  ApplicationMode: String
-  ApplicationName: String
-  RunConfiguration:
-    RunConfiguration
-  RuntimeEnvironment: String
-  ServiceExecutionRole: String
-  Tags:
-    - Tag
-```

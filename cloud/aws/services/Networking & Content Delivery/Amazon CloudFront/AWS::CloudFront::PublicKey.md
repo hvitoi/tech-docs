@@ -32,13 +32,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html>
 
-```yaml
-Type: AWS::CloudFront::PublicKey
-Properties:
-  PublicKeyConfig:
-    PublicKeyConfig
-```
-
 ### PublicKeyConfig
 
 ```yaml

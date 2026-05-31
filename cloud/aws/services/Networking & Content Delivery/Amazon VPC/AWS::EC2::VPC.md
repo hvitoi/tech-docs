@@ -17,19 +17,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html>
 
-```yaml
-Type: AWS::EC2::VPC
-Properties:
-  CidrBlock: String
-  EnableDnsHostnames: Boolean
-  EnableDnsSupport: Boolean
-  InstanceTenancy: String
-  Ipv4IpamPoolId: String
-  Ipv4NetmaskLength: Integer
-  Tags:
-    - Tag
-```
-
 ### CidrBlock
 
 - Classless Inter-Domain Routing (`CIDR`): Base IP + Subnet Mask (/8, /16, /24, ...)

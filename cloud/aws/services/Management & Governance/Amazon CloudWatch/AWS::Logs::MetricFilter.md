@@ -32,12 +32,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html>
 
-```yaml
-Type: AWS::Logs::MetricFilter
-Properties:
-  FilterName: String
-  FilterPattern: String
-  LogGroupName: String
-  MetricTransformations:
-    - MetricTransformation
-```

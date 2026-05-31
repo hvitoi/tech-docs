@@ -9,20 +9,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html>
 
-```yaml
-Type: AWS::Kinesis::Stream
-Properties:
-  Name: String
-  RetentionPeriodHours: Integer
-  ShardCount: Integer
-  StreamEncryption:
-    StreamEncryption
-  StreamModeDetails:
-    StreamModeDetails
-  Tags:
-    - Tag
-```
-
 ### RetentionPeriodHours
 
 - Retention between `1 to 365 days`

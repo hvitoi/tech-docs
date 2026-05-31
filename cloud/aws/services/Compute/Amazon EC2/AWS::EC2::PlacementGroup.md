@@ -7,16 +7,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html>
 
-```yaml
-Type: AWS::EC2::PlacementGroup
-Properties:
-  PartitionCount: Integer
-  SpreadLevel: String
-  Strategy: String
-  Tags:
-    - Tag
-```
-
 ### Strategy
 
 - **cluster** (high performance): deploy to same rack (and same AZ). High performance + High risk. Good for HPC. 10 Gbps network

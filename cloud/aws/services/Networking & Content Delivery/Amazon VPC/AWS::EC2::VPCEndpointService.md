@@ -14,14 +14,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html>
 
-```yaml
-Type: AWS::EC2::VPCEndpointService
-Properties:
-  AcceptanceRequired: Boolean
-  ContributorInsightsEnabled: Boolean
-  GatewayLoadBalancerArns:
-    - String
-  NetworkLoadBalancerArns:
-    - String
-  PayerResponsibility: String
-```

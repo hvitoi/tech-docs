@@ -6,22 +6,6 @@
 
 ## Properties
 
-```yaml
-Type: AWS::EKS::Addon
-Properties:
-  AddonName: String
-  AddonVersion: String
-  ClusterName: String
-  ConfigurationValues: String
-  PodIdentityAssociations:
-    - PodIdentityAssociation
-  PreserveOnDelete: Boolean
-  ResolveConflicts: String
-  ServiceAccountRoleArn: String
-  Tags:
-    - Tag
-```
-
 ### AddonName
 
 - **vpc-cni**

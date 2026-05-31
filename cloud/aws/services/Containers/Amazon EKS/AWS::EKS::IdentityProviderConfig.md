@@ -16,14 +16,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html>
 
-```yaml
-Type: AWS::EKS::IdentityProviderConfig
-Properties:
-  ClusterName: String
-  IdentityProviderConfigName: String
-  Oidc:
-    OidcIdentityProviderConfig
-  Tags:
-    - Tag
-  Type: String
-```

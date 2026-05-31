@@ -32,16 +32,3 @@ aws ec2 associate-address \
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eip.html>
 
-```yaml
-Type: AWS::EC2::EIP
-Properties:
-  Address: String
-  Domain: String
-  InstanceId: String
-  IpamPoolId: String
-  NetworkBorderGroup: String
-  PublicIpv4Pool: String
-  Tags:
-    - Tag
-  TransferAddress: String
-```

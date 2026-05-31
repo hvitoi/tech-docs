@@ -76,48 +76,6 @@ aws s3 presign "s3://mybucket/myobject.txt" --region "sa-east-1" --expires-in "3
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html>
 
-```yaml
-Type: AWS::S3::Bucket
-Properties:
-  AccelerateConfiguration:
-    AccelerateConfiguration
-  AccessControl: String
-  AnalyticsConfigurations:
-    - AnalyticsConfiguration
-  BucketEncryption:
-    BucketEncryption
-  BucketName: String
-  CorsConfiguration:
-    CorsConfiguration
-  IntelligentTieringConfigurations:
-    - IntelligentTieringConfiguration
-  InventoryConfigurations:
-    - InventoryConfiguration
-  LifecycleConfiguration:
-    LifecycleConfiguration
-  LoggingConfiguration:
-    LoggingConfiguration
-  MetricsConfigurations:
-    - MetricsConfiguration
-  NotificationConfiguration:
-    NotificationConfiguration
-  ObjectLockConfiguration:
-    ObjectLockConfiguration
-  ObjectLockEnabled: Boolean
-  OwnershipControls:
-    OwnershipControls
-  PublicAccessBlockConfiguration:
-    PublicAccessBlockConfiguration
-  ReplicationConfiguration:
-    ReplicationConfiguration
-  Tags:
-    - Tag
-  VersioningConfiguration:
-    VersioningConfiguration
-  WebsiteConfiguration:
-    WebsiteConfiguration
-```
-
 ### AccelerateConfiguration
 
 - `S3 Transfer Acceleration` (S3TA)

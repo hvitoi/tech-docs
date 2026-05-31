@@ -97,14 +97,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html>
 
-```yaml
-Type: AWS::IAM::OIDCProvider
-Properties:
-  ClientIdList:
-    - String
-  Tags:
-    - Tag
-  ThumbprintList:
-    - String
-  Url: String
-```

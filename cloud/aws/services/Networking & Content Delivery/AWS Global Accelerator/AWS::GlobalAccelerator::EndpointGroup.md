@@ -7,23 +7,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-endpointgroup.html>
 
-```yaml
-Type: AWS::GlobalAccelerator::EndpointGroup
-Properties:
-  EndpointConfigurations:
-    - EndpointConfiguration
-  EndpointGroupRegion: String
-  HealthCheckIntervalSeconds: Integer
-  HealthCheckPath: String
-  HealthCheckPort: Integer
-  HealthCheckProtocol: String
-  ListenerArn: String
-  PortOverrides:
-    - PortOverride
-  ThresholdCount: Integer
-  TrafficDialPercentage: Number
-```
-
 ### EndpointConfigurations
 
 - Elastic IP

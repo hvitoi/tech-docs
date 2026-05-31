@@ -8,22 +8,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html>
 
-```yaml
-Type: AWS::EC2::VPCEndpoint
-Properties:
-  PolicyDocument: Json
-  PrivateDnsEnabled: Boolean
-  RouteTableIds:
-    - String
-  SecurityGroupIds:
-    - String
-  ServiceName: String
-  SubnetIds:
-    - String
-  VpcEndpointType: String
-  VpcId: String
-```
-
 ### VpcEndpointType
 
 - `Interface`: provisions an ENI (private ip) as entry point to the AWS service

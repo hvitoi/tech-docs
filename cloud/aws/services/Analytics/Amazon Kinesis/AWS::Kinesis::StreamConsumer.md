@@ -15,9 +15,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html>
 
-```yaml
-Type: AWS::Kinesis::StreamConsumer
-Properties:
-  ConsumerName: String
-  StreamARN: String
-```

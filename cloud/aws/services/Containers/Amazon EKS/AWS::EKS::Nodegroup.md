@@ -24,38 +24,6 @@
 
 ## Properties
 
-```yaml
-Type: AWS::EKS::Nodegroup
-Properties:
-  AmiType: String
-  CapacityType: String
-  ClusterName: String
-  DiskSize: Integer
-  ForceUpdateEnabled: Boolean
-  InstanceTypes:
-    - String
-  Labels:
-    Key: Value
-  LaunchTemplate:
-    LaunchTemplateSpecification
-  NodegroupName: String
-  NodeRole: String
-  ReleaseVersion: String
-  RemoteAccess:
-    RemoteAccess
-  ScalingConfig:
-    ScalingConfig
-  Subnets:
-    - String
-  Tags:
-    Key: Value
-  Taints:
-    - Taint
-  UpdateConfig:
-    UpdateConfig
-  Version: String
-```
-
 ### CapacityType
 
 - `ON_DEMAND`

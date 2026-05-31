@@ -7,26 +7,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-environment.html>
 
-```yaml
-Type: AWS::ElasticBeanstalk::Environment
-Properties:
-  ApplicationName: String
-  CNAMEPrefix: String
-  Description: String
-  EnvironmentName: String
-  OperationsRole: String
-  OptionSettings:
-    - OptionSetting
-  PlatformArn: String
-  SolutionStackName: String
-  Tags:
-    - Tag
-  TemplateName: String
-  Tier:
-    Tier
-  VersionLabel: String
-```
-
 ### Tier
 
 ![Tiers](.images/beanstalk-tiers.png)

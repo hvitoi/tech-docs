@@ -19,15 +19,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html>
 
-```yaml
-Type: AWS::CloudFront::Distribution
-Properties:
-  DistributionConfig:
-    DistributionConfig
-  Tags:
-    - Tag
-```
-
 ### DistributionConfig
 
 ```yaml

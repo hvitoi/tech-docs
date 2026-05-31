@@ -73,33 +73,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html>
 
-```yaml
-Type: AWS::EKS::Cluster
-Properties:
-  AccessConfig:
-    AccessConfig
-  BootstrapSelfManagedAddons: Boolean
-  EncryptionConfig:
-    - EncryptionConfig
-  KubernetesNetworkConfig:
-    KubernetesNetworkConfig
-  Logging:
-    Logging
-  Name: String
-  OutpostConfig:
-    OutpostConfig
-  ResourcesVpcConfig:
-    ResourcesVpcConfig
-  RoleArn: String
-  Tags:
-    - Tag
-  UpgradePolicy:
-    UpgradePolicy
-  Version: String
-  ZonalShiftConfig:
-    ZonalShiftConfig
-```
-
 ### RoleArn
 
 - It's the `Cluster IAM role`

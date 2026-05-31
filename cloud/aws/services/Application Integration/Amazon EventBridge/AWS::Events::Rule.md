@@ -42,20 +42,6 @@
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html>
 
 ```yaml
-Type: AWS::Events::Rule
-Properties:
-  Description: String
-  EventBusName: String
-  EventPattern: Json
-  Name: String
-  RoleArn: String
-  ScheduleExpression: String
-  State: String
-  Targets:
-    - Target
-```
-
-```yaml
 # Example
 AWSTemplateFormatVersion: "2010-09-09"
 Description: FIS Events Routing

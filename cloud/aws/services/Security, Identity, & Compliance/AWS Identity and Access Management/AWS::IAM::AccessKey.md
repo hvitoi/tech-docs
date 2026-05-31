@@ -11,10 +11,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-accesskey.html>
 
-```yaml
-Type: AWS::IAM::AccessKey
-Properties:
-  Serial: Integer
-  Status: String
-  UserName: String
-```

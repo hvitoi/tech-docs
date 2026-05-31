@@ -10,21 +10,3 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-datasource.html>
 
-```yaml
-Type: AWS::QBusiness::DataSource
-Properties:
-  ApplicationId: String
-  Configuration:
-
-  Description: String
-  DisplayName: String
-  DocumentEnrichmentConfiguration:
-    DocumentEnrichmentConfiguration
-  IndexId: String
-  RoleArn: String
-  SyncSchedule: String
-  Tags:
-    - Tag
-  VpcConfiguration:
-    DataSourceVpcConfiguration
-```

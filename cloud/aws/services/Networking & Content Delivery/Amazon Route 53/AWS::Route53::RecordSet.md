@@ -43,33 +43,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordset.html>
 
-```yaml
-Type: AWS::Route53::RecordSet
-Properties:
-  AliasTarget:
-    AliasTarget
-  CidrRoutingConfig:
-    CidrRoutingConfig
-  Comment: String
-  Failover: String
-  GeoLocation:
-    GeoLocation
-  GeoProximityLocation:
-    GeoProximityLocation
-  HealthCheckId: String
-  HostedZoneId: String
-  HostedZoneName: String
-  MultiValueAnswer: Boolean
-  Name: String
-  Region: String
-  ResourceRecords:
-    - String
-  SetIdentifier: String
-  TTL: String
-  Type: String
-  Weight: Integer
-```
-
 ### AliasTarget
 
 - `CNAME Record`

@@ -6,22 +6,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html>
 
-```yaml
-Type: AWS::CertificateManager::Certificate
-Properties:
-  CertificateAuthorityArn: String
-  CertificateTransparencyLoggingPreference: String
-  DomainName: String
-  DomainValidationOptions:
-    - DomainValidationOption
-  KeyAlgorithm: String
-  SubjectAlternativeNames:
-    - String
-  Tags:
-    - Tag
-  ValidationMethod: String
-```
-
 ### DomainName
 
 - Wildcard certificate: `*.hvitoi.com`

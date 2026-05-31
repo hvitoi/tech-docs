@@ -19,24 +19,6 @@
 
 - <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html>
 
-```yaml
-Type: AWS::KMS::Key
-Properties:
-  BypassPolicyLockoutSafetyCheck: Boolean
-  Description: String
-  Enabled: Boolean
-  EnableKeyRotation: Boolean
-  KeyPolicy: Json
-  KeySpec: String
-  KeyUsage: String
-  MultiRegion: Boolean
-  Origin: String
-  PendingWindowInDays: Integer
-  RotationPeriodInDays: Integer
-  Tags:
-    - Tag
-```
-
 ### EnableKeyRotation
 
 - KMS can `rotate` the keys
