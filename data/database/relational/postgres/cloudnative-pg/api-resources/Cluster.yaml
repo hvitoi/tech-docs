@@ -1,0 +1,9 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mycluster
+spec:
+  instances: 3 # 1 primary + 2 replicas
+  storage:
+    size: 1Gi
+  # imageName: ghcr.io/cloudnative-pg/postgresql:17 # pin a Postgres version

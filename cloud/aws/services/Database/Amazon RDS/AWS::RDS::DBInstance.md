@@ -17,7 +17,7 @@
 
 - Daily `full backup` of the database (during the maintenance window)
   - `7 days` retention by default (can be increased to up to 35 days)
-- `Transation logs` are backed-up every 5min
+- `Transaction logs` are backed-up every 5 min
 - Ability to restore to `any point in time`! (from the oldest backup to 5 minutes ago)
 
 ### EnableIAMDatabaseAuthentication
