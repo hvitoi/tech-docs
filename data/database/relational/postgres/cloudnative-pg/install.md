@@ -14,6 +14,13 @@ kubectl apply --server-side -f "https://raw.githubusercontent.com/cloudnative-pg
 kubectl rollout status deployment -n cnpg-system cnpg-controller-manager
 ```
 
+```shell
+# Install kubectl plugin: https://cloudnative-pg.io/docs/devel/kubectl-plugin/#generation-of-installation-manifests
+curl -sSfL \
+  https://github.com/cloudnative-pg/cloudnative-pg/raw/main/hack/install-cnpg-plugin.sh | \
+  sudo sh -s -- -b /usr/local/bin
+```
+
 ## Create a cluster
 
 - No Deployment or StatefulSet is created, the CR manages the pods directly, rather than delegating to a built-in workload controller

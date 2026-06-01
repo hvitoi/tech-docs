@@ -4,6 +4,16 @@ metadata:
   name: mycluster
 spec:
   instances: 3 # 1 primary + 2 replicas
+  imageName: ghcr.io/cloudnative-pg/postgresql:17 # pin a Postgres version
   storage:
-    size: 1Gi
-  # imageName: ghcr.io/cloudnative-pg/postgresql:17 # pin a Postgres version
+    size: 1Gi # Create one 1Gi PVC per instance (that uses the default SC).
+    # If running on minikube, it's a plain directory inside the minikube VM, one per instance, e.g.: /tmp/hostpath-provisioner/default/mycluster-1/pgdata/
+    # In production you'd use a CSI driver (EBS, PD, Ceph, etc.) so volumes survive node loss.
+  failoverDelay: 0 # seconds to wait before declaring failover (0 = immediate)
+  primaryUpdateStrategy: unsupervised # operator switches over automatically
+  # primaryUpdateStrategy: supervised   # you manually trigger the primary switchover
+  primaryUpdateMethod: switchover # or 'restart' (in-place, faster, brief downtime)
+  postgresql:
+    parameters:
+      # standbys must be in sync to be promotion candidates (zero data loss)
+      synchronous_commit: "on"
