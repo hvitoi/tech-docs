@@ -99,13 +99,14 @@ aws devops-agent associate-service \
 ```
 
 ```shell
+# $repoId is required and must be the repo's numeric GitHub ID. Resolve it with `gh api repos/<owner>/<repo> --jq .id`
 aws devops-agent associate-service \
   --agent-space-id MyAgentSpace \
   --service-id gh-service-id \
   --configuration '{
     "github": {
       "repoName": "dino",
-      "repoId":"",
+      "repoId": "123456789",
       "owner": "foo",
       "ownerType": "organization"
     }
