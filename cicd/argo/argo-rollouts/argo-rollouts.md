@@ -1,5 +1,12 @@
 # Argo Rollouts
 
+- Progressive delivery wioth advanced deployment strategies.
+
+- A controller providing `canary` and `blue-green` deployments
+- Integrates with `ingress/service` meshes (Istio, NGINX, ALB, SMI) for traffic shifting.
+- `Analysis runs`: query Prometheus/Datadog/etc. metrics during a rollout and `auto-promote` or `auto-rollback` based on success criteria.
+- Responsibility: `safely roll out` new versions with automated, metric-driven promotion/abort.
+
 ```shell
 # Replace `[...]` with the GitHub organization or the username
 export GH_ORG=[...]

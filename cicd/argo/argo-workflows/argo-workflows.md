@@ -1,7 +1,10 @@
 # Argo Workflows
 
-- Container-native engine to orchestrate jobs in Kubernetes
-- Creation and execution of complex workflows on Kubernetes
+- Engine to orchestrate parallel jobs on Kubernetes
+- Each step in a workflow run as a pod
+- Used for CI pipelines, batch processing, ML training, ETL, data processing
+- Supports `DAGs`, `fan-out,fan-in`, `conditionals`, `retries`, `artifacts` (passing files between steps via S3, GCS, etc)
+- It's the "CI" part in a CI/CD platform: build, test, package, scans
 
 ## Install Operator
 
