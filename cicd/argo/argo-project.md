@@ -20,3 +20,8 @@ Git push
 `Rollouts` = progressive delivery (safe release)
 
 A key distinction worth remembering: Argo Workflows uses a push model for running jobs, while Argo CD uses a pull/reconcile GitOps model for deployments — they're complementary, not competing.
+
+## State Management
+
+- Are the projects under the Argo umbrella stateful? What state does it persist and how? Is there another project backing this state management? E.g., a workflow processing queue
+- How does argo handle multi-region rollouts? Does it replicate the docker images from the registries in different regions?

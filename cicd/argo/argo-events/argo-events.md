@@ -3,7 +3,7 @@
 - Event-driven automation
 
 - A framework that `ingests events` from many sources (webhooks, S3, SNS/SQS, Kafka, cron, Git push, etc.) and `triggers actions`.
-- Two main CRDs: `EventSource` (where events come from) and Sen`sor (event dependencies → triggers).
+- Two main CRDs: `EventSource` (where events come from) and `Sensor` (event dependencies → triggers).
 - Commonly used to kick off an Argo Workflow when a Git webhook fires.
 - Responsibility: the "when X happens, start Y" glue that triggers pipelines.
 
