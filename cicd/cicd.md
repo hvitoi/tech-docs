@@ -8,9 +8,14 @@
 
 ## Steps
 
-1. Merge code changes
-2. Tests
-3. Build
-4. Scans
-5. Artifact repository
-6. Deploy
+- **Continuous Integration**
+  1. `Code`: Commit and merge code changes to a git repository.
+  1. `Build`: build the code into a binary (jar, docker image)
+  1. `Test`
+  1. `Release`: Push to Artifact repository
+
+- **Continuos Delivery**
+  1. `Deploy`
+  1. `Operate`
+  1. `Observe`
+  1. `Plan`: plan the next code changes

@@ -15,7 +15,7 @@ System --> C[Outcome/Result]
 ## Examples
 
 1. User must `authenticate` to access the platform
-2. user can `access` the platform via `mobile` or `webapp`
+2. User can `access` the platform via `mobile` or `webapp`
 3. User must be able to `search` an item
 4. User can `upload` a file
 5. User can generate a link so that he can `share` the file with other users
