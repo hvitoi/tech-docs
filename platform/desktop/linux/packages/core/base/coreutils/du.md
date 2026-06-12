@@ -16,7 +16,7 @@ du -h
 
 # Show total size
 du -s
-du -sh
+du -sh ~/* # home directory
 du -sh "/var/lib/docker" # docker image folder
 du -sh *
 ```
