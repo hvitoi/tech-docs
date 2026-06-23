@@ -17,6 +17,9 @@ brew install docker --cask
 # client + open source daemon
 brew install docker # client only (cli)
 brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
+
+colima start
+docker container ls
 ```
 
 ```json
