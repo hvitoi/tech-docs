@@ -19,9 +19,13 @@
   - For `short-lived jobs` the application push then into a `pushgateway` and prometheus scrapes from the pushgateway
 
 - **Storage**
-  - Time series DB to store metrics data
-  - Stores the data in Disk
-  - Can also integrate with `Remote Storage Systems`
+  - Prometheus is deliberately simples about storage
+  - A single prometheus server
+  - Stores data on local disk (not clustered, not replicated)
+  - Keeps it for a limited retention (default 15 days)
+    - Can also integrate with `Remote Storage Systems`
+  - Scales up but NOT out
+  - Due to these metrics, other solutions are used for TSDB (e.g., vicmetrics)
 
 - **HTTP server**
   - Accept `PromSQL` queries to consult the storage
