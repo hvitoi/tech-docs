@@ -1,8 +1,6 @@
-# Prometheus Server
+# Prometheus Configuration
 
-## Configuration
-
-- `prometheus.yml`: defines which targets at which interval
+- Defines the `Prometheus Server` configuration at `prometheus.yml`
 - Usually you won't go create the prometheus configuration, but use the prometheus CRDs created by the `prometheus operator` to deploy the configuration
 - The prometheus operator is a manager of all prometheus components
 
@@ -13,6 +11,8 @@ global:
 rule_files: # aggregating metrics and create alerts
   - "first.rules"
   - "second.rules"
+
+## Defines the scrape job
 scrape_configs: # what resources prometheus monitors
   - job_name: prometheus # scrape prometheus own metrics
     static_configs:
@@ -22,6 +22,10 @@ scrape_configs: # what resources prometheus monitors
     scrape_timeout: 1m
     static_configs:
       - targets: ["localhost:9100"]
+  - job_name: 'example'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['localhost:8080']
 ```
 
 ## Endpoints

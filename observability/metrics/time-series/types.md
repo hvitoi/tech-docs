@@ -2,15 +2,24 @@
 
 ## Counter
 
-- Cumulative metric
+- Cumulative metric (cannot decrease)
 - Value can reset to zero
-- Cannot decrease
+
+```conf
+http_requests_total{method="GET", status="200", service="checkout"}
+```
+
+- You never read the raw value; you compute its rate: `rate(http_requests_total[5m]` = requests/sec).
 
 ## Gauge
 
 - Single numerical value
 - Can go up and down
 - E.g., temperature, memory usage
+
+```conf
+memory_bytes
+```
 
 ## Histogram
 
@@ -32,4 +41,4 @@ my_metric_sum # sum of all measurements (the raw measurement value, not the high
 
 ## Summary
 
-- Similar to to histogram
+- Similar to histogram, but percentiles are precomputed client-side (less flexible, histograms are usually preferred)
