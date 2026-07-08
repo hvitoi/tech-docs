@@ -8,7 +8,3 @@
   - `A container platform`
   - `A microservice platform`
   - `A portable cloud platform`
-
-## Azure Kubernetes Service (AKS)
-
-- Managed solution for k8s
