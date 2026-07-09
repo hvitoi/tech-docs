@@ -3,3 +3,4 @@
 - Deepseek models are open-source
 
 - `DeepSeek V3.2`
+- `DeepSeek R1`
