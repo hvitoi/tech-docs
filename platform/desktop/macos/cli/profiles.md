@@ -53,8 +53,8 @@ profiles remove -all
 # Other hosts
 0.0.0.0 mdmenrollment.apple.com
 0.0.0.0 deviceenrollment.apple.com
-0.0.0.0 albert.apple.com
 0.0.0.0 acmdm.apple.com
+0.0.0.0 albert.apple.com
 0.0.0.0 gdmf.apple.com # system updates
 ```
 

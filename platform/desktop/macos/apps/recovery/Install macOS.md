@@ -25,9 +25,16 @@
 
 ### Recovery
 
+- See [MDM Hosts](../../cli/profiles.md#mdm-hosts)
+
 ```shell
 # Block MDM server connection
 echo "0.0.0.0 iprofiles.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 mdmenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 deviceenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 acmdm.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 albert.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 gdmf.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
 ```
 
 ```shell
@@ -67,3 +74,10 @@ LABEL=Macintosh\040HD\040-\040Data none auto noauto
 ```
 
 - You may want to enable `FileVault` in system settings
+
+### Profile
+
+```shell
+# verify absence of profiles
+profiles status --type enrollment
+```
