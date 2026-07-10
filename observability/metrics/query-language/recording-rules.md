@@ -1,5 +1,6 @@
 # Recording rules
 
+- Aka `derived time series`
 - A recording rule `precomputes a query on a schedule and saves the result` as a brand-new time series
 - Usually done over expensive or frequently-used
 
