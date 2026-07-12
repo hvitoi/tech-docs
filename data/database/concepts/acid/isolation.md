@@ -64,4 +64,4 @@ Higher isolation = more locking/conflict detection = less throughput.
 - **Locking-based** (e.g. SQL Server) — the database holds read/write locks for longer at higher levels
 - **MVCC** (e.g. PostgreSQL, MySQL) — each transaction sees a snapshot of the data (essentially optimistic locking at the engine level); still needs conflict detection at Serializable
 
-In practice, most applications use **Read Committed** + explicit `SELECT ... FOR UPDATE` on the rows that need protection, rather than raising the entire isolation level — see `distributed-systems/concurrency/locking.md`.
+In practice, most applications use **Read Committed** + explicit `SELECT ... FOR UPDATE` on the rows that need protection, rather than raising the entire isolation level

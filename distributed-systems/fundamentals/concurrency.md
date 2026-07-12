@@ -8,4 +8,4 @@ When multiple instances operate on shared state simultaneously, two core problem
 ## Strategies
 
 - **[Locking](locking.md)** — one writer at a time via optimistic or pessimistic locks
-- **[Idempotence](idempotence.md)** — safe retries; executing the same operation multiple times produces the same result
+- **[Idempotency](../patterns/data-management/idempotency.md)** — safe retries; executing the same operation multiple times produces the same result
