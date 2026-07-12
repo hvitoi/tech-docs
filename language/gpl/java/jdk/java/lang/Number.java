@@ -1,4 +1,6 @@
 class Main {
+  // Also check primitivesTypes.java
+
   public static void main(String[] args) {
     // Instance methods
     _byteValue();
