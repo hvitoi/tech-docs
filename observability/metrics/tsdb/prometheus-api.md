@@ -3,20 +3,24 @@
 - It's an API standard
 - It's adopted by `Prometheus Server` and `VictoriaMetrics` (vmselect)
 
-## Query API
+## Instant Query API
 
-- The resultType is a `vector`
+- Evaluate your expression at one single timestamp (within the staleness window, usually 5m)
+- Returns a `vector` [ts, val] per series matched
+- The timestamps of the samples returned are guaranteed to be less than the `evaluation time` (the "time" parameter) and are guaranteed not to be less than `evaluation time - staleness window` (usually 5 min)
 
-- **query**
+- **query** (required)
   - The promql query
 
-- **time**
+- **time** (optional)
   - The moment at which it will be returned the time series that were scraped at that moment
   - Defaults to now (server's clock). That is: returns the time series present at the latest scrape (within the staleness window, usually 5m)
 
-- **max_lookback** (VM only)
+- **max_lookback** (optional)
+  - The lookback window used to find the last raw sample before evaluation time ("time")
+  - It has a different meaning from the step in range queries!
   - The query respects the `staleness window`. It's how further the query will walk backward to find the latest sample of a given time series
-  - There is a server default of 5 min, that can be overridden with this parameter
+  - There is a `server default of 5 min`, that can be overridden with this parameter
   - Example: if the pod died 2 minutes ago, its last sample is still within the 5m window, the latest sample will show up in the query, still reporting whatever value it had at death
   - Prometheus also writes a special `stale marker` (NaN value) into that series immediately when the scrape target disappears from service discovery. This force the this series to stop showing up in instant queries faster than the full 5m staleness window
 
@@ -67,7 +71,7 @@ curl -sX POST "$HOST/api/v1/query" \
           "status": "200",
         },
         "value": [
-          1783977321, // the timestamp of the scrape
+          1783977321, // the timestamp of the scrape (can be a different one because of an eventual "stale" time series)
           "1959" // value (the counter) on that scrape
         ]
       }
@@ -80,9 +84,25 @@ curl -sX POST "$HOST/api/v1/query" \
 }
 ```
 
-## Query Range API
+## Range Query API
 
-- The resultType is a `matrix`
+- Evaluate the same expression repeatedly at evenly-spaced timestamp between start and end time
+- Returns a `matrix` with the vector [ts, val] for each timestamp (each step)
+- Good for generating graphs
+
+- **query** (required)
+  - The promql query
+
+- **start** (required)
+  - Unix timestamp (or RFC3339) — beginning of the range
+
+- **end** (required)
+  - Unix timestamp (or RFC3339) — end of the range
+
+- **step** (required)
+  - Resolution, the spacing between evaluated timestamps (e.g. 15s, 1m, 5m)
+  - Smaller step = more points = more timestamp vals = smoother but heavier query
+  - Usually it's auto-calculated by the UI depending on your screen size and zoom-level, so that it shows a good graph granularity
 
 ```shell
 HOST='host'
