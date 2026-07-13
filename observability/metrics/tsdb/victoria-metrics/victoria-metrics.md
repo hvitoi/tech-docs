@@ -13,3 +13,8 @@
 - `vmstorage`
 - `vminsert`
 - `vmselect`
+
+## Endpoints
+
+- UI <https://myhost/select/0/vmui/>
+- API <https://myhost/select/0/prometheus/api/v1/query>

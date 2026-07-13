@@ -33,3 +33,4 @@ scrape_configs: # what resources prometheus monitors
 - Status page: <http://localhost:9090>
 - Prometheus own metrics: <http://localhost:9090/metrics>
 - Expression browser: <http://localhost:9090/graph>
+- API <http://localhost:9090/api/v1/query>
