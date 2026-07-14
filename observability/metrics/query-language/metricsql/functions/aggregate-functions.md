@@ -1,12 +1,14 @@
 # Aggregate functions
 
 - <https://docs.victoriametrics.com/victoriametrics/metricsql/#aggregate-functions>
-- Aggregation operators can be used to aggregate all dimensions or preserve some dimensions
+- <https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators>
+
+- Can be used to aggregate the elements of a single `instant vector`, resulting in a new vector of fewer elements with aggregated values:
 
 - `without`: removes the listed labels from the result vector
 - `by`: drops labels not listed in the by clause
 
-## group
+## group(v)
 
 - All values in the resulting vector are 1
 
@@ -15,10 +17,10 @@
 group({service="insurance-payments"}) by (__name__)
 ```
 
-## sum
+## sum(v)
 
-- `sum(q) by (group_labels)`
 - Calculate sum over dimensions
+- `sum(q) by (group_labels)`
 
 ```conf
 sum(http_requests_total)
@@ -26,7 +28,7 @@ sum(http_requests_total) by (application, group)
 sum(http_requests_total) without (instance)
 ```
 
-## max
+## max(v)
 
 ```shell
 # Is my service up and/or scrapeable?
@@ -48,7 +50,7 @@ BY (test_name)
 > 600
 ```
 
-## count_values
+## count_values(l, v)
 
 - Count number of elements with the same value
 
@@ -56,7 +58,7 @@ BY (test_name)
 count_values("version", build_version)
 ```
 
-## topk
+## topk(k, v)
 
 ```conf
 topk(5, http_requests_total)

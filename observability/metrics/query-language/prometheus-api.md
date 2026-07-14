@@ -25,7 +25,7 @@
   - Prometheus also writes a special `stale marker` (NaN value) into that series immediately when the scrape target disappears from service discovery. This force the this series to stop showing up in instant queries faster than the full 5m staleness window
 
 ```shell
-HOST='host'
+HOST='https://myvicmetrics.com/select/0/prometheus'
 QUERY='services_http_requests_total{service="ronaldo",path="/api/version"}'
 
 curl -sX POST "$HOST/api/v1/query" \
@@ -106,7 +106,7 @@ curl -sX POST "$HOST/api/v1/query" \
   - Usually it's auto-calculated by the UI depending on your screen size and zoom-level, so that it shows a good graph granularity
 
 ```shell
-HOST='host'
+HOST='https://myvicmetrics.com/select/0/prometheus'
 QUERY='services_http_requests_total{service="ronaldo",path="/api/version"}'
 
 curl -sX POST "$HOST/api/v1/query_range" \
