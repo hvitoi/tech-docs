@@ -8,27 +8,30 @@
 - `without`: removes the listed labels from the result vector
 - `by`: drops labels not listed in the by clause
 
-## group(v)
+## group(q) by (group_labels)
 
-- All values in the resulting vector are 1
+- Returns `1` per each group_labels for time series returned by q.
 
 ```conf
 # all distinct metrics given a certain label value
 group({service="insurance-payments"}) by (__name__)
 ```
 
-## sum(v)
+## sum(q) by (group_labels)
 
-- Calculate sum over dimensions
-- `sum(q) by (group_labels)`
+- Returns the `sum` per each group_labels for all the time series returned by q
 
 ```conf
-sum(http_requests_total)
+# returns the rate (bytes/s) of all network interfaces (that was summed up by the sum) for each network interface (the by clausule)
+sum(rate(node_network_receive_bytes_total[5m])) by (instance)
+
 sum(http_requests_total) by (application, group)
 sum(http_requests_total) without (instance)
 ```
 
-## max(v)
+## max(q) by (group_labels)
+
+- Returns the `maximum value` per each group_labels for all the time series returned by q
 
 ```shell
 # Is my service up and/or scrapeable?
