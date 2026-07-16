@@ -9,6 +9,7 @@ Isolation levels exist to prevent these problems:
 - **Dirty read** — reading data that another transaction hasn't committed yet (it might roll back)
 - **Non-repeatable read** — reading the same row twice in one transaction and getting different values because another transaction committed in between
 - **Phantom read** — running the same query twice and getting new rows because another transaction inserted them in between
+- **Lost update** — two read-modify-writes race and one is silently overwritten. Note this one is *not* on the SQL standard's list, so no isolation level below Serializable is guaranteed to stop it — it's the reason `SELECT ... FOR UPDATE` exists
 
 ## Isolation Levels (least → most strict)
 
@@ -65,3 +66,17 @@ Higher isolation = more locking/conflict detection = less throughput.
 - **MVCC** (e.g. PostgreSQL, MySQL) — each transaction sees a snapshot of the data (essentially optimistic locking at the engine level); still needs conflict detection at Serializable
 
 In practice, most applications use **Read Committed** + explicit `SELECT ... FOR UPDATE` on the rows that need protection, rather than raising the entire isolation level
+
+The standard defines levels by which *anomalies* they permit, not by *implementation* — so two engines can both claim "repeatable read" and still behave differently. PostgreSQL's repeatable read, for instance, is snapshot isolation and blocks phantoms too, which the standard doesn't require.
+
+## Deadlocks
+
+- Two transactions each hold a lock the other wants. The engine detects the cycle and **kills one** with an error
+- Mitigation: acquire locks in a consistent order, keep transactions short, and retry the victim
+- Application code that runs transactions **must be prepared to retry** — at Serializable this is not optional, since the engine aborts transactions as a normal part of operation
+
+## Practical notes
+
+- Keep transactions short — a long one holds locks, pins old row versions (blocking MVCC cleanup — see above), and blocks [WAL](../wal.md) recycling
+- Never leave a transaction open across a network call or user think-time
+- Defaults differ per engine (PostgreSQL read committed, MySQL/InnoDB repeatable read, SQLite serializable) — a classic source of portability bugs

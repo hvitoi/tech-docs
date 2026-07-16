@@ -37,7 +37,6 @@ CREATE TABLE t (id INTEGER PRIMARY KEY, name TEXT NOT NULL) STRICT;
 
 ## Concurrency
 
-- General concept in [../concepts/09.wal.md](../concepts/09.wal.md); below is what's specific to SQLite
 - Locking is at the **whole-database** level, not row or table
 - No MVCC — the whole-file lock *is* the isolation mechanism
 - Default `rollback journal`: one writer, and writers block readers
@@ -56,7 +55,6 @@ PRAGMA synchronous = NORMAL;    -- safe with WAL, much faster than FULL
 
 ## Transactions
 
-- General concept in [../concepts/10.transactions.md](../concepts/10.transactions.md)
 - ACID, and always `serializable` — the strictest level, for free, because there is only ever one writer
 - `BEGIN` is *deferred* by default: the write lock is only taken at the first write, so a read-then-write txn can fail with `SQLITE_BUSY`. Use `BEGIN IMMEDIATE` when you know you'll write
 

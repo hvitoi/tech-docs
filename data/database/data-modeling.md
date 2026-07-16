@@ -12,26 +12,18 @@
 - Table for `properties of actions` that don’t fit to 2D diagram
 - E.g., possible reasons for return
 
-## Normalization
+## Redundancy: one copy, or many?
 
-- It's a Optimization technique in relational databases
+Every paradigm faces the same decision — store each fact **once and reference it**, or **duplicate it** so a single read returns everything:
 
-- _Normalization_: separate tables for redundancy reduction
-  - E.g., doc, doctor, med doc
-  - Cons: You know less from only one table. Have to read more than one table
-- _Denormalization_: application of JOINS to integrate tables
+| | One copy | Duplicated |
+| --- | --- | --- |
+| Relational | normalized, JOIN on read | denormalized, wide tables |
+| Document | referencing (`$lookup`) | embedding |
+| Wide-column | (avoided) | duplicate per query pattern |
 
-### Normalized data
-
-- `Minimizes storage` spaces
-- Requires `two queries` to get data from different sources (tables, collections)
-- Easy to perform updates! Need to change only one source of data
-- Good approach when the data storage is expensive! And the performance is not important
-  - Doubles the traffic with double queries (two transactions)! Increseases latency
-
-### Denormalized data
-
-- Data is duplicated in order for a source to container all the information needed!
-- Only requires one transaction to fetch the complete data
-- Improves the performance!
-- Downside is that in order to update data, many sources must be updated
+- Cheap writes and no drift vs. cheap reads and no joins — you cannot have both
+- The rule of thumb is to model for the **read pattern**: normalize until it hurts, denormalize until it works
+- Duplicating means every copy must be updated together, which is where consistency bugs live
+- The relational theory behind this (normal forms, update anomalies) is in [types/relational/9.normalization.md](types/relational/9.normalization.md)
+- Which side a workload lands on is largely decided by `OLTP` vs `OLAP` — see [oltp-olap.md](oltp-olap.md)
