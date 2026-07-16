@@ -3,9 +3,12 @@
 - The `sqlite3` binary is a standalone shell, already installed on macOS/most Linux
 
 ```shell
+# Stored DB
 sqlite3 mydb.db            # open (creates the file lazily on first write)
-sqlite3 :memory:           # scratch in-memory db
 sqlite3 mydb.db "SELECT 1" # one-shot query
+
+# In-memory DB
+sqlite3 :memory:
 ```
 
 ## Dot commands
@@ -30,7 +33,7 @@ sqlite3 mydb.db "SELECT 1" # one-shot query
 ```shell
 sqlite3 mydb.db ".backup 'copy.db'"     # consistent hot copy
 sqlite3 mydb.db "VACUUM INTO 'copy.db'" # same, also compacts
-sqlite3 mydb.db .dump > dump.sql        # text dump
+sqlite3 mydb.db ".dump" > dump.sql        # text dump
 sqlite3 new.db < dump.sql               # restore
 ```
 

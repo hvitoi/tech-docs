@@ -66,13 +66,6 @@ PRAGMA synchronous = NORMAL;    -- safe with WAL, much faster than FULL
 - `:memory:` databases for tests
 - Backup API / `VACUUM INTO 'file.db'` for a consistent hot copy — never `cp` a live DB
 
-## Files
-
-- [cli.md](cli.md) — `sqlite3` shell
-- [python.md](python.md) — stdlib `sqlite3` example
-- [orm.md](orm.md) — SQLAlchemy, Django, Prisma, etc.
-- [gui.md](gui.md) — visualizing/browsing a database
-
 ## URLs
 
 - <https://sqlite.org> — official site
@@ -81,3 +74,13 @@ PRAGMA synchronous = NORMAL;    -- safe with WAL, much faster than FULL
 - <https://sqlite.org/whentouse.html> — when to use SQLite
 - <https://sqlite.org/fasterthanfs.html> — reading blobs is ~35% faster than the filesystem
 - <https://sqlite.org/howtocorrupt.html> — how to corrupt your database
+
+## GUI
+
+```shell
+# DBeaver
+brew install dbeaver-community --cask
+
+# DB Browser for SQLite
+brew install db-browser-for-sqlite --cask
+```

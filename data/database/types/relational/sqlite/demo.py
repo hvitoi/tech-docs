@@ -1,0 +1,65 @@
+import sqlite3
+
+con = sqlite3.connect(":memory:")  # or "mydb.db" to open a file
+con.row_factory = sqlite3.Row  # rows as dict-like instead of tuples
+con.execute("PRAGMA journal_mode = WAL")
+con.execute("PRAGMA foreign_keys = ON")  # OFF by default, per-connection
+
+con.executescript("""
+    CREATE TABLE IF NOT EXISTS author (
+        id   INTEGER PRIMARY KEY,
+        name TEXT NOT NULL UNIQUE
+    ) STRICT;
+
+    CREATE TABLE IF NOT EXISTS book (
+        id        INTEGER PRIMARY KEY,
+        title     TEXT NOT NULL,
+        year      INTEGER,
+        author_id INTEGER NOT NULL REFERENCES author(id) ON DELETE CASCADE
+    ) STRICT;
+""")
+
+# ? placeholders — NEVER f-strings (SQL injection)
+with con:  # commits on success, rolls back on exception
+    cur = con.execute("INSERT INTO author (name) VALUES (?)", ("Borges",))
+    author_id = cur.lastrowid
+    con.executemany(
+        "INSERT INTO book (title, year, author_id) VALUES (?, ?, ?)",
+        [("Ficciones", 1944, author_id), ("El Aleph", 1949, author_id)],
+    )
+
+for row in con.execute(
+    "SELECT b.title, b.year, a.name FROM book b JOIN author a ON a.id = b.author_id"
+    " WHERE b.year > ? ORDER BY b.year",
+    (1900,),
+):
+    print(row["year"], row["title"], "-", row["name"])
+
+con.close()
+
+# ## Gotchas
+
+# - **`autocommit` legacy behaviour**: the module implicitly opens a transaction before DML and commits before DDL. Use `with con:` blocks, or Python 3.12+ `sqlite3.connect(..., autocommit=False)` for PEP 249 semantics
+# - **`foreign_keys` is OFF by default** and is per-connection — FKs are silently ignored otherwise
+# - **Threads**: a connection is not sharable across threads by default (`check_same_thread=True`). Give each thread its own connection
+# - **`datetime` adapters are deprecated** since 3.12 — store ISO strings (`dt.isoformat()`) yourself
+# - Placeholders are `?` (qmark) or `:name` (named); they bind **values**, never table/column names
+
+# ```python
+# con.execute("SELECT * FROM book WHERE year = :y", {"y": 1944})
+# ```
+
+# ## Useful
+
+# ```python
+# sqlite3.sqlite_version          # the underlying C library version
+# con.set_trace_callback(print)   # log every statement executed
+# con.backup(sqlite3.connect("copy.db"))  # online backup API
+
+# # built-in CLI
+# # python -m sqlite3 mydb.db "SELECT * FROM book"
+# ```
+
+# ## URLs
+
+# - <https://docs.python.org/3/library/sqlite3.html>
