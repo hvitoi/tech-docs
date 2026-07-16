@@ -24,11 +24,24 @@ fastapi run main.py --workers 4 # 1 manager process + 4 worker processes
 fastapi run main.py --port 80 # port to be exposed
 fastapi run main.py --proxy-headers # used when running behind a TLS Termination Proxy. It tells Uvicorn to trust the headers sent sent by that proxy telling that the application is running behind HTTPS
 fastapi run main.py --root-path /api/v1 # tells the app that it is run behind a proxy and adds the /api/v1 prefix
+```
 
-
+```shell
 # Run uvicorn directly
 uvicorn "main:app" --host 0.0.0.0 --port 80
 # main: the module/file
 # app: the object created in the main module; app = FastAPI()
 # Equivalente to "from main import app"
+```
+
+```python
+# Run uvicorn directly from python code
+def main() -> None:
+    uvicorn.run(
+        "main:app",
+        host="127.0.0.1",
+        port=8000,
+        reload=True,
+    )
+# Then run python <file>.py
 ```

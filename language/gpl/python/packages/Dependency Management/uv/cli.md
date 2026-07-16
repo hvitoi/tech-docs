@@ -85,6 +85,10 @@ uv run pytest tests/
 ```shell
 uv add "langchain"
 uv add --dev pytest # adds to [dependency-groups].dev table
+
+## Optional extra dependencies
+uv add fastapi
+uv add --dev 'uvicorn[standard]'
 ```
 
 ```shell

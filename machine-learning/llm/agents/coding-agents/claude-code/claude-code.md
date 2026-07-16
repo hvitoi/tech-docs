@@ -4,6 +4,7 @@
 - Claude Code is an agentic assistant that runs in your terminal.
 - Claude Code serves as the `agentic harness` around Claude LLM: it provides the `tools`, `context management`, and `execution environment` that turn a language model into a capable coding agent
 - Subscriptions: Pro, Max, Teams, or Enterprise. Or Claude Console (pre-paid credits)
+  - On the subscription-based usage, you get a 5-hour session window and a weekly cap. Both reset on their own schedule. All models (opus, sonnet, etc) draw from the same pool. Usage is also shared across claude.ai chat, claude code, claude desktop, etc
 
 ```shell
 brew install --cask claude-code

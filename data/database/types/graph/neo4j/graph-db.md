@@ -15,13 +15,13 @@
 
 - Quadratic time to insert a new node
 
-![Adjacency Matrix](./images/adjacency-matrix.png)
+![Adjacency Matrix](.images/adjacency-matrix.png)
 
 ### Adjacency List
 
 - Each item has its own array of neighbors
 
-![Adjacency List](./images/adjacency-list.png)
+![Adjacency List](.images/adjacency-list.png)
 
 ## Traverse
 

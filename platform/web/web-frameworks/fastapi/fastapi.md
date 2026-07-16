@@ -6,7 +6,12 @@
 ## Installation
 
 ```shell
+# pip
 pip install "fastapi[standard]"
+
+# uv
+uv add fastapi
+uv add --dev 'fastapi[standard]' # install ASGI server only for local environment
 ```
 
 ## Dependencies

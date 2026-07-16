@@ -39,5 +39,6 @@ class Account:
         """
         first, second = sorted((self, to_account), key=lambda a: a.account_id)
         with first._lock, second._lock:
+            # This solution is faulty. If the the withdraw succeeds and but deposit fails (e.g., amount <=0) money vanishes
             self.withdraw(amount)
             to_account.deposit(amount)
