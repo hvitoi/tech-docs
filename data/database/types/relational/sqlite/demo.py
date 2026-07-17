@@ -13,13 +13,11 @@ import sqlite3
 con = sqlite3.connect(":memory:")  # or "mydb.db" to open a file
 con.row_factory = sqlite3.Row  # rows as dict-like instead of tuples
 con.execute("PRAGMA journal_mode = WAL")
+# foreign_keys is OFF by default: and is per-connection — FKs are silently ignored otherwise
+con.execute("PRAGMA foreign_keys = ON")
 # sqlite3.sqlite_version          # the underlying C library version
 # con.set_trace_callback(print)   # log every statement executed
 # con.backup(sqlite3.connect("copy.db"))  # online backup API
-
-
-# foreign_keys is OFF by default: and is per-connection — FKs are silently ignored otherwise
-con.execute("PRAGMA foreign_keys = ON")
 
 # DDL
 con.executescript("""

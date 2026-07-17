@@ -1,9 +1,10 @@
 # SQLite
 
-- `Embedded` relational database: a C library linked into the app, **not** a client/server DBMS
-- The whole database is a **single cross-platform file** (`.db`/`.sqlite`). No daemon, no port, no user accounts, no `GRANT`
+- Embedded and portable relational database: a C library linked into the app, not a client/server DBMS
+- The whole database is a `single file` (`.db`/`.sqlite`)
+- No daemon, no port, no user accounts, no GRANT
 - Access control is just filesystem permissions on that file
-- Public domain, ~1MB, most deployed database in the world (phones, browsers, planes)
+- <https://sqlite.org>
 
 ## When to use
 
@@ -12,7 +13,7 @@
 
 ## Architecture
 
-- `Pager` — reads/writes fixed-size pages (default 4096B), manages cache + transactions
+- `Pager` — reads/writes fixed-size pages (default 4096 B), manages cache + transactions
 - `B-tree` — every table and index is a B-tree; the table B-tree is keyed by `rowid`
 - `VDBE` — SQL is compiled into bytecode for a virtual machine (see `EXPLAIN`)
 - Everything (schema, tables, indexes) lives in the one file; `sqlite_master` is the schema table
@@ -38,9 +39,9 @@ CREATE TABLE t (id INTEGER PRIMARY KEY, name TEXT NOT NULL) STRICT;
 ## Concurrency
 
 - Locking is at the **whole-database** level, not row or table
-- No MVCC — the whole-file lock *is* the isolation mechanism
+- No MVCC — the whole-file lock is the isolation mechanism
 - Default `rollback journal`: one writer, and writers block readers
-- `WAL` mode: readers never block the writer and vice-versa — **one writer at a time still**
+- `WAL mode`: readers never block the writer and vice-versa — **one writer at a time still**
 - `SQLITE_BUSY` is the error you get when the write lock isn't free; set a busy timeout
 
 ```sql
@@ -65,15 +66,6 @@ PRAGMA synchronous = NORMAL;    -- safe with WAL, much faster than FULL
 - Window functions, CTEs, `UPSERT` (`ON CONFLICT DO UPDATE`), generated columns
 - `:memory:` databases for tests
 - Backup API / `VACUUM INTO 'file.db'` for a consistent hot copy — never `cp` a live DB
-
-## URLs
-
-- <https://sqlite.org> — official site
-- <https://sqlite.org/lang.html> — SQL dialect reference
-- <https://sqlite.org/pragma.html> — pragma list
-- <https://sqlite.org/whentouse.html> — when to use SQLite
-- <https://sqlite.org/fasterthanfs.html> — reading blobs is ~35% faster than the filesystem
-- <https://sqlite.org/howtocorrupt.html> — how to corrupt your database
 
 ## GUI
 
