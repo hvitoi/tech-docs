@@ -25,16 +25,23 @@ class Item(BaseModel):
     process_after: timedelta
     repeat_at: time | None
     name: str
-    description: str | None = Field(  # Field accepts the same args as Body()
-        default=None,  # default values are passed like this when Field validations are necessary
-        title="The description of the item",
-        max_length=300,
-    )
-    price: float = Field(
-        gt=0,
-        description="The price must be greater than zero",
-        examples=[1.99],  # you can define inline examples
-    )
+    description: Annotated[
+        str | None,
+        # Field accepts the same args as Body()
+        Field(
+            default=None,  # redundant here, since the default value is passed in the end
+            title="The description of the item",
+            max_length=300,
+        ),
+    ] = None
+    price: Annotated[
+        float,
+        Field(
+            gt=0,
+            description="The price must be greater than zero",
+            examples=[1.99],  # you can define inline examples
+        ),
+    ]
     tax: float | None = None
     image: list[Image] | None = None
     weights: dict[int, float]  # arbitrary dict (flexible model)

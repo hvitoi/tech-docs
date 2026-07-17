@@ -1,3 +1,6 @@
+# https://fastapi.tiangolo.com/tutorial/sql-databases/?h=sql
+# SQLModel is a ORM solution built on top of SQLAlchemy and Pydantic
+
 from typing import Annotated
 
 from fastapi import (
@@ -18,12 +21,13 @@ router = APIRouter(
 
 
 class HeroBase(SQLModel):
-    name: str = Field(index=True)  # create an index table
-    age: int | None = Field(default=None, index=True)  # INTEGER NULLABLE
+    name: Annotated[str, Field(index=True)]  # create an index table
+    age: Annotated[int | None, Field(index=True)] = None  # INTEGER NULLABLE
 
 
 class Hero(HeroBase, table=True):  # SQL table
-    id: int | None = Field(default=None, primary_key=True)  # auto-generated primary key
+    # auto-generated primary key
+    id: Annotated[int | None, Field(primary_key=True)] = None
     secret_name: str  # TEXT or VARCHAR
 
 
