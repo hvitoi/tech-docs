@@ -12,4 +12,6 @@ SELECT
 FROM
   books
 LIMIT
-  10, 20; -- rows 11 through 30 (same as LIMIT 20 OFFSET 10)
+  10, 20;
+
+-- rows 11 through 30 (same as LIMIT 20 OFFSET 10)

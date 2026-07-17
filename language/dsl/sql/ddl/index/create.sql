@@ -1,11 +1,6 @@
-CREATE TABLE "my_table" (
-  "id" serial PRIMARY KEY,
-  "is_cool" Boolean
-);
+CREATE TABLE "my_table" ("id" serial PRIMARY KEY, "is_cool" Boolean);
 
-CREATE INDEX "by_is_cool"
-ON my_table(is_cool);
-
+CREATE INDEX "by_is_cool" ON my_table(is_cool);
 
 -- Indexing on creation
 CREATE TABLE "my_table" (

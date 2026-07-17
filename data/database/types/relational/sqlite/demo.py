@@ -1,10 +1,20 @@
 import sqlite3
 
+
+# autocommit legacy behaviour: the module implicitly opens a transaction before DML and commits before DDL. Use `with con:` blocks, or Python 3.12+ `sqlite3.connect(..., autocommit=False)` for PEP 249 semantics
+# Threads: a connection is not sharable across threads by default (`check_same_thread=True`). Give each thread its own connection
+# datetime adapters are deprecated since 3.12 — store ISO strings (`dt.isoformat()`) yourself
+
+
+# Config
 con = sqlite3.connect(":memory:")  # or "mydb.db" to open a file
 con.row_factory = sqlite3.Row  # rows as dict-like instead of tuples
 con.execute("PRAGMA journal_mode = WAL")
-con.execute("PRAGMA foreign_keys = ON")  # OFF by default, per-connection
 
+# foreign_keys is OFF by default: and is per-connection — FKs are silently ignored otherwise
+con.execute("PRAGMA foreign_keys = ON")
+
+# DDL
 con.executescript("""
     CREATE TABLE IF NOT EXISTS author (
         id   INTEGER PRIMARY KEY,
@@ -19,10 +29,14 @@ con.executescript("""
     ) STRICT;
 """)
 
-# ? placeholders — NEVER f-strings (SQL injection)
+
 with con:  # commits on success, rolls back on exception
-    cur = con.execute("INSERT INTO author (name) VALUES (?)", ("Borges",))
-    author_id = cur.lastrowid
+    # Use `?`` placeholders, NEVER f-strings (SQL injection)
+    # Placeholders are `?` (qmark) or `:name` (named); they bind values, never table/column names
+
+    cursor = con.execute("INSERT INTO author (name) VALUES (?)", ("Borges",))
+    author_id = cursor.lastrowid
+
     con.executemany(
         "INSERT INTO book (title, year, author_id) VALUES (?, ?, ?)",
         [("Ficciones", 1944, author_id), ("El Aleph", 1949, author_id)],
@@ -37,13 +51,6 @@ for row in con.execute(
 
 con.close()
 
-# ## Gotchas
-
-# - **`autocommit` legacy behaviour**: the module implicitly opens a transaction before DML and commits before DDL. Use `with con:` blocks, or Python 3.12+ `sqlite3.connect(..., autocommit=False)` for PEP 249 semantics
-# - **`foreign_keys` is OFF by default** and is per-connection — FKs are silently ignored otherwise
-# - **Threads**: a connection is not sharable across threads by default (`check_same_thread=True`). Give each thread its own connection
-# - **`datetime` adapters are deprecated** since 3.12 — store ISO strings (`dt.isoformat()`) yourself
-# - Placeholders are `?` (qmark) or `:name` (named); they bind **values**, never table/column names
 
 # ```python
 # con.execute("SELECT * FROM book WHERE year = :y", {"y": 1944})

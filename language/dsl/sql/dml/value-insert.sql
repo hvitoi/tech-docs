@@ -1,30 +1,22 @@
-/* INSERT VALUES */
-INSERT INTO table_name (field1, field2)
+INSERT INTO
+    cat (name, age)
 VALUES
-(value1, value2),
-(value1, value2);
+    ('Momo', 12),
+    ('Jingi', 3);
 
-INSERT INTO table_name -- Insert only one record
-SET field1 = value1,
-    field2 = value2;
-
-
-
-/* EXAMPLES */
-
-INSERT INTO cat (age, name)
+--
+INSERT INTO
+    cat () -- Insert empty row
 VALUES
-(12, 'Momo'),
-(3, 'Jingi');
---
-INSERT INTO link (url, name)
-VALUES 
-    ('www.bing.com', 'Bing'),
-    ('www.yahoo.com', 'Yahoo');
---
-INSERT INTO cat ()      -- Insert empty row
-VALUES ();
---
-INSERT INTO link_copy -- Insert rows from another table
-    SELECT * FROM link
-    WHERE name='Bing'; -- The id from the old table will be copied
+    ();
+
+-- Insert rows from another table
+-- The id from the old table will be copied
+INSERT INTO
+    cat_copy
+SELECT
+    *
+FROM
+    cat
+WHERE
+    name = 'Bing';

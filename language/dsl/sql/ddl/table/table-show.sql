@@ -2,5 +2,8 @@
 SHOW TABLES;
 
 /* SHOW COLUMNS */
-SHOW COLUMNS FROM table_name;
+SHOW COLUMNS
+FROM
+  table_name;
+
 DESCRIBE table_name;

@@ -19,7 +19,7 @@ SELECT
 FROM
   customer_master_list;
 
--- 
+--
 DROP VIEW IF EXISTS customer_master_list;
 
 --

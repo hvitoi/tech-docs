@@ -53,7 +53,7 @@ FROM
 GROUP BY
   staff_id;
 
--- MIN 
+-- MIN
 -- For each author, take the first release year
 SELECT
   author_fname,

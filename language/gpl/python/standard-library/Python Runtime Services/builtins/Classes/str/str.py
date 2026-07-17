@@ -22,7 +22,7 @@ str(1)
 
 # %%
 # Python automatically concatenates adjacent string literals inside of parenthesis
-# So unintended whitespaces!
+# No unintended whitespaces!
 message = (
     f"I am "
     f"multiline {str(1)} \n"

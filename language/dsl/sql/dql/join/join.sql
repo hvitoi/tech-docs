@@ -109,7 +109,7 @@ FROM
 SELECT
   film.film_id,
   inventory_id,
-  title -- left outer join with where /* 
+  title -- left outer join with where /*
 FROM
   film
   LEFT OUTER JOIN inventory ON inventory.film_id = film.film_id --Mostra somentos os filmes faltando no inventório
