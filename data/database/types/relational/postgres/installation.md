@@ -1,4 +1,4 @@
-# Install PostgreSQL 12
+# Install PostgreSQL
 
 ## Debian package manager
 
@@ -33,13 +33,53 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 ```shell
 docker container run \
-  --name "meu-postgres" \
-  -p "5432:5432" \
-  -e "POSTGRES_PASSWORD=123" \
-  -d \
-  "postgres:13.1"
+  --name mypostgres \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=mypass \
+  -e POSTGRES_DB=mydb \
+  -p 5432:5432 \
+  -v my_postgres_data:/var/lib/postgresql \
+  -v "$(pwd)/db/init:/docker-entrypoint-initdb.d:ro" \
+  --health-cmd "pg_isready -U myuser -d mydb" \
+  --health-interval 5s \
+  --health-timeout 5s \
+  --health-retries 5 \
+  "docker.io/postgres:18"
 
-docker container exec -it meu-postgres bash
+docker container exec -it mypostgres bash
+```
+
+## Docker Compose
+
+```yaml
+services:
+  db:
+    image: docker.io/postgres:18
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - my_postgres_data:/var/lib/postgresql
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://myuser:mypass@db:5432/mydb
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres_data:
 ```
 
 ## Restore the DB dvdrental.tar

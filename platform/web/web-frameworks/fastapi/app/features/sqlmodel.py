@@ -1,4 +1,5 @@
 # https://fastapi.tiangolo.com/tutorial/sql-databases/?h=sql
+# https://sqlmodel.tiangolo.com/tutorial/fastapi/
 # SQLModel is a ORM solution built on top of SQLAlchemy and Pydantic
 
 from typing import Annotated
@@ -49,6 +50,7 @@ class HeroUpdate(HeroBase):
 def get_session(request: Request):
     # A "Session" is what stores the objects in memory and keeps track of any changes needed in the data
     # Then it uses the "Engine" to communicate with the database.
+    # It delivers one session per request. A session should never be shared among different requests
     engine = request.app.state.db_engine  # you need to create a lifespan event
     with Session(engine) as session:
         yield session  # the rest of the function is executed (the close function called by "with" syntax) after the endpoint is done

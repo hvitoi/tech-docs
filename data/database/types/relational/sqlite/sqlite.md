@@ -30,6 +30,13 @@
 CREATE TABLE t (id INTEGER PRIMARY KEY, name TEXT NOT NULL) STRICT;
 ```
 
+- Type affinity
+  1. Contains "INT" → `INTEGER` affinity
+  2. Contains "CHAR", "CLOB", or "TEXT" → `TEXT`
+  3. Contains "BLOB" or is empty → `BLOB` (no affinity)
+  4. Contains "REAL", "FLOA", or "DOUB" → `REAL`
+  5. Otherwise → `NUMERIC`
+
 ## rowid
 
 - Every table has a hidden 64-bit `rowid` primary key unless declared `WITHOUT ROWID`

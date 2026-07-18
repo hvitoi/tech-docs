@@ -6,14 +6,13 @@ The credentials are saved unencrypted at `~/.docker/config.json`
 // ~/.docker/config.json
 {
  "auths": {
-  "012345678912.dkr.ecr.us-east-1.amazonaws.com": {
-   "auth": ""
-  },
-  "https://index.docker.io/v1/": {
-   "auth": ""
-  }
- },
- "currentContext": "colima"
+    "012345678912.dkr.ecr.us-east-1.amazonaws.com": {
+      "auth": ""
+    },
+    "https://index.docker.io/v1/": {
+      "auth": ""
+    }
+ }
 }
 ```
 
