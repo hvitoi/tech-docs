@@ -40,10 +40,6 @@ docker container run \
   -p 5432:5432 \
   -v my_postgres_data:/var/lib/postgresql \
   -v "$(pwd)/db/init:/docker-entrypoint-initdb.d:ro" \
-  --health-cmd "pg_isready -U myuser -d mydb" \
-  --health-interval 5s \
-  --health-timeout 5s \
-  --health-retries 5 \
   "docker.io/postgres:18"
 
 docker container exec -it mypostgres bash
@@ -72,7 +68,7 @@ services:
   app:
     build: .
     environment:
-      DATABASE_URL: postgresql+psycopg://myuser:mypass@db:5432/mydb
+      DATABASE_URL: postgresql+psycopg://myuser:mypass@db:5432/mydb # db = the host of the database, could be localhost
     ports:
       - "8000:8000"
     depends_on:

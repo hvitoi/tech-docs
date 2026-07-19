@@ -68,8 +68,25 @@ echo $PATH
 
 - <https://code.visualstudio.com/docs/python/linting>
 
-- `Ruff` <https://github.com/astral-sh/ruff-vscode>
-- `Flake8`: By Microsoft
+- `Ruff` (lint and formart): The recommended solution <https://github.com/astral-sh/ruff-vscode>
+- `Flake8` (lint): By Microsoft
+- `Black` (format)
+- `isort` (import sorting)
+
+```shell
+# Format
+uv run ruff format .
+
+# Lint
+uv run ruff check .
+
+# Lint and auto-fix
+uv run ruff check . --fix
+```
+
+## Testing
+
+- `pytest` is the standard
 
 ## IDEs
 

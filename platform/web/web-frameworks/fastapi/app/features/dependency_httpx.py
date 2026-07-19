@@ -9,13 +9,16 @@ router = APIRouter(
 
 
 async def get_http_client(request: Request) -> AsyncClient:
-    return request.app.state.http_client
+    return request.app.state.http_client  # you need to create a lifespan event
+
+
+HTTPClientDep = Annotated[AsyncClient, Depends(get_http_client)]
 
 
 @router.get("/repo_stat")
 async def get_repo_stats(
     repo: Annotated[str, Query()],
-    http_client: Annotated[AsyncClient, Depends(get_http_client)],
+    http_client: HTTPClientDep,
 ):
     url = f"https://api.github.com/repos/{repo}"
     response = await http_client.get(url)

@@ -3,8 +3,7 @@ import pytest
 state = {"counter": 0}
 
 
-# autouse=True applies the fixture to every test in scope without
-# the test having to name it as an argument.
+# autouse=True applies the fixture to every test in scope without the test having to name it as an argument.
 @pytest.fixture(autouse=True)
 def reset_state():
     state["counter"] = 0

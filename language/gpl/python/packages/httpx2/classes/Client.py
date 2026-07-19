@@ -1,9 +1,9 @@
 # %%
 import json
 
-import httpx
+from httpx2 import Client, BasicAuth
 
-with httpx.Client() as client:
+with Client() as client:
     response = client.post(
         "https://httpbin.org/post",
         json={"foo": "bar"},  # for application/json
@@ -11,7 +11,7 @@ with httpx.Client() as client:
         params={"limit": 999},  # query parameters
         headers={"Foo-Foo": "bar"},
         cookies={"session": "abc123"},  # Cookie header
-        auth=httpx.BasicAuth("user", "pass"),  # Authorization Basic Header
+        auth=BasicAuth("user", "pass"),  # Authorization Basic Header
         timeout=5.0,
     )
 
@@ -22,7 +22,7 @@ with httpx.Client() as client:
 # %%
 
 # Client Options
-with httpx.Client(base_url="https://httpbin.org/") as client:
+with Client(base_url="https://httpbin.org/") as client:
     response = client.get("get")
     print(response.json())
 
@@ -30,7 +30,7 @@ with httpx.Client(base_url="https://httpbin.org/") as client:
 # %%
 
 # Stream response
-with httpx.Client() as client:
+with Client() as client:
     # client.stream() returns a 'httpx.Response' object
     with client.stream("GET", "https://httpbin.org/stream/5") as response:
         for chunk in response.iter_text():

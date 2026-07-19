@@ -2,12 +2,12 @@
 
 from unittest.mock import Mock
 
-import httpx
+from httpx2 import Client, Response
 
 # Build a response manually
-client = httpx.Client()
+client = Client()
 client.get = Mock(
-    return_value=httpx.Response(
+    return_value=Response(
         status_code=200,
         json={"foo": "bar"},
     )

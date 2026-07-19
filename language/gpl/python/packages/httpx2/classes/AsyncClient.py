@@ -2,11 +2,11 @@
 import asyncio
 import json
 
-import httpx
+from httpx2 import AsyncClient
 
 
 async def do_req_async():
-    async with httpx.AsyncClient() as client:
+    async with AsyncClient() as client:
         response = await client.get("https://httpbin.org/get")
         print("Response Status:", response.status_code)
         print("Response Body:", json.dumps(response.json(), indent=4))
