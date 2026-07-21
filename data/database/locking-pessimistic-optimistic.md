@@ -3,9 +3,13 @@
 - **Pessimistic**
   - assumption conflict is likely → block first, ask questions later
   - acquire a lock before accessing the resource; other threads block
+  > "I assume a conflict will happen, so I lock first."
+
 - **Optimistic**
   - conflict is rare → just do the work, verify on commit
   - read state, compute new state, `compare-and-swap (CAS)` (write only if state hasn't changed), retry on failure
+  - The mechanism is a version number (or timestamp) on the row. You read it, and your final write says "apply this change only if the version is still what I read." That conditional write is a compare-and-swap (CAS).
+  > "I assume no conflict, proceed lock-free, and verify at commit that nobody touched my row. If they did, I lost the race — redo it."
 
 ## Pessimistic Locking (conservative)
 
