@@ -26,8 +26,8 @@ Decimal("1.5") + 1  # Decimal('2.5')
 from decimal import Decimal, ROUND_HALF_UP
 
 # quantize: round to a fixed number of decimal places (essential for money)
-price = Decimal("19.9876")
-price.quantize(Decimal("0.01"))  # Decimal('19.99') — 2 decimal places
+price = Decimal("19.985")
+price.quantize(Decimal("0.01"))  # Decimal('19.98') — round to the nearest even
 price.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)  # Decimal('19.99')
 
 # Banker's rounding rounds .5 to nearest even — surprising but reduces bias
