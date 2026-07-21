@@ -2,6 +2,7 @@ CREATE TABLE person (id serial PRIMARY KEY, is_cool Boolean);
 
 CREATE INDEX ix_person_is_cool ON person(is_cool);
 
+-- WHERE status = 'queued' -- narrow down the index for a given status
 -- Indexing on creation
 CREATE TABLE person (
   id INT NOT NULL,
