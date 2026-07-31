@@ -1,4 +1,4 @@
-# proj
+# argocd proj
 
 - The `default` project is available by default
 - Permits deployments from any source repo, to any cluster, and all resource Kinds
