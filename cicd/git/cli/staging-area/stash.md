@@ -26,7 +26,7 @@ git stash list
 ## pop
 
 ```shell
-# eecover and drop stash
+# recover and drop stash
 git stash pop
 ```
 
