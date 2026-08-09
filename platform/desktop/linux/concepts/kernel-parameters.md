@@ -14,7 +14,7 @@ root=/dev/mapper/foo # mapper from a decrypted drive
 root=/dev/volumegroup/logicalvolume # lLVM
 ```
 
-### resume
+## resume
 
 - Descrypted swap filesystem used for suspend to disk
 

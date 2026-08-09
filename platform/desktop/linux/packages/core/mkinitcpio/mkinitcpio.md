@@ -36,6 +36,7 @@ mkinitcpio -H "base"
 - The preset is used so that manually specifying the various parameters is not needed when generating the image
 
 - `mkinitcpio install` and `mkinitcpio remove` are pacman hook script generate the preset file
+- A present file is automatically generated when you install the linux package `pacman -S linux`
 
 ```shell
 # Create preset file for a kernel
