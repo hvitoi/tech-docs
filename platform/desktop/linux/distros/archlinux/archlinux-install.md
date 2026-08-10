@@ -112,9 +112,10 @@ swapon /swapfile # if using a partition use its device e.g., /dev/sdy
 pacman -Syy
 
 # Setup pacman keys (if necessary)
+sudo rm -rf /etc/pacman.d/gnupg
 pacman-key --init
-pacman-key --populate
-pacman-key --refresh-keys
+pacman-key --populate archlinux
+pacman-key --refresh-keys # optional
 ```
 
 ```shell
