@@ -13,50 +13,6 @@
 
 ## Properties
 
-### spec.volumeClaimTemplates
-
-- It's a template for PVCs
-- The StatefulSet creates `one PVC per pod`, not one shared PVC. So you end up with:
-  - redis-data-redis-0   →  PV  (1Gi)   mounted on redis-0
-  - redis-data-redis-1   →  PV  (1Gi)   mounted on redis-1
-  - redis-data-redis-2   →  PV  (1Gi)   mounted on redis-2
-- If let's say redis-2 crashes and gets rescheduled to a new node, the new redis-2 re-attaches to the exact same redis-data-redis-2
-- Deleting the StatefulSet does not delete the PVCs by default. But it means you clean them up manually.
-
-```yaml
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: redis
-spec:
-  serviceName: "redis"
-  replicas: 3
-  selector:
-    matchLabels:
-      app: redis
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-        - name: redis
-          image: redis:alpine
-          ports:
-            - containerPort: 6379
-          volumeMounts:
-            - name: redis-data
-              mountPath: /data
-  volumeClaimTemplates:
-    - metadata:
-        name: redis-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
-```
-
 ### spec.serviceName
 
 - This points at a `headless Service` (a Service with clusterIP: None). Instead of load-balancing across random pods, it gives each pod its own stable DNS name
@@ -115,4 +71,48 @@ spec:
   ports:
     - port: 6379
       targetPort: 6379
+```
+
+### spec.volumeClaimTemplates
+
+- It's a template for PVCs
+- The StatefulSet creates `one PVC per pod`, not one shared PVC. So you end up with:
+  - redis-data-redis-0   →  PV  (1Gi)   mounted on redis-0
+  - redis-data-redis-1   →  PV  (1Gi)   mounted on redis-1
+  - redis-data-redis-2   →  PV  (1Gi)   mounted on redis-2
+- If let's say redis-2 crashes and gets rescheduled to a new node, the new redis-2 re-attaches to the exact same redis-data-redis-2
+- Deleting the StatefulSet does not delete the PVCs by default. But it means you clean them up manually.
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: "redis"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
 ```
