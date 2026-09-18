@@ -3,6 +3,17 @@
 - Write changes to `dconf` database
 - It's a wrapper over `dconf`
 
+## org.gnome.shell
+
+```shell
+gsettings set \
+  org.gnome.shell \
+  disable-user-extensions false
+
+gsettings get \
+  org.gnome.shell enabled-extensions
+```
+
 ## org.gnome.desktop.interface
 
 ```shell
@@ -21,14 +32,6 @@ gsettings set \
 gsettings set \
   org.gnome.desktop.interface \
   color-scheme prefer-dark # dark mode
-```
-
-## org.gnome.settings-daemon.plugins.color
-
-```shell
-gsettings set \
-  org.gnome.settings-daemon.plugins.color \
-  night-light-temperature 5000
 ```
 
 ## org.gnome.desktop.calendar
@@ -51,13 +54,16 @@ gsettings set \
   click-method fingers
 ```
 
-## org.gnome.shell
+## org.gnome.desktop.input-sources
+
+```shell
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+intl')]"
+```
+
+## org.gnome.settings-daemon.plugins.color
 
 ```shell
 gsettings set \
-  org.gnome.shell \
-  disable-user-extensions false
-
-gsettings get \
-  org.gnome.shell enabled-extensions
+  org.gnome.settings-daemon.plugins.color \
+  night-light-temperature 5000
 ```
