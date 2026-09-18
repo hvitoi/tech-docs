@@ -57,7 +57,7 @@ gsettings set \
 ## org.gnome.desktop.input-sources
 
 ```shell
-gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+intl')]"
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+altgr-intl')]"
 ```
 
 ## org.gnome.settings-daemon.plugins.color
