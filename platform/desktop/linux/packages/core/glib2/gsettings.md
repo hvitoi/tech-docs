@@ -57,6 +57,10 @@ gsettings set \
 ## org.gnome.desktop.input-sources
 
 ```shell
+# List all variants
+localectl list-x11-keymap-variants us
+
+# set variants
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+altgr-intl')]"
 ```
 
