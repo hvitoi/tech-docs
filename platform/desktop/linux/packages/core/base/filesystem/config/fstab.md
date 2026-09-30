@@ -17,6 +17,11 @@ UUID=be520a04-5f31-46cb-a881-29a86a1133fe       none                    swap    
 #UUID=4093109d-4077-422e-a87b-fb837e63de6f      /media/hvitoi/moon      ext4    defaults,noauto         0       2
 ```
 
+```shell
+systemctl daemon-reload
+mount /media/mydisk
+```
+
 ## genfstab
 
 - `genfstab` is a util to generate the fstab avaialble at the package `arch-install-scripts`
