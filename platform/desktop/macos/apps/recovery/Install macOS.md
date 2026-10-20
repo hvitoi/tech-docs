@@ -3,27 +3,29 @@
 - This app is either available:
   - In user space (downloaded from the `App Store`)
   - In Recovery mode (the same installer version as your current macos installation)
+  - As a bootable installer. You can create a bootable USB drive from the MacOS installer `/Aplications/Install\ macOS\ Ventura.app/Contents/Resources/createinstallmedia --volume /Volumes/MyUsbDrive`, it can then be launched from iBoot
+
+## Installation
 
 - The installer will ask in which volume you want to install the system
-  - Can be used to reinstall the current macOS installation
-  - Can be used to install a new system as a secondary macOS installation (dual boot) in a new volume
 
-## Bootable Installer
-
-- You can create a bootable USB drive from the MacOS installer
-
-```shell
-/Aplications/Install\ macOS\ Ventura.app/Contents/Resources/createinstallmedia --volume /Volumes/MyUsbDrive
-```
-
-- The `Bootable Installer` can then be launched from iBoot
+1. Can be used to reinstall the current macOS installation
+2. Can be used to install a new system as a secondary macOS installation (dual boot) in a new volume
+    - If you're making a second installation, create first the plain APFS volume (no encryption needed) via Disk Utility
+    - You will need to set a owner for this new volume (with one of the users of the existing installation). If you want to keep then segregate, do not mark "copy account settings"
 
 ## MDM bypass
 
 - As soon as the installation completes and the first setup appear, exit it (Command+Q) and boot into Recovery
 - Once in Recovery, mount the Data partition
 
-### Recovery
+### At Recovery
+
+```shell
+# Mount the new Data volume
+diskutil list # get the volume id
+diskutil mount diskXsY
+```
 
 - See [MDM Hosts](../../cli/profiles.md#mdm-hosts)
 
@@ -48,7 +50,7 @@ node_database='/Volumes/Vaporwave - Data/private/var/db/dslocal/nodes/Default'
 dscl -f "$node_database" localhost -passwd "/Local/Default/Users/root"
 ```
 
-### Root user
+### Logged as root user
 
 - Start the system and log in with the root account
 
@@ -60,10 +62,10 @@ sysadminctl -addUser myself -admin -password - -adminUser root -adminPassword -
 sysadminctl -secureTokenOn myself -password - -adminUser root -adminPassword -
 ```
 
-### Conventional User
+### Logged as admin user
 
 ```shell
-# Disable the root account
+# disable root account
 dsenableroot -d
 ```
 
@@ -73,9 +75,10 @@ LABEL=Macintosh\040HD none auto noauto
 LABEL=Macintosh\040HD\040-\040Data none auto noauto
 ```
 
-- You may want to enable `FileVault` in system settings
-
-### Profile
+```shell
+# enable FileVault
+sudo fdesetup enable
+```
 
 ```shell
 # verify absence of profiles

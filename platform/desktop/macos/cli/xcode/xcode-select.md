@@ -3,7 +3,7 @@
 ## install
 
 ```shell
-# Install Command line developer tools
+# Install Command line developer tools (it's not necessary to have a apple account logged in)
 # Not necessary if Xcode is available
 xcode-select --install
 ```

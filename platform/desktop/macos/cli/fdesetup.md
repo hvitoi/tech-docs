@@ -10,6 +10,14 @@
 fdesetup status
 ```
 
+## enable
+
+- Activate FileVault
+
+```shell
+fdesetup enable
+```
+
 ## list
 
 - Lists all the crypto users
