@@ -68,7 +68,7 @@ echo $PATH
 
 - <https://code.visualstudio.com/docs/python/linting>
 
-- `Ruff` (lint and formart): The recommended solution <https://github.com/astral-sh/ruff-vscode>
+- `Ruff` (lint and format): The recommended solution <https://github.com/astral-sh/ruff-vscode>
 - `Flake8` (lint): By Microsoft
 - `Black` (format)
 - `isort` (import sorting)
