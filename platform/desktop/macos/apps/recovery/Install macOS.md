@@ -17,26 +17,15 @@
 ## MDM bypass
 
 - As soon as the installation completes and the first setup appear, exit it (Command+Q) and boot into Recovery
-- Once in Recovery, mount the Data partition
 
 ### At Recovery
 
-```shell
-# Mount the new Data volume
-diskutil list # get the volume id
-diskutil mount diskXsY
-```
-
-- See [MDM Hosts](../../cli/profiles.md#mdm-hosts)
+- Select the old installation volume to recover as the new one doesn't have an user yet
+- Open Terminal app
 
 ```shell
-# Block MDM server connection
-echo "0.0.0.0 iprofiles.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 mdmenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 deviceenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 acmdm.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 albert.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 gdmf.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+diskutil list # get the id of the new data volume
+diskutil mount diskXsY # mount it
 ```
 
 ```shell
@@ -53,6 +42,7 @@ dscl -f "$node_database" localhost -passwd "/Local/Default/Users/root"
 ### Logged as root user
 
 - Start the system and log in with the root account
+- Reject any enrollment in device management that might pop up
 
 ```shell
 # Create your user
@@ -65,8 +55,16 @@ sysadminctl -secureTokenOn myself -password - -adminUser root -adminPassword -
 ### Logged as admin user
 
 ```shell
+# disable secure token for the root user
+sysadminctl -secureTokenOff root -password - -adminUser hv -adminPassword -
+
 # disable root account
 dsenableroot -d
+```
+
+```shell
+# enable FileVault
+sudo fdesetup enable
 ```
 
 ```conf
@@ -75,9 +73,16 @@ LABEL=Macintosh\040HD none auto noauto
 LABEL=Macintosh\040HD\040-\040Data none auto noauto
 ```
 
+- See [MDM Hosts](../../cli/profiles.md#mdm-hosts)
+
 ```shell
-# enable FileVault
-sudo fdesetup enable
+# block MDM server connection
+echo "0.0.0.0 iprofiles.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 mdmenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 deviceenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 acmdm.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 albert.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+echo "0.0.0.0 gdmf.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
 ```
 
 ```shell
