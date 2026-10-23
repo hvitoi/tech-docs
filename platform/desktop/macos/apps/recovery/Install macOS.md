@@ -69,20 +69,22 @@ sudo fdesetup enable
 
 ```conf
 # /etc/fstab
+
+# Block automounting other volumes
 LABEL=Macintosh\040HD none auto noauto
 LABEL=Macintosh\040HD\040-\040Data none auto noauto
 ```
 
 - See [MDM Hosts](../../cli/profiles.md#mdm-hosts)
 
-```shell
-# block MDM server connection
-echo "0.0.0.0 iprofiles.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 mdmenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 deviceenrollment.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 acmdm.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 albert.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
-echo "0.0.0.0 gdmf.apple.com" >> '/Volumes/Vaporwave - Data/private/etc/hosts'
+```conf
+# /etc/hosts or /private/etc/hosts
+
+# Block MDM server connection
+0.0.0.0 iprofiles.apple.com
+0.0.0.0 deviceenrollment.apple.com
+0.0.0.0 mdmenrollment.apple.com
+0.0.0.0 acmdm.apple.com
 ```
 
 ```shell
