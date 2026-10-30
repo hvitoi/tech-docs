@@ -12,24 +12,12 @@
 
 ```shell
 # client + daemon
-brew install docker --cask
-
-# client + open source daemon
-brew install docker # client only (cli)
+brew install docker --cask # Docker Desktop - the full blown solution
 brew install docker-compose
-brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
 
-colima start
+# you can install only the cli and install the daemon apart (e.g., colima)
+brew install docker # client only (cli)
+
+# verify
 docker container ls
-```
-
-```json
-// ~/.docker/config.json
-{
-  "auths": {},
-  "currentContext": "colima",
-  "cliPluginsExtraDirs": [
-    "/opt/homebrew/lib/docker/cli-plugins" // necessary for docker-compose
-  ]
-}
 ```

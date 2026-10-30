@@ -1,4 +1,4 @@
-# install
+# go install
 
 - `$GOROOT`: sdk directory
 - `$GOPATH`: workspace directory

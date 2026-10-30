@@ -1,4 +1,4 @@
-# run
+# go run
 
 - `Compiles` and immediately `executes` go code
 

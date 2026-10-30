@@ -1,4 +1,4 @@
-# mod
+# go mod
 
 - `Go Modules` are the standard way to manage dependencies and versioning in Go projects
 
