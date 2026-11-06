@@ -10,6 +10,8 @@
 
 ![State Machine](.images/state-machine.png)
 
+- It can be represented using a mermaid's stateDiagram
+
 ## Analysis
 
 - **Reachability analysis** — graph traversal (BFS/DFS) can determine if a state is reachable from the initial state, or if dead states exist
