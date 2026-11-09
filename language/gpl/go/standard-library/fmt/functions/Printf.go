@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type person struct {
 	firstName string
@@ -8,6 +11,10 @@ type person struct {
 }
 
 func main() {
+	// struct
 	someone := person{"Henry", 30}
-	fmt.Printf("%+v", someone)
+	fmt.Printf("%+v \n", someone)
+
+	// number
+	fmt.Printf("Square root of 7: %g \n", math.Sqrt(7))
 }
