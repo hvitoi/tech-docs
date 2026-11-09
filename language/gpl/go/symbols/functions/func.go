@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 // return 1 value
-func greeting(name string) string {
+func greeting(name1, name2 string) string {
 	// the received parameters are copies of the original value
-	return "Hello " + name + "!"
+	return "Hello " + name1 + ", " + name2 + "!"
 }
 
 // return multiple values
@@ -21,7 +21,7 @@ func modify(sPointer *string, newValue string) {
 }
 
 // function multiple possible types
-func Add[T int | float64 | ~uint8](a T, b T) T { // accepts byte because it's an alias to uint8
+func add[T int | float64 | ~uint8](a T, b T) T { // accepts byte because it's an alias to uint8
 	return a + b
 }
 
@@ -31,7 +31,7 @@ func Add[T int | float64 | ~uint8](a T, b T) T { // accepts byte because it's an
 // }
 
 // function with generics
-func MapValues[T int | float64 | ~uint8](values []T, mapFunc func(T) T) []T {
+func mapValues[T int | float64 | ~uint8](values []T, mapFunc func(T) T) []T {
 	var mappedValues []T
 
 	for _, v := range values {
@@ -41,8 +41,14 @@ func MapValues[T int | float64 | ~uint8](values []T, mapFunc func(T) T) []T {
 	return mappedValues
 }
 
+func namedReturnValues(sum int) (x, y int) {
+	x = sum / 2
+	y = sum - x
+	return // "naked return" (return without args)
+}
+
 func main() {
-	greetingMessage := greeting("Henry")
+	greetingMessage := greeting("Henry", "John")
 	fmt.Println(greetingMessage)
 
 	userName, userAge := userInfo("Henry", 30)
@@ -54,9 +60,13 @@ func main() {
 	fmt.Println(myName)
 
 	// multiple types
-	Add(1, 1.5)
+	add(1, 1.5)
+
+	// named values
+	var x, y = namedReturnValues(7)
+	fmt.Println(x, y)
 
 	// generics
-	result := MapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // function literal
+	result := mapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // function literal
 	fmt.Println(result)
 }

@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var myNumber int = 4
-	fmt.Println(myNumber)
+	var myNumber1 int = 4
+	mynumber2 := 5
+	fmt.Println(myNumber1, mynumber2)
 }

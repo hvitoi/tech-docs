@@ -12,6 +12,7 @@ func main() {
 	var arr = [5]string{"a", "b", "c"}
 	fmt.Println(arr)
 
-	arr2 := [...]string{"a", "b", "c"} // Go will infer the size
+	// Array size inference (Go can't infer the type)
+	arr2 := [...]string{"a", "b", "c"}
 	fmt.Println(arr2)
 }
