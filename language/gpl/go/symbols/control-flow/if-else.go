@@ -26,7 +26,7 @@ func main() {
 		fmt.Println(i)
 	}
 
-	// num is accessible only within the if block
+	// short statement to be evaluated before the condition (available only within if-else scope)
 	if foo := 3; foo > 0 {
 		fmt.Println("Number is positive")
 	} else if foo < 0 {

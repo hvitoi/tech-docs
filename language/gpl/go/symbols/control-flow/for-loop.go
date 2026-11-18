@@ -13,16 +13,16 @@ func main() {
 		println(i, letters[i])
 	}
 
-	// infinite loop
-	// for {
-	// 	println("Hello!")
-	// }
-
 	// a "while". (omits the init and post statements)
 	sum := 1
 	for sum < 1000 {
 		sum += sum
 	}
+
+	// infinite loop (omits all the statements)
+	// for {
+	// 	println("Hello!")
+	// }
 
 	// range for with arrays
 	for i, letter := range letters {
