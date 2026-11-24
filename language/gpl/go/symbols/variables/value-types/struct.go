@@ -42,4 +42,14 @@ func main() {
 	// Manipulating via pointers
 	pSomeone := &someone
 	pSomeone.FirstName = "Henriquo" // no need to write "*pSomeone.Firstname"
+
+	// Array of structs
+	s := []struct {
+		x int
+		y int
+	}{
+		{1, 2},
+		{3, 4},
+	}
+	fmt.Printf("%+v", s)
 }

@@ -24,12 +24,15 @@ func main() {
 	// 	println("Hello!")
 	// }
 
-	// range for with arrays
-	for i, letter := range letters {
-		println(i, letter)
+	// range for with arrays/slices
+	for i, v := range letters {
+		println(i, v)
 	}
 	for i := range letters { // only the index
 		println(i)
+	}
+	for _, v := range letters { // only the val
+		println(v)
 	}
 
 	// range for with maps
