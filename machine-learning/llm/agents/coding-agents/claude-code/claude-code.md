@@ -41,6 +41,7 @@ claude -c --fork-session # fork the last session and leave the last intact
 export ANTHROPIC_BASE_URL="https://myhost.com/anthropic"
 export ANTHROPIC_AUTH_TOKEN="..."
 export ANTHROPIC_CUSTOM_HEADERS="x-llm-application-name:claude_code"
+export ANTHROPIC_CUSTOM_HEADERS="x-edgee-api-key:<token>"
 ```
 
 ## Agentic Loop

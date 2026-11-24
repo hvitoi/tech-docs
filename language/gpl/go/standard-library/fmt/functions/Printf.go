@@ -11,13 +11,17 @@ type person struct {
 }
 
 func main() {
-	// struct
-	someone := person{"Henry", 30}
-	fmt.Printf("%+v \n", someone)
+	// %v
+	fmt.Printf("%v \n", person{"Henry", 30})
+	fmt.Printf("%+v \n", person{"Henry", 30}) // more verbose
 
-	// number
-	fmt.Printf("Square root of 7: %g \n", math.Sqrt(7))
+	// %g (number with decimal spaces)
+	fmt.Printf("%g \n", math.Sqrt(7))
 
-	mybool := false
-	fmt.Printf("Type: %T Value: %v\n", mybool, mybool)
+	// %T (type of the var)
+	fmt.Printf("%T \n", false)
+
+	// %t (the value detailed)
+	fmt.Printf("%t \n", 12)
+
 }

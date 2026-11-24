@@ -27,12 +27,12 @@ func main() {
 	}
 
 	// short statement to be evaluated before the condition (available only within if-else scope)
-	if foo := 3; foo > 0 {
-		fmt.Println("Number is positive")
+	if foo := -3; foo > 0 {
+		fmt.Printf("%v is positive", foo)
 	} else if foo < 0 {
-		fmt.Println("Number is negative")
+		fmt.Printf("%v is negative", foo)
 	} else {
-		fmt.Println("Number is zero")
+		fmt.Printf("%v is zero", foo)
 	}
 
 }

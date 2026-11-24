@@ -45,6 +45,10 @@ curl "$OPENAI_BASE_URL/v1/models" -H "Authorization: Bearer $OPENAI_API_KEY"
 # if you use LITELLM_BASE_URL it will use the LITELLM API directly (which is OpenAI compatible)
 ```
 
+## Edgee
+
+- <https://www.edgee.ai/docs/agents/claude-code#manual-setup-advanced>
+
 ## Groq
 
 - <https://groq.com/>
