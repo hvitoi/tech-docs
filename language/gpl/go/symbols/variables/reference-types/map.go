@@ -2,9 +2,10 @@ package main
 
 import "fmt"
 
+// All the keys must be of the same type
+// All the values must be of the same type
+
 func main() {
-	// All the keys must be of the same type
-	// All the values must be of the same type
 
 	colors := map[string]string{
 		"red":   "#ff0000",
@@ -18,11 +19,13 @@ func main() {
 	// delete key
 	delete(colors, "green")
 
-	fmt.Println(colors)
+	// test if a key exist
+	v, ok := colors["green"] // not present anymore
+	fmt.Println("The value:", v, "Present?", ok)
 
 	// iterate over a map
-	for color, hex := range colors {
-		println(color, hex)
+	for k, v := range colors {
+		println(k, v)
 	}
 
 }
