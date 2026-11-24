@@ -15,7 +15,7 @@ type Person struct {
 
 func main() {
 
-	// Initialize Person
+	// Initialize struct (by named arguments)
 	someone := Person{
 		FirstName: "Henry",
 		Age:       30,
@@ -24,14 +24,22 @@ func main() {
 			ZipCode: 94000,
 		},
 	}
-	someone.FirstName = "John" // Modify struct
-	fmt.Printf("%+v", someone)
 
-	// Alternative way to declare structs
+	// Initialize struct (by position arguments)
 	someone2 := Person{"Henry", 30, ContactInfo{"a@example.com", 94000}}
-	fmt.Printf("%+v", someone2)
+	fmt.Printf("%+v\n", someone2)
 
-	// Initialize Person (empty)
+	// Initialize struct (empty)
 	someone3 := Person{}
-	fmt.Printf("%+v", someone3)
+	fmt.Printf("%+v\n", someone3) // Values are initialized with the Zero values
+
+	// Access struct fields
+	fmt.Printf("%v\n", someone.FirstName)
+
+	// Modify struct fields
+	someone.FirstName = "Henrique"
+
+	// Manipulating via pointers
+	pSomeone := &someone
+	pSomeone.FirstName = "Henriquo" // no need to write "*pSomeone.Firstname"
 }
