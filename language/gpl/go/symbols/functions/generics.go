@@ -20,6 +20,7 @@ type User[T Num] struct {
 	Data T
 }
 
+// Generic types
 type CustomMap[T comparable, V int | string] map[T]V // comparable is any type that can be compared with its same type
 
 func main() {
