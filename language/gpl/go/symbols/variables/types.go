@@ -2,9 +2,11 @@ package main
 
 import "fmt"
 
-// Create a new type (a slice of string)
-// the new type extends all the behaviors of slice of strings
+// Go does not have classes, but you can define methods on types
+
+// the new type extends all the behaviors of original type
 // The type itself can be used to cast other types. E.g., deck([]string{"a", "b", "c"})
+
 type sliceOfIntegers []int
 
 type person struct {

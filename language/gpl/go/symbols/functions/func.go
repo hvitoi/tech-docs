@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // return 1 value
 func greeting(name1, name2 string) string {
@@ -47,6 +50,20 @@ func namedReturnValues(sum int) (x, y int) {
 	return // "naked return" (return without args)
 }
 
+// Function values
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(2, 10)
+}
+
+// Function closure (a function value that references variables outside its body - it stores a state)
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
 func main() {
 	greetingMessage := greeting("Henry", "John")
 	fmt.Println(greetingMessage)
@@ -69,4 +86,11 @@ func main() {
 	// generics
 	result := mapValues([]int{1, 2, 3}, func(n int) int { return n * 2 }) // function literal
 	fmt.Println(result)
+
+	// Inline function declaration
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
 }
