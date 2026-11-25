@@ -6,7 +6,8 @@ import (
 	"time"
 )
 
-// The main function starts the "main go routine"
+// A goroutine is a lightweight thread managed by the Go runtime.
+
 func main() {
 	links := []string{
 		"https://google.com",
