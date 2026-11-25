@@ -1,9 +1,10 @@
 # MCP
 
 - Settings
-  - **User scope**: `~/.claude.json` (.mcpServers)
-  - **Local scope**: `~/.claude.json` (.projects.myproject.mcpServers)
-  - **Project scope** `./.mcp.json` (.mcpServers)
+  - **User scope**: `~/.claude.json` (.mcpServers) - For only you in all projects
+  - **Local scope**: `~/.claude.json` (.projects.myproject.mcpServers) - For only you in a specific project
+
+  - **Project scope** `./.mcp.json` (.mcpServers) - For everyone in a specific project
   - **Managed scope**: `managed-mcp.json` in system directories (see Managed MCP configuration)
 
 - Many cloud-based MCP servers require authentication. Claude Code supports OAuth 2.0 for secure connections, it should be done with the command `/mcp`
