@@ -28,4 +28,11 @@ func main() {
 		println(k, v)
 	}
 
+	type IPAddr [4]byte
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1}, // no need to instantiate like IPAddr{127, 0, 0, 1}
+		"googleDNS": {8, 8, 8, 8},
+	}
+	fmt.Println(hosts)
+
 }
