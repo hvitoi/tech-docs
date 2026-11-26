@@ -29,11 +29,29 @@ services:
     ports:
       - "80:80"
     volumes:
+      - ./local/folder:/vm/folder:options
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./:/app:delegated
+      - source: ./smocker
+        target: /opt/init
+        type: bind
     depends_on:
       - mysql # start nginx service only when mysql service is up
     networks:
       - app-network
+    env_file: dev.env # environment variables
+    stdin_open: true
+    tty: true
+    healthcheck:
+      interval: 3s
+      retries: 10
+      start_period: 3s
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:80/checks/health
+      timeout: 10s
 
 volumes:
   - mysql-data:

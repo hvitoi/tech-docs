@@ -9,4 +9,11 @@ go build "main.go" -o a.out # "a.out" binary
 
 # build & run
 go build "main.go" -o a.out && ./a.out
+
+##
+CGO_ENABLED=1 go build \
+  -tags osusergo,netgo \
+  -ldflags "-X github.com/myorg/pkg-version.SHA=MY_SHA -X github.com/myorg/pkg-version.Version=1.0.0 -X github.com/myorg/pkg-version.Date=2020-04-20T12:00:00Z -linkmode external -s -w -extldflags '-static'" \
+  -trimpath \
+  -o "bin/cmd"
 ```
