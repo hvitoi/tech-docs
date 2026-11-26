@@ -4,6 +4,10 @@
 - Outputs a binary in the same directory that can be executed
 
 ```shell
+# No args
+go build # It looks for a package main with a function main() in the current directly
+
+# Specify entrypoint
 go build "main.go" # outputs "main" binary
 go build "main.go" -o a.out # "a.out" binary
 

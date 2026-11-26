@@ -7,10 +7,16 @@ type ContactInfo struct {
 	ZipCode int
 }
 
+type FamilyInfo struct {
+	MotherName string
+	FatherName string
+}
+
 type Person struct {
-	FirstName string `json:"first_name"` // struct tags (useful for encoding/decoding functions)
-	Age       int
-	Contact   ContactInfo
+	FirstName  string `json:"first_name"` // struct tags (useful for encoding/decoding functions)
+	Age        int
+	Contact    ContactInfo // embedding
+	FamilyInfo             // same as above but without renaming it
 }
 
 func main() {
@@ -26,8 +32,9 @@ func main() {
 	}
 
 	// Initialize struct (by position arguments)
-	someone2 := Person{"Henry", 30, ContactInfo{"a@example.com", 94000}}
+	someone2 := Person{"Henry", 30, ContactInfo{"a@example.com", 94000}, FamilyInfo{"a", "a"}}
 	fmt.Printf("%+v\n", someone2)
+	fmt.Printf("%+v\n", someone.MotherName, someone.Contact.Email) // the embedded works like a top level fields, but the embedded renamed no
 
 	// Initialize struct (empty)
 	someone3 := Person{}
