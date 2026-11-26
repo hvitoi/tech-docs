@@ -137,6 +137,13 @@ uvx --from mcpdoc \
 # Each tool gets its own isolated virtual environment
 uv tool install ruff # just install without running
 uv tool install 'deepagents-cli[ollama,groq]'
+uv tool install copier --with jinja2-strcase # install with extensions
+```
+
+### uv tool uninstall
+
+```shell
+uv tool uninstall ruff
 ```
 
 ### uv tool list
