@@ -18,8 +18,17 @@ go test file_test.go
 # timeout
 go test -timeout 30s
 
-# run a specific test function
+# -run flag
 go test -run TestAdd github.com/hvitoi/playground # of a module
 go test -run TestAdd yourfile.go # of a file
 go test -run ^TestAdd$ # regex
+
+# -count flag
+go test -count=1 # disable caching
+
+# -failfast flag
+go test -failfast # do not start new tests after the first test failure
+
+# -short flag
+go test -short # enable short mode
 ```
