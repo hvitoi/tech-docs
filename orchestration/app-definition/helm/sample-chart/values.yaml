@@ -8,3 +8,8 @@ ingress:
 resources:
   enabled: false
   data: {}
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false

@@ -32,6 +32,7 @@ brew install docker-buildx # plugin
 brew install colima # an open-source daemon for MacOS (in case you installed the cli only)
 
 colima start
+colima start --memory 8 --cpu 4
 docker container ls
 ```
 

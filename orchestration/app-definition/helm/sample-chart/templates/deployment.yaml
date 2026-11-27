@@ -17,6 +17,11 @@ spec:
           imagePullPolicy: { { .Values.image.pullPolicy } }
           ports:
             - containerPort: 80
+          {{- if .Values.redis.enabled }}
+          env:
+            - name: REDIS_HOST
+              value: "{{ .Release.Name }}-redis-master"
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /
