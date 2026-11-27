@@ -1,7 +1,7 @@
 # go test
 
 - Test files are defined with `*_test.go` suffix. Files that do not obey this pattern will not be executed as tests.
-- When running tests, only the `TestXxx(t *testing.T)` functions are executed
+- When running tests, only the functions with the signature `TestXxx(t *testing.T)` are executed
 - In order to run module-wide tests you need `go.mod` file that defines your module (your project)
 - Go tests are always intended to be run via `go test`. Calling tests by other means (e.g., via your code itself) may be possible, but not supported
 

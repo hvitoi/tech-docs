@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	t := strconv.Itoa(99)
+	t := strconv.Itoa(99) // convert int to str
 	fmt.Println(t)
 }
