@@ -19,5 +19,7 @@ func fullDeck() []string {
 
 func main() {
 	myDeck := fullDeck()
-	fmt.Println(myDeck)
+	for i, card := range myDeck {
+		fmt.Println(i, card)
+	}
 }
